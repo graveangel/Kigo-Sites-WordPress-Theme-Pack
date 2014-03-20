@@ -1,0 +1,182 @@
+/*
+Theme Name: Insta Theme 04
+Theme URI: http://www.bookt.com
+Author: bookt
+Author URI: http://www.bookt.com
+Description: Insta Theme 04
+Version: 1.0
+Template: instaparent
+*/
+@import url("../instaparent/style.css");
+/* Specific Styles to this theme - specially HP since its different in each theme
+------------------------------------*/
+
+/*------------------------------- Start Styles of plugins --------------------------------------------*/
+
+/*	----------------------------------------------------------------
+	MaxCycle (Fullscreen Slideshow for use with jQuery Cycle Plugin)
+	----------------------------------------------------------------
+	
+	Demo at: http://www.aaronvanderzwan.com/maxcycle/
+	Download and Info at: http://github.com/akv2/MaxCycle---jQuery-Plugin/
+	Copyright (c) 2007-2011 Aaron Vanderzwan
+	Dual licensed under the MIT and GPL licenses.
+	
+*/
+/*! Version: 2.0.73 (12-Oct-2012) */
+
+
+.mc-hide-scrolls{
+	overflow:hidden;
+}
+
+body .mc-cycle {
+	height:100%;
+	left:0;
+	overflow:hidden;
+	position:fixed;
+	top:0;
+	width:100%;
+	z-index:-1;
+}
+
+div.mc-image {
+	/*NOTE: Mozilla flickers when fading and using 'all', so we have to be specific with what property we want to transition:
+	 	If you are using fading transitions, use 'opacity: */
+	-webkit-transition: opacity 1s ease-in-out; 
+	-moz-transition: opacity 1s ease-in-out; 
+	-o-transition: opacity 1s ease-in-out; 
+	transition: opacity 1s ease-in-out;
+	
+	/*If you are using horizontal slide transitions, use the following CSS:
+	-webkit-transition: left 1s ease-in-out; 
+	-moz-transition: left 1s ease-in-out; 
+	-o-transition: left 1s ease-in-out; 
+	transition: left 1s ease-in-out;*/
+	
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-position:center center;
+	background-repeat:no-repeat;
+	height:100%;
+	overflow:hidden;
+	width:100%;
+}
+
+.mc-old-browser .mc-image {
+	overflow:hidden;
+}
+
+/*------------------------------- End Styles of plugins --------------------------------------------*/
+.pushdown{margin-top:60px;}
+.pushdown.wpadminbarvisible{margin-top:60px;}
+.home #insta-footer{left:0;margin-bottom:0;position:fixed;right:0;z-index:1030;}
+
+/* tabs */
+.home .tabbable{padding-top:53px;}
+.home .tab-content{background:#fff;border:1px solid #ccc;padding:10px;}
+.home .nav-tabs{border:none;margin:0;}
+.home .nav-tabs > li > a{border:1px solid #ccc;border-radius: 0;margin-right: -1px;background-image:-moz-linear-gradient(rgb(245,245,245) 0%,rgb(234,234,234) 98%); 
+background-image:-webkit-gradient(linear,color-stop(0, rgb(245,245,245)),color-stop(0.98, rgb(234,234,234)));
+background-image:-webkit-linear-gradient(rgb(245,245,245) 0%,rgb(234,234,234) 98%);
+background-image:-o-linear-gradient(rgb(245,245,245) 0%,rgb(234,234,234) 98%);
+background-image:-ms-linear-gradient(rgb(245,245,245) 0%,rgb(234,234,234) 98%);
+background-image:linear-gradient(rgb(245,245,245) 0%,rgb(234,234,234) 98%);
+-ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#fff5f5f5,endColorstr=#ffeaeaea)";
+filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#fff5f5f5,endColorstr=#ffeaeaea);  color: #666;
+    font-size: 13px;
+    font-weight: bold;}
+.home .nav-tabs > .active > a,.home .nav-tabs > .active > a:hover{background:#fff;border-bottom:1px solid #fff;  color: #000;}
+.home .nav-tabs > li > a span{margin-left:7px;}
+.home .nav-tabs > li > a .glyphicons{padding:5px 0 5px 26px;}
+.home .nav-tabs > li > a .glyphicons i:before{font-size:25px;}
+
+/* Home page Slideshow */
+#slide-caption{color:#fff;font-size:90px;line-height:100%;text-align:right;text-shadow:1px 1px 1px #000;text-transform:uppercase;}
+.widget_bapi_hp_search{background-color:rgba(255,255,255,0.5);}
+.home #insta-header,#maximage{display:none;}
+#insta-top-fixed .bapi-logo{float:left;margin:3px 0;}
+#insta-top-fixed .bapi-logo img{height:34px;}
+
+/* Featured properties Widget */
+.insta-bottom-left-home .widget_bapi_featured_properties{}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-featured{}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-image{}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-image img{}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-outer{background:#000;}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-title{text-align:center;}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-title a{color:#fff;}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-details{color:#fff;text-align:center;}
+.insta-bottom-left-home .widget_bapi_featured_properties .fp-rates{color:#fff;}
+.insta-bottom-left-home .widget_bapi_featured_properties .property-link{line-height:30px;line-height:42px;font-size:10px;}
+.insta-bottom-left-home .widget_bapi_featured_properties .property-link span{color:#fff;font-size:25px;}
+
+.widget_bapi_footer .top-links{margin-left:88px;padding:0;}
+.widget_bapi_footer .top-links .dropdown-menu{top:auto;bottom:100%;}
+
+
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 979px) {
+/*	.hidden-desktop,.visible-desktop,.visible-tablet,.hidden-tablet*/
+	/*#insta-top-fixed{position:fixed;}*/
+	.pushdown{padding-bottom:70px;}
+	.home #insta-footer,#insta-footer{position:absolute;height:55px;}
+	.widget_bapi_footer .copyright{float:left;}
+	.insta-bottom-left-home .widget_bapi_featured_properties .fp-featured, .row-fluid .span3.insta-left-home-area {
+    width: 31.491712707182323%;
+    *width: 31.43852121782062%;
+  	}
+	.row-fluid .span9.insta-right-home-area {
+    width: 65.74585635359117%;
+    *width: 65.69266486422946%;
+  	}
+	
+	.insta-bottom-left-home .widget_bapi_featured_properties .fp-featured:last-child{display:none;}
+	.insta-bottom-left-home .widget_bapi_featured_properties .fp-featured:nth-child(2){}
+	.insta-bottom-left-home .widget_bapi_featured_properties .fp-featured{
+    /*width: 48.61878453038674%;
+    *width: 48.56559304102504%; for span6*/
+  }
+  .list-view-page .portal-images, .widget_bapi_featured_properties .fp-image{max-height:none;}
+}
+
+@media (max-width: 767px) {
+/*	.hidden-desktop, .visible-desktop, .visible-phone, .hidden-phone */
+	.pushdown{padding-bottom:130px;}
+	.home #insta-footer,#insta-footer{position:absolute;height:120px;}
+	.widget_bapi_footer .top-links{float:none;margin:0;padding:11px 0;}
+	.widget_bapi_footer .primaryphone .halflings{}
+	.top-links #wishListLink .halflings{height:11px;width:15px;padding-left:0;}
+	.top-links #wishListLink .halflings i:before{}
+	#slide-caption{display:none !important;}
+	#insta-top-fixed .navbar{width:100%;}
+	
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 768px) and (max-width: 979px) {}
+
+@media (max-width: 767px) {}
+
+@media (max-width: 480px) {}
+
+@media (max-width: 979px) {
+	
+	.pushdown,.pushdown.wpadminbarvisible{margin-top:20px;}
+	
+	#insta-top-fixed{min-height:40px;}
+	#insta-top-fixed #bapi-logo{position:absolute;left:0;}
+	#insta-top-fixed .navbar .btn-navbar{float:right;margin-bottom:7px;}
+	
+	/*#insta-top-fixed #bapi-logo{float:none;}*/
+	.home .nav-tabs > li > a .glyphicons{height:11px;}
+	.home .nav-tabs > li > a span{margin-left:0;}
+}
+
+@media (min-width: 980px) {}

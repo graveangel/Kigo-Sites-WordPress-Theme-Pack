@@ -1,0 +1,125 @@
+/*
+Theme Name: Insta Theme 07
+Theme URI: http://www.bookt.com
+Author: bookt
+Author URI: http://www.bookt.com
+Description: Insta Theme 07
+Version: 1.0
+Template: instaparent
+*/
+@import url("../instaparent/style.css");
+/* Specific Styles to this theme - specially HP since its different in each theme
+------------------------------------*/
+
+/*home page slideshow */
+body{background:#fff;}
+
+.home #insta-top-fixed{z-index:1;}
+#insta-top-fixed ul.nav li a.home{color:#ff6600;padding:5px 0 0;}
+#insta-top-fixed ul.nav .glyphicons.home{padding-left:25px;}
+#insta-top-fixed ul.nav .glyphicons.home i:before{font-size:20px;}
+
+#insta-top-fixed .bapi-logo{float:left;margin:3px 0;}
+#insta-top-fixed .bapi-logo img{height:34px;}
+.pushdown,.pushdown.wpadminbarvisible{margin-top:50px;padding-bottom:315px;}
+.top-links a, .top-links a:hover{color:#000;}
+.top-links .caret{border-bottom-color:#000;border-top-color:#000;}
+
+/* Home Quick Search */
+.home .pushdown,.home .pushdown.wpadminbarvisible{margin-top:0;}
+
+.top-header-home{position:relative;}
+.home-qsearch{position:absolute;left:1.75%;top:15%;z-index:1;}
+.home-qsearch h3{text-shadow:0px 0px 10px #fff;}
+.home-qsearch h3 .glyphicons{padding:0;}
+.home-qsearch h3 .glyphicons.search i:before{content:none;}
+.home-qsearch .widget_bapi_hp_search{background:none;box-shadow:none;}
+.home-qsearch #bapi-search{background:#000;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 89px 0 5px;margin:0 auto;position:relative;}
+.home-qsearch #bapi-search .category-block{display:inline-block;padding:0 0 5px;}
+.home-qsearch .property-search-button-block{width:80px;height:52px;position:absolute;bottom:5px;right:4px;}
+.home-qsearch #bapi-search .category-block input[type=text],.home-qsearch #bapi-search .category-block select{border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;}
+.home-qsearch span.cal-icon-trigger{color:#FF6600;margin-top:-3px;}
+.home-qsearch .halflings.calendar i:before{font-size:20px;}
+.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{float:none;background:#FF6600 url(images/icon-magnifyingglass.png) no-repeat center center;border:none;box-shadow:none;height:52px;padding:0;text-indent:-9999px;width:80px;}
+.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-doclear{display:none;}
+.home-qsearch .pickadate__holder{display:none;}
+.home-qsearch .pickadate__holder.pickadate__holder--opened{display:block;}
+
+/* Slideshow */
+.home .flexslider{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+.home .flexslider .flex-caption{bottom:0;font-size:1em;position:absolute;opacity:0.65;width:100%;}
+.home .flexslider .slides > li{position:relative;}
+
+/* Property Finder */
+.widget_bapi_featured_properties .property-link span, .widget_bapi_similar_properties .property-link span{color:#FF3300;}
+
+/* Home Right Sidebar */
+.span3 .MR_Social_Sharing_Toolkit_Follow_Widget{background:#fff;box-shadow:0 0 3px rgba(0, 0, 0, 0.1);margin-bottom:25px;padding:10px;}
+.span3 .mr_social_sharing_wrapper{text-align:center;}
+.span3 .mr_social_sharing_wrapper a{margin:0.5em;}
+.blog-home{box-shadow:0 0 3px rgba(0, 0, 0, 0.1);margin-bottom:25px;padding-bottom:5px;text-align:center;}
+
+/* insta specials widget */
+.widget_bapi_specials_widget{padding:0;text-align:center;}
+.widget_bapi_specials_widget .special-holder:first-child{border:none;padding-top:0;}
+.widget_bapi_specials_widget .special-title,.blog-home h5{color:#000;font-size:13px;font-weight:bold;}
+.widget_bapi_specials_widget .special-sum,.blog-home p{color:#666;font-size:25px;}
+.special-home a,.blog-home a{background:#FF6600;border-radius:3px;color:#fff;cursor:pointer;display:block;font-size:0.55em;font-weight:bold;height:1.5em;margin:0 auto;padding:5px 10px;text-decoration:none;width:9em;}
+
+/* Footer Content */
+#insta-footer{height:auto;} 
+.logo-footer .bapi-logo img{height:35px;}
+.nav-footer{border-bottom:1px solid #333;padding-bottom:20px;}
+.nav-footer h5{border-top:1px solid #333;color:#fff;font-size:13px;font-weight:bold;margin-bottom:10px;padding-bottom:5px;padding-top:20px;text-transform:uppercase;}
+.nav-footer ul{margin:0;}
+.nav-footer ul li{list-style-type:none;}
+.nav-footer ul li a{color:#ddd;font-size:13px;}
+.nav-footer ul ul{display:none;}
+.nav-footer .mr_social_sharing_wrapper{border-top:1px solid #333;margin-top:10px;margin-bottom:10px;padding-bottom:5px;padding-top:20px;text-align:left;}
+.nav-footer .mr_social_sharing_top{margin-bottom:10px;}
+.nav-footer .mr_social_sharing_top a span{font-size:13px;line-height:24px;}
+.nav-footer .mr_social_sharing_wrapper a{color:#ddd;font-size:13px;margin:0;}
+
+/* Insta latest blog posts widget */
+.widget_insta_latest_blog_posts .post-date,.widget_insta_latest_blog_posts .post-title{text-align:center;font-size:13px;}
+.widget_insta_latest_blog_posts .post-excerpt{font-size:25px;line-height:120%;text-align:center;font-family:Georgia, "Times New Roman", Times, serif;color:#666;}
+
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+/*tablet view*/
+@media (min-width: 768px) and (max-width: 979px) {
+.home-qsearch{position:absolute;left:1.75%;top:5%;}
+.home-qsearch #bapi-search .category-block{}
+}
+/*phone view*/
+@media (max-width: 767px) {
+.pushdown,.pushdown.wpadminbarvisible{padding-bottom:800px;}
+
+.home-slideshow{margin-bottom:0;}
+.home-slideshow .flex-caption{display:none;}
+
+.home-qsearch{position:static;}
+.home-qsearch #bapi-search{padding-right:5px;padding-bottom:5px;}
+.home-qsearch #bapi-search .category-block{padding-bottom:5px;width:100%;}
+.home-qsearch span.cal-icon-trigger{margin-top:0;}
+.home-qsearch .halflings.calendar i:before{font-size:12px;}
+
+.home-qsearch .property-search-button-block,.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{width:100%;position:static;}
+
+}
+
+@media (min-width: 1200px) {}
+
+@media (max-width: 480px) {}
+/*tablet view and phone view*/
+@media (max-width: 979px) {
+.pushdown,.pushdown.wpadminbarvisible{margin-top:10px;}
+.top-header-home{margin-top:0 !important;}
+#insta-top-fixed .navbar .btn-navbar{float:right;margin-bottom:7px;}
+}
+
+@media (min-width: 980px) {
+.span3 .mr_social_sharing_wrapper a {margin: 0.1em;}
+}

@@ -1,0 +1,196 @@
+/*
+Theme Name: Insta Theme 09
+Theme URI: http://www.bookt.com
+Author: bookt
+Author URI: http://www.bookt.com
+Description: Insta Theme 09
+Version: 1.0
+Template: instaparent
+*/
+@import url("../instaparent/style.css");
+/* Specific Styles to this theme - specially HP since its different in each theme
+------------------------------------*/
+/* Font */
+@font-face {
+    font-family:'Helvetica-lt';
+    src: url('fonts/Helvetica-lt.eot');
+    src: url('fonts/Helvetica-lt.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Helvetica-lt.woff') format('woff'),
+         url('fonts/Helvetica-lt.ttf') format('truetype'),
+         url('fonts/Helvetica-lt.svg#Helvetica-lt') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*home page slideshow */
+body{background-color:#fff;}
+.home .flexslider{}
+
+/* insta top fixed */
+#insta-top-fixed{color:#ececec;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;}
+.top-links{float:right;font-size:12px;line-height:150%;padding:11px 0;}
+.top-links .caret{border-bottom-color:#ececec;border-top-color:#ececec;}
+.top-links span div{display:inline;}
+.top-links a,.top-links a:hover{color:#ececec;}
+.primaryphone .halflings{padding-left:20px;}
+.primaryphone .halflings i:before{font-size:15px;}
+.top-links #wishListLink .halflings{padding-left:20px;}
+.currencyselector ul.dropdown-menu{height:235px;overflow-x:hidden;}
+
+/* Header */
+.top-header-home{background:#fff;}
+#insta-header{background:none;}
+
+/* Main Navigation */
+.menu-main-navigation-menu-container{text-align:center;}
+#navigation{background:#333;}
+.navbar{margin-bottom:0;}
+.navbar .nav{float:none;}
+.navbar-inner{padding-left:0;padding-right:0;}
+.navbar .nav > li{display:inline-block;float:none;}
+.navbar-inverse .brand, .navbar-inverse .nav > li > a{color:#fff;text-transform:uppercase;}
+.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret{border-bottom-color:#fff;border-top-color:#fff;}
+.navbar-inverse .navbar-inner{background:#333;border:none;box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;}
+.dropdown-menu li > a{text-align:left;}
+
+/* Slideshow */
+.home-slideshow{margin-bottom:0;position:relative;}
+
+/* Weather */
+.right-side-header{padding-top:0;}
+.widget_bapi_weather_widget{background:none;float:right;margin-bottom:10px;}
+.widget_bapi_weather_widget .weatherItem{background:none!important;}
+.widget_bapi_weather_widget .weatherDesc, .widget_bapi_weather_widget .weatherCity, .widget_bapi_weather_widget .weatherForecastDay,.widget_bapi_weather_widget .weatherWind{display:none;}
+.widget_bapi_weather_widget .weatherRange{float:left;font-size:15px;font-weight:bold;margin-top:13px;margin-left:15px;}
+.widget_bapi_weather_widget .weatherTemp{float:left;font-size:30px;line-height:150%;}
+.widget_bapi_weather_widget .weatherTemp .glyphicons{padding-top:17px;}
+
+/* Home Quick Search */
+.top-header-home{position:relative;}
+.widget_bapi_hp_search{padding:0;}
+.home-qsearch{position:absolute;left:1.75%;top:15%;z-index:1;}
+.home-qsearch h3.title{color:#fff;font-weight:bold;font-size:60px;font-family:'Helvetica-lt';line-height:150%;margin-bottom:20px;text-align:center;text-shadow:0 1px 3px #000;}
+.home-qsearch h3.title .glyphicons{padding:0;}
+.home-qsearch h3 .glyphicons.search i:before{content:none;}
+.home-qsearch .widget_bapi_hp_search{background:none;box-shadow:none;}
+.home-qsearch #bapi-search{background:rgba(255,255,255,0.5);-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;float:left;margin:0 auto;padding:15px;position:relative;width:100%;}
+.home-qsearch #bapi-search .category-block{display:inline-block;padding:0;}
+.home-qsearch .property-search-button-block{float:right;height:30px;width:21%;}
+.home-qsearch #bapi-search .category-block{float:left;margin-right:1%;width:25%;} 
+.home-qsearch #bapi-search .category-block input[type=text],.home-qsearch #bapi-search .category-block select{border:1px solid #bbb;margin-bottom:0;}
+.home-qsearch span.cal-icon-trigger{color:#666;margin-top:0;}
+.home-qsearch .halflings.calendar i:before{font-size:12px;}
+.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{
+background: #338ad6; /* Old browsers */
+background: -moz-linear-gradient(top,  #338ad6 0%, #006dcc 14%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#338ad6), color-stop(14%,#006dcc)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #338ad6 0%,#006dcc 14%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #338ad6 0%,#006dcc 14%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #338ad6 0%,#006dcc 14%); /* IE10+ */
+background: linear-gradient(to bottom,  #338ad6 0%,#006dcc 14%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#338ad6', endColorstr='#006dcc',GradientType=0 ); /* IE6-9 */
+color:#fff;font-weight:bold;float:left;font-size:13px;border:1px solid #005299;}
+.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-doclear{color:#000;}
+.home-qsearch .pickadate__holder{display:none;}
+.home-qsearch .pickadate__holder.pickadate__holder--opened{display:block;}
+
+/* Weather Widget */
+.widget_bapi_weather_widget{box-shadow:none;-webkit-box-shadow:none;-moz-box-shadow:none;}
+
+/* Home Page Legend */
+.hp-content{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;margin-bottom:20px;}
+.hp-content h1{color:#000;font-family:'Helvetica-lt';font-size:35px;font-weight:normal;margin-bottom:20px;text-align:center;}
+.hp-content p{color:#666;font-family:'Helvetica-lt';font-size:25px;font-weight:normal;line-height:130%;text-align:center;}
+
+/* Featured Properties */
+.widget_bapi_featured_properties h3{color:#000;font-family:'Helvetica-lt';font-size:25px;font-weight:normal;text-align:center;}
+.widget_bapi_featured_properties .fp-title{color:#000;font-size:15px;font-weight:bold;font-family:'Helvetica-lt';text-align:center;}
+.widget_bapi_featured_properties .fp-title a, .widget_bapi_similar_properties .fp-title a{color:#000;}
+.widget_bapi_featured_properties .fp-details{color:#666;font-size:12px;font-family:'Helvetica-lt';text-align:center;}
+.widget_bapi_featured_properties .fp-details b{font-weight:normal;}
+.widget_bapi_featured_properties .fp-rates,.widget_bapi_featured_properties .property-link,.widget_bapi_featured_properties hr{display:none;}
+.widget_bapi_featured_properties .fp-outer{box-shadow:none;padding-left:10px;padding-right:10px;min-height:20px;}
+
+/* Property Finders */
+.widget_bapi_property_finders{border-bottom:1px solid #e6e6e6;margin-bottom:20px;}
+.widget_bapi_property_finders h3{color:#000;font-family:'Helvetica-lt';font-size:25px;font-weight:normal;text-align:center;}
+.widget_bapi_property_finders .pf-outer{box-shadow:none;padding-left:10px;padding-right:10px;min-height:20px;text-align:center;}
+.widget_bapi_property_finders .pf-image{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;padding:0;}
+.widget_bapi_property_finders .pf-outer .pf-description,.widget_bapi_property_finders hr{display:none;}
+.widget_bapi_property_finders .pf-outer .pf-title{color:#000;font-size:15px;font-weight:bold;font-family:'Helvetica-lt';text-align:center;}
+
+/* Special Widget */
+.widget_bapi_specials_widget{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;padding:0;position:relative;}
+.widget_bapi_specials_widget .widget-title{color:#000;font-family:'Helvetica-lt';font-size:20px;font-weight:normal;margin-bottom:0;margin-left:55%;}
+.widget_bapi_specials_widget .special-holder .special-image{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;float:left;padding:0;position:relative;top:-35px;width:50%;}
+.widget_bapi_specials_widget .special-holder .special-description{float:right;margin-left:1.5%;width:47%;}
+.widget_bapi_specials_widget .special-sum{color:#000;font-family:'Helvetica-lt';font-size:12px;}
+.widget_bapi_specials_widget .special-title{color:#000;font-family:'Helvetica-lt';font-size:15px;font-weight:normal;margin-bottom:5px;}
+.widget_bapi_specials_widget .special-holder:first-child{border-bottom:none;padding-bottom:0;padding-top:0;}
+
+/* Home Blog Info */
+.widget_insta_latest_blog_posts{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;bordpadding-left:0;padding:0;position:relative;}
+.widget_insta_latest_blog_posts .post-block{border-bottom:1px solid #e5e5e5;padding-bottom:10px;}
+.widget_insta_latest_blog_posts .widget-title{color:#000;font-family:'Helvetica-lt';font-size:20px;font-weight:normal;padding:0;margin-left:47%;}
+.widget_insta_latest_blog_posts .post-title a{color:#000;font-size:14px;font-family:'Helvetica-lt';font-weight:normal;}
+.widget_insta_latest_blog_posts .post-date{display:none;}
+.widget_insta_latest_blog_posts .post-excerpt{color:#000;font-size:12px;font-family:'Helvetica-lt';float:right;padding:0;width:52%;}
+.widget_insta_latest_blog_posts .post-image{float:left;margin-right:2%;position:relative;top:-35px;width:45%;}
+.widget_insta_latest_blog_posts .post-block{border:none;padding:0;}
+/* Home Content */
+.bgwhite{background:#fff;padding-left:20px;padding-right:20px;}
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 979px) {
+/*	.hidden-desktop,.visible-desktop,.visible-tablet,.hidden-tablet*/
+.home-qsearch h3.title{font-size:25px;margin-bottom:0;}
+
+}
+
+@media (max-width: 767px) {
+/*	.hidden-desktop, .visible-desktop, .visible-phone, .hidden-phone */
+#insta-top-fixed .navbar{margin-bottom:5px;}
+.primaryphone .halflings{padding:0;}
+.top-links #wishListLink .halflings{display:inline-block;height:11px;width:20px;padding-left:0;}
+.currencyselector ul.dropdown-menu{right:0;left:auto;}
+#insta-top-fixed .widget_bapi_header{position:absolute;right:0;}
+.widget_bapi_hp_search .category-block{width:100%;}	
+.widget_bapi_specials_widget .special-holder .special-image{margin-bottom:10px;position:static;width:100%;}
+.widget_bapi_specials_widget .widget-title{margin-left:0;text-align:center;}
+.widget_bapi_specials_widget .special-holder .special-description{margin-left:0;width:100%;}
+.widget_insta_latest_blog_posts .post-image{margin-bottom:10px;position:static;width:100%;}
+.widget_insta_latest_blog_posts .widget-title{margin-left:0;text-align:center;}
+.widget_insta_latest_blog_posts .post-excerpt{float:none;width:100%;}
+.widget_bapi_featured_properties h3,.widget_bapi_property_finders h3{font-size:22px;}
+.hp-legend{margin-bottom:20px;}
+.hp-legend h1{font-size:24px;}
+.hp-legend p{font-size:18px;}
+.home-qsearch{position:static;padding:16px;}
+.home-qsearch h3.title{font-size:25px;margin-bottom:0;}
+.home-qsearch #bapi-search{float:none;padding:0;}
+.home-qsearch #bapi-search .category-block{float:none;margin-bottom:10px;width:100%;}
+.home-qsearch .property-search-button-block{float:left;width:100%;}
+.widget_bapi_weather_widget .weatherTemp{float:left;}
+.widget_bapi_weather_widget{padding:0;}
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 768px) and (max-width: 979px) {}
+
+@media (max-width: 767px) {}
+
+@media (max-width: 480px) {}
+
+@media (max-width: 979px) {
+	
+}
+
+@media (min-width: 980px) {}
+@media (min-width: 980px) and (max-width: 1200px) {
+.navbar .pull-right>li>.dropdown-menu, .navbar .nav>li>.dropdown-menu.pull-right{left:0;right:auto;}
+.navbar .pull-right>li>.dropdown-menu:before, .navbar .nav>li>.dropdown-menu.pull-right:before{left:9px;right:auto;}
+.navbar .pull-right>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu.pull-right:after{left:10px;right:auto;}
+}

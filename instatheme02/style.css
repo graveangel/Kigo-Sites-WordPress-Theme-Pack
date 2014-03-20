@@ -1,0 +1,130 @@
+/*
+Theme Name: Insta Theme 02
+Theme URI: http://www.bookt.com
+Author: bookt
+Author URI: http://www.bookt.com
+Description: Insta Theme 02
+Version: 1.0
+Template: instaparent
+*/
+@import url("../instaparent/style.css");
+/* Specific Styles to this theme - specially HP since its different in each theme
+------------------------------------*/
+body{background-image:url("images/bg.jpg");background-position:center top;}
+.maintainer{max-width:1200px;}
+.pushdown{margin-top:0;padding-bottom:40px;}
+
+#insta-top-fixed{text-align:center;}
+
+.widget_bapi_header{float:left;}
+.top-links{float:none;}
+
+#insta-header > .maintainer,#main{-moz-box-shadow:0px 0px 3px rgba(0,0,0,0.1);
+-webkit-box-shadow:0px 0px 3px rgba(0,0,0,0.1);
+box-shadow:0px 0px 3px rgba(0,0,0,0.1);
+-ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a000000,Positive=true)";
+filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a000000,Positive=true);background:#fff;padding:20px;-webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;}
+
+#insta-header > .maintainer{border-bottom:1px solid #eee;padding-bottom:10px;}
+#insta-header{background:none;}
+
+.bapi-logo{margin:0;}
+.bapi-logo img{max-height:140px;}
+.right-side-header{padding-top:0;}
+.right-side-header .navbar{text-align:left;}
+.right-side-header .navbar-inverse .nav > li > a{color:#fff;text-transform:uppercase;}
+.right-side-header .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret{border-top-color:#fff;}
+
+.widget_bapi_hp_search, .widget_bapi__search, .widget_bapi_weather_widget, .widget_bapi_specials_widget, .widget_recent_entries, .hp-content, .widget_bapi_featured_properties .fp-outer, .widget_bapi_property_finders .pf-outer,.widget_insta_latest_blog_posts{-moz-box-shadow:none;
+-webkit-box-shadow:none;
+box-shadow:none;
+-ms-filter:none;
+filter:none}
+
+#insta-top-fixed .widget_bapi_weather_widget{float:right;background:none;color:#fff;padding:8px 0 0;margin:0;}
+#insta-top-fixed .widget_bapi_weather_widget .weatherTemp{font-size:30px;}
+#insta-top-fixed .widget_bapi_weather_widget .widget-title{display:inline-block;height:25px;overflow: hidden;width:30px;}
+#insta-top-fixed .widget-title .glyphicons{padding-top:7px;}
+#insta-top-fixed .widget_bapi_weather_widget div{display:inline;}
+#insta-top-fixed .widget_bapi_weather_widget .weatherItem{background:none !important;}
+#insta-top-fixed .widget_bapi_weather_widget .weatherCity,#insta-top-fixed .widget_bapi_weather_widget .weatherDesc,#insta-top-fixed .widget_bapi_weather_widget .weatherWind{display:none;}
+
+.home .flexslider{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+
+/* Featured properties Widget */
+.widget_bapi_featured_properties .widget-title{color:#000;text-transform:uppercase;text-align:center;}
+.widget_bapi_featured_properties .fp-outer{background:#000;}
+.widget_bapi_featured_properties .fp-title{text-align:center;}
+.widget_bapi_featured_properties .fp-title a{color:#fff;}
+.widget_bapi_featured_properties .fp-details{color:#fff;text-align:center;}
+.widget_bapi_featured_properties .fp-rates{color:#fff;}
+.widget_bapi_featured_properties .property-link{line-height:30px;}
+.widget_bapi_featured_properties .property-link span{color:#fff;font-size:25px;}
+
+/* white background in static pages -we already have a background here */
+.default-page .row-fluid > .span9,
+.static-page .full-width-page .row-fluid > .span12,
+.static-page .other-detail-page .row-fluid > .span9,
+.static-page .other-detail-page .row-fluid > .span6,
+.static-page .content-page .row-fluid > .span12,
+.static-page .content-page .row-fluid > .span9,
+.static-page .content-page .row-fluid > .span6,
+.static-page .property-detail-page .row-fluid > .span6,
+.static-page .property-detail-page .row-fluid > .span9,
+.static-page .search-page .row-fluid > .span12,
+.static-page .search-page .row-fluid > .span9,
+.static-page .search-page .row-fluid > .span6
+{background:none;padding:0;-moz-box-shadow:none;
+-webkit-box-shadow:none;
+box-shadow:none;
+-ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a000000,Positive=true)";
+filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a000000,Positive=true);}
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 979px) {
+/*	.hidden-desktop,.visible-desktop,.visible-tablet,.hidden-tablet*/
+	.first-row .span3{width: 31.491712707182323%;
+    *width: 31.43852121782062%;}
+	.first-row .span9{width: 65.74585635359117%;
+    *width: 65.69266486422946%;}
+	
+	/* Specials Page */
+	.travel-dates .span6{margin-left:0;width:100%;}
+	
+	/* property detail page */
+	.bapi-rateblock .span6 label{font-size:12px;}
+	.bapi-rateblock .datepickercheckin, .bapi-rateblock .datepickercheckout{font-size:11px;}
+}
+
+@media (max-width: 767px) {
+/*	.hidden-desktop, .visible-desktop, .visible-phone, .hidden-phone */
+	#insta-top-fixed .widget_bapi_header{float:none;}
+	#insta-top-fixed .widget_bapi_weather_widget{display:none;}
+	#insta-top-fixed .primaryphone .halflings{padding:0;}
+	#insta-top-fixed .top-links #wishListLink .halflings{display:inline-block;height:11px;width:20px;padding-left:0;}
+	.currencyselector ul.dropdown-menu{right:0;left:auto;}
+	.pushdown{padding-bottom:80px;}
+	.right-side-header .navbar{float:none;}
+	
+	/* booking page */
+	.bapi-bookingform{margin:0 -10px 40px;}
+	.booking-page{margin:0;border:none;border-top:1px solid #eaeaea;}
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 768px) and (max-width: 979px) {}
+
+@media (max-width: 767px) {}
+
+@media (max-width: 480px) {}
+
+@media (max-width: 979px) {
+	
+}
+
+@media (min-width: 980px) {}

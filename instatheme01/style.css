@@ -1,0 +1,66 @@
+/*
+Theme Name: Insta Theme 01
+Theme URI: http://www.bookt.com
+Author: bookt
+Author URI: http://www.bookt.com
+Description: Insta Theme 01
+Version: 1.0
+Template: instaparent
+*/
+@import url("../instaparent/style.css");
+/* Specific Styles to this theme - specially HP since its different in each theme
+------------------------------------*/
+
+/*home page slideshow */
+.home .flexslider{}
+
+/* insta top fixed */
+.top-links{float:right;font-size:12px;line-height:150%;padding:11px 0;}
+.top-links .caret{border-bottom-color:#fff;border-top-color:#fff;}
+.top-links span div{display:inline;}
+.top-links a,.top-links a:hover{color:#fff;}
+.primaryphone .halflings{padding-left:20px;}
+.primaryphone .halflings i:before{font-size:15px;}
+.top-links #wishListLink .halflings{padding-left:20px;}
+
+
+.currencyselector ul.dropdown-menu{height:235px;overflow-x:hidden;}
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+@media (min-width: 768px) and (max-width: 979px) {
+/*	.hidden-desktop,.visible-desktop,.visible-tablet,.hidden-tablet*/
+
+}
+
+@media (max-width: 767px) {
+/*	.hidden-desktop, .visible-desktop, .visible-phone, .hidden-phone */
+#insta-top-fixed .navbar{margin-bottom:5px;}
+.primaryphone .halflings{padding:0;}
+
+.top-links #wishListLink .halflings{display:inline-block;height:11px;width:20px;padding-left:0;}
+
+.currencyselector ul.dropdown-menu{right:0;left:auto;}
+#insta-top-fixed .widget_bapi_header{position:absolute;right:0;}
+	
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 768px) and (max-width: 979px) {}
+
+@media (max-width: 767px) {}
+
+@media (max-width: 480px) {}
+
+@media (max-width: 979px) {
+	
+}
+
+@media (min-width: 980px) {}
+@media (min-width: 980px) and (max-width: 1200px) {
+.navbar .pull-right>li>.dropdown-menu, .navbar .nav>li>.dropdown-menu.pull-right{left:0;right:auto;}
+.navbar .pull-right>li>.dropdown-menu:before, .navbar .nav>li>.dropdown-menu.pull-right:before{left:9px;right:auto;}
+.navbar .pull-right>li>.dropdown-menu:after, .navbar .nav>li>.dropdown-menu.pull-right:after{left:10px;right:auto;}
+}
