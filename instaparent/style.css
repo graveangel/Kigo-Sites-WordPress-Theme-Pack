@@ -594,16 +594,20 @@ span.cal-icon-trigger{color:#888;cursor:pointer;height:14px;margin:-9px 0 0 -25p
 .marker-infowindow .prop-image{}
 .marker-infowindow .prop-image img{width:100%;}
 .marker-infowindow .prop-title{color:#000;}
-.marker-infowindow .prop-title:hover{text-decoration:none;}
+.marker-infowindow .prop-title:hover b{text-decoration:none;}
+.marker-infowindow .prop-title:hover a b{text-decoration:underline;}
 .marker-infowindow .prop-location{color:#666;font-family:Georgia, "Times New Roman", Times, serif;font-size:12px;padding-left:10px;}
 .marker-infowindow .portal-rates{}
 
 /* map view marker */
-.map-view-page .gm-style-iw{width:100% !important;margin-top:-12px;margin-left:-12px;overflow:hidden ! important;height:390px !important;}
-.map-view-page .marker-infowindow .prop-image{max-height:324px;overflow:hidden;}
+.map-view-page #prop-map{width:100%; height:650px;}
+.map-view-page .gm-style-iw{width:100% !important;margin-top:-12px;margin-left:-12px;overflow:hidden ! important;height:300px !important;}
+.map-view-page .marker-infowindow .prop-image{max-height:234px;overflow:hidden;}
+.map-view-page .marker-infowindow .prop-image img{margin-top:-40px;}
 .map-view-page .marker-infowindow .prop-title a b{font-size:14px;color:#000;}
 .map-view-page .marker-infowindow .prop-title{padding-left:10px;padding-top:5px;}
 .map-view-page .marker-infowindow .rate-value{padding-right:10px;font-size:25px;padding-top:15px;color:#0099CC;font-family:Georgia, "Times New Roman", Times, serif;}
+.phone-delimiter{display:none;}
 
 /* wp search widget */
 .widget_search input[type="text"]{-webkit-box-sizing: border-box;
@@ -1139,9 +1143,19 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 	.poi-results .bapi-map,.poi-results .item-result .item-images .number-tag,	
 	.poi-results .attraction-result-controls{display:none;}
 	
+	/* map view marker info */
+	.map-view-page #prop-map .gm-style-iw{width:auto !important;margin-top:0;margin-left:0;overflow:hidden ! important;height:auto !important;}
+	.map-view-page #prop-map .marker-infowindow{width:125px;}
+	.map-view-page #prop-map .marker-infowindow .prop-image{max-height:324px;overflow:hidden;}
+	.map-view-page #prop-map .marker-infowindow .prop-image img{margin-top:0;width:125px;}
+	.map-view-page #prop-map .marker-infowindow .prop-title a b{}
+	.map-view-page #prop-map .gm-style .gm-style-iw .marker-infowindow .prop-location span{font-size:11px;line-height:11px;}
+	.map-view-page #prop-map .marker-infowindow .prop-title{}
+	.map-view-page #prop-map .marker-infowindow .rate-value{display:none;}
+	.phone-delimiter{display:block;}
 }
 
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {.map-view-page #prop-map{height:550px;}}
 
 @media (min-width: 768px) and (max-width: 979px) {}
 
@@ -1179,3 +1193,7 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 @media (min-width: 980px) {
 	.sidenav.affix{top:0;margin-top:75px;width:253px;}
 }
+@media (max-height: 768px) {.map-view-page #prop-map{height:550px;}}
+@media (max-height: 480px) {.map-view-page #prop-map{height:400px;}}
+
+@media (max-height: 960px) {}
