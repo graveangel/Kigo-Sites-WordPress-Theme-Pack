@@ -16,7 +16,12 @@ get_header(); ?>
                 </div>
             </div> 
             <div class="row-fluid">
+            	<?php if ( is_active_sidebar( 'insta-right-home' ) ) : ?>
                 <div class="span9">
+                <?php else: ?>
+                <div class="span12">
+                <?php endif; ?>
+                
                 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                       <div class="row-fluid">
                         <div class="span12">
@@ -30,11 +35,13 @@ get_header(); ?>
                     <?php dynamic_sidebar( 'insta-left-home' ); ?>	
                 <?php endif; ?>
                 </div>
-                <div class="span3">
-                    <?php if ( is_active_sidebar( 'insta-right-home' ) ) : ?>		
-                        <?php dynamic_sidebar( 'insta-right-home' ); ?>		
+                
+                    <?php if ( is_active_sidebar( 'insta-right-home' ) ) : ?>
+                    <div class="span3">		
+                        <?php dynamic_sidebar( 'insta-right-home' ); ?>	
+                    </div>	
                     <?php endif; ?>            
-                </div>
+                
             </div>
         </div>
         <?php if ( is_active_sidebar( 'insta-bottom-left-home' ) && is_active_sidebar( 'insta-bottom-middle-home' ) && is_active_sidebar( 'insta-bottom-right-home' ) ) : ?>
