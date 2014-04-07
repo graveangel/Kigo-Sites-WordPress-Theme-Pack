@@ -12,14 +12,21 @@ This is the header code.
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"/>
 <title>
-<?php wp_title(''); ?>
+<?php $bapi_meta_title = get_post_meta($post->ID,'bapi_meta_title', true);
+if(!empty($bapi_meta_title)){ 
+	echo $bapi_meta_title;
+}else{
+	wp_title('');
+}
+?>
 </title>
-<?php $themeUrl = get_template_directory_uri(); ?>
+<?php $themeUrl = wp_make_link_relative(get_template_directory_uri()); ?>
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
 <!--[if lt IE 9]>
 <script src="<?php echo $themeUrl; ?>/insta-common/js/html5.js" type="text/javascript"></script>
 <![endif]-->
+<link rel="stylesheet" id="instaparent-style-css" href="<?php echo wp_make_link_relative(get_stylesheet_uri()); ?>" type="text/css" media="all" />
 <?php wp_head(); ?>
 <link rel="stylesheet" href="<?php echo $themeUrl; ?>/insta-common/css/print.css" type="text/css" media="print" />
 </head>

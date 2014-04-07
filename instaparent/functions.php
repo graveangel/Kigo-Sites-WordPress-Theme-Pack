@@ -72,8 +72,8 @@ function instaparent_scripts_styles() {
 	/*
 	 * Loads our main stylesheet.
 	 */
-	$relUrl = wp_make_link_relative(get_stylesheet_uri());
-	wp_enqueue_style( 'instaparent-style', $relUrl );
+	//$relUrl = wp_make_link_relative(get_stylesheet_uri());
+	//wp_enqueue_style( 'instaparent-style', $relUrl );
 
 	
 }
@@ -999,8 +999,8 @@ function instaparent_preset_styles() {
 	}
 	
 	if(isset($styleName) && $styleName!="default" && $styleName!=""){
-		/* we use the selected preset name in the PATH to the style.css for that preset */
-	wp_enqueue_style( $styleName . '-preset', get_template_directory_uri() . '/insta-common/themeoptions/presets/'.$styleName.'/style.css', array( 'instaparent-style' ), '1.0', 'all' );
+		/* we use the selected preset name in the PATH to the style.css for that preset, this was removed array( 'instaparent-style' ) */
+	wp_enqueue_style( $styleName . '-preset', get_template_directory_uri() . '/insta-common/themeoptions/presets/'.$styleName.'/style.css', FALSE, '1.0', 'all' );
 	}
 /* an array with the CSS for White and Gray Options */
 $menustyles_CSS = array(

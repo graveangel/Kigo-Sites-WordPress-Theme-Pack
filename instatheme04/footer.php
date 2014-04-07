@@ -45,7 +45,7 @@ This is the footer code.
 </article>
 <!-- End Main Content Wrapper -->
 <?php wp_footer(); ?>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/insta-common/bootstrap/js/insta-common.js"></script>
+<script type="text/javascript" src="<?php echo wp_make_link_relative(get_template_directory_uri()); ?>/insta-common/bootstrap/js/insta-common.js"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.cycle.all.min.js" type="text/javascript"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.maximage.min.js" type="text/javascript"></script>
 <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/javascript.js" type="text/javascript"></script>

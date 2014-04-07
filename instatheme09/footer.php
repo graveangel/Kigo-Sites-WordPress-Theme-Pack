@@ -58,7 +58,7 @@ This is the footer code.
 </article>
 <!-- End Main Content Wrapper -->
 <?php wp_footer(); ?>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/insta-common/bootstrap/js/insta-common.js"></script>
+<script type="text/javascript" src="<?php echo wp_make_link_relative(get_template_directory_uri()); ?>/insta-common/bootstrap/js/insta-common.js"></script>
 <script type="text/javascript">
 $(window).load(function () {	
         $('.widget_bapi_weather_widget .weatherTemp').prepend('<span class="glyphicons brightness_increase"><i></i></span>')   		
