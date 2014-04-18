@@ -60,21 +60,6 @@ This is the footer code.
 <?php wp_footer(); ?>
 <script type="text/javascript" src="<?php echo wp_make_link_relative(get_template_directory_uri()); ?>/insta-common/bootstrap/js/insta-common.js"></script> 
 <script type="text/javascript">
-$(document).ready(function() {		
-	$('.datepickercheckin').siblings('.pickadate__holder').attr('id', 'checkinCalendar');
-	$('.datepickercheckout').siblings('.pickadate__holder').attr('id', 'checkoutCalendar');
-	
-	$('.datepickercheckin').next('.cal-icon-trigger').click(function(){	
-	$('.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch').focus();	
-			$('#checkinCalendar').addClass('pickadate__holder--opened');
-		});
-	$('.datepickercheckout').next('.cal-icon-trigger').click(function(){
-		$('.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch').focus();
-		$('#checkoutCalendar').addClass('pickadate__holder--opened');
-		});
-		
-});
-
 $(window).load(function () {
 			
 		var dotheFix = setInterval(function(){		  
