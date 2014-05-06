@@ -84,6 +84,7 @@ body{background:#fff;}
 .widget_insta_latest_blog_posts .post-date,.widget_insta_latest_blog_posts .post-title{text-align:center;font-size:13px;}
 .widget_insta_latest_blog_posts .post-excerpt{font-size:25px;line-height:120%;text-align:center;font-family:Georgia, "Times New Roman", Times, serif;color:#666;}
 
+#insta-top-fixed .siteselector.widget{padding:10px;display:inline-block;}
 
 /* =Media queries
 -------------------------------------------------------------- */
@@ -108,6 +109,8 @@ body{background:#fff;}
 
 .home-qsearch .property-search-button-block,.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{width:100%;position:static;}
 
+#insta-top-fixed .navbar{float:none;}
+#insta-top-fixed .siteselector.widget{float:left;}
 }
 
 @media (min-width: 1200px) {}
@@ -118,6 +121,7 @@ body{background:#fff;}
 .pushdown,.pushdown.wpadminbarvisible{margin-top:10px;}
 .top-header-home{margin-top:0 !important;}
 #insta-top-fixed .navbar .btn-navbar{float:right;margin-bottom:7px;}
+
 }
 
 @media (min-width: 980px) {
