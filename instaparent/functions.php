@@ -68,6 +68,18 @@ function instaparent_scripts_styles() {
 	 */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );	
+		
+	/*
+	 * This Removed the jquery and jquery migrate scripts
+	 * from the instathemes
+	*/
+	if ( !is_admin() ) {
+		wp_deregister_script('jquery');
+	}
+	/* This include the PickADate Translate script in instasite
+	*/
+	wp_register_script( 'pickadate', get_template_directory_uri().'/insta-common/js/bapi.ui.pickadate.translate.js','','',true );
+    wp_enqueue_script( 'pickadate' );	
 
 	/*
 	 * Loads our main stylesheet.
