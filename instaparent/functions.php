@@ -22,7 +22,13 @@
  * Version: instaparent 1.0 
  * Date: 04-15-2013
  */
-function instaparent_setup() {	
+$bapi_solutiondata = json_decode(get_option('bapi_solutiondata'),true);
+$siteIsLive = $bapi_solutiondata[Site][IsLive];
+$sitePrimaryURL = $bapi_solutiondata[PrimaryURL];
+$siteSecureURL = $bapi_solutiondata[SecureURL];
+$siteUniquePrefix = $bapi_solutiondata[UniquePrefix];
+
+function instaparent_setup() {
 
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
@@ -76,18 +82,16 @@ function instaparent_scripts_styles() {
 	if ( !is_admin() ) {
 		wp_deregister_script('jquery');
 	}
-	/* This include the PickADate Translate script in instasite
+	/* This register the PickADate Translate script in instasite
 	*/
 	wp_register_script( 'pickadate', get_template_directory_uri().'/insta-common/js/bapi.ui.pickadate.translate.js','','',true );
-    wp_enqueue_script( 'pickadate' );	
-
+    wp_enqueue_script( 'pickadate' );
+	
 	/*
 	 * Loads our main stylesheet.
 	 */
 	//$relUrl = wp_make_link_relative(get_stylesheet_uri());
-	//wp_enqueue_style( 'instaparent-style', $relUrl );
-
-	
+	//wp_enqueue_style( 'instaparent-style', $relUrl );	
 }
 add_action( 'wp_enqueue_scripts', 'instaparent_scripts_styles' );
 
@@ -555,7 +559,7 @@ function start_lvl( &$output, $depth ) {
   
 // add main/sub classes to li's and links
  function start_el( &$output, $item, $depth, $args ) {
-    global $wp_query;
+    global $wp_query,$siteIsLive,$sitePrimaryURL,$siteSecureURL,$siteUniquePrefix;
     $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
   
     // depth dependent classes
@@ -573,12 +577,41 @@ function start_lvl( &$output, $depth ) {
   
     // build html
     $output .= $indent . '<li id="nav-menu-item-'. $item->ID . '" class="' . $depth_class_names . ' ' . $class_names . '">';
-  
+  	
+  	// we get the URL
+
+    $menuItemUrl = esc_attr($item->url);
+    $currentPageSecure = false;
+    if (strpos($menuItemUrl,'https') !== false){$currentPageSecure=true;}
+    /* are we in a secure page? */
+    if($currentPageSecure){
+		/* its the site not live?*/
+		if($siteIsLive != 1){
+			/* site not live use imbookingsecure */
+			$menuItemUrl = str_replace('https', 'http', $menuItemUrl);
+		}else{
+			//The site is live!!
+			/* its the user logged in? */
+			if (is_user_logged_in()){
+				/* logged in use imbookingsecure url*/
+				if($siteSecureURL != ''){
+					$menuItemUrl = 'http://'.$siteSecureURL. wp_make_link_relative($menuItemUrl);
+				}else{
+					$menuItemUrl = 'http://'.$siteUniquePrefix.'.imbookingsecure.com'. wp_make_link_relative($menuItemUrl);
+				}
+			}else{
+				/*not logged in use base url*/
+				$menuItemUrl = 'http://'.$sitePrimaryURL.wp_make_link_relative($menuItemUrl);
+				$menuItemUrl = str_replace('https', 'http', $menuItemUrl);
+			}
+		}
+    }
+
     // link attributes
     $attributes  = ! empty( $item->attr_title ) ? ' title="'  . esc_attr( $item->attr_title ) .'"' : '';
     $attributes .= ! empty( $item->target )     ? ' target="' . esc_attr( $item->target     ) .'"' : '';
     $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
-    $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
+    $attributes .= ! empty( $item->url )        ? ' href="'   . $menuItemUrl .'"' : '';
     
 	// normal link
 	$theLink = '%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s';
