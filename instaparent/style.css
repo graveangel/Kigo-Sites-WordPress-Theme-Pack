@@ -515,6 +515,14 @@ body{background-color:#ededed;word-wrap:break-word;}
 
 /*featured properties widget and similar propertis widget since they use the same mustache template*/
 .widget_bapi_featured_properties{}
+.fp-icons .fp-featured .icon .text{display:none;}
+.fp-icons .fp-featured .icon{background:url(insta-common/images/fproperties-icons.png) no-repeat;padding-left:18px;}
+.fp-icons .fp-featured .icon.baths{background-position:0 -1px;}
+.fp-icons .fp-featured .icon.sleeps{background-position:0 -14px;}
+.fp-icons .fp-featured .icon.beds{background-position:0 -27px;}
+.fp-icons.white .fp-featured .icon.baths{background-position:-17px -1px;}
+.fp-icons.white .fp-featured .icon.sleeps{background-position:-17px -14px}
+.fp-icons.white .fp-featured .icon.beds{background-position:-17px -27px;}
 .widget_bapi_similar_properties .fp-featured,.widget_bapi_featured_properties .fp-featured,.widget_bapi_developments_widget .development-holder{background:#fff;margin-bottom:25px;}
 .widget_bapi_featured_properties .fp-image,.widget_bapi_similar_properties .fp-image,.widget_bapi_developments_widget .development-image{max-height:200px;overflow:hidden;}
 .widget_bapi_featured_properties .fp-image img,.widget_bapi_similar_properties .fp-image img,.widget_bapi_developments_widget .development-image img{width:100%;}
