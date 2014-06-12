@@ -22,11 +22,14 @@
  * Version: instaparent 1.0 
  * Date: 04-15-2013
  */
+$theOptionIsString = is_string(get_option('bapi_solutiondata'));
+if($theOptionIsString){
 $bapi_solutiondata = json_decode(get_option('bapi_solutiondata'),true);
 $siteIsLive = $bapi_solutiondata[Site][IsLive];
 $sitePrimaryURL = $bapi_solutiondata[PrimaryURL];
 $siteSecureURL = $bapi_solutiondata[SecureURL];
 $siteUniquePrefix = $bapi_solutiondata[UniquePrefix];
+}
 
 function instaparent_setup() {
 
@@ -559,7 +562,7 @@ function start_lvl( &$output, $depth ) {
   
 // add main/sub classes to li's and links
  function start_el( &$output, $item, $depth, $args ) {
-    global $wp_query,$siteIsLive,$sitePrimaryURL,$siteSecureURL,$siteUniquePrefix;
+    global $wp_query,$siteIsLive,$sitePrimaryURL,$siteSecureURL,$siteUniquePrefix,$theOptionIsString;
     $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
   
     // depth dependent classes
@@ -584,7 +587,7 @@ function start_lvl( &$output, $depth ) {
     $currentPageSecure = false;
     if (strpos($menuItemUrl,'https') !== false){$currentPageSecure=true;}
     /* are we in a secure page? */
-    if($currentPageSecure){
+    if($theOptionIsString && $currentPageSecure){
 		/* its the site not live?*/
 		if($siteIsLive != 1){
 			/* site not live use imbookingsecure */
