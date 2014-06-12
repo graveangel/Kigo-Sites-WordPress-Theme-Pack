@@ -180,3 +180,19 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 .instatheme09 .home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#00569B;border-color:#00569B;}
 .instatheme09 .navbar-inverse .navbar-inner, .instatheme09 #navigation{background:#00569B;border-color:#00569B;}
 .instatheme09 .navbar-inverse .nav li.dropdown.open>.dropdown-toggle{background:none;}
+
+/* fixes theme03 
+-------------------------------------*/
+
+.instatheme03 #page{background:url("images/bg.jpg") repeat-x left top;padding-top:0;min-height:0;}
+.instatheme03 .home-slideshow{border:none;}
+.instatheme03 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#00569B;border-color:#00569B;}
+.instatheme03 .mihp-content h1{color:#00569B;}
+.instatheme03 #insta-footer {background: none;}
+.instatheme03 #footerout{background:none; color:#333333;}
+.instatheme03 #footerout .span12 .span3 {border-top:1px solid #999999;}
+.instatheme03 .widget_bapi_footer{border-top:1px solid #999999;}
+.instatheme03 #insta-footer .nav h3{color:#00569B ;}
+.instatheme03 #insta-footer .nav li a{color:#333333;}
+.instatheme03 .widget_bapi_footer .footer-links a{color:#333333;}
+.instatheme03 #insta-footer .MR_Social_Sharing_Toolkit_Follow_Widget div.mr_social_sharing_top a{color:#333333;}

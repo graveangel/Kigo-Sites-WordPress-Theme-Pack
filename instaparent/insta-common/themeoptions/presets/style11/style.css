@@ -91,6 +91,23 @@ a{color:#5FC7C1;}
 ------------------------------------------------*/
 .instatheme02 #insta-header > .maintainer,.instatheme02 #main{background-color:#f8f8f8;}
 
+/* fixes theme03 
+------------------------------------------------*/
+
+.instatheme03 #insta-header{padding:0;}
+
+.instatheme03 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#5fc8c2;border-color:#5fc8c2;}
+.instatheme03 #bapi_hp_search-2{background:none;}
+.instatheme03 .mihp-content h1{color:#EA244A;}
+.instatheme03 #insta-footer {background: none;}
+.instatheme03 #footerout{background:none; color:#333333;}
+.instatheme03 #footerout .span12 .span3 {border-top:1px solid #999999;}
+.instatheme03 .widget_bapi_footer{border-top:1px solid #999999;}
+.instatheme03 #insta-footer .nav h3{color:#EA244A;}
+.instatheme03 #insta-footer .nav li a{color:#333333;}
+.instatheme03 .widget_bapi_footer .footer-links a{color:#333333;}
+.instatheme03 #insta-footer .MR_Social_Sharing_Toolkit_Follow_Widget div.mr_social_sharing_top a{color:#333333;}
+
 /* fixes theme05
 -------------------------------------*/
 .home.instatheme05 #page{background:url("images/bg.jpg") repeat-x left top;}

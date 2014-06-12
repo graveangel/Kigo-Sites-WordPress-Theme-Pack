@@ -83,6 +83,26 @@ body.instatheme02{background-image:none;}
 .instatheme02 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
 .instatheme02 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{background:#004477;border-color:#004477;}
 
+/* fixes theme03 
+-------------------------------------*/
+.instatheme03 #page{background:url("images/bg.png") repeat-x top center;padding-top:0;min-height:0;}
+.instatheme03 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#004477;border-color:#004477;color:#FFE87F;}
+.instatheme03 .widget_bapi_property_finders h3 {color:#77AC8F !important;}
+.instatheme03 .widget_bapi_featured_properties h3 {color:#77AC8F !important;}
+.instatheme03 .widget_bapi_weather_widget h3 {color:#77AC8F !important;}
+.instatheme03 h3 {color:#77AC8F;}
+.instatheme03 .widget_bapi_specials_widget .widget-title .glyphicons{color:#77AC8F !important;}
+.instatheme03 .widget_bapi_hp_search .widget-title .glyphicons i:before, .instatheme03 .widget_bapi_weather_widget .widget-title .glyphicons i:before, .instatheme03 .widget_bapi_specials_widget .widget-title .glyphicons i:before, .instatheme03 .widget_bapi__search .widget-title .glyphicons i:before, .instatheme03 .contact-right-side .glyphicons i:before{color:#77AC8F;}
+.instatheme03 .mihp-content h1{color:#77AC8F;}
+.instatheme03 #insta-footer {background: none;}
+.instatheme03 #footerout{background:none; color:#333333;}
+.instatheme03 #footerout .span12 .span3 {border-top:1px solid #999999;}
+.instatheme03 .widget_bapi_footer{border-top:1px solid #999999;}
+.instatheme03 #insta-footer .nav h3{color:#77AC8F;}
+.instatheme03 #insta-footer .nav li a{color:#333333;}
+.instatheme03 .widget_bapi_footer .footer-links a{color:#333333;}
+.instatheme03 #insta-footer .MR_Social_Sharing_Toolkit_Follow_Widget div.mr_social_sharing_top a{color:#333333;}
+
 /* fixes theme05
 -------------------------------------*/
 .instatheme05 #insta-header{background:url("images/bg.png") repeat-x top center;}
@@ -165,3 +185,4 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#6600000
 .instatheme09 .navbar-inverse .nav li.dropdown.open>.dropdown-toggle{background-color:#004477;}
 .instatheme09 .hp-content, .instatheme09 .hp-content h1{background:#FFF;text-align:center;}
 .instatheme09 .hp-content h1, .instatheme09 .widget_bapi_featured_properties h3, .instatheme09 .widget_bapi_property_finders h3, .instatheme09 .widget-title .glyphicons{color:#77AC8F;}
+

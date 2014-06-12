@@ -33,6 +33,27 @@ a,
 .hp-content{padding:35px;}
 .hp-content p{color:#333;font-size:16px;line-height:200%;}
 
+/* fixes theme03 
+-------------------------------------*/
+
+.instatheme03 .home-slideshow{border:none;}
+.instatheme03 #insta-header {padding:0;}
+
+.instatheme03 .widget_bapi_property_finders h3 {color:#336699 !important;}
+.instatheme03 .widget_bapi_featured_properties h3 {color:#336699 !important;}
+.instatheme03 .widget_bapi_weather_widget h3 {color:#336699 !important;}
+.instatheme03 h3 {color:#336699;}
+.instatheme03 .widget_bapi_specials_widget .widget-title .glyphicons{color:#336699;}
+.instatheme03 .mihp-content h1{color:#336699;}
+.instatheme03 #insta-footer {background: none;}
+.instatheme03 #footerout{background:none; color:#FFFFFF;}
+.instatheme03 #footerout .span12 .span3 {border-top:1px solid #FFFFFF;}
+.instatheme03 .widget_bapi_footer{border-top:1px solid #FFFFFF;}
+.instatheme03 #insta-footer .nav h3{color:#FFFFFF;}
+.instatheme03 #insta-footer .nav li a{color:#FFFFFF;}
+.instatheme03 .widget_bapi_footer .footer-links a{color:#FFFFFF;}
+.instatheme03 #insta-footer .MR_Social_Sharing_Toolkit_Follow_Widget div.mr_social_sharing_top a{color:#FFFFFF;}
+
 /* fixes theme05
 -------------------------------------*/
 body.instatheme05{background-position:left -100px;}
@@ -104,4 +125,5 @@ border-color: #005299;}
 .instatheme09 .hp-content h1, .instatheme09 .widget_bapi_featured_properties .widget-title, .instatheme09 .widget_bapi_property_finders .widget-title, .instatheme09 .widget-title .glyphicons{color:#336699;}
 .instatheme09 {background:none!important;}
 .instatheme09 .pushdown{background: url("images/bg.jpg") repeat-x left top #748ca4;margin-top:0px;padding-top:20px;}
+
 

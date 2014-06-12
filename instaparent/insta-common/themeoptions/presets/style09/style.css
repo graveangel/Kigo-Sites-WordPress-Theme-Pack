@@ -63,6 +63,27 @@ body.instatheme02{background-image:none;}
 .instatheme02 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{background:#1a9199;border-color:#1a9199;}
 .instatheme02 #page{background-position:16% top;}
 
+/* fixes theme03 
+-------------------------------------*/
+
+.instatheme03 #page{background:url("images/bg.jpg") no-repeat 19% top;padding-top:0;min-height:0;}
+.instatheme03 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#167C85;border-color:#167C85;}
+.instatheme03 .home-slideshow{border:none;}
+.instatheme03 .widget_bapi_property_finders h3 {color:#1A9199 !important;}
+.instatheme03 .widget_bapi_featured_properties h3 {color:#1A9199 !important;}
+.instatheme03 .widget_bapi_weather_widget h3 {color:#1A9199 !important;}
+.instatheme03 h3 {color:#1A9199;}
+.instatheme03 .widget_bapi_specials_widget .widget-title .glyphicons{color:#1A9199;}
+.instatheme03 .mihp-content h1{color:#1A9199;}
+.instatheme03 #insta-footer {background: none;}
+.instatheme03 #footerout{background:none; color:#333333;}
+.instatheme03 #footerout .span12 .span3 {border-top:1px solid #999999;}
+.instatheme03 .widget_bapi_footer{border-top:1px solid #999999;}
+.instatheme03 #insta-footer .nav h3{color:#1A9199 !important;}
+.instatheme03 #insta-footer .nav li a{color:#333333;}
+.instatheme03 .widget_bapi_footer .footer-links a{color:#333333;}
+.instatheme03 #insta-footer .MR_Social_Sharing_Toolkit_Follow_Widget div.mr_social_sharing_top a{color:#333333;}
+
 /* fixes theme05
 -------------------------------------*/
 .home.instatheme05 #page{background-position:15% -186px;}
@@ -146,3 +167,5 @@ body.instatheme05{background:url("images/bg.jpg") no-repeat 18% top #f3e5d0;}
 .instatheme09 .hp-content h1, .instatheme09 .widget_bapi_featured_properties h3, .instatheme09 .widget_bapi_property_finders h3, .instatheme09 .widget-title .glyphicons{color:#1a9199;}
 .instatheme09 .navbar-inverse .navbar-inner, .instatheme09 #navigation{background:#1a9199;}
 .instatheme09 .pushdown{background:url("images/bg.jpg") repeat left top;margin-top:0px;padding-top:20px;}
+
+

@@ -54,6 +54,26 @@ box-shadow:0 2px 7px 0 rgba(0,0,0,0.65);
 -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=2,OffY=2,Color=#a6000000,Positive=true)";
 filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2,OffY=2,Color=#a6000000,Positive=true);}
 
+/* fixes theme03 
+-------------------------------------*/
+
+.instatheme03 #page{background:none;padding-top:0;min-height:0;}
+.instatheme03 .home-slideshow{border:none;}
+.instatheme03 .home-qsearch .search-button-block .quicksearch-dosearch{background:#468C00;border-color:#468C00;}
+.instatheme03 .widget_bapi_property_finders h3 {color:#468C00 !important;}
+.instatheme03 .widget_bapi_featured_properties h3 {color:#468C00 !important;}
+.instatheme03 .widget_bapi_weather_widget h3 {color:#468C00 !important;}
+.instatheme03 h3 {color:#468C00 !important;}
+.instatheme03 .mihp-content h1{color:#468C00;}
+.instatheme03 #insta-footer {background: none;}
+.instatheme03 #footerout{background:none; color:#333333;}
+.instatheme03 #footerout .span12 .span3 {border-top:1px solid #999999;}
+.instatheme03 .widget_bapi_footer{border-top:1px solid #999999;}
+.instatheme03 #insta-footer .nav h3{color:#468C00;}
+.instatheme03 #insta-footer .nav li a{color:#333333;}
+.instatheme03 .widget_bapi_footer .footer-links a{color:#333333 !important;}
+.instatheme03 #insta-footer .MR_Social_Sharing_Toolkit_Follow_Widget div.mr_social_sharing_top a{color:#333333;}
+
 /* fixes theme05
 -------------------------------------*/
 .instatheme05 #page{background:none;}
@@ -110,3 +130,4 @@ body.custom-background #insta-header{background-image:none;}
 .instatheme09 .widget_bapi_weather_widget{background:none;}
 .instatheme09 .home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#468C00;border-color:#468C00;}
 .instatheme09 .hp-content h1, .instatheme09 .widget_bapi_featured_properties h3, .instatheme09 .widget_bapi_property_finders h3, .instatheme09 .widget-title .glyphicons{color:#468C00;}
+

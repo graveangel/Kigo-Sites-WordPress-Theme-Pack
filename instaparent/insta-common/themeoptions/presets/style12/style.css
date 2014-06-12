@@ -183,6 +183,25 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 .instatheme02 .default-page .row-fluid > .span9{border:none;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;}
 .instatheme02 .widget_bapi_similar_properties .widget-title{color:#4C7174;}
 
+/* fixes theme03 
+------------------------------------------------*/
+.instatheme03 #insta-header{padding:0;}
+.instatheme03 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#F28411;border-color:#f28411;}
+.instatheme03 .widget_bapi_hp_search{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;padding:0; margin:0; background:none; border:none;}
+.instatheme03 .widget_bapi_property_finders h3 {color:#4C7174 !important;}
+.instatheme03 .widget_bapi_featured_properties h3 {color:#4C7174 !important;}
+.instatheme03 .widget_bapi_weather_widget h3 {color:#4C7174 !important;}
+.instatheme03 h3 {color:#4C7174;}
+.instatheme03 .mihp-content h1{color:#4C7174;}
+.instatheme03 #insta-footer {background: none;}
+.instatheme03 #footerout{background:none; color:#FFFFFF;}
+.instatheme03 #footerout .span12 .span3 {border-top:1px solid #999999;}
+.instatheme03 .widget_bapi_footer{border-top:1px solid #999999;}
+.instatheme03 #insta-footer .nav h3{color:#FFFFFF ;}
+.instatheme03 #insta-footer .nav li a{color:#FFFFFF;}
+.instatheme03 .widget_bapi_footer .footer-links a{color:#FFFFFF;}
+.instatheme03 #insta-footer .MR_Social_Sharing_Toolkit_Follow_Widget div.mr_social_sharing_top a{color:#FFFFFF;}
+
 /* fixes theme05
 -------------------------------------*/
 .instatheme05 #insta-header,.instatheme05 #insta-header a{color:#fff;}
@@ -281,3 +300,4 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=7,Color=#a600000
 .instatheme09 .widget_bapi_featured_properties .widget-title, .instatheme09 .widget_bapi_property_finders .widget-title{color:#4C7174;}
 .instatheme09 .module, .instatheme09 .widget_bapi_featured_properties .fp-featured, .instatheme09 .widget_bapi_property_finders .pf-featured, .instatheme09 .widget_bapi_specials_widget{background:none;border:none;}
 .instatheme09 .pushdown{background:url("images/bg.jpg") repeat left top;margin-top:0px;padding-top:20px;}
+
