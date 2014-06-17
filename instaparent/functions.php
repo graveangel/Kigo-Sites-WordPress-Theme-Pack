@@ -87,7 +87,7 @@ function instaparent_scripts_styles() {
 	}
 	/* This register the PickADate Translate script in instasite
 	*/
-	wp_register_script( 'pickadate', get_template_directory_uri().'/insta-common/js/bapi.ui.pickadate.translate.js','','',true );
+	wp_register_script( 'pickadate', wp_make_link_relative(get_template_directory_uri()).'/insta-common/js/bapi.ui.pickadate.translate.js','','',true );
     wp_enqueue_script( 'pickadate' );
 	
 	/*
