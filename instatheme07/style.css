@@ -86,6 +86,8 @@ body{background:#fff;}
 
 #insta-top-fixed .siteselector.widget{padding:10px;display:inline-block;}
 
+.home-qsearch  #amenitiesDropdownCheckbox .dropdown-checkbox-toggle{border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;}
+
 /* =Media queries
 -------------------------------------------------------------- */
 
@@ -111,6 +113,8 @@ body{background:#fff;}
 
 #insta-top-fixed .navbar{float:none;}
 #insta-top-fixed .siteselector.widget{float:left;}
+
+
 }
 
 @media (min-width: 1200px) {}

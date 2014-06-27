@@ -83,6 +83,8 @@ body{background:#fff;}
 #insta-footer{min-height:40px;height:auto;}
 .social-btm-widget div.mr_social_sharing_wrapper{text-align:right;}
 
+.home-qsearch #amenitiesDropdownCheckbox .dropdown-checkbox-toggle{border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;}
+
 /* =Media queries
 -------------------------------------------------------------- */
 

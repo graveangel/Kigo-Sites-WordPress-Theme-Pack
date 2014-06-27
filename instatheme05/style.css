@@ -59,6 +59,7 @@ box-shadow:0px 7px 4px rgba(0,0,0,0.65);
 -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=7,Color=#a6000000,Positive=true)";
 filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=7,Color=#a6000000,Positive=true);padding:25px 22px;}
 .widget_bapi_hp_search .category-block{padding-bottom:4px;}
+.widget_bapi_hp_search .category-block.amenitiesBlock{padding-bottom:10px;}
 .home-qsearch{left:21%;position:absolute;top:0;}
 .home-qsearch h3.title{font-size:1.2em;line-height:100%;margin:0 0 18px 0;text-align:center;}
 .home-qsearch h3.title .glyphicons{padding:5px 0;}
