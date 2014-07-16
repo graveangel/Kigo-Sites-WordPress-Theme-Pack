@@ -1058,6 +1058,14 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
  .picker{position:fixed;}
 }
 
+/* amenities dropdown checkbox*/
+.amenitiesBlock{padding-bottom:10px;}
+.property-search-block .dropdown-checkbox-toggle{width:100%;}
+#amenitiesDropdownCheckbox .dropdown-checkbox-content{min-width:100%;}
+
+/* */
+#txtAmountToCharge1{text-align:right;}
+
 /* =Media queries
 -------------------------------------------------------------- */
 
@@ -1168,6 +1176,10 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 	.map-view-page #prop-map .marker-infowindow .prop-title{}
 	.map-view-page #prop-map .marker-infowindow .rate-value{display:none;}
 	.phone-delimiter{display:block;}
+	
+	/* payment page */
+	#txtAmountToCharge1{width:70px;}
+	#txtAmountToCharge2{width:50px;}
 }
 
 @media (min-width: 1200px) {.map-view-page #prop-map{height:550px;}}
