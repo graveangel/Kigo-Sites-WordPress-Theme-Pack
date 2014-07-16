@@ -1053,6 +1053,13 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 .reviewrating-4{background-position:0 -39px;}
 .reviewrating-5{background-position:0 -52px;}
 
+/* Avg review stars */
+div.starsreviews{line-height:125%;}
+span.stars, span.stars span{background:url('insta-common/images/stars.png') repeat-x 0 -15px;display:block;height:15px;width:80px;}
+span.stars span{background-position:0 0;}
+span.stars{display:inline-block;}
+div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding-left:5px;}
+
 /* fix for the pickadte 3.5 blinking in the homepage because of the slideshow */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
  .picker{position:fixed;}
