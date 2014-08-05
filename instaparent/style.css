@@ -1016,6 +1016,8 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 .currencyselector ul.dropdown-menu{text-align:left;height:235px;overflow-x:hidden;}
 /* the hon kong flag */
 .flag.flag-zh-,.flag.flag-zh-CHT{background-position:-208px -55px;}
+/* google translator flags conflict */
+.siteselector .flag{padding:0;}
 
 /* the SSL */
 #SSLcontent{visibility:hidden;height:0;}
@@ -1055,8 +1057,8 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 
 /* Avg review stars */
 div.starsreviews{line-height:125%;}
-span.stars, span.stars span{background:url('insta-common/images/stars.png') repeat-x 0 -15px;display:block;height:15px;width:80px;}
-span.stars span{background-position:0 0;}
+span.stars, span.stars span {display:block;background: url('insta-common/images/stars.png') 0 -15px repeat-x;width: 80px;height: 15px;}
+span.stars span{background-position: 0 0;}
 span.stars{display:inline-block;}
 div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding-left:5px;}
 
@@ -1069,6 +1071,10 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 .amenitiesBlock{padding-bottom:10px;}
 .property-search-block .dropdown-checkbox-toggle{width:100%;}
 #amenitiesDropdownCheckbox .dropdown-checkbox-content{min-width:100%;}
+
+/* verify user page */
+.text-center{text-align:center;}
+.greybox{background-color:#eee;max-width:300px;margin:0 auto 40px;padding:50px 50px 40px 50px;}
 
 /* */
 #txtAmountToCharge1{text-align:right;}
