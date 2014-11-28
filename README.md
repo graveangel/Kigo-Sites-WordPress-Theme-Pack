@@ -1,4 +1,4 @@
 InstaThemes
 ===========
 
-Wordpress themes for InstaSites
+Wordpress themes for Kigo/Instamanager Sites

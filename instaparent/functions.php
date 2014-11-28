@@ -1599,14 +1599,3 @@ add_action( 'widgets_init', 'register_my_widget' );
 function register_my_widget() {  
     register_widget( 'Insta_Latest_Blog_Posts' );  
 }
-
-function im_login_logo() { ?>
-    <style type="text/css">
-        body.login div#login h1 a {
-            background-image: url(<?php echo wp_make_link_relative(get_template_directory_uri()) . ( ( function_exists( 'is_newapp_website' ) && is_newapp_website() ) ? '/insta-common/images/logo_kigo.png' : '/insta-common/images/wp-login-im-logo.png' ) ?>);
-			background-size:auto auto;
-            width:auto;
-        }
-    </style>
-<?php }
-add_action( 'login_enqueue_scripts', 'im_login_logo' );
