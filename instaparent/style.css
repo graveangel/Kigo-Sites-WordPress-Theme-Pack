@@ -903,6 +903,11 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=1,OffY=1,Color=#ccfffff
 .booking-page .msg-gray{background-color:#eee;border:1px solid #ddd;border-radius:4px;margin-bottom:20px;padding:8px 35px 8px 14px;}
 .booking-page .msg-center{text-align:center;}
 
+/* Statement details modal */
+.booking-page .charges-description{background-color:#eee;border-radius:4px;margin:0 70px 0 15px;font-size:13px}
+#statement-details .charges-description>p{margin: 5px}
+#statement-details .charges-description{margin:5px}
+
 /* Blog page */
 .default-page a.image-wrapper{background:#F7F7F7;display:block;float:right;margin-bottom:22px;margin-left:30px;margin-right:0;max-height:300px;max-width:40%;overflow:hidden;}
 .default-page .navigation{margin-bottom:15px;}
