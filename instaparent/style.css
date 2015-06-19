@@ -1019,10 +1019,6 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 .top-links #wishListLink .halflings i:before{font-size:15px;}
 
 .currencyselector ul.dropdown-menu{text-align:left;height:235px;overflow-x:hidden;}
-/* the hon kong flag */
-.flag.flag-zh-,.flag.flag-zh-CHT{background-position:-208px -55px;}
-.flag.flag-sv{background-position:-80px -132px;}/*sweden*/
-.flag-da-DK,.flag.flag-dk,.flag.flag-da-DK{background-position:-112px -33px;}/*denmark*/
 
 /* google translator flags conflict */
 .siteselector .flag{padding:0;}
