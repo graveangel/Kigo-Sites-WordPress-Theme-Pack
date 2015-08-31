@@ -104,22 +104,22 @@ function childtheme_override_setwidgets_commonareas($arrayOfSidebars) {
 */
 
 function childtheme_override_presetwidgets_hpareas() {
-if ( function_exists( 'getTextDataArray') )  {
-			/* we get the array of textdata */
-			$textDataArray = getTextDataArray();
-		}
+	if ( function_exists( 'getTextDataArray') )  {
+		/* we get the array of textdata */
+		$textDataArray = getTextDataArray();
+	}
 	/*for insta-left-home*/
-	update_option( 'widget_bapi_featured_properties', array( 2 => array( 'title' => $textDataArray["Featured Properties"], 'text' => 4, 'rowsize' => "2" )) );
-	update_option( 'widget_bapi_property_finders', array( 2 => array( 'title' => $textDataArray["Property Finders"],'text' => 3,'rowsize' => "3" )) );
+	update_option( 'widget_bapi_featured_properties', array( 2 => array( 'title' => @$textDataArray["Featured Properties"], 'text' => 4, 'rowsize' => "2" )) );
+	update_option( 'widget_bapi_property_finders', array( 2 => array( 'title' => @$textDataArray["Property Finders"],'text' => 3,'rowsize' => "3" )) );
 	
 	/*for insta-right-home*/
-	update_option( 'widget_mr-social-sharing-toolkit-follow-widget', array( 2 => array( 'title' => $textDataArray["Connect With Us"] )) );
-	update_option( 'widget_bapi_weather_widget', array( 2 => array( 'title' => $textDataArray["Weather"] )) );
+	update_option( 'widget_mr-social-sharing-toolkit-follow-widget', array( 2 => array( 'title' => @$textDataArray["Connect With Us"] )) );
+	update_option( 'widget_bapi_weather_widget', array( 2 => array( 'title' => @$textDataArray["Weather"] )) );
 	update_option( 'widget_bapi_specials_widget', array( 2 => array( 'title' => '','text' => 2,'rowsize' => "1" )) );
 	update_option( 'widget_insta_latest_blog_posts', array( 2 => array( 'title' => '', 'numberOfPosts' => 1, 'rowSize' => 1, 'displayImage' => 1, 'displayDate' => 0, 'displayTitle' => 1, 'postLinkString' => '' )) );
 	
 	/* For Insta Home Qsearch */
-	update_option( 'widget_bapi_hp_search', array( 2 => array( 'title' => $textDataArray["Find your InstaVilla"].'...')) );	
+	update_option( 'widget_bapi_hp_search', array( 2 => array( 'title' => @$textDataArray["Find your InstaVilla"].'...')) );
 }	
 /*
 *

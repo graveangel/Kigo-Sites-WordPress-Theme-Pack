@@ -25,10 +25,10 @@
 $theOptionIsString = is_string(get_option('bapi_solutiondata'));
 if($theOptionIsString){
 $bapi_solutiondata = json_decode(get_option('bapi_solutiondata'),true);
-$siteIsLive = $bapi_solutiondata[Site][IsLive];
-$sitePrimaryURL = $bapi_solutiondata[PrimaryURL];
-$siteSecureURL = $bapi_solutiondata[SecureURL];
-$siteUniquePrefix = $bapi_solutiondata[UniquePrefix];
+$siteIsLive = $bapi_solutiondata['Site']['IsLive'];
+$sitePrimaryURL = $bapi_solutiondata['PrimaryURL'];
+$siteSecureURL = $bapi_solutiondata['SecureURL'];
+$siteUniquePrefix = $bapi_solutiondata['UniquePrefix'];
 }
 
 function instaparent_setup() {
@@ -117,7 +117,7 @@ if ( function_exists( 'childtheme_override_set_favicon') )  {
 	/* Load our theme options */
 	$OptionsSelected = get_option('instaparent_theme_options');
 	/* Check if another favicon was set */
-	if($OptionsSelected['faviconurl']!='')
+	if(@$OptionsSelected['faviconurl']!='')
 	{
 		/*change the favicon Url to the one set in the theme options */
 		$faviconUrl = wp_make_link_relative($OptionsSelected['faviconurl']);
@@ -452,15 +452,17 @@ function instaparent_body_class( $classes ) {
 	){
 		$classes[] = "static-page" ;
 	}else{
-		if($metaArray[bapi_page_id][0]=="bapi_privacy_policy" ||
-		$metaArray[bapi_page_id][0]=="bapi_tos" ||
-		$metaArray[bapi_page_id][0]=="bapi_services" ||
-		$metaArray[bapi_page_id][0]=="bapi_about_us" ||
-		$metaArray[bapi_page_id][0]=="bapi_rental_policy" ||
-		$metaArray[bapi_page_id][0]=="bapi_booking_terms" ||
-		$metaArray[bapi_page_id][0]=="bapi_company_owner" ||
-		$metaArray[bapi_page_id][0]=="bapi_company_guest" ||
-		$metaArray[bapi_page_id][0]=="bapi_travel_insurance")
+		$id = @$metaArray['bapi_page_id'][0];
+		if(
+			$id=="bapi_privacy_policy" ||
+			$id=="bapi_tos" ||
+			$id=="bapi_services" ||
+			$id=="bapi_about_us" ||
+			$id=="bapi_rental_policy" ||
+			$id=="bapi_booking_terms" ||
+			$id=="bapi_company_owner" ||
+			$id=="bapi_company_guest" ||
+			$id=="bapi_travel_insurance")
 		{
 			$classes[] = "static-page" ;
 		}
@@ -544,7 +546,7 @@ add_filter( 'wp_nav_menu_objects', 'add_menu_parent_class' );
 //this is the Custom Walker function that adds several conditional classes to the nav menu
 class instaparent_walker_nav_menu extends Walker_Nav_Menu {  
 // add classes to ul sub-menus
-function start_lvl( &$output, $depth ) {
+function start_lvl( &$output, $depth = 0, $args = array() ) {
     // depth dependent classes
     $indent = ( $depth > 0  ? str_repeat( "\t", $depth ) : '' ); // code indent
     $display_depth = ( $depth + 1); // because it counts the first submenu as 0
@@ -561,7 +563,7 @@ function start_lvl( &$output, $depth ) {
 }
   
 // add main/sub classes to li's and links
- function start_el( &$output, $item, $depth, $args ) {
+ function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
     global $wp_query,$siteIsLive,$sitePrimaryURL,$siteSecureURL,$siteUniquePrefix,$theOptionIsString;
     $indent = ( $depth > 0 ? str_repeat( "\t", $depth ) : '' ); // code indent
   
@@ -979,19 +981,24 @@ add_action('after_switch_theme', 'set_default_theme_widgets');
 add_action('wpmu_create_blog', 'set_default_theme_widgets');
 
 
-/**
- * Open Media Upload when selecting images for the slideshow.
- */
-if(is_admin()){
-	if(function_exists( 'wp_enqueue_media' )){
- 		wp_enqueue_script( 'custom-header' );
-    		wp_enqueue_media();
-	}else{
-    		wp_enqueue_style('thickbox');
-    		wp_enqueue_script('media-upload');
-    		wp_enqueue_script('thickbox');
+function admin_instaparent_scripts_styles()
+{
+	/**
+	 * Open Media Upload when selecting images for the slideshow.
+	 */
+	if(is_admin()){
+		if(function_exists( 'wp_enqueue_media' )){
+	        wp_enqueue_script( 'custom-header' );
+	            wp_enqueue_media();
+		}else{
+	            wp_enqueue_style('thickbox');
+	            wp_enqueue_script('media-upload');
+	            wp_enqueue_script('thickbox');
+		}
 	}
 }
+
+add_action( 'admin_enqueue_scripts', 'admin_instaparent_scripts_styles' );
 
 /* lets execute this only if we are in the admin back end*/
 if(is_admin()){
@@ -1029,21 +1036,19 @@ function instaparent_preset_styles() {
 	$styleName = htmlspecialchars($_GET['presetpreview']);
 	
 	}else{
-		
-	/* we get the options from the database */
-	$OptionsSelected = get_option('instaparent_theme_options');
-	/* we get the preset selected which is in radioinput*/
-	$styleName = $OptionsSelected['presetStyle'];
-	/* we get the menu style selected */
-	$menuStyleName = $OptionsSelected['menustyles'];	
-	/* we get the Featured Properties Selected */
-	$FPstyle = $OptionsSelected['FPstyles'];
-	/* we get the Logo Size Selected */
-	$logoSize = $OptionsSelected['logoSize'];
-	$customlogoSize = $OptionsSelected['logoSize_custom'];
-	/* we Custom CSS option */
-	$customCSS = $OptionsSelected['customCSS'];
-	
+		/* we get the options from the database */
+		$OptionsSelected = get_option('instaparent_theme_options');
+		/* we get the preset selected which is in radioinput*/
+		$styleName = $OptionsSelected['presetStyle'];
+		/* we get the menu style selected */
+		$menuStyleName = @$OptionsSelected['menustyles'];
+		/* we get the Featured Properties Selected */
+		$FPstyle = @$OptionsSelected['FPstyles'];
+		/* we get the Logo Size Selected */
+		$logoSize = @$OptionsSelected['logoSize'];
+		$customlogoSize = @$OptionsSelected['logoSize_custom'];
+		/* we Custom CSS option */
+		$customCSS = @$OptionsSelected['customCSS'];
 	}
 	
 	if(isset($styleName) && $styleName!="default" && $styleName!=""){
@@ -1330,19 +1335,19 @@ class Insta_Latest_Blog_Posts extends WP_Widget {
 		/* we get the title */
 		$title = apply_filters('widget_title',$instance['title']);
 		/* we get the number of posts */
-		$numberOfPosts = $instance['numberOfPosts'];
+		$numberOfPosts = @$instance['numberOfPosts'];
 		/* we get the number of rows */
-		$rowSize = $instance['rowSize'];
+		$rowSize = @$instance['rowSize'];
 		/* Do we display images? */
-		$bDisplayImage =  $instance['displayImage'];
+		$bDisplayImage =  @$instance['displayImage'];
 		/* Do we display the date? */		
-		$bDisplayDate =  $instance['displayDate'];
+		$bDisplayDate =  @$instance['displayDate'];
 		/* we get the format of the date */
-		$sDateFormat =  $instance['dateFormat'];
+		$sDateFormat =  @$instance['dateFormat'];
 		/* Do we display the title?*/
-		$bDisplayTitle =  $instance['displayTitle'];
+		$bDisplayTitle =  @$instance['displayTitle'];
 		/* we get the string for the read more link */
-		$sPostLink =  trim($instance['postLinkString']);
+		$sPostLink =  trim(@$instance['postLinkString']);
 		/* we calculate the number of post for each row, we round the result so we dont get decimal values, this value cant be below 1 */
 		$numberOfPostsForEachRow = ceil($numberOfPosts / $rowSize);
 		/* we calculate the number of the column this value can only be multiples of 12 (12,6,4,3,2,1) cant be a decimal and it cant be greater than 12 or less than 1*/				
@@ -1376,7 +1381,7 @@ while ($the_query -> have_posts()) : $the_query -> the_post();
 <?php
 /* we output the featured image if the post has one and if the widget was set to display images */
 if ( $bDisplayImage && has_post_thumbnail()  ) {
-	echo '<div class="post-image"><a href="'. get_permalink($post->ID) . '">';	
+	echo '<div class="post-image"><a href="'. get_permalink(@$post->ID) . '">';
 	the_post_thumbnail();
 	echo '</a></div>';
 }
@@ -1386,7 +1391,7 @@ if($bDisplayDate){
 }
 /* we display the title of the post */
  if($bDisplayTitle){
-	 echo '<h4 class="post-title"><a href="'. get_permalink($post->ID) . '">'.get_the_title().'</a></h4>';
+	 echo '<h4 class="post-title"><a href="'. get_permalink(@$post->ID) . '">'.get_the_title().'</a></h4>';
 } 
 /* we display the post excerpt */
 ?>
@@ -1404,7 +1409,7 @@ if($bDisplayDate){
 		  if($pos !== false)
 		  {
 			  /* we replace the default string */	  
-			  $subject = substr_replace($subject, ' <a class="full-post-link" href="'. get_permalink($post->ID) . '">'.$sPostLink.'</a>', $pos, strlen('[...]'));
+			  $subject = substr_replace($subject, ' <a class="full-post-link" href="'. get_permalink(@$post->ID) . '">'.$sPostLink.'</a>', $pos, strlen('[...]'));
 		  }
 	  }
 	/* we output the excerpt */	
