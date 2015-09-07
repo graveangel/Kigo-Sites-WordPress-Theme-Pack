@@ -1,0 +1,292 @@
+/*
+
+Theme Name: Kigo Booking Theme
+
+Theme URI: http://www.kigo.net
+
+Author: Kigo
+
+Author URI: http://www.kigo.net
+
+Description: To be used for embedding a quick search into any site so a user can find and book a property.
+
+Version: 1.1
+
+Template: instaparent
+
+*/
+
+@import url("../instaparent/style.css");
+
+/* Specific Styles to this theme - specially HP since its different in each theme
+
+------------------------------------*/
+
+
+
+/*home page slideshow */
+
+html, body{height:auto;}
+
+body a{cursor:pointer;}
+
+#container{min-height:50px;}
+
+body{background:rgba(255,255,255,0)}
+
+#insta-top-fixed{background:none;position:static;padding:10px 0;z-index:2;}
+
+h1,h2,h3,h4,h5,h6{color:#0099cc}
+
+.list-view-page .property-info h2, .development-results .portal-info h2, .marketarea-listview-page .portal-info h2, .list-view-page .property-info h2 a, .development-results .portal-info h2 a, .marketarea-listview-page .portal-info h2 a,.gallery-view-page .property-title a,.widget_bapi_hp_search .widget-title{color:#0099cc;font-weight:normal}
+
+/* Main Navigation */
+.navbar-inverse .nav > li > a:focus, .navbar-inverse .nav > li > a:hover{color:#0099cc;}
+.navbar-inverse .brand, .navbar-inverse .nav > li > a{color:#000;text-shadow:none;-moz-text-shadow:none;-webkit-text-shadow:none;}
+.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret{border-bottom-color:#000;border-top-color:#000;}
+.navbar-inverse .nav li.dropdown > a:hover .caret, .navbar-inverse .nav li.dropdown > a:focus .caret{border-bottom-color:#0099cc;border-top-color:#0099cc;}
+#insta-top-fixed ul.nav li a.home{color:#0099CC;padding:5px 0 0;}
+
+.bapi-logo{float:left;margin:15px 0;}
+
+.bapi-logo img{height:34px;}
+
+.pushdown,.pushdown.wpadminbarvisible{margin-top:15px; min-height:350px; padding-bottom:0;}
+
+
+
+/*Header*/
+
+#insta-header {background: #000;  margin-top: 0;}
+
+
+
+/* Home Quick Search */
+
+.home .pushdown,.home .pushdown.wpadminbarvisible{margin-top:0;}
+
+.top-header-home{position:relative;margin-top:60px;}
+
+.widget_bapi_hp_search{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;padding:0;}
+
+.widget_bapi__search .widget-title{font-weight:normal;}
+
+.widget_bapi_hp_search .search-button-block .quicksearch-dosearch, .widget_bapi__search .search-button-block .quicksearch-dosearch{background:#0099cc;color:#fff;text-shadow:none;-moz-text-shadow:none;-webkit-text-shadow:none;}
+
+
+
+/* Slideshow */
+
+.home .flexslider{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;}
+
+.home .flexslider .flex-caption{bottom:0;font-size:1em;position:absolute;opacity:0.65;width:100%;}
+
+.home .flexslider .slides > li{position:relative;}
+
+
+
+/* Home Content */
+
+.hp-content{box-shadow:none!important;-moz-box-shadow:none!important;-webkit-box-shadow:none!important;text-align:center;}
+
+.hp-content h1{color:#000;font-size:35px;font-weight:normal;}
+
+.hp-content h2{color:#666;font-size:25px;font-weight:normal;}
+
+/* Welcome Page */
+.welcome-page h1{color:#000;font-size:48px;font-weight:normal;line-height:150%;margin:20px 0;text-align:center;}
+.welcome-page h1 span{display:block;font-size:90px;}
+.welcome-page h2{color:#000;font-size:36px;font-weight:normal;margin:80px 0;text-align:center;}
+.welcome-page h3{color:#000;font-size:36px;font-weight:normal;margin:15px 0;padding-top:80px;text-align:center;}
+.welcome-page h3.embed{background:url(images/embed-icon.png) no-repeat 50% 0;}
+.welcome-page h3.pencil{background:url(images/pencil-icon.png) no-repeat 50% 0;}
+.welcome-page h3.account{background:url(images/account-icon.png) no-repeat 50% 0;}
+.welcome-page .top{background:url(images/bg-button.png) repeat-x 0 0;margin-bottom:20px;padding-top:140px;}
+.welcome-page .btn-primary{background:#428BCA;border:none;color:#fff;font-size:36px;font-weight:bold;padding:25px;width:100%}
+.welcome-page .span4{text-align:center;}
+.welcome-page #embed{display:none;}
+.welcome-page #embed h2{padding:0;margin:10px 0;text-align:left;}
+.welcome-page #embed h3{padding:0;margin:10px 0;text-align:left;}
+.welcome-page #embed #code{padding:10px 5px 5px 5px;width:80%;}
+.welcome-page #embed input[type=radio]{margin:0;}
+.welcome-page #embed label{display:inline-block;margin:5px;}
+.welcome-page #embed .cform{display:none;}
+.welcome-page #embed .glyphicons{padding-left:5px;}
+.welcome-page #embed .cform input[type=text]{margin-bottom:0;width:70px;}
+
+/* Home Block Photo */
+
+.block-photo{text-align:center;margin-bottom:20px;}
+
+.block-photo img{-moz-box-shadow:0 0 3px rgba(0,0,0,0.2);-webkit-box-shadow:0 0 3px rgba(0,0,0,0.2);box-shadow:0 0 3px rgba(0,0,0,0.2);padding:5px;}
+
+.block-photo h3{color:#000;font-size:20px;font-weight:normal;}
+
+.block-photo p{margin:0 auto;}
+
+
+
+/* Bottom Home Logos */
+
+.bottom-full-home h3{color:#000;font-size:25px;font-weight:normal;text-align:center;}
+
+.bottom-full-home h3 span{background:#fff;padding:0 10px;}
+
+.bottom-full-home .span2{text-align:center;}
+
+
+
+/* Home Testimonials */
+
+.testimonials{margin-top:20px;margin-bottom:20px;}
+
+.testimonials h1{color:#000;font-size:35px;font-weight:normal;text-align:center;}
+
+.testimonials h2{color:#666;font-size:25px;font-weight:normal;text-align:center;}
+
+.testimonials .content{box-shadow:0 0 2px rgba(204,204,204,0.3);-moz-box-shadow:0 0 2px rgba(204,204,204,0.3);-webkit-box-shadow:0 0 2px rgba(204,204,204,0.3);border:1px solid #e8e8e8;padding:30px;}
+
+.testimonials .content p{color:#000;font-size:17px;line-height:200%;}
+
+.testimonials .content p:before{ content:url(images/icon-quoted-left.png);margin-right:10px;}
+
+.testimonials .content p:after{ content:url(images/icon-quoted-right.png);margin-left:10px}
+
+.testimonials .author{background:url(images/user-icon.png) no-repeat;margin:10px;min-height:80px;}
+
+.testimonials .author.girl{background:url(images/user-icon-2.png) no-repeat;}
+
+.testimonials .author h3{color:#0099CC;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:0;padding-left:90px;}
+
+.testimonials .author p{color:#000;font-size:13px;padding-left:90px;}
+
+
+
+/* Search page */
+
+.search-page aside .widget_bapi__search,.property-detail-page aside .widget_bapi_detailoverview{margin-top:30px;min-width:220px;max-width:250px;position:fixed;}
+
+
+
+/* Search detail */
+
+.item-info .nav-tabs > li > a{background:#0099cc;}
+
+
+
+/* Footer Content */
+
+#insta-footer{background:none;height:auto;position:static;}
+#insta-footer a{color:#0099cc;}
+.social-btm-widget div.mr_social_sharing_wrapper{text-align:right;}
+
+
+
+.home-qsearch #amenitiesDropdownCheckbox .dropdown-checkbox-toggle{border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;}
+
+
+
+/* =Media queries
+
+-------------------------------------------------------------- */
+
+
+
+/*tablet view*/
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+.home-qsearch{position:absolute;left:1.75%;top:5%;}
+
+.home-qsearch h3{font-size:3em;}
+
+}
+
+/*phone view*/
+
+@media (max-width: 767px) {
+
+.pushdown,.pushdown.wpadminbarvisible{padding-bottom:114px;}
+
+#insta-footer{min-height:114px;}
+
+#insta-top-fixed .bapi-logo{width:100%;text-align:center;}
+
+
+
+.widget_bapi_footer .footer-links{float:left;}
+
+.social-btm-widget div.mr_social_sharing_wrapper{margin-top:0;text-align:left;}
+
+.home-qsearch .widget_bapi_hp_search{background:#0099CC;padding:16px;}
+
+
+
+.home-qsearch h3.title{font-size:45px;margin:0;line-height:48px;}
+
+.home-slideshow{margin-bottom:0;}
+
+.home .flexslider .flex-caption{display:none;}
+
+
+
+.home-qsearch{position:static;}
+
+.home-qsearch #bapi-search{padding-right:5px;padding-bottom:5px;}
+
+.home-qsearch #bapi-search .category-block{padding-bottom:5px;width:100%;}
+
+.home-qsearch span.cal-icon-trigger{margin-top:0;}
+
+.home-qsearch .halflings.calendar i:before{font-size:12px;}
+
+.home-qsearch .property-search-button-block,.home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{width:100%;position:static;}
+
+}
+
+
+/* Hide header and footer by default at home .....................*/
+.home #insta-top-fixed, .home #insta-footer {
+display: none;
+}
+
+.home .widget_bapi_hp_search {
+background: #fff;
+padding: 20px;
+border-radius: 5px;
+}
+
+
+
+
+@media (min-width: 1200px) {}
+
+
+
+@media (max-width: 480px) {}
+
+/*tablet view and phone view*/
+
+@media (max-width: 979px) {
+
+#insta-footer{min-height:60px;}
+
+.pushdown,.pushdown.wpadminbarvisible{margin-top:10px;padding-bottom:60px;}
+
+.top-header-home{margin-top:0 !important;}
+
+.home-qsearch h3.title{margin-bottom:30px;}
+
+#insta-top-fixed #navigation{float:left;}
+
+#insta-top-fixed .bapi-logo{float:right;}
+
+.widget_bapi_footer .footer-links{float:none;}
+
+
+
+}
+
+@media (min-width: 980px) {
+
+}

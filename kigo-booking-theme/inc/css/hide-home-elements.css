@@ -1,0 +1,10 @@
+/* Hide header and footer by default at home .....................*/
+.home #insta-top-fixed, .home #insta-footer {
+display: none;
+}
+
+.home .widget_bapi_hp_search {
+background: #fff;
+padding: 20px;
+border-radius: 5px;
+}
