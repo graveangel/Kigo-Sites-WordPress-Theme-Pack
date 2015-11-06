@@ -6099,8 +6099,8 @@ html .halflings {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("fonts/glyphiconshalflings-regular.eot");
-  src: url("fonts/glyphiconshalflings-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphiconshalflings-regular.woff") format('woff'),url("fonts/glyphiconshalflings-regular.ttf") format('truetype'),url("fonts/glyphiconshalflings-regular.svg#glyphicons_halflingsregular") format('svg');
+  src: url("../../fonts/glyphiconshalflings-regular.eot");
+  src: url("../../fonts/glyphiconshalflings-regular.eot?#iefix") format('embedded-opentype'),url("../../fonts/glyphiconshalflings-regular.woff") format('woff'),url("../../fonts/glyphiconshalflings-regular.ttf") format('truetype'),url("../../fonts/glyphiconshalflings-regular.svg#glyphicons_halflingsregular") format('svg');
   font-weight: 400;
   font-style: normal;
 }
@@ -7433,8 +7433,8 @@ html .halflings {
 
 @font-face {
   font-family: Glyphicons;
-  src: url("fonts/glyphicons-regular.eot");
-  src: url("fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphicons-regular.woff") format('woff'),url("fonts/glyphicons-regular.ttf") format('truetype'),url("fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
+  src: url("../../fonts/glyphicons-regular.eot");
+  src: url("../../fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("../../fonts/glyphicons-regular.woff") format('woff'),url("../../fonts/glyphicons-regular.ttf") format('truetype'),url("../../fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
   font-weight: 400;
   font-style: normal;
 }
@@ -7454,8 +7454,8 @@ html .glyphicons {
 
 @font-face {
   font-family: Glyphicons;
-  src: url("fonts/glyphicons-regular.eot");
-  src: url("fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("fonts/glyphicons-regular.woff") format('woff'),url("fonts/glyphicons-regular.ttf") format('truetype'),url("fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
+  src: url("../../fonts/glyphicons-regular.eot");
+  src: url("../../fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("../../fonts/glyphicons-regular.woff") format('woff'),url("../../fonts/glyphicons-regular.ttf") format('truetype'),url("../../fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
   font-weight: 400;
   font-style: normal;
 }
