@@ -8,7 +8,7 @@ var gulp = require('gulp'),
 src.vendor = './insta-common/bootstrap/css/vendor';
 
 
-gulp.task('styles:vendor', function() {
+gulp.task('styles:common', function() {
   gulp.src([
       src.vendor+'/normalize.css',
       src.vendor+'/bootstrap.css',
@@ -27,4 +27,4 @@ gulp.task('styles:vendor', function() {
     .pipe($.notify('Styles are done!'));
 });
 
-gulp.task('styles', ['styles:vendor']);
+gulp.task('styles', ['styles:common']);

@@ -26,4 +26,4 @@ gulp.task('watch', ['build'], function() {
 });
 
 
-gulp.task('build', ['styles']);
+gulp.task('build', ['styles', 'scripts']);
