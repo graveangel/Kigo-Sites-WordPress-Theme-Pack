@@ -23,7 +23,7 @@ gulp.task('serve', ['watch'], function() {
     // tunnel: "ppress",
 
     // Inject CSS changes
-    injectChanges: true
+    injectChanges: false
 
   });
 });
