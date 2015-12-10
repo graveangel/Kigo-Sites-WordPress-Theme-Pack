@@ -30,6 +30,10 @@ $sitePrimaryURL = $bapi_solutiondata['PrimaryURL'];
 $siteSecureURL = $bapi_solutiondata['SecureURL'];
 $siteUniquePrefix = $bapi_solutiondata['UniquePrefix'];
 }
+if ( function_exists( 'getTextDataArray') )  {
+	/* we get the array of textdata */
+	$textDataArray = getTextDataArray();
+}
 
 function instaparent_setup() {
 
