@@ -451,6 +451,7 @@ dd{margin-bottom:20px;}
 .table-striped{background-color:#f7f7f7;}/*change the striped table backgrounds*/
 .table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th{background:#fff;}
 
+.pagination ul>li>a,.pagination ul>li>span{cursor:pointer;}
 
 /* = Base theme Styles - basic layout of the site
 ----------------------------------------------- */
