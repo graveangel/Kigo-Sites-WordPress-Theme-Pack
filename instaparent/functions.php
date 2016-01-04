@@ -190,7 +190,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Top Fixed (Common)', 'instaparent' ),
+		'name' => __( 'Kigo Top Fixed (Common)', 'instaparent' ),
 		'id' => 'insta-top-fixed',
 		'description' => __( 'Fixed position at top of the screen (Possibly for weather widgets)', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -200,7 +200,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Fixed (Common)', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Fixed (Common)', 'instaparent' ),
 		'id' => 'insta-bottom-fixed',
 		'description' => __( 'Fixed position at bottom of the screen (possibly for favorites)', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -210,7 +210,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Header Left (Common)', 'instaparent' ),
+		'name' => __( 'Kigo Header Left (Common)', 'instaparent' ),
 		'id' => 'insta-header-left',
 		'description' => __( 'Normal page header area (Logo, Title, etc) Left Side', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -220,7 +220,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Header Right (Common)', 'instaparent' ),
+		'name' => __( 'Kigo Header Right (Common)', 'instaparent' ),
 		'id' => 'insta-header-right',
 		'description' => __( 'Normal page header area (Logo, Title, etc) Right Side', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -230,7 +230,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Footer (Common)', 'instaparent' ),
+		'name' => __( 'Kigo Footer (Common)', 'instaparent' ),
 		'id' => 'insta-footer',
 		'description' => __( 'The Footer of the page', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -240,7 +240,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Left Home', 'instaparent' ),
+		'name' => __( 'Kigo Left Home', 'instaparent' ),
 		'id' => 'insta-left-home',
 		'description' => __( 'The Left Sidebar in the Home Page', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -250,7 +250,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Right Home', 'instaparent' ),
+		'name' => __( 'Kigo Right Home', 'instaparent' ),
 		'id' => 'insta-right-home',
 		'description' => __( 'The Right Content Below the Slideshow in the Home Page', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -260,7 +260,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Full Home', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Full Home', 'instaparent' ),
 		'id' => 'insta-bottom-full-home',
 		'description' => __( 'The Bottom Wide Widget Zone below the left and right content in the Home Page', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -270,7 +270,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Left Home', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Left Home', 'instaparent' ),
 		'id' => 'insta-bottom-left-home',
 		'description' => __( 'The Bottom Left Widget Zone in the Home Page', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -280,7 +280,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Middle Home', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Middle Home', 'instaparent' ),
 		'id' => 'insta-bottom-middle-home',
 		'description' => __( 'The Bottom Middle Widget Zone in the Home Page', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -290,7 +290,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Right Home', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Right Home', 'instaparent' ),
 		'id' => 'insta-bottom-right-home',
 		'description' => __( 'The Bottom Right Widget Zone in the Home Page', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -300,7 +300,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Left Sidebar Search', 'instaparent' ),
+		'name' => __( 'Kigo Left Sidebar Search', 'instaparent' ),
 		'id' => 'insta-left-sidebar-search',
 		'description' => __( 'The Left Sidebar Search of the Search Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -310,7 +310,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Right Sidebar Search', 'instaparent' ),
+		'name' => __( 'Kigo Right Sidebar Search', 'instaparent' ),
 		'id' => 'insta-right-sidebar-search',
 		'description' => __( 'The Right Sidebar Search of the Search Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -320,7 +320,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Left Sidebar Property Detail', 'instaparent' ),
+		'name' => __( 'Kigo Left Sidebar Property Detail', 'instaparent' ),
 		'id' => 'insta-left-sidebar-prop-detail',
 		'description' => __( 'The Left Sidebar in the Property Detail Page', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -330,7 +330,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Right Sidebar Property Detail', 'instaparent' ),
+		'name' => __( 'Kigo Right Sidebar Property Detail', 'instaparent' ),
 		'id' => 'insta-right-sidebar-prop-detail',
 		'description' => __( 'The Right Sidebar in the Property Detail Page', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -340,7 +340,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Left Sidebar Other', 'instaparent' ),
+		'name' => __( 'Kigo Left Sidebar Other', 'instaparent' ),
 		'id' => 'insta-left-sidebar-other',
 		'description' => __( 'The Left Sidebar in the Other Detail Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -350,7 +350,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Right Sidebar Other', 'instaparent' ),
+		'name' => __( 'Kigo Right Sidebar Other', 'instaparent' ),
 		'id' => 'insta-right-sidebar-other',
 		'description' => __( 'The Right Sidebar in the Other Detail Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -360,7 +360,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Left Sidebar Content', 'instaparent' ),
+		'name' => __( 'Kigo Left Sidebar Content', 'instaparent' ),
 		'id' => 'insta-left-sidebar-content',
 		'description' => __( 'The Left Sidebar Content in Content Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -370,7 +370,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Right Sidebar Content', 'instaparent' ),
+		'name' => __( 'Kigo Right Sidebar Content', 'instaparent' ),
 		'id' => 'insta-right-sidebar-content',
 		'description' => __( 'The Right Sidebar Content in Content Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -380,7 +380,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Top Wide Content', 'instaparent' ),
+		'name' => __( 'Kigo Top Wide Content', 'instaparent' ),
 		'id' => 'insta-top-wide-content',
 		'description' => __( 'The Top Wide Content in Content Pages', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -390,7 +390,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Wide Content', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Wide Content', 'instaparent' ),
 		'id' => 'insta-bottom-wide-content',
 		'description' => __( 'The Bottom Wide Content in Content Pages', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -400,7 +400,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Left Content', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Left Content', 'instaparent' ),
 		'id' => 'insta-bottom-left-content',
 		'description' => __( 'The Bottom Left Content in Content Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -410,7 +410,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Center Content', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Center Content', 'instaparent' ),
 		'id' => 'insta-bottom-center-content',
 		'description' => __( 'The Bottom Center Content in Content Pages', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -420,7 +420,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Bottom Right Content', 'instaparent' ),
+		'name' => __( 'Kigo Bottom Right Content', 'instaparent' ),
 		'id' => 'insta-bottom-right-content',
 		'description' => __( 'The Bottom Right Content in Content Pages', 'instaparent' ),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -1321,8 +1321,8 @@ class Insta_Latest_Blog_Posts extends WP_Widget {
     public function __construct() {
 		parent::__construct(
 	 		'insta_latest_blog_posts', // Base ID
-			'Insta Latest Blog Posts', // Name
-			array( 'description' => __( 'Insta Latest Blog Posts', 'text_domain' ), ) // Args
+			'Kigo Latest Blog Posts', // Name
+			array( 'description' => __( 'Kigo Latest Blog Posts', 'text_domain' ), ) // Args
 		);
 	}
 	

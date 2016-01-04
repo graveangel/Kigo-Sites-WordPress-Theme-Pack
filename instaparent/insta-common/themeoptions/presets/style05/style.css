@@ -44,7 +44,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#6600000
 .development-results .portal-info h2,
 .development-results .portal-info h2 a,
 .gallery-view-page .property-title a,
-.item-result .item-info .title,
+.item-result .item-info .title
 {color:#77AC8F;}
 
 .widget_bapi_featured_properties .fp-rates,
