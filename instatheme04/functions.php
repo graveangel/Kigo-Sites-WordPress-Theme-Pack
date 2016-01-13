@@ -27,7 +27,7 @@
 function childtheme_widgets_init(){
 	
 	register_sidebar( array(
-		'name' => __( 'Insta Top Fixed Left', 'instaparent' ),
+		'name' => __( 'Kigo Top Fixed Left', 'instaparent' ),
 		'id' => 'insta-top-fixed-left',
 		'description' => __( 'Fixed position at top of the screen (the left side of the menu)', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',

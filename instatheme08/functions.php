@@ -33,7 +33,7 @@
 
 function childtheme_widgets_init(){
 	register_sidebar( array(
-		'name' => __( 'Insta Home Testimonial', 'instaparent' ),
+		'name' => __( 'Kigo Home Testimonial', 'instaparent' ),
 		'id' => 'insta-home-testimonial',
 		'description' => __( 'Insta Home Testimonial', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s testimonials">',
