@@ -3,9 +3,10 @@
       {{#site.HasMultiSites}}
       &nbsp;&nbsp;|&nbsp;&nbsp;<span id="cnt-siteselector"><div class="siteselector">
 			{{#site.Sites}}
-            
+				{{^Hidden}} 
 			<a href='http://{{Url}}'>
             <i class="flag flag-{{Language}}"><span style="display:none">{{RegionInfo.DisplayName}}</span></i></a>
+				{{/Hidden}}
 			{{/site.Sites}}
             </div></span>
 			{{/site.HasMultiSites}}&nbsp;&nbsp;|&nbsp;&nbsp;<span id="wishListLink"><a class="halflings white heart-empty" href="/rentalsearch/mylist"><i></i><span class="hidden-phone">{{textdata.My WishList}}</span></a></span>
