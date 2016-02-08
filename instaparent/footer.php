@@ -56,8 +56,6 @@ $('#insta-footer').height('auto');
  var footerHeight = $('#insta-footer').height();
  $('#insta-footer').height(footerHeight);
  $('.pushdown').css('padding-bottom',footerHeight+10);
- 
- console.log(footerHeight);
 });
 </script>
 </body>
