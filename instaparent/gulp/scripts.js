@@ -14,7 +14,7 @@ gulp.task('scripts:common', function () {
 	    .pipe($.jshint())
 	    .pipe($.jshint.reporter('jshint-stylish'))
 	    .pipe($.concat('insta-common.js'))
-	    //.pipe($.uglify())
+	    .pipe($.uglify())
 	    .pipe($.size())
 	    .pipe(sourcemaps.write('../sourcemaps'))
 	    .pipe(gulp.dest('./insta-common/bootstrap/js'))

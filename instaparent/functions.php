@@ -1608,3 +1608,32 @@ add_action( 'widgets_init', 'register_my_widget' );
 function register_my_widget() {  
     register_widget( 'Insta_Latest_Blog_Posts' );  
 }
+
+/**
+ * Sets Script at the end of wp_footer()
+ *
+ */
+if ( function_exists( 'childtheme_override_set_wp_footer_scripts') )  {
+	/**
+	 * run the child override
+	 */
+	function set_wp_footer_scripts() {
+		childtheme_override_set_wp_footer_scripts();
+	}
+} else {
+	function set_wp_footer_scripts() {
+            ?>
+<script type="text/javascript">
+	$(document).ready(function () {
+		BAPI.UI.createCurrencySelectorWidget('.currencyselector');
+		$( '.siteselector .flag' ).each(function(i) {
+			var theClassnames = $(this).attr('class');
+			theClassnames = theClassnames.substring(0, theClassnames.length - 3);
+			$(this).addClass(theClassnames);
+		});
+	});
+</script>   
+            <?php
+        }
+}
+add_action('wp_footer', 'set_wp_footer_scripts',120);

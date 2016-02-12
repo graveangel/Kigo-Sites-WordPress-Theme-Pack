@@ -136,27 +136,7 @@ if(!empty($bapi_meta_title)){
 	<?php endif; ?>
  </div>
 <!-- End Home Slideshow -->
-<script type="text/javascript">
-$(window).load(function() {
- slideshowUpdate();
-	$(window).resize(function() {
-	  slideshowUpdate();
-	});
-  
-});
-function slideshowUpdate()
-{
-	var theWidth = $('.top-header-home').width();
-  if(theWidth > 1100)
-  {
-	  var theHeight = $('.top-header-home').height();
-  $('.left-opacity,.right-opacity,.first-slide img,.last-slide img').css('height',theHeight);
-  $('.left-opacity,.right-opacity').css('width',(theWidth - 1100) /2 );
-  $('.first-slide').css('left',((theWidth - 1100) /2)*-1 );
-  $('.left-opacity,.right-opacity').show();
-  }
-}
-</script>
+
 <?php endif; ?>
 <!-- Start pushdown section -->
 <section class="pushdown <?php if (is_user_logged_in()) { echo "wpadminbarvisible"; } ?>">

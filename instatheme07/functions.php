@@ -136,3 +136,13 @@ function childtheme_override_setwidgets_hpareas($arrayOfSidebars) {
 	$arrayOfSidebars['insta-home-qsearch'][0] = 'bapi_hp_search-2';
 	return $arrayOfSidebars;
 }
+
+function childtheme_override_set_wp_footer_scripts() {
+            ?>
+<script type="text/javascript">
+	$(document).ready(function () {
+		BAPI.UI.createCurrencySelectorWidget('.currencyselector');
+	});
+</script>
+            <?php
+}

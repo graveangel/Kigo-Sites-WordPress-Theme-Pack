@@ -109,3 +109,29 @@ function childtheme_override_setwidgets_hpareas($arrayOfSidebars) {
 	$arrayOfSidebars['insta-home-qsearch'][0] = 'bapi_hp_search-2';
 	return $arrayOfSidebars;
 }
+
+function childtheme_override_set_wp_footer_scripts() {
+            ?>
+<script type="text/javascript">
+$(window).load(function() {
+ slideshowUpdate();
+	$(window).resize(function() {
+	  slideshowUpdate();
+	});
+  
+});
+function slideshowUpdate()
+{
+	var theWidth = $('.top-header-home').width();
+  if(theWidth > 1100)
+  {
+	  var theHeight = $('.top-header-home').height();
+  $('.left-opacity,.right-opacity,.first-slide img,.last-slide img').css('height',theHeight);
+  $('.left-opacity,.right-opacity').css('width',(theWidth - 1100) /2 );
+  $('.first-slide').css('left',((theWidth - 1100) /2)*-1 );
+  $('.left-opacity,.right-opacity').show();
+  }
+}
+</script>
+            <?php
+}

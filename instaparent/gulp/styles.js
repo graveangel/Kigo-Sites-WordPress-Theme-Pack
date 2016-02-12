@@ -17,11 +17,12 @@ gulp.task('styles:common', function() {
       src.vendor+'/flag-sprites.css',
       src.vendor+'/flexslider.min.css',
       src.vendor+'/pickadate/**/*',
-      src.vendor+'/dropdown.css'
+      src.vendor+'/dropdown.css',
+      './insta-common/bootstrap/css/mainstyle.css'
     ])
     .pipe(sourcemaps.init())
-    .pipe($.concatCss('insta-common.css'))
-    //.pipe($.minifyCss())
+    .pipe($.concatCss('mainstyle.min.css'))
+    .pipe($.minifyCss())
     .pipe(sourcemaps.write('../sourcemaps'))
     .pipe(gulp.dest('./insta-common/bootstrap/css'))
     .pipe($.notify('Styles are done!'));
