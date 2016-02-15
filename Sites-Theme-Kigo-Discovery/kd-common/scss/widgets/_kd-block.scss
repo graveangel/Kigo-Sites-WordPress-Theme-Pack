@@ -1,0 +1,59 @@
+.kd-block{
+  position: relative;
+  font-size: 0;
+
+  &.image{
+    min-height: 380px;
+    background-position: center 75%;
+    background-size: cover;
+
+    .inner{
+      position: relative;
+      top: auto;
+      left: auto;
+    }
+  }
+
+  .inner{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-size: medium;
+  }
+
+  .page-title,
+  .subtitle {
+    color: #fff;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  }
+
+  .page-title {
+    font-weight: 400;
+    font-size: 40px;
+    margin-bottom: 15px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+  }
+
+  .yt-overlay{
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
+
+  #yt-player{
+    bottom: 50%;
+    position: absolute;
+    transform: translateY(50%);
+  }
+
+
+  @media screen and (min-width: $bp-tablet){
+    min-height: 380px;
+  }
+}

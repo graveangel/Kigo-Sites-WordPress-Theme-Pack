@@ -1,0 +1,55 @@
+/*
+
+Theme styles outline:
+
+All styles for the theme's front end are imported here and compile to the resulting theme CSS style.
+This file is used to organize imports, it shouldn't contain any styles.
+
+*/
+
+/* Global */
+
+@import "global/global";
+@import "global/mixins";
+@import "global/virtual-sidebars";
+
+/* Templates */
+
+@import 'templates/header';
+@import 'templates/footer';
+
+@import 'templates/home';
+@import 'templates/property-details';
+@import 'templates/about-us';
+@import 'templates/search';
+@import 'templates/contact';
+@import 'templates/booking';
+@import 'templates/specials';
+@import 'templates/_other-details';
+@import 'templates/buckets';
+@import 'templates/attractions';
+@import 'templates/page';
+@import 'templates/all-rentals';
+@import 'templates/full-width';
+
+/* Widgets */
+
+@import 'widgets/kd-hero';
+@import 'widgets/kd-search';
+@import 'widgets/kd-featured';
+@import 'widgets/kd-buckets';
+@import 'widgets/kd-page_block';
+@import 'widgets/kd-menu';
+@import 'widgets/kd-social';
+@import 'widgets/kd-copy';
+@import 'widgets/kd-items';
+@import 'widgets/kd-team';
+@import 'widgets/kd-block';
+@import 'widgets/kd-image';
+@import 'widgets/kd-weather';
+@import 'widgets/kd-specials';
+@import 'widgets/kd-map';
+
+/* Legacy widgets */
+
+@import 'widgets/legacy/inquiry';

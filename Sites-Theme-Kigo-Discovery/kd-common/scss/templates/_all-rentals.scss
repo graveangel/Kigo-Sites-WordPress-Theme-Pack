@@ -1,0 +1,21 @@
+[data-templatename="tmpl-allproperties"]{
+
+  table{
+    width: 100%;
+    text-align: center;
+    tr{
+      td, th{
+        padding: 10px 15px;
+      }
+
+      th{
+        text-align: center;
+      }
+    }
+
+    .button{
+      padding: 6px 12px;
+    }
+  }
+
+}

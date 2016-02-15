@@ -1,0 +1,29 @@
+{
+  "name": "Sites-Theme-Kigo-Discovery",
+  "version": "0.5.0",
+  "description": "Kigo Discovery parent theme for Kigo powered WordPress sites.",
+  "main": "index.php",
+  "dependencies": {
+    "gulp":             "",
+    "gulp-cssmin":      "",
+    "gulp-concat":      "",
+    "gulp-header":      "",
+    "gulp-livereload":  "",
+    "gulp-rename":      "",
+    "gulp-sass":        "",
+    "gulp-uglify":      ""
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bookt/Sites-Theme-Kigo-Discovery.git"
+  },
+  "author": "Kigo",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/Bookt/Sites-Theme-Kigo-Discovery/issues"
+  }
+}

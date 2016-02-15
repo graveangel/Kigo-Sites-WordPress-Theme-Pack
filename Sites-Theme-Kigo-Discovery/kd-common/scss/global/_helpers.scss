@@ -1,0 +1,285 @@
+/* Helper classes */
+
+
+/* Max select input fix */
+
+select{
+  -webkit-appearance: none; //Mac SELECT input padding fix
+}
+
+
+//Primary & Secondary colors defaults
+
+.primary-fill-color{
+  background-color: $primary-color;
+}
+.primary-stroke-color{
+  color: $primary-color;
+}
+
+.secondary-fill-color{
+  background-color: $secondary-color;
+}
+.secondary-stroke-color{
+  color: $secondary-color;
+}
+
+//Page layout classes
+
+.container {
+  max-width: $container-max-width;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.global-wrapper{
+  padding-top: $kd-menu-toggle-size;
+}
+
+.page-width{
+  max-width: $container-max-width;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nocollapse {
+  &::after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+.align-r{
+  text-align: right;
+}
+.align-l{
+  text-align: left;
+}
+
+.transall {
+  transition: all 1s ease;
+}
+
+//.nopadding {
+//  padding: 0;
+//}
+
+.row-nopadding{
+//  margin-left: 0;
+//  margin-right: 0;
+  [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.nomore{
+  text-align: center;
+}
+
+
+/* Fade in movers */
+
+[data-move]{
+  display: none;
+  opacity: 0;
+  transition: opacity .33s ease 1s;
+
+  &.hasMoved{
+    display: initial;
+    opacity: 1;
+  }
+}
+
+/* Smooth invisible transition */
+
+.faded-out{
+  opacity: 0;
+}
+
+/* Titles */
+
+h1, h2, h3, h4, h5{
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+header h1{
+  @extend .widget_title;
+}
+
+.widget_title{
+  margin: 10px 0 30px;
+  font-size: 40px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  font-family: 'Montserrat';
+}
+
+.blockUI{ //Hide all BlockUI
+  display: none !important;
+}
+
+.kd-icon{
+  color: $light-text;
+  text-shadow: 0 0 2px black;
+}
+
+.kd-button{
+  display: block;
+  padding: 12px;
+  color: currentColor;
+  text-transform: uppercase;
+  text-align: center;
+  outline: 2px solid;
+  font-size: 18px;
+  text-decoration: none;
+  will-change: outline;
+  transition: outline .2s;
+
+  &:hover, &:focus{
+    text-decoration: none;
+    color: inherit;
+    outline: 4px solid;
+  }
+
+  &.filled {
+//    background: $primary-color;
+    color: #fff;
+  }
+}
+
+
+.inline-b{
+  display: inline-block;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+
+/* Rating stars */
+
+.ratingstars {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  color: $secondary-color;
+}
+.reviewrating-5::before {
+  content:"\2605 \2605 \2605 \2605 \2605";
+}
+.reviewrating-4::before {
+  content:"\2605 \2605 \2605 \2605";
+}
+.reviewrating-3::before {
+  content:"\2605 \2605 \2605";
+}
+.reviewrating-2::before {
+  content:"\2605 \26055";
+}
+.reviewrating-1::before {
+  content:"\2605";
+}
+
+
+/* Alignment helpers */
+
+.align_left{
+  float: left;
+}
+.align_right{
+  float: right;
+}
+.align_center{
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Responsive alignment utils */
+
+.xs-left {
+  text-align: left;
+}
+.xs-right {
+  text-align: right;
+}
+.xs-center {
+  text-align: center;
+}
+
+
+@media (min-width: $bp-sm) {
+  .global-wrapper{
+    padding-top: 0px;
+  }
+  .sm-left {
+    text-align: left;
+  }
+  .sm-right {
+    text-align: right;
+  }
+  .sm-center {
+    text-align: center;
+  }
+}
+
+@media (min-width: $bp-md) {/*md*/
+  .md-left {
+    text-align: left;
+  }
+  .md-right {
+    text-align: right;
+  }
+  .md-center {
+    text-align: center;
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .lg-left {
+    text-align: left;
+  }
+  .lg-right {
+    text-align: right;
+  }
+  .lg-center {
+    text-align: center;
+  }
+}
+
+/* No-gutter helpers */
+
+//.row.no-gutters {
+//  margin-right: 0;
+//  margin-left: 0;
+//}
+//.row.no-gutters > [class^="col-"],
+//.row.no-gutters > [class*=" col-"] {
+//  padding-right: 0;
+//  padding-left: 0;
+//}
+
+/* Widget common */
+
+.kd-widget{
+  padding: 15px;
+}
+
+.kd-widget > .title{
+  font-size: 30px;
+  font-weight: 600;
+  color: $secondary-color;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+
+/* Paddings */
+
+.pad-15{padding: 15px;}
+.pad-20{padding: 20px;}
+.pad-30{padding: 30px;}

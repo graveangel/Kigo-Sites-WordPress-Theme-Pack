@@ -1,0 +1,60 @@
+.flexslider{
+
+  &#slider{
+    li[style]{
+      height: 500px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      .flex-caption{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+        background-color: rgba(white, .75);
+        opacity: 0;
+        transition: opacity .5s ease .3s;
+      }
+
+      &.flex-active-slide{
+        .flex-caption{
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &#carousel{
+    display: none;
+  }
+
+  .flex-direction-nav{
+    a{
+      opacity: 1;
+      line-height: 40px;
+    }
+    .flex-prev{
+      left: 10px;
+      &::before{
+        content: "\e902";
+        font-family: 'Kigo Discovery';
+        color: white;
+        opacity: 1;
+      }
+    }
+    .flex-next{
+      right: 10px;
+      &::before{
+        content: "\e903";
+        font-family: 'Kigo Discovery';
+        color: white;
+        opacity: 1;
+      }
+    }
+  }
+
+
+
+}

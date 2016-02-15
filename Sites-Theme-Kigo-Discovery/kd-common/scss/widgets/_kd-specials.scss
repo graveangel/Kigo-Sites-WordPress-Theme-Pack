@@ -1,0 +1,42 @@
+.kd-specials{
+  padding: 15px;
+
+  .special{
+    margin-bottom: 20px;
+
+    &:hover{
+      .description{
+        background-color: rgba(white, .85);
+      }
+    }
+
+    & > a{
+      display: block;
+    }
+
+    .image{
+      position: relative;
+      height: 390px;
+      width: 100%;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .description{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(white, .65);
+      padding: 10px 5px;
+      font-weight: normal;
+      transition: background-color .33s;
+
+      .title{
+        text-transform: uppercase;
+      }
+    }
+  }
+
+}
