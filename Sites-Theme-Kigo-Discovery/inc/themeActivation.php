@@ -106,8 +106,10 @@ class ThemeActivation {
                 'button_value' => 'SEARCH RENTALS',
                 'button_link' => '#',
                 'slides' => [
-                    'https://i.imgsafe.org/cd30dd8.jpg',
-                    'https://i.imgsafe.org/ee6b251.jpg',
+                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/barcelona.jpg',
+                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/hammock.jpg',
+                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/florence.jpg',
+                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/purple-sea.jpg'
                 ],
             );
             $this->setWidget('page_home', 'kd_hero', $kd_hero_content);
