@@ -6,7 +6,7 @@ class KD_Buckets extends KD_Widget2 {
 
         parent::__construct(
             'kd_buckets', // Base ID
-            __( 'KD Buckets', 'kd' ), // Name
+            __( 'KD Property Finders', 'kd' ), // Name
             array( 'description' => __( 'Displays property buckets.', 'kd' ), ) // Args
         );
 

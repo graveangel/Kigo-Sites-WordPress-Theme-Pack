@@ -21,6 +21,6 @@ class KD_Image extends KD_Widget {
     }
 }
 
-add_action( 'widgets_init', function(){
-    register_widget( 'KD_Image' );
-});
+//add_action( 'widgets_init', function(){
+//    register_widget( 'KD_Image' );
+//});

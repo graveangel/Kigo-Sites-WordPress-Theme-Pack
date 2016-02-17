@@ -72,7 +72,7 @@ class Content_Widget extends KD_Widget {
 function register_content_widget() {
   register_widget( 'Content_Widget' );
 }
-add_action( 'widgets_init', 'register_content_widget' );
+//add_action( 'widgets_init', 'register_content_widget' );
 
 
 

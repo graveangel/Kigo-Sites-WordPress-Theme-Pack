@@ -6,7 +6,7 @@ class KD_Block extends KD_Widget2 {
 
         parent::__construct(
             'kd_block', // Base ID
-            __( 'KD Block', 'kd' ), // Name
+            __( 'KD Media Block', 'kd' ), // Name
             array( 'description' => __( 'Display content over an image.', 'kd' ), ) // Args
         );
 

@@ -8,7 +8,7 @@ class KD_Hero extends KD_Widget2 {
 
         parent::__construct(
             'kd_hero', // Base ID
-            __( 'KD Hero', 'kd' ), // Name
+            __( 'KD Hero Slider', 'kd' ), // Name
             array( 'description' => __( 'Hero slider.', 'kd' ), ) // Args
         );
 

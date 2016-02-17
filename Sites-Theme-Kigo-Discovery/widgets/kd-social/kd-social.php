@@ -37,6 +37,6 @@ class KD_Social extends KD_Widget2 {
 
 }
 
-add_action( 'widgets_init', function(){
-    register_widget( 'KD_Social' );
-});
+//add_action( 'widgets_init', function(){
+//    register_widget( 'KD_Social' );
+//});
