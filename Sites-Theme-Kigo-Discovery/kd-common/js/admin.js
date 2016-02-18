@@ -1,4 +1,4 @@
-/* Miquel Waller - Thu Feb 18 2016 13:53:36 GMT+0100 (Romance Standard Time) */
+/* Miquel Waller - Thu Feb 18 2016 17:53:01 GMT+0100 (Romance Standard Time) */
 var kd_admin = {
     init: function () {
     },
@@ -472,9 +472,13 @@ function initMediaOverlay() {
                 newContainer.setAttribute('style', "background-image: url('" + url + "')");
                 newContainer.classList.add('widget-media-item');
 
+                /* Change event to be usied in customizer */
+                var changeEvent = new Event('change', {'bubbles': true});
+
                 newControl.classList.add('delete');
                 newControl.innerHTML = 'Delete';
                 newControl.addEventListener('click', function () {
+                    this.parentElement.dispatchEvent(changeEvent);
                     this.parentElement.remove();
                 });
 
@@ -483,7 +487,6 @@ function initMediaOverlay() {
 
                 this.parentElement.querySelector('.widget-media').appendChild(newContainer, this.parentElement.querySelector('.widget-media').firstChild);
 
-                var changeEvent = new Event('change', {'bubbles': true});
                 newInput.dispatchEvent(changeEvent);
             }.bind(this));
         }.bind(this));
