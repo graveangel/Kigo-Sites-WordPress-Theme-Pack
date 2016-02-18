@@ -14,10 +14,10 @@ This is the header code.
 <title>
 <?php $bapi_meta_title = get_post_meta($post->ID,'bapi_meta_title', true);
       $custom_page_title_option = get_post_meta($post->ID, "meta-box-checkbox", true);
-if(!empty($bapi_meta_title) && empty($custom_page_title_option)){ 
-	echo $bapi_meta_title;
+if(!empty($bapi_meta_title) && !empty($custom_page_title_option)){ 
+  echo $bapi_meta_title;
 }else{
-	wp_title('');
+  wp_title('');
 }
 ?>
 </title>
