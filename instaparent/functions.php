@@ -1305,6 +1305,40 @@ body #insta-top-fixed .navbar .nav li.dropdown.open.active > .dropdown-toggle .c
 }
 add_action( 'wp_enqueue_scripts', 'instaparent_preset_styles' );
 
+function load_selected_font() {
+
+        /* we get the options from the database */
+	$OptionsSelected = get_option('instaparent_theme_options');
+	/* we get the preset selected which is in radioinput*/
+	$fontStyle = $OptionsSelected['fontStyle'];
+
+        if(!empty($fontStyle)){
+            // Font options
+            $fonts = array($fontStyle);
+            include 'insta-common/themeoptions/extensions/fonts.php';
+            $font_uri = customizer_library_get_google_font_uri( $fonts );
+
+            // Load Google Fonts
+            wp_enqueue_style( 'demo_fonts', $font_uri, array(), null, 'screen' );
+        }
+
+}
+add_action( 'wp_enqueue_scripts', 'load_selected_font' );
+
+/* Load inline CSS this should be in the theme not here */
+function applyFontStyle(){
+    /* we get the options from the database */
+	$OptionsSelected = get_option('instaparent_theme_options');
+	/* we get the preset selected which is in radioinput*/
+	$fontStyle = $OptionsSelected['fontStyle'];
+        if(!empty($fontStyle)){
+        ?>
+            <style type="text/css" media="screen">h1,h2,h3,p{font-family:<?php echo $fontStyle; ?>;}</style>
+        <?php
+        }
+
+}
+add_action('wp_head','applyFontStyle',100);
 
 /*----------------------- Insta custom widgets ----------------------------------*/
 
