@@ -1,4 +1,4 @@
-/* Miquel Waller - Mon Feb 15 2016 18:35:40 GMT+0100 (Romance Standard Time) */
+/* Miquel Waller - Thu Feb 18 2016 14:21:47 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2670,11 +2670,13 @@ ul {
     padding: 0; }
 
 a {
-  color: inherit;
   text-decoration: none; }
-  a:hover, a:active {
+  a:hover {
     text-decoration: none;
     color: inherit; }
+
+.primary-fill-color a:hover {
+  color: inherit !important; }
 
 /* Import global styles for reusable elements */
 .flexslider#slider li[style] {

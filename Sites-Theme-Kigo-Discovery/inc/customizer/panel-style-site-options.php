@@ -59,6 +59,14 @@ $options['tertiary-color'] = array(
     'default' => $tertiary_color,
     'description' => 'This affects the links color on your site.'
 );
+$options['tertiary-color-hover'] = array(
+    'id' => 'tertiary-color-hover',
+    'label' => __('Links hover color', 'kigodiscovery'),
+    'section' => $section,
+    'type' => 'color',
+    'default' => $primary_color,
+    'description' => 'This affects the links hover color on your site.'
+);
 
 //******************************************************
 // Backgrounds Option

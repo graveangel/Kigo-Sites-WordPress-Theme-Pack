@@ -11,7 +11,7 @@ function customizer_library_demo_options() {
     // Theme defaults TO DO
     $primary_color = '#33baaf';
     $secondary_color = '#f6af33';
-    $tertiary_color = '#999';
+    $tertiary_color = '#555';
 
     // Stores all the controls that will be added
     $options = array();

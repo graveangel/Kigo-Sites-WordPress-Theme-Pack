@@ -315,7 +315,8 @@ class ThemeActivation {
             //Styles
             'primary-color' => '#33baaf',
             'secondary-color' => '#f6af33',
-            'tertiary-color' => '#999',
+            'tertiary-color' => '#555',
+            'tertiary-color-hover' => '#33baaf',
 
             //Social settings
             'url-facebook'      => '#',

@@ -75,16 +75,23 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
 
             Customizer_Library_Styles()->add(array(
                 'selectors' => array(
-                    'a, a[href*="mailto"], .kd-team .member-caption .email a',
+                    'a',
                 ),
                 'declarations' => array(
                     'color' => $color
                 )
             ));
+        // Links Hover Color
+        $setting = 'tertiary-color-hover';
+        $mod = get_theme_mod($setting, customizer_library_get_default($setting));
+
+
+
+            $color = sanitize_hex_color($mod);
 
             Customizer_Library_Styles()->add(array(
                 'selectors' => array(
-                    'a:hover','a:hover *'
+                    'a:hover', 'a:hover *'
                 ),
                 'declarations' => array(
                     'color' => $color,
