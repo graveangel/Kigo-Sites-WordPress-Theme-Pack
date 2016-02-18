@@ -9,7 +9,7 @@ $col = $cols ? 12 / $cols : $num > 4 ? 4 : 12 / $num;
 $display = $i['display'] ? : 'list';
 ?>
 <div class="kd-widget kd-items page-block">
-    <div class="widget_title"><?php echo $i['title'] ?></div>
+    <h1 class="widget_title"><?php echo $i['title'] ?></h1>
 
 
     <?php if($display == 'slider'): ?>

@@ -4,7 +4,7 @@ $isList = $i['displayList'] == 'on';
 $listCols = $i['columns'] ? : 3;
 ?>
     <!-- Widget: KD Team -->
-    <div class="widget_title"><?php echo $i['title'] ?></div>
+    <h1 class="widget_title"><?php echo $i['title'] ?></h1>
     <div class="kd-widget kd-team <?php echo !$isList ? 'swiper-container faded-out' : '' ?>" data-columns="<?php echo $i['columns'] ? : 4 ?>">
 
         <?php if(!$isList) { ?>

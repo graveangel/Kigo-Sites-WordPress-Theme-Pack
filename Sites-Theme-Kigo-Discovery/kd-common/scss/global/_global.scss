@@ -44,7 +44,7 @@ a{
   }
 }
 
-.primary-fill-color a{
+.primary-fill-color a, .secondary-fill-color a{
   &:hover{
     color: inherit !important;
   }
