@@ -213,11 +213,14 @@ $customCSS_options = array(
 
 $itsGenericTheme = strpos($currentThemeName,'instatheme') === False ? false : true;
 
+include 'extensions/fonts.php';
+$font_choices = customizer_library_get_font_choices();
+
 /**
  * Create the options page
  */
 function theme_options_do_page() {
-	global $presetStyle_options,$menustyles_options,$FPstyles_options,$logoSize_options,$logoSize_custom_options,$currentThemeName,$themeSetting,$customCSS_options,$itsGenericTheme;
+	global $presetStyle_options,$menustyles_options,$FPstyles_options,$logoSize_options,$logoSize_custom_options,$currentThemeName,$themeSetting,$customCSS_options,$itsGenericTheme,$font_choices;
 
 	if ( ! isset( $_REQUEST['settings-updated'] ) )
 		$_REQUEST['settings-updated'] = false;
@@ -319,6 +322,24 @@ function theme_options_do_page() {
           </div>
           <div class="themeOptionContent">
             <table class="form-table">
+                <tr>
+                    <th scope="row"><?php _e( 'Font Style', 'instaparent' ); ?></th>
+                    <td>
+                    <select id="instaparent_theme_options_fontStyle" name="instaparent_theme_options[fontStyle]" value="<?php esc_attr_e( $options['fontStyle'] ); ?>">
+                        <option value="" >--- Default Font ---</option>
+<?php
+    foreach($font_choices as $p => $w):
+        $selected = "";
+        if($p == $options['fontStyle']){$selected = "selected";}
+        echo '<option value="'.$p.'" '.$selected.'>'.$w.'</option>'; 
+    endforeach;
+?>
+</select>
+                    
+                    
+                    
+                    </td>
+                </tr>
               <?php
 				/**
 				 * The Menu Style option
