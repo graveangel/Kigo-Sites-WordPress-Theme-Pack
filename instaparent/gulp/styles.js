@@ -21,7 +21,7 @@ gulp.task('styles:vendor', function() {
     ])
     .pipe(sourcemaps.init())
     .pipe($.concatCss('insta-common.css'))
-    //.pipe($.minifyCss())
+    .pipe($.minifyCss())
     .pipe(sourcemaps.write('../sourcemaps'))
     .pipe(gulp.dest('./insta-common/bootstrap/css'))
     .pipe($.notify('Styles are done!'));
