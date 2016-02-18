@@ -107,7 +107,6 @@ class ThemeActivation {
                 'button_link' => '#',
                 'slides' => [
                     '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/barcelona.jpg',
-                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/hammock.jpg',
                     '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/florence.jpg',
                     '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/purple-sea.jpg'
                 ],
