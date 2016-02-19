@@ -365,6 +365,7 @@ function theme_options_do_page() {
                 <tr>
                 <td colspan="2"><hr/></td>
               </tr>
+
               <?php
 				/**
 				 * The Menu Style option
