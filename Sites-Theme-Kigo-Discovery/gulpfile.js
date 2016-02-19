@@ -15,7 +15,7 @@ var     gulp = require('gulp')
     ,   rename = require('gulp-rename')
     ,   livereload = require('gulp-livereload');
 
-var kdCommonPath = '../../kd-common/';
+var kdCommonPath = 'kd-common/';
 
 /* Styles */
 
@@ -77,7 +77,7 @@ gulp.task('scripts:watch', function () {
 /* Bapi Templates */
 
 
-var bapiPath = '../../bapi/',
+var bapiPath = 'bapi/',
     bapiPartials = bapiPath+'partials/*.tmpl';
 
 gulp.task('bapiTemplates', function() {
