@@ -133,6 +133,28 @@ $menustyles_options = array(
 	)
 );
 
+$footerstyles_options = array(
+	'default' => array(
+		'value' => 'default',
+		'label' => __( 'Default', 'instaparent' ),
+		'CSS' => ''
+	),
+	'footerstyle01' => array(
+		'value' => 'footerstyle01',
+		'label' => __( 'White', 'instaparent' ),
+		'CSS' => ''
+	),
+	'footerstyle02' => array(
+		'value' => 'footerstyle02',
+		'label' => __( 'Gray', 'instaparent' ),
+		'CSS' => ''
+	),
+	'customFooterStyle' => array(
+		'value' => 'customFooterStyle',
+		'label' => __( 'Custom', 'instaparent' )
+	)
+);
+
 $FPstyles_options = array(
 	'default' => array(
 		'value' => 'default',
@@ -213,11 +235,14 @@ $customCSS_options = array(
 
 $itsGenericTheme = strpos($currentThemeName,'instatheme') === False ? false : true;
 
+include 'extensions/fonts.php';
+$font_choices = customizer_library_get_font_choices();
+
 /**
  * Create the options page
  */
 function theme_options_do_page() {
-	global $presetStyle_options,$menustyles_options,$FPstyles_options,$logoSize_options,$logoSize_custom_options,$currentThemeName,$themeSetting,$customCSS_options,$itsGenericTheme;
+	global $presetStyle_options,$menustyles_options,$FPstyles_options,$logoSize_options,$logoSize_custom_options,$currentThemeName,$themeSetting,$customCSS_options,$itsGenericTheme,$font_choices,$footerstyles_options;
 
 	if ( ! isset( $_REQUEST['settings-updated'] ) )
 		$_REQUEST['settings-updated'] = false;
@@ -319,6 +344,27 @@ function theme_options_do_page() {
           </div>
           <div class="themeOptionContent">
             <table class="form-table">
+                <tr>
+                    <th scope="row"><?php _e( 'Font Style', 'instaparent' ); ?></th>
+                    <td>
+                    <select id="instaparent_theme_options_fontStyle" name="instaparent_theme_options[fontStyle]" value="<?php esc_attr_e( $options['fontStyle'] ); ?>">
+                        <option value="" >--- Default Font ---</option>
+<?php
+    foreach($font_choices as $p => $w):
+        $selected = "";
+        if($p == $options['fontStyle']){$selected = "selected";}
+        echo '<option value="'.$p.'" '.$selected.'>'.$w.'</option>'; 
+    endforeach;
+?>
+</select>
+                    
+                    
+                    
+                    </td>
+                </tr>
+                <tr>
+                <td colspan="2"><hr/></td>
+              </tr>
               <?php
 				/**
 				 * The Menu Style option
@@ -392,6 +438,81 @@ function theme_options_do_page() {
               <tr>
                 <td colspan="2"><hr/></td>
               </tr>
+              
+              <?php
+				/**
+				 * The Footer Style option
+				 */
+				?>
+              <tr class="footerstyle" valign="top">
+                <th scope="row"><?php _e( 'Footer Style', 'instaparent' ); ?></th>
+                <td><?php
+                        if ( ! isset( $checked6 ) )
+                                $checked6 = '';
+                        foreach ( $footerstyles_options as $footerstyle ) {
+                                $footerstyle_setting = $options['footerstyles'];
+
+                                if ( '' != $footerstyle_setting ) {
+
+                                        if ( $options['footerstyles'] == $footerstyle['value'] ) {
+                                                $checked6 = "checked=\"checked\"";
+                                        } else {
+                                                $checked6 = '';
+                                        }
+                                }
+                                ?>
+                            <label>
+                              <input id="<?php esc_attr_e( $footerstyle['value'] ); ?>" type="radio" name="instaparent_theme_options[footerstyles]" value="<?php esc_attr_e( $footerstyle['value'] ); ?>" <?php echo $checked6; ?> />
+                              <?php echo $footerstyle['label']; ?> </label>
+                            <br/>
+                            <?php
+			}
+						?></td>
+              </tr>
+              <?php
+				/**
+				 * The Menu Style colorpicker
+				 */
+				?>
+              <tr class="customFooterStyleBlock subBlock" >
+              <td colspan="2">
+              
+              <table>
+              <tr valign="top">
+                <th scope="row"><?php _e( 'Footer Background Color', 'instaparent' ); ?></th>
+                <td><input type="text" id="instaparent_theme_options_footerBackgroundColor" name="instaparent_theme_options[footerBackgroundColor]" value="<?php esc_attr_e( $options['footerBackgroundColor'] ); ?>" data-default-color="#000000" />                  
+                  </td>
+              </tr>
+              <tr valign="top">
+                <th scope="row"><?php _e( 'Footer Text Color', 'instaparent' ); ?></th>
+                <td><input type="text" id="instaparent_theme_options_footerTextColor" name="instaparent_theme_options[footerTextColor]" value="<?php esc_attr_e( $options['footerTextColor'] ); ?>" data-default-color="#ffffff" /></td>
+              </tr>
+              </table>
+              
+              <?php
+				/**
+				 * The Footer Hover Style colorpicker
+				 */
+				?>
+              <table>
+<!--              <tr valign="top">
+                <th scope="row"><?php _e( 'Footer Hover Color', 'instaparent' ); ?></th>
+                <td><input type="text" id="instaparent_theme_options_footerHoverColor" name="instaparent_theme_options[footerHoverColor]" value="<?php esc_attr_e( $options['footerHoverColor'] ); ?>" data-default-color="#000000" />                  
+                  </td>
+              </tr>
+              <tr valign="top">
+                <th scope="row"><?php _e( 'Footer Hover Text Color', 'instaparent' ); ?></th>
+                <td><input type="text" id="instaparent_theme_options_footerHoverTextColor" name="instaparent_theme_options[footerHoverTextColor]" value="<?php esc_attr_e( $options['footerHoverTextColor'] ); ?>" data-default-color="#ffffff" /></td>
+              </tr>-->
+              </table>
+              
+              </td>
+              </tr>
+              
+              <tr>
+                <td colspan="2"><hr/></td>
+              </tr>
+              
               <?php
 				/**
 				 * The Featured Properties Style option
@@ -647,12 +768,19 @@ jQuery(document).ready(function() {
   	jQuery('#instaparent_theme_options_menuBackgroundColor').wpColorPicker();
 	jQuery('#instaparent_theme_options_menuHoverTextColor').wpColorPicker();
 	jQuery('#instaparent_theme_options_menuHoverColor').wpColorPicker();
-	jQuery('#instaparent_theme_options_menuTextColor').wpColorPicker();	
+	jQuery('#instaparent_theme_options_menuTextColor').wpColorPicker();
+        
+        jQuery('#instaparent_theme_options_footerBackgroundColor').wpColorPicker();
+	jQuery('#instaparent_theme_options_footerHoverTextColor').wpColorPicker();
+	jQuery('#instaparent_theme_options_footerHoverColor').wpColorPicker();
+	jQuery('#instaparent_theme_options_footerTextColor').wpColorPicker();
+        
 	jQuery('#instaparent_theme_options_FPBackgroundColor').wpColorPicker();
 	jQuery('#instaparent_theme_options_FPTextColor').wpColorPicker();	
 	
 	/* show colorpickers if the user selects the custom option */
 	customStyleSelected("#customMenuStyle",".customMenuStyleBlock");
+        customStyleSelected("#customFooterStyle",".customFooterStyleBlock");
 	customStyleSelected("#FPcustomStyle",".customFPStyleBlock");	
 	customStyleSelected("#custom",".customLogoSizeBlock");
 	
@@ -662,6 +790,9 @@ jQuery(document).ready(function() {
 	
 	jQuery(".menustyle").click(function(){
    		customStyleSelected("#customMenuStyle",".customMenuStyleBlock");
+	});
+        jQuery(".footerstyle").click(function(){
+   		customStyleSelected("#customFooterStyle",".customFooterStyleBlock");
 	});
 	jQuery(".FPstyle").click(function(){
    		customStyleSelected("#FPcustomStyle",".customFPStyleBlock");
@@ -698,10 +829,10 @@ function customStyleSelected(toCheck,toHide){
 	// If checked
     if (jQuery(toCheck).is(":checked")) {
         //show the hidden div		
-        jQuery(toHide).show("slide");
+        jQuery(toHide).show("slow");
     } else {
         //otherwise, hide it
-        jQuery(toHide).hide("slide");
+        jQuery(toHide).hide("slow");
     }
 }
 </script>
@@ -712,7 +843,7 @@ function customStyleSelected(toCheck,toHide){
  * Sanitize and validate input. Accepts an array, return a sanitized array.
  */
 function theme_options_validate( $input ) {
-	global $presetStyle_options,$menustyles_options,$FPstyles_options,$logoSize_options,$logoSize_custom_options,$customCSS_options;
+	global $presetStyle_options,$menustyles_options,$FPstyles_options,$logoSize_options,$logoSize_custom_options,$customCSS_options,$footerstyles_options;
 
 	// Our radio option must actually be in our array of radio options
 	if ( ! isset( $input['presetStyle'] ) )
@@ -725,6 +856,12 @@ function theme_options_validate( $input ) {
 		$input['menustyles'] = null;
 	if ( ! array_key_exists( $input['menustyles'], $menustyles_options ) )
 		$input['menustyles'] = null;
+        
+        // Our footer style must actually be in our array of footer styles
+	if ( ! isset( $input['footerstyles'] ) )
+		$input['footerstyles'] = null;
+	if ( ! array_key_exists( $input['footerstyles'], $footerstyles_options ) )
+		$input['footerstyles'] = null;
 		
 	// Our FP style must actually be in our array of FP styles
 	if ( ! isset( $input['FPstyles'] ) )
