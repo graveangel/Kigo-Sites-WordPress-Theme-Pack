@@ -1,0 +1,62 @@
+.inquiry-form{
+  width: 100%;
+
+  .title{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 24px;
+    margin: 0 0 10px;
+
+    &::before{
+      display: inline-block;
+      vertical-align: middle;
+      font-family: 'FontAwesome';
+      font-size: 18px;
+      content: '\f002';
+      margin-right: 15px;
+    }
+  }
+
+  li{
+    margin-bottom: 10px;
+
+    &.row-fluid{
+      font-size: 0;
+
+      .span6{
+        display: inline-block;
+        width: calc(50% - 5px);
+        margin-right: 5px;
+        font-size: 12px;
+
+        &:last-of-type{
+          margin-right: 0;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+
+  input, select, textarea{
+    padding: 5px 15px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #999;
+  }
+
+  textarea{
+    min-height: 150px;
+  }
+
+  #btn-leadrequest{
+    display: block;
+    border: none;
+    width: 140px;
+    padding: 5px 12px;
+    margin: 0 auto;
+    border-radius: 0;
+  }
+
+}

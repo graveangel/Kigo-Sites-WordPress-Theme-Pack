@@ -1,0 +1,23 @@
+$kd-social-size: 35px;
+.kd-social{
+  display: inline-block;
+  vertical-align: middle;
+  ul{
+    display: inline-block;
+    font-size: 0;
+  }
+
+  li{
+    display: inline-block;
+    line-height: $kd-social-size;
+    text-align: center;
+    font-size: initial;
+
+    a{
+      display: block;
+      width: $kd-social-size;
+      height: $kd-social-size;
+      font-size: 22px;
+    }
+  }
+}

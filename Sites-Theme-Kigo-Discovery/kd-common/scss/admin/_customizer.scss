@@ -1,0 +1,51 @@
+/* Customizer styles */
+
+#customize-theme-controls > ul{
+  > li[id *= "kd_"]{
+    > h3.accordion-section-title {
+      background-color: rgba($primary-color, .5);
+      &:focus {
+        background-color: rgba($primary-color, .5);
+      }
+    }
+  }
+
+  > li[id *= "kd_"]:hover{
+    > h3.accordion-section-title {
+      background-color: rgba($primary-color, 1);
+    }
+  }
+}
+
+.available-widgets-list {
+  div[id *= "kd_"] {
+    background: rgba($primary-color, .7);
+  }
+}
+
+.editor-container-html {
+  position: relative;
+  height:400px;
+}
+.editor-ace-html{
+  margin: 0;
+        position: absolute!important;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 400px;
+        z-index: 100;
+}
+.editor-html-fullscreen{
+  position: fixed!important;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.5) !important;
+}
+.ace_content.editor-html-fs{
+    height: 100%!important;
+}

@@ -1,0 +1,16 @@
+/*
+TEST - QuickView
+*/
+<script id="tmpl-featuredproperties-similar" type="text/html">
+    {{#result}}
+    <a class="prop similar-prop col-xs-12 col-sm-6  col-lg-3" href="{{ContextData.SEO.DetailURL}}" >
+        <img src="{{&PrimaryImage.ThumbnailURL}}">
+        <div class="text nocollapse">
+            <h4 class="prop-title">{{Headline}}</h4>
+            <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
+            <div class="prop-price">From <span>{{MinRate.Value}}{{MinRate.Currency}}/Night</span></div>
+        </div>
+        <div class="prop-details">See details</div>
+    </a>
+    {{/result}}
+</script>

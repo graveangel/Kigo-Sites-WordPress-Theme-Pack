@@ -1,0 +1,26 @@
+/* Sidebars page */
+
+.sidebar-generator{
+  *{
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.sidebars-container{
+  div{
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(black, .1);
+    .button{
+      margin-left: 20px;
+    }
+    span{
+      display: block;
+      margin-top: 5px;
+    }
+    .asignee{
+      margin-left: 10px;
+    }
+  }
+}

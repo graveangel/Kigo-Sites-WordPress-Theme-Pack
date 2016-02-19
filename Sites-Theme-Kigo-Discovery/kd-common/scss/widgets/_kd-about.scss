@@ -1,0 +1,121 @@
+.kd-about{
+  position: relative;
+  color: white;
+
+  a:hover{
+    color: inherit;
+  }
+
+  .wrapper{
+    position: relative;
+    padding: 15px;
+    font-size: 0;
+    background-color: $primary-color;
+  }
+
+  .image{
+    display: inline-block;
+    vertical-align: top;
+    img{
+      display: none;
+    }
+  }
+
+  .info{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    font-size: 12px;
+
+    .title{
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    .body{
+      font-family: $secondary-font;
+      font-size: 12px;
+    }
+
+    .buttons{
+
+    }
+
+    .kd-button{
+//      padding: 8px 10px;
+
+      &:first-of-type{
+        margin: 0 0 15px 0;
+      }
+
+      span{
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      span:first-of-type{
+        font-size: 24px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  $kd-about-desktop-height: 420px;
+  $kd-about-desktop-padding: 30px;
+
+  @media screen and (min-width: $bp-tablet){
+
+    .wrapper{
+      position: relative;
+      min-height: $kd-about-desktop-height;
+      padding: $kd-about-desktop-padding;
+      margin-bottom: 20px;
+    }
+
+    .image{
+      width: 30%;
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    .info{
+      position: relative;
+      width: 70%;
+      padding-left: 30px;
+
+      .inner{
+        padding-bottom: 120px;
+      }
+
+      .title{
+        margin-top: 0;
+        font-size: 40px;
+        line-height: 30px;
+      }
+
+      .body{
+        line-height: $line-height-text;
+      }
+
+      .buttons{
+        position: absolute;
+        bottom: 0;
+        left: $kd-about-desktop-padding;
+
+        .kd-button{
+          display: inline-block;
+          margin: 0 $kd-about-desktop-padding / 2 0 0;
+
+          &:first-of-type{
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+    }
+  }
+
+}

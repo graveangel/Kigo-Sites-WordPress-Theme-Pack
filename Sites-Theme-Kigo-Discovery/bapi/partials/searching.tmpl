@@ -1,0 +1,200 @@
+/*
+Group: Searching
+*/
+<script id="tmpl-search-homepage" type="text/html">
+        <div class="property-search-block kd-widget kd-search">
+            <input type="text" class="quicksearch" style="display:none" data-field="sort" value="{{config.sort}}" />
+            <input type="text" class="quicksearch" style="display:none" data-field="sortdesc" value="{{config.sortdesc}}" />
+            <input type="text" class="quicksearch" style="display:none" data-field="restrictavail" value="{{#config.restrictavail}}1{{/config.restrictavail}}{{^config.restrictavail}}0{{/config.restrictavail}}" />
+
+            {{#config.location.enabled}}
+                {{#config.location.autocomplete}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                        <input type="text" class="span12 property-search-input quicksearch sessionlocation bapi-malocationsearch" data-field="location" placeholder="{{config.location.prompt}}" />
+                    </div>
+                {{/config.location.autocomplete}}
+                {{^config.location.autocomplete}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                        <select class="span12 property-search-input quicksearch sessionlocation" data-field="location">
+                            <option value="">{{config.location.prompt}}</option>
+                            {{#config.location.hierarchicalValues}}
+                                <option value="{{Data}}" class="level1">{{Label}}&nbsp;({{PropertyCount}})</option>
+                                {{#Children}}
+                                    <option value="{{Data}}" class="level2">&nbsp;&nbsp;{{Label}}&nbsp;({{PropertyCount}})</option>
+                                    {{#Children}}
+                                        <option value="{{Data}}" class="level3">&nbsp;&nbsp;--&nbsp;{{Label}}&nbsp;({{PropertyCount}})</option>
+                                        {{#Children}}
+                                            <option value="{{Data}}" class="level4">&nbsp;&nbsp;&nbsp;--&nbsp;{{Label}}&nbsp;({{PropertyCount}})</option>
+                                        {{/Children}}
+                                    {{/Children}}
+                                {{/Children}}
+                            {{/config.location.hierarchicalValues}}
+                        </select>
+                    </div>
+                {{/config.location.autocomplete}}
+            {{/config.location.enabled}}
+
+            {{#config.checkin.enabled}}
+                <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkin">
+                    <input id="searchcheckin" type="text" class="span12 txtb quicksearch sessioncheckin datepickercheckin" data-field="scheckin" placeholder="{{textdata.Check-In}}" />
+                </div>
+            {{/config.checkin.enabled}}
+            {{#config.checkin.enabled}}
+                {{#config.checkout.enabled}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkout">
+                        <input id="searchcheckout" type="text" class="span12 txtb quicksearch sessioncheckout datepickercheckout" data-field="scheckout" value="{{session.searchparams.scheckout}}" placeholder="{{textdata.Check-Out}}" />
+                    </div>
+                {{/config.checkout.enabled}}
+                {{#config.los.enabled}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="los">
+                        <select class="span12 property-search-input quicksearch sessionlos" data-field="los">
+                            <option value="">{{config.los.prompt}}</option>
+                            {{#config.los.values}}<option value="{{Data}}">{{Label}}</option>{{/config.los.values}}
+                        </select>
+                    </div>
+                {{/config.los.enabled}}
+            {{/config.checkin.enabled}}
+
+            {{#config.city.enabled}}
+            {{#config.city.autocomplete}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                <input type="text" class="span12 property-search-input quicksearch sessionlocation bapi-locationsearch" data-field="location" placeholder="{{config.location.prompt}}" />
+            </div>
+            {{/config.city.autocomplete}}
+            {{^config.city.autocomplete}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                <select class="span12 property-search-input quicksearch sessionlocation" data-field="location">
+                    <option value="">{{config.city.prompt}}</option>
+                    {{#config.city.values}}<option value="{{Data}}">{{Label}}</option>{{/config.city.values}}
+                </select>
+            </div>
+            {{/config.city.autocomplete}}
+            {{/config.city.enabled}}
+            {{#config.amenity.enabled}}
+            <div class="category-block amenitiesBlock kd-icon col-xs-12 col-sm-12 col-md-2" >
+                <div id="amenitiesDropdownCheckbox"></div>
+            </div>
+            {{/config.amenity.enabled}}
+            {{#config.adults.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="adults">
+                <select class="span12 property-search-input quicksearch sessionadultsmin" data-field="adults[min]">
+                    <option value="">{{config.adults.prompt}}</option>
+                    {{#config.adults.values}}<option value="{{Data}}">{{Label}}</option>{{/config.adults.values}}
+                </select>
+            </div>
+            {{/config.adults.enabled}}
+            {{#config.children.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="children">
+                <select class="span12 property-search-input quicksearch sessionchildrenmin" data-field="children[min]">
+                    <option value="">{{config.children.prompt}}</option>
+                    {{#config.children.values}}<option value="{{Data}}">{{Label}}</option>{{/config.children.values}}
+                </select>
+            </div>
+            {{/config.children.enabled}}
+            {{#config.category.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="category">
+                <select class="span12 property-search-input quicksearch sessioncategory" data-field="category">
+                    <option value="">{{config.category.prompt}}</option>
+                    {{#config.category.values}}<option value="{{Data}}">{{Label}}</option>{{/config.category.values}}
+                </select>
+            </div>
+            {{/config.category.enabled}}
+            {{#config.dev.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="dev">
+                <select class="span12 property-search-input quicksearch sessiondevid" data-field="dev">
+                    <option value="">{{config.dev.prompt}}</option>
+                    {{#config.dev.values}}<option value="{{Data}}">{{Label}}</option>{{/config.dev.values}}
+                </select>
+            </div>
+            {{/config.dev.enabled}}
+            {{#config.sleeps.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="sleeps">
+                <select class="span12 property-search-input quicksearch sessionsleepsexactly" data-field="sleeps[exactly]">
+                    <option value="">{{config.sleeps.prompt}}</option>
+                    {{#config.sleeps.values}}<option value="{{Data}}">{{Label}}</option>{{/config.sleeps.values}}
+                </select>
+            </div>
+            {{/config.sleeps.enabled}}
+            {{#config.minsleeps.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="sleeps">
+                <select class="span12 property-search-input quicksearch sessionsleepsmin" data-field="sleeps[min]">
+                    <option value="">{{config.sleeps.minprompt}}</option>
+                    {{#config.sleeps.minvalues}}<option value="{{Data}}">{{Label}}</option>{{/config.sleeps.minvalues}}
+                </select>
+            </div>
+            {{/config.minsleeps.enabled}}
+            {{#config.beds.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="beds">
+                <select class="span12 property-search-input quicksearch sessionbedsexactly" data-field="beds[exactly]">
+                    <option value="">{{config.beds.prompt}}</option>
+                    {{#config.beds.values}}<option value="{{Data}}">{{Label}}</option>{{/config.beds.values}}
+                </select>
+            </div>
+            {{/config.beds.enabled}}
+            {{#config.minbeds.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="beds">
+                <select class="span12 property-search-input quicksearch sessionbedsmin" data-field="beds[min]">
+                    <option value="">{{config.beds.minprompt}}</option>
+                    {{#config.beds.minvalues}}<option value="{{Data}}">{{Label}}</option>{{/config.beds.minvalues}}
+                </select>
+            </div>
+            {{/config.minbeds.enabled}}
+            {{#config.baths.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="baths">
+                <select class="span12 property-search-input quicksearch sessionbathsmin" data-field="baths[min]">
+                    <option value="">{{config.baths.prompt}}</option>
+                    {{#config.baths.values}}<option value="{{Data}}">{{Label}}</option>{{/config.baths.values}}
+                </select>
+            </div>
+            {{/config.baths.enabled}}
+            {{#config.rate.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="maxrate">
+                <select class="span12 property-search-input quicksearch sessionmaxratemax" data-field="maxrate[max]">
+                    <option value="">{{config.rate.prompt}}</option>
+                    {{#config.rate.values}}<option value="{{Data}}">{{Label}}</option>{{/config.rate.values}}
+                </select>
+            </div>
+            {{/config.rate.enabled}}
+            {{#config.rooms.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="rooms">
+                <select class="span12 property-search-input quicksearch sessionroomsmin" data-field="rooms[min]">
+                    <option value="">{{config.rooms.prompt}}</option>
+                    {{#config.rooms.values}}<option value="{{Data}}">{{Label}}</option>{{/config.rooms.values}}
+                </select>
+            </div>
+            {{/config.rooms.enabled}}
+            {{#config.headline.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="headline">
+                <input type="text" class="span12 property-search-input quicksearch sessionheadline" data-field="headline" placeholder="{{config.headline.prompt}}" />
+            </div>
+            {{/config.headline.enabled}}
+            {{#config.altid.enabled}}
+            <div class="category-block  kd-icon col-xs-12 col-sm-12 col-md-2" data-field="altid" >
+                <input type="text" class="span12 txtb quicksearch sessinoaltid" />
+            </div>
+            {{/config.altid.enabled}}
+
+            <div class="category-block property-search-button-block search-button-block col-xs-12 col-sm-12 col-md-2">
+                <div class="more">More</div>
+                <a class="search quicksearch-dosearch btn primary-fill-color" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Search}}</a>&nbsp;
+                <!--<a class="quicksearch-doclear"  data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Clear}}</a>&nbsp;-->
+                <!--<button type="reset">{{textdata.Clear}}</button>&nbsp;-->
+                <!--<a class="quicksearch-doadvanced" style="display:none" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Advanced}}</a>&nbsp;-->
+            </div>
+        </div>
+        <div class="clearfix"></div>
+</script>
+
+<!--{{#config.checkout.enabled}}-->
+<!--<div class="category-block">-->
+<!--<input type="text" class="span12 txtb quicksearch sessioncheckout datepickercheckout" data-field="scheckout" />-->
+<!--</div>-->
+<!--{{/config.checkout.enabled}}-->
+<!--{{#config.los.enabled}}-->
+<!--<div class="category-block">-->
+<!--<select class="span12 property-search-input quicksearch sessionlos" data-field="los">-->
+<!--<option value="">-{{config.los.prompt}}-</option>-->
+<!--{{#config.los.values}}<option value="{{Data}}">{{Label}}</option>{{/config.los.values}}-->
+<!--</select>-->
+<!--</div>-->
+<!--{{/config.los.enabled}}-->
