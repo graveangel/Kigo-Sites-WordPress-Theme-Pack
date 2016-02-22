@@ -1,4 +1,4 @@
-/* Miquel Waller - Thu Feb 18 2016 16:50:55 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Feb 22 2016 10:27:54 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -4250,14 +4250,17 @@ body.page-template-other-detail-page .other-detail-page .button {
   float: none !important; }
 
 .page-attractions-summary .item-result {
-  min-height: 430px;
+  height: auto;
   text-align: center;
   border: 1px solid #eee;
   margin-bottom: 30px;
   padding-bottom: 20px; }
   .page-attractions-summary .item-result .item-images {
+    height: 255px;
     overflow: hidden;
-    position: relative; }
+    position: relative;
+    background-position: center;
+    background-size: cover; }
     .page-attractions-summary .item-result .item-images a {
       display: block;
       text-align: center;
@@ -4294,6 +4297,8 @@ body.page-template-other-detail-page .other-detail-page .button {
       margin-top: 20px;
       cursor: pointer;
       padding: 5px 20px; }
+    .page-attractions-summary .item-result .item-info .clearboth {
+      display: none; }
 
 .page-attractions-summary span.prop-location {
   margin-left: 10px; }
@@ -4332,15 +4337,17 @@ body.page-template-other-detail-page .other-detail-page .button {
         outline: none; }
 
 @media (min-width: 768px) {
-  .page-attractions-summary .item-result .item-images {
-    max-height: 255px;
-    overflow: hidden;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative; }
-    .page-attractions-summary .item-result .item-images a img {
-      visibility: hidden; }
+  .page-attractions-summary .item-result {
+    height: 470px; }
+    .page-attractions-summary .item-result .item-images {
+      max-height: 255px;
+      overflow: hidden;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative; }
+      .page-attractions-summary .item-result .item-images a img {
+        visibility: hidden; }
   .page-attractions-summary .control-group-attraction {
     text-align: left; }
   .page-attractions-summary .control-label, .page-attractions-summary .controls {

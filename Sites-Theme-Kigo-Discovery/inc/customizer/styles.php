@@ -91,7 +91,7 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
 
             Customizer_Library_Styles()->add(array(
                 'selectors' => array(
-                    'a:hover', 'a:hover *'
+                    'a:hover'
                 ),
                 'declarations' => array(
                     'color' => $color,
