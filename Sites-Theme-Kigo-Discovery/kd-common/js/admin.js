@@ -1,4 +1,4 @@
-/* Miquel Waller - Thu Feb 18 2016 17:53:01 GMT+0100 (Romance Standard Time) */
+/* Miquel Waller - Fri Feb 19 2016 15:54:09 GMT+0100 (Romance Standard Time) */
 var kd_admin = {
     init: function () {
     },

@@ -1,4 +1,4 @@
-/* Miquel Waller - Thu Feb 18 2016 16:50:55 GMT+0100 (Romance Standard Time) */
+/* Miquel Waller - Fri Feb 19 2016 15:55:53 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -5336,7 +5336,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       transform: translateY(0px);
       opacity: 1; }
     .kd-team .next-slide {
-      right: 15px; } }
+      right: 0; } }
   @media (min-width: 992px) {
     .kd-team .team-member {
       display: inline-block;
