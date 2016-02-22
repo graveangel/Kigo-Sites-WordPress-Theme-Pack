@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 10:50:39 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Feb 22 2016 11:25:28 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -3057,14 +3057,21 @@ footer.footer {
     display: block;
     margin: auto;
     width: 51em; }
-  .template-property .review p {
-    font-size: 1.2em;
-    color: #999; }
+  .template-property .review {
+    margin-bottom: 30px; }
+    .template-property .review * {
+      background-color: transparent !important;
+      font-family: "Montserrat" !important; }
+    .template-property .review p, .template-property .review p * {
+      color: #adadad !important;
+      font-size: 12px;
+      font-weight: normal; }
+    .template-property .review .ratingstars {
+      display: block;
+      float: none; }
   .template-property #poi-map-prop {
     width: 100%;
     height: 300px; }
-  .template-property .r-n-stars {
-    margin-top: 15px; }
   .template-property .ratingstars {
     float: right; }
   .template-property .review-posted-on {

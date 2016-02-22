@@ -309,17 +309,24 @@
     width                         : 51em;
   }
   .review{
-    p{
-      font-size: 1.2em;
-      color: $tertiary-color;
+    margin-bottom: 30px;
+    *{
+      background-color: transparent !important;
+      font-family: $primary-font !important;
+    }
+    p, p *{
+      color: $light-gray !important;
+      font-size: 12px;
+      font-weight: normal;
+    }
+    .ratingstars{
+      display: block;
+      float: none;
     }
   }
   #poi-map-prop{
     width: 100%;
     height: 300px;
-  }
-  .r-n-stars{
-    margin-top: 15px;
   }
   .ratingstars {
     float: right;

@@ -2021,12 +2021,13 @@ Group: Properties
                         <div class="span12 box-sides">
 
                             {{#ContextData.Reviews}}
-                                <div class="row-fluid review">
+                                <div class="row-fluid review clearfix">
                                     <div class="col-xs-12">
                                         <div class="comment col-md-10 col-xs-12 col-md-offset-1">
+                                            <div class="reviewrating-{{Rating}} ratingstars"></div>
                                             {{&Comment}}
                                         </div>
-                                        <div class="rating r-n-stars col-md-10 col-xs-12 col-md-offset-1"><strong class="username">{{ReviewedBy.FirstName}}&nbsp;{{ReviewedBy.LastName}}</strong> <span class="review-posted-on">{{SubmittedOn.ShortDate}}</span> <span class="reviewrating-{{Rating}} ratingstars"></span></div>
+                                        <div class="rating r-n-stars col-md-10 col-xs-12 col-md-offset-1"><strong class="username">{{ReviewedBy.FirstName}}&nbsp;{{ReviewedBy.LastName}}</strong> <span class="review-posted-on">{{SubmittedOn.ShortDate}}</span></div>
                                     </div>
                                 </div>
                                 <hr/>
