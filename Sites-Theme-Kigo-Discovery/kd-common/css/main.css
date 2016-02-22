@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 11:58:16 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Feb 22 2016 12:47:20 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2881,19 +2881,29 @@ footer.footer {
     box-sizing: border-box;
     padding: 30px; }
     .template-property .amenities ul li {
+      width: 100%;
       margin-bottom: 13px; }
       .template-property .amenities ul li .alert {
         margin-bottom: 0; }
-      .template-property .amenities ul li span.amenity-icon {
-        margin-right: 10px;
-        font-size: 18px; }
-      .template-property .amenities ul li span.amenity-name {
-        text-transform: uppercase;
-        color: #555;
-        margin-right: 5px;
-        vertical-align: top; }
-      .template-property .amenities ul li span.amenity-value {
-        color: #999; }
+      .template-property .amenities ul li span {
+        display: inline-block;
+        vertical-align: middle; }
+        .template-property .amenities ul li span.amenity-icon {
+          top: auto;
+          margin-right: 10px;
+          font-size: 15px; }
+        .template-property .amenities ul li span.amenity-name {
+          text-transform: uppercase;
+          color: #555;
+          margin-right: 5px; }
+        .template-property .amenities ul li span.amenity-value {
+          color: #999; }
+      .template-property .amenities ul li #book-block {
+        margin-top: 0; }
+  .template-property .buttons-box {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 15px; }
   .template-property .book-enq {
     padding: 0 15px;
     text-align: center; }
@@ -2906,8 +2916,8 @@ footer.footer {
   .template-property .inquire-button {
     margin: auto;
     max-width: 500px;
-    font-size: 25px;
-    border: none; }
+    border: none;
+    font-size: 16px; }
   .template-property .ppt-images,
   .template-property .ppt-desc {
     float: left;
@@ -3081,8 +3091,6 @@ footer.footer {
     font-size: 16px; }
   .template-property .ppt-image-caption {
     min-height: 30px; }
-  .template-property .buttons-box {
-    display: inline; }
   .template-property span.prop-image.pull-left {
     margin-right: 10px; }
   .template-property #pano {
@@ -3123,31 +3131,36 @@ Media Tablets horizontal
       display: inline-block;
       float: left; }
       .template-property .amenities ul li {
-        float: left;
+        display: inline-block;
+        vertical-align: middle;
+        width: auto;
         margin-right: 20px;
-        margin-bottom: 0; }
-        .template-property .amenities ul li span.amenity-name, .template-property .amenities ul li span.amenity-value {
-          font-size: 10px; }
-        .template-property .amenities ul li span.amenity-icon {
-          font-size: 18px; }
+        margin-bottom: 15px; }
+        .template-property .amenities ul li span {
+          display: inline-block;
+          vertical-align: middle; }
+          .template-property .amenities ul li span.amenity-name {
+            font-size: 10px; }
+          .template-property .amenities ul li span.amenity-value {
+            font-size: 11px; }
+          .template-property .amenities ul li span.amenity-icon {
+            font-size: 18px; }
     .template-property .book-enq {
       padding: 20px 0 0 0;
-      display: inline-block;
-      float: left;
       width: auto; }
       .template-property .book-enq span {
         float: left;
-        margin-right: 10px;
-        font-size: 11px; }
+        margin-right: 10px; }
       .template-property .book-enq span {
         line-height: 2.5em; }
       .template-property .book-enq > :last-child {
         margin: 0; }
     .template-property .book-now-button,
     .template-property .inquire-button {
-      float: right;
+      display: inline-block;
+      vertical-align: middle;
       margin-left: 10px;
-      font-size: 11px; }
+      font-size: 16px; }
     .template-property .property-description {
       padding: 0px; }
     .template-property .ppt-images {
@@ -3301,32 +3314,17 @@ Media Tablets horizontal
 
 @media (min-width: 480px) {
   .rates-availability .ui-datepicker-group {
-    display: inline-block; } }
+    display: inline-block; }
+  #bapi-rateblock .buttons-box {
+    margin-top: 0; } }
 
 /*=============================================================================
 Media Desktop
 ============================================================================*/
 @media (min-width: 1106px) {
-  .template-property .amenities {
-    box-sizing: border-box;
-    padding: 15px;
-    display: inline-block;
-    float: left; }
-    .template-property .amenities ul li {
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 20px;
-      margin-bottom: 0; }
-      .template-property .amenities ul li span {
-        display: inline-block;
-        vertical-align: middle !important; }
-      .template-property .amenities ul li .amenity-name,
-      .template-property .amenities ul li .amenity-value {
-        font-size: 14px; }
   .template-property .book-enq {
     padding: 14px 0px 0 0;
     display: inline-block;
-    float: left;
     width: auto; }
     .template-property .book-enq span {
       float: left;
@@ -3336,11 +3334,6 @@ Media Desktop
       line-height: 2.5em; }
     .template-property .book-enq > :last-child {
       margin: 0; }
-  .template-property .book-now-button,
-  .template-property .inquire-button {
-    float: right;
-    margin-left: 10px;
-    font-size: 16px; }
   .template-property .ppt-desc {
     padding-right: 0; }
   .template-property .map-and-locations #poi-map-prop {
@@ -3381,17 +3374,17 @@ Media Desktop
     font-size: 1.1em; }
 
 .pop-up-form-link {
+  margin: 0 15px;
+  font-size: 12px;
   color: #33baaf;
   text-decoration: underline;
-  font-size: 13px;
   text-decoration-style: dotted; }
 
 .pop-up-booking-form {
   display: none; }
 
 .bapi-rateblock {
-  display: inline-block;
-  float: left; }
+  display: inline-block; }
   .bapi-rateblock .alert {
     max-width: 360px; }
 
@@ -3467,8 +3460,6 @@ Media Desktop
 
 .template-property #book-block {
   display: inline-block; }
-  .template-property #book-block .pd .amenity-value {
-    font-size: 13px; }
 
 .template-property .amenities {
   width: 100%; }
@@ -3476,10 +3467,9 @@ Media Desktop
     width: 100%; }
 
 .template-property #bapi-rateblock {
-  position: static;
-  zoom: 1;
-  float: none;
-  display: block; }
+  display: inline-block;
+  vertical-align: middle;
+  float: none; }
   .template-property #bapi-rateblock .alert {
     padding: 0;
     display: inline-block; }
@@ -3487,14 +3477,6 @@ Media Desktop
 @media screen and (min-width: 768px) {
   .similar-prop {
     text-align: left; } }
-
-@media screen and (max-width: 976px) {
-  .template-property #book-block {
-    margin-top: 20px;
-    display: block; }
-  .template-property .buttons-box {
-    margin-top: 20px;
-    display: block; } }
 
 .about-us-template {
   /* HERO BLOCK --------------------------------------------------------------*/

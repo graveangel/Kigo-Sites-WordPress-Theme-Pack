@@ -52,6 +52,7 @@
     padding                       : 30px;
     ul {
       li {
+        width: 100%;
         margin-bottom         : 13px;
 
         .alert{
@@ -59,24 +60,36 @@
         }
 
         span {
+          display: inline-block;
+          vertical-align: middle;
+
           &.amenity-icon {
+            top: auto;
             margin-right  : 10px;
-            font-size     : 18px;
+            font-size     : 15px;
           }
           &.amenity-name {
             text-transform: uppercase;
             color         : $dark-text;
             margin-right  : 5px;
-            vertical-align: top;
           }
           &.amenity-value {
             color         : $tertiary-color;
           }
         }
+
+        #book-block{
+          margin-top: 0;
+        }
       }
     }
   }
   /* Book and inquire buttons---------------------------------------------------*/
+  .buttons-box{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 15px;
+  }
   .book-enq {
     padding                       : 0 15px;
     text-align                    : center;
@@ -91,8 +104,8 @@
   .inquire-button{
     margin                        : auto;
     max-width                     : 500px;
-    font-size                     : 25px;
     border                        : none;
+    font-size: 16px;
   }
 
   /* Property descriptions-----------------------------------------------------*/
@@ -339,11 +352,6 @@
     min-height: 30px;
   }
 
-  .buttons-box {
-    display: inline;
-  }
-
-
   span.prop-image.pull-left{
     margin-right: 10px;
   }
@@ -396,12 +404,19 @@ Media Tablets horizontal
       float                     : left;
       ul {
         li {
-          float             : left;
+          display: inline-block;
+          vertical-align: middle;
+          width: auto;
           margin-right      : 20px;
-          margin-bottom     : 0;
+          margin-bottom     : 15px;
           span {
-            &.amenity-name,&.amenity-value {
+            display: inline-block;
+            vertical-align: middle;
+            &.amenity-name{
               font-size : 10px;
+            }
+            &.amenity-value {
+              font-size: 11px;
             }
             &.amenity-icon {
               font-size : 18px;
@@ -414,13 +429,10 @@ Media Tablets horizontal
 
     .book-enq {
       padding                   : 20px 0 0 0;
-      display                   :inline-block;
-      float                     : left;
       width                     : auto;
       span{
         float                 : left;
         margin-right          : 10px;
-        font-size             : 11px;
       }
 
       span {
@@ -432,11 +444,13 @@ Media Tablets horizontal
       }
 
     }
+
     .book-now-button,
     .inquire-button {
-      float                     : right;
-      margin-left              : 10px;
-      font-size                 : 11px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+      font-size: 16px;
     }
 
     .property-description {
@@ -657,6 +671,10 @@ Media Tablets horizontal
   {
     display: inline-block;
   }
+
+  #bapi-rateblock .buttons-box{
+    margin-top: 0;
+  }
 }
 /*=============================================================================
 Media Desktop
@@ -664,37 +682,10 @@ Media Desktop
 @media (min-width                     : 1106px){
   .template-property {
 
-    .amenities {
-      box-sizing                : border-box;
-      padding                   : 15px;
-      display                   :inline-block;
-      float                     : left;
-      ul {
-        li {
-          display: inline-block;
-          vertical-align: middle;
-          margin-right      : 20px;
-          margin-bottom     : 0;
-
-          span{
-            display: inline-block;
-            vertical-align: middle !important;
-          }
-
-          .amenity-name,
-          .amenity-value {
-            font-size : 14px;
-            &.your-dates{
-            }
-          }
-        }
-      }
-    }
 
     .book-enq {
       padding                   : 14px 0px 0 0;
-      display                   :inline-block;
-      float                     : left;
+      display                   : inline-block;
       width                     : auto;
       span {
         float                 : left;
@@ -711,12 +702,7 @@ Media Desktop
       }
 
     }
-    .book-now-button,
-    .inquire-button {
-      float                     : right;
-      margin-left              : 10px;
-      font-size                 : 16px;
-    }
+
 
     .ppt-desc {
       padding-right             : 0;
@@ -776,9 +762,10 @@ Media Desktop
 }
 
 .pop-up-form-link {
+  margin: 0 15px;
+  font-size: 12px;
   color: $primary-color;
   text-decoration:underline;
-  font-size: 13px;
   text-decoration-style: dotted;
 }
 .pop-up-booking-form {
@@ -787,7 +774,6 @@ Media Desktop
 
 .bapi-rateblock {
   display: inline-block;
-  float: left;
   .alert{
     max-width: 360px;
   }
@@ -881,11 +867,6 @@ Media Desktop
 .template-property{
   #book-block {
     display: inline-block;
-    .pd {
-      .amenity-value {
-        font-size: 13px;
-      }
-    }
   }
   .amenities {
     width: 100%;
@@ -894,10 +875,9 @@ Media Desktop
     }
   }
   #bapi-rateblock {
-    position: static;
-    zoom: 1;
+    display: inline-block;
+    vertical-align: middle;
     float: none;
-    display: block;
     .alert {
       padding: 0;
       display: inline-block;
@@ -909,19 +889,4 @@ Media Desktop
   .similar-prop{
     text-align: left;
   }
-}
-
-
-@media screen and (max-width:976px){
-  .template-property{
-    #book-block {
-      margin-top: 20px;
-      display: block;
-    }
-    .buttons-box {
-      margin-top: 20px;
-      display: block;
-    }
-  }
-
 }
