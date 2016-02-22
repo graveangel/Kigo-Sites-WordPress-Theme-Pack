@@ -1,4 +1,4 @@
-/* Miquel Waller - Fri Feb 19 2016 15:55:53 GMT+0100 (Romance Standard Time) */
+/* Miquel Waller - Mon Feb 22 2016 09:47:40 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -4250,7 +4250,7 @@ body.page-template-other-detail-page .other-detail-page .button {
   float: none !important; }
 
 .page-attractions-summary .item-result {
-  min-height: 430px;
+  height: 430px;
   text-align: center;
   border: 1px solid #eee;
   margin-bottom: 30px;

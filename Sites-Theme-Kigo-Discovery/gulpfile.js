@@ -1,6 +1,6 @@
 /*
 * Installation: Move 'package.json' to root theme folder & install.
-* Run 'gulpfile.js' from /build/gulp fodler
+* Run 'gulpfile.js' from /build/gulp folder
 * */
 
 
@@ -50,7 +50,7 @@ gulp.task('frontScripts', function() {
     var date = new Date();
     return gulp.src(frontScriptsOrigin)
         .pipe(concat('main.js'))
-        .pipe(header('/* Miquel Waller - '+date+' */\n'))
+        .pipe(header('/* Edited - '+date+' */\n'))
         .pipe(gulp.dest(scriptsDestination))
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
@@ -61,7 +61,7 @@ gulp.task('backScripts', function() {
     var date = new Date();
     return gulp.src(backScriptsOrigin)
         .pipe(concat('admin.js'))
-        .pipe(header('/* Miquel Waller - '+date+' */\n'))
+        .pipe(header('/* Edited - '+date+' */\n'))
         .pipe(gulp.dest(scriptsDestination))
         .pipe(uglify())
         .pipe(rename({suffix: '.min'}))
