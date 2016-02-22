@@ -1180,7 +1180,7 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 	.bapi-summary table tr td:last-child,.bapi-summary table tr th:last-child{display:none;}
 	
 	/* attraction summary page */
-	/*.poi-results .bapi-map,.poi-results .item-result .item-images .number-tag{display:none;}*/
+	/*.poi-results .bapi-map,.poi-results .item-result .item-images .number-tag{display:none;} *//*Letting the map to be visible in mobile view of attractions page*/
 	.search-result-controls .form-horizontal .control-group-attraction .control-label{width:auto;}
 	.search-result-controls .form-horizontal .control-group-attraction .controls{margin-left:0;}
 	
