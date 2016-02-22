@@ -1046,6 +1046,8 @@ function instaparent_preset_styles() {
 		$styleName = $OptionsSelected['presetStyle'];
 		/* we get the menu style selected */
 		$menuStyleName = @$OptionsSelected['menustyles'];
+                /* we get the menu style selected */
+		$footerStyleName = @$OptionsSelected['footerstyles'];
 		/* we get the Featured Properties Selected */
 		$FPstyle = @$OptionsSelected['FPstyles'];
 		/* we get the Logo Size Selected */
@@ -1189,7 +1191,50 @@ body #insta-top-fixed .navbar .nav li.dropdown.open.active > .dropdown-toggle .c
 	$CustomCSSstyle = $CustomCSSstyle . $theStyleForTheMenu;
 		
 	}
-	
+        
+/* an array with the CSS for White and Gray Options */
+$footerstyles_CSS = array(
+	'footerstyle01' => 'body #insta-footer{background:#fff;color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-links a,body #insta-footer .halflings.white i:before,body #insta-footer a:hover,body #insta-footer .widget_bapi_footer .footer-links a:hover{color:#333;}body #insta-footer .top-links .caret {border-bottom-color: #333;border-top-color: #333;}',
+	'footerstyle02' => "body #insta-footer{background: #ffffff;
+background: -moz-linear-gradient(top,  #ffffff 0%, #cccccc 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cccccc));
+background: -webkit-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+background: -o-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+background: -ms-linear-gradient(top,  #ffffff 0%,#cccccc 100%);
+background: linear-gradient(to bottom,  #ffffff 0%,#cccccc 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cccccc',GradientType=0 );
+color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-links a,body #insta-footer a:hover,body #insta-footer .widget_bapi_footer .footer-links a:hover,body #insta-footer .halflings.white i:before{color:#333;}body #insta-footer .top-links .caret {border-bottom-color: #333;border-top-color: #333;}"
+	);
+        
+        /* we check if the var is set or empty or if it is the default option */
+	if (isset($footerStyleName) && !empty($footerStyleName) && $footerStyleName != 'default') 
+	{
+		/* lets create a var for the CSS */
+		$theStyleForTheFooter='';
+		
+		/* check if they selected custom */
+		if($footerStyleName == 'customFooterStyle'){			
+			
+			/* we get the hex value for the background color selected */
+			$footerBgColor = $OptionsSelected['footerBackgroundColor'];
+			/* we get the hex value for the text color selected */
+			$footerTxtColor = $OptionsSelected['footerTextColor'];
+			/* we get the color for the Menu Hover background */
+			$FooterHoverColor = $OptionsSelected['footerHoverColor'];	
+			/* we get the color for the Menu Hover text */
+			$FooterHoverTextColor = $OptionsSelected['footerHoverTextColor'];
+			
+			$theStyleForTheFooter='body #insta-footer{background:'.$footerBgColor.';color:'.$footerTxtColor.';}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-links a,body #insta-footer a:hover,body #insta-footer .widget_bapi_footer .footer-links a:hover,body #insta-footer .halflings.white i:before{color:'.$footerTxtColor.';}body #insta-footer .top-links .caret {border-bottom-color:'.$footerTxtColor.';border-top-color:'.$footerTxtColor.';}';
+
+		}else{
+			$theStyleForTheFooter=$footerstyles_CSS[$footerStyleName];
+			
+		}
+	/* add the CSS to the Custom CSS var so it gets outputted*/
+	$CustomCSSstyle = $CustomCSSstyle . $theStyleForTheFooter;
+		
+	}
+
 	/* we check if the var is set or empty or if it is the default option,
 	TODO: a function that checks this */
 	if (isset($FPstyle) && !empty($FPstyle) && $FPstyle != 'default') 
@@ -1297,7 +1342,7 @@ body #insta-top-fixed .navbar .nav li.dropdown.open.active > .dropdown-toggle .c
 	{
 	/* outputting the CSS in the head */
 		echo '<!-- Custom CSS Styles -->' . "\n";
-        echo '<style type="text/css" media="all">' . "\n";
+                echo '<style type="text/css" media="all">' . "\n";
 		echo $CustomCSSstyle . "\n";
 		echo '</style>' . "\n";
 	}
@@ -1305,6 +1350,42 @@ body #insta-top-fixed .navbar .nav li.dropdown.open.active > .dropdown-toggle .c
 }
 add_action( 'wp_enqueue_scripts', 'instaparent_preset_styles' );
 
+function load_selected_font() {
+
+        /* we get the options from the database */
+	$OptionsSelected = get_option('instaparent_theme_options');
+	/* we get the preset selected which is in radioinput*/
+	$fontStyle = $OptionsSelected['fontStyle'];
+        $paragraphStyle = $OptionsSelected['paragraphfontStyle'];
+
+        if(!empty($fontStyle)){
+            // Font options
+            $fonts = array($fontStyle,$paragraphStyle);
+            include 'insta-common/themeoptions/extensions/fonts.php';
+            $font_uri = customizer_library_get_google_font_uri( $fonts );
+
+            // Load Google Fonts
+            wp_enqueue_style( 'demo_fonts', $font_uri, array(), null, 'screen' );
+        }
+
+}
+add_action( 'wp_enqueue_scripts', 'load_selected_font' );
+
+/* Load inline CSS this should be in the theme not here */
+function applyFontStyle(){
+    /* we get the options from the database */
+	$OptionsSelected = get_option('instaparent_theme_options');
+	/* we get the preset selected which is in radioinput*/
+	$fontStyle = $OptionsSelected['fontStyle'];
+        $paragraphStyle = $OptionsSelected['paragraphfontStyle'];
+        if(!empty($fontStyle)){
+        ?>
+            <style type="text/css" media="screen">h1,h2,h3{font-family:<?php echo $fontStyle; ?>;}p{font-family:<?php echo $paragraphStyle; ?>;}</style>
+        <?php
+        }
+
+}
+add_action('wp_head','applyFontStyle',100);
 
 /*----------------------- Insta custom widgets ----------------------------------*/
 
