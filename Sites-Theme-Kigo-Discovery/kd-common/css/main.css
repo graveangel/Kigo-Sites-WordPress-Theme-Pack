@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 11:25:28 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Feb 22 2016 11:58:16 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2850,7 +2850,7 @@ footer.footer {
     background-color: rgba(255, 255, 255, 0.2); }
   .template-property .hero {
     position: relative;
-    height: 200px; }
+    height: 300px; }
   .template-property .hero-image {
     max-width: 100%;
     width: 100%;
@@ -2876,10 +2876,10 @@ footer.footer {
   .template-property .amenities-n-buttons {
     background-color: white;
     display: block;
-    padding-bottom: 54px; }
+    padding-bottom: 0; }
   .template-property .amenities {
     box-sizing: border-box;
-    padding: 60px 60px 0; }
+    padding: 30px; }
     .template-property .amenities ul li {
       margin-bottom: 13px; }
       .template-property .amenities ul li .alert {
@@ -2911,7 +2911,8 @@ footer.footer {
   .template-property .ppt-images,
   .template-property .ppt-desc {
     float: left;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    text-align: justify; }
   .template-property .ppt-images {
     width: 100%;
     display: none;
@@ -2936,8 +2937,9 @@ footer.footer {
         font-family: "Montserrat", sans-serif;
         font-weight: 100;
         display: none; }
-      .template-property .ppt-images ul > li img {
-        max-height: 100%; }
+      .template-property .ppt-images ul > li a {
+        display: block;
+        height: 100%; }
     .template-property .ppt-images:hover {
       cursor: pointer; }
       .template-property .ppt-images:hover ul li.more {
@@ -3003,8 +3005,8 @@ footer.footer {
     color: #999;
     font-size: 14px; }
   .template-property .property-features {
-    margin-top: 50px;
-    padding: 0 15px; }
+    padding: 0 15px;
+    margin-top: 50px; }
     .template-property .property-features > ul > li {
       padding: 15px 0;
       border-top: 1px solid #ccc;
@@ -3129,7 +3131,7 @@ Media Tablets horizontal
         .template-property .amenities ul li span.amenity-icon {
           font-size: 18px; }
     .template-property .book-enq {
-      padding: 20px 0px 0 0;
+      padding: 20px 0 0 0;
       display: inline-block;
       float: left;
       width: auto; }
@@ -3147,9 +3149,8 @@ Media Tablets horizontal
       margin-left: 10px;
       font-size: 11px; }
     .template-property .property-description {
-      padding-top: 36px; }
+      padding: 0px; }
     .template-property .ppt-images {
-      padding-left: 15px;
       max-width: 63%; }
       .template-property .ppt-images ul {
         overflow: hidden; }
@@ -3196,7 +3197,7 @@ Media Tablets horizontal
     .template-property .ppt-desc {
       max-width: 37%;
       box-sizing: border-box;
-      padding-right: 15px; }
+      padding-right: 0; }
     .template-property .ppt-desc-title {
       color: #333;
       font-size: 19px;
@@ -3206,7 +3207,7 @@ Media Tablets horizontal
       font-size: 14px; }
     .template-property .property-features {
       margin-top: 50px;
-      padding: 0 15px; }
+      padding: 0; }
     .template-property .amenities-list {
       margin-top: 12px; }
       .template-property .amenities-list .amenity-detail-list {
@@ -3240,13 +3241,13 @@ Media Tablets horizontal
           .template-property .map-and-locations .poi-map-locations td:first-child .poi-map-item {
             color: #33baaf; }
       .template-property .map-and-locations #poi-map-prop {
-        width: 70%;
+        width: 100%;
         height: 400px;
         display: inline-block;
         font-size: 14px; }
       .template-property .map-and-locations #map-side-bar {
         vertical-align: top;
-        width: 30%;
+        width: 100%;
         display: inline-block;
         font-size: 14px; } }
 
@@ -3340,10 +3341,12 @@ Media Desktop
     float: right;
     margin-left: 10px;
     font-size: 16px; }
-  .template-property .ppt-images {
-    padding-left: 15px; }
   .template-property .ppt-desc {
-    padding-right: 15px; } }
+    padding-right: 0; }
+  .template-property .map-and-locations #poi-map-prop {
+    width: 70%; }
+  .template-property .map-and-locations #map-side-bar {
+    width: 30%; } }
 
 .similar-properties {
   font-size: 0; }
