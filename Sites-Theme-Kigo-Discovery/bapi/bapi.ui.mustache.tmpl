@@ -2138,7 +2138,7 @@ Group: Properties
 Group: Searching
 */
 <script id="tmpl-search-homepage" type="text/html">
-        <div class="property-search-block kd-widget kd-search">
+        <div class="property-search-block kd-widget kd-search clearfix">
             <input type="text" class="quicksearch" style="display:none" data-field="sort" value="{{config.sort}}" />
             <input type="text" class="quicksearch" style="display:none" data-field="sortdesc" value="{{config.sortdesc}}" />
             <input type="text" class="quicksearch" style="display:none" data-field="restrictavail" value="{{#config.restrictavail}}1{{/config.restrictavail}}{{^config.restrictavail}}0{{/config.restrictavail}}" />
@@ -2310,7 +2310,7 @@ Group: Searching
             </div>
             {{/config.altid.enabled}}
 
-            <div class="category-block property-search-button-block search-button-block col-xs-12 col-sm-12 col-md-2">
+            <div class="property-search-button-block search-button-block col-xs-12 col-sm-12 col-md-2">
                 <div class="more">More</div>
                 <a class="search quicksearch-dosearch btn primary-fill-color" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Search}}</a>&nbsp;
                 <!--<a class="quicksearch-doclear"  data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Clear}}</a>&nbsp;-->
@@ -2318,7 +2318,6 @@ Group: Searching
                 <!--<a class="quicksearch-doadvanced" style="display:none" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Advanced}}</a>&nbsp;-->
             </div>
         </div>
-        <div class="clearfix"></div>
 </script>
 
 <!--{{#config.checkout.enabled}}-->

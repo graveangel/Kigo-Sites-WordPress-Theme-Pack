@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 13:20:25 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Feb 22 2016 14:22:34 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -4491,15 +4491,28 @@ body.page-template-full-width article.body {
   .kd-search ::-moz-selection {
     background: none;
     /* Gecko Browsers */ }
+  .kd-search .property-search-button-block {
+    padding: 0; }
   .kd-search > div {
     float: none; }
-    .kd-search > div:nth-of-type(n+6).search-button-block {
+    .kd-search > div:nth-of-type(n+7).search-button-block {
       position: relative;
       right: auto;
       top: auto; }
-      .kd-search > div:nth-of-type(n+6).search-button-block .more {
+      .kd-search > div:nth-of-type(n+7).search-button-block .more {
         display: none; }
-      .kd-search > div:nth-of-type(n+6).search-button-block .search {
+      .kd-search > div:nth-of-type(n+7).search-button-block .search {
+        width: 100%; }
+    .kd-search > div:nth-of-type(n+7).search-button-block .more {
+      display: none; }
+    .kd-search > div:nth-of-type(n+7).search-button-block .search {
+      width: 100%; }
+    .kd-search > div.search-button-block {
+      display: block;
+      position: relative; }
+      .kd-search > div.search-button-block .more {
+        display: none; }
+      .kd-search > div.search-button-block .search {
         width: 100%; }
   .kd-search form {
     margin-bottom: 0; }
@@ -4552,23 +4565,28 @@ body.page-template-full-width article.body {
   .kd-search .picker {
     text-shadow: none; }
   @media screen and (min-width: 992px) {
-    .kd-search.open > div:nth-of-type(n+6) {
+    .kd-search.open > div[data-field]:nth-of-type(n+6) {
       display: block; }
     .kd-search > div {
       float: left;
       padding-left: 0; }
-      .kd-search > div:last-of-type {
-        padding-right: 0; }
-      .kd-search > div:nth-of-type(n+6) {
-        display: none; }
-      .kd-search > div:nth-of-type(5) {
-        margin-right: 10%; }
-      .kd-search > div:nth-of-type(n+6).search-button-block {
+      .kd-search > div.search-button-block {
         display: block;
         position: absolute;
         right: 15px;
-        top: 15px; }
-        .kd-search > div:nth-of-type(n+6).search-button-block .more {
+        top: 15px;
+        padding: 0; }
+        .kd-search > div.search-button-block .more {
+          display: none; }
+        .kd-search > div.search-button-block .search {
+          width: 100%; }
+      .kd-search > div:nth-of-type(n+7).search-button-block {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        padding: 0; }
+        .kd-search > div:nth-of-type(n+7).search-button-block .more {
           float: left;
           display: inline-block;
           width: calc(30% - 15px);
@@ -4579,21 +4597,18 @@ body.page-template-full-width article.body {
           cursor: pointer;
           background-color: #eee;
           color: #999; }
-          .kd-search > div:nth-of-type(n+6).search-button-block .more:active, .kd-search > div:nth-of-type(n+6).search-button-block .more.active {
+          .kd-search > div:nth-of-type(n+7).search-button-block .more:active, .kd-search > div:nth-of-type(n+7).search-button-block .more.active {
             box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
-        .kd-search > div:nth-of-type(n+6).search-button-block .search {
+        .kd-search > div:nth-of-type(n+7).search-button-block .search {
           float: left;
           display: inline-block;
           width: 70%; }
-      .kd-search > div.search-button-block {
-        display: block;
-        position: absolute;
-        right: 15px;
-        top: 15px; }
-        .kd-search > div.search-button-block .more {
-          display: none; }
-        .kd-search > div.search-button-block .search {
-          width: 100%; }
+    .kd-search > div[data-field]:last-of-type {
+      padding-right: 0; }
+    .kd-search > div[data-field]:nth-of-type(n+6) {
+      display: none; }
+    .kd-search > div[data-field]:nth-of-type(5) {
+      margin-right: 10%; }
     .kd-search form > * {
       display: inline-block; }
     .kd-search .category-block {
