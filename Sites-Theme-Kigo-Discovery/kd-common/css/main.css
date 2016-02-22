@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 12:47:20 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Feb 22 2016 13:20:25 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2917,7 +2917,8 @@ footer.footer {
     margin: auto;
     max-width: 500px;
     border: none;
-    font-size: 16px; }
+    font-size: 16px;
+    color: white; }
   .template-property .ppt-images,
   .template-property .ppt-desc {
     float: left;
@@ -3664,8 +3665,9 @@ body.page-template-search-page .listProps .property {
         vertical-align: top;
         width: 50%;
         font-size: 14px;
-        padding: 8px 10px; }
+        padding: 8px 0; }
         body.page-template-search-page .listProps .property .info .top .beds.location, body.page-template-search-page .listProps .property .info .top .location.location {
+          padding: 8px 10px;
           border-left: 1px solid #eee; }
     body.page-template-search-page .listProps .property .info .desc {
       padding: 8px 10px; }

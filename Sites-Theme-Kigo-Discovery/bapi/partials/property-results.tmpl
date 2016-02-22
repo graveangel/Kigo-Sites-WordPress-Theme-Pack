@@ -23,14 +23,14 @@ Group: Properties
                         <div class="info">
                             <div class="top">
                                 <div class="beds">
-                                    {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
+                                    {{#Bedrooms}}{{Bedrooms}} {{textdata.Beds}}{{/Bedrooms}} {{#Bathrooms}} /  {{Bathrooms}} {{textdata.Baths}}{{/Bathrooms}}
                                 </div>
                                 <div class="location">
-                                    {{Type}}, {{{Location}}}<br>
+                                    {{Type}}, {{{City}}}<br>
                                 </div>
                             </div>
                             <h5 class="title">{{Headline}}</h5>
-                            <div class="desc">{{{Summary}}}</div>
+                            <div class="desc">{{{ContextData.SEO.PageTitle}}}</div>
 
                             <div class="bottom">
                                 <div class="price"><div class="tag">From:</div>{{MinRate.Value}} {{MinRate.Currency}} / Night</div>
