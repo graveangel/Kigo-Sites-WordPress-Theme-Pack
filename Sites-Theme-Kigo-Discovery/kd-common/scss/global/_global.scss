@@ -1,0 +1,56 @@
+/* Load fonts */
+
+@import '../fonts/glyphicons';
+@import '../fonts/kd';
+
+/* Import variables */
+
+@import 'vars';
+
+/* Import helper classes */
+
+@import 'helpers';
+
+/* Generics */
+
+html{
+
+}
+
+body{
+  font-size: 12px;
+  margin: auto;
+  font-family: $primary-font;
+  color: #222;
+  overflow-x: hidden;
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    padding: 0;
+  }
+}
+
+
+a{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.primary-fill-color a, .secondary-fill-color a{
+  &:hover{
+    color: inherit !important;
+  }
+}
+
+/* Import global styles for reusable elements */
+
+@import 'inc/flexslider';
+

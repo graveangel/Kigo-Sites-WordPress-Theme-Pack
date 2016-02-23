@@ -1,0 +1,14 @@
+{{#kdfeatured}}
+    <a class="swiper-slide prop" href="{{ContextData.SEO.DetailURL}}" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );" >
+        <div class="info">
+            <div class="text">
+                <div class="left">
+                    <h4 class="prop-title">{{Headline}}</h4>
+                    <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
+                    <div class="prop-price">From {{MinRate.Value}}{{MinRate.Currency}}/Night</div>
+                </div>
+                <div class="prop-details secondary-fill-color">See details</div>
+            </div>
+        </div>
+    </a>
+{{/kdfeatured}}

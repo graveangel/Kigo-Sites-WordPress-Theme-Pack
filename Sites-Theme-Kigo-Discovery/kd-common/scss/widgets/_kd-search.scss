@@ -1,0 +1,194 @@
+.kd-search{
+  position: relative;
+  display: block;
+  padding: 15px;
+  background-color: transparent !important;
+
+  /* Remove selection color */
+  ::selection {
+    background: none; /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: none; /* Gecko Browsers */
+  }
+
+  & > div{
+    float: none;
+
+    &:nth-of-type(n+6).search-button-block{
+      position: relative;
+      right: auto;
+      top: auto;
+      .more{
+        display: none;
+      }
+      .search{
+        width: 100%;
+      }
+    }
+  }
+
+  form{
+    margin-bottom: 0;
+  }
+
+  .container{
+    padding: 0;
+  }
+
+  input, select{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px 45px 15px 15px;
+    font-size: 12px;
+    color: $tertiary-color;
+    background-color: white;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    text-transform: uppercase;
+    -webkit-appearance: none; //Mac SELECT input padding fix
+  }
+
+  .search{
+    padding: 15px;
+    background-color: $primary-color;
+    border: none;
+    color: $light-text;
+    cursor: pointer;
+    border-radius: 0;
+    text-transform: uppercase;
+  }
+
+  .category-block{
+    padding: 0;
+
+    /* Input icons */
+    &[data-field]{
+      position: relative;
+    }
+    &[data-field]::after{
+      display: inline-block;
+      position: absolute;
+      right: 20px;
+      top: 0px;
+      width: 50px;
+      height: 50px;
+      font-family: 'Glyphicons Regular';
+      font-size: 20px;
+      text-align: center;
+      line-height: 50px;
+    }
+    &[data-field="location"]::after{
+      content: "\E243";
+    }
+    &[data-field="checkin"]::after{
+      content: "\E046";
+    }
+    &[data-field="checkout"]::after{
+      content: "\E046";
+    }
+    &[data-field="adults"]::after{
+      content: "\E025";
+    }
+
+  }
+
+
+  .picker{
+    text-shadow: none;
+  }
+
+  @media screen and (min-width: 992px){
+//    padding-right: calc((100% / 6) + 15px);
+
+    &.open > div:nth-of-type(n+6){
+      display: block;
+    }
+
+    & > div{
+      float: left;
+      padding-left: 0;
+
+      &:last-of-type{
+        padding-right: 0;
+      }
+      &:nth-of-type(n+6){
+        display: none;
+      }
+      &:nth-of-type(5){
+        margin-right: 10%;
+      }
+      &:nth-of-type(n+6).search-button-block{
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        .more{
+          float: left;
+          display: inline-block;
+          width: calc(30% - 15px);
+          height: 100%;
+          margin-right: 15px;
+          padding: 16px 0;
+          text-align: center;
+          cursor: pointer;
+          background-color: #eee;
+          color: #999;
+
+          &:active, &.active{
+            box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+          }
+        }
+        .search{
+          float: left;
+          display: inline-block;
+          width: 70%;
+        }
+      }
+
+      &.search-button-block {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        .more {
+          display: none;
+        }
+        .search{
+          width: 100%;
+        }
+      }
+
+    }
+
+    form > *{
+      display: inline-block;
+    }
+
+    .category-block{
+      padding: 0 15px;
+      margin-bottom: 10px;
+      padding-left: 0;
+
+      [data-field]::after{
+        font-size: 28px;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+      }
+    }
+
+    input, select{
+      margin: 0;
+      padding: 15px 45px 15px 15px;
+    }
+
+    .search{
+      font-size: 18px;
+      padding: 12px;
+    }
+
+  }
+
+}

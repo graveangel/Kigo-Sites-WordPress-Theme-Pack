@@ -1,0 +1,361 @@
+<script id="tmpl-properties-detail" type="text/html">
+        {{#result}}
+        <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="property" data-lat="{{Latitude}}" data-long="{{Longitude}}" data-bg="{{&PrimaryImage.OriginalURL}}" ></div>
+        <div class="hero">
+            <div id="pano"></div>
+            <div class="hero-image"  title="Property hero"></div>
+            <div class="page-width">
+                <div class="title">
+                    {{Headline}}
+                </div>
+            </div>
+        </div>
+        <div class="amenities-n-buttons nocollapse">
+            <div class="page-width">
+                <div class="amenities">
+                    <ul class="nocollapse">
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-home"></span>
+                            {{#Type}}
+                                <span class="amenity-name">{{textdata.Category}}:</span>
+                                <span class="amenity-value">{{Type}}</span>
+                            {{/Type}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-bed"></span>
+                            {{#Bedrooms}}
+                                <span class="amenity-name">{{textdata.Beds}}:</span>
+                                <span class="amenity-value">{{Bedrooms}}</span>
+                            {{/Bedrooms}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-bath-bathtub"></span>
+                            {{#Bathrooms}}
+                                <span class="amenity-name">{{textdata.Baths}}:</span>
+                                <span class="amenity-value">{{Bathrooms}}</span>
+                            {{/Bathrooms}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-parents"></span>
+                            {{#Sleeps}}
+                                <span class="amenity-name">{{textdata.Sleeps}}:</span>
+                                <span class="amenity-value">{{Sleeps}}</span>
+                            {{/Sleeps}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
+                            {{#ContextData.Quote.QuoteDisplay.value}}
+                                <span class="amenity-name">
+                            {{#ContextData.Quote.QuoteDisplay.prefix}}
+                                <span class="prefix">{{textdata.Rates}}: </span>
+                                {{ContextData.Quote.QuoteDisplay.prefix}}
+                            {{/ContextData.Quote.QuoteDisplay.prefix}}
+                                    {{ContextData.Quote.QuoteDisplay.value}}
+                        </span>
+                        <span class="amenity-value">
+                            {{#ContextData.Quote.QuoteDisplay.suffix}}
+                                <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
+                            {{/ContextData.Quote.QuoteDisplay.suffix}}
+                        </span>
+                            {{/ContextData.Quote.QuoteDisplay.value}}
+
+                            {{^ContextData.Quote.QuoteDisplay.value}}
+                                <span class="amenity-name">
+                            <span class="prefix">{{textdata.Rates}}:</span>
+                        </span>
+                        <span class="amenity-value">
+                            {{^ContextData.Quote.QuoteDisplay.suffix}}
+                                <span class="suffix">{{MinRate.Value}} {{MinRate.Currency}} / Night</span>
+                            {{/ContextData.Quote.QuoteDisplay.suffix}}
+                        </span>
+                            {{/ContextData.Quote.QuoteDisplay.value}}
+                        </li>
+                        <li id="bapi-rateblock" class="bapi-rateblock" data-templatename="tmpl-search-rateblock" data-log="1"></li>
+                    </ul>
+                </div>
+                <div class="book-enq nocollapse"></div></div></div>
+        <div class="property-description page-width nocollapse">
+            <div class="ppt-images">
+                <ul class="ppt-slides">
+                    {{#Images}}
+                        <li>
+                            <a class="simple-lightbox" data-index="{{ID}}" href="{{&OriginalURL}}" title="{{#Caption}}{{Caption}}{{/Caption}}" style="background-image: url({{&OriginalURL}});">
+                                <!--<img class="thumb-img" alt="{{#Caption}}{{Caption}}{{/Caption}}" title="{{#Caption}}{{Caption}}{{/Caption}}" src="{{&OriginalURL}}" />-->
+                            </a>
+                        </li>
+                        <li class="more transall">
+                            View more photos
+                        </li>
+                    {{/Images}}
+                </ul>
+                <div class="slider-controls nocollapse">
+                    <span class="prev-slide"></span>
+                    <span class="open-lightbox"></span>
+                    <span class="next-slide"></span>
+                </div>
+                <div class="ppt-image-caption" id="ppt-image-caption"></div>
+            </div>
+            <div class="ppt-desc">
+                {{&Description}}
+                <div class="ppt-desc-title">
+                </div>
+                <p class="ppt-desc-text">
+                </p>
+<div class="fb-like" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+            </div>
+        </div>
+        <!-- END PROPERTY DESCRIPTION -->
+        
+        <!-- PROPERTY FEATURES -->
+        <div class="property-features page-width">
+            <ul>
+                <li class="active">
+
+                    <div class="ppt-feature-title">{{textdata.Property Details}}</div>
+
+                    <ul class="amenities-list">
+                        <li>
+                            <ul class="amenity-detail-list p-details">
+                                {{#Development}}
+                                    <li class="pd-name">{{textdata.Development}}:</li>
+                                    <li class="p-detail"><span>{{Development}}</span></li>
+                                {{/Development}}
+
+
+                                {{#Type}}
+                                    <li class="pd-name">{{textdata.Category}}:</li>
+                                    <li class="p-detail"><span>{{Type}}</span></li>
+                                {{/Type}}
+
+
+                                {{#Beds}}
+                                    <li class="pd-name">{{textdata.Beds}}:</li>
+                                    <li class="p-detail"><span>{{Beds}}</span></li>
+                                {{/Beds}}
+
+
+                                {{#Baths}}
+                                    <li class="pd-name">{{textdata.Baths}}:</li>
+                                    <li class="p-detail"><span>{{Baths}}</span></li>
+                                {{/Baths}}
+
+
+                                {{#Sleeps}}
+                                    <li class="pd-name">{{textdata.Sleeps}}:</li>
+                                    <li class="p-detail"><span>{{Sleeps}}</span></li>
+                                {{/Sleeps}}
+
+
+                                {{#Stories}}
+                                    <li class="pd-name">{{textdata.Stories}}:</li>
+                                    <li class="p-detail"><span>{{Stories}}</span></li>
+                                {{/Stories}}
+
+
+                                {{#Floor}}
+                                    <li class="pd-name">{{textdata.Floor}}:</li>
+                                    <li class="p-detail"><span>{{Floor}}</span></li>
+                                {{/Floor}}
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+
+                    <div class="ppt-feature-title">{{textdata.Amenities}}</div>
+
+                    <ul class="amenities-list">
+                        {{#Amenities}}
+                            <li>
+                                <ul class="amenity-detail-list">
+                                    <li class="amenity-name">{{Key}}</li>
+                                    {{#Values}}
+                                        <li><span class="halflings ok-sign">{{Label}}</span></li>
+                                    {{/Values}}
+                                </ul>
+                            </li>
+                        {{/Amenities}}
+                    </ul>
+                </li>
+                <li class="rates-availability active">
+
+                    <div class="ppt-feature-title">{{textdata.Rates & Availability}}</div>
+                    {{#config.displayavailcalendar}}
+                        {{^HideAvailability}}
+
+                            {{^config.hideratestable}}
+                                <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": {{config.availcalendarmonths}}, "numinrow": 6 }' data-pkid="{{ID}}" data-rateselector="bapi-ratetable"></div>
+                            {{/config.hideratestable}}
+
+                            {{#config.hideratestable}}
+                                <h3>{{textdata.Availability}}</h3>
+                                <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": {{config.availcalendarmonths}}, "numinrow": 6 }' data-pkid="{{ID}}" data-rateselector="bapi-ratetable"></div>
+                            {{/config.hideratestable}}
+
+                        {{/HideAvailability}}
+                        {{#HideAvailability}}
+                            <h3>{{textdata.Rates}}</h3>
+                        {{/HideAvailability}}
+                    {{/config.displayavailcalendar}}
+                </li>
+
+            <li class="active">
+
+                <div class="ppt-feature-title">{{textdata.Attractions}}</div>
+            <div class="map-and-locations">
+                <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-refresh-selector='#tabs4' data-refresh-selector-event='shown' data-link-selector='.poi-map-item'></div>
+                <div id="map-side-bar">
+                    <table class="table poi-map-locations">
+
+                        <tbody id="map-locations">
+                        {{#ContextData.Attractions}}
+                            <tr>
+                                <td>
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category":"poi-{{ContextData.ItemIndex}}" }'>
+                                        <a class="poi-map-item mapmarker-{{ContextData.ItemIndex}}" href="#">{{ContextData.ItemIndex}}</a>
+                                        <div class="info-html">
+                                            <div class="marker-infowindow">
+                                                <span class="prop-image pull-left"><img src="{{&PrimaryImage.ThumbnailURL}}" width="100" data-src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
+                                                    <span class="prop-location pull-left">
+                                                        <span>
+                                                            {{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                                                            <b>{{Name}}</b>
+                                                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}<br/>
+                                                            {{#Type}}<b>{{textdata.Category}}:</b>{{Type}}<br/>{{/Type}}
+                                                            {{#Location}}<b>{{textdata.Address}}: </b>{{&Location}}{{/Location}}
+                                                            </span>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                </td>
+                                <td colspan="2">{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
+                                <td>{{ContextData.Distance}}</td>
+                            </tr>
+                        {{/ContextData.Attractions}}
+                        </tbody>
+                    </table>
+                </div>
+
+                {{#config.hasreviews}}
+                </li><li class="active">
+
+                    <div class="ppt-feature-title">{{textdata.Reviews}}</div>
+
+
+                    <div class="row-fluid">
+                        <div class="span12 box-sides">
+
+                            {{#ContextData.Reviews}}
+                                <div class="row-fluid review">
+                                    <div class="col-xs-12">
+                                        <div class="comment col-md-10 col-xs-12 col-md-offset-1">
+                                            {{&Comment}}
+                                        </div>
+                                        <div class="rating r-n-stars col-md-10 col-xs-12 col-md-offset-1"><strong class="username">{{ReviewedBy.FirstName}}&nbsp;{{ReviewedBy.LastName}}</strong> <span class="review-posted-on">{{SubmittedOn.ShortDate}}</span> <span class="reviewrating-{{Rating}} ratingstars"></span></div>
+                                    </div>
+                                </div>
+                                <hr/>
+                            {{/ContextData.Reviews}}
+                            {{^ ContextData.Reviews}}
+                                <div class="row-fluid review">
+                                    <div class="col-xs-12">
+                                        <div class="comment col-md-10 col-xs-12 col-md-offset-1">
+                                            No reviews yet.
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/ContextData.Reviews}}
+                        </div>
+                    </div>
+
+
+                </li>
+                {{/config.hasreviews}}
+            </ul>
+        </div>
+
+        <!-- END PROPERTY FEATURES -->
+        {{/result}}
+</script>
+
+
+<script id="tmpl-search-rateblock" type="text/html">
+        {{#result}}
+        <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
+        <span class="amenity-name your-dates">
+                    YOUR DATES:
+                </span>
+        <span class="amenity-value">
+            {{^ContextData.Quote.IsValid}}
+                <div class="alert alert-error"><a href="#" class="pop-up-form-link">{{ContextData.Quote.ValidationMessage}}</a></div>
+            {{/ContextData.Quote.IsValid}}
+        </span>
+
+        <div id="book-block" class="module shadow">
+            <div class="pd">
+
+
+
+                {{#ContextData.Quote.IsValid}}
+                    <span class="amenity-value">
+                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" class="pop-up-form-link">{{textdata.Update}}</a>
+                        </span>
+
+                {{/ContextData.Quote.IsValid}}
+
+
+                <div class="pop-up-booking-form">
+
+                    <div class="booking-form">
+                        <div class="close"></div>
+                        <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
+                        <div class="row-fluid">
+
+                            <div class="span6">
+                                <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
+                            </div>
+
+                            <div class="span6">
+                                <input id="rateblockcheckout" class="span12 quicksearch datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
+                                <input style="display:none" class="quicksearch" type="text" value="" data-field="los">
+                            </div>
+
+                        </div>
+
+                        <div class="row-fluid">
+
+                            <div class="span6">
+                                <input class="span12 quicksearch adultsfield" type="text" placeholder="{{textdata.Adults}}" value={{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}} data-field="adults[min]" required>
+                            </div>
+
+                            <div class="span6">
+                                <input class="span12 quicksearch childrenfield" type="text" placeholder="{{textdata.Children}}" value={{#session.searchparams.children.min}}
+                                    {{session.searchparams.children.min}}
+                                {{/session.searchparams.children.min}}
+                                    {{^session.searchparams.children.min}}0
+                                    {{/session.searchparams.children.min}} data-field="children[min]" required>
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn-mini bapi-getquote" type="button">{{textdata.Submit}}</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-box">
+            {{#ContextData.Quote.IsValid}}
+                {{#IsBookable}}
+                    <button class="kd-button filled book-now-button primary-fill-color bapi-booknow" type="button">{{textdata.Book Now}}</button>
+                {{/IsBookable}}
+
+                {{^IsBookable}}
+                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
+                {{/IsBookable}}
+            {{/ContextData.Quote.IsValid}}
+        </div>
+        {{/result}}
+</script>

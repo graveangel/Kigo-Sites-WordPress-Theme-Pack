@@ -1,0 +1,62 @@
+/*
+	Group: Lead Request Forms
+*/
+<script id="tmpl-leadrequestform-propertyinquiry" type="text/html">
+<div id="questions-block">	
+	<div id="questions-block-inner">
+		<fieldset id="have-question" class="leadrequest">
+		<ul class="unstyled">
+		<li id="nameform">
+			<input type="text" id="txtName" class="span12 leadrequestfield required input-text" minlength="2" data-field="name" placeholder="{{textdata.Name}}*" required />
+		</li>
+		<li id="emailform">
+			<input type="text" id="txtEmail" class="span12 leadrequestfield email required input-text" size="25" data-field="email" type="email" placeholder="{{textdata.Email}}*" data-validity="email" required />
+		</li>
+		{{#InquiryFormFields.Phone}}
+		<li id="phoneform">
+			<input type="text" id="txtPhone" class="span12 leadrequestfield {{#InquiryFormFields.PhoneRequired}}required{{/InquiryFormFields.PhoneRequired}} input-text" data-field="homephone" placeholder="{{textdata.Phone}}{{#InquiryFormFields.PhoneRequired}}*{{/InquiryFormFields.PhoneRequired}}"{{#InquiryFormFields.PhoneRequired}} required{{/InquiryFormFields.PhoneRequired}} />
+		</li>
+		{{/InquiryFormFields.Phone}}
+		{{#InquiryFormFields.Dates}}
+		<li id="datesform" class="row-fluid">
+		<div class="span6">
+			<input type="text" id="txtCheckIn" class="span12 leadrequestfield required input-text" data-field="checkin" placeholder="{{textdata.Check-In}}*" required />
+		</div>
+		<div class="span6">
+			<input type="text" id="txtCheckOut" class="span12 leadrequestfield required input-text" data-field="checkout" placeholder="{{textdata.Check-Out}}*" required />	
+		</div>					
+		</li>
+		{{/InquiryFormFields.Dates}}
+		{{#InquiryFormFields.NumberOfGuests}}
+		<li id="numberGuestsform" class="row-fluid">
+		<div class="span6">
+			<input type="text" id="txtAdults" class="span12 leadrequestfield required input-text" data-field="adults" placeholder="{{textdata.Adults}}*" required />
+		</div>
+		<div class="span6">
+			<input type="text" id="txtChildren" class="span12 leadrequestfield required input-text" data-field="children" placeholder="{{textdata.Children}}*" required />	
+		</div>					
+		</li>
+		{{/InquiryFormFields.NumberOfGuests}}
+		{{#InquiryFormFields.LeadSourceDropdown}}
+		<li id="lsform">
+			<select class="span12 leadrequestfield{{#InquiryFormFields.LeadSourceRequired}} required{{/InquiryFormFields.LeadSourceRequired}}" data-field="ls" {{#InquiryFormFields.LeadSourceRequired}}required{{/InquiryFormFields.LeadSourceRequired}}>
+				<option value="">{{config.leadsources.prompt}}</option>
+				{{#config.leadsources.values}}<option value="{{Data}}">{{Label}}</option>{{/config.leadsources.values}}
+			</select>
+		</li>
+		{{/InquiryFormFields.LeadSourceDropdown}}
+		{{#InquiryFormFields.Comments}}
+		<li id="commentsform">				
+			<textarea id="txtComments" rows="2" cols="20" class="span12 leadrequestfield" data-field="msg" placeholder="{{textdata.Comments}}" ></textarea>
+		</li>
+		{{/InquiryFormFields.Comments}}
+		<li id="specialform" class="specialform">
+			<input type="text" autocomplete="off" id="txtSpecial" class="span12 leadrequestfield input-text" data-field="special" placeholder="Special" />
+		</li>
+		</ul>
+		<div class="clearfix"></div>			
+		<input type="button" id="btn-leadrequest" class="kd-button filled secondary-fill-color doleadrequest" value='{{textdata.Submit}}' data-field-selector="leadrequestfield" />
+		</fieldset>
+	</div>
+</div>
+</script> 

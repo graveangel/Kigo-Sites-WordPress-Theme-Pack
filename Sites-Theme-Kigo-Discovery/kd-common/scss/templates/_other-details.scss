@@ -1,0 +1,77 @@
+body.page-template-other-detail-page .other-detail-page{
+
+  .page-width{
+    border-bottom: 1px solid #eee;
+  }
+
+  article{
+    border-right: 1px solid #eee;
+
+    h3{
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    .item-info .tab-content{
+      padding: 15px 0;
+    }
+
+
+  }
+
+  aside{
+    padding: 20px 40px;
+
+    .pd{
+      margin-bottom: 30px;
+
+      h1, h2, h3, h4, h5{
+        span{
+          margin-right: 10px;
+        }
+      }
+    }
+
+    dt{
+      margin-bottom: 5px;
+    }
+
+    dd, dt{
+      display: inline;
+    }
+
+    h5 span{
+      margin-right: 15px;
+    }
+
+
+    .poi-contact-details{
+      .details-list div{
+        margin: 5px 0;
+
+        span:first-of-type{
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  table{
+    width: 100%;
+    tr{
+      td, th{
+        padding: 10px 15px;
+      }
+
+      th{
+        text-align: center;
+      }
+    }
+  }
+
+  .button{
+    padding: 5px 12px;
+    color: white;
+  }
+
+}

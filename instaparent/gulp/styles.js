@@ -8,11 +8,11 @@ var gulp = require('gulp'),
 src.vendor = './insta-common/bootstrap/css/vendor';
 
 
-gulp.task('styles:common', function() {
+gulp.task('styles:vendor', function() {
   gulp.src([
       src.vendor+'/normalize.css',
       src.vendor+'/bootstrap.css',
-      src.vendor+'/bootstrap-responsive.min.css',
+      src.vendor+'/bootstrap-responsive.css',
       src.vendor+'/glyph-icons/**/*',
       src.vendor+'/flag-sprites.css',
       src.vendor+'/flexslider.min.css',
@@ -28,4 +28,4 @@ gulp.task('styles:common', function() {
     .pipe($.notify('Styles are done!'));
 });
 
-gulp.task('styles', ['styles:common']);
+gulp.task('styles', ['styles:vendor']);

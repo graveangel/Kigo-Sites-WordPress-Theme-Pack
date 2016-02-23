@@ -1,0 +1,157 @@
+/*
+Administration option pages.
+*/
+.kd-options{
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+
+  //Custom scripts page
+  //Custom styles page
+  &.custom_scripts,
+  &.custom_styles{
+    p{
+      margin: 5px 0;
+    }
+  }
+
+  button {
+    float: right;
+    background: $primary-color;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    &:hover{
+      background: $secondary-color;
+    }
+  }
+
+  .size{
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .ace_editor{
+    width: 100%;
+    height: 500px;
+    height: calc(100vh - 400px);
+  }
+
+  .disclaimer{
+
+  }
+}
+
+
+/* kd options panel */
+.kd-options-panel {
+  /*tabs*/
+  .option-tab-button {
+    display: inline-block;
+
+    a {
+      font-size: 14px;
+      padding: 10px 20px;
+      font-weight: bold;
+      display: block;
+      color: #fff;
+      background: $primary-color;
+      text-decoration: none;
+      box-shadow: none;
+      text-transform: uppercase;
+    }
+    &.active {
+      a,a:link, a:active {
+        background: $secondary-color;
+        text-decoration: none;
+        box-shadow: none;
+      }
+    }
+  }
+  .tab-pane {
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+
+  .kd-properties-hero h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  .search-input {
+    margin-bottom: 30px;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .ms-selectable, .ms-selection {
+    background: transparent;
+    box-sizing: border-box;
+
+    .ms-list {
+      background: #fff;
+      padding: 10px;
+      border: none;
+    }
+  }
+
+  .ms-container {
+    width: 97%!important;
+    margin-top: 20px;
+  }
+
+
+  .kd-button {
+    display: block;
+    padding: 12px;
+    color: currentColor;
+    text-transform: uppercase;
+    text-align: center;
+    outline: 2px solid;
+    font-size: 18px;
+    text-decoration: none;
+    will-change: outline;
+    transition: outline .2s;
+    border: none;
+    cursor: pointer;
+    &:hover, &:focus{
+      text-decoration: none;
+      color: inherit;
+      outline: 4px solid;
+      background: $secondary-color!important;
+    }
+
+    &.filled {
+      background: $primary-color;
+      color: #fff;
+    }
+  }
+
+  .selectall,.deselectall {
+    display: inline-block;
+    max-width: 200px;
+  }
+
+  .custom-header {
+    margin-bottom: 10px;
+  }
+
+  .fieldset-layout {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    label {
+      margin-right: 20px;
+    }
+  }
+
+}

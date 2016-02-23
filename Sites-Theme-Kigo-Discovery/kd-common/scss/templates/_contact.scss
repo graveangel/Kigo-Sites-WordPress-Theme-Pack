@@ -1,0 +1,337 @@
+body.page-template-contact-page{
+
+  #questions-block{
+
+    ul{
+      font-size               : 0;
+      li{
+        display             : inline-block;
+        width               : calc(50% - 10px);
+        margin             : 0 5px;
+
+        &.row-fluid{
+          width             : 100%;
+          padding           : 0;
+          font-size         : 0;
+
+          .span6{
+            display         : inline-block;
+            width           : calc(50% - 10px);
+            margin         : 0 5px;
+          }
+        }
+      }
+    }
+
+    input, select{
+      width                 : 100%;
+      padding               : 6px 12px;
+      margin-bottom         : 20px;
+      font-size             : 14px;
+      border                : 1px solid #cccccc;
+      border-radius         : 3px;
+      color                 : $light-gray;
+    }
+
+    /* Comments */
+    #commentsform{
+      width                 : calc(100% - 10px);
+      box-sizing            : border-box;
+
+      textarea{
+        width               : 100%;
+        min-height          : 200px;
+        padding             : 6px 12px;
+        font-size           : 12px;
+        border              : 1px solid #cccccc;
+        border-radius       : 3px;
+      }
+    }
+
+    /* Submit button */
+    .doleadrequest{
+      width                 : 140px;
+      float                 : none !important;
+      margin                : 20px auto 0;
+      display               : block;
+      background            : $secondary-color;
+      color                 : white;
+
+      /* Button */
+      display               : block;
+      padding               : 5px 12px;
+      text-transform        : uppercase;
+      text-align            : center;
+      outline               : 2px solid;
+      font-size             : 14px;
+      text-decoration       : none;
+      will-change           : outline;
+      transition            : outline .2s;
+      border-radius         : 0;
+      border                : none;
+
+      &:hover, &:focus{
+        text-decoration     : none;
+        outline             : 4px solid;
+      }
+    }
+
+  }
+
+  .validity-tooltip{
+    position                : absolute;
+    transform               : translate3d(-100%, 0, 0);
+  }
+
+
+  .contact-wrapper{
+    max-width               : 1000px;
+    margin                  : auto;
+  }
+  /* Top hero section */
+  .hero-section {
+    text-align              : center;
+    padding-top             : 40px;
+    padding-bottom          : 40px;
+    margin-bottom           : 30px;
+    h3 {
+      font-size           : 40px;
+    }
+
+    p {
+      max-width           : 800px;
+      margin              : auto;
+      display             : block;
+      font-size           : 16px;
+      line-height         : 1.5;
+      font-weight         : normal;
+    }
+  }
+
+  .bapi-inquiryform{
+    width: 100%;
+  }
+
+  /* static map */
+  .officemap {
+    width: 100%;
+    margin-top            : 20px;
+
+    img{
+      width: calc(100% - 10px);
+      margin: 0 5px;
+    }
+  }
+
+  /* side info */
+  .contact-type {
+    .fn.org {
+      font-size         : 20px;
+      text-transform    : uppercase;
+      font-weight       : 800;
+    }
+    strong {
+      font-size         : 14px;
+    }
+  }
+
+  .contact-info {
+    .block-lbl {
+      font-size         : 20px;
+      text-transform    : uppercase;
+      font-weight       : 800;
+    }
+
+    a {
+      color: $primary-color;
+    }
+  }
+
+  .enquiry-form-box {
+    margin-bottom           : 50px;
+  }
+
+  h3 {
+    span.conversation {
+      font-size          : 20px;
+      text-transform     : uppercase;
+      font-weight        : bold;
+      font-family        : $primary-font;
+    }
+  }
+
+}
+
+/*==================================================================
+    Provisional styling for the Contact page while we can't overwrite the
+    content that comes from the plugin
+====================================================================*/
+.full-width-page {
+  max-width                       : $container-max-width;
+  margin                          : auto;
+}
+.contact-form,
+.contact-right-side{
+  width                           : 90%;
+  margin                          : auto;
+  text-align                      : center;
+  h3.widget-title {
+    font-size                   : 40px;
+    font-family                 : $primary-font;
+    text-align                  : center;
+    display                     :  block;
+    margin-top                  : 60px;
+    margin-bottom               : 40px;
+    color                       : #333;
+  }
+
+  #have-question {
+    margin                      : auto;
+    text-align                  : center;
+    ul {
+      li {
+        float               : none;
+        width               : 100;
+        padding-right       : 0;
+        margin-bottom       : 2%;
+        box-sizing          : border-box;
+        height              : auto;
+        &:nth-child(2n+2){
+          padding-right   : 0;
+          padding-left    : 0%;
+        }
+        &:nth-child(2n+3){
+          clear           : both;
+        }
+        &:nth-child(5){
+          clear           : both;
+          padding         : 0;
+          width           : 100%;
+        }
+
+        input,
+        select,
+        textarea{
+          padding         : 10px;
+          border-radius   : 3px;
+          border          : 1px solid #999;
+          box-shadow      : none;
+          outline         : none;
+          box-sizing      : border-box;
+          width           : 100%;
+        }
+        textarea {
+          width           : 100%;
+        }
+
+      }
+    }
+
+    #btn-leadrequest {
+      margin                  : auto;
+      display                 : block;
+      float                   : none!important;
+      border-radius           : 0;
+      background-color        : $secondary-color;
+      outline                 : none;
+      border                  : none;
+      text-transform          : uppercase;
+      padding                 : 5px 40px;
+      margin-bottom           : 50px;
+    }
+  }
+
+  .officemap {
+    display                     : inline-block;
+    margin                      : auto;
+    margin-bottom               : 50px;
+    text-align                  : center;
+    img {
+      margin                  : auto;
+      display                 : block;
+      height                  : auto;
+    }
+  }
+
+  .contact-info {
+    > * {
+      font-size               : 14px;
+      font-weight             : normal;
+    }
+    .org {
+      font-size               : 16px;
+      font-weight             : bold;
+    }
+  }
+
+
+}
+
+.contact-right-side {
+  .pd2 {
+
+    >h3 {
+      display                 : none;
+      font-weight             : bold;
+      span {
+        font-family         : $primary-font;
+      }
+    }
+  }
+  .contact-info {
+    margin-bottom: 50px;
+    .conversation {
+      font-family             : $primary-font;
+    }
+  }
+}
+
+
+@media screen and (min-width: $bp-md){
+  .contact-right-side,
+  .contact-form{
+    width                           : 50%;
+  }
+  .contact-form {
+    #have-question {
+      ul {
+        li {
+          float               : left;
+          width               : 50%;
+          padding-right       : 1%;
+          margin-bottom       : 2%;
+          box-sizing          : border-box;
+          height              : auto;
+          &:nth-child(2n+2){
+            padding-right   : 0;
+            padding-left    : 1%;
+          }
+          &:nth-child(2n+3){
+            clear           : both;
+          }
+          &:nth-child(5){
+            clear           : both;
+            padding         : 0;
+            width           : 100%;
+          }
+
+          input,
+          select,
+          textarea{
+            padding         : 10px;
+            border-radius   : 3px;
+            border          : 1px solid #999;
+            box-shadow      : none;
+            outline         : none;
+            box-sizing      : border-box;
+            width           : 100%;
+          }
+          textarea {
+            width           : 100%;
+          }
+
+        }
+      }
+    }
+  }
+}

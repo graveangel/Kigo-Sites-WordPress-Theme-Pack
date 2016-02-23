@@ -1,0 +1,145 @@
+.about-us-template {
+  /* HERO BLOCK --------------------------------------------------------------*/
+  .kd-custom-hero {
+    min-height: 400px;
+    display: block;
+    text-align: center;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .page-width {
+      margin: auto;
+      vertical-align: middle;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 200px;
+      overflow: visible;
+    }
+    h1.page-title {
+      margin-top: 0;
+      font-size: 40px;
+      text-shadow: 0px 0px 1px rgba(0, 0, 0, .8);
+    }
+    .subtitle{
+      font-size: 20px;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      text-shadow: 0px 0px 1px rgba(0, 0, 0, .8);
+    }
+  }
+  /* PAGE DESC ---------------------------------------------------------------*/
+  .page-desc {
+    .title{
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      font-family: "Montserrat", serif;
+      color: $secondary-color;
+    }
+
+    .picture {
+      text-align: center;
+      img {
+        width: 100%;
+        height: auto;
+      }
+      background-size: cover;
+      background-position: center;
+    }
+
+    .description {
+      background: transparent;
+      display: inline-block;
+      padding: 15px 0;
+      .subtitle,
+      .title {
+        display: none;
+      }
+      p.paragraph, .static-page p  {
+        color: #707070;
+        font-family: $secondary-font;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .page-block {
+    margin-bottom: 30px;
+    div.page-width > .title {
+      color: $secondary-color;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+  }
+
+
+
+}
+
+@media (min-width: 992px) {
+
+  .about-us-template {
+    .page-desc .description {
+      background: #333;
+      height: 554px;
+      overflow: auto;
+      padding:42px 42px;
+      float: right;
+      p.paragraph, .static-page p {
+        color: #fff;
+      }
+      .subtitle,
+      .title {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .title,
+      .static-page h1  {
+        font-size: 30px;
+        font-weight: 600;
+        color: $secondary-color;
+        text-align: left;
+        margin-bottom: 20px;
+      }
+    }
+
+    .page-desc .picture {
+      position: relative;
+      float: left;
+      overflow: hidden;
+      height: 554px;
+      img{
+        width: auto;
+        height: 200%;
+        max-width: none;
+        max-height: 555px;
+        position: absolute;
+        margin: auto;
+        left: -200px;
+        right: -200px;
+      }
+    }
+
+    .page-block {
+      margin-bottom: 60px;
+      div.page-width > .title {
+        font-size: 30px;
+        margin-bottom: 50px;
+      }
+    }
+  }
+}

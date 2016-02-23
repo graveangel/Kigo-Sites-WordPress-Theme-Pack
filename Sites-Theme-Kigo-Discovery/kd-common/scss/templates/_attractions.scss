@@ -1,0 +1,152 @@
+.page-attractions-summary {
+
+  .attraction-result-controls{
+    padding: 0 15px;
+  }
+
+  .bapi-map{
+    position: relative;
+    display: block;
+    width: calc(100% - 30px) !important;
+    height: 500px !important;
+    margin:  0 auto;
+    float: none !important;
+  }
+
+  .item-result {
+    height: 430px;
+    text-align: center;
+    border: 1px solid #eee;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+
+    .item-images {
+      overflow                : hidden;
+      position                : relative;
+      a {
+        display             : block;
+        text-align          : center;
+        max-height          : 100%;
+        img {
+          display         : block;
+          visibility      : visible;
+          margin          : auto;
+          width           : 100%;
+          height          : auto;
+        }
+      }
+
+      .poi-map-item {
+        position            : absolute;
+        top                 : 5px;
+        left                : 5px;
+        width               : 2em;
+        height              : 2em;
+        line-height         : 2em;
+        font-size           : 1.2em;
+        background          : #fff;
+        &:hover {
+          background      : $primary-color;
+          color           : #fff;
+        }
+      }
+    }
+
+    .item-info {
+      padding             : 20px 15px;
+      h2.title {
+        font-size           : 1.5em;
+      }
+      .attraction-detail-link {
+        border              : none;
+        display             : inline-block;
+        color               : #fff;
+        outline             : none;
+        border-radius       : 0;
+        font-size           : 1.2em;
+        margin-top          : 20px;
+        cursor              : pointer;
+        padding             : 5px 20px;
+      }
+    }
+
+
+  }
+
+  span.prop-location {
+    margin-left                 : 10px;
+  }
+
+  .control-group-attraction {
+    margin-top                  : 10px;
+    text-align                  : center;
+    > * {
+      display                 : inline-block;
+      line-height             : 30px;
+    }
+
+    label {
+      font-size               : 20px;
+      padding-top             : 0;
+    }
+    .controls {
+      width                   : 200px;
+      overflow                : hidden;
+      vertical-align          : middle;
+      position                : relative;
+      padding                 : 5px;
+      border                  : 2px solid lightgrey;
+
+      &::after {
+        content             : '\25BE';
+        font-size           : 40px;
+        position            : absolute;
+        top                 : 5px;
+        right               : 5px;
+      }
+
+      select {
+        width               : 230px;
+        border              : none;
+        border-radius       : 0;
+        font-size           : 15px;
+        padding             : 5px;
+        box-sizing          : border-box;
+        &:focus {
+          border          : none;
+          outline         : none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $bp-sm) {
+  .page-attractions-summary {
+    .item-result {
+      .item-images {
+        max-height              : 255px;
+        overflow                : hidden;
+        background-size         : cover;
+        background-repeat       : no-repeat;
+        background-position     : center;
+        position                : relative;
+        a {
+
+          img {
+            visibility      : hidden;
+          }
+        }
+      }
+    }
+
+    .control-group-attraction {
+      text-align                  : left;
+    }
+
+    .control-label, .controls{
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
