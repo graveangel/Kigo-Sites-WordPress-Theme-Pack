@@ -1,4 +1,4 @@
-/* Edited - Wed Feb 24 2016 15:32:00 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Feb 24 2016 16:25:19 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -3620,8 +3620,11 @@ body.page-template-search-page .split-search.listView .mapContainer {
 body.page-template-search-page .map {
   position: relative;
   display: none;
-  background-color: #e9e9e9;
   overflow: hidden; }
+  body.page-template-search-page .map > div {
+    width: 100%;
+    height: 100%;
+    background-color: #e5e3df; }
   body.page-template-search-page .map #mapContainer {
     width: 100%;
     height: 100%; }
@@ -3713,81 +3716,85 @@ body.page-template-search-page .listProps .property {
       body.page-template-search-page .listProps .property .info .bottom .tag {
         margin-right: 10px; }
 
-body.page-template-search-page .mapProps .property {
-  min-height: 320px;
-  font-family: 'Open Sans';
-  cursor: pointer;
-  margin-bottom: 15px; }
-  body.page-template-search-page .mapProps .property:hover .viewInMap {
-    opacity: 1; }
-  body.page-template-search-page .mapProps .property .viewInMap {
-    position: absolute;
-    z-index: 5;
-    top: 0;
-    left: 15px;
-    width: 50px;
-    height: 50px;
-    background-color: #33baaf;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACC0lEQVRYR81X7TEEURDsjgARcBEgAkSACLgInAgQASJABIgAGVwG7iJABKOat1Xr3Zv3cUuV+bvz0W9memaWaBAzWwWwD+AAwAaArWA+BTAD8ADgkeR7rVvWKprZMYBLAAKREwWfkLyr8V0EEF59E15d47PTUTbGpWzUAFB6N1si93SnJLdztlkAZnYL4GjJ4J3ZLcmx58MFYGa7AJ4cQ9VXjp/1PeiqRzywe51u7C8HQM53EgAOSaq+CxIaVf0Si5gh5ixIEkBovLeE/inJq1xJzGwS2BKrraUa0gOgdMYvmZMU94tiZpoJ65GiGKGe+iEegHMAZ5HuHUkBK4rTvBck5XdpAEkHKTRmlnrAYADXJFXfovxGBtSx91GkGclRMfo3LVM9kKTi/2SBXmlm4ro2Xyy5OZDKnOzb5kAAkKJiB0Z0Uk9oTwis1vIJAI8lSQrKtrQLUrWsaYO+TnZ+lAB4U60FRHZ6lgDo+FAWVloi9nQ/dDnlboKaeyA1VGrxFIdXDYBlszDXzTj4IqpghJcNt/P7BsUMdMrOdPOCV2/OFgDekEmBcIdVrFwNIJTCu5L6fl9I6pyrklYAOkheC55HJEXdKmkCELKQo2WRdoNKEACIltoB8clVRbvBAAKI1Mnunt65WjSXoEfL/rp2122pEYYA6CakYmTn/Z9kIJTi62fD+1EpvV7fPwE2COAht9GKbwAAAABJRU5ErkJggg==");
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity .33s; }
-    body.page-template-search-page .mapProps .property .viewInMap:hover {
-      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15) inset; }
-    body.page-template-search-page .mapProps .property .viewInMap:active {
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.33) inset; }
-  body.page-template-search-page .mapProps .property .image {
-    position: relative;
-    display: block;
-    width: 100%;
-    background-color: #e9e9e9;
-    background-size: cover;
-    background-position: center; }
-    body.page-template-search-page .mapProps .property .image::before {
-      display: block;
-      content: '';
-      padding-top: 66.66%; }
-    body.page-template-search-page .mapProps .property .image .from {
+body.page-template-search-page .mapContainer {
+  padding: 0; }
+
+body.page-template-search-page .mapProps {
+  padding: 0; }
+  body.page-template-search-page .mapProps .property {
+    font-family: 'Open Sans';
+    cursor: pointer;
+    margin-bottom: 15px; }
+    body.page-template-search-page .mapProps .property:hover .viewInMap {
+      opacity: 1; }
+    body.page-template-search-page .mapProps .property .viewInMap {
       position: absolute;
-      bottom: 20px;
-      right: 0;
-      background-color: #f6af33;
-      color: white;
-      padding: 8px 10px; }
-      body.page-template-search-page .mapProps .property .image .from .tag {
-        font-size: 12px; }
-      body.page-template-search-page .mapProps .property .image .from .price {
-        font-weight: bold;
-        font-size: 14px; }
-  body.page-template-search-page .mapProps .property .info {
-    position: relative;
-    font-size: 14px;
-    color: #adadad; }
-    body.page-template-search-page .mapProps .property .info .title {
-      font-size: 18px;
-      margin-bottom: 5px;
-      color: initial; }
-    body.page-template-search-page .mapProps .property .info i {
+      z-index: 5;
+      top: 0;
+      left: 15px;
+      width: 50px;
+      height: 50px;
+      background-color: #33baaf;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACC0lEQVRYR81X7TEEURDsjgARcBEgAkSACLgInAgQASJABIgAGVwG7iJABKOat1Xr3Zv3cUuV+bvz0W9memaWaBAzWwWwD+AAwAaArWA+BTAD8ADgkeR7rVvWKprZMYBLAAKREwWfkLyr8V0EEF59E15d47PTUTbGpWzUAFB6N1si93SnJLdztlkAZnYL4GjJ4J3ZLcmx58MFYGa7AJ4cQ9VXjp/1PeiqRzywe51u7C8HQM53EgAOSaq+CxIaVf0Si5gh5ixIEkBovLeE/inJq1xJzGwS2BKrraUa0gOgdMYvmZMU94tiZpoJ65GiGKGe+iEegHMAZ5HuHUkBK4rTvBck5XdpAEkHKTRmlnrAYADXJFXfovxGBtSx91GkGclRMfo3LVM9kKTi/2SBXmlm4ro2Xyy5OZDKnOzb5kAAkKJiB0Z0Uk9oTwis1vIJAI8lSQrKtrQLUrWsaYO+TnZ+lAB4U60FRHZ6lgDo+FAWVloi9nQ/dDnlboKaeyA1VGrxFIdXDYBlszDXzTj4IqpghJcNt/P7BsUMdMrOdPOCV2/OFgDekEmBcIdVrFwNIJTCu5L6fl9I6pyrklYAOkheC55HJEXdKmkCELKQo2WRdoNKEACIltoB8clVRbvBAAKI1Mnunt65WjSXoEfL/rp2122pEYYA6CakYmTn/Z9kIJTi62fD+1EpvV7fPwE2COAht9GKbwAAAABJRU5ErkJggg==");
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity .33s; }
+      body.page-template-search-page .mapProps .property .viewInMap:hover {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15) inset; }
+      body.page-template-search-page .mapProps .property .viewInMap:active {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.33) inset; }
+    body.page-template-search-page .mapProps .property .image {
+      position: relative;
       display: block;
-      position: absolute;
-      right: 0;
-      top: calc(50% - 60px / 2);
-      height: 60px;
-      width: 60px;
-      transform: translateX(-15px);
-      line-height: 60px;
-      font-size: 60px;
-      transition: transform .2s;
-      will-change: transform; }
-  body.page-template-search-page .mapProps .property:hover .info i, body.page-template-search-page .mapProps .property:active .info i {
-    transform: translateX(0); }
+      width: 100%;
+      background-color: #e9e9e9;
+      background-size: cover;
+      background-position: center; }
+      body.page-template-search-page .mapProps .property .image::before {
+        display: block;
+        content: '';
+        padding-top: 66.66%; }
+      body.page-template-search-page .mapProps .property .image .from {
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        background-color: #f6af33;
+        color: white;
+        padding: 8px 10px; }
+        body.page-template-search-page .mapProps .property .image .from .tag {
+          font-size: 12px; }
+        body.page-template-search-page .mapProps .property .image .from .price {
+          font-weight: bold;
+          font-size: 14px; }
+    body.page-template-search-page .mapProps .property .info {
+      position: relative;
+      font-size: 14px;
+      color: #adadad; }
+      body.page-template-search-page .mapProps .property .info .title {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: initial; }
+      body.page-template-search-page .mapProps .property .info i {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: calc(50% - 60px / 2);
+        height: 60px;
+        width: 60px;
+        transform: translateX(-15px);
+        line-height: 60px;
+        font-size: 60px;
+        transition: transform .2s;
+        will-change: transform; }
+    body.page-template-search-page .mapProps .property:hover .info i, body.page-template-search-page .mapProps .property:active .info i {
+      transform: translateX(0); }
 
 body.page-template-search-page .prop-infowindow .image {
   position: relative;
   display: block;
-  height: 150px;
-  width: 100%;
+  height: 200px;
+  width: 300px;
   background-color: #e9e9e9;
   background-size: cover;
   background-position: center; }
@@ -3818,7 +3825,6 @@ body.page-template-search-page .prop-infowindow .info {
     margin-top: 15px; }
   body.page-template-search-page .map {
     display: block;
-    padding: 0;
     height: 625px; }
   body.page-template-search-page .available {
     padding-left: 30px;
@@ -3836,8 +3842,8 @@ body.page-template-search-page .prop-infowindow .info {
       padding: 30px 15px 15px; }
       body.page-template-search-page .mapProps .bottom .row {
         margin: 0; }
-      body.page-template-search-page .mapProps .bottom .property .info {
-        min-height: 120px; }
+      body.page-template-search-page .mapProps .bottom .property {
+        min-height: 350px; }
         body.page-template-search-page .mapProps .bottom .property .info i {
           display: none; } }
 

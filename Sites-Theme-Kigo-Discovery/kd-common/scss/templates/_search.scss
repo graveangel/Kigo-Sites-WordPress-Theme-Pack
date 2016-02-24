@@ -20,8 +20,13 @@ body.page-template-search-page{
   .map{
     position: relative;
     display: none;
-    background-color: #e9e9e9;
     overflow: hidden;
+
+    & > div{
+      width: 100%;
+      height: 100%;
+      background-color: rgb(229, 227, 223);
+    }
 
     #mapContainer{
       width: 100%;
@@ -152,10 +157,13 @@ body.page-template-search-page{
     }
   }
 
-  .mapProps{
+  .mapContainer{
+    padding: 0;
+  }
 
+  .mapProps{
+    padding: 0;
     .property{
-      min-height: 320px;
       font-family: 'Open Sans';
       cursor: pointer;
       margin-bottom: 15px;
@@ -260,8 +268,8 @@ body.page-template-search-page{
     .image{
       position: relative;
       display: block;
-      height: 150px;
-      width: 100%;
+      height: 200px;
+      width: 300px;
       background-color: #e9e9e9;
       background-size: cover;
       background-position: center;
@@ -304,7 +312,6 @@ body.page-template-search-page{
 
     .map{
       display: block;
-      padding: 0;
       height: 625px;
     }
 
@@ -337,8 +344,8 @@ body.page-template-search-page{
         }
 
         .property {
+          min-height: 350px;
           .info {
-            min-height: 120px;
             i {
               display: none;
             }

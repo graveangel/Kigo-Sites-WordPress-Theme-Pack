@@ -1,4 +1,4 @@
-/* Edited - Wed Feb 24 2016 15:31:00 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Feb 24 2016 17:02:10 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -1068,14 +1068,14 @@ app.modules.templates.searchPage = {
         });
     },
     initClusterer: function(){
-        var mcOptions = {gridSize: 30, maxZoom: 15};
+        var mcOptions = {gridSize: 30, maxZoom: 10};
         var mc = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     addMarker: function(prop){
         /* Create info window */
         var infoWindow = new google.maps.InfoWindow({
             content: '<div class="info-html prop-infowindow">'+
-            '<a href="'+prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
+            '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
             '<div class="from secondary-fill-color">' +
             '<div class="tag">From:</div>' +
             '<div class="price">' + prop.MinRate.Value + ' ' + prop.MinRate.Currency +' / Night</div>' +
@@ -1083,7 +1083,7 @@ app.modules.templates.searchPage = {
             '</a>' +
             '<div class="info">' +
             '<h5 class="title">' + prop.Headline + '</h5>' +
-            + prop.Type + ', ' + prop.Location + '<br>'+
+            + prop.Type + ', ' + prop.Location + '<br>' +
             BAPI.textdata.Beds + ' ' + prop.Bedrooms + ' / ' + BAPI.textdata.Baths + ' ' + prop.Bathrooms +
             '<i class="kd-icon-right_arrow"></i>' +
             '</div>' +
@@ -1100,7 +1100,7 @@ app.modules.templates.searchPage = {
 
         /* Add event listeners to show info window */
         marker.addListener('click', function(marker) {
-            this.openMarkers.map(function(m){m.iw.close()})
+            this.openMarkers.map(function(m){m.iw.close()});
             marker.iw.open(this.mapObj, marker);
             this.openMarkers.push(marker);
         }.bind(this, marker));
@@ -1121,13 +1121,14 @@ app.modules.templates.searchPage = {
         _(props).forEach(function(prop){
             var markerToggle = prop.querySelector('.viewInMap');
             var altid = prop.dataset.altid;
-            markerToggle.addEventListener('click', function(e){
+            markerToggle.addEventListener('click', function(){
                 var marker = this.propMarkers[altid];
                 /* first, we close any open marker InfoWindows */
-                this.openMarkers.map(function(m){m.iw.close()})
+                this.openMarkers.map(function(m){m.iw.close()});
                 /* then we can open the new marker InfoWindow */
-                console.log(altid, marker);
+                this.mapObj.setZoom(15);
                 this.propMarkers[altid].iw.open(this.mapObj, marker);
+                this.mapObj.panTo(marker.getPosition());
 
                 /* we store the open InfoWindows to keep track */
                 this.openMarkers.push(marker);
@@ -1189,8 +1190,8 @@ app.modules.templates.searchPage = {
 
                         //Last marker iteration
                         if(this.markers.length == total){
-                            //this.initClusterer();
                             this.centerMap();
+                            this.initClusterer();
                             this.addProps();
                         }
 

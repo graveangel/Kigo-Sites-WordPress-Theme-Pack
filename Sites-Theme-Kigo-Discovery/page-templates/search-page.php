@@ -7,16 +7,18 @@
             <?php the_widget('KD_Search') ?>
         </div>
 
-        <div class="row pad-x-15">
+        <div class="row">
 
-            <div class="mapView">
+            <div class="mapView col-xs-12">
 
                 <div class="map mapContainer col-xs-12 col-md-6">
-                    <div id="mapContainer" data-markercolor="#33baaf"></div>
-                    <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
+                    <div>
+                        <div id="mapContainer" data-markercolor="#33baaf"></div>
+                        <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
+                    </div>
                 </div>
 
-                <div class="row mapProps  col-xs-12 col-md-6">
+                <div class="mapProps col-xs-12 col-md-6">
                     <div class="col-xs-12 top">
                         <div class="available">
                             <div>
@@ -40,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="listView">
+            <div class="listView col-xs-12">
 
             </div>
 
