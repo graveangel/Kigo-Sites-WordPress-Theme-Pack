@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 14:22:34 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Feb 24 2016 12:20:34 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2654,6 +2654,24 @@ h1, h2, h3, h4, h5 {
 .pad-30 {
   padding: 30px; }
 
+.pad-x-15 {
+  padding: auto 15px; }
+
+.pad-x-20 {
+  padding: auto 20px; }
+
+.pad-x-30 {
+  padding: auto 30px; }
+
+.pad-y-15 {
+  padding: 15px auto; }
+
+.pad-y-20 {
+  padding: 20px auto; }
+
+.pad-y-30 {
+  padding: 30px auto; }
+
 /* Generics */
 body {
   font-size: 12px;
@@ -4606,14 +4624,14 @@ body.page-template-full-width article.body {
     .kd-search > div[data-field]:last-of-type {
       padding-right: 0; }
     .kd-search > div[data-field]:nth-of-type(n+6) {
-      display: none; }
+      display: none;
+      margin-top: 15px; }
     .kd-search > div[data-field]:nth-of-type(5) {
       margin-right: 10%; }
     .kd-search form > * {
       display: inline-block; }
     .kd-search .category-block {
       padding: 0 15px;
-      margin-bottom: 10px;
       padding-left: 0; }
       .kd-search .category-block [data-field]::after {
         font-size: 28px;

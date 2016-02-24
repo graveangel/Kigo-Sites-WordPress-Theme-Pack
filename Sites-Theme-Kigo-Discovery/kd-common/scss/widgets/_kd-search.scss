@@ -183,6 +183,7 @@
       }
       &:nth-of-type(n+6){
         display: none;
+        margin-top: 15px;
       }
       &:nth-of-type(5){
         margin-right: 10%;
@@ -196,7 +197,6 @@
 
     .category-block{
       padding: 0 15px;
-      margin-bottom: 10px;
       padding-left: 0;
 
       [data-field]::after{

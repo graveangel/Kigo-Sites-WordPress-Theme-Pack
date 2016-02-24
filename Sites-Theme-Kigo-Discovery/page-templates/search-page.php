@@ -7,7 +7,7 @@
             <?php the_widget('KD_Search') ?>
         </div>
 
-        <div class="row pad-15">
+        <div class="row pad-x-15">
             <div class="split-search col-xs-12">
 
                 <div class="map mapContainer col-xs-12 col-md-6">
