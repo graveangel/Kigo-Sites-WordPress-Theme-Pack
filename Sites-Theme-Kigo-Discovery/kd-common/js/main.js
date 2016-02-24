@@ -1,4 +1,4 @@
-/* Edited - Wed Feb 24 2016 12:17:50 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Feb 24 2016 12:22:53 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -51,7 +51,7 @@ var app = {
 
             var scrollMax = overHeader.clientHeight;
 
-            if(currentScroll >= scrollMax){
+            if(currentScroll >= 121){
                 header.classList.add('fixed');
             }else{
                 header.classList.remove('fixed');
@@ -78,7 +78,7 @@ var app = {
             console.log.apply(console, arguments);
     },
     bapiRender: function(entity, template, callback, data){
-        var options = {};
+        var options = {pagesize: 20, seo: true};
 
         BAPI.search(entity, options, function (sdata) {
             BAPI.get(sdata.result, entity, {}, function (gdata) {
@@ -93,6 +93,48 @@ var app = {
                 callback(html);
             });
         });
+    },
+    bapi: {
+        search: function(entity, callback, auxOptions){
+            var options = auxOptions || {};
+            BAPI.search(entity, options, function (sdata) {
+                callback(sdata);
+            });
+        },
+        get: function(entity, ids, callback, options){
+            BAPI.get(ids, entity, _.assign(options, {}), function (gdata) {
+                callback(gdata);
+            });
+        },
+        recursiveGet: function(entity, callback, auxOptions){
+            var options = auxOptions || {};
+            BAPI.search(entity, options, function (sdata) {
+                var propPages = _.chunk(sdata.result, options.pagesize);
+
+                if(auxOptions.waitForAll == 1){
+                    var all = [], iterations = 0;
+                    propPages.forEach(function(page, i){
+                        BAPI.get(page, entity, options, function (gdata) {
+                            iterations++;
+                            all = _.concat(all, gdata.result);
+
+                            if(iterations == (propPages.length)){ //Last iteration
+                                callback({result: all, textdata: BAPI.textdata});
+                            }
+                        });
+                    });
+                }else{
+                    propPages.forEach(function(page, i){
+                        BAPI.get(page, entity, options, function (gdata) {
+                            callback(gdata);
+                        });
+                    });
+                }
+            })
+        },
+        render: function(template, data){
+            return Mustache.render(BAPI.UI.mustacheHelpers.getPartials(template), data);
+        }
     },
     kdMove: function(){
         var moveEles = document.querySelectorAll('[data-move]');
@@ -990,44 +1032,106 @@ app.modules.templates.searchPage = {
     /* Element selectors */
     templateSelector: 'body.page-template-search-page',
     mapSelector: '#mapContainer',
-    propertiesContainerSelector: '#propertiesContainer',
+    mapPropContainer: document.querySelector('#mapPropertiesContainer'),
     propertySelector: '',
     mapObj: null,
+    properties: [],
     markers: [],
     bounds: null,
     openMarkers: [],
-    /* Methods */
-    init: function(){
-        this.mapObj = this.initMap();
-        this.initMarkers();
-        this.mapResetEvents();
-        this.viewEvents();
+    icon: {
+        path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3"+
+        "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
+        fillColor: 'green',
+        fillOpacity: 1,
+        strokeColor: 'rgba(0,0,0,.25)',
+        strokeWeight: 1
     },
+    /* Methods */
     cond: function(){
         return document.querySelectorAll(this.templateSelector).length > 0;
     },
-    initMap: function(){
-        return new google.maps.Map(document.querySelector(this.mapSelector), {
-            center: {lat: -34.397, lng: 150.644},
+    init: function(){
+        this.doMapView();
+        this.mapResetEvents();
+
+
+    },
+
+    updateCounters: function(current, total){
+        $('.ppty-count-current').text(current);
+        $('.ppty-count-total').text(total);
+    },
+    initMap: function(latitude, longitude){
+        this.mapObj = new google.maps.Map(document.querySelector(this.mapSelector), {
+            center: {lat: latitude, lng: longitude},
             zoom: 8
         });
+    },
+    addMarker: function(prop){
+            /* Create info window */
+            var infoWindow = new google.maps.InfoWindow({
+                content: '<div>Hello, is it me you re looking for?</div>'
+            });
+
+            /* Create marker + store info window inside for later use (also in property ele) */
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
+                map: this.mapObj,
+                iw: infoWindow,
+                icon: this.icon
+            });
+
+            /* Add event listeners to show info window */
+            marker.addListener('click', function(marker) {
+                this.openMarkers.map(function(m){m.iw.close()})
+                marker.iw.open(this.mapObj, marker);
+                this.openMarkers.push(marker);
+            }.bind(this, marker));
+
+            /* We store markers for later use */
+            this.markers.push(marker);
+
+    },
+    addProps: function(){
+        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', this.properties);
+        this.mapPropContainer.innerHTML = propHTML;
     },
     mapResetEvents: function(){
         var ele = document.querySelector('#resetMap');
         ele.addEventListener('click', this.centerMap.bind(this));
     },
+    centerMap: function(){
+
+        if(this.bounds == null) {
+            var bounds = new google.maps.LatLngBounds();
+            var markers = this.markers;
+            /* Extend bounds to all markers and fit view */
+            for (index in markers) {
+                var data = markers[index];
+                bounds.extend(new google.maps.LatLng(data.position.lat(), data.position.lng()));
+            }
+            this.bounds = bounds;
+            this.mapObj.fitBounds(this.bounds);
+        }else{
+            /* We revert to the initial map state */
+            this.mapObj.fitBounds(this.bounds);
+        }
+
+    },
+
     initMarkers: function(){
         var properties = null;
         var propertiesContainer = document.querySelector(this.propertiesContainerSelector);
 
         /* Check if properties have been populated, if not observe until they arrive */
         if(propertiesContainer.children.length > 0){ //Properties already loaded
-            properties = this.getProperties();
+            properties = this.collectProperties();
             this.propsToMarkers(properties);
             this.centerMap();
         }else{ //Properties not yet loaded
             var observer = new MutationObserver(function(mutations){
-                    properties = this.getProperties();
+                    properties = this.collectProperties();
                     this.propsToMarkers(properties);
                     this.centerMap();
                     observer.disconnect();
@@ -1035,9 +1139,6 @@ app.modules.templates.searchPage = {
             );
             observer.observe(propertiesContainer, {childList: true});
         }
-    },
-    getProperties: function(){
-        return document.querySelectorAll(this.propertiesContainerSelector+' .property');
     },
     propsToMarkers: function(props){
         for(var i = 0; i < props.length; i++){
@@ -1101,41 +1202,57 @@ app.modules.templates.searchPage = {
             this.markers.push(marker);
         }
     },
-    centerMap: function(){
-        /*
-         If the map is initializing, we create new bounds to center all markers on the map.
-         If not initializing (re-centering the map) we reset zoom & center position to initial values.
-         */
-        if(this.bounds == null) {
-            var bounds = new google.maps.LatLngBounds();
-            var markers = this.markers;
-            /* Extend bounds to all markers and fit view */
-            for (index in markers) {
-                var data = markers[index];
-                bounds.extend(new google.maps.LatLng(data.position.lat(), data.position.lng()));
-            }
-            this.bounds = bounds;
-            this.mapObj.fitBounds(this.bounds);
-        }else{
-            /* We revert to the initial map state */
-            this.mapObj.fitBounds(this.bounds);
-        }
+
+    doMapView: function(){
+        var chunkSize = 20;
+
+        app.bapi.search('property', function(sr){
+            var ids = sr.result, total = sr.result.length;
+
+            /* Here we have ppty total amount */
+            this.updateCounters(0, total);
+
+            //Split property id's into page-sized chunks
+            var chunks = _.chunk(ids, chunkSize);
+
+            chunks.forEach(function(chunk, chunk_i){
+
+                app.bapi.get('property', chunk, function(gr){
+
+                    //Store recovered properties
+                    this.properties = _.concat(this.properties, gr.result);
+
+                    gr.result.forEach(function(prop, prop_i){
+
+                        /* First ppty from first chunk iteration.
+                         We can initialize map & center on first markers. */
+                        if(chunk_i == 0 && prop_i == 0){
+                            this.initMap(prop.Latitude, prop.Longitude);
+                        }
+
+                        this.addMarker(prop);
+                        this.updateCounters(this.markers.length, total);
+
+                        //Last marker iteration
+                        if(this.markers.length == total){
+                            this.centerMap();
+                            this.addProps();
+                        }
+
+                    }.bind(this));
+
+                }.bind(this), {pagesize: chunkSize});
+
+            }.bind(this));
+
+        }.bind(this));
     },
-    viewEvents: function(){
-        var wrapper = document.querySelector('.split-search'),
-            propContainer = document.querySelector('.propContainer'),
-            listTmpl = 'tmpl-propertysearch-listview',
-            mapTmpl = 'tmpl-propertysearch-mapview';
-
-        propContainer.addEventListener('click', function(e){
-            console.log(e.target);
-            if(e.target.dataset.template == listTmpl){
-                wrapper.classList.add('listView');
-            }else if(e.target.dataset.template == mapTmpl){
-                wrapper.classList.remove('listView');
-            }
-        });
-
+    doListView: function(){
+        app.bapi.get('property', function(r){
+            console.log(r);
+            var html = app.bapi.render('tmpl-propertysearch-listview', _.assign(r, {textdata: BAPI.textdata}));
+            document.querySelector('.propContainer').innerHTML = html;
+        }, {seo: true, pagesize: 20})
     }
 };
 app.bapiModules.widgets.buckets = {

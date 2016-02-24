@@ -24,6 +24,7 @@ class KD {
     }
 
     private function init() {
+        $this->rewrites();
         $this->themeSettings();
         $this->loadCPTs();
         $this->loadWidgets();
@@ -48,6 +49,10 @@ class KD {
         }
 
         add_filter('the_content_more_link', 'custom_rm_link');
+    }
+
+    public function rewrites(){
+
     }
 
     public function loadCPTs() {
@@ -204,10 +209,9 @@ class KD {
 
             wp_enqueue_style('kd-normalize', $commonPath . '/lib/normalize/normalize.css');
 
-            /* jQuery - https://jquery.com - Disabled to avoid collisions with plugin */
+            /* Lodash - https://lodash.com/ */
 
-//            wp_enqueue_script('kd-jquery', $commonPath.'/lib/jquery/jquery-2.1.4.min.js' , array(), '', true);
-//            wp_enqueue_script('kd-jquery-migrate', $commonPath.'/lib/jquery/jquery-migrate-1.2.1.min.js' , array(), '', true);
+            wp_enqueue_script('lodash', 'https://cdn.jsdelivr.net/lodash/4.5.1/lodash.min.js' , array(), '', false);
 
             /* Bootstrap - https://github.com/dbushell/Pikaday */
 
@@ -248,10 +252,10 @@ class KD {
             /* Google Maps */
 
             wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ', array(), '', false);
-            
+
             /* simple weather https://github.com/monkeecreate/jquery.simpleWeather/ */
             wp_enqueue_script('simple-weather-js', $commonPath . '/lib/simpleweather/jquery.simpleWeather.min.js', array(), '', false);
-            
+
             /* weather icons http://erikflowers.github.io/weather-icons/ */
             wp_enqueue_style('weather-icons-css', $commonPath . '/lib/weather-icons/css/weather-icons.min.css');
 
@@ -358,7 +362,7 @@ class KD {
     private function themeHeader() {
         add_action('wp_head', 'custom_header');
         add_action('wp_footer', 'custom_footer');
-        
+
         add_filter('language_attributes', 'doctype_opengraph');
         add_action('wp_head', 'fb_opengraph', 5);
 
@@ -419,40 +423,40 @@ function bapiPageUrl($bapiPageId) {
 }
 
 /**
- * 
+ *
  * @param tstring $string_mustache_template
  * @return string filled template.
  */
 function render_this($string_mustache_template, $addedArray = [], $onlyAdded = false) {
-    
-    if($onlyAdded) 
+
+    if($onlyAdded)
         $data = $addedArray;
     else
         $data = getbapisolutiondata() + $addedArray;
 
-    
-    
+
+
     $m = new Mustache_Engine();
-    
+
     $string = $m->render($string_mustache_template, $data);
- 
+
     return $string;
 }
 
 function get_mustache_template($templatefile) {
     $filepath = __DIR__  . '/bapi/partials/' . $templatefile;
     if(!file_exists($filepath)) return false;
-    
+
     $template = file_get_contents($filepath);
 
     return $template;
 }
 
 function get_marked_as_featured() {
-    
-    
+
+
     $props_settings = json_decode(stripslashes(get_theme_mod('kd_properties_settings'))) ? : [];
-    
+
     $featured_pkids = array();
     foreach ($props_settings as $pkid => $ps) {
         if ($ps->forced_featured) {
@@ -465,31 +469,31 @@ function get_marked_as_featured() {
 
     $apikey = $sd->apikey;
     $baseurl = $sd->BaseURL;
-    
+
 
     $BAPI = new BAPI($apikey,$baseurl);
-    
+
     $props = $BAPI->get('property',$featured_pkids);
- 
-    
+
+
 
     $featured = array('kdfeatured'=>$props['result']);
-    
-    
+
+
     $sd = json_decode(get_option('bapi_keywords_array'));
-                    $sd_properties = array();
-                    foreach($sd as $ent){
-                        if($ent->entity === "property"){
-                            $sd_properties[]=$ent;
-                        }
-                    }
-  
-    
+    $sd_properties = array();
+    foreach($sd as $ent){
+        if($ent->entity === "property"){
+            $sd_properties[]=$ent;
+        }
+    }
+
+
     foreach($featured['kdfeatured'] as $ind => $ftrd ){
-        
-       
+
+
         foreach($sd_properties as $sd_prop){
-           
+
 
             if($ftrd['ID'] == $sd_prop->pkid){
                 $featured['kdfeatured'][$ind]['ContextData']['SEO'] = array();
@@ -526,7 +530,7 @@ function fb_opengraph() {
                 $img_src = "http:".$meta_words['primary_image_url'][0];
                 $title_string = $meta_words['headline'][0];
             }else{
-                
+
                 $bapikey = str_replace("property:", "", $bapikey);
                 //doing a call, this should be in the plugin IMHO
                 $bapi = getBAPIObj();
@@ -543,21 +547,21 @@ function fb_opengraph() {
                     $title_string = $c['result'][0]['Headline'];
                     add_post_meta($post->ID, 'headline', $c['result'][0]['Headline'],true);
                 }
-                
+
             }
         }
-        
+
         if(empty($meta_words['bapi_meta_title'][0])){
             $meta_words['bapi_meta_title'][0] = $post->post_title;
         }
         ?>
-    <meta property="og:title" content="<?php echo $title_string; ?>"/>
-    <meta property="og:description" content="<?php echo $meta_words['bapi_meta_description'][0]; ?>"/>
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="<?php echo the_permalink(); ?>"/>
-    <meta property="og:site_name" content="<?php echo get_bloginfo(); ?>"/>
-    <meta property="og:image" content="<?php echo $img_src; ?>"/>
-<?php
+        <meta property="og:title" content="<?php echo $title_string; ?>"/>
+        <meta property="og:description" content="<?php echo $meta_words['bapi_meta_description'][0]; ?>"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="<?php echo the_permalink(); ?>"/>
+        <meta property="og:site_name" content="<?php echo get_bloginfo(); ?>"/>
+        <meta property="og:image" content="<?php echo $img_src; ?>"/>
+    <?php
     } else {
         return;
     }

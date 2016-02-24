@@ -8,24 +8,42 @@
         </div>
 
         <div class="row pad-x-15">
-            <div class="split-search col-xs-12">
+
+            <div class="mapView">
 
                 <div class="map mapContainer col-xs-12 col-md-6">
-                    <div id="mapContainer" data-markercolor="<?php echo get_theme_mod('primary-color') ?  : '#33baaf' ?>"></div>
+                    <div id="mapContainer" data-markercolor="#33baaf"></div>
                     <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
                 </div>
 
-                <div
-                    id="results"
-                    class="bapi-summary propContainer col-xs-12 col-md-6"
-                    data-log="0"
-                    data-defaultsearchresultview="1"
-                    data-templatename="tmpl-propertysearch-listview"
-                    data-entity="property"
-                    data-showallresults="1">
+                <div class="row mapProps  col-xs-12 col-md-6">
+                    <div class="col-xs-12 top">
+                        <div class="available">
+                            <div>
+                                <span class="ppty-count-current">0</span>
+                                <span>&nbsp;out of&nbsp;</span>
+                                <span class="ppty-count-total">0</span>
+                                <span>&nbsp;properties loaded.</span>
+                            </div>
+
+                            <div class="btn-group" data-toggle="buttons-radio">
+                                <button class="btn changeview"><i class="fa fa-list"></i>List</button>
+                                <button class="btn changeview active" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 bottom">
+                        <div id="mapPropertiesContainer" class="row">
+
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+            <div class="listView">
 
             </div>
+
         </div>
 
     </div>

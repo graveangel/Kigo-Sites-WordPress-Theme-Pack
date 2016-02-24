@@ -8,8 +8,8 @@ Group: Properties
                 <span>{{result.length}} Properties Available</span>
 
                 <div class="btn-group" data-toggle="buttons-radio">
-                    {{#config.searchmodes.listview}}<button class="btn changeview active" data-template="tmpl-propertysearch-listview"><i class="fa fa-list"></i>&nbsp;{{textdata.List}}</button>{{/config.searchmodes.listview}}
-                    {{#config.searchmodes.mapview}}<button class="btn changeview" data-template="tmpl-propertysearch-mapview" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;{{textdata.Map}}</button>{{/config.searchmodes.mapview}}
+                    <button class="btn changeview active"  data-template="tmpl-propertysearch-listview"><i class="fa fa-list"></i>&nbsp;{{textdata.List}}</button>
+                    <button class="btn changeview" onclick="app.modules.templates.searchPage.doMapView();" data-template="tmpl-propertysearch-mapview" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;{{textdata.Map}}</button>
                 </div>
             </div>
         </div>
@@ -44,6 +44,7 @@ Group: Properties
         </div>
 
     </div>
+    <div class="showmore"><a href="javascript:void(0)"><span class="span12 alert alert-info">Show More Results ()</span></a></div>
 </script>
 
 
@@ -118,23 +119,25 @@ Group: Properties
 </script>
 
 <script id="tmpl-propertysearch-mapview" type="text/html">
-
-    <div class="row mapProps">
-        <div class="col-xs-12 top">
-            <div class="available">
-                <span>{{result.length}} Properties Available</span>
-
-                <div class="btn-group" data-toggle="buttons-radio">
-                    {{#config.searchmodes.listview}}<button class="btn changeview" data-template="tmpl-propertysearch-listview"><i class="fa fa-list"></i>&nbsp;{{textdata.List}}</button>{{/config.searchmodes.listview}}
-                    {{#config.searchmodes.mapview}}<button class="btn changeview active" data-template="tmpl-propertysearch-mapview" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;{{textdata.Map}}</button>{{/config.searchmodes.mapview}}
+        {{#result}}
+        <div class="property col-md-6" data-marker='{ "coord": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "infoWindowId": {{ContextData.ItemIndex}} }'>
+            <div class="viewInMap"></div>
+            <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
+                <div class="from secondary-fill-color">
+                    <div class="tag">From:</div>
+                    <div class="price">{{MinRate.Value}} {{MinRate.Currency}} / Night</div>
                 </div>
+            </a>
+            <div class="info">
+                <h5 class="title">{{Headline}}</h5>
+                {{Type}}, {{{Location}}}<br>
+                {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
+                <i class="kd-icon-right_arrow"></i>
             </div>
-        </div>
-        <div class="col-xs-12 bottom">
-            <div id="propertiesContainer" class="row">
-                {{#result}}
-                <div class="property col-md-6" data-marker='{ "coord": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "infoWindowId": {{ContextData.ItemIndex}} }'>
-                    <div class="viewInMap"></div>
+            <div class="prop-map-location hide" data-id="{{ContextData.ItemIndex}}" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
+
+                <!--<a href="#" class="prop-map-item"><div class="number-tag">{{&ContextData.ItemIndex}}</div></a>-->
+                <div class="info-html prop-infowindow">
                     <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
                         <div class="from secondary-fill-color">
                             <div class="tag">From:</div>
@@ -147,31 +150,11 @@ Group: Properties
                         {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
                         <i class="kd-icon-right_arrow"></i>
                     </div>
-                    <div class="prop-map-location hide" data-id="{{ContextData.ItemIndex}}" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
-
-                        <!--<a href="#" class="prop-map-item"><div class="number-tag">{{&ContextData.ItemIndex}}</div></a>-->
-                        <div class="info-html prop-infowindow">
-                            <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
-                                <div class="from secondary-fill-color">
-                                    <div class="tag">From:</div>
-                                    <div class="price">{{MinRate.Value}} {{MinRate.Currency}} / Night</div>
-                                </div>
-                            </a>
-                            <div class="info">
-                                <h5 class="title">{{Headline}}</h5>
-                                {{Type}}, {{{Location}}}<br>
-                                {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
-                                <i class="kd-icon-right_arrow"></i>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
-                {{/result}}
+
             </div>
         </div>
-    </div>
-
+        {{/result}}
 </script>
 
 
