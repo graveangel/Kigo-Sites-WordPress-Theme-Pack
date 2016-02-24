@@ -198,7 +198,6 @@ class KD {
             $commonPath = get_template_directory_uri() . '/kd-common';
 
             /* Google Fonts - https://www.google.com/fonts */
-
             wp_enqueue_style('gf-montserrat', 'https://fonts.googleapis.com/css?family=Montserrat:400,700');
             wp_enqueue_style('gf-opensans', 'https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
@@ -206,52 +205,46 @@ class KD {
             wp_enqueue_style('fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 
             /* Normalize - https://necolas.github.io/normalize.css */
-
             wp_enqueue_style('kd-normalize', $commonPath . '/lib/normalize/normalize.css');
 
             /* Lodash - https://lodash.com/ */
-
             wp_enqueue_script('lodash', 'https://cdn.jsdelivr.net/lodash/4.5.1/lodash.min.js' , array(), '', false);
 
             /* Bootstrap - https://github.com/dbushell/Pikaday */
-
             wp_enqueue_script('kd-bootstrap-js', $commonPath . '/lib/bootstrap/js/bootstrap.min.js', array(), '', false);
             wp_enqueue_style('kd-bootstrap-css', $commonPath . '/lib/bootstrap/css/bootstrap.min.css');
 
             /* Wweather Icons */
-
 //            wp_enqueue_style('weather-icons-css', $commonPath.'/lib/weather-icons/weather-icons.min.css');
 //            wp_enqueue_style('weather-icons-wind-css', $commonPath.'/lib/weather-icons/weather-icons-wind.min.css');
 
             /* Pickadate.js styles */
-
             wp_enqueue_style('pickadate-css', $commonPath . '/lib/pickadate/default.css');
             wp_enqueue_style('pickadate-date-css', $commonPath . '/lib/pickadate/default.date.css');
 
             /* Swiper - http://www.idangero.us/swiper */
-
             wp_enqueue_script('swiper-js', $commonPath . '/lib/swiper/js/swiper.min.js', array(), '', false);
             wp_enqueue_style('swiper-css', $commonPath . '/lib/swiper/css/swiper.min.css');
 //            wp_enqueue_script('swiper-jquery-js', $commonPath . '/lib/swiper/js/swiper.jquery.min.js', array(), '', false);
 
             /* Flexslider - http://flexslider.woothemes.com/ */
-
             wp_enqueue_script('flexslider-js', $commonPath . '/lib/flexslider/jquery.flexslider-min.js', array(), '', false);
             wp_enqueue_style('flexslider-css', $commonPath . '/lib/flexslider/flexslider.css');
 
             /* Simple Lightbox - https://github.com/andreknieriem/simplelightbox */
-
             wp_enqueue_script('simple-lightbox-js', $commonPath . '/lib/simplelightbox/js/simple-lightbox.min.js', array(), '', false);
             wp_enqueue_style('simple-lightbox-css', $commonPath . '/lib/simplelightbox/css/simplelightbox.min.css');
 
             /* Media element - https://github.com/johndyer/mediaelement */
-
 //            wp_enqueue_script('media-element-css', $commonPath . '/lib/media-element/mediaelement-and-player.min.js', array(), '', false);
 //            wp_enqueue_style('media-element-js', $commonPath . '/lib/media-element/mediaelementplayer.css');
 
-            /* Google Maps */
+            //TODO: Load only for search pages
 
+            /* Google Maps */
             wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ', array(), '', false);
+            /* Google Maps Marker Manager */
+            wp_enqueue_script('gmaps-clusterer',  $commonPath . '/lib/js-marker-clusterer/src/markerclusterer_compiled.js', array(), '', false);
 
             /* simple weather https://github.com/monkeecreate/jquery.simpleWeather/ */
             wp_enqueue_script('simple-weather-js', $commonPath . '/lib/simpleweather/jquery.simpleWeather.min.js', array(), '', false);
@@ -260,7 +253,6 @@ class KD {
             wp_enqueue_style('weather-icons-css', $commonPath . '/lib/weather-icons/css/weather-icons.min.css');
 
             /* Custom */
-
             wp_enqueue_style('kd-style', $commonPath . '/css/main.css');
             wp_enqueue_script('kd-scripts', $commonPath . '/js/main.js', array(), '1.0.0', true);
         }

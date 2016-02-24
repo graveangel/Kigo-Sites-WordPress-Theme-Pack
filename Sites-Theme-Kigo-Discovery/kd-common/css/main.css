@@ -1,4 +1,4 @@
-/* Edited - Wed Feb 24 2016 12:20:34 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Feb 24 2016 15:32:00 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -3714,6 +3714,7 @@ body.page-template-search-page .listProps .property {
         margin-right: 10px; }
 
 body.page-template-search-page .mapProps .property {
+  min-height: 320px;
   font-family: 'Open Sans';
   cursor: pointer;
   margin-bottom: 15px; }

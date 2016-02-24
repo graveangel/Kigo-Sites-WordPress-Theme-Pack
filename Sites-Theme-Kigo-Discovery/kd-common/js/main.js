@@ -1,4 +1,4 @@
-/* Edited - Wed Feb 24 2016 12:22:53 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Feb 24 2016 15:31:00 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -1037,6 +1037,7 @@ app.modules.templates.searchPage = {
     mapObj: null,
     properties: [],
     markers: [],
+    propMarkers: {},
     bounds: null,
     openMarkers: [],
     icon: {
@@ -1047,6 +1048,7 @@ app.modules.templates.searchPage = {
         strokeColor: 'rgba(0,0,0,.25)',
         strokeWeight: 1
     },
+
     /* Methods */
     cond: function(){
         return document.querySelectorAll(this.templateSelector).length > 0;
@@ -1054,10 +1056,7 @@ app.modules.templates.searchPage = {
     init: function(){
         this.doMapView();
         this.mapResetEvents();
-
-
     },
-
     updateCounters: function(current, total){
         $('.ppty-count-current').text(current);
         $('.ppty-count-total').text(total);
@@ -1068,34 +1067,72 @@ app.modules.templates.searchPage = {
             zoom: 8
         });
     },
+    initClusterer: function(){
+        var mcOptions = {gridSize: 30, maxZoom: 15};
+        var mc = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
+    },
     addMarker: function(prop){
-            /* Create info window */
-            var infoWindow = new google.maps.InfoWindow({
-                content: '<div>Hello, is it me you re looking for?</div>'
-            });
+        /* Create info window */
+        var infoWindow = new google.maps.InfoWindow({
+            content: '<div class="info-html prop-infowindow">'+
+            '<a href="'+prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
+            '<div class="from secondary-fill-color">' +
+            '<div class="tag">From:</div>' +
+            '<div class="price">' + prop.MinRate.Value + ' ' + prop.MinRate.Currency +' / Night</div>' +
+            '</div>' +
+            '</a>' +
+            '<div class="info">' +
+            '<h5 class="title">' + prop.Headline + '</h5>' +
+            + prop.Type + ', ' + prop.Location + '<br>'+
+            BAPI.textdata.Beds + ' ' + prop.Bedrooms + ' / ' + BAPI.textdata.Baths + ' ' + prop.Bathrooms +
+            '<i class="kd-icon-right_arrow"></i>' +
+            '</div>' +
+            '</div>'
+        });
 
-            /* Create marker + store info window inside for later use (also in property ele) */
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
-                map: this.mapObj,
-                iw: infoWindow,
-                icon: this.icon
-            });
+        /* Create marker + store info window inside for later use (also in property ele) */
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
+            map: this.mapObj,
+            iw: infoWindow,
+            icon: this.icon
+        });
 
-            /* Add event listeners to show info window */
-            marker.addListener('click', function(marker) {
-                this.openMarkers.map(function(m){m.iw.close()})
-                marker.iw.open(this.mapObj, marker);
-                this.openMarkers.push(marker);
-            }.bind(this, marker));
+        /* Add event listeners to show info window */
+        marker.addListener('click', function(marker) {
+            this.openMarkers.map(function(m){m.iw.close()})
+            marker.iw.open(this.mapObj, marker);
+            this.openMarkers.push(marker);
+        }.bind(this, marker));
 
-            /* We store markers for later use */
-            this.markers.push(marker);
+        /* We store markers for later use */
+        this.markers.push(marker);
+        this.propMarkers[prop.AltID] = marker;
 
     },
     addProps: function(){
-        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', this.properties);
+        //Render properties
+        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: this.properties, textdata: BAPI.textdata});
         this.mapPropContainer.innerHTML = propHTML;
+
+        //Attach event listeneers
+        var props = this.mapPropContainer.querySelectorAll('[data-altid]');
+
+        _(props).forEach(function(prop){
+            var markerToggle = prop.querySelector('.viewInMap');
+            var altid = prop.dataset.altid;
+            markerToggle.addEventListener('click', function(e){
+                var marker = this.propMarkers[altid];
+                /* first, we close any open marker InfoWindows */
+                this.openMarkers.map(function(m){m.iw.close()})
+                /* then we can open the new marker InfoWindow */
+                console.log(altid, marker);
+                this.propMarkers[altid].iw.open(this.mapObj, marker);
+
+                /* we store the open InfoWindows to keep track */
+                this.openMarkers.push(marker);
+            }.bind(this, prop));
+        }.bind(this));
     },
     mapResetEvents: function(){
         var ele = document.querySelector('#resetMap');
@@ -1118,89 +1155,6 @@ app.modules.templates.searchPage = {
             this.mapObj.fitBounds(this.bounds);
         }
 
-    },
-
-    initMarkers: function(){
-        var properties = null;
-        var propertiesContainer = document.querySelector(this.propertiesContainerSelector);
-
-        /* Check if properties have been populated, if not observe until they arrive */
-        if(propertiesContainer.children.length > 0){ //Properties already loaded
-            properties = this.collectProperties();
-            this.propsToMarkers(properties);
-            this.centerMap();
-        }else{ //Properties not yet loaded
-            var observer = new MutationObserver(function(mutations){
-                    properties = this.collectProperties();
-                    this.propsToMarkers(properties);
-                    this.centerMap();
-                    observer.disconnect();
-                }.bind(this)
-            );
-            observer.observe(propertiesContainer, {childList: true});
-        }
-    },
-    propsToMarkers: function(props){
-        for(var i = 0; i < props.length; i++){
-
-            var prop = props[i], //Get a property from the list
-                mapObj = this.mapObj, //Save mapObj for later use
-                propMarker = JSON.parse(prop.dataset.marker), //Parse dataset marker object
-                coords = propMarker.coord, //Get marker coordinates
-                iwEle = prop.querySelector('.prop-map-location'); //Get the marker's info window
-
-            /* Create info window */
-            var infoWindow = new google.maps.InfoWindow({
-                content: iwEle.querySelector('.info-html').outerHTML
-            });
-
-
-            /* Get the primary color from the map container to set marker icon color */
-            var markerColor = document.querySelector(this.mapSelector).dataset.markercolor;
-
-            /* Create an SVG icon, fill in primary color */
-            var icon = {
-                path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3"+
-                "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
-                fillColor: markerColor,
-                fillOpacity: 1,
-                strokeColor: 'rgba(0,0,0,.25)',
-                strokeWeight: 1
-            };
-
-            /* Create marker + store info window inside for later use (also in property ele) */
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(coords.lat, coords.lng),
-                map: this.mapObj,
-                iw: infoWindow,
-                icon: icon
-            });
-
-            prop.marker = marker;
-
-            /* Add event listeners to show info window */
-            marker.addListener('click', function(marker) {
-                this.openMarkers.map(function(m){m.iw.close()})
-                marker.iw.open(mapObj, marker);
-                this.openMarkers.push(marker);
-            }.bind(this, marker));
-
-
-            /* Add event listeners for list items */
-            prop.querySelector('.viewInMap').addEventListener('click',
-                function(prop) {
-                    /* first, we close any open marker InfoWindows */
-                    this.openMarkers.map(function(m){m.iw.close()})
-                    /* then we can open the new marker InfoWindow */
-                    prop.marker.iw.open(mapObj, prop.marker);
-                    /* we store the open InfoWindows to keep track */
-                    this.openMarkers.push(prop.marker);
-                }.bind(this, prop)
-            );
-
-            /* We store markers for later use */
-            this.markers.push(marker);
-        }
     },
 
     doMapView: function(){
@@ -1235,13 +1189,14 @@ app.modules.templates.searchPage = {
 
                         //Last marker iteration
                         if(this.markers.length == total){
+                            //this.initClusterer();
                             this.centerMap();
                             this.addProps();
                         }
 
                     }.bind(this));
 
-                }.bind(this), {pagesize: chunkSize});
+                }.bind(this), {pagesize: chunkSize, seo: true});
 
             }.bind(this));
 

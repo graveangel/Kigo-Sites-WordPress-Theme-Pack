@@ -120,7 +120,7 @@ Group: Properties
 
 <script id="tmpl-propertysearch-mapview" type="text/html">
         {{#result}}
-        <div class="property col-md-6" data-marker='{ "coord": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "infoWindowId": {{ContextData.ItemIndex}} }'>
+        <div class="property col-md-6" data-altid='{{AltID}}'>
             <div class="viewInMap"></div>
             <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
                 <div class="from secondary-fill-color">
@@ -134,30 +134,9 @@ Group: Properties
                 {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
                 <i class="kd-icon-right_arrow"></i>
             </div>
-            <div class="prop-map-location hide" data-id="{{ContextData.ItemIndex}}" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
-
-                <!--<a href="#" class="prop-map-item"><div class="number-tag">{{&ContextData.ItemIndex}}</div></a>-->
-                <div class="info-html prop-infowindow">
-                    <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
-                        <div class="from secondary-fill-color">
-                            <div class="tag">From:</div>
-                            <div class="price">{{MinRate.Value}} {{MinRate.Currency}} / Night</div>
-                        </div>
-                    </a>
-                    <div class="info">
-                        <h5 class="title">{{Headline}}</h5>
-                        {{Type}}, {{{Location}}}<br>
-                        {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
-                        <i class="kd-icon-right_arrow"></i>
-                    </div>
-                </div>
-
-            </div>
         </div>
         {{/result}}
 </script>
-
-
 
 <script id="tmpl-propertysearch-widephotoview" type="text/html">
     <div class="widephoto-view-page">
