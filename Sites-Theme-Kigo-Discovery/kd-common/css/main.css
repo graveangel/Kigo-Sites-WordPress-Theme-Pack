@@ -1,4 +1,4 @@
-/* Edited - Wed Feb 24 2016 16:25:19 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Feb 24 2016 18:02:13 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -3816,6 +3816,7 @@ body.page-template-search-page .prop-infowindow .info {
   font-size: 14px;
   color: #adadad; }
   body.page-template-search-page .prop-infowindow .info .title {
+    width: 300px;
     font-size: 18px;
     margin-bottom: 5px;
     color: initial; }

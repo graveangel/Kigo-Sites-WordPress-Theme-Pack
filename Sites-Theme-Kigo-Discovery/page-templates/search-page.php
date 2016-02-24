@@ -13,7 +13,7 @@
 
                 <div class="map mapContainer col-xs-12 col-md-6">
                     <div>
-                        <div id="mapContainer" data-markercolor="#33baaf"></div>
+                        <div id="mapContainer" data-color="<?php echo get_theme_mod('primary-color') ?>"></div>
                         <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
                     </div>
                 </div>

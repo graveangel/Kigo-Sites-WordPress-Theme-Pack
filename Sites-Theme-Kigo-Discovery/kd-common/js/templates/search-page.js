@@ -1,10 +1,11 @@
 app.modules.templates.searchPage = {
     /* Element selectors */
     templateSelector: 'body.page-template-search-page',
-    mapSelector: '#mapContainer',
+    mapEle: document.querySelector('#mapContainer'),
     mapPropContainer: document.querySelector('#mapPropertiesContainer'),
     propertySelector: '',
     mapObj: null,
+    clustererObj: null,
     properties: [],
     markers: [],
     propMarkers: {},
@@ -13,7 +14,7 @@ app.modules.templates.searchPage = {
     icon: {
         path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3"+
         "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
-        fillColor: 'green',
+        fillColor: document.querySelector('#mapContainer').dataset.color,
         fillOpacity: 1,
         strokeColor: 'rgba(0,0,0,.25)',
         strokeWeight: 1
@@ -32,14 +33,14 @@ app.modules.templates.searchPage = {
         $('.ppty-count-total').text(total);
     },
     initMap: function(latitude, longitude){
-        this.mapObj = new google.maps.Map(document.querySelector(this.mapSelector), {
+        this.mapObj = new google.maps.Map(this.mapEle, {
             center: {lat: latitude, lng: longitude},
             zoom: 8
         });
     },
     initClusterer: function(){
         var mcOptions = {gridSize: 30, maxZoom: 10};
-        var mc = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
+        this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     addMarker: function(prop){
         /* Create info window */
@@ -55,7 +56,6 @@ app.modules.templates.searchPage = {
             '<h5 class="title">' + prop.Headline + '</h5>' +
             + prop.Type + ', ' + prop.Location + '<br>' +
             BAPI.textdata.Beds + ' ' + prop.Bedrooms + ' / ' + BAPI.textdata.Baths + ' ' + prop.Bathrooms +
-            '<i class="kd-icon-right_arrow"></i>' +
             '</div>' +
             '</div>'
         });
@@ -71,16 +71,19 @@ app.modules.templates.searchPage = {
         /* Add event listeners to show info window */
         marker.addListener('click', function(marker) {
             this.openMarkers.map(function(m){m.iw.close()});
+
+            this.mapObj.setZoom(15);
             marker.iw.open(this.mapObj, marker);
+            this.mapObj.panTo(marker.getPosition());
+
             this.openMarkers.push(marker);
         }.bind(this, marker));
 
         /* We store markers for later use */
         this.markers.push(marker);
         this.propMarkers[prop.AltID] = marker;
-
     },
-    addProps: function(){
+    addMapProps: function(){
         //Render properties
         var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: this.properties, textdata: BAPI.textdata});
         this.mapPropContainer.innerHTML = propHTML;
@@ -97,13 +100,23 @@ app.modules.templates.searchPage = {
                 this.openMarkers.map(function(m){m.iw.close()});
                 /* then we can open the new marker InfoWindow */
                 this.mapObj.setZoom(15);
-                this.propMarkers[altid].iw.open(this.mapObj, marker);
-                this.mapObj.panTo(marker.getPosition());
+
+                var adjustedPos = new google.maps.LatLng({lat: marker.getPosition().lat() + 0.004623495678337974, lng: marker.getPosition().lng()});
+                this.mapObj.panTo(adjustedPos);
+
+                _.delay(function(){
+                    this.propMarkers[altid].iw.open(this.mapObj, marker);
+                }.bind(this), 500);
 
                 /* we store the open InfoWindows to keep track */
                 this.openMarkers.push(marker);
             }.bind(this, prop));
         }.bind(this));
+    },
+    addListProps: function(){
+        //Render properties
+        var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: this.properties, textdata: BAPI.textdata});
+        this.mapPropContainer.innerHTML = propHTML;
     },
     mapResetEvents: function(){
         var ele = document.querySelector('#resetMap');
@@ -160,9 +173,9 @@ app.modules.templates.searchPage = {
 
                         //Last marker iteration
                         if(this.markers.length == total){
-                            this.centerMap();
                             this.initClusterer();
-                            this.addProps();
+                            this.centerMap();
+                            this.addMapProps();
                         }
 
                     }.bind(this));
@@ -174,10 +187,6 @@ app.modules.templates.searchPage = {
         }.bind(this));
     },
     doListView: function(){
-        app.bapi.get('property', function(r){
-            console.log(r);
-            var html = app.bapi.render('tmpl-propertysearch-listview', _.assign(r, {textdata: BAPI.textdata}));
-            document.querySelector('.propContainer').innerHTML = html;
-        }, {seo: true, pagesize: 20})
+        this.addListProps();
     }
 };
