@@ -11,14 +11,6 @@ app.modules.templates.searchPage = {
     propMarkers: {},
     bounds: null,
     openMarkers: [],
-    icon: {
-        path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3"+
-        "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
-        fillColor: document.querySelector('#mapContainer').dataset.color,
-        fillOpacity: 1,
-        strokeColor: 'rgba(0,0,0,.25)',
-        strokeWeight: 1
-    },
 
     /* Methods */
     cond: function(){
@@ -65,23 +57,41 @@ app.modules.templates.searchPage = {
             position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
             map: this.mapObj,
             iw: infoWindow,
-            icon: this.icon
+            icon: {
+                path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3"+
+                "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
+                fillColor: this.mapEle.dataset.color,
+                fillOpacity: 1,
+                strokeColor: 'rgba(0,0,0,.25)',
+                strokeWeight: 1
+            }
         });
 
         /* Add event listeners to show info window */
-        marker.addListener('click', function(marker) {
-            this.openMarkers.map(function(m){m.iw.close()});
-
-            this.mapObj.setZoom(15);
-            marker.iw.open(this.mapObj, marker);
-            this.mapObj.panTo(marker.getPosition());
-
-            this.openMarkers.push(marker);
-        }.bind(this, marker));
+        marker.addListener('click', this.openMarker.bind(this, marker));
 
         /* We store markers for later use */
         this.markers.push(marker);
         this.propMarkers[prop.AltID] = marker;
+    },
+    openMarker: function(marker){
+        /* first, we close any open marker InfoWindows */
+        this.openMarkers.map(function(m){m.iw.close()});
+        /* then we can open the new marker InfoWindow */
+        this.mapObj.setZoom(15);
+
+        var adjustedPos = new google.maps.LatLng({lat: marker.getPosition().lat() + 0.004623495678337974, lng: marker.getPosition().lng()});
+        this.mapObj.panTo(adjustedPos);
+        marker.icon.fillColor = 'rgb(255,0,0)';
+
+        console.log(marker);
+
+        _.delay(function(){
+            marker.iw.open(this.mapObj, marker);
+        }.bind(this), 500);
+
+        /* we store the open InfoWindows to keep track */
+        this.openMarkers.push(marker);
     },
     addMapProps: function(){
         //Render properties
@@ -96,21 +106,8 @@ app.modules.templates.searchPage = {
             var altid = prop.dataset.altid;
             markerToggle.addEventListener('click', function(){
                 var marker = this.propMarkers[altid];
-                /* first, we close any open marker InfoWindows */
-                this.openMarkers.map(function(m){m.iw.close()});
-                /* then we can open the new marker InfoWindow */
-                this.mapObj.setZoom(15);
-
-                var adjustedPos = new google.maps.LatLng({lat: marker.getPosition().lat() + 0.004623495678337974, lng: marker.getPosition().lng()});
-                this.mapObj.panTo(adjustedPos);
-
-                _.delay(function(){
-                    this.propMarkers[altid].iw.open(this.mapObj, marker);
-                }.bind(this), 500);
-
-                /* we store the open InfoWindows to keep track */
-                this.openMarkers.push(marker);
-            }.bind(this, prop));
+                this.openMarker(marker);
+            }.bind(this));
         }.bind(this));
     },
     addListProps: function(){
