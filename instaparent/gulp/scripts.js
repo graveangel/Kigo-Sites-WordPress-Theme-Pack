@@ -13,11 +13,12 @@ gulp.task('scripts:common', function () {
   			path.join(jsSrc, 'bootstrap.js'),
   			path.join(jsSrc, 'bootstrap-paginator.min.js'),
   			path.join(jsSrc, 'bootstrap-dropdown.js'),
-  			path.join(jsSrc, 'flexslider.js')
+  			path.join(jsSrc, 'flexslider.js'),
+  			path.join(jsSrc, 'custom.js')
   		])
 	  	.pipe(sourcemaps.init())
-	    .pipe($.jshint())
-	    .pipe($.jshint.reporter('jshint-stylish'))
+	    // .pipe($.jshint())
+	    // .pipe($.jshint.reporter('jshint-stylish'))
 	    .pipe($.concat('insta-common.js'))
 	    //.pipe($.uglify())
 	    .pipe($.size())

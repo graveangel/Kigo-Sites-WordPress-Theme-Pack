@@ -30,6 +30,7 @@
     "gulp-watch": "^4.3.5",
     "jshint-stylish": "^2.0.1",
     "lodash": "^3.10.1",
+    "merge2": "^1.0.1",
     "tiny-lr": "^0.2.1",
     "wiredep": "^2.2.2",
     "wrench": "^1.5.8"

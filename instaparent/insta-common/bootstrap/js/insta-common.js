@@ -72,4 +72,11 @@ a.slides.eq(b).remove();a.doMath();a.update(e,"remove");a.slides=d(c.selector+":
 keyboard:!0,multipleKeyboard:!1,mousewheel:!1,pausePlay:!1,pauseText:"Pause",playText:"Play",controlsContainer:"",manualControls:"",sync:"",asNavFor:"",itemWidth:0,itemMargin:0,minItems:0,maxItems:0,move:0,start:function(){},before:function(){},after:function(){},end:function(){},added:function(){},removed:function(){}};d.fn.flexslider=function(j){void 0===j&&(j={});if("object"===typeof j)return this.each(function(){var a=d(this),c=a.find(j.selector?j.selector:".slides > li");1===c.length?(c.fadeIn(400),
 j.start&&j.start(a)):void 0==a.data("flexslider")&&new d.flexslider(this,j)});var l=d(this).data("flexslider");switch(j){case "play":l.play();break;case "pause":l.pause();break;case "next":l.flexAnimate(l.getTarget("next"),!0);break;case "prev":case "previous":l.flexAnimate(l.getTarget("prev"),!0);break;default:"number"===typeof j&&l.flexAnimate(j,!0)}}})(jQuery);
 
+$(function() {
+	$("input.stars").before('<div class="rating"><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span><i class="glyphicon glyphicon-remove-circle"></i></div>');
+
+	$(".rating span, .rating i").on('click', function() {
+		$(this).parent('div').attr('data-stars',( 5-$(this).index()) ).next('input.stars').val( 5 - ($(this).index()) );
+	});
+});
 //# sourceMappingURL=../sourcemaps/insta-common.js.map

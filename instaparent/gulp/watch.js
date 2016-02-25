@@ -10,13 +10,16 @@ function isOnlyChange(event) {
   return event.type === 'changed';
 }
 
-
+var src = {};
+src.bootstrap = './insta-common/bootstrap';
 
 gulp.task('watch', ['build'], function() {
 
-  gulp.watch('./insta-common/bootstrap/css/vendor/**/*', ['styles:vendor']);
+  gulp.watch(src.bootstrap+'/css/vendor/**/*', ['styles:bootstrap']);
+  gulp.watch(src.bootstrap+'/css/custom/**/*', ['styles:bootstrap']);
 
-  //gulp.watch('./js/src/**/*.js', ['scripts']);
+
+  gulp.watch(src.bootstrap+'/js/src/**/*.js', ['scripts']);
 
   //gulp.watch('./papi/**/*.tmpl', ['templates']);
 
