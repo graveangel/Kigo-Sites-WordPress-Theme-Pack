@@ -1242,3 +1242,11 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 @media (max-height: 480px) {.map-view-page #prop-map{height:400px;}}
 
 @media (max-height: 960px) {}
+
+/* Hide homepage search until properly positioned */
+.home-qsearch {
+  	display: none;
+}
+.home-qsearch.qsFixed {
+	display: block;
+}
