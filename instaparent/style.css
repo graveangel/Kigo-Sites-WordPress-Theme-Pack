@@ -1246,7 +1246,10 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 /* Hide homepage search until properly positioned */
 .home-qsearch {
   	display: none;
+  	opacity: 0;
+  	transition: opacity .2s;
 }
 .home-qsearch.qsFixed {
 	display: block;
+	opacity: 1;
 }
