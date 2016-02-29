@@ -50,6 +50,11 @@
   .amenities {
     box-sizing                    : border-box;
     padding                       : 30px;
+
+    .alert{
+      white-space: normal;
+    }
+
     ul {
       li {
         width: 100%;
@@ -403,6 +408,9 @@ Media Tablets horizontal
       padding                   : 15px;
       display                   :inline-block;
       float                     : left;
+      .alert{
+        white-space: nowrap;
+      }
       ul {
         li {
           display: inline-block;

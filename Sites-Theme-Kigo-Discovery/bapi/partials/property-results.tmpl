@@ -19,7 +19,7 @@ Group: Properties
                     <div class="desc">{{{ContextData.SEO.PageTitle}}}</div>
 
                     <div class="bottom">
-                        <div class="price"><div class="tag">From:</div>{{MinRate.Value}} {{MinRate.Currency}} / Night</div>
+                        <div class="price">{{ContextData.Quote.PublicNotes}}</div>
                         <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">See Details</a>
                     </div>
                 </div>
@@ -105,8 +105,8 @@ Group: Properties
             <div class="viewInMap"></div>
             <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
                 <div class="from secondary-fill-color">
-                    <div class="tag">From:</div>
-                    <div class="price">{{MinRate.Value}} {{MinRate.Currency}} / Night</div>
+                    <!--<div class="tag">From:</div>-->
+                    <div class="price">{{ContextData.Quote.PublicNotes}}</div>
                 </div>
             </a>
             <div class="info">

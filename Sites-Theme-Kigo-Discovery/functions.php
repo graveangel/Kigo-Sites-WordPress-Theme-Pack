@@ -235,10 +235,6 @@ class KD {
             wp_enqueue_script('simple-lightbox-js', $commonPath . '/lib/simplelightbox/js/simple-lightbox.min.js', array(), '', false);
             wp_enqueue_style('simple-lightbox-css', $commonPath . '/lib/simplelightbox/css/simplelightbox.min.css');
 
-            /* Media element - https://github.com/johndyer/mediaelement */
-//            wp_enqueue_script('media-element-css', $commonPath . '/lib/media-element/mediaelement-and-player.min.js', array(), '', false);
-//            wp_enqueue_style('media-element-js', $commonPath . '/lib/media-element/mediaelementplayer.css');
-
             //TODO: Load only for search pages
 
             /* Google Maps */

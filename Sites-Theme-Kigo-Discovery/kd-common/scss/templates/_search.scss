@@ -20,7 +20,6 @@ body.page-template-search-page{
   .map{
     position: relative;
     display: none;
-    overflow: hidden;
 
     & > div{
       width: 100%;
@@ -57,7 +56,7 @@ body.page-template-search-page{
   }
 
   .available{
-    padding: 10px 0;
+    padding: 10px 15px;
     font-size: 18px;
     text-align: right;
     line-height: 34px;
@@ -159,10 +158,37 @@ body.page-template-search-page{
 
   .mapContainer{
     padding: 0;
+
+    .loader{
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: rgba(white, .5);
+      opacity: 1;
+      transition: opacity .5s ease .2s;
+
+      &.hidden{
+        opacity: 0;
+      }
+
+      .bar{
+        height: 100%;
+        width: 0%;
+        background-color: $primary-color;
+        transition: width .3s ease .3s;
+      }
+    }
   }
 
   .mapProps{
     padding: 0;
+    .available{
+      padding-left: 30px;
+      padding-right: 15px;
+    }
+
     .property{
       font-family: 'Open Sans';
       cursor: pointer;
@@ -261,7 +287,6 @@ body.page-template-search-page{
         }
       }
     }
-
   }
 
   .prop-infowindow{
@@ -317,7 +342,6 @@ body.page-template-search-page{
     }
 
     .available{
-      padding-left: 30px;
       border-top: 1px solid $light-gray;
       border-bottom: 1px solid $light-gray;
     }

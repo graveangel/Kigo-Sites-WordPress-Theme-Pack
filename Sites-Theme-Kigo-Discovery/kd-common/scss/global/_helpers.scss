@@ -284,10 +284,10 @@ header h1{
 .pad-20{padding: 20px;}
 .pad-30{padding: 30px;}
 
-.pad-x-15{padding: auto 15px;}
-.pad-x-20{padding: auto 20px;}
-.pad-x-30{padding: auto 30px;}
+.pad-x-15{padding: 0 15px;}
+.pad-x-20{padding: 0 20px;}
+.pad-x-30{padding: 0 30px;}
 
-.pad-y-15{padding: 15px auto;}
-.pad-y-20{padding: 20px auto;}
-.pad-y-30{padding: 30px auto;}
+.pad-y-15{padding: 15px 0;}
+.pad-y-20{padding: 20px 0;}
+.pad-y-30{padding: 30px 0;}

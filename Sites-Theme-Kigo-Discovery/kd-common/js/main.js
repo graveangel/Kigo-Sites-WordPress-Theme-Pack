@@ -1,4 +1,4 @@
-/* Edited - Wed Feb 24 2016 18:17:42 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Feb 29 2016 18:45:13 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -1028,15 +1028,21 @@ app.modules.templates.propertyDetails = {
     }
 };
 
-app.modules.templates.searchPage = {
+app.bapiModules.templates.searchPage = {
     /* Element selectors */
+    defaultView: '',
     templateSelector: 'body.page-template-search-page',
     mapEle: document.querySelector('#mapContainer'),
+    listInitted: false,
+    mapInitted: false,
+    /* Properties containers */
     mapPropContainer: document.querySelector('#mapPropertiesContainer'),
-    propertySelector: '',
+    listPropContainer: document.querySelector('#listPropertiesContainer'),
+    properties: [],
+    totalProps: 0,
+    /* Map */
     mapObj: null,
     clustererObj: null,
-    properties: [],
     markers: [],
     propMarkers: {},
     bounds: null,
@@ -1047,12 +1053,79 @@ app.modules.templates.searchPage = {
         return document.querySelectorAll(this.templateSelector).length > 0;
     },
     init: function(){
-        this.doMapView();
-        this.mapResetEvents();
+        this.viewToggle();
+        this.defaultView = BAPI.config().defaultsearchresultview;
+
+        switch(this.defaultView){
+            case 'tmpl-propertysearch-listview':
+                this.doListView();
+                break;
+            case 'tmpl-propertysearch-mapview':
+            default:
+                this.doMapView();
+                this.mapResetEvents();
+                break;
+        }
     },
-    updateCounters: function(current, total){
+    getProperties: function(iteration_callback){
+        var chunkSize = 20;
+
+        if(this.properties.length){
+            this.properties.forEach(function(prop, prop_i){
+
+                iteration_callback.call(this, prop, prop_i);
+
+                //Space out paint updates
+                if(this.properties.length % 5 == 0 || this.properties.length == this.totalProps){
+                    this.updateCounters(this.properties.length);
+                }
+
+            }.bind(this));
+        }else {
+
+            app.bapi.search('property', function (sr) {
+                var ids = sr.result, total = sr.result.length;
+
+                /* Here we have ppty total amount */
+                this.totalProps = total;
+                this.updateCounters();
+
+                //Split property id's into page-sized chunks
+                var chunks = _.chunk(ids, chunkSize);
+
+                chunks.forEach(function (chunk, chunk_i) {
+
+                    app.bapi.get('property', chunk, function (gr) {
+
+                        //Store recovered properties
+                        this.properties = _.concat(this.properties, gr.result);
+
+                        gr.result.forEach(function (prop, prop_i) {
+
+                            iteration_callback.call(this, prop, prop_i);
+
+                            //Space out paint updates
+                            //if (this.properties.length % 3 == 0 || this.properties.length == this.totalProps) {
+                                this.updateCounters();
+                            //}
+
+                        }.bind(this));
+
+                    }.bind(this), {pagesize: chunkSize, seo: true});
+
+                }.bind(this));
+
+            }.bind(this), BAPI.session.searchparams);
+
+        }
+    },
+    /* Map view */
+    updateCounters: function(){
+        var current = this.properties.length;
+        var percentage = current * 100 / this.totalProps;
+        $('.map .loader .bar').css('width', percentage+'%');
         $('.ppty-count-current').text(current);
-        $('.ppty-count-total').text(total);
+        $('.ppty-count-total').text(this.totalProps);
     },
     initMap: function(latitude, longitude){
         this.mapObj = new google.maps.Map(this.mapEle, {
@@ -1061,7 +1134,7 @@ app.modules.templates.searchPage = {
         });
     },
     initClusterer: function(){
-        var mcOptions = {gridSize: 30, maxZoom: 10};
+        var mcOptions = {gridSize: 50, maxZoom: 10};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     addMarker: function(prop){
@@ -1072,8 +1145,7 @@ app.modules.templates.searchPage = {
             '<div class="from secondary-fill-color">' +
             '<div class="tag">From:</div>' +
             '<div class="price">' + prop.MinRate.Value + ' ' + prop.MinRate.Currency +' / Night</div>' +
-            '</div>' +
-            '</a>' +
+            '</div></a>' +
             '<div class="info">' +
             '<h5 class="title">' + prop.Headline + '</h5>' +
             + prop.Type + ', ' + prop.Location + '<br>' +
@@ -1112,9 +1184,6 @@ app.modules.templates.searchPage = {
 
         var adjustedPos = new google.maps.LatLng({lat: marker.getPosition().lat() + 0.004623495678337974, lng: marker.getPosition().lng()});
         this.mapObj.panTo(adjustedPos);
-        marker.icon.fillColor = 'rgb(255,0,0)';
-
-        console.log(marker);
 
         _.delay(function(){
             marker.iw.open(this.mapObj, marker);
@@ -1140,11 +1209,6 @@ app.modules.templates.searchPage = {
             }.bind(this));
         }.bind(this));
     },
-    addListProps: function(){
-        //Render properties
-        var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: this.properties, textdata: BAPI.textdata});
-        this.mapPropContainer.innerHTML = propHTML;
-    },
     mapResetEvents: function(){
         var ele = document.querySelector('#resetMap');
         ele.addEventListener('click', this.centerMap.bind(this));
@@ -1167,55 +1231,53 @@ app.modules.templates.searchPage = {
         }
 
     },
-
+    /* View initializers */
     doMapView: function(){
-        var chunkSize = 20;
+        /* Update view layout */
+        document.querySelector('.listView').classList.add('hidden');
+        document.querySelector('.mapView').classList.remove('hidden');
+        document.querySelector('.viewToggle .v-map').classList.add('active');
 
-        app.bapi.search('property', function(sr){
-            var ids = sr.result, total = sr.result.length;
+        if(this.mapInitted){return;}
 
-            /* Here we have ppty total amount */
-            this.updateCounters(0, total);
+        this.initMap(0,0);
 
-            //Split property id's into page-sized chunks
-            var chunks = _.chunk(ids, chunkSize);
+        this.getProperties(function(prop, prop_i){
 
-            chunks.forEach(function(chunk, chunk_i){
+            this.addMarker(prop);
 
-                app.bapi.get('property', chunk, function(gr){
-
-                    //Store recovered properties
-                    this.properties = _.concat(this.properties, gr.result);
-
-                    gr.result.forEach(function(prop, prop_i){
-
-                        /* First ppty from first chunk iteration.
-                         We can initialize map & center on first markers. */
-                        if(chunk_i == 0 && prop_i == 0){
-                            this.initMap(prop.Latitude, prop.Longitude);
-                        }
-
-                        this.addMarker(prop);
-                        this.updateCounters(this.markers.length, total);
-
-                        //Last marker iteration
-                        if(this.markers.length == total){
-                            this.initClusterer();
-                            this.centerMap();
-                            this.addMapProps();
-                        }
-
-                    }.bind(this));
-
-                }.bind(this), {pagesize: chunkSize, seo: true});
-
-            }.bind(this));
-
-        }.bind(this));
+            //Last marker iteration
+            if(this.markers.length == this.totalProps){
+                this.initClusterer();
+                this.centerMap();
+                this.addMapProps();
+                this.mapInitted = true;
+            }
+        });
     },
     doListView: function(){
-        this.addListProps();
+        /* Update view layout */
+        document.querySelector('.mapView').classList.add('hidden');
+        document.querySelector('.listView').classList.remove('hidden');
+        document.querySelector('.viewToggle .v-list').classList.add('active');
+
+        if(this.listInitted)return;
+
+        this.getProperties(function(prop, prop_i){
+            var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
+            this.listPropContainer.innerHTML += propHTML;
+        });
+
+
+        this.listInitted = true;
+    },
+    /* View toggle */
+    viewToggle: function(){
+        /* View toggle buttons */
+        document.querySelector('.viewToggle .v-map').addEventListener('click', this.doMapView.bind(this));
+        document.querySelector('.viewToggle .v-list').addEventListener('click', this.doListView.bind(this));
     }
+
 };
 app.bapiModules.widgets.buckets = {
     selector: '.kd-buckets',
