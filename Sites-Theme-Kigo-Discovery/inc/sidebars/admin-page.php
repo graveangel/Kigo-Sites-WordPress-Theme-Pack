@@ -3,7 +3,7 @@
 
     <div class="sidebar-generator">
         <label for="generator_input">Sidebar name:</label>
-        <input type="text" id="generator_input" />
+        <input style="width: 100%; max-width: 300px;" type="text" id="generator_input" />
         <button class="button button-secondary" id="generator_button">Add</button>
     </div>
     <h3>Current sidebars</h3>
@@ -19,7 +19,7 @@
                     $pagesUsing = get_posts(['post_type' => 'page', 'meta_key' => '_custom_sidebar', 'meta_value' => $sidebar, 'posts_per_page' => -1]);
 
                     echo '<div>';
-                    echo '<input type="text" name="custom_sidebars[]" value="'.$sidebar.'" /><button type="button" class="button button-secondary">Delete</button>';
+                    echo '<input type="text" style="width: 100%; max-width: 300px;" name="custom_sidebars[]" value="'.$sidebar.'" /><button type="button" class="button button-secondary">Delete</button>';
 
                     if(!empty($pagesUsing)){
                         echo '<span>Currently assigned to: ';

@@ -99,6 +99,7 @@ class ThemeActivation {
 
             /* KD Hero */
             //TODO: Find and host proper default images for hero slider
+            $themePath = get_template_directory_uri();
             $kd_hero_content = array(
                 'color' => '#ffffff',
                 'primary_text' => 'FIND A PLACE TO STAY',
@@ -106,9 +107,9 @@ class ThemeActivation {
                 'button_value' => 'SEARCH RENTALS',
                 'button_link' => '#',
                 'slides' => [
-                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/barcelona.jpg',
-                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/florence.jpg',
-                    '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/hero/purple-sea.jpg'
+                    $themePath.'/kd-common/img/hero/barcelona.jpg',
+                    $themePath.'/kd-common/img/hero/florence.jpg',
+                    $themePath.'/kd-common/img/hero/purple-sea.jpg'
                 ],
             );
             $this->setWidget('page_home', 'kd_hero', $kd_hero_content);

@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 29 2016 17:33:07 GMT+0100 (Romance Standard Time) */
+/* Edited - Tue Mar 01 2016 12:51:48 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -4188,6 +4188,17 @@ body.page-template-mybooking {
   body.page-template-mybooking .property-info span, body.page-template-mybooking .property-info p {
     font-family: "Montserrat";
     font-size: 14px; }
+  body.page-template-mybooking #statement .item {
+    padding: 10px 0; }
+  body.page-template-mybooking #statement .total-block {
+    color: white;
+    padding: 15px; }
+    body.page-template-mybooking #statement .total-block p:first-of-type, body.page-template-mybooking #statement .total-block p:first-of-type span {
+      font-size: 32px; }
+  body.page-template-mybooking #discount label {
+    width: 100%; }
+  body.page-template-mybooking #discount small {
+    margin-left: 10px; }
   @media screen and (min-width: 768px) {
     body.page-template-mybooking .booking-page {
       border-bottom: 1px solid #eee; }
@@ -5394,9 +5405,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
   @media (min-width: 780px) {
     .kd-team .swiper-slide .member-caption {
       transform: translateY(0px);
-      opacity: 1; }
-    .kd-team .next-slide {
-      right: 15px; } }
+      opacity: 1; } }
   @media (min-width: 992px) {
     .kd-team .team-member {
       display: inline-block;

@@ -38,17 +38,14 @@ app.bapiModules.templates.searchPage = {
         }
     },
     getProperties: function(iteration_callback){
-        var chunkSize = 20;
+        var chunkSize = 10;
 
         if(this.properties.length){
             this.properties.forEach(function(prop, prop_i){
 
                 iteration_callback.call(this, prop, prop_i);
 
-                //Space out paint updates
-                if(this.properties.length % 5 == 0 || this.properties.length == this.totalProps){
-                    this.updateCounters(this.properties.length);
-                }
+                    this.updateCounters();
 
             }.bind(this));
         }else {
@@ -66,18 +63,14 @@ app.bapiModules.templates.searchPage = {
                 chunks.forEach(function (chunk, chunk_i) {
 
                     app.bapi.get('property', chunk, function (gr) {
-
+                        
                         //Store recovered properties
                         this.properties = _.concat(this.properties, gr.result);
 
                         gr.result.forEach(function (prop, prop_i) {
 
                             iteration_callback.call(this, prop, prop_i);
-
-                            //Space out paint updates
-                            //if (this.properties.length % 3 == 0 || this.properties.length == this.totalProps) {
-                                this.updateCounters();
-                            //}
+                            this.updateCounters();
 
                         }.bind(this));
 
@@ -113,8 +106,8 @@ app.bapiModules.templates.searchPage = {
             content: '<div class="info-html prop-infowindow">'+
             '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
             '<div class="from secondary-fill-color">' +
-            '<div class="tag">From:</div>' +
-            '<div class="price">' + prop.MinRate.Value + ' ' + prop.MinRate.Currency +' / Night</div>' +
+            //'<div class="tag">From:</div>' +
+            '<div class="price">' +prop.ContextData.Quote.PublicNotes +'</div>' +
             '</div></a>' +
             '<div class="info">' +
             '<h5 class="title">' + prop.Headline + '</h5>' +
