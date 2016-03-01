@@ -5,11 +5,9 @@ $aux = '<textarea class="kd_editor" id="'.$fi['id'].'" name="'.$fi['name'].'" id
 
 $aux .= '
 <script>
-
         try{
         kd_admin.initCKEditors();
         }catch(e){console.log(e)}
-
 </script>
 ';
 

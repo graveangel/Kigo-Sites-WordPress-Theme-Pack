@@ -490,7 +490,7 @@ Group: Booking
                         <p>
                             {{#BoolField}}<input type="checkbox" class="bapi-optionalfee" {{#Quantity}}checked{{/Quantity}} data-rid="{{RelatedToID}}" data-reid="{{RelatedToEntityID}}" />{{/BoolField}}
                             {{^BoolField}}<input type="number" class="col-xs-2 bapi-optionalfee" {{#MinQty}}min="{{MinQty}}"{{/MinQty}}{{^MinQty}}min="0"{{/MinQty}} max="{{MaxQty}}" value="{{Quantity}}" data-rid="{{RelatedToID}}" data-reid="{{RelatedToEntityID}}" />{{/BoolField}}
-                            {{{Notes}}}
+                            <span>{{{Notes}}}</span>
                             <span class="pull-right">{{#SubTotal}}{{OptionalFeesTotal.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span>
                         </p>
                     {{/OptionalFees}}
@@ -828,7 +828,7 @@ Group: Booking
                     <div class="btn-book-header col-xs-6">
                         <div class="row">
 			<span class="line1 col-xs-12">
-				<a href="javascript:void(0);" class="inline-b kd-button filled primary-fill-color makebooking" data-field-selector="bookingfield">{{textdata.Reserve Now}}</a>
+				<a href="javascript:void(0);" class="inline-b kd-button filled secondary-fill-color makebooking col-xs-12" data-field-selector="bookingfield">{{textdata.Reserve Now}}</a>
 			</span>
 			<span class="line2 col-xs-12">
 				{{#result}}{{#ContextData.Quote.Statement.ValidUntil}}{{textdata.Quote is valid for}} <span id="quote_ValidUntil_M"></span> {{textdata.minute(s)}} <span id="quote_ValidUntil_S"></span> {{textdata.second(s)}}<br />{{/ContextData.Quote.Statement.ValidUntil}}{{/result}}

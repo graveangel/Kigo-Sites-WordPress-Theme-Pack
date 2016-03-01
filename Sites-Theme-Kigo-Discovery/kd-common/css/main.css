@@ -1,4 +1,4 @@
-/* Edited - Tue Mar 01 2016 12:51:48 GMT+0100 (Romance Standard Time) */
+/* Edited - Tue Mar 01 2016 15:02:13 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -4154,6 +4154,8 @@ body.page-template-mybooking {
     font-family: "Open Sans";
     font-size: 14px;
     font-weight: normal; }
+  body.page-template-mybooking .form-horizontal .checkbox {
+    padding-left: 35px; }
   body.page-template-mybooking input, body.page-template-mybooking textarea, body.page-template-mybooking select {
     font-family: "Open Sans";
     font-size: 14px;
@@ -4185,6 +4187,12 @@ body.page-template-mybooking {
   body.page-template-mybooking .btn-book-header .line2 {
     padding-top: 10px;
     padding-bottom: 10px; }
+  body.page-template-mybooking .amount-bk {
+    font-size: 14px; }
+    body.page-template-mybooking .amount-bk .bold {
+      font-size: 20px; }
+  body.page-template-mybooking .bapi-showrevise {
+    padding: 5px 10px; }
   body.page-template-mybooking .property-info span, body.page-template-mybooking .property-info p {
     font-family: "Montserrat";
     font-size: 14px; }
@@ -4195,6 +4203,9 @@ body.page-template-mybooking {
     padding: 15px; }
     body.page-template-mybooking #statement .total-block p:first-of-type, body.page-template-mybooking #statement .total-block p:first-of-type span {
       font-size: 32px; }
+  body.page-template-mybooking #statement #ofees span, body.page-template-mybooking #statement #ofees input {
+    margin: 0;
+    vertical-align: middle; }
   body.page-template-mybooking #discount label {
     width: 100%; }
   body.page-template-mybooking #discount small {
