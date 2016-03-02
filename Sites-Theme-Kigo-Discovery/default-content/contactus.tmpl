@@ -1,0 +1,8 @@
+{{#site}}{{#Office}}
+<h6>{{SolutionName}}</h6>
+<p><strong>{{textdata.Address}}</strong><br/>{{#Address1}}{{Address1}}<br/>{{/Address1}}{{#Address2}}{{Address2}}<br/>{{/Address2}}{{City}}</span>,&nbsp;<span class="region">{{State}}<br/>{{PostalCode}}<br/>{{Country}}</p>
+<hr/>
+<h6>{{textdata.Talk to Us}}</h6>
+<p>{{#PrimaryPhone}}{{textdata.Phone}}:&nbsp;{{PrimaryPhone}}<br/>{{/PrimaryPhone}}{{#TollfreeNumber}}{{textdata.Toll Free}}:&nbsp;{{TollfreeNumber}}<br/>{{/TollfreeNumber}}{{#FaxNumber}}{{textdata.Fax}}:&nbsp;{{FaxNumber}}{{/FaxNumber}}</p>
+{{#Email}}<p>{{textdata.Email}}:&nbsp;<a href="mailto:{{PrimaryEmail}}">{{Email}}</a></p>{{/Email}}{{/Office}}
+<hr/>{{/site}}

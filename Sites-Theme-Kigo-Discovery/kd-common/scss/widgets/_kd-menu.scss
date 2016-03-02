@@ -1,0 +1,226 @@
+/*
+$kd-menu-toggle-size is declared in _global.scss, to push down page in mobile version
+*/
+
+.kd-menu{
+  display: none;
+  position: fixed;
+  width: 100%;
+  z-index: 500;
+  top: 0;
+  left: 0;
+  float: right;
+  vertical-align: middle;
+
+  &.main-menu{
+    display: inline-block;
+  }
+
+  .menu{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+  }
+
+  li {
+    display: block;
+    text-align: center;
+    margin: 0;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    a {
+      display: block;
+      padding: 12px;
+      font-size: 18px;
+      color: white;
+      text-transform: uppercase;
+      background-color: $secondary-color;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:hover, &:active {
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  & > .sub-menu{
+    display: block;
+    position: relative;
+
+    li {
+      a{
+        background-color: darken($secondary-color, 15);
+      }
+    }
+  }
+
+  &.active{
+    ul{
+      display: block;
+    }
+    li{
+      opacity: 1;
+    }
+  }
+
+  .toggle-wrapper{
+    float: right;
+    width: 100%;
+  }
+  .toggle{
+    float: right;
+    width: $kd-menu-toggle-size;
+    height: $kd-menu-toggle-size;
+    font-size: 40px;
+    text-align: center;
+    background-color: $secondary-color;
+    line-height: $kd-menu-toggle-size;
+    color: white;
+    cursor: pointer;
+
+    &:active{
+      background-color: rgba($secondary-color, .5);
+    }
+  }
+
+
+  @media screen and (min-width: $bp-tablet){
+    position: relative;
+    display: block;
+    width: auto;
+    z-index: initial;
+    top: auto;
+    left: auto;
+    float: none;
+
+    .menu{
+      display: inline-block;
+      position: relative;
+      width: auto;
+      right: auto;
+      top: auto;
+
+      .current-menu-item > a{
+        color: $primary-color!important;
+      }
+
+      &.align_right{
+        li{
+          margin-right: 0;
+          margin-left: 24px;
+        }
+      }
+
+      &.filled{
+        li{
+          a{
+            padding: 6px 10px;
+            border: none;
+            font-size: 14px;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .toggle-wrapper{
+      display: none;
+    }
+
+    .menu > li{
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 24px;
+      border-bottom: none;
+
+
+      &:hover, &:active{
+      }
+
+      a{
+        background-color: transparent;
+        padding: 6px 0;
+        font-size: 14px;
+        color: $dark-text;
+      }
+
+      &.menu-item-has-children{
+        a, div{
+          display: inline-block;
+          vertical-align: middle;
+        }
+        &::after{
+          display: inline-block;
+          vertical-align: middle;
+          content: '';
+          width: 10px;
+          height: 10px;
+          margin-left: 8px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmklEQVQ4T62S0Q2CMBRFTyeATWQERpAJxA3chBHQCWSEsoGjwAbmJrYh0Cq2vM+m9+TkvWvIHJOZ5xDACzglmlgZTECRCJgFqACbAJmB2u3gDDz/tGiAYbnEFuh3Qq7AXX/XV7gB3Q+ID4cAehP5EoE8AJn6ifUgBNmEYwaOvuzHqI2HrL41sfycVzmF1ZfNHFLlnZcLf8s2eAMP6xPwcVtx3QAAAABJRU5ErkJggg==');
+        }
+
+        &:hover{
+          & > .sub-menu{
+            display: block;
+          }
+
+          &::after{
+            opacity: .5;
+          }
+        }
+      }
+
+    }
+
+    .sub-menu{
+      display: none;
+      position: absolute;
+      z-index: 5;
+      top: 100%;
+      left: 0;
+      border: 1px solid #eee;
+
+      .sub-menu{
+        position: relative;
+        display: block;
+
+        a{
+          background-color: rgba(black, .05);
+        }
+      }
+
+      li{
+        display: block;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+        background-color: white;
+        text-align: left;
+
+        &:hover{
+          text-decoration: underline;
+        }
+
+        &:last-of-type{
+          border: none;
+        }
+
+        a{
+          display: block;
+          padding: 10px 25px;
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

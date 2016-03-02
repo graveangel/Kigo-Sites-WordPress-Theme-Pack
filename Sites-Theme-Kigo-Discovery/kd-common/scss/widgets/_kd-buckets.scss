@@ -1,0 +1,147 @@
+.kd-buckets{
+  padding: 15px;
+  font-size: 0;
+
+  .bucket-container{
+    &:last-of-type .top{
+      border-bottom: 1px solid $tertiary-color-light
+    }
+  }
+
+  .bucket{
+    display: inline-block;
+    width: 100%;
+    font-size: 20px;
+
+    &::after{
+      display: block;
+      content: '';
+      clear: both;
+    }
+
+    .top{
+      display: block;
+      color: inherit;
+      border-top: 1px solid $tertiary-color-light;
+
+      & > *{
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      &:hover, &:active{
+        text-decoration: none;
+        &::after{
+          font-weight: bold;
+        }
+      }
+
+      i{
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+    .image{
+      margin: 0 10px;
+      width: 50px;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+
+      &:before{
+        padding-bottom: 66%;
+        display: block;
+        content: '';
+      }
+    }
+
+    .title{
+      font-size: 18px;
+      text-transform: uppercase;
+      font-weight: bold;
+      width: calc(100% - 120px);
+      margin: 20px 0;
+    }
+
+    .description{
+      display: none;
+      font-family: $secondary-font;padding: 0 20px;
+      font-size: 12px;
+      line-height: $line-height-text;
+    }
+  }
+
+  @media screen and (min-width: $bp-tablet){
+    font-size: 0;
+    text-align: center;
+
+    .bucket-container{
+      margin-bottom: 25px;
+    }
+
+    .bucket{
+      position: relative;
+      display: inline-block;
+      vertical-align: top;
+      float: none;
+      min-height: 450px;
+      text-align: center;
+      border: 1px solid #ececec;
+      transition: border-color .33s;
+
+      &:hover{
+        border: 1px solid #cccccc;
+      }
+
+      &:last-of-type .top{
+        border-bottom: none;
+      }
+
+      a, a:hover{
+        text-decoration: none;
+      }
+
+      .top{
+        color: inherit;
+        border: none;
+
+        & > *{
+          display: block;
+        }
+
+        &:hover, &:active{
+          text-decoration: none;
+          &::after{
+            font-weight: bold;
+          }
+        }
+
+        i{
+          display: none;
+        }
+      }
+
+      .image{
+        margin: 0 auto;
+        font-size: 60px;
+        width: 100%;
+
+        img{
+          width: 100%;
+          height: auto;
+        }
+      }
+
+      .title{
+        width: 100%;
+      }
+
+      .description{
+        display: block;
+      }
+
+    }
+  }
+
+}

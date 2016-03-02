@@ -1,0 +1,134 @@
+/*
+	Group: Developments
+*/
+<script id="tmpl-developments-summary-list" type="text/html">
+<div class="development-results">
+{{#result}}
+<div class="portal-result">
+<div class="portal-inner row-fluid shadow">
+  <div class="portal-images span4">
+  {{^Images.0.MediumURL}}
+	<img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.MediumURL}}" />
+  {{/Images.0.MediumURL}}
+  {{#Images.0.MediumURL}}
+	<img alt="{{Images.0.Caption}}" src="{{&Images.0.MediumURL}}" />
+  {{/Images.0.MediumURL}}
+  </div>
+  <div class="portal-info span8">
+	  <h2 class="title">{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</h2>
+	  <div class="location"><span class="type">{{Type}}</span>{{#Region}}, {{Region}}{{/Region}}{{#State}}, {{State}}{{/State}}</div>
+	  <div class="brick-wrap">
+		<strong>{{textdata.Amenities}}:</strong> <span>{{TopAmenities}}</span>
+		<hr/>        
+		<div class="description bapi-truncate" data-trunclen="200">{{&Summary}}</div>         
+	  </div>
+	  <a class="detail-link pull-right" href="{{&ContextData.SEO.DetailURL}}">Details <span>&rarr;</span></a>                                   
+  </div>             
+</div>
+</div>
+{{/result}}
+</div>
+<div class="clearfix"></div>
+{{> partial-more-results}}
+</script>
+
+<script id="tmpl-developments-detail" type="text/html">
+{{#result}}
+<div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="development"></div>
+<section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">        
+            <div class="top-block">
+            <div class="row-fluid">
+                <div class="span12 box-sides">
+                <h2 class="title">{{Name}}</h2>                
+                </div>
+              </div>  
+            </div>
+            
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{	"animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                  <ul class="slides">
+				  {{^Images}}
+				  	<li><img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=816&h=600&q=75&zc=2" />
+					{{#PrimaryImage.Caption}}
+					<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+					{{/PrimaryImage.Caption}}
+				  {{/Images}}
+				  {{#Images}}
+                    <li><img alt="{{Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&OriginalURL}}&w=816&h=700&q=60" />
+					{{#Caption}}
+					<p class="flex-caption">{{Caption}}</p></li>
+					{{/Caption}}
+                  {{/Images}}
+                  </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                  <ul class="slides">
+				  {{^Images}}
+				  	<li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>	
+				  {{/Images}}
+                  {{#Images}}
+                    <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                  {{/Images}}
+                  </ul>
+                </div>
+            </div>
+        </div>
+</section>
+
+{{#Description}}
+<div class="row-fluid">
+<div class="span12">
+{{&Description}}
+</div>
+</div>
+{{/Description}}
+
+<h3>{{textdata.Available Properties}}</h3>
+<div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allproperties"  data-entity="property" data-searchoptions='{ "devid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
+
+<div class="bapi-moveme" data-from=".development-details" data-to=".detail-overview-target" data-method="append">
+<div class="development-details module shadow">
+<div class="pd">
+<h3>{{textdata.Details}}</h3>
+<hr/>
+<dl>
+	{{#Type}}
+    <dt>{{textdata.Category}}:</dt><dd>{{Type}}</dd>
+	{{/Type}}
+	{{#Address1}}
+	<dt>{{textdata.Address}}:</dt><dd>{{&Location}}</dd>
+	{{/Address1}}
+	<dt>{{textdata.Amenities}}:</dt>
+	<dd>
+		<ul>
+		{{#TopAmenities}}
+			<li>{{.}}</li>
+		{{/TopAmenities}}
+		</ul>
+	</dd>	
+</dl>
+</div>
+</div>
+</div>
+
+{{/result}}
+<span class="end"></span>
+</script>
+
+<script id="tmpl-developments-quickview" type="text/html">
+{{#result}}
+<div class="development-holder col-xs-12 col-sm-6 col-md-3">
+	<div class="development-image">
+	<a href="{{#ContextData.SEO.Keyword}}{{&ContextData.SEO.DetailURL}}{{/ContextData.SEO.Keyword}}">
+		<img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" />
+	</a>
+	</div>
+	<div class="development-description">
+		<a href="{{#ContextData.SEO.Keyword}}{{&ContextData.SEO.DetailURL}}{{/ContextData.SEO.Keyword}}"><h4 class="developments-title">{{Name}}</h4></a>
+	<div class="development-location"><span class="type">{{Type}}</span>{{#Region}}, {{Region}}{{/Region}}{{#State}}, {{State}}{{/State}}</div><hr/>
+	<div class="developments-sum bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+	</div>
+</div>
+{{/result}}
+</script>

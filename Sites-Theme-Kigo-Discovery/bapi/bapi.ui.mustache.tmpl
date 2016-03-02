@@ -1,0 +1,2668 @@
+<script id="tmpl-allpropertiespage" type="text/html">
+<div class="list-view-page">
+{{#result}}
+<div class="portal-result">
+<div class="portal-inner row-fluid shadow">
+	<div class="portal-images span4">
+		<div id="slider">
+		{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}<img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.ThumbnailURL}}" />{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+		</div>
+	</div>
+	<div class="portal-info span8">
+	<div class="property-info">	
+		<h2 class="property-title">
+			{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+				{{Headline}}
+			{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+		</h2>
+		<div class="location"><span><b>{{textdata.City}}:</b> {{City}}</span>  {{#Bedrooms}}<span class="hidden-phone">| </span><b>{{textdata.Beds}}</b>: {{Bedrooms}} | {{/Bedrooms}}{{#Bathrooms}}<b>{{textdata.Baths}}</b>: {{Bathrooms}} | {{/Bathrooms}}{{#Sleeps}}<b>{{textdata.Sleeps}}</b>: {{Sleeps}}{{/Sleeps}}</div>
+		<div class="brick-wrap">
+			<div class="description bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+		</div>
+		
+		{{^ContextData.Quote.IsValid}}			
+			{{#session.scheckin}}{{#session.scheckout}}<div class="alert alert-info no-rate">{{ContextData.Quote.ValidationMessage}}</div>{{/session.scheckout}}{{/session.scheckin}}
+		{{/ContextData.Quote.IsValid}}
+		
+		<div class="row-fluid">
+		<div class="span7 portal-rates">			
+			{{#ContextData.Quote.QuoteDisplay.value}}
+			{{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
+			{{ContextData.Quote.QuoteDisplay.value}}
+			{{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+			{{/ContextData.Quote.QuoteDisplay.value}}
+		</div>
+		<div class="span5 right-side-actions">
+			<button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="{{ID}}" type="button" data-toggle="button">
+			<span class="halflings heart-empty"><i></i>{{^inmylist}}{{textdata.WishList}}{{/inmylist}}{{#inmylist}}{{textdata.WishListed}}{{/inmylist}}</span></button>
+			{{#ContextData.SEO.Keyword}}&nbsp;|&nbsp;<a class="property-link" href="{{&ContextData.SEO.DetailURL}}">{{textdata.Details}} <span>&rarr;</span></a>{{/ContextData.SEO.Keyword}}
+		</div>
+		</div>
+	</div>
+	</div>
+</div>
+</div>
+{{/result}}
+</div>
+<div class="clearfix"></div>
+{{> partial-more-results}}
+</script>
+
+<script id="tmpl-allproperties" type="text/html">
+<table class="">
+<!--<table class="table table-bordered table-striped">-->
+<thead>
+<tr>
+	<!--<th></th>-->
+	<th>{{textdata.Property Name}}</th>
+	<th>{{textdata.Category}}</th>
+	<th>{{textdata.Beds}}</th>
+	<th>{{textdata.Baths}}</th>
+	<th>{{textdata.Sleeps}}</th>
+	<!--<th>{{textdata.Amenities}}</th>-->
+	<th>{{textdata.Rates}}</th>
+	<th></th>
+</tr>
+</thead>
+<tbody>
+{{#result}}
+<tr>
+	<!--<td>-->
+		<!--<button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="{{ID}}" type="button" data-toggle="button">-->
+			<!--<span class="halflings heart-empty"><i></i>{{^inmylist}}{{textdata.WishList}}{{/inmylist}}{{#inmylist}}{{textdata.WishListed}}{{/inmylist}}</span>-->
+		<!--</button>		-->
+	<!--</td>-->
+    <td>
+		{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+		{{Headline}}
+		{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+	</td>
+    <td>{{Type}}</td>
+    <td>{{Bedrooms}}</td> 
+    <td>{{Bathrooms}}</td> 
+    <td>{{Sleeps}}</td> 
+    <!--<td><span>{{TopAmenities}}</span></td>   -->
+    <td>{{ContextData.Quote.PublicNotes}}</td> 
+    <td>
+		{{^IsBookable}}
+		<a class="button primary-fill-color" href='{{ContextData.SEO.DetailURL}}'>{{textdata.Inquire Now}}</a>
+		{{/IsBookable}}
+		{{#IsBookable}}
+		<a class="button primary-fill-color" href='{{ContextData.SEO.BookingURL}}'>{{textdata.Book Now}}</a>
+		{{/IsBookable}}		
+	</td>   
+</tr>
+{{/result}}
+</tbody>
+</table>
+<div class="clearfix"></div>
+{{> partial-more-results}}
+</script>
+
+<script id="tmpl-properties-ratetable" type="text/html">
+{{#result}}
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+{{#ContextData.Rates.Keys}}
+	<th>{{.}}</th>
+{{/ContextData.Rates.Keys}}
+</tr>
+</thead>
+<tbody>
+{{#ContextData.Rates.Values}}
+<tr>
+	{{#0}}<td>{{0}}</td>{{/0}}
+	{{#1}}<td>{{1}}</td>{{/1}}
+	{{#2}}<td>{{2}}</td>{{/2}}	
+	{{#3}}<td>{{3}}</td>{{/3}}	
+	{{#4}}<td>{{4}}</td>{{/4}}	
+	{{#5}}<td>{{5}}</td>{{/5}}	
+	{{#6}}<td>{{6}}</td>{{/6}}	
+	{{#7}}<td>{{7}}</td>{{/7}}	
+	{{#8}}<td>{{8}}</td>{{/8}}	
+	{{#9}}<td>{{9}}</td>{{/9}}	
+	{{#10}}<td>{{10}}</td>{{/10}}	
+	{{#11}}<td>{{11}}</td>{{/11}}	
+	{{#12}}<td>{{12}}</td>{{/12}}	
+	{{#13}}<td>{{13}}</td>{{/13}}	
+	{{#14}}<td>{{14}}</td>{{/14}}	
+	{{#15}}<td>{{15}}</td>{{/15}}	
+	{{#16}}<td>{{16}}</td>{{/16}}	
+	{{#17}}<td>{{17}}</td>{{/17}}	
+	{{#18}}<td>{{18}}</td>{{/18}}	
+	{{#19}}<td>{{19}}</td>{{/19}}	
+	{{#20}}<td>{{20}}</td>{{/20}}		
+</tr>
+{{/ContextData.Rates.Values}}
+</tbody>
+</table>
+{{/result}}
+</script>
+/*
+Group: Attractions
+*/
+<script id="tmpl-attractions-summary-list" type="text/html">
+    <div class="page-width page-attractions-summary">
+        <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-link-selector='.poi-map-item' style="width:100%; height:350px; float:left;"></div>
+        <div class="clearfix"></div>
+        <section class="row-fluid search-result-controls attraction-result-controls">
+            <div class="span6 form-horizontal">
+                <div class="control-group control-group-attraction">
+                    {{#config.haspoitypefilter.enabled}}
+                    <label class="control-label" for="poitypefilter-dpd">{{textdata.Filter by}}:</label>
+                    <div class="controls">
+                        <select id="poitypefilter-dpd">
+                            <option value="">- {{textdata.Select}} -</option>
+                            {{#config.haspoitypefilter.values}}
+                            <option value="{{ID}}">{{Name}}</option>
+                            {{/config.haspoitypefilter.values}}
+                        </select>
+                    </div>
+                    {{/config.haspoitypefilter.enabled}}
+                </div>
+            </div>
+            <div class="span6">
+                <p class="showing"></p>
+            </div>
+        </section>
+        <div id="map-locations">
+            {{#result}}
+            <div class="col-xs-12 col-sm-4">
+                <div class="item-result">
+                    <div class="item-inner">
+                        <div class="item-images" style="background-image: url({{&PrimaryImage.ThumbnailURL}});">
+                            <div class="poi-map-location" data-id="{{ContextData.ItemIndex}}" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
+                                <a href="#" class="poi-map-item"><div class="number-tag">{{&ContextData.ItemIndex}}</div></a>
+                                <div class="info-html">
+                                    <div class="marker-infowindow">
+                                        <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
+                                        <span class="prop-location pull-left">
+                                            <span>
+                                                {{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                                                <b>{{Name}}</b>
+                                                {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}<br/>
+                                                <b>{{textdata.Category}}:</b>{{Type}}<br/>
+                                                <b>{{textdata.Address}}: </b>{{&Location}}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-info shadow">
+                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                            <h2 class="title">{{Name}}</h2>
+                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                            <div class="description bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="btn kd-button primary-fill-color attraction-detail-link">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/result}}
+            {{#site.office.ShowOnMap}}
+            <div class="poi-map-location hide" data-id="{{site.solutionid}}" data-jmapping='{ "id": {{site.solutionid}}, "point": { "lng": {{site.office.Longitude}}, "lat": {{site.office.Latitude}} }, "category": "pinOffice}"}'>
+                <a href="#" class="poi-map-item">{{site.solutionnameinformal}}</a>
+                <div class="info-html">
+                    <div class="marker-infowindow">
+                        <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&site.logo}}" alt="{{site.tagline}}"></span>
+                        <span class="prop-location pull-left">
+                            <span>
+                                <a target="_blank" href="mailto:{{&site.email}}">
+                                    <b>{{site.solutionnameinformal}}</b></a><br/>
+                                <b>{{textdata.Address}}: </b>{{&site.office.Address1}}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {{/site.office.ShowOnMap}}
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    {{> partial-more-results}}
+</script>
+
+<script id="tmpl-attractions-detail" type="text/html">
+    {{#result}}
+    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="poi"></div>
+    <section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">
+            <div class="top-block">
+                <div class="row-fluid">
+                    <div class="span12 box-sides">
+                        <h2 class="title">{{Name}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
+                            {{#PrimaryImage.Caption}}<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>{{/PrimaryImage.Caption}}
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
+                            {{#Caption}}<p class="flex-caption">{{Caption}}</p></li>{{/Caption}}
+                        {{/Images}}
+                    </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li class="primary"><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                        {{/Images}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row-fluid item-info module shadow-border">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">{{textdata.Location}}</a></li>
+                    <li><a href="#tab2" data-toggle="tab">{{textdata.Description}}</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="row-fluid wrap-boxes">
+                            <div class="span6 box-left">
+                                <h3>{{textdata.Nearby Rentals}}</h3>
+                                <div id="map-locations">
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}}}, "category": "mainPoi"}'>
+                                        - &nbsp;<a href="#" class="poi-map-item">{{Name}}</a>
+                                        <div class="info-html">
+                                            <div class="gmap-poi">
+                                                <div class="gmap-img">
+                                                    <img src='{{&PrimaryImage.ThumbnailURL}}' alt='{{PrimaryImage.Caption}}' title='{{PrimaryImage.Caption}}' width="195"/>
+                                                </div>
+                                                <div class="gmap-text">
+                                                    <p><b>{{Name}}</b></p>
+                                                    <div class="summary bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{#ContextData.NearbyProperties}}
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}}}, "category": "poi-{{ContextData.ItemIndex}}"}'>
+                                        {{ContextData.ItemIndex}}&nbsp;-&nbsp;<a href="#" class="poi-map-item">{{Headline}}</a> - {{ContextData.Distance}}
+                                        <div class="info-html">
+                                            <div class="gmap-property">
+                                                <div class="gmap-img">
+                                                    {{#ContextData.SEO.DetailURL}}
+                                                    <a href="{{ContextData.SEO.DetailURL}}">
+                                                        {{/ContextData.SEO.DetailURL}}
+                                                        <img src='{{&PrimaryImage.ThumbnailURL}}' alt='{{PrimaryImage.Caption}}' title='{{PrimaryImage.Caption}}' />
+                                                        {{#ContextData.SEO.DetailURL}}
+                                                    </a>
+                                                    {{/ContextData.SEO.DetailURL}}
+                                                </div>
+                                                <div class="gmap-text">
+                                                    <p>{{#ContextData.SEO.DetailURL}}<a href="{{ContextData.SEO.DetailURL}}">{{/ContextData.SEO.DetailURL}}<b>{{Headline}}</b>{{#ContextData.SEO.DetailURL}}</a>{{/ContextData.SEO.DetailURL}}</p>
+
+                                                    <div class="summary bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/ContextData.NearbyProperties}}
+                                </div>
+                            </div>
+                            <div class="span6 box-right">
+                                <h3>{{textdata.Map}}</h3>
+                                <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-link-selector='.poi-map-item' style="width:100%; height:350px; float:left;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="row-fluid">
+                            <div class="span12 box-sides">
+                                {{&Description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <div data-move=".detail-overview-target" class="poi-contact-details module shadow">
+        <div class="pd">
+            <h3><span class="glyphicons glyphicons-notes-2"></span>{{textdata.Details}}</h3>
+            <hr/>
+            <div class="details-list">
+                {{#Type}}
+                <div><span>{{textdata.Category}}:</span><span>{{Type}}</span></div>
+                {{/Type}}
+                {{#Location}}
+                <div><span>{{textdata.Address}}:</span><span>{{&Location}}</span></div>
+                {{/Location}}
+                {{#Phone1}}
+                <div><span>{{textdata.Phone}}:</span><span>{{Phone1}}</span></div>
+                {{/Phone1}}
+                {{#Email}}
+                <div><span>{{textdata.Email}}:</span><span>{{Email}}</span></div>
+                {{/Email}}
+                {{#Website}}
+                <div><span>{{textdata.Web Address}}:</span><span><a href="{{&Website}}" target="_blank">{{Website}}</a></span></div>
+                {{/Website}}
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    {{/result}}
+    <span class="end"></span>
+</script> 
+/*
+Group: Booking
+*/
+<script id="tmpl-booking-makebooking-masterlayout" type="text/html">
+        {{#result}}
+        <div class="module shadow-border">
+            <div class="row-fluid">
+                <header class="pagination-centered pd">
+                    <h1 class="widget_title">{{textdata.Fast Secure Online Booking}}</h1>
+                    <p class="booked_prop">
+                        <a href="{{&ContextData.SEO.DetailURL}}"><strong>{{Headline}}</strong></a><span class="hidden-phone">&nbsp;-&nbsp;{{Type}}
+                        {{#Bedrooms}}&nbsp;/&nbsp;{{textdata.Beds}}&nbsp;{{Bedrooms}}{{/Bedrooms}}
+                        {{#Bathrooms}}&nbsp;/&nbsp;{{textdata.Baths}}&nbsp;{{Bathrooms}}{{/Bathrooms}}
+                        {{#Sleeps}}&nbsp;/&nbsp;{{textdata.Sleeps}}&nbsp;{{Sleeps}}{{/Sleeps}}</span>
+                    </p>
+                    <div class="booking-prop-img col-xs-12">
+                        <a href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.OriginalURL}}')">
+                            <!--<img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=1074&h=400&q=60&zc=2" caption="{{PrimaryImage.Captions}}" title="Back to the Property Detail Page" />-->
+                        </a>
+                    </div>
+                </header>
+                <div class="booking-page bordersolid">
+                    <article class="col-xs-8 booking-form">
+                        <div class="form-horizontal pd">
+                            <div id="renter"></div>
+                            <hr />
+                            <div id="creditcard"></div>
+                            <hr />
+                            <div id="accept"></div>
+                        </div>
+                    </article>
+
+                    <aside class="property-info col-xs-4 pd">
+                        <div class="row">
+                            <div class="col-xs-12 pd">
+                                <div id="stayinfo"></div>
+                                <div id="statement"></div>
+                                <div id="question-support" class="item row-fluid">
+                                    <h5 class="module"><i clas="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
+                                    <p>{{textdata.Phone}}: <span class="pull-right">{{site.phone}}</span></p>
+                                    <p>{{textdata.Email}}: <span class="pull-right">{{site.email}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {{/result}}
+</script>
+
+<script id="tmpl-booking-makebooking-stayinfo" type="text/html">
+        {{#result}}
+            {{^ContextData.Quote.IsValid}}
+            <div class="alert alert-error">{{ContextData.Quote.ValidationMessage}}</div>
+            {{/ContextData.Quote.IsValid}}
+        <span class="glyphicons module notes_2 hide"><i></i>{{textdata.Booking Details}}</span>
+        <div id="details" class="item row-fluid">
+            <p><span class="glyphicons calendar"><i></i>{{textdata.Check-In}}</span> <span class="pull-right">{{session.searchparams.scheckin}}</span></p>
+            <p><span class="glyphicons calendar"><i></i>{{textdata.Check-Out}}</span> <span class="pull-right">{{session.searchparams.scheckout}}</span></p>
+            <p><span class="glyphicons group"><i></i>{{textdata.Adults}}</span><span class="pull-right">{{session.searchparams.adults.min}}</span></p>
+            <p><span class="glyphicons group"><i></i>{{textdata.Children}}</span><span class="pull-right">{{session.searchparams.children.min}}</span></p>
+            <p><a href="#revisedates" data-toggle="modal" class="bapi-showrevise kd-button secondary-fill-color filled">{{textdata.Change Info}}</a></p>
+        </div>
+
+        <div id="revisedates" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-body">
+                <div class="row-fluid">
+                    <div class="col-xs-6">
+                        <label>{{textdata.Check-In}}</label>
+                        <input id="makebookingcheckin" class="col-xs-12 revisedates datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
+                    </div>
+                    <div class="col-xs-6">
+                        <label>{{textdata.Check-Out}}</label>
+                        <input id="makebookingcheckout" class="col-xs-12 revisedates datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="col-xs-6">
+                        <label>{{textdata.Adults}}</label>
+                        <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}}" data-field="adults[min]" required>
+                    </div>
+                    <div class="col-xs-6">
+                        <label>{{textdata.Children}}</label>
+                        <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{#session.searchparams.children.min}}{{session.searchparams.children.min}}{{/session.searchparams.children.min}}{{^session.searchparams.children.min}}0{{/session.searchparams.children.min}}" data-field="children[min]" required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">{{textdata.Close}}</button>
+                <button class="btn btn-primary bapi-revisedates">{{textdata.Update}}</button>
+            </div>
+        </div>
+        {{/result}}
+</script>
+
+<script id="tmpl-booking-makebooking-statement" type="text/html">
+    <hr />
+        {{#result}}
+            {{#ContextData.Quote.IsValid}}
+                {{#ContextData.Quote.Statement}}
+                <div id="charges" class="item row-fluid">
+                    <h5>{{textdata.Charges}} <small class="charges-detail"><a href="#statement-details" data-toggle="modal">({{textdata.Details}})</a></small></h5>
+                    <p>
+                        {{textdata.Rent}}<span class="pull-right">{{ServicesTotal.LocalCurrencySymbol}}{{ServicesTotal.LocalSValue2}}</span>
+                        <span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+                    </p>
+                    <p>
+                        {{textdata.Taxes & Fees}}<span class="pull-right">{{TaxesAndFeesTotal.LocalCurrencySymbol}}{{TaxesAndFeesTotal.LocalSValue2}}</span>
+                        <span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+                    </p>
+                    {{#DepositsTotal.Value}}
+                        <p>
+                            {{textdata.Refundable Security Deposit}}<span class="pull-right">{{DepositsTotal.LocalCurrencySymbol}}{{DepositsTotal.LocalSValue2}}</span>
+                            <span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+                        </p>
+                    {{/DepositsTotal.Value}}
+                    {{#OptionalFees.length}}
+                        <hr />
+                    <div id="ofees" class="item row-fluid">
+                        <h5>{{textdata.Optional Fees & Services}}</h5>
+                    {{/OptionalFees.length}}
+                    {{#OptionalFees}}
+                        <p>
+                            {{#BoolField}}<input type="checkbox" class="bapi-optionalfee" {{#Quantity}}checked{{/Quantity}} data-rid="{{RelatedToID}}" data-reid="{{RelatedToEntityID}}" />{{/BoolField}}
+                            {{^BoolField}}<input type="number" class="col-xs-2 bapi-optionalfee" {{#MinQty}}min="{{MinQty}}"{{/MinQty}}{{^MinQty}}min="0"{{/MinQty}} max="{{MaxQty}}" value="{{Quantity}}" data-rid="{{RelatedToID}}" data-reid="{{RelatedToEntityID}}" />{{/BoolField}}
+                            <span>{{{Notes}}}</span>
+                            <span class="pull-right">{{#SubTotal}}{{OptionalFeesTotal.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span>
+                        </p>
+                    {{/OptionalFees}}
+                    {{#OptionalFees.length}}
+                    </div>
+                    {{/OptionalFees.length}}
+
+                    <hr />
+                    <div id="discount" class="item row-fluid">
+                        <h5>{{textdata.Discounts}}</h5>
+                        {{#Discounts}}
+                            <p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{DiscountsTotal.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+                        {{/Discounts}}
+                        <label>
+                            <input type="text" placeholder="{{textdata.Coupon Code}}" class="col-xs-6 revisedates" value="{{session.searchparams.coupon}}" data-field="Coupon" />
+                            <small><a href="javascript:void(0)" class="bapi-applyspecial">{{textdata.Apply}}</a></small>
+                            <span class="pull-right">----</span>
+                        </label>
+                    </div>
+                </div>
+                <div id="msgs" class="item row-fluid">
+                    <div class="primary-fill-color total-block">
+                        <p><strong>{{textdata.Total}}<span class="pull-right">{{TotalDue.LocalCurrencySymbol}} {{TotalDue.LocalSValue2}}</span></strong></p>
+                        <p><strong>{{textdata.Amount Due Now}}<span class="pull-right">{{TotalDueNow.LocalCurrencySymbol}} {{TotalDueNow.LocalSValue2}}</span></strong></p>
+                        {{#HasLocalCurrency}}
+                            <hr />
+                            <p>{{textdata.You will pay in}} {{Currency}}</p>
+                            <p><strong>{{textdata.Total}}<span class="pull-right">{{TotalDueNow.CurrencySymbol}} {{Total}}</span></strong></p>
+                            <p><strong>{{textdata.Amount Due Now}}<span class="pull-right">{{TotalDueNow.CurrencySymbol}} {{TotalDueNow.SValue2}}</span></strong></p>
+                        {{/HasLocalCurrency}}
+                    </div>
+                    {{#ContextData.Quote.PaymentTerms}}
+                        <div class="msg-gray msg-center"><p class="text-center">{{&ContextData.Quote.PaymentTerms}}</p></div>
+                    {{/ContextData.Quote.PaymentTerms}}
+                </div>
+                {{/ContextData.Quote.Statement}}
+            {{/ContextData.Quote.IsValid}}
+        {{/result}}
+
+        {{#result}}
+            {{#ContextData.Quote.Statement}}
+            <div id="statement-details" class="modal hide fade" role="dialog" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3>{{textdata.Charges}}</h3>
+                </div>
+                <div class="modal-body">
+                    {{#Services.length}}
+                    <div id="charges-modal" class="item row-fluid">
+                        <h5>{{textdata.Rent}}</h5>
+                    {{/Services.length}}
+                    {{#Services}}
+                        {{#config.statementsettings.lumpfees}}
+                            {{#config.statementsettings.lumptaxes}}
+                                <p>{{{Notes}}} <small>Incl. Fees & Taxes</small><span class="pull-right">{{#TaxesFeesAndServicesTotal}}{{TaxesFeesAndServicesTotal.LocalCurrencySymbol}}{{TaxesFeesAndServicesTotal.LocalSValue2}}{{/TaxesFeesAndServicesTotal}}{{^TaxesFeesAndServicesTotal}}--{{/TaxesFeesAndServicesTotal}}</span></p>
+                            {{/config.statementsettings.lumptaxes}}
+                            {{^config.statementsettings.lumptaxes}}
+                                <p>{{{Notes}}} <small>Incl. Fees</small><span class="pull-right">{{#FeesAndServicesTotal}}{{FeesAndServicesTotal.LocalCurrencySymbol}}{{FeesAndServicesTotal.LocalSValue2}}{{/FeesAndServicesTotal}}{{^FeesAndServicesTotal}}--{{/FeesAndServicesTotal}}</span></p>
+                            {{/config.statementsettings.lumptaxes}}
+                        {{/config.statementsettings.lumpfees}}
+                        {{^config.statementsettings.lumpfees}}
+                            {{#config.statementsettings.lumptaxes}}
+                                <p>{{{Notes}}} <small>Incl. Taxes</small><span class="pull-right">{{#TaxesAndServicesTotal}}{{TaxesAndServicesTotal.LocalCurrencySymbol}}{{TaxesAndServicesTotal.LocalSValue2}}{{/TaxesAndServicesTotal}}{{^TaxesAndServicesTotal}}--{{/TaxesAndServicesTotal}}</span></p>
+                            {{/config.statementsettings.lumptaxes}}
+                        {{/config.statementsettings.lumpfees}}
+                        {{^config.statementsettings.lumpfees}}
+                            {{^config.statementsettings.lumptaxes}}
+                                <p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+                            {{/config.statementsettings.lumptaxes}}
+                        {{/config.statementsettings.lumpfees}}
+                    {{/Services}}
+                    {{#Services.length}}
+                    </div>
+                        <hr />
+                    {{/Services.length}}
+                    {{^config.statementsettings.lumpfees}}
+                        {{#Fees.length}}
+                        <div id="fees-modal" class="item row-fluid">
+                            <h5>{{textdata.Fees}}</h5>
+                        {{/Fees.length}}
+                        {{#Fees}}
+                            <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="fee" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
+                        {{/Fees}}
+                        {{#Fees.length}}
+                        </div>
+                            <hr />
+                        {{/Fees.length}}
+                    {{/config.statementsettings.lumpfees}}
+                    {{^config.statementsettings.lumptaxes}}
+                        {{#Taxes.length}}
+                        <div id="taxes-modal" class="item row-fluid">
+                            <h5>{{textdata.Taxes}}</h5>
+                        {{/Taxes.length}}
+                        {{#Taxes}}
+                            <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="tax" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
+                        {{/Taxes}}
+                        {{#Taxes.length}}
+                        </div>
+                            <hr />
+                        {{/Taxes.length}}
+                    {{/config.statementsettings.lumptaxes}}
+                    {{#OptionalFees.length}}
+                    <div id="ofees-modal" class="item row-fluid">
+                        <h5>{{textdata.Optional Fees & Services}}</h5>
+                    {{/OptionalFees.length}}
+                    {{#OptionalFees}}
+                        <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="fee" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
+                    {{/OptionalFees}}
+                    {{#OptionalFees.length}}
+                    </div>
+                        <hr />
+                    {{/OptionalFees.length}}
+                    {{#Discounts.length}}
+                    <div id="discounts-modal" class="item row-fluid">
+                        <h5>{{textdata.Discounts}}</h5>
+                    {{/Discounts.length}}
+                    {{#Discounts}}
+                        <p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+                    {{/Discounts}}
+                    {{#Discounts.length}}
+                    </div>
+                        <hr />
+                    {{/Discounts.length}}
+                    {{#Deposits.length}}
+                    <div id="deposits-modal" class="item row-fluid">
+                        <h5>{{textdata.Deposits}}</h5>
+                    {{/Deposits.length}}
+                    {{#Deposits}}
+                        <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="fee" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
+                    {{/Deposits}}
+                    {{#Deposits.length}}
+                    </div>
+                    {{/Deposits.length}}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">{{textdata.Close}}</button>
+                </div>
+            </div>
+            {{/ContextData.Quote.Statement}}
+        {{/result}}
+</script>
+
+<script id="tmpl-booking-makebooking-statementdetail" type="text/html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="sta">Taxes</h3>
+    </div>
+    <div class="modal-body">
+        <h5>Tax Lorem Ipsum</h5>
+        <p>One fine body…</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">{{textdata.Close}}</button>
+    </div>
+</script>
+
+<script id="tmpl-booking-makebooking-renter" type="text/html">
+    <legend>1. {{textdata.Guest Information}}</legend>
+    <div class="row">
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="renterfirstname">{{textdata.First Name}}:*</label>
+            <div class="controls">
+                <input type="text" id="renterfirstname" class="bookingfield col-xs-12 required" data-field="Renter[FirstName]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="renterlastname">{{textdata.Last Name}}:*</label>
+            <div class="controls">
+                <input type="text" id="renterlastname" class="bookingfield col-xs-12 required" data-field="Renter[LastName]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="renteremail">{{textdata.Email}}:*</label>
+            <div class="controls">
+                <input type="text" id="renteremail" class="bookingfield col-xs-12 required" data-validity="email" data-field="Renter[PrimaryEmail]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="renterphone">{{textdata.Phone}}:*</label>
+            <div class="controls">
+                <input type="text" id="renterphone" class="bookingfield col-xs-12 required" data-field="Renter[HomePhone]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="renterls">{{config.leadsources.prompt}}:</label>
+            <div class="controls">
+                <!--<div class="btn-group">-->
+                <select id="renterls" class="bookingfield col-xs-12" data-field="Renter[LeadSourceID]">
+                    <option value="0">-{{config.leadsources.prompt}}-</option>
+                    {{#config.leadsources.values}}<option value="{{Data}}">{{Label}}</option>{{/config.leadsources.values}}
+                </select>
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="publicnotes">{{textdata.Special Requests}}:</label>
+            <div class="controls">
+                <input type="text" id="publicnotes" rows="3" class="bookingfield col-xs-12" data-field="PublicNotes" />
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="tmpl-booking-makebooking-creditcard" type="text/html">
+    <legend>
+        <div class="control row">
+            <span class="col-xs-8">2. {{textdata.Credit Card Information}}</span>
+            <div class="credit-icon col-xs-4">
+                {{#config.ccconfig.visa}}
+                    <span class="creditcard-visa"></span>
+                {{/config.ccconfig.visa}}
+                {{#config.ccconfig.mastercard}}
+                    <span class="creditcard-mastercard"></span>
+                {{/config.ccconfig.mastercard}}
+                {{#config.ccconfig.discover}}
+                    <span class="creditcard-discover"></span>
+                {{/config.ccconfig.discover}}
+                {{#config.ccconfig.amex}}
+                    <span class="creditcard-amex"></span>
+                {{/config.ccconfig.amex}}
+                {{#config.ccconfig.dinersclub}}
+                    <span class="creditcard-dinersclub"></span>
+                {{/config.ccconfig.dinersclub}}
+            </div>
+        </div>
+    </legend>
+    <div class="row">
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="noc">{{textdata.Name on Card}}:</label>
+            <div class="controls">
+                <input type="text" id="noc" class="bookingfield col-xs-12 required autofullname" data-field="CreditCard[NameOnCard]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="ccnum">{{textdata.Card Number}}:</label>
+            <div class="controls">
+                <input type="text" id="ccnum" class="bookingfield col-xs-12 required ccverify" data-isvalid="0" data-field="CreditCard[CardNumber]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label inline" for="ccexpr">{{textdata.Expiration}}:</label>
+            <div class="controls row">
+
+                <div class="col-xs-6">
+                    <select id="ccmonth" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryMonth]" required>
+                        <option value="">-{{textdata.Month}}-</option>
+                        {{#config.ccmonths.values}}
+                            <option value="{{Data}}">{{Label}}</option>
+                        {{/config.ccmonths.values}}
+                    </select>
+                </div>
+
+                <div class="col-xs-6">
+                    <select id="ccyear" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryYear]" required>
+                        <option value="">-{{textdata.Year}}-</option>
+                        {{#config.ccyears.values}}
+                            <option value="{{Data}}">{{Label}}</option>
+                        {{/config.ccyears.values}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="cccvv">{{textdata.Security Code}}:</label>
+            <div class="controls">
+                <input type="text" id="cccvv" class="bookingfield col-xs-12 required" data-field="CreditCard[SecurityCode]" required />
+            </div>
+        </div>
+        <hr />
+        <legend class="col-xs-12">3. {{textdata.Billing Address}}</legend>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="cccvv">{{textdata.Country}}:</label>
+            <div class="controls">
+                <input type="text" id="billingcountry" class="bookingfield col-xs-12 required bapi-country" data-field="CreditCard[Country]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="billingaddress">{{textdata.Street Line 1}}:</label>
+            <div class="controls">
+                <input type="text" id="billingaddress" class="bookingfield col-xs-12 required" data-field="CreditCard[Address]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="billingaddress2">{{textdata.Street Line 2}}:</label>
+            <div class="controls">
+                <input type="text" id="billingaddress2" class="bookingfield col-xs-12" data-field="CreditCard[Address2]" />
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="billingcity">{{textdata.City}}/{{textdata.Town}}:</label>
+            <div class="controls">
+                <input type="text" id="billingcity" class="bookingfield col-xs-12 required bapi-city" data-field="CreditCard[City]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label class="control-label inline" for="billingstate">{{textdata.State}}/{{textdata.Province}}:</label>
+                    <div class="controls">
+                        <input type="text" id="billingstate" class="col-xs-12 bookingfieldrequired bapi-state" data-field="CreditCard[State]" required />
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <label class="control-label inline">{{textdata.Postal Code}}:</label>
+                    <div class="controls">
+                        <input type="text" id="billingpostalcode" class="col-xs-12 row-fluid required bookingfield" data-field="CreditCard[PostalCode]" required />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="tmpl-booking-makebooking-accept" type="text/html">
+        {{#result}}
+            {{#ContextData.Quote.IsValid}}
+            <legend class="accept">4. {{textdata.Accept Terms and Conditions}}</legend>
+            <div class="control-group accept">
+                <p style="display:none">{{config.rentalpolicysummary}}</p>
+                <div class="row">
+                    <label class="checkbox col-xs-12">
+                        <small>
+                            <em>
+                                <input id="accepptermscbx" type="checkbox" class="required pad-x-30">{{textdata.I have read and accept the terms and conditions}}:</input>&nbsp;
+                                <a target="_blank" href="/rentalpolicy">{{textdata.Rental Policy}}</a>&nbsp;
+                                <a target="_blank" href="/termsofuse">{{textdata.Terms of Service}}</a>
+                            </em>
+                        </small>
+                    </label>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="row">
+                    <div class="btn-book-header col-xs-6">
+                        <div class="row">
+			<span class="line1 col-xs-12">
+				<a href="javascript:void(0);" class="inline-b kd-button filled secondary-fill-color makebooking col-xs-12" data-field-selector="bookingfield">{{textdata.Reserve Now}}</a>
+			</span>
+			<span class="line2 col-xs-12">
+				{{#result}}{{#ContextData.Quote.Statement.ValidUntil}}{{textdata.Quote is valid for}} <span id="quote_ValidUntil_M"></span> {{textdata.minute(s)}} <span id="quote_ValidUntil_S"></span> {{textdata.second(s)}}<br />{{/ContextData.Quote.Statement.ValidUntil}}{{/result}}
+                {{textdata.This page is secure}} - <a href="#SSL" data-toggle="collapse" data-target="#SSL">{{textdata.check here}}</a>
+			</span>
+                        </div>
+                        <div id="SSL" class="collapse"></div>
+                    </div>
+                    {{#result}}
+                        <div class="amount-bk col-xs-6">
+                            {{textdata.Amount to be charged now}}:
+                            {{#ContextData.Quote.Statement}}
+                                <span class="bold">{{TotalDueNow.CurrencySymbol}}&nbsp;{{TotalDueNow.SValue2}}</span>
+                            {{/ContextData.Quote.Statement}}
+                        </div>
+                    {{/result}}
+                </div>
+            </div>
+            {{/ContextData.Quote.IsValid}}
+            {{^ContextData.Quote.IsValid}}
+            <div class="alert alert-error">{{ContextData.Quote.ValidationMessage}}</div>
+            {{/ContextData.Quote.IsValid}}
+        {{/result}}
+</script>
+
+<script id="tmpl-booking-makepayment-verify-user" type="text/html">
+    <div class="module shadow-border">
+        <div class="row-fluid">
+            <div class="verify-user text-center">
+                <div class="col-xs-12">
+                    <h3>{{textdata.Make a Payment}}</h3>
+                    <p>{{textdata.Please verify this booking belongs to you}}</p>
+                    <div class="greybox">
+                        <div id="verifybookingid-block" class="control-group hide">
+                            <div class="controls">
+                                <input type="text" id="verifyBookingId" class="col-xs-12 required" placeholder="Booking ID" required />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="text" id="verifyLastName" class="col-xs-12 required" placeholder="{{textdata.Last Name}}" required />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="text" id="verifyEmail" class="col-xs-12 required" data-validity="email" placeholder="{{textdata.Email}}" required />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <button id="submitVerifyUser" class="btn btn-large btn-primary col-xs-12">{{textdata.Submit}}</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="tmpl-booking-makepayment-masterlayout" type="text/html">
+        {{#result}}
+        <div class="module shadow-border">
+            <div class="row-fluid">
+                <div class="booking-page bordersolid">
+                    <article class="col-xs-8 booking-form">
+                        <div class="form-horizontal pd">
+                            <div id="creditcard"></div>
+                            <hr />
+                            <div id="accept"></div>
+                        </div>
+                    </article>
+
+                    <aside class="property-info col-xs-4 pd">
+                        <div class="row">
+                            <div class="pd">
+                                <div id="stayinfo"></div>
+                                <div id="statement"></div>
+                                <div id="question-support" class="item row-fluid">
+                                    <h5 class="module"><i clas="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
+                                    <p>{{textdata.Phone}}: <span class="pull-right">{{site.phone}}</span></p>
+                                    <p>{{textdata.Email}}: <span class="pull-right">{{site.email}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        </div>
+        {{/result}}
+</script>
+
+<script id="tmpl-booking-makepayment-creditcard" type="text/html">
+    <legend>
+        <div class="control row">
+            <span class="col-xs-8">1. {{textdata.Credit Card Information}}</span>
+            <div class="credit-icon col-xs-4">
+                {{#config.ccconfig.visa}}
+                    <span class="creditcard-visa"></span>
+                {{/config.ccconfig.visa}}
+                {{#config.ccconfig.mastercard}}
+                    <span class="creditcard-mastercard"></span>
+                {{/config.ccconfig.mastercard}}
+                {{#config.ccconfig.discover}}
+                    <span class="creditcard-discover"></span>
+                {{/config.ccconfig.discover}}
+                {{#config.ccconfig.amex}}
+                    <span class="creditcard-amex"></span>
+                {{/config.ccconfig.amex}}
+                {{#config.ccconfig.dinersclub}}
+                    <span class="creditcard-dinersclub"></span>
+                {{/config.ccconfig.dinersclub}}
+            </div>
+        </div>
+    </legend>
+    <div class="control-group col-xs-6 ">
+        <label class="control-label" for="noc">{{textdata.Name on Card}}:</label>
+        <div class="controls">
+            <input type="text" id="noc" class="bookingfield col-xs-12 required autofullname" data-field="CreditCard[NameOnCard]" required />
+        </div>
+    </div>
+    <div class="control-group col-xs-6 ">
+        <label class="control-label" for="ccnum">{{textdata.Card Number}}:</label>
+        <div class="controls">
+            <input type="text" id="ccnum" class=" col-xs-6 bookingfield col-xs-12 required ccverify" data-isvalid="0" data-field="CreditCard[CardNumber]" required />
+        </div>
+    </div>
+    <div class="control-group col-xs-6 ">
+        <label class="control-label inline" for="ccexpr">{{textdata.Expiration}}:</label>
+        <div class="controls row">
+
+            <div class="col-xs-6">
+                <select id="ccmonth" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryMonth]" required>
+                    <option value="">-{{textdata.Month}}-</option>
+                    {{#config.ccmonths.values}}
+                        <option value="{{Data}}">{{Label}}</option>
+                    {{/config.ccmonths.values}}
+                </select>
+            </div>
+
+            <div class="col-xs-6">
+                <select id="ccyear" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryYear]" required>
+                    <option value="">-{{textdata.Year}}-</option>
+                    {{#config.ccyears.values}}
+                        <option value="{{Data}}">{{Label}}</option>
+                    {{/config.ccyears.values}}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="control-group col-xs-6 ">
+        <label class="control-label" for="cccvv">{{textdata.Security Code}}:</label>
+        <div class="controls">
+            <input type="text" id="cccvv" class="bookingfield col-xs-12 required" data-field="CreditCard[SecurityCode]" required />
+        </div>
+    </div>
+    <hr />
+    <legend class="col-xs-12">2. {{textdata.Billing Address}}</legend>
+    <div class="row">
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="cccvv">{{textdata.Country}}:</label>
+            <div class="controls">
+                <input type="text" id="billingcountry" class="bookingfield col-xs-12 required bapi-country" data-field="CreditCard[Country]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="billingaddress">{{textdata.Street Line 1}}:</label>
+            <div class="controls">
+                <input type="text" id="billingaddress" class="bookingfield col-xs-12 required" data-field="CreditCard[Address]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="billingaddress2">{{textdata.Street Line 2}}:</label>
+            <div class="controls">
+                <input type="text" id="billingaddress2" class="bookingfield col-xs-12" data-field="CreditCard[Address2]" />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <label class="control-label" for="billingcity">{{textdata.City}}/{{textdata.Town}}:</label>
+            <div class="controls">
+                <input type="text" id="billingcity" class="bookingfield col-xs-12 required bapi-city" data-field="CreditCard[City]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6">
+            <div class="row">
+                <div class="col-xs-6">
+                    <label class="control-label inline" for="billingstate">{{textdata.State}}/{{textdata.Province}}:</label>
+                    <div class="controls">
+                        <input type="text" id="billingstate" class="col-xs-12 bookingfieldrequired bapi-state" data-field="CreditCard[State]" required />
+                    </div>
+                </div>
+
+                <div class="col-xs-6">
+                    <label class="control-label inline">{{textdata.Postal Code}}:</label>
+                    <div class="controls">
+                        <input type="text" id="billingpostalcode" class="col-xs-12 row-fluid required bookingfield" data-field="CreditCard[PostalCode]" required />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="tmpl-booking-rentalpolicy" type="text/html">
+    <div style="padding:10px;">
+        {{{config.rentalpolicy}}}
+    </div>
+</script>
+/*
+	Group: Developments
+*/
+<script id="tmpl-developments-summary-list" type="text/html">
+<div class="development-results">
+{{#result}}
+<div class="portal-result">
+<div class="portal-inner row-fluid shadow">
+  <div class="portal-images span4">
+  {{^Images.0.MediumURL}}
+	<img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.MediumURL}}" />
+  {{/Images.0.MediumURL}}
+  {{#Images.0.MediumURL}}
+	<img alt="{{Images.0.Caption}}" src="{{&Images.0.MediumURL}}" />
+  {{/Images.0.MediumURL}}
+  </div>
+  <div class="portal-info span8">
+	  <h2 class="title">{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</h2>
+	  <div class="location"><span class="type">{{Type}}</span>{{#Region}}, {{Region}}{{/Region}}{{#State}}, {{State}}{{/State}}</div>
+	  <div class="brick-wrap">
+		<strong>{{textdata.Amenities}}:</strong> <span>{{TopAmenities}}</span>
+		<hr/>        
+		<div class="description bapi-truncate" data-trunclen="200">{{&Summary}}</div>         
+	  </div>
+	  <a class="detail-link pull-right" href="{{&ContextData.SEO.DetailURL}}">Details <span>&rarr;</span></a>                                   
+  </div>             
+</div>
+</div>
+{{/result}}
+</div>
+<div class="clearfix"></div>
+{{> partial-more-results}}
+</script>
+
+<script id="tmpl-developments-detail" type="text/html">
+{{#result}}
+<div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="development"></div>
+<section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">        
+            <div class="top-block">
+            <div class="row-fluid">
+                <div class="span12 box-sides">
+                <h2 class="title">{{Name}}</h2>                
+                </div>
+              </div>  
+            </div>
+            
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{	"animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                  <ul class="slides">
+				  {{^Images}}
+				  	<li><img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=816&h=600&q=75&zc=2" />
+					{{#PrimaryImage.Caption}}
+					<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+					{{/PrimaryImage.Caption}}
+				  {{/Images}}
+				  {{#Images}}
+                    <li><img alt="{{Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&OriginalURL}}&w=816&h=700&q=60" />
+					{{#Caption}}
+					<p class="flex-caption">{{Caption}}</p></li>
+					{{/Caption}}
+                  {{/Images}}
+                  </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                  <ul class="slides">
+				  {{^Images}}
+				  	<li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>	
+				  {{/Images}}
+                  {{#Images}}
+                    <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                  {{/Images}}
+                  </ul>
+                </div>
+            </div>
+        </div>
+</section>
+
+{{#Description}}
+<div class="row-fluid">
+<div class="span12">
+{{&Description}}
+</div>
+</div>
+{{/Description}}
+
+<h3>{{textdata.Available Properties}}</h3>
+<div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allproperties"  data-entity="property" data-searchoptions='{ "devid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
+
+<div class="bapi-moveme" data-from=".development-details" data-to=".detail-overview-target" data-method="append">
+<div class="development-details module shadow">
+<div class="pd">
+<h3>{{textdata.Details}}</h3>
+<hr/>
+<dl>
+	{{#Type}}
+    <dt>{{textdata.Category}}:</dt><dd>{{Type}}</dd>
+	{{/Type}}
+	{{#Address1}}
+	<dt>{{textdata.Address}}:</dt><dd>{{&Location}}</dd>
+	{{/Address1}}
+	<dt>{{textdata.Amenities}}:</dt>
+	<dd>
+		<ul>
+		{{#TopAmenities}}
+			<li>{{.}}</li>
+		{{/TopAmenities}}
+		</ul>
+	</dd>	
+</dl>
+</div>
+</div>
+</div>
+
+{{/result}}
+<span class="end"></span>
+</script>
+
+<script id="tmpl-developments-quickview" type="text/html">
+{{#result}}
+<div class="development-holder col-xs-12 col-sm-6 col-md-3">
+	<div class="development-image">
+	<a href="{{#ContextData.SEO.Keyword}}{{&ContextData.SEO.DetailURL}}{{/ContextData.SEO.Keyword}}">
+		<img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" />
+	</a>
+	</div>
+	<div class="development-description">
+		<a href="{{#ContextData.SEO.Keyword}}{{&ContextData.SEO.DetailURL}}{{/ContextData.SEO.Keyword}}"><h4 class="developments-title">{{Name}}</h4></a>
+	<div class="development-location"><span class="type">{{Type}}</span>{{#Region}}, {{Region}}{{/Region}}{{#State}}, {{State}}{{/State}}</div><hr/>
+	<div class="developments-sum bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+	</div>
+</div>
+{{/result}}
+</script>
+/*
+Featured Properties - QuickView
+*/
+<script id="tmpl-featuredproperties-quickview" type="text/html">
+    {{#result}}
+    <a class="swiper-slide prop" href="{{ContextData.SEO.DetailURL}}" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );">
+        <div class="info">
+            <div class="text">
+                <div class="left">
+                    <h4 class="prop-title">{{Headline}}</h4>
+                    <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
+                    <div class="prop-price">From {{MinRate.Value}}{{MinRate.Currency}}/Night</div>
+                </div>
+                <div class="prop-details secondary-fill-color">See details</div>
+            </div>
+        </div>
+    </a>
+    {{/result}}
+</script>
+/*
+	Group: Lead Request Forms
+*/
+<script id="tmpl-leadrequestform-propertyinquiry" type="text/html">
+<div id="questions-block">	
+	<div id="questions-block-inner">
+		<fieldset id="have-question" class="leadrequest">
+		<ul class="unstyled">
+		<li id="nameform">
+			<input type="text" id="txtName" class="span12 leadrequestfield required input-text" minlength="2" data-field="name" placeholder="{{textdata.Name}}*" required />
+		</li>
+		<li id="emailform">
+			<input type="text" id="txtEmail" class="span12 leadrequestfield email required input-text" size="25" data-field="email" type="email" placeholder="{{textdata.Email}}*" data-validity="email" required />
+		</li>
+		{{#InquiryFormFields.Phone}}
+		<li id="phoneform">
+			<input type="text" id="txtPhone" class="span12 leadrequestfield {{#InquiryFormFields.PhoneRequired}}required{{/InquiryFormFields.PhoneRequired}} input-text" data-field="homephone" placeholder="{{textdata.Phone}}{{#InquiryFormFields.PhoneRequired}}*{{/InquiryFormFields.PhoneRequired}}"{{#InquiryFormFields.PhoneRequired}} required{{/InquiryFormFields.PhoneRequired}} />
+		</li>
+		{{/InquiryFormFields.Phone}}
+		{{#InquiryFormFields.Dates}}
+		<li id="datesform" class="row-fluid">
+		<div class="span6">
+			<input type="text" id="txtCheckIn" class="span12 leadrequestfield required input-text" data-field="checkin" placeholder="{{textdata.Check-In}}*" required />
+		</div>
+		<div class="span6">
+			<input type="text" id="txtCheckOut" class="span12 leadrequestfield required input-text" data-field="checkout" placeholder="{{textdata.Check-Out}}*" required />	
+		</div>					
+		</li>
+		{{/InquiryFormFields.Dates}}
+		{{#InquiryFormFields.NumberOfGuests}}
+		<li id="numberGuestsform" class="row-fluid">
+		<div class="span6">
+			<input type="text" id="txtAdults" class="span12 leadrequestfield required input-text" data-field="adults" placeholder="{{textdata.Adults}}*" required />
+		</div>
+		<div class="span6">
+			<input type="text" id="txtChildren" class="span12 leadrequestfield required input-text" data-field="children" placeholder="{{textdata.Children}}*" required />	
+		</div>					
+		</li>
+		{{/InquiryFormFields.NumberOfGuests}}
+		{{#InquiryFormFields.LeadSourceDropdown}}
+		<li id="lsform">
+			<select class="span12 leadrequestfield{{#InquiryFormFields.LeadSourceRequired}} required{{/InquiryFormFields.LeadSourceRequired}}" data-field="ls" {{#InquiryFormFields.LeadSourceRequired}}required{{/InquiryFormFields.LeadSourceRequired}}>
+				<option value="">{{config.leadsources.prompt}}</option>
+				{{#config.leadsources.values}}<option value="{{Data}}">{{Label}}</option>{{/config.leadsources.values}}
+			</select>
+		</li>
+		{{/InquiryFormFields.LeadSourceDropdown}}
+		{{#InquiryFormFields.Comments}}
+		<li id="commentsform">				
+			<textarea id="txtComments" rows="2" cols="20" class="span12 leadrequestfield" data-field="msg" placeholder="{{textdata.Comments}}" ></textarea>
+		</li>
+		{{/InquiryFormFields.Comments}}
+		<li id="specialform" class="specialform">
+			<input type="text" autocomplete="off" id="txtSpecial" class="span12 leadrequestfield input-text" data-field="special" placeholder="Special" />
+		</li>
+		</ul>
+		<div class="clearfix"></div>			
+		<input type="button" id="btn-leadrequest" class="kd-button filled secondary-fill-color doleadrequest" value='{{textdata.Submit}}' data-field-selector="leadrequestfield" />
+		</fieldset>
+	</div>
+</div>
+</script> 
+{{#kdfeatured}}
+    <a class="swiper-slide prop" href="{{ContextData.SEO.DetailURL}}" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );" >
+        <div class="info">
+            <div class="text">
+                <div class="left">
+                    <h4 class="prop-title">{{Headline}}</h4>
+                    <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
+                    <div class="prop-price">From {{MinRate.Value}}{{MinRate.Currency}}/Night</div>
+                </div>
+                <div class="prop-details secondary-fill-color">See details</div>
+            </div>
+        </div>
+    </a>
+{{/kdfeatured}}
+/*
+	Group: Market Areas
+*/
+<script id="tmpl-marketarea-summary-list" type="text/html">
+<header class="row-fluid search-result-controls marketarea-controls hide">
+<div class="span7 form-horizontal">&nbsp;</div>
+<div class="span5 form-horizontal">
+<div class="control-group pull-right">
+	<label class="control-label"></label>
+	<div class="controls">
+		<div class="btn-group" data-toggle="buttons-radio">
+		<button class="btn changeview active" data-template="tmpl-marketarea-summary-list" ><i class="icon-list"></i>&nbsp;{{textdata.List}}</button>
+		<button class="btn changeview" data-template="tmpl-developments-marketarea-gallery" ><i class="icon-th-large"></i>&nbsp;{{textdata.Photo}}</button>		
+		</div>
+	</div>
+</div>
+</div>
+</header>
+<div class="marketarea-listview-page">
+{{#result}}
+<div class="portal-result">
+<div class="portal-inner row-fluid shadow">
+  <div class="portal-images span4">
+  {{^Images.0.MediumURL}}
+	<img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.MediumURL}}" />
+  {{/Images.0.MediumURL}}
+  {{#Images.0.MediumURL}}
+	<img alt="{{Images.0.Caption}}" src="{{&Images.0.MediumURL}}" />
+  {{/Images.0.MediumURL}}
+  </div>
+  <div class="portal-info span8">
+	  <h2 class="title">{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</h2>
+	  <div class="location"><span class="type">{{Type}}</span>{{#Region}}, {{Region}}{{/Region}}{{#State}}, {{State}}{{/State}}</div>
+	  <div class="brick-wrap">
+		<strong>{{textdata.Amenities}}:</strong> <span>{{TopAmenities}}</span>
+		<hr/>
+		<div class="description bapi-truncate" data-trunclen="200">{{&Summary}}</div>         
+	  </div>
+	  <a class="detail-link pull-right" href="{{&ContextData.SEO.DetailURL}}">Details <span>&rarr;</span></a>                                   
+  </div>
+</div>
+</div>
+{{/result}}
+</div>
+<div class="clearfix"></div>
+{{> partial-more-results}}
+</script>
+
+<script id="tmpl-marketarea-detail" type="text/html">
+{{#result}}
+<div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="marketarea"></div>
+<section class="row-fluid marketarea-slideshow">
+        <div class="span12 item-snapshot module shadow-border">
+            <div class="top-block">
+            <div class="row-fluid">
+                <div class="span12 box-sides">
+                <h2 class="title">{{Name}}</h2>
+                </div>
+              </div>  
+            </div>
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{	"animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                  <ul class="slides">
+				  {{^Images}}
+				  	<li><img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=816&h=600&q=75&zc=2" />
+					{{#PrimaryImage.Caption}}
+					<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+					{{/PrimaryImage.Caption}}
+				  {{/Images}}
+				  {{#Images}}
+                    <li><img alt="{{Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&OriginalURL}}&w=816&h=600&q=75&zc=2" />
+					{{#Caption}}
+					<p class="flex-caption">{{Caption}}</p></li>
+					{{/Caption}}
+                  {{/Images}}                    
+                  </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                  <ul class="slides">
+				  {{^Images}}
+				  	<li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>	
+				  {{/Images}}
+                  {{#Images}}
+                    <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                  {{/Images}}
+                  </ul>
+                </div>
+            </div>
+        </div>
+</section>
+
+{{#Description}}
+<div class="row-fluid">
+<div class="span12 outside-description bapi-dotdotdot" data-readmorelink="true" data-dotdotdotheight="100">
+{{{Description}}}
+</div>
+</div>
+{{/Description}}
+
+<h3 class="outside-title">{{textdata.Available Properties}}</h3>
+<div id="propresults" class="bapi-summary marketarea-props" data-log="0" data-templatename="tmpl-allproperties"  data-entity="property" data-ignoresession="1" data-searchoptions='{ {{#result}}{{#City}}"City":"{{&City}}",{{/City}}{{#State}}"State":"{{&State}}",{{/State}}{{#PostalCode}}"PostalCode":"{{&PostalCode}}",{{/PostalCode}}{{#Region}}"Region":"{{&Region}}",{{/Region}}{{#Country}}"Country":"{{&Country}}",{{/Country}}{{#Metro}}"Metro":"{{&Metro}}",{{/Metro}}{{#County}}"County":"{{&County}}",{{/County}}{{#Neighborhood}}"Neighborhood":"{{&Neighborhood}}",{{/Neighborhood}}{{/result}} "seo": 1, "pagesize": 10 }'></div>
+<div class="bapi-moveme" data-from=".marketarea-details" data-to=".detail-overview-target" data-method="append">
+<div class="marketarea-details module shadow">
+<div class="pd">
+<h3>{{textdata.Details}}</h3>
+<hr/>
+<dl>
+	{{#Type}}
+    <dt>{{textdata.Category}}:</dt><dd>{{Type}}</dd>
+	{{/Type}}
+	{{#Address1}}
+	<dt>{{textdata.Address}}:</dt><dd>{{&Location}}</dd>
+	{{/Address1}}
+	<dt>{{textdata.Amenities}}:</dt>
+	<dd>
+		<ul>
+		{{#TopAmenities}}
+			<li>{{.}}</li>
+		{{/TopAmenities}}
+		</ul>
+	</dd>
+</dl>
+</div>
+</div>
+</div>
+
+{{/result}}
+<span class="end"></span>
+</script>
+
+/*
+	Group: Misc Widgets
+*/
+<script id="tmpl-currencyselector" type="text/html">
+<span class="dropdown">
+	<a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">{{session.currency}}<b class="caret"></b></a>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+		{{#config.currencies}}
+		<li>{{^RegionInfo}}<a href='javascript:void(0)' class='changecurrency' data-currency='{{CurrencySymbol}}'>{{CurrencySymbol}} {{Currency}}</a>{{/RegionInfo}}{{#RegionInfo}}<a href='javascript:void(0)' class='changecurrency' data-currency='{{RegionInfo.ISOCurrencySymbol}}'>{{RegionInfo.ISOCurrencySymbol}} {{RegionInfo.CurrencyEnglishName}}</a>{{/RegionInfo}}</li>
+		{{/config.currencies}}
+	</ul>    
+</span>
+</script>
+
+/*
+	Partials section 
+*/
+<script id="partial-more-results" type="text/html">
+	{{^islastpage}}<div class="showmore"><a href='javascript:void(0)'><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</a></span></div>{{/islastpage}}
+	{{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
+</script>
+
+<script id="partial-propertysearch-more-results" type="text/html">
+	{{! If we're rendering a whishlist }}
+	{{#usemylist}}
+		{{^mylist}}
+			<div class="nomore">
+				<span class="span12 alert alert-warn">
+					{{textdata.There are no properties in your wish list}}.
+					<a href="/rentals/rentalsearch" class="alignright">
+						{{textdata.All Rentals}}
+					</a>
+				</span>
+			</div>
+		{{/mylist}}
+	{{/usemylist}}
+	
+	{{! If we're rendering a non-whishlist search }}
+	{{^usemylist}}
+		{{> partial-more-results}}
+	{{/usemylist}}
+</script>
+/*
+Group: Predefined Searches
+*/
+<script id="tmpl-searches-summary" type="text/html">
+    <header class="pagination-centered">
+
+    </header>
+    {{#result}}
+    <div class="pfrowfix span4">
+        <div class="col-xs-12 col-md-4">
+            <div class="item-result bucket-item">
+                <div class="item-inner">
+                    <a class="image" href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')"></a>
+                    <div class="">
+                        {{#ContextData.SEO.Keyword}}
+                        <a href="{{&ContextData.SEO.DetailURL}}">
+                            {{/ContextData.SEO.Keyword}}
+                            <h3 class="title">{{Name}}</h3>
+                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                        <div class="description bapi-dotdotdot" style="max-height:100px" data-trunclen="100">{{&Summary}}</div>
+                        {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="details kd-button primary-fill-color">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/result}}
+    <div class="clearfix"></div>
+    {{> partial-more-results}}
+</script>
+
+<script id="tmpl-searches-detail" type="text/html">
+    {{#result}}
+    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="searches"></div>
+    <section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">
+            <div class="top-block">
+                <div class="row-fluid">
+                    <div class="span12 box-sides">
+                        <h2 class="title">{{Name}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
+                            {{#PrimaryImage.Caption}}
+                            <p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+                        {{/PrimaryImage.Caption}}
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
+                            {{#Caption}}
+                            <p class="flex-caption">{{Caption}}</p></li>
+                        {{/Caption}}
+                        {{/Images}}
+                    </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                        {{/Images}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{#Description}}
+    <div class="row-fluid">
+        <div class="span12">
+            {{&Description}}
+        </div>
+    </div>
+    {{/Description}}
+    {{/result}}
+    <span class="end"></span>
+    {{#result}}
+    <div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allpropertiespage" data-ignoresession="1" data-entity="property" data-searchoptions='{ "searchid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
+    {{/result}}
+</script>
+
+<script id="tmpl-searches-quickview" type="text/html">
+    {{#result}}
+    <div class="bucket-container col-xs-12 {{class}}">
+        <a class="bucket" href="{{&ContextData.SEO.DetailURL}}">
+            <div class="top">
+                <div class="image" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );">
+                </div>
+                <h6 class="title">{{Name}}</h6>
+                <div class="description">
+                    {{{Description}}}
+                </div>
+                <i class="kd-icon-right_arrow"></i>
+            </div>
+        </a>
+    </div>
+    {{/result}}
+</script>
+/* Consumer Site: Property Detail - Attractions */
+<script id="tmpl-propertyattractionsgrid" type="text/html">
+<table class="rate-table">
+<thead>
+	<tr class="rate-table-trhead">
+		<th scope="col" class="rate-table-th"></th>
+		<th scope="col" class="rate-table-th">Attraction</th>
+		<th scope="col" class="rate-table-th">Category</th>
+		<th scope="col" class="rate-table-th">Distance</th>
+	</tr>
+</thead>
+<tbody>
+	<tr class="rate-table-tr">
+            <td><a onclick="alert('clicked->needs to open infowindow');" class="rate-table-td">1</a></td>
+		<td class="rate-table-td">The Awesome Corner</td>
+		<td class="rate-table-td">null</td><td class="rate-table-td">0 Feet</td>
+	</tr>
+</tbody>
+</table>
+</script>
+/*
+Group: Properties
+*/
+<script id="tmpl-propertysearch-listview" type="text/html">
+        {{#result}}
+        <div class="col-md-6">
+            <div class="property">
+                <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')"></a>
+                <div class="info">
+                    <div class="top">
+                        <div class="beds">
+                            {{#Bedrooms}}{{Bedrooms}} {{textdata.Beds}}{{/Bedrooms}} {{#Bathrooms}} /  {{Bathrooms}} {{textdata.Baths}}{{/Bathrooms}}
+                        </div>
+                        <div class="location">
+                            {{Type}}, {{{City}}}<br>
+                        </div>
+                    </div>
+                    <h5 class="title">{{Headline}}</h5>
+                    <div class="desc">{{{ContextData.SEO.PageTitle}}}</div>
+
+                    <div class="bottom">
+                        <div class="price">{{ContextData.Quote.PublicNotes}}</div>
+                        <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">See Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/result}}
+</script>
+
+
+<script id="tmpl-propertysearch-galleryview" type="text/html">
+    <header class="row-fluid search-result-controls">
+        <div class="span7 form-horizontal">&nbsp;</div>
+        <div class="span5 form-horizontal">
+            <div class="control-group pull-right">
+                <label class="control-label"></label>
+                <div class="controls">
+                    <div class="btn-group" data-toggle="buttons-radio">
+                        {{#config.searchmodes.listview}}<button class="btn changeview" data-template="tmpl-propertysearch-listview"><i class="icon-list"></i>&nbsp;{{textdata.List}}</button>{{/config.searchmodes.listview}}
+                        {{#config.searchmodes.photoview}}<button class="btn changeview active" data-template="tmpl-propertysearch-galleryview" data-rowfixselector=".gallery-view-page%20%3E%20.span6" data-rowfixcount="2"><i class="icon-th-large"></i>&nbsp;{{textdata.Photo}}</button>{{/config.searchmodes.photoview}}
+                        {{#config.searchmodes.mapview}}<button class="btn changeview" data-template="tmpl-propertysearch-mapview" data-showallresults="1"><i class="icon-map-marker"></i>&nbsp;{{textdata.Map}}</button>{{/config.searchmodes.mapview}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="gallery-view-page">
+        {{#result}}
+            <div class="span6">
+                <div class="portal-result">
+                    <div class="portal-inner">
+                        <div class="portal-images">
+                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                            <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false }'>
+                                <ul class="slides">
+                                    <li><img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&a=c&w=398&h=264&q=60" /></li>
+                                    {{#Images.1}}<li><img alt="{{Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&OriginalURL}}&a=c&w=398&h=264&q=60" /></li>{{/Images.1}}
+                                    {{#Images.2}}<li><img alt="{{Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&OriginalURL}}&a=c&w=398&h=264&q=60" /></li>{{/Images.2}}
+                                </ul>
+                            </div>
+                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                        </div>
+                        <div class="portal-info">
+                            <h2 class="property-title">{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Headline}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</h2>
+                            {{#config.hidestarsreviews}}
+                                {{#NumReviews}}
+                                    <div class="starsreviews"><div id="propstar-{{AvgReview}}"><span class="stars"></span><i class="starsvalue"></i></div></div>
+                                {{/NumReviews}}
+                            {{/config.hidestarsreviews}}
+                            <div class="location">
+                                <span class="hidden-phone"><b>{{textdata.City}}:</b> {{City}}</span> {{#Bedrooms}}| <b>{{textdata.Beds}}</b>: {{Bedrooms}} | {{/Bedrooms}}{{#Bathrooms}}<b>{{textdata.Baths}}</b>: {{Bathrooms}} | {{/Bathrooms}}{{#Sleeps}}<b>{{textdata.Sleeps}}</b>: {{Sleeps}}{{/Sleeps}}
+                            </div>
+
+                            {{^ContextData.Quote.IsValid}}
+                                {{#session.scheckin}}{{#session.scheckout}}<div class="alert alert-info no-rate">{{ContextData.Quote.ValidationMessage}}</div>{{/session.scheckout}}{{/session.scheckin}}
+                            {{/ContextData.Quote.IsValid}}
+
+                            <div class="row-fluid">
+                                <div class="span9 portal-rates">
+                                    {{#ContextData.Quote.QuoteDisplay.value}}
+                                        {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
+                                        {{ContextData.Quote.QuoteDisplay.value}}
+                                        {{#ContextData.Quote.QuoteDisplay.suffix}}<span classs="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                                    {{/ContextData.Quote.QuoteDisplay.value}}
+                                </div>
+                                <div class="span3 right-side-actions">
+                                    {{#ContextData.SEO.Keyword}}<a class="property-link" href="{{&ContextData.SEO.DetailURL}}">{{textdata.Details}} <span>&rarr;</span></a>{{/ContextData.SEO.Keyword}}
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/result}}
+    </div>
+    <div class="clearfix"></div>
+        {{> partial-propertysearch-more-results}}
+</script>
+
+<script id="tmpl-propertysearch-mapview" type="text/html">
+        {{#result}}
+        <div class="property col-md-6" data-altid='{{AltID}}'>
+            <div class="viewInMap"></div>
+            <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
+                <div class="from secondary-fill-color">
+                    <!--<div class="tag">From:</div>-->
+                    <div class="price">{{ContextData.Quote.PublicNotes}}</div>
+                </div>
+            </a>
+            <div class="info">
+                <h5 class="title">{{Headline}}</h5>
+                {{Type}}, {{{Location}}}<br>
+                {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
+                <i class="kd-icon-right_arrow"></i>
+            </div>
+        </div>
+        {{/result}}
+</script>
+
+<script id="tmpl-propertysearch-widephotoview" type="text/html">
+    <div class="widephoto-view-page">
+        {{#result}}
+            <div class="portal-result">
+                <div class="portal-inner">
+                    <div class="portal-images">
+                        {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                        <img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=810&h=540&q=85&zc=2" />
+                        {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                    </div>
+                    <div class="portal-info">
+                        <div class="row-fluid">
+                            <div class="span7 left-side">
+                                <h2 class="property-title">{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Headline}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</h2>
+                                <div class="location">
+                                    <span class="hidden-phone"><b>{{textdata.City}}:</b> {{City}}</span> {{#Bedrooms}}| <b>{{textdata.Beds}}</b>: {{Bedrooms}} | {{/Bedrooms}}{{#Bathrooms}}<b>{{textdata.Baths}}</b>: {{Bathrooms}} | {{/Bathrooms}}{{#Sleeps}}<b>{{textdata.Sleeps}}</b>: {{Sleeps}}{{/Sleeps}}
+
+                                </div>
+                            </div>
+                            <div class="span5 right-side align-right">
+                                {{^ContextData.Quote.IsValid}}
+                                    {{#session.scheckin}}{{#session.scheckout}}<div class="alert alert-info no-rate">{{ContextData.Quote.ValidationMessage}}</div>{{/session.scheckout}}{{/session.scheckin}}
+                                {{/ContextData.Quote.IsValid}}
+                                <div class="portal-rates">
+                                    {{#ContextData.Quote.QuoteDisplay.value}}
+                                        {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
+                                        {{ContextData.Quote.QuoteDisplay.value}}
+                                        {{#ContextData.Quote.QuoteDisplay.suffix}}<span classs="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                                    {{/ContextData.Quote.QuoteDisplay.value}}
+                                </div>
+                                {{#ContextData.SEO.Keyword}}<a class="property-link" href="{{&ContextData.SEO.DetailURL}}">{{textdata.Details}} <span>&rarr;</span></a>{{/ContextData.SEO.Keyword}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/result}}
+    </div>
+    <div class="clearfix"></div>
+        {{> partial-propertysearch-more-results}}
+</script>
+<script id="tmpl-properties-detail" type="text/html">
+        {{#result}}
+        <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="property" data-lat="{{Latitude}}" data-long="{{Longitude}}" data-bg="{{&PrimaryImage.OriginalURL}}" ></div>
+        <div class="hero">
+            <div id="pano"></div>
+            <div class="hero-image"  title="Property hero"></div>
+            <div class="page-width">
+                <div class="title">
+                    {{Headline}}
+                </div>
+            </div>
+        </div>
+        <div class="amenities-n-buttons nocollapse">
+            <div class="page-width">
+                <div class="amenities">
+                    <ul class="nocollapse">
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-home"></span>
+                            {{#Type}}
+                                <span class="amenity-name">{{textdata.Category}}:</span>
+                                <span class="amenity-value">{{Type}}</span>
+                            {{/Type}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-bed"></span>
+                            {{#Bedrooms}}
+                                <span class="amenity-name">{{textdata.Beds}}:</span>
+                                <span class="amenity-value">{{Bedrooms}}</span>
+                            {{/Bedrooms}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-bath-bathtub"></span>
+                            {{#Bathrooms}}
+                                <span class="amenity-name">{{textdata.Baths}}:</span>
+                                <span class="amenity-value">{{Bathrooms}}</span>
+                            {{/Bathrooms}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-parents"></span>
+                            {{#Sleeps}}
+                                <span class="amenity-name">{{textdata.Sleeps}}:</span>
+                                <span class="amenity-value">{{Sleeps}}</span>
+                            {{/Sleeps}}
+                        </li>
+                        <li>
+                            <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
+                            {{#ContextData.Quote.QuoteDisplay.value}}
+                                <span class="amenity-name">
+                            {{#ContextData.Quote.QuoteDisplay.prefix}}
+                                <span class="prefix">{{textdata.Rates}}: </span>
+                                {{ContextData.Quote.QuoteDisplay.prefix}}
+                            {{/ContextData.Quote.QuoteDisplay.prefix}}
+                                    {{ContextData.Quote.QuoteDisplay.value}}
+                        </span>
+                        <span class="amenity-value">
+                            {{#ContextData.Quote.QuoteDisplay.suffix}}
+                                <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
+                            {{/ContextData.Quote.QuoteDisplay.suffix}}
+                        </span>
+                            {{/ContextData.Quote.QuoteDisplay.value}}
+
+                            {{^ContextData.Quote.QuoteDisplay.value}}
+                                <span class="amenity-name">
+                            <span class="prefix">{{textdata.Rates}}:</span>
+                        </span>
+                        <span class="amenity-value">
+                            {{^ContextData.Quote.QuoteDisplay.suffix}}
+                                <span class="suffix">{{MinRate.Value}} {{MinRate.Currency}} / Night</span>
+                            {{/ContextData.Quote.QuoteDisplay.suffix}}
+                        </span>
+                            {{/ContextData.Quote.QuoteDisplay.value}}
+                        </li>
+                        <li id="bapi-rateblock" class="bapi-rateblock" data-templatename="tmpl-search-rateblock" data-log="1"></li>
+                    </ul>
+                </div>
+                <div class="book-enq nocollapse"></div></div></div>
+        <div class="property-description page-width nocollapse">
+            <div class="ppt-images">
+                <ul class="ppt-slides">
+                    {{#Images}}
+                        <li>
+                            <a class="simple-lightbox" data-index="{{ID}}" href="{{&OriginalURL}}" title="{{#Caption}}{{Caption}}{{/Caption}}" style="background-image: url({{&OriginalURL}});">
+                                <!--<img class="thumb-img" alt="{{#Caption}}{{Caption}}{{/Caption}}" title="{{#Caption}}{{Caption}}{{/Caption}}" src="{{&OriginalURL}}" />-->
+                            </a>
+                        </li>
+                        <li class="more transall">
+                            View more photos
+                        </li>
+                    {{/Images}}
+                </ul>
+                <div class="slider-controls nocollapse">
+                    <span class="prev-slide"></span>
+                    <span class="open-lightbox"></span>
+                    <span class="next-slide"></span>
+                </div>
+                <div class="ppt-image-caption" id="ppt-image-caption"></div>
+            </div>
+            <div class="ppt-desc">
+                {{&Description}}
+                <div class="ppt-desc-title">
+                </div>
+                <p class="ppt-desc-text">
+                </p>
+                <div class="fb-like" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+            </div>
+        </div>
+        <!-- END PROPERTY DESCRIPTION -->
+
+        <!-- PROPERTY FEATURES -->
+        <div class="property-features page-width">
+            <ul>
+                <li class="active">
+
+                    <div class="ppt-feature-title">{{textdata.Property Details}}</div>
+
+                    <ul class="amenities-list">
+                        <li>
+                            <ul class="amenity-detail-list p-details">
+                                {{#Development}}
+                                    <li class="pd-name">{{textdata.Development}}:</li>
+                                    <li class="p-detail"><span>{{Development}}</span></li>
+                                {{/Development}}
+
+
+                                {{#Type}}
+                                    <li class="pd-name">{{textdata.Category}}:</li>
+                                    <li class="p-detail"><span>{{Type}}</span></li>
+                                {{/Type}}
+
+
+                                {{#Beds}}
+                                    <li class="pd-name">{{textdata.Beds}}:</li>
+                                    <li class="p-detail"><span>{{Beds}}</span></li>
+                                {{/Beds}}
+
+
+                                {{#Baths}}
+                                    <li class="pd-name">{{textdata.Baths}}:</li>
+                                    <li class="p-detail"><span>{{Baths}}</span></li>
+                                {{/Baths}}
+
+
+                                {{#Sleeps}}
+                                    <li class="pd-name">{{textdata.Sleeps}}:</li>
+                                    <li class="p-detail"><span>{{Sleeps}}</span></li>
+                                {{/Sleeps}}
+
+
+                                {{#Stories}}
+                                    <li class="pd-name">{{textdata.Stories}}:</li>
+                                    <li class="p-detail"><span>{{Stories}}</span></li>
+                                {{/Stories}}
+
+
+                                {{#Floor}}
+                                    <li class="pd-name">{{textdata.Floor}}:</li>
+                                    <li class="p-detail"><span>{{Floor}}</span></li>
+                                {{/Floor}}
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+
+                    <div class="ppt-feature-title">{{textdata.Amenities}}</div>
+
+                    <ul class="amenities-list">
+                        {{#Amenities}}
+                            <li>
+                                <ul class="amenity-detail-list">
+                                    <li class="amenity-name">{{Key}}</li>
+                                    {{#Values}}
+                                        <li><span class="halflings ok-sign">{{Label}}</span></li>
+                                    {{/Values}}
+                                </ul>
+                            </li>
+                        {{/Amenities}}
+                    </ul>
+                </li>
+                <li class="rates-availability active">
+
+                    <div class="ppt-feature-title">{{textdata.Rates & Availability}}</div>
+                    {{#config.displayavailcalendar}}
+                        {{^HideAvailability}}
+
+                            {{^config.hideratestable}}
+                                <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": {{config.availcalendarmonths}}, "numinrow": 6 }' data-pkid="{{ID}}" data-rateselector="bapi-ratetable"></div>
+                            {{/config.hideratestable}}
+
+                            {{#config.hideratestable}}
+                                <h3>{{textdata.Availability}}</h3>
+                                <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": {{config.availcalendarmonths}}, "numinrow": 6 }' data-pkid="{{ID}}" data-rateselector="bapi-ratetable"></div>
+                            {{/config.hideratestable}}
+
+                        {{/HideAvailability}}
+                        {{#HideAvailability}}
+                            <h3>{{textdata.Rates}}</h3>
+                        {{/HideAvailability}}
+                    {{/config.displayavailcalendar}}
+                </li>
+
+            <li class="active">
+
+                <div class="ppt-feature-title">{{textdata.Attractions}}</div>
+            <div class="map-and-locations">
+                <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-refresh-selector='#tabs4' data-refresh-selector-event='shown' data-link-selector='.poi-map-item'></div>
+                <div id="map-side-bar">
+                    <table class="table poi-map-locations">
+
+                        <tbody id="map-locations">
+                        {{#ContextData.Attractions}}
+                            <tr>
+                                <td>
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category":"poi-{{ContextData.ItemIndex}}" }'>
+                                        <a class="poi-map-item mapmarker-{{ContextData.ItemIndex}}" href="#">{{ContextData.ItemIndex}}</a>
+                                        <div class="info-html">
+                                            <div class="marker-infowindow">
+                                                <span class="prop-image pull-left"><img src="{{&PrimaryImage.ThumbnailURL}}" width="100" data-src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
+                                                    <span class="prop-location pull-left">
+                                                        <span>
+                                                            {{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                                                            <b>{{Name}}</b>
+                                                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}<br/>
+                                                            {{#Type}}<b>{{textdata.Category}}:</b>{{Type}}<br/>{{/Type}}
+                                                            {{#Location}}<b>{{textdata.Address}}: </b>{{&Location}}{{/Location}}
+                                                            </span>
+                                                        </span>
+                                            </div>
+                                        </div>
+                                </td>
+                                <td colspan="2">{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
+                                <td>{{ContextData.Distance}}</td>
+                            </tr>
+                        {{/ContextData.Attractions}}
+                        </tbody>
+                    </table>
+                </div>
+
+                {{#config.hasreviews}}
+                </li><li class="active">
+
+                    <div class="ppt-feature-title">{{textdata.Reviews}}</div>
+
+
+                    <div class="row-fluid">
+                        <div class="span12 box-sides">
+
+                            {{#ContextData.Reviews}}
+                                <div class="row-fluid review clearfix">
+                                    <div class="col-xs-12">
+                                        <div class="comment col-md-10 col-xs-12 col-md-offset-1">
+                                            <div class="reviewrating-{{Rating}} ratingstars"></div>
+                                            {{&Comment}}
+                                        </div>
+                                        <div class="rating r-n-stars col-md-10 col-xs-12 col-md-offset-1"><strong class="username">{{ReviewedBy.FirstName}}&nbsp;{{ReviewedBy.LastName}}</strong> <span class="review-posted-on">{{SubmittedOn.ShortDate}}</span></div>
+                                    </div>
+                                </div>
+                                <hr/>
+                            {{/ContextData.Reviews}}
+                            {{^ ContextData.Reviews}}
+                                <div class="row-fluid review">
+                                    <div class="col-xs-12">
+                                        <div class="comment col-md-10 col-xs-12 col-md-offset-1">
+                                            No reviews yet.
+                                        </div>
+                                    </div>
+                                </div>
+                            {{/ContextData.Reviews}}
+                        </div>
+                    </div>
+
+
+                </li>
+                {{/config.hasreviews}}
+            </ul>
+        </div>
+
+        <!-- END PROPERTY FEATURES -->
+        {{/result}}
+</script>
+
+
+<script id="tmpl-search-rateblock" type="text/html">
+        {{#result}}
+        <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
+        <span class="amenity-name your-dates">
+                    YOUR DATES:
+                </span>
+        <span class="amenity-value">
+            {{^ContextData.Quote.IsValid}}
+                <div class="alert alert-error"><a href="#" class="pop-up-form-link">{{ContextData.Quote.ValidationMessage}}</a></div>
+            {{/ContextData.Quote.IsValid}}
+        </span>
+
+        <div id="book-block" class="module shadow">
+            <div class="pd">
+
+                {{#ContextData.Quote.IsValid}}
+                    <span class="amenity-value">
+                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" class="pop-up-form-link">{{textdata.Update}}</a>
+                    </span>
+                {{/ContextData.Quote.IsValid}}
+
+                <div class="pop-up-booking-form">
+
+                    <div class="booking-form">
+                        <div class="close"></div>
+                        <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
+                        <div class="row-fluid">
+
+                            <div class="span6">
+                                <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
+                            </div>
+
+                            <div class="span6">
+                                <input id="rateblockcheckout" class="span12 quicksearch datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
+                                <input style="display:none" class="quicksearch" type="text" value="" data-field="los">
+                            </div>
+
+                        </div>
+
+                        <div class="row-fluid">
+
+                            <div class="span6">
+                                <input class="span12 quicksearch adultsfield" type="text" placeholder="{{textdata.Adults}}" value={{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}} data-field="adults[min]" required>
+                            </div>
+
+                            <div class="span6">
+                                <input class="span12 quicksearch childrenfield" type="text" placeholder="{{textdata.Children}}" value={{#session.searchparams.children.min}}
+                                    {{session.searchparams.children.min}}
+                                {{/session.searchparams.children.min}}
+                                    {{^session.searchparams.children.min}}0
+                                    {{/session.searchparams.children.min}} data-field="children[min]" required>
+                            </div>
+
+                        </div>
+
+                        <button class="btn btn-mini bapi-getquote" type="button">{{textdata.Submit}}</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-box">
+            {{#ContextData.Quote.IsValid}}
+                {{#IsBookable}}
+                    <button class="kd-button filled book-now-button primary-fill-color bapi-booknow" type="button">{{textdata.Book Now}}</button>
+                {{/IsBookable}}
+
+                {{^IsBookable}}
+                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
+                {{/IsBookable}}
+            {{/ContextData.Quote.IsValid}}
+        </div>
+        {{/result}}
+</script>
+
+/*
+Group: Searching
+*/
+<script id="tmpl-search-homepage" type="text/html">
+        <div class="property-search-block kd-widget kd-search clearfix">
+            <input type="text" class="quicksearch" style="display:none" data-field="sort" value="{{config.sort}}" />
+            <input type="text" class="quicksearch" style="display:none" data-field="sortdesc" value="{{config.sortdesc}}" />
+            <input type="text" class="quicksearch" style="display:none" data-field="restrictavail" value="{{#config.restrictavail}}1{{/config.restrictavail}}{{^config.restrictavail}}0{{/config.restrictavail}}" />
+
+            {{#config.location.enabled}}
+                {{#config.location.autocomplete}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                        <input type="text" class="span12 property-search-input quicksearch sessionlocation bapi-malocationsearch" data-field="location" placeholder="{{config.location.prompt}}" />
+                    </div>
+                {{/config.location.autocomplete}}
+                {{^config.location.autocomplete}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                        <select class="span12 property-search-input quicksearch sessionlocation" data-field="location">
+                            <option value="">{{config.location.prompt}}</option>
+                            {{#config.location.hierarchicalValues}}
+                                <option value="{{Data}}" class="level1">{{Label}}&nbsp;({{PropertyCount}})</option>
+                                {{#Children}}
+                                    <option value="{{Data}}" class="level2">&nbsp;&nbsp;{{Label}}&nbsp;({{PropertyCount}})</option>
+                                    {{#Children}}
+                                        <option value="{{Data}}" class="level3">&nbsp;&nbsp;--&nbsp;{{Label}}&nbsp;({{PropertyCount}})</option>
+                                        {{#Children}}
+                                            <option value="{{Data}}" class="level4">&nbsp;&nbsp;&nbsp;--&nbsp;{{Label}}&nbsp;({{PropertyCount}})</option>
+                                        {{/Children}}
+                                    {{/Children}}
+                                {{/Children}}
+                            {{/config.location.hierarchicalValues}}
+                        </select>
+                    </div>
+                {{/config.location.autocomplete}}
+            {{/config.location.enabled}}
+
+            {{#config.checkin.enabled}}
+                <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkin">
+                    <input id="searchcheckin" type="text" class="span12 txtb quicksearch sessioncheckin datepickercheckin" data-field="scheckin" placeholder="{{textdata.Check-In}}" />
+                </div>
+            {{/config.checkin.enabled}}
+            {{#config.checkin.enabled}}
+                {{#config.checkout.enabled}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkout">
+                        <input id="searchcheckout" type="text" class="span12 txtb quicksearch sessioncheckout datepickercheckout" data-field="scheckout" value="{{session.searchparams.scheckout}}" placeholder="{{textdata.Check-Out}}" />
+                    </div>
+                {{/config.checkout.enabled}}
+                {{#config.los.enabled}}
+                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="los">
+                        <select class="span12 property-search-input quicksearch sessionlos" data-field="los">
+                            <option value="">{{config.los.prompt}}</option>
+                            {{#config.los.values}}<option value="{{Data}}">{{Label}}</option>{{/config.los.values}}
+                        </select>
+                    </div>
+                {{/config.los.enabled}}
+            {{/config.checkin.enabled}}
+
+            {{#config.city.enabled}}
+            {{#config.city.autocomplete}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                <input type="text" class="span12 property-search-input quicksearch sessionlocation bapi-locationsearch" data-field="location" placeholder="{{config.location.prompt}}" />
+            </div>
+            {{/config.city.autocomplete}}
+            {{^config.city.autocomplete}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="location">
+                <select class="span12 property-search-input quicksearch sessionlocation" data-field="location">
+                    <option value="">{{config.city.prompt}}</option>
+                    {{#config.city.values}}<option value="{{Data}}">{{Label}}</option>{{/config.city.values}}
+                </select>
+            </div>
+            {{/config.city.autocomplete}}
+            {{/config.city.enabled}}
+            {{#config.amenity.enabled}}
+            <div class="category-block amenitiesBlock kd-icon col-xs-12 col-sm-12 col-md-2" >
+                <div id="amenitiesDropdownCheckbox"></div>
+            </div>
+            {{/config.amenity.enabled}}
+            {{#config.adults.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="adults">
+                <select class="span12 property-search-input quicksearch sessionadultsmin" data-field="adults[min]">
+                    <option value="">{{config.adults.prompt}}</option>
+                    {{#config.adults.values}}<option value="{{Data}}">{{Label}}</option>{{/config.adults.values}}
+                </select>
+            </div>
+            {{/config.adults.enabled}}
+            {{#config.children.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="children">
+                <select class="span12 property-search-input quicksearch sessionchildrenmin" data-field="children[min]">
+                    <option value="">{{config.children.prompt}}</option>
+                    {{#config.children.values}}<option value="{{Data}}">{{Label}}</option>{{/config.children.values}}
+                </select>
+            </div>
+            {{/config.children.enabled}}
+            {{#config.category.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="category">
+                <select class="span12 property-search-input quicksearch sessioncategory" data-field="category">
+                    <option value="">{{config.category.prompt}}</option>
+                    {{#config.category.values}}<option value="{{Data}}">{{Label}}</option>{{/config.category.values}}
+                </select>
+            </div>
+            {{/config.category.enabled}}
+            {{#config.dev.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="dev">
+                <select class="span12 property-search-input quicksearch sessiondevid" data-field="dev">
+                    <option value="">{{config.dev.prompt}}</option>
+                    {{#config.dev.values}}<option value="{{Data}}">{{Label}}</option>{{/config.dev.values}}
+                </select>
+            </div>
+            {{/config.dev.enabled}}
+            {{#config.sleeps.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="sleeps">
+                <select class="span12 property-search-input quicksearch sessionsleepsexactly" data-field="sleeps[exactly]">
+                    <option value="">{{config.sleeps.prompt}}</option>
+                    {{#config.sleeps.values}}<option value="{{Data}}">{{Label}}</option>{{/config.sleeps.values}}
+                </select>
+            </div>
+            {{/config.sleeps.enabled}}
+            {{#config.minsleeps.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="sleeps">
+                <select class="span12 property-search-input quicksearch sessionsleepsmin" data-field="sleeps[min]">
+                    <option value="">{{config.sleeps.minprompt}}</option>
+                    {{#config.sleeps.minvalues}}<option value="{{Data}}">{{Label}}</option>{{/config.sleeps.minvalues}}
+                </select>
+            </div>
+            {{/config.minsleeps.enabled}}
+            {{#config.beds.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="beds">
+                <select class="span12 property-search-input quicksearch sessionbedsexactly" data-field="beds[exactly]">
+                    <option value="">{{config.beds.prompt}}</option>
+                    {{#config.beds.values}}<option value="{{Data}}">{{Label}}</option>{{/config.beds.values}}
+                </select>
+            </div>
+            {{/config.beds.enabled}}
+            {{#config.minbeds.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="beds">
+                <select class="span12 property-search-input quicksearch sessionbedsmin" data-field="beds[min]">
+                    <option value="">{{config.beds.minprompt}}</option>
+                    {{#config.beds.minvalues}}<option value="{{Data}}">{{Label}}</option>{{/config.beds.minvalues}}
+                </select>
+            </div>
+            {{/config.minbeds.enabled}}
+            {{#config.baths.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="baths">
+                <select class="span12 property-search-input quicksearch sessionbathsmin" data-field="baths[min]">
+                    <option value="">{{config.baths.prompt}}</option>
+                    {{#config.baths.values}}<option value="{{Data}}">{{Label}}</option>{{/config.baths.values}}
+                </select>
+            </div>
+            {{/config.baths.enabled}}
+            {{#config.rate.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="maxrate">
+                <select class="span12 property-search-input quicksearch sessionmaxratemax" data-field="maxrate[max]">
+                    <option value="">{{config.rate.prompt}}</option>
+                    {{#config.rate.values}}<option value="{{Data}}">{{Label}}</option>{{/config.rate.values}}
+                </select>
+            </div>
+            {{/config.rate.enabled}}
+            {{#config.rooms.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="rooms">
+                <select class="span12 property-search-input quicksearch sessionroomsmin" data-field="rooms[min]">
+                    <option value="">{{config.rooms.prompt}}</option>
+                    {{#config.rooms.values}}<option value="{{Data}}">{{Label}}</option>{{/config.rooms.values}}
+                </select>
+            </div>
+            {{/config.rooms.enabled}}
+            {{#config.headline.enabled}}
+            <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2"  data-field="headline">
+                <input type="text" class="span12 property-search-input quicksearch sessionheadline" data-field="headline" placeholder="{{config.headline.prompt}}" />
+            </div>
+            {{/config.headline.enabled}}
+            {{#config.altid.enabled}}
+            <div class="category-block  kd-icon col-xs-12 col-sm-12 col-md-2" data-field="altid" >
+                <input type="text" class="span12 txtb quicksearch sessinoaltid" />
+            </div>
+            {{/config.altid.enabled}}
+
+            <div class="property-search-button-block search-button-block col-xs-12 col-sm-12 col-md-2">
+                <div class="more">More</div>
+                <a class="search quicksearch-dosearch btn primary-fill-color" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Search}}</a>&nbsp;
+                <!--<a class="quicksearch-doclear"  data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Clear}}</a>&nbsp;-->
+                <!--<button type="reset">{{textdata.Clear}}</button>&nbsp;-->
+                <!--<a class="quicksearch-doadvanced" style="display:none" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Advanced}}</a>&nbsp;-->
+            </div>
+        </div>
+</script>
+
+<!--{{#config.checkout.enabled}}-->
+<!--<div class="category-block">-->
+<!--<input type="text" class="span12 txtb quicksearch sessioncheckout datepickercheckout" data-field="scheckout" />-->
+<!--</div>-->
+<!--{{/config.checkout.enabled}}-->
+<!--{{#config.los.enabled}}-->
+<!--<div class="category-block">-->
+<!--<select class="span12 property-search-input quicksearch sessionlos" data-field="los">-->
+<!--<option value="">-{{config.los.prompt}}-</option>-->
+<!--{{#config.los.values}}<option value="{{Data}}">{{Label}}</option>{{/config.los.values}}-->
+<!--</select>-->
+<!--</div>-->
+<!--{{/config.los.enabled}}-->
+
+/*
+Group: Specials
+*/
+<script id="tmpl-specials-summary" type="text/html">
+    {{#result}}
+    <div class="col-xs-12 col-md-4">
+        <div class="special-item  item-result">
+            <div class="item-inner">
+                <a class="image" href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.MediumURL}}')"></a>
+                <div class="item-info shadow">
+                    {{#ContextData.SEO.Keyword}}
+                    <a href="{{&ContextData.SEO.DetailURL}}">
+                        {{/ContextData.SEO.Keyword}}
+                        <h3 class="title">{{Name}}</h3>
+                        {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                    <div class="description">{{&Summary}}</div>
+                    {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="details primary-fill-color">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/result}}
+    <div class="clearfix"></div>
+        {{> partial-more-results}}
+</script>
+
+<script id="tmpl-specials-detail" type="text/html">
+    {{#result}}
+    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="specials"></div>
+    <section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">
+            <div class="top-block">
+                <div class="row-fluid">
+                    <div class="span12 box-sides">
+                        <h2 class="title">{{Name}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li style="background-image: url('{{&PrimaryImage.OriginalURL}}')">
+                            {{#PrimaryImage.Caption}}
+                            <p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+                        {{/PrimaryImage.Caption}}
+                        {{/Images}}
+                        {{#Images}}
+                        <li style="background-image: url('{{&PrimaryImage.OriginalURL}}')">
+                            {{#Caption}}
+                            <p class="flex-caption">{{Caption}}</p></li>
+                        {{/Caption}}
+                        {{/Images}}
+                    </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                        {{/Images}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div data-move=".detail-overview-target" class="specials-contact-details module shadow">
+        <div class="pd">
+            <h3><span class="glyphicons glyphicons-notes-2"></span>{{textdata.Details}}</h3>
+            <hr>
+            <dl>
+                {{#EffectiveDate.LongDate}}<dt>{{textdata.Effective Date}}</dt><dd>{{EffectiveDate.LongDate}}
+                <br/> {{ExpirationDate.LongDate}}</dd>{{/EffectiveDate.LongDate}}
+                <br/>
+                {{#CouponCode}}<dt>{{textdata.Coupon Code}}</dt><dd>{{CouponCode}}</dd>{{/CouponCode}}
+            </dl>
+            <div style="display:none">
+                <h5>Select your desired travel dates:</h5>
+                <div class="row-fluid travel-dates">
+                    <div class="span6">
+                        <input type="text" placeholder="{{textdata.Check-In}}" class="span12">
+                    </div>
+                    <div class="span6">
+                        <input type="text" placeholder="{{textdata.Check-Out}}" class="span12">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <button class="btn btn-success btn-block" type="button">Activate this Special</button>
+                <hr/>
+            </div>
+            <dl>
+                {{#Description}}<dt>{{textdata.Description}}</dt><dd>{{&Description}}</dd>{{/Description}}
+            </dl>
+            <hr>
+        </div>
+    </div>
+
+    <h3>{{textdata.Applies To}}</h3>
+    <div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allproperties"  data-entity="property" data-searchoptions='{ "specialid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
+    {{/result}}
+    <span class="end"></span>
+
+</script>
+
+<script id="tmpl-specials-quickview" type="text/html">
+    {{#result}}
+        <a class="special col-xs-12 {{class}}" href="{{&ContextData.SEO.DetailURL}}">
+            <div class="image" style="background-image: url('{{PrimaryImage.ThumbnailURL}}');">
+                <div class="description">
+                    <h4 class="title">{{Name}}</h4>
+                    <div class="sum">{{&Summary}}</div>
+                    <div class="sum">{{what}}</div>
+                </div>
+            </div>
+        </a>
+    {{/result}}
+</script> 
+/*
+TEST - QuickView
+*/
+<script id="tmpl-featuredproperties-similar" type="text/html">
+    {{#result}}
+    <a class="prop similar-prop col-xs-12 col-sm-6  col-lg-3" href="{{ContextData.SEO.DetailURL}}" >
+        <img src="{{&PrimaryImage.ThumbnailURL}}">
+        <div class="text nocollapse">
+            <h4 class="prop-title">{{Headline}}</h4>
+            <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
+            <div class="prop-price">From <span>{{MinRate.Value}}{{MinRate.Currency}}/Night</span></div>
+        </div>
+        <div class="prop-details">See details</div>
+    </a>
+    {{/result}}
+</script>
+
+/* Control Panel: Tape Chart Booking Detail */
+<script id="tmpl-cp-tapechart-bookingdetail" type="text/html">
+<div>
+<div class="dl-2col">
+<dl>
+    <dt>Booking ID:</dt>
+    <dd>{{BookingID}}</dd>
+</dl>
+<div class="clear"></div>
+<dl>
+    <dt>{{textdata.Type}}:</dt>
+    <dd>{{Type}}</dd>
+</dl>
+<dl>
+    <dt>Status:</dt>
+    <dd>{{Status}}</dd>
+</dl>
+<dl>
+    <dt>Check-in:</dt>
+    <dd>{{CheckInDisplay}}</dd>
+</dl>
+<dl>
+    <dt>Check-out:</dt>
+    <dd>{{CheckOutDisplay}}</dd>
+</dl>
+<dl>
+    <dt>#Nights:</dt>
+    <dd>{{LOS}}</dd>
+</dl>
+<dl>
+    <dt>Unit Booked:</dt>
+    <dd>{{PropertyHeadline}}</dd>
+</dl>
+<div class="clear2"></div>
+
+<h5>{{textdata.Renter}}</h5>
+<dl>
+    <dt>{{textdata.Name}}:</dt>
+    <dd>{{RenterName}}</dd>
+</dl>
+<div class="clear"></div>
+<dl>
+    <dt>{{textdata.Phone}}:</dt>
+    <dd>{{Phone}}</dd>
+</dl>
+<dl>
+    <dt>Email:</dt>
+    <dd>{{Email}}</dd>
+</dl>
+<div class="clea2"></div>
+
+<h5>{{textdata.Statement}}</h5>
+<dl>
+    <dt>Total Stay:</dt>
+    <dd>{{Amount}}</dd>
+</dl>
+<div class="clear"></div>
+<dl>
+    <dt>Total Due:</dt>
+    <dd></dd>
+</dl>
+<dl>
+    <dt>Due On:</dt>
+    <dd>{{DueOn}}</dd>
+</dl>
+</div>
+</div>
+</script>
+
+<script id="tmpl-booking-makepayment-statement" type="text/html">
+<hr />
+{{#result}}
+{{#Statement}}
+<div id="charges" class="item row-fluid">
+<h5>{{textdata.Charges}}<span class="glyphicons circle_question_mark"><a href="#statement-details" data-toggle="modal"><i></i></a></span></h5>
+<p>
+	{{textdata.Rent}}<span class="pull-right">{{ServicesTotal.CurrencySymbol}}{{ServicesTotal.SValue2}}</span>
+	<span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+</p>
+<p>
+	{{textdata.Taxes & Fees}}<span class="pull-right">{{TaxesAndFeesTotal.CurrencySymbol}}{{TaxesAndFeesTotal.SValue2}}</span>
+	<span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+</p>
+{{#DepositsTotal.Value}}
+<p>
+	{{textdata.Refundable Security Deposit}}<span class="pull-right">{{DepositsTotal.CurrencySymbol}}{{DepositsTotal.SValue2}}</span>
+	<span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+</p>
+{{/DepositsTotal.Value}}
+
+{{#OptionalFees.length}}
+<hr />
+<div id="ofees" class="item row-fluid">
+<h5>{{textdata.Optional Fees & Services}}</h5>
+{{/OptionalFees.length}}
+{{#OptionalFees}}
+	<p>{{{Notes}}}
+	<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span>
+	</p>
+{{/OptionalFees}}
+{{#OptionalFees.length}}
+</div>
+{{/OptionalFees.length}}
+{{#Discounts.length}}
+<div id="discount" class="item row-fluid">
+<hr />
+{{/Discounts.length}}
+{{#Discounts}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Discounts}}
+{{#Discounts.length}}
+</div>
+{{/Discounts.length}}
+</div>
+<div id="msgs" class="item row-fluid">
+	<div class="msg-yellow">
+	  <p><i class="halflings-icon star"></i> <strong>{{textdata.Total}}</strong><span class="pull-right"><strong>{{TotalDueNow.CurrencySymbol}} {{Total2.SValue2}}</strong></span></p>
+	  {{#DiscountsTotal.Value}}<p><strong>You saved<span class="pull-right">{{DiscountsTotal.CurrencySymbol}}{{DiscountsTotal.SValue2}}{{/DiscountsTotal.Value}}</strong></span></p>
+	    <p><strong>{{textdata.Amount Paid}}:</strong><span class="pull-right">{{AmountPaid.CurrencySymbol}} {{AmountPaid.SValue2}}</span></p>	
+	<p><strong>{{textdata.Amount Due Now}}:</strong><span class="pull-right">{{AmountPaid.CurrencySymbol}} {{TotalDueNow.SValue2}}</span></p>	  
+	 </div>
+	{{#PaymentTerms}}
+	<div class="msg-gray msg-center"><p class="text-center">{{&ContextData.Quote.PaymentTerms}}</p></div>
+	{{/PaymentTerms}}
+</div>
+
+<div id="statement-details" class="modal hide fade" role="dialog" aria-hidden="true">
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3>{{textdata.Charges}}</h3>
+</div>
+<div class="modal-body">
+{{#Services.length}}
+<div id="charges" class="item row-fluid">
+<h5>{{textdata.Rent}}</h5>
+{{/Services.length}}
+{{#Services}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Services}}
+{{#Services.length}}
+</div>
+{{/Services.length}}
+<hr />
+
+{{#Fees.length}}
+<div id="fees" class="item row-fluid">
+<h5>{{textdata.Fees}}</h5>
+{{/Fees.length}}
+{{#Fees}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Fees}}
+{{#Fees.length}}
+</div>
+{{/Fees.length}}
+{{#Taxes.length}}
+<hr />
+<div id="taxes" class="item row-fluid">
+<h5>{{textdata.Taxes}}</h5>
+{{/Taxes.length}}
+{{#Taxes}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Taxes}}
+{{#Taxes.length}}
+</div>
+{{/Taxes.length}}
+{{#OptionalFees.length}}
+<hr />
+<div id="ofees" class="item row-fluid">
+<h5>{{textdata.Optional Fees & Services}}</h5>
+{{/OptionalFees.length}}
+{{#OptionalFees}}<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>{{/OptionalFees}}
+{{#OptionalFees.length}}
+</div>
+{{/OptionalFees.length}}
+{{#Discounts.length}}
+<hr />
+<div id="discounts" class="item row-fluid">
+<h5>{{textdata.Discounts}}</h5>
+{{/Discounts.length}}
+{{#Discounts}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Discounts}}
+{{#Discounts.length}}
+</div>
+{{/Discounts.length}}
+</div>
+</div>
+</div>
+{{/Statement}}
+{{/result}}
+</script>
+
+<script id="tmpl-booking-makepayment-stayinfo" type="text/html">
+{{#result}}
+<span class="glyphicons module notes_2"><i></i>{{textdata.Booking Details}}</span>
+<div id="details" class="item row-fluid">  
+		<span style='display:none'>
+			<input class="span12" type="text"  value="{{SCheckIn}}" data-field="scheckin">
+			<input class="span12" type="text" value="{{SCheckOut}}" data-field="scheckout">	  
+		</span>
+		</div>            
+	<p><span class="glyphicons calendar"><i></i>{{textdata.Check-In}}</span> <span class="pull-right">{{SCheckIn}}</span></p>
+	<p><span class="glyphicons calendar"><i></i>{{textdata.Check-Out}}</span> <span class="pull-right">{{SCheckOut}}</span></p>
+	<p><span class="glyphicons group"><i></i>{{textdata.Adults}}</span><span class="pull-right">{{NumAdults}}</span></p>
+	<p><span class="glyphicons group"><i></i>{{textdata.Children}}</span><span class="pull-right">{{NumChildren}}</span></p>
+</div>
+{{/result}}
+</script>
+
+<script id="tmpl-booking-makepayment-pay" type="text/html">
+{{#result}}
+<legend>3. {{textdata.Accept Terms and Conditions}}</legend>
+<div class="control-group">
+	<p style="display:none">{{config.rentalpolicysummary}}</p>
+	<div class="controls-rows">
+		<label class="checkbox span6">	
+			<small>
+			<em>
+				<input type="checkbox" class="required checkbox">{{textdata.I have read and accept the terms and conditions}}:</input>&nbsp;
+				<a target="_blank" href="/rentalpolicy">{{textdata.Rental Policy}}</a>&nbsp;
+				<a target="_blank" href="/termsofuse">{{textdata.Terms of Service}}</a>
+			</em>
+			</small>		
+		</label>
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls-rows">
+		<div class="btn-book-header span6">
+			<span class="line1">
+				<a href="javascript:void(0);" class="btn btn-large btn-primary span12 makepayment" data-field-selector="bookingfield">{{textdata.Pay Now}}</a>
+			</span>
+		</div>
+		{{#result}}
+		<div class="amount-bk span4">
+			<h5>{{textdata.Amount to Pay Now}}:</h5>
+			{{#Statement}}
+			<h3 style='white-space:nowrap' >{{Statement.AmountPaid.CurrencySymbol}}&nbsp;<input id="txtAmountToCharge1" type="text" class="row-fluid bookingfield span4" value="{{sTotalDueNow.Integer}}"/>.<input id="txtAmountToCharge2" type="text" class="row-fluid bookingfield span3" value="{{sTotalDueNow.Decimal}}"/></h3>
+			{{/Statement}}
+		</div>
+		{{/result}}
+	</div>
+</div>
+{{/result}}
+</script>

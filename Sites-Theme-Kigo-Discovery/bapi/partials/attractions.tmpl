@@ -1,0 +1,223 @@
+/*
+Group: Attractions
+*/
+<script id="tmpl-attractions-summary-list" type="text/html">
+    <div class="page-width page-attractions-summary">
+        <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-link-selector='.poi-map-item' style="width:100%; height:350px; float:left;"></div>
+        <div class="clearfix"></div>
+        <section class="row-fluid search-result-controls attraction-result-controls">
+            <div class="span6 form-horizontal">
+                <div class="control-group control-group-attraction">
+                    {{#config.haspoitypefilter.enabled}}
+                    <label class="control-label" for="poitypefilter-dpd">{{textdata.Filter by}}:</label>
+                    <div class="controls">
+                        <select id="poitypefilter-dpd">
+                            <option value="">- {{textdata.Select}} -</option>
+                            {{#config.haspoitypefilter.values}}
+                            <option value="{{ID}}">{{Name}}</option>
+                            {{/config.haspoitypefilter.values}}
+                        </select>
+                    </div>
+                    {{/config.haspoitypefilter.enabled}}
+                </div>
+            </div>
+            <div class="span6">
+                <p class="showing"></p>
+            </div>
+        </section>
+        <div id="map-locations">
+            {{#result}}
+            <div class="col-xs-12 col-sm-4">
+                <div class="item-result">
+                    <div class="item-inner">
+                        <div class="item-images" style="background-image: url({{&PrimaryImage.ThumbnailURL}});">
+                            <div class="poi-map-location" data-id="{{ContextData.ItemIndex}}" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
+                                <a href="#" class="poi-map-item"><div class="number-tag">{{&ContextData.ItemIndex}}</div></a>
+                                <div class="info-html">
+                                    <div class="marker-infowindow">
+                                        <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
+                                        <span class="prop-location pull-left">
+                                            <span>
+                                                {{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                                                <b>{{Name}}</b>
+                                                {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}<br/>
+                                                <b>{{textdata.Category}}:</b>{{Type}}<br/>
+                                                <b>{{textdata.Address}}: </b>{{&Location}}
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-info shadow">
+                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                            <h2 class="title">{{Name}}</h2>
+                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                            <div class="description bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="btn kd-button primary-fill-color attraction-detail-link">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/result}}
+            {{#site.office.ShowOnMap}}
+            <div class="poi-map-location hide" data-id="{{site.solutionid}}" data-jmapping='{ "id": {{site.solutionid}}, "point": { "lng": {{site.office.Longitude}}, "lat": {{site.office.Latitude}} }, "category": "pinOffice}"}'>
+                <a href="#" class="poi-map-item">{{site.solutionnameinformal}}</a>
+                <div class="info-html">
+                    <div class="marker-infowindow">
+                        <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&site.logo}}" alt="{{site.tagline}}"></span>
+                        <span class="prop-location pull-left">
+                            <span>
+                                <a target="_blank" href="mailto:{{&site.email}}">
+                                    <b>{{site.solutionnameinformal}}</b></a><br/>
+                                <b>{{textdata.Address}}: </b>{{&site.office.Address1}}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {{/site.office.ShowOnMap}}
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    {{> partial-more-results}}
+</script>
+
+<script id="tmpl-attractions-detail" type="text/html">
+    {{#result}}
+    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="poi"></div>
+    <section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">
+            <div class="top-block">
+                <div class="row-fluid">
+                    <div class="span12 box-sides">
+                        <h2 class="title">{{Name}}</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
+                            {{#PrimaryImage.Caption}}<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>{{/PrimaryImage.Caption}}
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
+                            {{#Caption}}<p class="flex-caption">{{Caption}}</p></li>{{/Caption}}
+                        {{/Images}}
+                    </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li class="primary"><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                        {{/Images}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="row-fluid item-info module shadow-border">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1" data-toggle="tab">{{textdata.Location}}</a></li>
+                    <li><a href="#tab2" data-toggle="tab">{{textdata.Description}}</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1">
+                        <div class="row-fluid wrap-boxes">
+                            <div class="span6 box-left">
+                                <h3>{{textdata.Nearby Rentals}}</h3>
+                                <div id="map-locations">
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}}}, "category": "mainPoi"}'>
+                                        - &nbsp;<a href="#" class="poi-map-item">{{Name}}</a>
+                                        <div class="info-html">
+                                            <div class="gmap-poi">
+                                                <div class="gmap-img">
+                                                    <img src='{{&PrimaryImage.ThumbnailURL}}' alt='{{PrimaryImage.Caption}}' title='{{PrimaryImage.Caption}}' width="195"/>
+                                                </div>
+                                                <div class="gmap-text">
+                                                    <p><b>{{Name}}</b></p>
+                                                    <div class="summary bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{#ContextData.NearbyProperties}}
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}}}, "category": "poi-{{ContextData.ItemIndex}}"}'>
+                                        {{ContextData.ItemIndex}}&nbsp;-&nbsp;<a href="#" class="poi-map-item">{{Headline}}</a> - {{ContextData.Distance}}
+                                        <div class="info-html">
+                                            <div class="gmap-property">
+                                                <div class="gmap-img">
+                                                    {{#ContextData.SEO.DetailURL}}
+                                                    <a href="{{ContextData.SEO.DetailURL}}">
+                                                        {{/ContextData.SEO.DetailURL}}
+                                                        <img src='{{&PrimaryImage.ThumbnailURL}}' alt='{{PrimaryImage.Caption}}' title='{{PrimaryImage.Caption}}' />
+                                                        {{#ContextData.SEO.DetailURL}}
+                                                    </a>
+                                                    {{/ContextData.SEO.DetailURL}}
+                                                </div>
+                                                <div class="gmap-text">
+                                                    <p>{{#ContextData.SEO.DetailURL}}<a href="{{ContextData.SEO.DetailURL}}">{{/ContextData.SEO.DetailURL}}<b>{{Headline}}</b>{{#ContextData.SEO.DetailURL}}</a>{{/ContextData.SEO.DetailURL}}</p>
+
+                                                    <div class="summary bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/ContextData.NearbyProperties}}
+                                </div>
+                            </div>
+                            <div class="span6 box-right">
+                                <h3>{{textdata.Map}}</h3>
+                                <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-link-selector='.poi-map-item' style="width:100%; height:350px; float:left;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="row-fluid">
+                            <div class="span12 box-sides">
+                                {{&Description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <div data-move=".detail-overview-target" class="poi-contact-details module shadow">
+        <div class="pd">
+            <h3><span class="glyphicons glyphicons-notes-2"></span>{{textdata.Details}}</h3>
+            <hr/>
+            <div class="details-list">
+                {{#Type}}
+                <div><span>{{textdata.Category}}:</span><span>{{Type}}</span></div>
+                {{/Type}}
+                {{#Location}}
+                <div><span>{{textdata.Address}}:</span><span>{{&Location}}</span></div>
+                {{/Location}}
+                {{#Phone1}}
+                <div><span>{{textdata.Phone}}:</span><span>{{Phone1}}</span></div>
+                {{/Phone1}}
+                {{#Email}}
+                <div><span>{{textdata.Email}}:</span><span>{{Email}}</span></div>
+                {{/Email}}
+                {{#Website}}
+                <div><span>{{textdata.Web Address}}:</span><span><a href="{{&Website}}" target="_blank">{{Website}}</a></span></div>
+                {{/Website}}
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    {{/result}}
+    <span class="end"></span>
+</script> 

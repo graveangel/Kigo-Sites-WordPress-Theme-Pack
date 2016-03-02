@@ -1,0 +1,18 @@
+$footer-height: 75px;
+$footer-background: transparent;
+
+footer.footer {
+  background: $footer-background;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.footer-background{
+    clear: both;
+}
+.development-holder {
+    text-align: center;
+}
+
+/* Sticky footer ---------------------------------*/
+//@include sticky-footer($footer-height, '.global-wrapper','.footer-push', 'footer.footer');

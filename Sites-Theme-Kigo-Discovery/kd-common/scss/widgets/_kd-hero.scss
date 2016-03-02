@@ -1,0 +1,131 @@
+$kd-hero-desktop-height: 570px;
+
+.kd-hero{
+  position: relative;
+  display: block;
+  height: 100vh;
+  margin-top: 15px;
+
+  .slider{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    .swiper-container{
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide{
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    $kd-hero-control-side: 70px;
+    .controls{
+      display: none;
+      z-index: 5;
+      font-family: 'Kigo Discovery';
+
+      .next, .prev{
+        position: absolute;
+        z-index: 5;
+        display: inline-block;
+        width: $kd-hero-control-side;
+        height: $kd-hero-control-side;
+        top: calc(50% - #{$kd-hero-control-side} / 2);
+        line-height: $kd-hero-control-side;
+        text-align: center;
+        font-size: 40px;
+        cursor: pointer;
+        text-shadow: 0 0 3px rgba(black, .66);
+
+        &:hover{
+          opacity: .5;
+        }
+      }
+
+      .next{
+        right: 0;
+      }
+
+      .swiper-pagination {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-block;
+        vertical-align: middle;
+        width: auto;
+        height: 50px;
+        padding-top: 10px;
+
+        .swiper-pagination-bullet {
+          display: inline-block;
+          vertical-align: middle;
+          height: 10px;
+          width: 10px;
+          margin: 0 5px;
+          border-radius: 50% 50%;
+          transition: background-color .3s;
+          opacity: 1;
+          background-color: #555;
+
+          &.active{
+            background-color: white;
+            border: 1px solid #555;
+            height: 15px;
+            width: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  .markup{
+    position: relative;
+    z-index: 1;
+    padding: 90px 10px 10px;
+    text-align: center;
+    text-shadow: 0 0 5px rgba(black, .85);
+  }
+
+  .arrow{
+    position: absolute;
+    z-index: 1;
+    bottom: 10px;
+    left: calc(50% - 15px);
+    text-align: center;
+    font-size: 32px;
+  }
+
+  @media screen and (min-width: $bp-tablet){
+    height: $kd-hero-desktop-height;
+
+    .slider{
+      .controls{
+        display: inline-block;
+      }
+    }
+
+    .markup{
+      font-size: 24px;
+
+      h1{
+        font-size: 72px;
+        font-weight: bold;
+      }
+
+      .kd-button{
+        width: 20%;
+        min-width: 220px;
+        margin: 0 auto;
+        background-color: rgba(black, .25);
+      }
+    }
+  }
+}

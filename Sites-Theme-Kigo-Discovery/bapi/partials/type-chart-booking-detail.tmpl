@@ -1,0 +1,245 @@
+/* Control Panel: Tape Chart Booking Detail */
+<script id="tmpl-cp-tapechart-bookingdetail" type="text/html">
+<div>
+<div class="dl-2col">
+<dl>
+    <dt>Booking ID:</dt>
+    <dd>{{BookingID}}</dd>
+</dl>
+<div class="clear"></div>
+<dl>
+    <dt>{{textdata.Type}}:</dt>
+    <dd>{{Type}}</dd>
+</dl>
+<dl>
+    <dt>Status:</dt>
+    <dd>{{Status}}</dd>
+</dl>
+<dl>
+    <dt>Check-in:</dt>
+    <dd>{{CheckInDisplay}}</dd>
+</dl>
+<dl>
+    <dt>Check-out:</dt>
+    <dd>{{CheckOutDisplay}}</dd>
+</dl>
+<dl>
+    <dt>#Nights:</dt>
+    <dd>{{LOS}}</dd>
+</dl>
+<dl>
+    <dt>Unit Booked:</dt>
+    <dd>{{PropertyHeadline}}</dd>
+</dl>
+<div class="clear2"></div>
+
+<h5>{{textdata.Renter}}</h5>
+<dl>
+    <dt>{{textdata.Name}}:</dt>
+    <dd>{{RenterName}}</dd>
+</dl>
+<div class="clear"></div>
+<dl>
+    <dt>{{textdata.Phone}}:</dt>
+    <dd>{{Phone}}</dd>
+</dl>
+<dl>
+    <dt>Email:</dt>
+    <dd>{{Email}}</dd>
+</dl>
+<div class="clea2"></div>
+
+<h5>{{textdata.Statement}}</h5>
+<dl>
+    <dt>Total Stay:</dt>
+    <dd>{{Amount}}</dd>
+</dl>
+<div class="clear"></div>
+<dl>
+    <dt>Total Due:</dt>
+    <dd></dd>
+</dl>
+<dl>
+    <dt>Due On:</dt>
+    <dd>{{DueOn}}</dd>
+</dl>
+</div>
+</div>
+</script>
+
+<script id="tmpl-booking-makepayment-statement" type="text/html">
+<hr />
+{{#result}}
+{{#Statement}}
+<div id="charges" class="item row-fluid">
+<h5>{{textdata.Charges}}<span class="glyphicons circle_question_mark"><a href="#statement-details" data-toggle="modal"><i></i></a></span></h5>
+<p>
+	{{textdata.Rent}}<span class="pull-right">{{ServicesTotal.CurrencySymbol}}{{ServicesTotal.SValue2}}</span>
+	<span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+</p>
+<p>
+	{{textdata.Taxes & Fees}}<span class="pull-right">{{TaxesAndFeesTotal.CurrencySymbol}}{{TaxesAndFeesTotal.SValue2}}</span>
+	<span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+</p>
+{{#DepositsTotal.Value}}
+<p>
+	{{textdata.Refundable Security Deposit}}<span class="pull-right">{{DepositsTotal.CurrencySymbol}}{{DepositsTotal.SValue2}}</span>
+	<span class="glyphicons circle_question_mark" style="display:none"><a><i></i></a></span>
+</p>
+{{/DepositsTotal.Value}}
+
+{{#OptionalFees.length}}
+<hr />
+<div id="ofees" class="item row-fluid">
+<h5>{{textdata.Optional Fees & Services}}</h5>
+{{/OptionalFees.length}}
+{{#OptionalFees}}
+	<p>{{{Notes}}}
+	<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span>
+	</p>
+{{/OptionalFees}}
+{{#OptionalFees.length}}
+</div>
+{{/OptionalFees.length}}
+{{#Discounts.length}}
+<div id="discount" class="item row-fluid">
+<hr />
+{{/Discounts.length}}
+{{#Discounts}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Discounts}}
+{{#Discounts.length}}
+</div>
+{{/Discounts.length}}
+</div>
+<div id="msgs" class="item row-fluid">
+	<div class="msg-yellow">
+	  <p><i class="halflings-icon star"></i> <strong>{{textdata.Total}}</strong><span class="pull-right"><strong>{{TotalDueNow.CurrencySymbol}} {{Total2.SValue2}}</strong></span></p>
+	  {{#DiscountsTotal.Value}}<p><strong>You saved<span class="pull-right">{{DiscountsTotal.CurrencySymbol}}{{DiscountsTotal.SValue2}}{{/DiscountsTotal.Value}}</strong></span></p>
+	    <p><strong>{{textdata.Amount Paid}}:</strong><span class="pull-right">{{AmountPaid.CurrencySymbol}} {{AmountPaid.SValue2}}</span></p>	
+	<p><strong>{{textdata.Amount Due Now}}:</strong><span class="pull-right">{{AmountPaid.CurrencySymbol}} {{TotalDueNow.SValue2}}</span></p>	  
+	 </div>
+	{{#PaymentTerms}}
+	<div class="msg-gray msg-center"><p class="text-center">{{&ContextData.Quote.PaymentTerms}}</p></div>
+	{{/PaymentTerms}}
+</div>
+
+<div id="statement-details" class="modal hide fade" role="dialog" aria-hidden="true">
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	<h3>{{textdata.Charges}}</h3>
+</div>
+<div class="modal-body">
+{{#Services.length}}
+<div id="charges" class="item row-fluid">
+<h5>{{textdata.Rent}}</h5>
+{{/Services.length}}
+{{#Services}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Services}}
+{{#Services.length}}
+</div>
+{{/Services.length}}
+<hr />
+
+{{#Fees.length}}
+<div id="fees" class="item row-fluid">
+<h5>{{textdata.Fees}}</h5>
+{{/Fees.length}}
+{{#Fees}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Fees}}
+{{#Fees.length}}
+</div>
+{{/Fees.length}}
+{{#Taxes.length}}
+<hr />
+<div id="taxes" class="item row-fluid">
+<h5>{{textdata.Taxes}}</h5>
+{{/Taxes.length}}
+{{#Taxes}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Taxes}}
+{{#Taxes.length}}
+</div>
+{{/Taxes.length}}
+{{#OptionalFees.length}}
+<hr />
+<div id="ofees" class="item row-fluid">
+<h5>{{textdata.Optional Fees & Services}}</h5>
+{{/OptionalFees.length}}
+{{#OptionalFees}}<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>{{/OptionalFees}}
+{{#OptionalFees.length}}
+</div>
+{{/OptionalFees.length}}
+{{#Discounts.length}}
+<hr />
+<div id="discounts" class="item row-fluid">
+<h5>{{textdata.Discounts}}</h5>
+{{/Discounts.length}}
+{{#Discounts}}
+<p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.CurrencySymbol}}{{SubTotal2.SValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
+{{/Discounts}}
+{{#Discounts.length}}
+</div>
+{{/Discounts.length}}
+</div>
+</div>
+</div>
+{{/Statement}}
+{{/result}}
+</script>
+
+<script id="tmpl-booking-makepayment-stayinfo" type="text/html">
+{{#result}}
+<span class="glyphicons module notes_2"><i></i>{{textdata.Booking Details}}</span>
+<div id="details" class="item row-fluid">  
+		<span style='display:none'>
+			<input class="span12" type="text"  value="{{SCheckIn}}" data-field="scheckin">
+			<input class="span12" type="text" value="{{SCheckOut}}" data-field="scheckout">	  
+		</span>
+		</div>            
+	<p><span class="glyphicons calendar"><i></i>{{textdata.Check-In}}</span> <span class="pull-right">{{SCheckIn}}</span></p>
+	<p><span class="glyphicons calendar"><i></i>{{textdata.Check-Out}}</span> <span class="pull-right">{{SCheckOut}}</span></p>
+	<p><span class="glyphicons group"><i></i>{{textdata.Adults}}</span><span class="pull-right">{{NumAdults}}</span></p>
+	<p><span class="glyphicons group"><i></i>{{textdata.Children}}</span><span class="pull-right">{{NumChildren}}</span></p>
+</div>
+{{/result}}
+</script>
+
+<script id="tmpl-booking-makepayment-pay" type="text/html">
+{{#result}}
+<legend>3. {{textdata.Accept Terms and Conditions}}</legend>
+<div class="control-group">
+	<p style="display:none">{{config.rentalpolicysummary}}</p>
+	<div class="controls-rows">
+		<label class="checkbox span6">	
+			<small>
+			<em>
+				<input type="checkbox" class="required checkbox">{{textdata.I have read and accept the terms and conditions}}:</input>&nbsp;
+				<a target="_blank" href="/rentalpolicy">{{textdata.Rental Policy}}</a>&nbsp;
+				<a target="_blank" href="/termsofuse">{{textdata.Terms of Service}}</a>
+			</em>
+			</small>		
+		</label>
+	</div>
+</div>
+<div class="control-group">
+	<div class="controls-rows">
+		<div class="btn-book-header span6">
+			<span class="line1">
+				<a href="javascript:void(0);" class="btn btn-large btn-primary span12 makepayment" data-field-selector="bookingfield">{{textdata.Pay Now}}</a>
+			</span>
+		</div>
+		{{#result}}
+		<div class="amount-bk span4">
+			<h5>{{textdata.Amount to Pay Now}}:</h5>
+			{{#Statement}}
+			<h3 style='white-space:nowrap' >{{Statement.AmountPaid.CurrencySymbol}}&nbsp;<input id="txtAmountToCharge1" type="text" class="row-fluid bookingfield span4" value="{{sTotalDueNow.Integer}}"/>.<input id="txtAmountToCharge2" type="text" class="row-fluid bookingfield span3" value="{{sTotalDueNow.Decimal}}"/></h3>
+			{{/Statement}}
+		</div>
+		{{/result}}
+	</div>
+</div>
+{{/result}}
+</script>

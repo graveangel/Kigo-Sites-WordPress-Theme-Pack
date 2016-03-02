@@ -1,0 +1,46 @@
+body.page-template-default, body.single{
+
+  .page{
+    border-bottom: 1px solid #eee;
+
+    &.team-member{
+      h1{
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  article{
+    padding-left: 15px;
+    .title{
+      margin: 30px 0;
+    }
+    .image{
+      img{
+        width: 100%;
+        height: auto;
+      }
+
+      &.original{
+        img{
+          width: auto;
+        }
+      }
+    }
+    .body{
+      margin: 20px 0;
+    }
+  }
+
+  aside{
+    height: 100%;
+    padding: 20px 40px;
+    border-left: 1px solid #eee;
+
+    .detail-overview-target{
+      h5 span{
+        margin-right: 10px;
+      }
+    }
+  }
+}

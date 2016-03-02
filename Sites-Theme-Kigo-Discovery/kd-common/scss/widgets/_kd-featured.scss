@@ -1,0 +1,308 @@
+$kd-featured-light-bg: #2D3538;
+$kd-featured-dark-bg: #293033;
+
+.kd-featured {
+  position: relative;
+  padding: 0;
+  background-color: $kd-featured-dark-bg;
+  color: white;
+  margin-bottom: 15px;
+
+  /* Remove selection color */
+  ::selection {
+    background: none; /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: none; /* Gecko Browsers */
+  }
+
+  .title {
+    margin: 0;
+    padding: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+  }
+
+  .action {
+    padding: 15px;
+  }
+
+  .slider{
+    position: relative;
+    padding: 15px 10px 15px;
+    background-color: $kd-featured-light-bg;
+//    box-shadow: 0 0 1px 0 rgba(black, 33);
+  }
+
+  .swiper-container {
+    width: 100%;
+    transition: box-shadow .33s;
+
+    &:hover{
+      box-shadow: 0 0 15px 0 rgba(black, .44);
+    }
+  }
+
+  .prop{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-color: $primary-color;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    test-align: left;
+    cursor: pointer;
+    box-shadow: 0 0 3px 0 rgba(black, .5);
+
+    margin-bottom: 130px;
+
+    &.swiper-slide-active{
+      .info .text{
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      .prop-details{
+        opacity: 1;
+      }
+    }
+
+    .info{
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      padding: 15px 0;
+      line-height: initial;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      color: white;
+
+      .text{
+        opacity: 0;
+        transform: translateY(-50px);
+        transition: all .2s ease .25s;
+        font-size: 12px;
+
+        .left{
+          width: 100%;
+        }
+      }
+    }
+
+    .prop-title{
+      margin: 0 0 5px;
+      padding: 0;
+      text-transform: uppercase;
+    }
+    .prop-attrs{
+      display: inline-block;
+    }
+    .prop-price{
+      display: inline-block;
+    }
+    .prop-details{
+      display: block;
+      padding: 10px 20px;
+      background-color: $secondary-color;
+      text-transform: uppercase;
+      color: $light-text;
+      font-size: 15px;
+      opacity: 0;
+      transition: opacity .2s;
+      text-align: center;
+      margin-top: 15px;
+    }
+  }
+
+  $kd-featured-arrow-size: 25px;
+
+  .controls {
+    margin: 15px 0 0;
+    text-align: center;
+
+    .prev, .next {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: $kd-featured-arrow-size;
+      cursor: pointer;
+      transition: opacity .2s;
+
+      &::before{
+        line-height: 1;
+        font-size: $kd-featured-arrow-size;
+      }
+
+      &:hover, &:active{
+        opacity: .5;
+      }
+    }
+    .prev{
+      float: left;
+      margin-left: 20px;
+    }
+    .next{
+      float: right;
+      margin-right: 20px;
+    }
+    .swiper-pagination {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      width: auto;
+      height: $kd-featured-arrow-size;
+      padding-top: 10px;
+
+      .swiper-pagination-bullet {
+        display: inline-block;
+        vertical-align: middle;
+        height: 12px;
+        width: 12px;
+        margin: 0 5px;
+        outline: 2px solid currentColor;
+        border-radius: 0;
+        transition: background-color .3s;
+        opacity: 1;
+      }
+      .swiper-pagination-bullet-active {
+        background-color: $secondary-color;
+      }
+    }
+  }
+
+  $kd-featured-desktop-side-width: 360px;
+  $kd-featured-desktop-side-width: 30%;
+  $kd-featured-desktop-height: 480px;
+
+  $kd-featured-desktop-slide-height: 330px;
+  $kd-featured-desktop-slide-width: 630px;
+
+  $kd-featured-arrow-size: 50px;
+
+  @media screen and (min-width: $bp-tablet){
+
+    padding-left: $kd-featured-desktop-side-width;
+    height: $kd-featured-desktop-height;
+
+    .slider{
+      padding: 75px 30px 25px;
+      box-shadow: none;
+      border-left: 1px solid #222;
+
+      .prop{
+        height: 100%;
+        width: 100%;
+        margin-bottom: 0;
+
+        .info{
+          bottom: 0;
+          top: auto;
+          color: black;
+          padding: 15px;
+          background-color: rgba(white,.75);
+
+          .left{
+            display: inline-block;
+            width: calc(100% - 160px);
+          }
+
+          .prop-details{
+            float: right;
+            display: inline-block;
+            width: 150px;
+            padding: 10px 20px;
+            margin: 0;
+            background-color: $secondary-color;
+            text-transform: uppercase;
+            color: $light-text;
+            font-size: 15px;
+            transition: box-shadow .2s;
+
+            &:hover{
+              box-shadow: 0 0 5px 0 rgba(black, .44);
+            }
+            &:active{
+              box-shadow: 0 0 1px 0 rgba(black, .48);
+            }
+          }
+        }
+      }
+    }
+
+    .swiper-container {
+      height: $kd-featured-desktop-slide-height;
+      width: calc(100% - (3 * #{$kd-featured-arrow-size}));
+      max-width: $kd-featured-desktop-slide-width;
+    }
+
+    .controls{
+      margin-top: 25px;
+
+      .prev, .next{
+        position: absolute;
+        top: calc(50% - (#{$kd-featured-arrow-size} / 2) );
+        font-size: $kd-featured-arrow-size;
+
+        &::before{
+          line-height: 1;
+          font-size: $kd-featured-arrow-size;
+        }
+      }
+      .prev{
+        left: 20px;
+        margin-left: 0px;
+      }
+      .next{
+        right: 20px;
+        margin-right: 0px;
+      }
+
+      .swiper-pagination {
+        padding-top: 5px;
+      }
+    }
+
+    .title, .action{
+      position: absolute;
+      left: 0;
+      width: $kd-featured-desktop-side-width;
+      height: 50%;
+    }
+
+    .title{
+      top: 0;
+      text-align: left;
+
+      span{
+        position: absolute;
+        bottom: 0;
+        font-family: $primary-font;
+        font-size: 33px;
+      }
+    }
+
+    .action{
+      bottom: 0;
+    }
+
+  }
+
+  @media screen and (min-width: 1080px){
+
+    .title, .action{
+      padding: 45px;
+    }
+    .action{
+      padding-top: 20px;
+    }
+
+    .title{
+      span{
+        font-size: 40px;
+      }
+    }
+  }
+
+}

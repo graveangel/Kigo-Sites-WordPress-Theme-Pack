@@ -1,0 +1,119 @@
+/*
+Group: Specials
+*/
+<script id="tmpl-specials-summary" type="text/html">
+    {{#result}}
+    <div class="col-xs-12 col-md-4">
+        <div class="special-item  item-result">
+            <div class="item-inner">
+                <a class="image" href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.MediumURL}}')"></a>
+                <div class="item-info shadow">
+                    {{#ContextData.SEO.Keyword}}
+                    <a href="{{&ContextData.SEO.DetailURL}}">
+                        {{/ContextData.SEO.Keyword}}
+                        <h3 class="title">{{Name}}</h3>
+                        {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                    <div class="description">{{&Summary}}</div>
+                    {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="details primary-fill-color">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/result}}
+    <div class="clearfix"></div>
+        {{> partial-more-results}}
+</script>
+
+<script id="tmpl-specials-detail" type="text/html">
+    {{#result}}
+    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="specials"></div>
+    <section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">
+            <div class="top-block">
+                <div class="row-fluid">
+                    <div class="span12 box-sides">
+                        <h2 class="title">{{Name}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li style="background-image: url('{{&PrimaryImage.OriginalURL}}')">
+                            {{#PrimaryImage.Caption}}
+                            <p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+                        {{/PrimaryImage.Caption}}
+                        {{/Images}}
+                        {{#Images}}
+                        <li style="background-image: url('{{&PrimaryImage.OriginalURL}}')">
+                            {{#Caption}}
+                            <p class="flex-caption">{{Caption}}</p></li>
+                        {{/Caption}}
+                        {{/Images}}
+                    </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                        {{/Images}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div data-move=".detail-overview-target" class="specials-contact-details module shadow">
+        <div class="pd">
+            <h3><span class="glyphicons glyphicons-notes-2"></span>{{textdata.Details}}</h3>
+            <hr>
+            <dl>
+                {{#EffectiveDate.LongDate}}<dt>{{textdata.Effective Date}}</dt><dd>{{EffectiveDate.LongDate}}
+                <br/> {{ExpirationDate.LongDate}}</dd>{{/EffectiveDate.LongDate}}
+                <br/>
+                {{#CouponCode}}<dt>{{textdata.Coupon Code}}</dt><dd>{{CouponCode}}</dd>{{/CouponCode}}
+            </dl>
+            <div style="display:none">
+                <h5>Select your desired travel dates:</h5>
+                <div class="row-fluid travel-dates">
+                    <div class="span6">
+                        <input type="text" placeholder="{{textdata.Check-In}}" class="span12">
+                    </div>
+                    <div class="span6">
+                        <input type="text" placeholder="{{textdata.Check-Out}}" class="span12">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <button class="btn btn-success btn-block" type="button">Activate this Special</button>
+                <hr/>
+            </div>
+            <dl>
+                {{#Description}}<dt>{{textdata.Description}}</dt><dd>{{&Description}}</dd>{{/Description}}
+            </dl>
+            <hr>
+        </div>
+    </div>
+
+    <h3>{{textdata.Applies To}}</h3>
+    <div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allproperties"  data-entity="property" data-searchoptions='{ "specialid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
+    {{/result}}
+    <span class="end"></span>
+
+</script>
+
+<script id="tmpl-specials-quickview" type="text/html">
+    {{#result}}
+        <a class="special col-xs-12 {{class}}" href="{{&ContextData.SEO.DetailURL}}">
+            <div class="image" style="background-image: url('{{PrimaryImage.ThumbnailURL}}');">
+                <div class="description">
+                    <h4 class="title">{{Name}}</h4>
+                    <div class="sum">{{&Summary}}</div>
+                    <div class="sum">{{what}}</div>
+                </div>
+            </div>
+        </a>
+    {{/result}}
+</script> 

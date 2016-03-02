@@ -1,0 +1,142 @@
+.header-background{
+
+  header{
+    max-width: $container-max-width;
+    margin: auto;
+    padding: 15px 15px 0;
+  }
+
+  &.fixed .under_header{
+    position: fixed;
+    z-index: 995;
+    top: 0;
+    left: 50%;
+    padding: 10px 70px 10px 15px;
+    border: none;
+    background-color: white;
+    transform: translateX(-50%);
+    box-shadow: 0 15px 10px -10px rgba(black, .25);
+  }
+
+  $cust-social-size: 35px;
+  .customizer{
+    padding: 0 15px;
+
+    & > div{
+      height: 50px;
+      line-height: 50px;
+    }
+
+    .phone {
+      font-size: 25px;
+    }
+
+    .items{
+      height: 35px;
+      line-height: 35px;
+
+      ul{
+        display: inline-block;
+      }
+
+      li{
+        display: inline-block;
+        line-height: $cust-social-size;
+        text-align: center;
+        font-size: initial;
+
+        &#weather-place{
+          font-family: $primary-font;
+          font-size: 24px;
+        }
+
+        a{
+          display: block;
+          width: $cust-social-size;
+          height: $cust-social-size;
+
+          i{
+            font-size: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  .owner-login{
+    display: inline-block;
+    padding: 6px 10px;
+    border: none;
+    outline: 0;
+    color: white;
+    font-size: 14px;
+  }
+
+  a.logo-link{
+    position: fixed;
+    z-index: 999;
+    top: 15px;
+    left: 0;
+    display: inline-block;
+    width: calc(100% - 50px);
+    height: 50px;
+    padding-left: 20px;
+
+    img{
+      max-height: 100%;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  .under_header{
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    transition: box-shadow .5s;
+    min-height: 80px;
+  }
+}
+
+@media screen and (min-width: $bp-tablet){
+  .header-background{
+
+    .under_header{
+      min-height: 0;
+    }
+
+    &.fixed {
+      padding-bottom: 52px;
+      .under_header {
+        padding: 15px 30px;
+
+        .kd-widget{
+          padding: 0;
+        }
+      }
+    }
+
+    a.logo-link{
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      height: auto;
+      padding: 0;
+
+      img{
+        max-height: 100px;
+      }
+    }
+  }
+}
+
+body.admin-bar .header-background.fixed .under_header{
+  top: 46px;
+  @media screen and (min-width: $bp-tablet){top: 32px;}
+}
+
+
+
+
+

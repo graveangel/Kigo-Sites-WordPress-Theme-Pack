@@ -1,0 +1,171 @@
+$contact-border-color: #eee;
+
+body.page-template-mybooking{
+
+  max-width: $container-max-width;
+  margin: 0 auto;
+
+  /* Header */
+
+  h1{
+    margin-bottom: 5px;
+  }
+
+  .booked_prop{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* Cover image */
+
+  .booking-prop-img{
+    margin: 20px 0 0;
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $contact-border-color;
+    a{
+      display: block;
+      height: 400px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  /* Blocks */
+
+  legend{
+    border: none;
+    margin: 20px 0 10px;
+    font-family: Montserrat;
+    font-size: 24px;
+  }
+
+  hr{
+    display: none;
+  }
+
+  /* Main form block */
+
+  .form-horizontal{
+    .control-label{
+      text-align: left;
+      display: block;
+      margin-bottom: 5px;
+      font-family: "Open Sans";
+      font-size: 14px;
+      font-weight: normal;
+    }
+    .checkbox{
+      padding-left: 35px;
+    }
+  }
+
+  input, textarea, select{
+    font-family: "Open Sans";
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  .credit-icon{
+    text-align: right;
+  }
+  .credit-icon span[class*="creditcard-"]{background:url("../img/credit-cards.jpg") no-repeat;display:inline-block;width:36px;height:24px;}
+  .credit-icon span.creditcard-amex{background-position:0 0;}
+  .credit-icon span.creditcard-dinersclub{background-position:0 -74px;}
+  .credit-icon span.creditcard-discover{background-position:0 -148px;}
+  .credit-icon span.creditcard-mastercard{background-position:0 -222px;}
+  .credit-icon span.creditcard-visa{background-position:0 -296px;}
+
+  .amount-bk{
+    line-height: 50px;
+  }
+
+  .control-group.accept{
+    margin-bottom: 10px;
+  }
+
+  .btn-book-header{
+    .line2{
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .amount-bk{
+    font-size: 14px;
+
+    .bold{
+      font-size: 20px;
+    }
+  }
+
+  /* Sidebar */
+
+  .bapi-showrevise{
+//    width:150px;
+    padding: 5px 10px;
+//    font-size: 16px;
+//    margin: 15px auto 0;
+  }
+
+  .property-info{
+    span, p{
+      font-family: "Montserrat";
+      font-size: 14px;
+    }
+  }
+
+  #statement{
+    .item{
+      padding: 10px 0;
+    }
+
+    .total-block{
+      color: white;
+      padding: 15px;
+
+      p:first-of-type{
+
+        &, & span{
+          font-size: 32px;
+        }
+      }
+    }
+
+    #ofees{
+      span, input{
+        margin: 0;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  #discount{
+    label{
+      width: 100%;
+    }
+    small{
+      margin-left: 10px;
+    }
+  }
+
+  @media screen and (min-width: $bp-tablet){
+
+    .booking-page{
+      border-bottom: 1px solid $contact-border-color;
+    }
+
+    .booking-form{
+      border-right: 1px solid $contact-border-color;
+    }
+
+    .property-info .pd > div[id]{
+      padding: 20px 0;
+      border-bottom: 1px solid $contact-border-color;
+    }
+  }
+
+}

@@ -1,0 +1,901 @@
+.template-property {
+
+  .page-width {
+    padding                       : 0;
+  }
+
+  .sl-wrapper .sl-navigation button{
+    background-color: rgba(white, .2);
+  }
+
+  /* Hero ---------------------------------------------------------------------*/
+  .hero {
+    position                      : relative;
+    height                        : 300px;
+  }
+  .hero-image {
+    max-width                     : 100%;
+    width                         : 100%;
+    height                        : 100%;
+    display                       : block;
+    background-repeat             : no-repeat;
+    background-size               : cover;
+    background-position           : center;
+    position                      : absolute;
+    bottom                        : 0;
+  }
+
+  .page-width {
+    position                      : static;
+  }
+
+  .title {
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    font-family: Montserrat, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #999;
+    display: inline-block;
+    background: #fff;
+  }
+  /* Amenities and buttons box -------------------------------------------------*/
+  .amenities-n-buttons {
+    background-color: white;
+    display                       : block;
+    padding-bottom                : 0;
+  }
+  /* Top amenities ------------------------------------------------------------*/
+  .amenities {
+    box-sizing                    : border-box;
+    padding                       : 30px;
+
+    .alert{
+      white-space: normal;
+    }
+
+    ul {
+      li {
+        width: 100%;
+        margin-bottom         : 13px;
+
+        .alert{
+          margin-bottom: 0;
+        }
+
+        span {
+          display: inline-block;
+          vertical-align: middle;
+
+          &.amenity-icon {
+            top: auto;
+            margin-right  : 10px;
+            font-size     : 15px;
+          }
+          &.amenity-name {
+            text-transform: uppercase;
+            color         : $dark-text;
+            margin-right  : 5px;
+          }
+          &.amenity-value {
+            color         : $tertiary-color;
+          }
+        }
+
+        #book-block{
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  /* Book and inquire buttons---------------------------------------------------*/
+  .buttons-box{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 15px;
+  }
+  .book-enq {
+    padding                       : 0 15px;
+    text-align                    : center;
+    span {
+      margin                    : auto;
+      line-height               : 1.5em;
+      font-size                 : 2em;
+      color                     : $tertiary-color;
+    }
+  }
+  .book-now-button,
+  .inquire-button{
+    margin                        : auto;
+    max-width                     : 500px;
+    border                        : none;
+    font-size: 16px;
+    color: white;
+  }
+
+  /* Property descriptions-----------------------------------------------------*/
+
+  // Images on the left
+  .ppt-images,
+  .ppt-desc{
+    float                     : left;
+    box-sizing                : border-box;
+    text-align: justify;
+  }
+
+  .ppt-images {
+    width                     : 100%;
+    display                   : none;
+    overflow                  : hidden;
+    ul {
+      height                : 393px;
+      position              : relative;
+      > li.swiper-slide-active {
+        overflow          : hidden;
+      }
+      > li.more {
+        opacity           : 0;
+        position          : absolute;
+        right             : 10px;
+        bottom            : 10px;
+        height            : calc(50% - 20px);
+        width             : calc(50% - 20px);
+        background        : rgba(0,0,0,0.5);
+        text-align        : center;
+        font-size         : 25px;
+        line-height       : 7em;
+        color             : #fff;
+        font-family       : "Montserrat", sans-serif;
+        font-weight       : 100;
+        display           : none;
+      }
+      > li a{
+        display: block;
+        height: 100%;
+      }
+    }
+
+    &:hover{
+      cursor                : pointer;
+      ul li.more {
+        opacity           : 1;
+        position          : static;
+      }
+    }
+
+    img {
+      max-width             : 100%;
+      margin                : auto;
+      display               : block;
+      left                  : 0;
+      right                 : 0;
+    }
+  }
+
+
+  //mobile only Slider controls
+  .slider-controls {
+    height                    : 50px;
+    width                     : 100%;
+    display                   : block;
+    > * {
+      box-sizing            : border-box;
+      width                 : 33.33333333333%;
+      float                 : left;
+      height                : 100%;
+      display               : inline-block;
+    }
+    .prev-slide {
+      &::before {
+        content           :'\003C';
+      }
+    }
+    .next-slide {
+      &::before {
+        content           :'\003E';
+      }
+    }
+
+
+  }
+  .prev-slide,
+  .next-slide {
+    text-align                : center;
+    line-height               : 1.5em;
+    font-size                 : 36px;
+    color                     :#fff;
+    background                : $primary-color;
+  }
+  .open-lightbox {
+    background                : $tertiary-color;
+    text-align                : center;
+    font-size                 : 40px;
+    color                     : #fff;
+    &::after {
+      font-family           : 'Glyphicons Regular';
+      content               : '\E011';
+      line-height           : 1.2em;
+
+    }
+  }
+  .ppt-image-caption {
+    display                   : none;
+    color                     : $tertiary-color;
+    font-size                 : 14px;
+  }
+
+  .ppt-desc {
+    padding                   :  0 15px 15px;
+    font-family               : "Montserrat", sans-serif;
+    p{
+      //      padding                   : 15px;
+      font-family               : "Montserrat", sans-serif;
+      color                     : $tertiary-color;
+      font-size                 : 14px;
+    }
+    h4 {
+      color                     : $dark-text;
+      font-size                 : 19px;
+      margin-bottom             : 15px;
+      margin-top: 0;
+    }
+  }
+  .ppt-desc-title {
+    color                     : $dark-text;
+    font-size                 : 19px;
+    margin-bottom             : 15px;
+  }
+  .ppt-desc-text {
+    color                     : $tertiary-color;
+    font-size                 : 14px;
+  }
+
+  /*Property features---------------------------------------------*/
+  .property-features {
+    padding: 0 15px;
+    margin-top                    : 50px ;
+    > ul {
+      > li {
+        padding               : 15px 0;
+        border-top            : 1px solid #ccc;
+        position              : relative;
+        max-height            : 59px;
+        overflow              : hidden;
+        &.active {
+          max-height        : 3000px;
+          .open-close::after {
+            content       : '\00D7';
+          }
+        }
+      }
+    }
+  }
+  .open-close {
+    position                      : absolute;
+    top                           : 0;
+    right                         : 0;
+    padding                       : 10px;
+    color                         : $dark-text;
+    cursor                        : pointer;
+    font-size                     : 30px;
+    &::after{
+      content                   : '\25BC';
+    }
+  }
+  .ppt-feature-title{
+    color                         : $dark-text;
+    font-size                     : 20px;
+    font-family                   : "Montserrat",sans-serif;
+    margin-bottom                 : 20px;
+  }
+
+  .amenities-list {
+    margin-top                    : 12px;
+  }
+  .amenity-detail-list {
+    clear                         : both;
+    li {
+      float                     : left;
+      margin-right              : 30px;
+      line-height               : 40px;
+      color                     :$tertiary-color;
+      font-size                 : 14px;
+      &.amenity-name {
+        font-size             : 16px;
+        color                 : $dark-text;
+        display               : block;
+        float                 : none;
+      }
+      &:last-child {
+        margin-right          : 0;
+      }
+
+      /*Property details */
+      &.pd-name {
+        color: #333!important;
+      }
+      &.p-detail{
+        display: block;
+        float: none;
+      }
+    }
+  }
+
+  .ui-datepicker-inline {
+    display                       : block;
+    margin                        : auto;
+    width                         : 51em;
+  }
+  .review{
+    margin-bottom: 30px;
+    *{
+      background-color: transparent !important;
+      font-family: $primary-font !important;
+    }
+    p, p *{
+      color: $light-gray !important;
+      font-size: 12px;
+      font-weight: normal;
+    }
+    .ratingstars{
+      display: block;
+      float: none;
+    }
+  }
+  #poi-map-prop{
+    width: 100%;
+    height: 300px;
+  }
+  .ratingstars {
+    float: right;
+  }
+  .review-posted-on{
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .ppt-image-caption {
+    min-height: 30px;
+  }
+
+  span.prop-image.pull-left{
+    margin-right: 10px;
+  }
+
+  #pano {
+    position            : relative;
+    z-index             : 9999;
+    height              : 100%;
+    display             : block;
+  }
+}
+
+
+/*=============================================================================
+Media Tablets horizontal
+============================================================================*/
+@media (min-width                     : $bp-sm){
+  .template-property {
+    margin                        : auto;
+    .hero {
+      max-height                : 360px;
+      height                    : 360px;
+      position                  : relative;
+      overflow                  : hidden;
+    }
+    .hero-image {
+      max-width                 : 100%;
+      width                     : 100%;
+      height                    : 100%;
+      display                   : block;
+      background-repeat         : no-repeat;
+      background-size           : cover;
+      background-position       : center;
+      position                  : absolute;
+      bottom                    : 0;
+    }
+    .title {
+      font-size                 : 36px;
+    }
+
+    .amenities-n-buttons {
+      border-bottom             : 1px solid $tertiary-color-light;
+      padding-bottom            : 0;
+    }
+
+    .amenities {
+      box-sizing                : border-box;
+      padding                   : 15px;
+      display                   :inline-block;
+      float                     : left;
+      .alert{
+        white-space: nowrap;
+      }
+      ul {
+        li {
+          display: inline-block;
+          vertical-align: middle;
+          width: auto;
+          margin-right      : 20px;
+          margin-bottom     : 15px;
+          span {
+            display: inline-block;
+            vertical-align: middle;
+            &.amenity-name{
+              font-size : 10px;
+            }
+            &.amenity-value {
+              font-size: 11px;
+            }
+            &.amenity-icon {
+              font-size : 18px;
+            }
+          }
+        }
+
+      }
+    }
+
+    .book-enq {
+      padding                   : 20px 0 0 0;
+      width                     : auto;
+      span{
+        float                 : left;
+        margin-right          : 10px;
+      }
+
+      span {
+        line-height           : 2.5em;
+      }
+
+      > :last-child {
+        margin                : 0;
+      }
+
+    }
+
+    .book-now-button,
+    .inquire-button {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+      font-size: 16px;
+    }
+
+    .property-description {
+      padding: 0px;
+
+    }
+    .ppt-images {
+      max-width                 : 63%;
+      ul{
+        overflow              : hidden;
+      }
+      ul li img{
+        position              : static;
+        max-width             : 100%;
+        height                : auto;
+        max-height            : none;
+      }
+      ul li.more {
+        display               :block;
+        opacity               : 0;
+      }
+      &:hover{
+        ul li.more {
+          display           :block;
+          opacity           : 1;
+          position          : absolute;
+        }
+      }
+
+    }
+    .slider-controls {
+      display                   : none;
+    }
+    .ppt-slides {
+      overflow: hidden;
+      li {
+        width                     : 50%;
+        height                    : 100%;
+        float: left;
+        a {
+          display: block;
+          height: 100%;
+          background-size: cover;
+        }
+        img {
+          visibility: hidden;
+        }
+      }
+      li:first-child, li:nth-child(2) {
+        width: 50%;
+      }
+      li:nth-child(2),li:nth-child(3){
+        height: 50%;
+      }
+      li:nth-child(2n+4){
+        clear:both;
+      }
+
+
+    }
+    .big,
+    .med{
+      max-width                 : 50%;
+      float                     : left;
+    }
+    .med {
+      max-height                : 50%;
+    }
+    .ppt-image-caption {
+      display                   : block;
+    }
+
+
+    .ppt-desc {
+      max-width                 :37%;
+      box-sizing                : border-box;
+      padding-right             : 0;
+    }
+    .ppt-desc-title {
+      color                     : #333;
+      font-size                 : 19px;
+      margin-bottom             : 15px;
+    }
+    .ppt-desc-text {
+      color                     : $tertiary-color;
+      font-size                 : 14px;
+    }
+
+    .property-features {
+      margin-top                : 50px ;
+      padding                   : 0;
+    }
+
+    .amenities-list {
+      margin-top                : 12px;
+      .amenity-detail-list {
+        clear                 : both;
+        li {
+          float             : left;
+          margin-right      : 30px;
+          line-height       : 40px;
+          color             :$tertiary-color;
+          font-size         : 16px;
+          &.amenity-name {
+            color         : $dark-text;
+            float         : left;
+            clear         : none;
+            font-size     : 16px;
+          }
+          &:last-child {
+            margin-right  : 0;
+          }
+          /*Property details */
+          &.p-detail{
+            display: block;
+            float: left;
+          }
+        }
+      }
+    }
+    .map-and-locations{
+      .poi-map-locations{
+        td {
+          color: $tertiary-color;
+          a{
+            color: $tertiary-color;
+          }
+          &:first-child {
+            text-align: right;
+            .poi-map-item{
+              color: $primary-color;
+            }
+          }
+          border: none;
+        }
+      }
+      font-size: 0;
+      #poi-map-prop{
+        width: 100%;
+        height: 400px;
+        display: inline-block;
+        font-size: 14px;
+      }
+      #map-side-bar{
+        vertical-align: top;
+        width: 100%;
+        display: inline-block;
+        font-size: 14px;
+      }
+    }
+
+  }
+}
+
+.rates-availability {
+  .ui-widget-header,.ui-widget-content {
+    border                        : none;
+    background                    : none;
+  }
+  .ui-widget-content {
+    width                         : 100%;
+  }
+  .ui-datepicker-multi-3 .ui-datepicker-group {
+    width                         : auto;
+  }
+  .ui-datepicker-inline {
+    width                         : 100%!important;
+  }
+  .ui-datepicker-row-break {
+    display                       : none;
+  }
+  .ui-datepicker-group {
+    padding                       : 8px;
+    box-sizing                    : border-box;
+  }
+}
+
+
+.rates-availability .ui-datepicker-group
+{
+  margin: auto;
+  display: block;
+  float: none;
+}
+.rates-availability .ui-datepicker-title {
+  font-weight: 100;
+}
+.rates-availability .ui-datepicker-calendar {
+  thead {
+    background:#eee;
+    th {
+      font-weight: 100;
+      padding: 2px;
+    }
+  }
+}
+
+.rates-availability {
+  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    background: $primary-color;
+    color: #fff;
+    padding: 3px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .bapi-availcalendar {
+    display: block;
+    margin: auto;
+    text-align: center;
+    .ui-datepicker-inline{
+      display: inline-block;
+    }
+  }
+}
+@media (min-width                     : 480px){
+  .rates-availability .ui-datepicker-group
+  {
+    display: inline-block;
+  }
+
+  #bapi-rateblock .buttons-box{
+    margin-top: 0;
+  }
+}
+/*=============================================================================
+Media Desktop
+============================================================================*/
+@media (min-width                     : 1106px){
+  .template-property {
+
+
+    .book-enq {
+      padding                   : 14px 0px 0 0;
+      display                   : inline-block;
+      width                     : auto;
+      span {
+        float                 : left;
+        margin-right          : 10px;
+        font-size             : 16px;
+      }
+
+      span {
+        line-height           : 2.5em;
+      }
+
+      > :last-child {
+        margin                : 0;
+      }
+
+    }
+
+
+    .ppt-desc {
+      padding-right             : 0;
+    }
+
+    .map-and-locations{
+      #poi-map-prop{
+        width: 70%;
+
+      }
+      #map-side-bar{
+        width: 30%;
+      }
+    }
+  }
+}
+
+.similar-properties {
+  font-size: 0;
+}
+.similar-prop {
+  display:    inline-block;
+  float:      none;
+  font-size:  12px;
+  box-sizing: border-box;
+  padding:    10px;
+  text-align: center;
+  &:hover {
+    background: #f9f9f9;
+  }
+  img {
+    max-width: 100%;
+    border-radius: 3px;
+  }
+  h4.prop-title {
+    margin: 10px 0 5px;
+    font-size: 1.7em;
+  }
+  .prop-attrs {
+    color: $tertiary-color;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+  }
+  .prop-price {
+    color: $tertiary-color;
+    display: block;
+    font-size: 1.2em;
+    span {
+      color: $primary-color;
+    }
+  }
+  .prop-details {
+    color: $secondary-color;
+    font-size: 1.1em;
+  }
+
+}
+
+.pop-up-form-link {
+  margin: 0 15px;
+  font-size: 12px;
+  color: $primary-color;
+  text-decoration:underline;
+  text-decoration-style: dotted;
+}
+.pop-up-booking-form {
+  display: none;
+}
+
+.bapi-rateblock {
+  display: inline-block;
+  .alert{
+    max-width: 360px;
+  }
+}
+.sl-overlay {
+  background: rgba(0,0,0,0.8);
+}
+
+.pop-up-booking-form.active {
+  display:    block;
+  position:   fixed;
+  height:     100%;
+  width:      100%;
+  top:        0;
+  left:       0;
+  background: rgba(0,0,0,0.8);
+  z-index:    9999;
+  .booking-form {
+    box-sizing:    border-box;
+    border-radius: 5px;
+    padding:       40px;
+    padding-top:   50px;
+    position:      absolute;
+    height:        auto;
+    max-height:    380px;
+    max-width:     400px;
+    left:          15px;
+    right:         15px;
+    top:           0%;
+    bottom:        0%;
+    margin:        auto;
+    background:    #fff;
+    .glyphicons-list-alt{
+      font-size: 30px;
+      color: #999;
+      margin-bottom: 15px;
+    }
+    .close {
+      position: absolute;
+      right:    15px;
+      top:      10px;
+      z-index:  9991;
+      opacity:  1;
+      &::before {
+        content:     '\00D7';
+        font-weight: bold;
+        color:       #999;
+        font-size:   35px;
+      }
+
+
+    }
+    .update-info-label {
+      font-size: 15px;
+      color: #999;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 30px;
+      margin-left: 10px;
+    }
+
+    .bapi-getquote {
+      margin: auto;
+      float: none;
+      text-align: center;
+      position: static;
+      display: block;
+      color: #fff;
+      background-color: $secondary-color;
+      border-radius: 0;
+      width: 150px;
+    }
+
+    .picker__input,.quicksearch  {
+      cursor:        default;
+      padding:       10px;
+      width:         100%;
+      margin-bottom: 10px;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+    }
+    label {
+      float: left;
+      clear: both;
+    }
+  }
+
+}
+
+
+.template-property{
+  #book-block {
+    display: inline-block;
+  }
+  .amenities {
+    width: 100%;
+    ul {
+      width: 100%;
+    }
+  }
+  #bapi-rateblock {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+    .alert {
+      padding: 0;
+      display: inline-block;
+    }
+  }
+}
+
+@media screen and (min-width: $bp-sm){
+  .similar-prop{
+    text-align: left;
+  }
+}

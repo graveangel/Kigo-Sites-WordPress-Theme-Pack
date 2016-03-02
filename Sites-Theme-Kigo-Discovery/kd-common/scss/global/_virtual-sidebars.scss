@@ -1,0 +1,10 @@
+.virtual-sidebars-box {
+  &::after {
+    content:'';
+    display: table;
+    clear: both;
+  }
+  > * {
+    float: left;
+  }
+}
