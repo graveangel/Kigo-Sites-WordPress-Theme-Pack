@@ -22,9 +22,8 @@ Template Name: About us Page
         <div class="page-width">
             <div class="title col-xs-12"><?php the_title(); ?></div>
             <div class="row row-nopadding">
-
                 <div class="col-sm-12 col-md-6">
-                    <div class="picture col-sm-12 nopadding">
+                    <div class="picture col-sm-12">
                         <?php
                         // check if the post has a Post Thumbnail assigned to it, or fallback to default
                         if (has_post_thumbnail()){
@@ -35,9 +34,8 @@ Template Name: About us Page
                         ?>
                     </div>
                 </div>
-
                 <div class="col-sm-12 col-md-6">
-                    <div class="description nopadding">
+                    <div class="description">
                         <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
                             the_content();
                         endwhile; else: ?>
@@ -46,9 +44,9 @@ Template Name: About us Page
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
     <div class="nocollapse page-block">
         <div class="page-width">
             <?php if (is_active_sidebar('page_about_us')) : ?>

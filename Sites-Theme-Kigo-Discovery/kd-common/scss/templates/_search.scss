@@ -1,3 +1,92 @@
+
+.property{
+  margin-bottom: 25px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  height: 200px;
+  overflow: hidden;
+
+  .image{
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+  }
+  .info{
+    position: relative;
+    float: right;
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+    height: 100%;
+
+    & > *{
+      padding-left: 10px;
+    }
+    .top{
+      position: relative;
+      border-bottom: 1px solid #eee;
+      font-size: 0;
+      .beds, .location{
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        font-size: 14px;
+        padding: 8px 0;
+
+        &.location{
+          padding: 8px 10px;
+          border-left: 1px solid #eee;
+        }
+      }
+    }
+    .title{  }
+    .desc{
+      padding: 8px 10px;
+    }
+
+    .bottom{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      font-size: 0;
+      border-top: 1px solid #eee;
+
+      .price, .seeDetails{
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        font-size: 14px;
+        padding: 8px 0;
+
+        &.seeDetails{
+          background-color: #444;
+          color: white;
+          text-align: center;
+
+          &:hover{
+            background-color: #555;
+          }
+        }
+      }
+
+      .price{
+        & > div{
+          display: inline-block;
+        }
+      }
+      .tag{
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
 body.page-template-search-page{
 
   .container{
@@ -67,93 +156,7 @@ body.page-template-search-page{
   }
 
   .listProps{
-    .property{
-      margin-bottom: 25px;
-      border: 1px solid #eee;
-      border-radius: 5px;
-      height: 200px;
-      overflow: hidden;
-
-      .image{
-        display: inline-block;
-        vertical-align: top;
-        width: 30%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-
-      }
-      .info{
-        position: relative;
-        float: right;
-        display: inline-block;
-        vertical-align: top;
-        width: 70%;
-        height: 100%;
-
-        & > *{
-          padding-left: 10px;
-        }
-        .top{
-          position: relative;
-          border-bottom: 1px solid #eee;
-          font-size: 0;
-          .beds, .location{
-            display: inline-block;
-            vertical-align: top;
-            width: 50%;
-            font-size: 14px;
-            padding: 8px 0;
-
-            &.location{
-              padding: 8px 10px;
-              border-left: 1px solid #eee;
-            }
-          }
-        }
-        .title{  }
-        .desc{
-          padding: 8px 10px;
-        }
-
-        .bottom{
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          font-size: 0;
-          border-top: 1px solid #eee;
-
-          .price, .seeDetails{
-            display: inline-block;
-            vertical-align: top;
-            width: 50%;
-            font-size: 14px;
-            padding: 8px 0;
-
-            &.seeDetails{
-              background-color: #444;
-              color: white;
-              text-align: center;
-
-              &:hover{
-                background-color: #555;
-              }
-            }
-          }
-
-          .price{
-            & > div{
-              display: inline-block;
-            }
-          }
-          .tag{
-            margin-right: 10px;
-          }
-        }
-      }
-    }
+    @extend .property;
   }
 
   .mapContainer{

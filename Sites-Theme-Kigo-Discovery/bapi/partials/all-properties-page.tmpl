@@ -1,138 +1,120 @@
 <script id="tmpl-allpropertiespage" type="text/html">
-<div class="list-view-page">
-{{#result}}
-<div class="portal-result">
-<div class="portal-inner row-fluid shadow">
-	<div class="portal-images span4">
-		<div id="slider">
-		{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}<img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.ThumbnailURL}}" />{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
-		</div>
-	</div>
-	<div class="portal-info span8">
-	<div class="property-info">	
-		<h2 class="property-title">
-			{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
-				{{Headline}}
-			{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
-		</h2>
-		<div class="location"><span><b>{{textdata.City}}:</b> {{City}}</span>  {{#Bedrooms}}<span class="hidden-phone">| </span><b>{{textdata.Beds}}</b>: {{Bedrooms}} | {{/Bedrooms}}{{#Bathrooms}}<b>{{textdata.Baths}}</b>: {{Bathrooms}} | {{/Bathrooms}}{{#Sleeps}}<b>{{textdata.Sleeps}}</b>: {{Sleeps}}{{/Sleeps}}</div>
-		<div class="brick-wrap">
-			<div class="description bapi-truncate" data-trunclen="100">{{&Summary}}</div>
-		</div>
-		
-		{{^ContextData.Quote.IsValid}}			
-			{{#session.scheckin}}{{#session.scheckout}}<div class="alert alert-info no-rate">{{ContextData.Quote.ValidationMessage}}</div>{{/session.scheckout}}{{/session.scheckin}}
-		{{/ContextData.Quote.IsValid}}
-		
-		<div class="row-fluid">
-		<div class="span7 portal-rates">			
-			{{#ContextData.Quote.QuoteDisplay.value}}
-			{{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
-			{{ContextData.Quote.QuoteDisplay.value}}
-			{{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
-			{{/ContextData.Quote.QuoteDisplay.value}}
-		</div>
-		<div class="span5 right-side-actions">
-			<button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="{{ID}}" type="button" data-toggle="button">
-			<span class="halflings heart-empty"><i></i>{{^inmylist}}{{textdata.WishList}}{{/inmylist}}{{#inmylist}}{{textdata.WishListed}}{{/inmylist}}</span></button>
-			{{#ContextData.SEO.Keyword}}&nbsp;|&nbsp;<a class="property-link" href="{{&ContextData.SEO.DetailURL}}">{{textdata.Details}} <span>&rarr;</span></a>{{/ContextData.SEO.Keyword}}
-		</div>
-		</div>
-	</div>
-	</div>
-</div>
-</div>
-{{/result}}
-</div>
-<div class="clearfix"></div>
-{{> partial-more-results}}
+    <div class="row row-nopadding">
+        <div class="col-xs-12">
+            {{#result}}
+                <div class="property">
+                    <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')"></a>
+                    <div class="info">
+                        <div class="top">
+                            <div class="beds">
+                                {{#Bedrooms}}{{Bedrooms}} {{textdata.Beds}}{{/Bedrooms}} {{#Bathrooms}} /  {{Bathrooms}} {{textdata.Baths}}{{/Bathrooms}}
+                            </div>
+                            <div class="location">
+                                {{Type}}, {{{City}}}<br>
+                            </div>
+                        </div>
+                        <h5 class="title">{{Headline}}</h5>
+                        <div class="desc">{{{ContextData.SEO.PageTitle}}}</div>
+
+                        <div class="bottom">
+                            <div class="price">{{ContextData.Quote.PublicNotes}}</div>
+                            <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">See Details</a>
+                        </div>
+                    </div>
+                </div>
+            {{/result}}
+            {{^result}}
+                <div class="nomore"><a href='javascript:void(0)'><span class="col-xs-12 alert alert-warn">{{textdata.There are no more results}}</span></a></div>
+            {{/result}}
+        </div>
+    </div>
 </script>
 
 <script id="tmpl-allproperties" type="text/html">
-<table class="">
-<!--<table class="table table-bordered table-striped">-->
-<thead>
-<tr>
-	<!--<th></th>-->
-	<th>{{textdata.Property Name}}</th>
-	<th>{{textdata.Category}}</th>
-	<th>{{textdata.Beds}}</th>
-	<th>{{textdata.Baths}}</th>
-	<th>{{textdata.Sleeps}}</th>
-	<!--<th>{{textdata.Amenities}}</th>-->
-	<th>{{textdata.Rates}}</th>
-	<th></th>
-</tr>
-</thead>
-<tbody>
-{{#result}}
-<tr>
-	<!--<td>-->
-		<!--<button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="{{ID}}" type="button" data-toggle="button">-->
-			<!--<span class="halflings heart-empty"><i></i>{{^inmylist}}{{textdata.WishList}}{{/inmylist}}{{#inmylist}}{{textdata.WishListed}}{{/inmylist}}</span>-->
-		<!--</button>		-->
-	<!--</td>-->
-    <td>
-		{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
-		{{Headline}}
-		{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
-	</td>
-    <td>{{Type}}</td>
-    <td>{{Bedrooms}}</td> 
-    <td>{{Bathrooms}}</td> 
-    <td>{{Sleeps}}</td> 
-    <!--<td><span>{{TopAmenities}}</span></td>   -->
-    <td>{{ContextData.Quote.PublicNotes}}</td> 
-    <td>
-		{{^IsBookable}}
-		<a class="button primary-fill-color" href='{{ContextData.SEO.DetailURL}}'>{{textdata.Inquire Now}}</a>
-		{{/IsBookable}}
-		{{#IsBookable}}
-		<a class="button primary-fill-color" href='{{ContextData.SEO.BookingURL}}'>{{textdata.Book Now}}</a>
-		{{/IsBookable}}		
-	</td>   
-</tr>
-{{/result}}
-</tbody>
-</table>
-<div class="clearfix"></div>
-{{> partial-more-results}}
+    <table class="">
+        <!--<table class="table table-bordered table-striped">-->
+        <thead>
+        <tr>
+            <!--<th></th>-->
+            <th>{{textdata.Property Name}}</th>
+            <th>{{textdata.Category}}</th>
+            <th>{{textdata.Beds}}</th>
+            <th>{{textdata.Baths}}</th>
+            <th>{{textdata.Sleeps}}</th>
+            <!--<th>{{textdata.Amenities}}</th>-->
+            <th>{{textdata.Rates}}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#result}}
+            <tr>
+                <!--<td>-->
+                <!--<button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="{{ID}}" type="button" data-toggle="button">-->
+                <!--<span class="halflings heart-empty"><i></i>{{^inmylist}}{{textdata.WishList}}{{/inmylist}}{{#inmylist}}{{textdata.WishListed}}{{/inmylist}}</span>-->
+                <!--</button>		-->
+                <!--</td>-->
+                <td>
+                    {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                    {{Headline}}
+                    {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                </td>
+                <td>{{Type}}</td>
+                <td>{{Bedrooms}}</td>
+                <td>{{Bathrooms}}</td>
+                <td>{{Sleeps}}</td>
+                <!--<td><span>{{TopAmenities}}</span></td>   -->
+                <td>{{ContextData.Quote.PublicNotes}}</td>
+                <td>
+                    {{^IsBookable}}
+                        <a class="button primary-fill-color" href='{{ContextData.SEO.DetailURL}}'>{{textdata.Inquire Now}}</a>
+                    {{/IsBookable}}
+                    {{#IsBookable}}
+                        <a class="button primary-fill-color" href='{{ContextData.SEO.BookingURL}}'>{{textdata.Book Now}}</a>
+                    {{/IsBookable}}
+                </td>
+            </tr>
+        {{/result}}
+        </tbody>
+    </table>
+    <div class="clearfix"></div>
+        {{> partial-more-results}}
 </script>
 
 <script id="tmpl-properties-ratetable" type="text/html">
 {{#result}}
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-{{#ContextData.Rates.Keys}}
-	<th>{{.}}</th>
-{{/ContextData.Rates.Keys}}
-</tr>
-</thead>
-<tbody>
-{{#ContextData.Rates.Values}}
-<tr>
-	{{#0}}<td>{{0}}</td>{{/0}}
-	{{#1}}<td>{{1}}</td>{{/1}}
-	{{#2}}<td>{{2}}</td>{{/2}}	
-	{{#3}}<td>{{3}}</td>{{/3}}	
-	{{#4}}<td>{{4}}</td>{{/4}}	
-	{{#5}}<td>{{5}}</td>{{/5}}	
-	{{#6}}<td>{{6}}</td>{{/6}}	
-	{{#7}}<td>{{7}}</td>{{/7}}	
-	{{#8}}<td>{{8}}</td>{{/8}}	
-	{{#9}}<td>{{9}}</td>{{/9}}	
-	{{#10}}<td>{{10}}</td>{{/10}}	
-	{{#11}}<td>{{11}}</td>{{/11}}	
-	{{#12}}<td>{{12}}</td>{{/12}}	
-	{{#13}}<td>{{13}}</td>{{/13}}	
-	{{#14}}<td>{{14}}</td>{{/14}}	
-	{{#15}}<td>{{15}}</td>{{/15}}	
-	{{#16}}<td>{{16}}</td>{{/16}}	
-	{{#17}}<td>{{17}}</td>{{/17}}	
-	{{#18}}<td>{{18}}</td>{{/18}}	
-	{{#19}}<td>{{19}}</td>{{/19}}	
-	{{#20}}<td>{{20}}</td>{{/20}}		
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            {{#ContextData.Rates.Keys}}
+                <th>{{.}}</th>
+            {{/ContextData.Rates.Keys}}
+        </tr>
+        </thead>
+    <tbody>
+    {{#ContextData.Rates.Values}}
+        <tr>
+        {{#0}}<td>{{0}}</td>{{/0}}
+{{#1}}<td>{{1}}</td>{{/1}}
+{{#2}}<td>{{2}}</td>{{/2}}
+{{#3}}<td>{{3}}</td>{{/3}}
+{{#4}}<td>{{4}}</td>{{/4}}
+{{#5}}<td>{{5}}</td>{{/5}}
+{{#6}}<td>{{6}}</td>{{/6}}
+{{#7}}<td>{{7}}</td>{{/7}}
+{{#8}}<td>{{8}}</td>{{/8}}
+{{#9}}<td>{{9}}</td>{{/9}}
+{{#10}}<td>{{10}}</td>{{/10}}
+{{#11}}<td>{{11}}</td>{{/11}}
+{{#12}}<td>{{12}}</td>{{/12}}
+{{#13}}<td>{{13}}</td>{{/13}}
+{{#14}}<td>{{14}}</td>{{/14}}
+{{#15}}<td>{{15}}</td>{{/15}}
+{{#16}}<td>{{16}}</td>{{/16}}
+{{#17}}<td>{{17}}</td>{{/17}}
+{{#18}}<td>{{18}}</td>{{/18}}
+{{#19}}<td>{{19}}</td>{{/19}}
+{{#20}}<td>{{20}}</td>{{/20}}
 </tr>
 {{/ContextData.Rates.Values}}
 </tbody>

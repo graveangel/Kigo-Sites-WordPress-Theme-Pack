@@ -65,6 +65,7 @@ class ThemeActivation {
             }
 
         }
+
         if (!count($this->activeWidgets['under_header_right'])) {
 
             /* Create logins menu */
@@ -173,12 +174,13 @@ class ThemeActivation {
                 $this->setWidget('footer_left', 'kd_menu', $kd_lmenu_content);
             }
         }
+
         if (!count($this->activeWidgets['footer_right'])) {
             /* Create footer menu */
             $footerMenuId = $this->createBapiMenu('Footer Menu', ['bapi_home', 'bapi_rentals', 'bapi_specials', 'bapi_about_us', 'bapi_contact']);
 
             if($footerMenuId) {
-                $this->setWidget('footer_right', 'kd_menu', ['menu' => $footerMenuId,]);
+                $this->setWidget('footer_right', 'kd_menu', ['menu' => $footerMenuId, 'align' => 'right']);
             }
         }
 

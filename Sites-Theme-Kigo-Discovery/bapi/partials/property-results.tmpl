@@ -2,6 +2,7 @@
 Group: Properties
 */
 <script id="tmpl-propertysearch-listview" type="text/html">
+    <div class="row">
         {{#result}}
         <div class="col-md-6">
             <div class="property">
@@ -29,6 +30,7 @@ Group: Properties
         {{^result}}
             <div class="nomore"><a href='javascript:void(0)'><span class="col-xs-12 alert alert-warn">{{textdata.There are no more results}}</span></a></div>
         {{/result}}
+    </div>
 </script>
 
 <script id="tmpl-propertysearch-mapview" type="text/html">
