@@ -1,5 +1,5 @@
 
-.property{
+.list-property{
   margin-bottom: 25px;
   border: 1px solid #eee;
   border-radius: 5px;
@@ -156,7 +156,9 @@ body.page-template-search-page{
   }
 
   .listProps{
-    @extend .property;
+    .property{
+      @extend .list-property;
+    }
   }
 
   .mapContainer{
