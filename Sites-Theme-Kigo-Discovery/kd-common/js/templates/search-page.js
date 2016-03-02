@@ -37,13 +37,13 @@ app.bapiModules.templates.searchPage = {
                 break;
         }
     },
-    getProperties: function(iteration_callback){
+    getProperties: function(success_callback, empty_callback){
         var chunkSize = 10;
 
         if(this.properties.length){
             this.properties.forEach(function(prop, prop_i){
 
-                iteration_callback.call(this, prop, prop_i);
+                success_callback.call(this, prop, prop_i);
 
                     this.updateCounters();
 
@@ -57,6 +57,11 @@ app.bapiModules.templates.searchPage = {
                 this.totalProps = total;
                 this.updateCounters();
 
+                if(total == 0){
+                    empty_callback.call(this, {}, 0);
+                    return;
+                }
+
                 //Split property id's into page-sized chunks
                 var chunks = _.chunk(ids, chunkSize);
 
@@ -69,7 +74,7 @@ app.bapiModules.templates.searchPage = {
 
                         gr.result.forEach(function (prop, prop_i) {
 
-                            iteration_callback.call(this, prop, prop_i);
+                            success_callback.call(this, prop, prop_i);
                             this.updateCounters();
 
                         }.bind(this));
@@ -97,7 +102,7 @@ app.bapiModules.templates.searchPage = {
         });
     },
     initClusterer: function(){
-        var mcOptions = {gridSize: 50, maxZoom: 10};
+        var mcOptions = {gridSize: 50};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     addMarker: function(prop){
@@ -138,6 +143,9 @@ app.bapiModules.templates.searchPage = {
         /* We store markers for later use */
         this.markers.push(marker);
         this.propMarkers[prop.AltID] = marker;
+
+        /* Add marker to Clusterer */
+        this.clustererObj.addMarker(marker);
     },
     openMarker: function(marker){
         /* first, we close any open marker InfoWindows */
@@ -199,35 +207,51 @@ app.bapiModules.templates.searchPage = {
         /* Update view layout */
         document.querySelector('.listView').classList.add('hidden');
         document.querySelector('.mapView').classList.remove('hidden');
-        document.querySelector('.viewToggle .v-map').classList.add('active');
+        //document.querySelector('.viewToggle .v-map').classList.add('active');
 
         if(this.mapInitted){return;}
 
-        this.initMap(0,0);
-
         this.getProperties(function(prop, prop_i){
+            //Search has returned properties
+
+            if(this.markers.length == 0){
+                //First iteration, we can initialize map on first location coordinates
+                //Also initialize Marker Clusterer to start adding markers to it
+
+                this.initMap(prop.Latitutde, prop.Longitude);
+                this.initClusterer();
+            }
 
             this.addMarker(prop);
 
             //Last marker iteration
-            if(this.markers.length == this.totalProps){
-                this.initClusterer();
+            if(this.properties.length == this.totalProps){
                 this.centerMap();
                 this.addMapProps();
                 this.mapInitted = true;
             }
+        }, function(){
+            //Search has returned no properties (empty)
+            this.addMapProps();
         });
     },
     doListView: function(){
         /* Update view layout */
         document.querySelector('.mapView').classList.add('hidden');
         document.querySelector('.listView').classList.remove('hidden');
-        document.querySelector('.viewToggle .v-list').classList.add('active');
+        //document.querySelector('.viewToggle .v-list').classList.add('active');
 
         if(this.listInitted)return;
 
         this.getProperties(function(prop, prop_i){
+            //Search has returned properties
             var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
+            this.listPropContainer.innerHTML += propHTML;
+        },
+        function(){
+            //Search has returned no properties (empty)
+
+            var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [], textdata: BAPI.textdata});
             this.listPropContainer.innerHTML += propHTML;
         });
 

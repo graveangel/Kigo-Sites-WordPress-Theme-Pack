@@ -29,9 +29,9 @@
                                 <span>&nbsp;properties loaded.</span>
                             </div>
 
-                            <div class="btn-group viewToggle" data-toggle="buttons-radio">
-                                <button class="btn changeview v-list"><i class="fa fa-list"></i>List</button>
-                                <button class="btn changeview"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                            <div class="btn-group viewToggle">
+                                <button class="btn v-list"><i class="fa fa-list"></i>List</button>
+                                <button class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
                             </div>
                         </div>
                     </div>
@@ -54,15 +54,15 @@
                                 <span>&nbsp;properties loaded.</span>
                             </div>
 
-                            <div class="btn-group viewToggle" data-toggle="buttons-radio">
-                                <button class="btn changeview"><i class="fa fa-list"></i>List</button>
-                                <button class="btn changeview v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                            <div class="btn-group viewToggle">
+                                <button class="btn active"><i class="fa fa-list"></i>List</button>
+                                <button class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-xs-12 bottom">
-                        <div id="listPropertiesContainer" class="row pad-y-15">
+                        <div id="listPropertiesContainer" class="row pad-15">
 
                         </div>
                     </div>

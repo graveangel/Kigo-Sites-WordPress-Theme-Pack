@@ -1592,77 +1592,9 @@ Group: Properties
             </div>
         </div>
         {{/result}}
-</script>
-
-
-<script id="tmpl-propertysearch-galleryview" type="text/html">
-    <header class="row-fluid search-result-controls">
-        <div class="span7 form-horizontal">&nbsp;</div>
-        <div class="span5 form-horizontal">
-            <div class="control-group pull-right">
-                <label class="control-label"></label>
-                <div class="controls">
-                    <div class="btn-group" data-toggle="buttons-radio">
-                        {{#config.searchmodes.listview}}<button class="btn changeview" data-template="tmpl-propertysearch-listview"><i class="icon-list"></i>&nbsp;{{textdata.List}}</button>{{/config.searchmodes.listview}}
-                        {{#config.searchmodes.photoview}}<button class="btn changeview active" data-template="tmpl-propertysearch-galleryview" data-rowfixselector=".gallery-view-page%20%3E%20.span6" data-rowfixcount="2"><i class="icon-th-large"></i>&nbsp;{{textdata.Photo}}</button>{{/config.searchmodes.photoview}}
-                        {{#config.searchmodes.mapview}}<button class="btn changeview" data-template="tmpl-propertysearch-mapview" data-showallresults="1"><i class="icon-map-marker"></i>&nbsp;{{textdata.Map}}</button>{{/config.searchmodes.mapview}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="gallery-view-page">
-        {{#result}}
-            <div class="span6">
-                <div class="portal-result">
-                    <div class="portal-inner">
-                        <div class="portal-images">
-                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
-                            <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false }'>
-                                <ul class="slides">
-                                    <li><img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&a=c&w=398&h=264&q=60" /></li>
-                                    {{#Images.1}}<li><img alt="{{Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&OriginalURL}}&a=c&w=398&h=264&q=60" /></li>{{/Images.1}}
-                                    {{#Images.2}}<li><img alt="{{Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&OriginalURL}}&a=c&w=398&h=264&q=60" /></li>{{/Images.2}}
-                                </ul>
-                            </div>
-                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
-                        </div>
-                        <div class="portal-info">
-                            <h2 class="property-title">{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Headline}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</h2>
-                            {{#config.hidestarsreviews}}
-                                {{#NumReviews}}
-                                    <div class="starsreviews"><div id="propstar-{{AvgReview}}"><span class="stars"></span><i class="starsvalue"></i></div></div>
-                                {{/NumReviews}}
-                            {{/config.hidestarsreviews}}
-                            <div class="location">
-                                <span class="hidden-phone"><b>{{textdata.City}}:</b> {{City}}</span> {{#Bedrooms}}| <b>{{textdata.Beds}}</b>: {{Bedrooms}} | {{/Bedrooms}}{{#Bathrooms}}<b>{{textdata.Baths}}</b>: {{Bathrooms}} | {{/Bathrooms}}{{#Sleeps}}<b>{{textdata.Sleeps}}</b>: {{Sleeps}}{{/Sleeps}}
-                            </div>
-
-                            {{^ContextData.Quote.IsValid}}
-                                {{#session.scheckin}}{{#session.scheckout}}<div class="alert alert-info no-rate">{{ContextData.Quote.ValidationMessage}}</div>{{/session.scheckout}}{{/session.scheckin}}
-                            {{/ContextData.Quote.IsValid}}
-
-                            <div class="row-fluid">
-                                <div class="span9 portal-rates">
-                                    {{#ContextData.Quote.QuoteDisplay.value}}
-                                        {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
-                                        {{ContextData.Quote.QuoteDisplay.value}}
-                                        {{#ContextData.Quote.QuoteDisplay.suffix}}<span classs="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
-                                    {{/ContextData.Quote.QuoteDisplay.value}}
-                                </div>
-                                <div class="span3 right-side-actions">
-                                    {{#ContextData.SEO.Keyword}}<a class="property-link" href="{{&ContextData.SEO.DetailURL}}">{{textdata.Details}} <span>&rarr;</span></a>{{/ContextData.SEO.Keyword}}
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {{^result}}
+            <div class="nomore"><a href='javascript:void(0)'><span class="col-xs-12 alert alert-warn">{{textdata.There are no more results}}</span></a></div>
         {{/result}}
-    </div>
-    <div class="clearfix"></div>
-        {{> partial-propertysearch-more-results}}
 </script>
 
 <script id="tmpl-propertysearch-mapview" type="text/html">
@@ -1683,49 +1615,11 @@ Group: Properties
             </div>
         </div>
         {{/result}}
-</script>
-
-<script id="tmpl-propertysearch-widephotoview" type="text/html">
-    <div class="widephoto-view-page">
-        {{#result}}
-            <div class="portal-result">
-                <div class="portal-inner">
-                    <div class="portal-images">
-                        {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
-                        <img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=810&h=540&q=85&zc=2" />
-                        {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
-                    </div>
-                    <div class="portal-info">
-                        <div class="row-fluid">
-                            <div class="span7 left-side">
-                                <h2 class="property-title">{{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Headline}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</h2>
-                                <div class="location">
-                                    <span class="hidden-phone"><b>{{textdata.City}}:</b> {{City}}</span> {{#Bedrooms}}| <b>{{textdata.Beds}}</b>: {{Bedrooms}} | {{/Bedrooms}}{{#Bathrooms}}<b>{{textdata.Baths}}</b>: {{Bathrooms}} | {{/Bathrooms}}{{#Sleeps}}<b>{{textdata.Sleeps}}</b>: {{Sleeps}}{{/Sleeps}}
-
-                                </div>
-                            </div>
-                            <div class="span5 right-side align-right">
-                                {{^ContextData.Quote.IsValid}}
-                                    {{#session.scheckin}}{{#session.scheckout}}<div class="alert alert-info no-rate">{{ContextData.Quote.ValidationMessage}}</div>{{/session.scheckout}}{{/session.scheckin}}
-                                {{/ContextData.Quote.IsValid}}
-                                <div class="portal-rates">
-                                    {{#ContextData.Quote.QuoteDisplay.value}}
-                                        {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
-                                        {{ContextData.Quote.QuoteDisplay.value}}
-                                        {{#ContextData.Quote.QuoteDisplay.suffix}}<span classs="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
-                                    {{/ContextData.Quote.QuoteDisplay.value}}
-                                </div>
-                                {{#ContextData.SEO.Keyword}}<a class="property-link" href="{{&ContextData.SEO.DetailURL}}">{{textdata.Details}} <span>&rarr;</span></a>{{/ContextData.SEO.Keyword}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        {{^result}}
+        <div class="nomore"><a href='javascript:void(0)'><span class="col-xs-12 alert alert-warn">{{textdata.There are no more results}}</span></a></div>
         {{/result}}
-    </div>
-    <div class="clearfix"></div>
-        {{> partial-propertysearch-more-results}}
 </script>
+
 <script id="tmpl-properties-detail" type="text/html">
         {{#result}}
         <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="property" data-lat="{{Latitude}}" data-long="{{Longitude}}" data-bg="{{&PrimaryImage.OriginalURL}}" ></div>
@@ -1801,40 +1695,35 @@ Group: Properties
                         <li id="bapi-rateblock" class="bapi-rateblock" data-templatename="tmpl-search-rateblock" data-log="1"></li>
                     </ul>
                 </div>
-                <div class="book-enq nocollapse"></div></div></div>
+                <!--<div class="book-enq nocollapse"></div>-->
+            </div>
+        </div>
         <div class="property-description page-width nocollapse">
-            <div class="ppt-images">
-                <ul class="ppt-slides">
-                    {{#Images}}
-                        <li>
-                            <a class="simple-lightbox" data-index="{{ID}}" href="{{&OriginalURL}}" title="{{#Caption}}{{Caption}}{{/Caption}}" style="background-image: url({{&OriginalURL}});">
-                                <!--<img class="thumb-img" alt="{{#Caption}}{{Caption}}{{/Caption}}" title="{{#Caption}}{{Caption}}{{/Caption}}" src="{{&OriginalURL}}" />-->
-                            </a>
-                        </li>
+            <div class="ppt-desc">
+                <div class="ppt-images swiper-container">
+                    <ul class="ppt-slides swiper-wrapper">
+                        {{#Images}}
+                            <li class="swiper-slide">
+                                <a class="simple-lightbox" data-index="{{ID}}" href="{{&OriginalURL}}" title="{{#Caption}}{{Caption}}{{/Caption}}" style="background-image: url('{{&OriginalURL}}');"></a>
+                            </li>
+                        {{/Images}}
                         <li class="more transall">
                             View more photos
                         </li>
-                    {{/Images}}
-                </ul>
-                <div class="slider-controls nocollapse">
-                    <span class="prev-slide"></span>
-                    <span class="open-lightbox"></span>
-                    <span class="next-slide"></span>
+                    </ul>
+                    <div class="slider-controls nocollapse">
+                        <span class="prev-slide"></span>
+                        <span class="open-lightbox"></span>
+                        <span class="next-slide"></span>
+                    </div>
+                    <div class="ppt-image-caption" id="ppt-image-caption"></div>
                 </div>
-                <div class="ppt-image-caption" id="ppt-image-caption"></div>
-            </div>
-            <div class="ppt-desc">
                 {{&Description}}
-                <div class="ppt-desc-title">
-                </div>
-                <p class="ppt-desc-text">
-                </p>
+                <div class="ppt-desc-title"></div>
+                <p class="ppt-desc-text"></p>
                 <div class="fb-like" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
             </div>
         </div>
-        <!-- END PROPERTY DESCRIPTION -->
-
-        <!-- PROPERTY FEATURES -->
         <div class="property-features page-width">
             <ul>
                 <li class="active">
@@ -1958,7 +1847,7 @@ Group: Properties
                                             </div>
                                         </div>
                                 </td>
-                                <td colspan="2">{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
+                                <td>{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
                                 <td>{{ContextData.Distance}}</td>
                             </tr>
                         {{/ContextData.Attractions}}

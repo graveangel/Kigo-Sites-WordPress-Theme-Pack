@@ -1,4 +1,4 @@
-/* Edited - Tue Mar 01 2016 15:02:13 GMT+0100 (Romance Standard Time) */
+/* Edited - Wed Mar 02 2016 17:57:17 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2868,7 +2868,8 @@ footer.footer {
     background-color: rgba(255, 255, 255, 0.2); }
   .template-property .hero {
     position: relative;
-    height: 300px; }
+    height: 300px;
+    background-color: #f9f9f9; }
   .template-property .hero-image {
     max-width: 100%;
     width: 100%;
@@ -2897,12 +2898,11 @@ footer.footer {
     padding-bottom: 0; }
   .template-property .amenities {
     box-sizing: border-box;
-    padding: 30px; }
+    padding: 15px; }
     .template-property .amenities .alert {
       white-space: normal; }
     .template-property .amenities ul li {
-      width: 100%;
-      margin-bottom: 13px; }
+      width: 100%; }
       .template-property .amenities ul li .alert {
         margin-bottom: 0; }
       .template-property .amenities ul li span {
@@ -2941,16 +2941,22 @@ footer.footer {
     color: white; }
   .template-property .ppt-images,
   .template-property .ppt-desc {
-    float: left;
     box-sizing: border-box;
     text-align: justify; }
   .template-property .ppt-images {
     width: 100%;
-    display: none;
-    overflow: hidden; }
+    overflow: hidden;
+    margin-bottom: 30px; }
+    .template-property .ppt-images p {
+      display: none; }
     .template-property .ppt-images ul {
-      height: 393px;
+      height: 400px;
       position: relative; }
+      .template-property .ppt-images ul li {
+        display: inline-block;
+        float: left;
+        width: 100%;
+        height: 100%; }
       .template-property .ppt-images ul > li.swiper-slide-active {
         overflow: hidden; }
       .template-property .ppt-images ul > li.more {
@@ -2960,17 +2966,22 @@ footer.footer {
         bottom: 10px;
         height: calc(50% - 20px);
         width: calc(50% - 20px);
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.75);
         text-align: center;
         font-size: 25px;
         line-height: 7em;
         color: #fff;
         font-family: "Montserrat", sans-serif;
         font-weight: 100;
-        display: none; }
+        display: none;
+        transition: opacity .33s; }
       .template-property .ppt-images ul > li a {
         display: block;
-        height: 100%; }
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%;
+        width: 100%; }
     .template-property .ppt-images:hover {
       cursor: pointer; }
       .template-property .ppt-images:hover ul li.more {
@@ -3036,8 +3047,7 @@ footer.footer {
     color: #999;
     font-size: 14px; }
   .template-property .property-features {
-    padding: 0 15px;
-    margin-top: 50px; }
+    padding: 0 15px; }
     .template-property .property-features > ul > li {
       padding: 15px 0;
       border-top: 1px solid #ccc;
@@ -3116,7 +3126,7 @@ footer.footer {
     margin-right: 10px; }
   .template-property #pano {
     position: relative;
-    z-index: 9999;
+    z-index: 450;
     height: 100%;
     display: block; }
 
@@ -3157,8 +3167,7 @@ Media Tablets horizontal
         display: inline-block;
         vertical-align: middle;
         width: auto;
-        margin-right: 20px;
-        margin-bottom: 15px; }
+        margin-right: 20px; }
         .template-property .amenities ul li span {
           display: inline-block;
           vertical-align: middle; }
@@ -3185,9 +3194,13 @@ Media Tablets horizontal
       margin-left: 10px;
       font-size: 16px; }
     .template-property .property-description {
-      padding: 0px; }
+      padding: 15px 0; }
     .template-property .ppt-images {
-      max-width: 63%; }
+      max-width: 60%;
+      margin: 0 15px 10px 0;
+      float: left; }
+      .template-property .ppt-images .swiper-wrapper {
+        display: block !important; }
       .template-property .ppt-images ul {
         overflow: hidden; }
       .template-property .ppt-images ul li img {
@@ -3216,10 +3229,11 @@ Media Tablets horizontal
           background-size: cover; }
         .template-property .ppt-slides li img {
           visibility: hidden; }
-      .template-property .ppt-slides li:first-child, .template-property .ppt-slides li:nth-child(2) {
+      .template-property .ppt-slides li:first-child {
         width: 50%; }
-      .template-property .ppt-slides li:nth-child(2), .template-property .ppt-slides li:nth-child(3) {
-        height: 50%; }
+      .template-property .ppt-slides li:nth-child(2), .template-property .ppt-slides li:nth-child(2), .template-property .ppt-slides li:nth-child(3) {
+        height: 50%;
+        width: 50%; }
       .template-property .ppt-slides li:nth-child(2n+4) {
         clear: both; }
     .template-property .big,
@@ -3228,12 +3242,8 @@ Media Tablets horizontal
       float: left; }
     .template-property .med {
       max-height: 50%; }
-    .template-property .ppt-image-caption {
-      display: block; }
     .template-property .ppt-desc {
-      max-width: 37%;
-      box-sizing: border-box;
-      padding-right: 0; }
+      box-sizing: border-box; }
     .template-property .ppt-desc-title {
       color: #333;
       font-size: 19px;
@@ -3242,7 +3252,6 @@ Media Tablets horizontal
       color: #999;
       font-size: 14px; }
     .template-property .property-features {
-      margin-top: 50px;
       padding: 0; }
     .template-property .amenities-list {
       margin-top: 12px; }
@@ -3276,6 +3285,9 @@ Media Tablets horizontal
           text-align: right; }
           .template-property .map-and-locations .poi-map-locations td:first-child .poi-map-item {
             color: #33baaf; }
+        .template-property .map-and-locations .poi-map-locations td:last-of-type {
+          min-width: 90px;
+          text-align: right; }
       .template-property .map-and-locations #poi-map-prop {
         width: 100%;
         height: 400px;
@@ -3357,8 +3369,6 @@ Media Desktop
       line-height: 2.5em; }
     .template-property .book-enq > :last-child {
       margin: 0; }
-  .template-property .ppt-desc {
-    padding-right: 0; }
   .template-property .map-and-locations #poi-map-prop {
     width: 70%; }
   .template-property .map-and-locations #map-side-bar {
@@ -3397,7 +3407,6 @@ Media Desktop
     font-size: 1.1em; }
 
 .pop-up-form-link {
-  margin: 0 15px;
   font-size: 12px;
   color: #33baaf;
   text-decoration: underline;

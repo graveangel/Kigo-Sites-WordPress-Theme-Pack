@@ -73,40 +73,35 @@
                         <li id="bapi-rateblock" class="bapi-rateblock" data-templatename="tmpl-search-rateblock" data-log="1"></li>
                     </ul>
                 </div>
-                <div class="book-enq nocollapse"></div></div></div>
+                <!--<div class="book-enq nocollapse"></div>-->
+            </div>
+        </div>
         <div class="property-description page-width nocollapse">
-            <div class="ppt-images">
-                <ul class="ppt-slides">
-                    {{#Images}}
-                        <li>
-                            <a class="simple-lightbox" data-index="{{ID}}" href="{{&OriginalURL}}" title="{{#Caption}}{{Caption}}{{/Caption}}" style="background-image: url({{&OriginalURL}});">
-                                <!--<img class="thumb-img" alt="{{#Caption}}{{Caption}}{{/Caption}}" title="{{#Caption}}{{Caption}}{{/Caption}}" src="{{&OriginalURL}}" />-->
-                            </a>
-                        </li>
+            <div class="ppt-desc">
+                <div class="ppt-images swiper-container">
+                    <ul class="ppt-slides swiper-wrapper">
+                        {{#Images}}
+                            <li class="swiper-slide">
+                                <a class="simple-lightbox" data-index="{{ID}}" href="{{&OriginalURL}}" title="{{#Caption}}{{Caption}}{{/Caption}}" style="background-image: url('{{&OriginalURL}}');"></a>
+                            </li>
+                        {{/Images}}
                         <li class="more transall">
                             View more photos
                         </li>
-                    {{/Images}}
-                </ul>
-                <div class="slider-controls nocollapse">
-                    <span class="prev-slide"></span>
-                    <span class="open-lightbox"></span>
-                    <span class="next-slide"></span>
+                    </ul>
+                    <div class="slider-controls nocollapse">
+                        <span class="prev-slide"></span>
+                        <span class="open-lightbox"></span>
+                        <span class="next-slide"></span>
+                    </div>
+                    <div class="ppt-image-caption" id="ppt-image-caption"></div>
                 </div>
-                <div class="ppt-image-caption" id="ppt-image-caption"></div>
-            </div>
-            <div class="ppt-desc">
                 {{&Description}}
-                <div class="ppt-desc-title">
-                </div>
-                <p class="ppt-desc-text">
-                </p>
+                <div class="ppt-desc-title"></div>
+                <p class="ppt-desc-text"></p>
                 <div class="fb-like" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
             </div>
         </div>
-        <!-- END PROPERTY DESCRIPTION -->
-
-        <!-- PROPERTY FEATURES -->
         <div class="property-features page-width">
             <ul>
                 <li class="active">
@@ -230,7 +225,7 @@
                                             </div>
                                         </div>
                                 </td>
-                                <td colspan="2">{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
+                                <td>{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
                                 <td>{{ContextData.Distance}}</td>
                             </tr>
                         {{/ContextData.Attractions}}
