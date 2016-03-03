@@ -466,10 +466,10 @@ function get_marked_as_featured() {
 
 
 
-    $featured = array('kdfeatured'=>$props['result']);
+    $featured = array('kdfeatured'=> $props['result'] ? : []);
 
 
-    $sd = json_decode(get_option('bapi_keywords_array'));
+    $sd = json_decode(get_option('bapi_keywords_array')) ? : [];
     $sd_properties = array();
     foreach($sd as $ent){
         if($ent->entity === "property"){
