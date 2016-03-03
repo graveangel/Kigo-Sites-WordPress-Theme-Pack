@@ -27,7 +27,16 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                     '.primary-fill-color',
                 ),
                 'declarations' => array(
-                    'background-color' => $color . " !important"
+                    'background-color' => $color . " !important",
+                    'color' => 'white',
+                )
+            ));
+            Customizer_Library_Styles()->add(array(
+                'selectors' => array(
+                    '.primary-fill-color:hover',
+                ),
+                'declarations' => array(
+                    'color' => "white !important"
                 )
             ));
 
