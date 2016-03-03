@@ -2708,14 +2708,14 @@ Group: Searching
             {{/config.location.enabled}}
 
             {{#config.checkin.enabled}}
-                <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkin">
-                    <input id="searchcheckin" type="text" class="span12 txtb quicksearch sessioncheckin datepickercheckin" data-field="scheckin" placeholder="{{textdata.Check-In}}" />
+                <div id="searchcheckin" class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkin">
+                    <input type="text" class="span12 txtb quicksearch sessioncheckin datepickercheckin" data-field="scheckin" placeholder="{{textdata.Check-In}}" />
                 </div>
             {{/config.checkin.enabled}}
             {{#config.checkin.enabled}}
                 {{#config.checkout.enabled}}
-                    <div class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkout">
-                        <input id="searchcheckout" type="text" class="span12 txtb quicksearch sessioncheckout datepickercheckout" data-field="scheckout" value="{{session.searchparams.scheckout}}" placeholder="{{textdata.Check-Out}}" />
+                    <div  id="searchcheckout" class="category-block kd-icon col-xs-12 col-sm-12 col-md-2" data-field="checkout">
+                        <input type="text" class="span12 txtb quicksearch sessioncheckout datepickercheckout" data-field="scheckout" value="{{session.searchparams.scheckout}}" placeholder="{{textdata.Check-Out}}" />
                     </div>
                 {{/config.checkout.enabled}}
                 {{#config.los.enabled}}

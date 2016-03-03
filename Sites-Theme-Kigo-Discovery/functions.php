@@ -240,6 +240,8 @@ class KD {
             wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ', array(), '', false);
             /* Google Maps Marker Manager */
             wp_enqueue_script('gmaps-clusterer',  $commonPath . '/lib/js-marker-clusterer/src/markerclusterer_compiled.js', array(), '', false);
+            /* Google Maps Spidify */
+            wp_enqueue_script('gmaps-spidify',  $commonPath . '/lib/oms/oms.min.js', array(), '', false);
 
             /* simple weather https://github.com/monkeecreate/jquery.simpleWeather/ */
             wp_enqueue_script('simple-weather-js', $commonPath . '/lib/simpleweather/jquery.simpleWeather.min.js', array(), '', false);

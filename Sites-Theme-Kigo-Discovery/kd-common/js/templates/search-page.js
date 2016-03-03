@@ -13,6 +13,7 @@ app.bapiModules.templates.searchPage = {
     /* Map */
     mapObj: null,
     clustererObj: null,
+    spidifyObj: null,
     markers: [],
     propMarkers: {},
     bounds: null,
@@ -102,8 +103,11 @@ app.bapiModules.templates.searchPage = {
         });
     },
     initClusterer: function(){
-        var mcOptions = {gridSize: 50};
+        var mcOptions = {gridSize: 25};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
+    },
+    initSpidify: function(){
+        this.spidifyObj = new OverlappingMarkerSpiderfier(this.mapObj);
     },
     addMarker: function(prop){
         /* Create info window */
@@ -137,15 +141,22 @@ app.bapiModules.templates.searchPage = {
             }
         });
 
+        //Standard event handling
         /* Add event listeners to show info window */
         marker.addListener('click', this.openMarker.bind(this, marker));
+
+        //Spidify event handling
+        this.spidifyObj.addListener('click', this.openMarker.bind(this, marker));
 
         /* We store markers for later use */
         this.markers.push(marker);
         this.propMarkers[prop.AltID] = marker;
 
         /* Add marker to Clusterer */
-        this.clustererObj.addMarker(marker);
+        //this.clustererObj.addMarker(marker);
+
+        /* Add marker to spidify */
+        this.spidifyObj.addMarker(marker);
     },
     openMarker: function(marker){
         /* first, we close any open marker InfoWindows */
@@ -220,6 +231,7 @@ app.bapiModules.templates.searchPage = {
 
                 this.initMap(prop.Latitutde, prop.Longitude);
                 this.initClusterer();
+                this.initSpidify();
             }
 
             this.addMarker(prop);
