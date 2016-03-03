@@ -1,5 +1,11 @@
 input.stars {
-	display: none;
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: -1em 0 1em 2em;
+  display: block;
+  //display: none;
+  border-color: #ff0 !important;
 }
 
 //Stars
@@ -8,50 +14,97 @@ input.stars {
   direction: rtl;
   text-align: left;
   font-size: 2rem;
+
+  &[data-stars]:not([data-stars="0"]) {
+    span {
+      color: #FFD800;
+    }
+  }
 }
 .rating > span {
   display: inline-block;
   position: relative;
   width: 1.1em;
 }
+.rating > span:hover,
+.rating > span:hover ~ span {
+  color: #FFD800;
+}
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
    content: "\2605";
    position: absolute;
+   color: #FFD800;
 }
 .rating .glyphicon {
-	font-size: 0.8em;
+	font-size: 0.5em;
 	opacity: .5;
 }
 .rating .glyphicon:hover {
 	opacity: 1;
 }
-.rating[data-stars="5"] span:before {
+
+//5 Stars
+.rating[data-max="5"][data-stars="5"] span:before {
+	content: "\2605";
+  position: absolute;
+}
+.rating[data-max="5"][data-stars="4"] span:nth-child(n+2):before {
 	content: "\2605";
    	position: absolute;
 }
-.rating[data-stars="4"] span:nth-child(n+2):before {
+.rating[data-max="5"][data-stars="3"] span:nth-child(n+3):before {
 	content: "\2605";
    	position: absolute;
 }
-.rating[data-stars="3"] span:nth-child(n+3):before {
+.rating[data-max="5"][data-stars="2"] span:nth-child(n+4):before {
 	content: "\2605";
    	position: absolute;
 }
-.rating[data-stars="2"] span:nth-child(n+4):before {
-	content: "\2605";
-   	position: absolute;
-}
-.rating[data-stars="1"] span:nth-child(n+5):before {
+.rating[data-max="5"][data-stars="1"] span:nth-child(n+5):before {
 	content: "\2605";
    	position: absolute;
 }
 
+//4 Stars
+.rating[data-max="4"][data-stars="4"] span:before {
+  content: "\2605";
+    position: absolute;
+}
+.rating[data-max="4"][data-stars="3"] span:nth-child(n+2):before {
+  content: "\2605";
+    position: absolute;
+}
+.rating[data-max="4"][data-stars="2"] span:nth-child(n+3):before {
+  content: "\2605";
+    position: absolute;
+}
+.rating[data-max="4"][data-stars="1"] span:nth-child(n+4):before {
+  content: "\2605";
+    position: absolute;
+}
 
-.home-qsearch {
+.alert {
+  opacity: 1;
+  transition: opacity .2;
+  display: block;
+}
+.alert:empty {
+  opacity: 0;
   display: none;
+}
 
-  &.qsFixed {
-    display: block;
-  }
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.panel-default {
+  border-color: #ddd;
+}
+.panel-body {
+  padding: 1em;
 }

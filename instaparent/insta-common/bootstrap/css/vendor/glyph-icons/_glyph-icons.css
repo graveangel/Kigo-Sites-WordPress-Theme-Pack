@@ -13,8 +13,8 @@
 
 @font-face {
   font-family: Glyphicons;
-  src: url("../../../fonts/glyphicons-regular.eot");
-  src: url("../../../fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("../../../fonts/glyphicons-regular.woff") format('woff'),url("../../../fonts/glyphicons-regular.ttf") format('truetype'),url("../../../fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
+  src: url("../../fonts/glyphicons-regular.eot");
+  src: url("../../fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("../../fonts/glyphicons-regular.woff") format('woff'),url("../../fonts/glyphicons-regular.ttf") format('truetype'),url("../../fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
   font-weight: 400;
   font-style: normal;
 }
@@ -33,10 +33,15 @@ html .glyphicons {
 }
 
 @font-face {
-  font-family: Glyphicons;
-  src: url("../../../fonts/glyphicons-regular.eot");
-  src: url("../../../fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("../../../fonts/glyphicons-regular.woff") format('woff'),url("../../../fonts/glyphicons-regular.ttf") format('truetype'),url("../../../fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
+  font-family: 'Glyphicons';
+  src: url("../../fonts/glyphicons-regular.eot");
+  src: url("../../fonts/glyphicons-regular.eot?#iefix") format('embedded-opentype'),url("../../fonts/glyphicons-regular.woff") format('woff'),url("../../fonts/glyphicons-regular.ttf") format('truetype'),url("../../fonts/glyphicons-regular.svg#glyphicons_halflingsregular") format('svg');
   font-weight: 400;
+  font-style: normal;
+}
+
+.glyphicon:before {
+  font-family: 'Glyphicons';
   font-style: normal;
 }
 
@@ -239,7 +244,8 @@ html .glyphicons {
   content: "\e045";
 }
 
-.glyphicons.calendar i:before {
+.glyphicons.calendar i:before,
+.glyphicon.glyphicon-calendar:before {
   content: "\e046";
 }
 
@@ -827,7 +833,8 @@ html .glyphicons {
   content: "\e192";
 }
 
-.glyphicons.circle_remove i:before {
+.glyphicons.circle_remove i:before,
+.glyphicon.circle_remove:before {
   content: "\e193";
 }
 
