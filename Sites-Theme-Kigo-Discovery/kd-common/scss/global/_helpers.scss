@@ -93,6 +93,12 @@ select{
   }
 }
 
+/* Backgrounds */
+
+.bg-white{
+  background-color: white;
+}
+
 /* Smooth invisible transition */
 
 .faded-out{
@@ -147,7 +153,6 @@ header h1{
   }
 
   &.filled {
-//    background: $primary-color;
     color: #fff;
   }
 }
@@ -160,7 +165,6 @@ header h1{
 .bold{
   font-weight: bold;
 }
-
 
 /* Rating stars */
 
@@ -184,7 +188,6 @@ header h1{
 .reviewrating-1::before {
   content:"\2605";
 }
-
 
 /* Alignment helpers */
 
@@ -227,7 +230,7 @@ header h1{
   }
 }
 
-@media (min-width: $bp-md) {/*md*/
+@media (min-width: $bp-md) {
   .md-left {
     text-align: left;
   }
@@ -250,18 +253,6 @@ header h1{
     text-align: center;
   }
 }
-
-/* No-gutter helpers */
-
-//.row.no-gutters {
-//  margin-right: 0;
-//  margin-left: 0;
-//}
-//.row.no-gutters > [class^="col-"],
-//.row.no-gutters > [class*=" col-"] {
-//  padding-right: 0;
-//  padding-left: 0;
-//}
 
 /* Widget common */
 
@@ -291,3 +282,22 @@ header h1{
 .pad-y-15{padding: 15px 0;}
 .pad-y-20{padding: 20px 0;}
 .pad-y-30{padding: 30px 0;}
+
+
+/* Margins */
+
+.m-r-10{margin-right: 10px;}
+.m-r-15{margin-right: 15px;}
+.m-r-30{margin-right: 30px;}
+
+.m-l-10{margin-left: 10px;}
+.m-l-15{margin-left: 15px;}
+.m-l-30{margin-left: 30px;}
+
+.m-t-15p{
+  margin-top: 15%;
+}
+
+.m-auto{
+  margin: auto;
+}

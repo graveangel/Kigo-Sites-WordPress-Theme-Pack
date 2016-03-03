@@ -2,35 +2,43 @@
 Group: Properties
 */
 <script id="tmpl-propertysearch-listview" type="text/html">
-    <div class="row">
         {{#result}}
-        <div class="col-md-6">
-            <div class="property">
-                <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')"></a>
-                <div class="info">
-                    <div class="top">
-                        <div class="beds">
-                            {{#Bedrooms}}{{Bedrooms}} {{textdata.Beds}}{{/Bedrooms}} {{#Bathrooms}} /  {{Bathrooms}} {{textdata.Baths}}{{/Bathrooms}}
+            <div class="col-md-6">
+                <div class="property">
+                    <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')"></a>
+                    <div class="info">
+                        <div class="top">
+                            <div class="beds">
+                                {{#Bedrooms}}{{Bedrooms}} {{textdata.Beds}}{{/Bedrooms}} {{#Bathrooms}} /  {{Bathrooms}} {{textdata.Baths}}{{/Bathrooms}}
+                            </div>
+                            <div class="location">
+                                {{Type}}, {{{City}}}<br>
+                            </div>
                         </div>
-                        <div class="location">
-                            {{Type}}, {{{City}}}<br>
-                        </div>
-                    </div>
-                    <h5 class="title">{{Headline}}</h5>
-                    <div class="desc">{{{ContextData.SEO.PageTitle}}}</div>
+                        <h5 class="title">{{Headline}}</h5>
+                        <div class="desc">{{{ContextData.SEO.PageTitle}}}</div>
 
-                    <div class="bottom">
-                        <div class="price">{{ContextData.Quote.PublicNotes}}</div>
-                        <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">See Details</a>
+
+                        <div class="bottom">
+                            {{#ContextData.Quote.QuoteDisplay.value}}
+                                <div class="price">
+                                    {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
+                                    {{ContextData.Quote.QuoteDisplay.value}}
+                                    {{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                                </div>
+                            {{/ContextData.Quote.QuoteDisplay.value}}
+                            {{^ContextData.Quote.QuoteDisplay.value}}
+                                <div class="rate-warning">{{ContextData.Quote.ValidationMessage}}</div>
+                            {{/ContextData.Quote.QuoteDisplay.value}}
+                            <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">See Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         {{/result}}
         {{^result}}
             <div class="nomore"><a href='javascript:void(0)'><span class="col-xs-12 alert alert-warn">{{textdata.There are no more results}}</span></a></div>
         {{/result}}
-    </div>
 </script>
 
 <script id="tmpl-propertysearch-mapview" type="text/html">
@@ -40,7 +48,16 @@ Group: Properties
             <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
                 <div class="from secondary-fill-color">
                     <!--<div class="tag">From:</div>-->
-                    <div class="price">{{ContextData.Quote.PublicNotes}}</div>
+                    {{#ContextData.Quote.QuoteDisplay.value}}
+                        <div class="price">
+                            {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
+                            {{ContextData.Quote.QuoteDisplay.value}}
+                            {{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                        </div>
+                    {{/ContextData.Quote.QuoteDisplay.value}}
+                    {{^ContextData.Quote.QuoteDisplay.value}}
+                        <div class="rate-warning">{{ContextData.Quote.ValidationMessage}}</div>
+                    {{/ContextData.Quote.QuoteDisplay.value}}
                 </div>
             </a>
             <div class="info">

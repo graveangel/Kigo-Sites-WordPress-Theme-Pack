@@ -40,7 +40,7 @@ var app = {
         checkHeader(); //Check in case page has loaded with scroll
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
-        window.addEventListener('scroll', debounce(checkHeader, 25)); //ms
+        window.addEventListener('scroll', debounce(checkHeader, 10)); //ms
 
         function checkHeader(){
 

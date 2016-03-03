@@ -8,8 +8,6 @@ app.bapiModules.templates.propertyDetails = {
             //          .fixHeroImage()
                       .openCloseAmenitiesList()
                       .lightBoxAndCarousel()
-            //          .imageHover()
-                      .popUpBookingForm()
                       .checkPropSettings()
             //          .checkThumbs()
                       .checkUseMap();
@@ -33,12 +31,6 @@ app.bapiModules.templates.propertyDetails = {
             this.swiperCarousel();
         }
 
-        return this;
-    },
-    imageHover: function () {
-        jQuery('.simple-lightbox').hover(function () {
-            jQuery("#ppt-image-caption").text(jQuery(this).attr('title'));
-        });
         return this;
     },
     swiperCarousel: function swiperCarousel() {
@@ -79,23 +71,6 @@ app.bapiModules.templates.propertyDetails = {
                 heroImage.css('bottom', "-" + bottomHI + "px");
             }
         }
-        return this;
-    },
-    popUpBookingForm: function () {
-        jQuery(document).on('click', '.pop-up-form-link', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').addClass('active');
-        });
-
-        jQuery(document).on('click', '.booking-form', function (e) {
-            e.stopPropagation();
-        });
-
-        jQuery(document).on('click', '.booking-form .close, .pop-up-booking-form.active', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').removeClass('active');
-        });
-
         return this;
     },
     checkUseMap: function () {

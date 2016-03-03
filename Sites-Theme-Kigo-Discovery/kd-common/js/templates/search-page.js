@@ -112,7 +112,7 @@ app.bapiModules.templates.searchPage = {
             '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
             '<div class="from secondary-fill-color">' +
             //'<div class="tag">From:</div>' +
-            '<div class="price">' +prop.ContextData.Quote.PublicNotes +'</div>' +
+            '<div class="price">' + (prop.ContextData.Quote.QuoteDisplay.value != '' ? prop.ContextData.Quote.QuoteDisplay.prefix+': '+prop.ContextData.Quote.QuoteDisplay.value+' '+prop.ContextData.Quote.QuoteDisplay.suffix : prop.ContextData.Quote.ValidationMessage ) +'</div>' +
             '</div></a>' +
             '<div class="info">' +
             '<h5 class="title">' + prop.Headline + '</h5>' +

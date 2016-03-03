@@ -1,4 +1,4 @@
-/* Edited - Wed Mar 02 2016 17:41:40 GMT+0100 (Romance Standard Time) */
+/* Edited - Thu Mar 03 2016 13:04:15 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -41,7 +41,7 @@ var app = {
         checkHeader(); //Check in case page has loaded with scroll
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
-        window.addEventListener('scroll', debounce(checkHeader, 25)); //ms
+        window.addEventListener('scroll', debounce(checkHeader, 10)); //ms
 
         function checkHeader(){
 
@@ -766,8 +766,6 @@ app.bapiModules.templates.propertyDetails = {
             //          .fixHeroImage()
                       .openCloseAmenitiesList()
                       .lightBoxAndCarousel()
-            //          .imageHover()
-                      .popUpBookingForm()
                       .checkPropSettings()
             //          .checkThumbs()
                       .checkUseMap();
@@ -791,12 +789,6 @@ app.bapiModules.templates.propertyDetails = {
             this.swiperCarousel();
         }
 
-        return this;
-    },
-    imageHover: function () {
-        jQuery('.simple-lightbox').hover(function () {
-            jQuery("#ppt-image-caption").text(jQuery(this).attr('title'));
-        });
         return this;
     },
     swiperCarousel: function swiperCarousel() {
@@ -837,23 +829,6 @@ app.bapiModules.templates.propertyDetails = {
                 heroImage.css('bottom', "-" + bottomHI + "px");
             }
         }
-        return this;
-    },
-    popUpBookingForm: function () {
-        jQuery(document).on('click', '.pop-up-form-link', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').addClass('active');
-        });
-
-        jQuery(document).on('click', '.booking-form', function (e) {
-            e.stopPropagation();
-        });
-
-        jQuery(document).on('click', '.booking-form .close, .pop-up-booking-form.active', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').removeClass('active');
-        });
-
         return this;
     },
     checkUseMap: function () {
@@ -1122,7 +1097,7 @@ app.bapiModules.templates.searchPage = {
             '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
             '<div class="from secondary-fill-color">' +
             //'<div class="tag">From:</div>' +
-            '<div class="price">' +prop.ContextData.Quote.PublicNotes +'</div>' +
+            '<div class="price">' + (prop.ContextData.Quote.QuoteDisplay.value != '' ? prop.ContextData.Quote.QuoteDisplay.prefix+': '+prop.ContextData.Quote.QuoteDisplay.value+' '+prop.ContextData.Quote.QuoteDisplay.suffix : prop.ContextData.Quote.ValidationMessage ) +'</div>' +
             '</div></a>' +
             '<div class="info">' +
             '<h5 class="title">' + prop.Headline + '</h5>' +

@@ -1,4 +1,4 @@
-/* Edited - Wed Mar 02 2016 18:51:23 GMT+0100 (Romance Standard Time) */
+/* Edited - Thu Mar 03 2016 12:34:50 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2514,6 +2514,10 @@ select {
     display: initial;
     opacity: 1; }
 
+/* Backgrounds */
+.bg-white {
+  background-color: white; }
+
 /* Smooth invisible transition */
 .faded-out {
   opacity: 0; }
@@ -2615,7 +2619,6 @@ h1, h2, h3, h4, h5 {
     text-align: center; } }
 
 @media (min-width: 992px) {
-  /*md*/
   .md-left {
     text-align: left; }
   .md-right {
@@ -2631,7 +2634,6 @@ h1, h2, h3, h4, h5 {
   .lg-center {
     text-align: center; } }
 
-/* No-gutter helpers */
 /* Widget common */
 .kd-widget {
   padding: 15px; }
@@ -2671,6 +2673,31 @@ h1, h2, h3, h4, h5 {
 
 .pad-y-30 {
   padding: 30px 0; }
+
+/* Margins */
+.m-r-10 {
+  margin-right: 10px; }
+
+.m-r-15 {
+  margin-right: 15px; }
+
+.m-r-30 {
+  margin-right: 30px; }
+
+.m-l-10 {
+  margin-left: 10px; }
+
+.m-l-15 {
+  margin-left: 15px; }
+
+.m-l-30 {
+  margin-left: 30px; }
+
+.m-t-15p {
+  margin-top: 15%; }
+
+.m-auto {
+  margin: auto; }
 
 /* Generics */
 body {
@@ -3412,7 +3439,63 @@ Media Desktop
   text-decoration-style: dotted; }
 
 .pop-up-booking-form {
-  display: none; }
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999; }
+  .pop-up-booking-form .booking-form {
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 40px;
+    height: auto;
+    max-width: 400px;
+    margin: 15% auto;
+    background: #fff; }
+    .pop-up-booking-form .booking-form .glyphicons-list-alt {
+      font-size: 30px;
+      color: #999;
+      margin-bottom: 15px; }
+    .pop-up-booking-form .booking-form .close {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      z-index: 9991;
+      opacity: 1; }
+      .pop-up-booking-form .booking-form .close::before {
+        content: '\00D7';
+        font-weight: bold;
+        color: #999;
+        font-size: 35px; }
+    .pop-up-booking-form .booking-form .update-info-label {
+      font-size: 15px;
+      color: #999;
+      text-transform: uppercase;
+      vertical-align: middle;
+      line-height: 30px;
+      margin-left: 10px; }
+    .pop-up-booking-form .booking-form .bapi-getquote {
+      margin: auto;
+      float: none;
+      text-align: center;
+      position: static;
+      display: block;
+      color: #fff;
+      background-color: #f6af33;
+      border-radius: 0;
+      width: 150px; }
+    .pop-up-booking-form .booking-form .picker__input, .pop-up-booking-form .booking-form .quicksearch {
+      cursor: default;
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 10px;
+      border: 1px solid #bbb;
+      border-radius: 5px; }
+    .pop-up-booking-form .booking-form label {
+      float: left;
+      clear: both; }
 
 .bapi-rateblock {
   display: inline-block; }
@@ -3423,71 +3506,7 @@ Media Desktop
   background: rgba(0, 0, 0, 0.8); }
 
 .pop-up-booking-form.active {
-  display: block;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 9999; }
-  .pop-up-booking-form.active .booking-form {
-    box-sizing: border-box;
-    border-radius: 5px;
-    padding: 40px;
-    padding-top: 50px;
-    position: absolute;
-    height: auto;
-    max-height: 380px;
-    max-width: 400px;
-    left: 15px;
-    right: 15px;
-    top: 0%;
-    bottom: 0%;
-    margin: auto;
-    background: #fff; }
-    .pop-up-booking-form.active .booking-form .glyphicons-list-alt {
-      font-size: 30px;
-      color: #999;
-      margin-bottom: 15px; }
-    .pop-up-booking-form.active .booking-form .close {
-      position: absolute;
-      right: 15px;
-      top: 10px;
-      z-index: 9991;
-      opacity: 1; }
-      .pop-up-booking-form.active .booking-form .close::before {
-        content: '\00D7';
-        font-weight: bold;
-        color: #999;
-        font-size: 35px; }
-    .pop-up-booking-form.active .booking-form .update-info-label {
-      font-size: 15px;
-      color: #999;
-      text-transform: uppercase;
-      vertical-align: middle;
-      line-height: 30px;
-      margin-left: 10px; }
-    .pop-up-booking-form.active .booking-form .bapi-getquote {
-      margin: auto;
-      float: none;
-      text-align: center;
-      position: static;
-      display: block;
-      color: #fff;
-      background-color: #f6af33;
-      border-radius: 0;
-      width: 150px; }
-    .pop-up-booking-form.active .booking-form .picker__input, .pop-up-booking-form.active .booking-form .quicksearch {
-      cursor: default;
-      padding: 10px;
-      width: 100%;
-      margin-bottom: 10px;
-      border: 1px solid #bbb;
-      border-radius: 5px; }
-    .pop-up-booking-form.active .booking-form label {
-      float: left;
-      clear: both; }
+  display: block; }
 
 .template-property #book-block {
   display: inline-block; }
@@ -3680,6 +3699,13 @@ Media Desktop
         display: inline-block; }
       .list-property .info .bottom .tag, body.page-template-search-page .listProps .property .info .bottom .tag {
         margin-right: 10px; }
+  .list-property .rate-warning, body.page-template-search-page .listProps .property .rate-warning {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    font-size: 11px;
+    padding: 5px 0;
+    line-height: 13px; }
 
 body.page-template-search-page .container {
   position: relative;
@@ -4201,7 +4227,7 @@ body.page-template-mybooking {
       font-size: 20px; }
   body.page-template-mybooking .bapi-showrevise {
     padding: 5px 10px; }
-  body.page-template-mybooking .property-info span, body.page-template-mybooking .property-info p {
+  body.page-template-mybooking .property-info {
     font-family: "Montserrat";
     font-size: 14px; }
   body.page-template-mybooking #statement .item {

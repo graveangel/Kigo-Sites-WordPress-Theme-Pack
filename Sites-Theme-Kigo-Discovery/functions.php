@@ -211,7 +211,7 @@ class KD {
             wp_enqueue_script('lodash', 'https://cdn.jsdelivr.net/lodash/4.5.1/lodash.min.js' , array(), '', false);
 
             /* Bootstrap - https://github.com/dbushell/Pikaday */
-            wp_enqueue_script('kd-bootstrap-js', $commonPath . '/lib/bootstrap/js/bootstrap.min.js', array(), '', false);
+            wp_enqueue_script('kd-bootstrap-js', $commonPath . '/lib/bootstrap/js/bootstrap.min.js', array(), '', true);
             wp_enqueue_style('kd-bootstrap-css', $commonPath . '/lib/bootstrap/css/bootstrap.min.css');
 
             /* Wweather Icons */
@@ -225,7 +225,6 @@ class KD {
             /* Swiper - http://www.idangero.us/swiper */
             wp_enqueue_script('swiper-js', $commonPath . '/lib/swiper/js/swiper.min.js', array(), '', false);
             wp_enqueue_style('swiper-css', $commonPath . '/lib/swiper/css/swiper.min.css');
-//            wp_enqueue_script('swiper-jquery-js', $commonPath . '/lib/swiper/js/swiper.jquery.min.js', array(), '', false);
 
             /* Flexslider - http://flexslider.woothemes.com/ */
             wp_enqueue_script('flexslider-js', $commonPath . '/lib/flexslider/jquery.flexslider-min.js', array(), '', false);

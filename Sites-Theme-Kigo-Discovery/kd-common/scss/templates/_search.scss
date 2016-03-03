@@ -85,6 +85,15 @@
       }
     }
   }
+
+  .rate-warning{
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    font-size: 11px;
+    padding: 5px 0;
+    line-height: 13px;
+  }
 }
 
 body.page-template-search-page{

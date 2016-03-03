@@ -59,7 +59,7 @@
     ul {
       li {
         width: 100%;
-//        margin-bottom         : 15px;
+        //        margin-bottom         : 15px;
 
         .alert{
           margin-bottom: 0;
@@ -551,7 +551,7 @@ Media Tablets horizontal
       max-height                : 50%;
     }
     .ppt-image-caption {
-//      display                   : block;
+      //      display                   : block;
     }
 
 
@@ -613,7 +613,7 @@ Media Tablets horizontal
             }
           }
           border: none;
-          
+
           &:last-of-type{
             min-width: 90px;
             text-align: right;
@@ -794,21 +794,6 @@ Media Desktop
   text-decoration-style: dotted;
 }
 .pop-up-booking-form {
-  display: none;
-}
-
-.bapi-rateblock {
-  display: inline-block;
-  .alert{
-    max-width: 360px;
-  }
-}
-.sl-overlay {
-  background: rgba(0,0,0,0.8);
-}
-
-.pop-up-booking-form.active {
-  display:    block;
   position:   fixed;
   height:     100%;
   width:      100%;
@@ -816,21 +801,15 @@ Media Desktop
   left:       0;
   background: rgba(0,0,0,0.8);
   z-index:    9999;
+
   .booking-form {
-    box-sizing:    border-box;
+    box-sizing: border-box;
     border-radius: 5px;
-    padding:       40px;
-    padding-top:   50px;
-    position:      absolute;
-    height:        auto;
-    max-height:    380px;
-    max-width:     400px;
-    left:          15px;
-    right:         15px;
-    top:           0%;
-    bottom:        0%;
-    margin:        auto;
-    background:    #fff;
+    padding: 40px;
+    height: auto;
+    max-width: 400px;
+    margin: 15% auto;
+    background: #fff;
     .glyphicons-list-alt{
       font-size: 30px;
       color: #999;
@@ -886,6 +865,20 @@ Media Desktop
     }
   }
 
+}
+
+.bapi-rateblock {
+  display: inline-block;
+  .alert{
+    max-width: 360px;
+  }
+}
+.sl-overlay {
+  background: rgba(0,0,0,0.8);
+}
+
+.pop-up-booking-form.active {
+  display: block;
 }
 
 
