@@ -238,9 +238,9 @@ class KD {
 
             /* Google Maps */
             wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ', array(), '', false);
-            /* Google Maps Marker Manager */
+            /* Google Maps Marker Clusterer - */
             wp_enqueue_script('gmaps-clusterer',  $commonPath . '/lib/js-marker-clusterer/src/markerclusterer_compiled.js', array(), '', false);
-            /* Google Maps Spidify */
+            /* Google Maps Spiderfy - */
             wp_enqueue_script('gmaps-spidify',  $commonPath . '/lib/oms/oms.min.js', array(), '', false);
 
             /* simple weather https://github.com/monkeecreate/jquery.simpleWeather/ */

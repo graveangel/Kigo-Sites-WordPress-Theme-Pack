@@ -20,16 +20,23 @@ Group: Properties
 
 
                         <div class="bottom">
-                            {{#ContextData.Quote.QuoteDisplay.value}}
+                            {{#ContextData.Quote.PublicNotes}}
                                 <div class="price">
-                                    {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
-                                    {{ContextData.Quote.QuoteDisplay.value}}
-                                    {{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                                    {{ContextData.Quote.PublicNotes}}
                                 </div>
-                            {{/ContextData.Quote.QuoteDisplay.value}}
-                            {{^ContextData.Quote.QuoteDisplay.value}}
-                                <div class="rate-warning">{{ContextData.Quote.ValidationMessage}}</div>
-                            {{/ContextData.Quote.QuoteDisplay.value}}
+                            {{/ContextData.Quote.PublicNotes}}
+                            {{^ContextData.Quote.PublicNotes}}
+                                {{#ContextData.Quote.QuoteDisplay.value}}
+                                    <div class="price">
+                                        {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
+                                        {{ContextData.Quote.QuoteDisplay.value}}
+                                        {{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                                    </div>
+                                {{/ContextData.Quote.QuoteDisplay.value}}
+                                {{^ContextData.Quote.QuoteDisplay.value}}
+                                    <div class="rate-warning">{{ContextData.Quote.ValidationMessage}}</div>
+                                {{/ContextData.Quote.QuoteDisplay.value}}
+                            {{/ContextData.Quote.PublicNotes}}
                             <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">See Details</a>
                         </div>
                     </div>
@@ -48,16 +55,23 @@ Group: Properties
             <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
                 <div class="from secondary-fill-color">
                     <!--<div class="tag">From:</div>-->
-                    {{#ContextData.Quote.QuoteDisplay.value}}
+                    {{#ContextData.Quote.PublicNotes}}
                         <div class="price">
-                            {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
-                            {{ContextData.Quote.QuoteDisplay.value}}
-                            {{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                            {{ContextData.Quote.PublicNotes}}
                         </div>
-                    {{/ContextData.Quote.QuoteDisplay.value}}
-                    {{^ContextData.Quote.QuoteDisplay.value}}
-                        <div class="rate-warning">{{ContextData.Quote.ValidationMessage}}</div>
-                    {{/ContextData.Quote.QuoteDisplay.value}}
+                    {{/ContextData.Quote.PublicNotes}}
+                    {{^ContextData.Quote.PublicNotes}}
+                        {{#ContextData.Quote.QuoteDisplay.value}}
+                            <div class="price">
+                                {{#ContextData.Quote.QuoteDisplay.prefix}}<span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>{{/ContextData.Quote.QuoteDisplay.prefix}}
+                                {{ContextData.Quote.QuoteDisplay.value}}
+                                {{#ContextData.Quote.QuoteDisplay.suffix}}<span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>{{/ContextData.Quote.QuoteDisplay.suffix}}
+                            </div>
+                        {{/ContextData.Quote.QuoteDisplay.value}}
+                        {{^ContextData.Quote.QuoteDisplay.value}}
+                            <div class="rate-warning">{{ContextData.Quote.ValidationMessage}}</div>
+                        {{/ContextData.Quote.QuoteDisplay.value}}
+                    {{/ContextData.Quote.PublicNotes}}
                 </div>
             </a>
             <div class="info">

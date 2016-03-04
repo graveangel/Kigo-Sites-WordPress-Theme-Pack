@@ -13,7 +13,7 @@ app.bapiModules.templates.searchPage = {
     /* Map */
     mapObj: null,
     clustererObj: null,
-    spidifyObj: null,
+    spiderfyObj: null,
     markers: [],
     propMarkers: {},
     bounds: null,
@@ -69,11 +69,11 @@ app.bapiModules.templates.searchPage = {
                 chunks.forEach(function (chunk, chunk_i) {
 
                     app.bapi.get('property', chunk, function (gr) {
-                        
-                        //Store recovered properties
-                        this.properties = _.concat(this.properties, gr.result);
 
                         gr.result.forEach(function (prop, prop_i) {
+
+                            //Store recovered properties
+                            this.properties = _.concat(this.properties, [prop]);
 
                             success_callback.call(this, prop, prop_i);
                             this.updateCounters();
@@ -103,11 +103,11 @@ app.bapiModules.templates.searchPage = {
         });
     },
     initClusterer: function(){
-        var mcOptions = {gridSize: 25};
+        var mcOptions = {gridSize: 50, maxZoom: 13};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
-    initSpidify: function(){
-        this.spidifyObj = new OverlappingMarkerSpiderfier(this.mapObj);
+    initSpiderfy: function(){
+        this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj);
     },
     addMarker: function(prop){
         /* Create info window */
@@ -116,8 +116,9 @@ app.bapiModules.templates.searchPage = {
             '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
             '<div class="from secondary-fill-color">' +
             //'<div class="tag">From:</div>' +
-            '<div class="price">' + (prop.ContextData.Quote.QuoteDisplay.value != '' ? prop.ContextData.Quote.QuoteDisplay.prefix+': '+prop.ContextData.Quote.QuoteDisplay.value+' '+prop.ContextData.Quote.QuoteDisplay.suffix : prop.ContextData.Quote.ValidationMessage ) +'</div>' +
-            '</div></a>' +
+            //'<div class="price">' + (prop.ContextData.Quote.QuoteDisplay.value != '' ? prop.ContextData.Quote.QuoteDisplay.prefix+': '+prop.ContextData.Quote.QuoteDisplay.value+' '+prop.ContextData.Quote.QuoteDisplay.suffix : prop.ContextData.Quote.ValidationMessage ) +'</div>' +
+            '</div>' +
+            '</a>' +
             '<div class="info">' +
             '<h5 class="title">' + prop.Headline + '</h5>' +
             + prop.Type + ', ' + prop.Location + '<br>' +
@@ -127,6 +128,7 @@ app.bapiModules.templates.searchPage = {
         });
 
         /* Create marker + store info window inside for later use (also in property ele) */
+        
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
             map: this.mapObj,
@@ -143,20 +145,21 @@ app.bapiModules.templates.searchPage = {
 
         //Standard event handling
         /* Add event listeners to show info window */
-        marker.addListener('click', this.openMarker.bind(this, marker));
+        //marker.addListener('click', this.openMarker.bind(this, marker));
 
+        /* Add marker to Clusterer */
+        this.clustererObj.addMarker(marker);
+
+        /* Add marker to spidify */
+        this.spiderfyObj.addMarker(marker);
         //Spidify event handling
-        this.spidifyObj.addListener('click', this.openMarker.bind(this, marker));
+        this.spiderfyObj.addListener('click', function(marker) {
+            this.openMarker(marker);
+        }.bind(this));
 
         /* We store markers for later use */
         this.markers.push(marker);
         this.propMarkers[prop.AltID] = marker;
-
-        /* Add marker to Clusterer */
-        //this.clustererObj.addMarker(marker);
-
-        /* Add marker to spidify */
-        this.spidifyObj.addMarker(marker);
     },
     openMarker: function(marker){
         /* first, we close any open marker InfoWindows */
@@ -169,9 +172,8 @@ app.bapiModules.templates.searchPage = {
 
         _.delay(function(){
             marker.iw.open(this.mapObj, marker);
-        }.bind(this), 500);
-
-        /* we store the open InfoWindows to keep track */
+            /* we store the open InfoWindows to keep track */
+        }.bind(this), 250);
         this.openMarkers.push(marker);
     },
     addMapProps: function(){
@@ -201,8 +203,9 @@ app.bapiModules.templates.searchPage = {
             var bounds = new google.maps.LatLngBounds();
             var markers = this.markers;
             /* Extend bounds to all markers and fit view */
-            for (index in markers) {
-                var data = markers[index];
+            for (i in markers) {
+                var data = markers[i];
+                console.log(data.position.lat(), data.position.lng());
                 bounds.extend(new google.maps.LatLng(data.position.lat(), data.position.lng()));
             }
             this.bounds = bounds;
@@ -211,7 +214,6 @@ app.bapiModules.templates.searchPage = {
             /* We revert to the initial map state */
             this.mapObj.fitBounds(this.bounds);
         }
-
     },
     /* View initializers */
     doMapView: function(){
@@ -229,9 +231,9 @@ app.bapiModules.templates.searchPage = {
                 //First iteration, we can initialize map on first location coordinates
                 //Also initialize Marker Clusterer to start adding markers to it
 
-                this.initMap(prop.Latitutde, prop.Longitude);
+                this.initMap(prop.Latitude, prop.Longitude);
                 this.initClusterer();
-                this.initSpidify();
+                this.initSpiderfy();
             }
 
             this.addMarker(prop);
