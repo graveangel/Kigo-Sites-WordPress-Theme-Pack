@@ -1,15 +1,16 @@
 <?php
 
-class ThemeActions{
+namespace Discovery;
+
+class Compatibility{
 
     public function __construct(){
 
     }
 
     public function init(){
-        add_action('init', array($this, 'overwriteIfSynced'));
+        $this->overwriteIfSynced();
     }
-
 
     public function overwriteIfSynced(){
         $pageTemplateOverwrites = array(
@@ -55,14 +56,14 @@ class ThemeActions{
     private function overwriteBAPIPageContent($bapiPageId, $templatePath, $custom_data = []) {
         $data = getbapisolutiondata() + $custom_data;
 
-        $m = new Mustache_Engine();
+        $m = new \Mustache_Engine();
         $args = array(
             'meta_key' => 'bapi_page_id',
             'meta_value' => $bapiPageId,
             'post_type' => 'page'
         );
 
-        $query = new WP_Query($args);
+        $query = new \WP_Query($args);
         $t     = file_get_contents(get_template_directory().$templatePath);
 
         $string = $m->render($t, $data);

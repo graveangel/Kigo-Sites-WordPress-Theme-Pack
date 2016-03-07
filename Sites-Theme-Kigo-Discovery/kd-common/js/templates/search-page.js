@@ -97,9 +97,12 @@ app.bapiModules.templates.searchPage = {
         $('.ppty-count-total').text(this.totalProps);
     },
     initMap: function(latitude, longitude){
+        var defaultMapView = BAPI.config().mapviewType;
+
         this.mapObj = new google.maps.Map(this.mapEle, {
             center: {lat: latitude, lng: longitude},
-            zoom: 8
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId[defaultMapView]
         });
     },
     initClusterer: function(){
@@ -205,7 +208,6 @@ app.bapiModules.templates.searchPage = {
             /* Extend bounds to all markers and fit view */
             for (i in markers) {
                 var data = markers[i];
-                console.log(data.position.lat(), data.position.lng());
                 bounds.extend(new google.maps.LatLng(data.position.lat(), data.position.lng()));
             }
             this.bounds = bounds;

@@ -1,16 +1,16 @@
 <?php
 
-include "themeBAPI.php";
+namespace Discovery;
 
-class ThemeActivation {
+class Activation {
 
     private $activeWidgets;
-    private $themeBAPI;
+    private $BAPIHelper;
 
     public function __construct() {
         /* Get the array of current widgets in each sidebar */
         $this->activeWidgets = get_option('sidebars_widgets');
-        $this->themeBAPI = new ThemeBAPI();
+        $this->BAPIHelper = new BAPIHelper();
     }
 
     public function init() {
@@ -94,8 +94,8 @@ class ThemeActivation {
 
         /* Home page default widgets */
         if (!count($this->activeWidgets['page_home'])) {
-            include_once 'themeBAPI.php';
-            $themeBAPI = new ThemeBAPI();
+            include_once 'BAPIHelper.class.php';
+            $themeBAPI = new BAPIHelper();
 
             /* KD Hero */
             //TODO: Find and host proper default images for hero slider
@@ -307,8 +307,8 @@ class ThemeActivation {
     private function setThemeMods() {
 
         //Fetch BAPI data to set as default values
-        $site_phone = $this->themeBAPI->getTelephone();
-        $site_logo = $this->themeBAPI->getSiteLogo();
+        $site_phone = $this->BAPIHelper->getTelephone();
+        $site_logo = $this->BAPIHelper->getSiteLogo();
 
         /* Define default values for customizer settings */
         $mods = array(

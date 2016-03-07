@@ -1,4 +1,4 @@
-/* Edited - Fri Mar 04 2016 11:33:29 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Mar 07 2016 12:08:04 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -4490,6 +4490,15 @@ body.page-template-default aside, body.single aside {
 
 body.page-template-full-width article.body {
   padding-top: 30px; }
+
+body.error404 .page404 {
+  text-align: center; }
+
+body.error404 .error {
+  font-size: 50px; }
+
+body.error404 .message {
+  text-transform: none; }
 
 /* Widgets */
 .kd-hero {
