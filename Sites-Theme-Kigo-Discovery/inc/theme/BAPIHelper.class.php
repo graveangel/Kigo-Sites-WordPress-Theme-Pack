@@ -1,7 +1,8 @@
 <?php
 
+namespace Discovery;
 
-class ThemeBAPI {
+class BAPIHelper {
     private $bapiData;
 
     public function __construct(){

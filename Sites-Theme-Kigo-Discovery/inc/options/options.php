@@ -27,7 +27,7 @@ function kd_options_panel(){
         set_theme_mod('kd_properties_settings',$_POST['property-detail-settings']);
     }
     
-    include "kd-options-panel.php";
+    include "options-panel.php";
 }
 
 function kd_settings_page_custom_css() {

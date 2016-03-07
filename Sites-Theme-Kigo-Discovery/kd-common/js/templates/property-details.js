@@ -1,17 +1,16 @@
-app.modules.templates.propertyDetails = {
+app.bapiModules.templates.propertyDetails = {
     forceusemap: false,
     mobileBreak: 768,
     init: function () {
         if (this.cond())
         {
-            this.fixHeroImage()
-                    .openCloseAmenitiesList()
-                    .lightBoxAndCarousel()
-                    .imageHover()
-                    .popUpBookingForm()
-                    .checkPropSettings()
-                    .checkThumbs()
-                    .checkUseMap();
+            this
+            //          .fixHeroImage()
+                      .openCloseAmenitiesList()
+                      .lightBoxAndCarousel()
+                      .checkPropSettings()
+            //          .checkThumbs()
+                      .checkUseMap();
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {
@@ -28,45 +27,20 @@ app.modules.templates.propertyDetails = {
                 gallery.open(jQuery(jQuery('.ppt-slides a')[0]));
         });
 
-        //carousel
-        var ob = this;
-        if (jQuery(window).width() <= ob.mobileBreak)
-            ob.swiperCarousel();
+        if(window.innerWidth <=  768){
+            this.swiperCarousel();
+        }
 
-
-        //jQuery(window).resize(debounce(function (e) {
-        //    this.checkThumbs();
-        //    if (jQuery(window).width() <= ob.mobileBreak)
-        //        ob.swiperCarousel();
-        //    else if (typeof SWCarousel !== 'undefined' && SWCarousel) {
-        //        //destroying swipeslider
-        //        SWCarousel.destroy(true, true);
-        //        SWCarousel = null;
-        //        //removing swipeslider classes
-        //        jQuery('.ppt-slides').removeClass('swiper-wrapper');
-        //        jQuery('.ppt-slides > li').removeClass('swiper-slide');
-        //    }
-        //}.bind(this), 500));
-        return this;
-    },
-    imageHover: function () {
-        jQuery('.simple-lightbox').hover(function () {
-            jQuery("#ppt-image-caption").text(jQuery(this).attr('title'));
-        });
         return this;
     },
     swiperCarousel: function swiperCarousel() {
         if (typeof SWCarousel === 'undefined' || !SWCarousel)
         {
-            //Adding swipeslider classes
-            jQuery('.ppt-slides').addClass('swiper-wrapper');
-            jQuery('.ppt-slides > li').addClass('swiper-slide');
-            //Initializing swipeslider
             SWCarousel = new Swiper('.ppt-images', {
-                centeredSlides: true,
                 spaceBetween: 0,
                 nextButton: '.next-slide',
-                prevButton: '.prev-slide'
+                prevButton: '.prev-slide',
+                slidesPerView: 1
             });
         }
 
@@ -99,23 +73,6 @@ app.modules.templates.propertyDetails = {
         }
         return this;
     },
-    popUpBookingForm: function () {
-        jQuery(document).on('click', '.pop-up-form-link', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').addClass('active');
-        });
-
-        jQuery(document).on('click', '.booking-form', function (e) {
-            e.stopPropagation();
-        });
-
-        jQuery(document).on('click', '.booking-form .close, .pop-up-booking-form.active', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').removeClass('active');
-        });
-
-        return this;
-    },
     checkUseMap: function () {
         var pid = parseInt(jQuery('.bapi-entityadvisor').attr('data-pkid'));
         var lat = jQuery('.bapi-entityadvisor').attr('data-lat');
@@ -140,8 +97,6 @@ app.modules.templates.propertyDetails = {
         var mapbox = document.querySelector('.hero-image');
         
         if (usemap) {
-            
-            
             
             var map = new google.maps.Map(mapbox, {
                 center: {lat: parseFloat(lat), lng: parseFloat(long)},

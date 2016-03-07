@@ -12,6 +12,7 @@
   .hero {
     position                      : relative;
     height                        : 300px;
+    background-color: #f9f9f9;
   }
   .hero-image {
     max-width                     : 100%;
@@ -49,7 +50,7 @@
   /* Top amenities ------------------------------------------------------------*/
   .amenities {
     box-sizing                    : border-box;
-    padding                       : 30px;
+    padding                       : 15px;
 
     .alert{
       white-space: normal;
@@ -58,7 +59,7 @@
     ul {
       li {
         width: 100%;
-        margin-bottom         : 13px;
+        //        margin-bottom         : 15px;
 
         .alert{
           margin-bottom: 0;
@@ -119,18 +120,28 @@
   // Images on the left
   .ppt-images,
   .ppt-desc{
-    float                     : left;
     box-sizing                : border-box;
     text-align: justify;
   }
 
   .ppt-images {
     width                     : 100%;
-    display                   : none;
     overflow                  : hidden;
+    margin-bottom: 30px;
+
+    p{
+      display: none;
+    }
+
     ul {
-      height                : 393px;
+      height                : 400px;
       position              : relative;
+      li{
+        display: inline-block;
+        float: left;
+        width: 100%;
+        height: 100%;
+      }
       > li.swiper-slide-active {
         overflow          : hidden;
       }
@@ -141,7 +152,7 @@
         bottom            : 10px;
         height            : calc(50% - 20px);
         width             : calc(50% - 20px);
-        background        : rgba(0,0,0,0.5);
+        background        : rgba(0,0,0,0.75);
         text-align        : center;
         font-size         : 25px;
         line-height       : 7em;
@@ -149,10 +160,15 @@
         font-family       : "Montserrat", sans-serif;
         font-weight       : 100;
         display           : none;
+        transition: opacity .33s;
       }
       > li a{
         display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
         height: 100%;
+        width: 100%;
       }
     }
 
@@ -172,7 +188,6 @@
       right                 : 0;
     }
   }
-
 
   //mobile only Slider controls
   .slider-controls {
@@ -254,7 +269,6 @@
   /*Property features---------------------------------------------*/
   .property-features {
     padding: 0 15px;
-    margin-top                    : 50px ;
     > ul {
       > li {
         padding               : 15px 0;
@@ -364,7 +378,7 @@
 
   #pano {
     position            : relative;
-    z-index             : 9999;
+    z-index             : 450;
     height              : 100%;
     display             : block;
   }
@@ -417,7 +431,7 @@ Media Tablets horizontal
           vertical-align: middle;
           width: auto;
           margin-right      : 20px;
-          margin-bottom     : 15px;
+
           span {
             display: inline-block;
             vertical-align: middle;
@@ -463,11 +477,17 @@ Media Tablets horizontal
     }
 
     .property-description {
-      padding: 0px;
-
+      padding: 15px 0;
     }
     .ppt-images {
-      max-width                 : 63%;
+      max-width                 : 60%;
+      margin: 0 15px 10px 0;
+      float: left;
+
+      .swiper-wrapper{
+        display: block !important;
+      }
+
       ul{
         overflow              : hidden;
       }
@@ -488,8 +508,8 @@ Media Tablets horizontal
           position          : absolute;
         }
       }
-
     }
+
     .slider-controls {
       display                   : none;
     }
@@ -508,11 +528,13 @@ Media Tablets horizontal
           visibility: hidden;
         }
       }
-      li:first-child, li:nth-child(2) {
+      li:first-child{
         width: 50%;
       }
-      li:nth-child(2),li:nth-child(3){
+
+      li:nth-child(2), li:nth-child(2),li:nth-child(3){
         height: 50%;
+        width: 50%;
       }
       li:nth-child(2n+4){
         clear:both;
@@ -529,14 +551,12 @@ Media Tablets horizontal
       max-height                : 50%;
     }
     .ppt-image-caption {
-      display                   : block;
+      //      display                   : block;
     }
 
 
     .ppt-desc {
-      max-width                 :37%;
       box-sizing                : border-box;
-      padding-right             : 0;
     }
     .ppt-desc-title {
       color                     : #333;
@@ -549,7 +569,6 @@ Media Tablets horizontal
     }
 
     .property-features {
-      margin-top                : 50px ;
       padding                   : 0;
     }
 
@@ -594,6 +613,11 @@ Media Tablets horizontal
             }
           }
           border: none;
+
+          &:last-of-type{
+            min-width: 90px;
+            text-align: right;
+          }
         }
       }
       font-size: 0;
@@ -709,18 +733,11 @@ Media Desktop
       > :last-child {
         margin                : 0;
       }
-
-    }
-
-
-    .ppt-desc {
-      padding-right             : 0;
     }
 
     .map-and-locations{
       #poi-map-prop{
         width: 70%;
-
       }
       #map-side-bar{
         width: 30%;
@@ -771,28 +788,12 @@ Media Desktop
 }
 
 .pop-up-form-link {
-  margin: 0 15px;
   font-size: 12px;
   color: $primary-color;
   text-decoration:underline;
   text-decoration-style: dotted;
 }
 .pop-up-booking-form {
-  display: none;
-}
-
-.bapi-rateblock {
-  display: inline-block;
-  .alert{
-    max-width: 360px;
-  }
-}
-.sl-overlay {
-  background: rgba(0,0,0,0.8);
-}
-
-.pop-up-booking-form.active {
-  display:    block;
   position:   fixed;
   height:     100%;
   width:      100%;
@@ -800,21 +801,15 @@ Media Desktop
   left:       0;
   background: rgba(0,0,0,0.8);
   z-index:    9999;
+
   .booking-form {
-    box-sizing:    border-box;
+    box-sizing: border-box;
     border-radius: 5px;
-    padding:       40px;
-    padding-top:   50px;
-    position:      absolute;
-    height:        auto;
-    max-height:    380px;
-    max-width:     400px;
-    left:          15px;
-    right:         15px;
-    top:           0%;
-    bottom:        0%;
-    margin:        auto;
-    background:    #fff;
+    padding: 40px;
+    height: auto;
+    max-width: 400px;
+    margin: 15% auto;
+    background: #fff;
     .glyphicons-list-alt{
       font-size: 30px;
       color: #999;
@@ -870,6 +865,20 @@ Media Desktop
     }
   }
 
+}
+
+.bapi-rateblock {
+  display: inline-block;
+  .alert{
+    max-width: 360px;
+  }
+}
+.sl-overlay {
+  background: rgba(0,0,0,0.8);
+}
+
+.pop-up-booking-form.active {
+  display: block;
 }
 
 

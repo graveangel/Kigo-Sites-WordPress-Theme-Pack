@@ -12,7 +12,7 @@ class KD_Featured extends KD_Widget2 {
 
         $this->filename = 'kd-featured';
 
-        $maf = get_marked_as_featured();
+        $maf = get_marked_as_featured() ? : ['kdfeatured' => []];
         $options = [];
 
         foreach($maf['kdfeatured'] as $pmaf){

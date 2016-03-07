@@ -1,16 +1,16 @@
 <?php
 
-include "themeBAPI.php";
+namespace Discovery;
 
-class ThemeActivation {
+class Activation {
 
     private $activeWidgets;
-    private $themeBAPI;
+    private $BAPIHelper;
 
     public function __construct() {
         /* Get the array of current widgets in each sidebar */
         $this->activeWidgets = get_option('sidebars_widgets');
-        $this->themeBAPI = new ThemeBAPI();
+        $this->BAPIHelper = new BAPIHelper();
     }
 
     public function init() {
@@ -25,9 +25,8 @@ class ThemeActivation {
     }
 
     public function initBapiSettings(){
-        //TODO: Fine-tune search settings so as to not overwrite all settings
-        add_option('bapi_sitesettings',
-            '{"searchmode-listview":"BAPI.config().searchmodes.listview=true;","searchmode-photoview":"BAPI.config().searchmodes.photoview=false;","searchmode-widephotoview":"BAPI.config().searchmodes.widephotoview=false;","searchmode-pagination":"BAPI.config().searchmodes.pagination=false;","searchmode-mapview":"BAPI.config().searchmodes.mapview=true;","mapviewType":"BAPI.config().mapviewType=\'ROADMAP\';","averagestarsreviews":"BAPI.config().hidestarsreviews=false;","defaultsearchresultview":"BAPI.config().defaultsearchresultview=\'tmpl-propertysearch-mapview\';","showunavailunits":"BAPI.config().restrictavail=false;","searchsort":"BAPI.config().sort=\'random\';","searchsortorder":"BAPI.config().sortdesc=false;","checkinoutmode":"BAPI.config().checkin.enabled=true; BAPI.config().checkout.enabled=true; BAPI.config().los.enabled=false;","deflos":"BAPI.config().los.defaultval=4; BAPI.config().los.minval=4;","categorysearch":"BAPI.config().category.enabled=false;","minsleepsearch":"BAPI.config().minsleeps={}; BAPI.config().minsleeps.enabled=false;","bedsearch":"BAPI.config().beds.enabled=true;","minbedsearch":"BAPI.config().minbeds={}; BAPI.config().minbeds.enabled=false;","maxbedsearch":"BAPI.config().beds.values=BAPI.config().beds.values.splice(0,1);BAPI.config().beds.minvalues=BAPI.config().beds.minvalues.splice(0,1);","amenitysearch":"BAPI.config().amenity.enabled=false;","devsearch":"BAPI.config().dev.enabled=false;","adultsearch":"BAPI.config().adults.enabled=false;","childsearch":"BAPI.config().children.enabled=false;","headlinesearch":"BAPI.config().headline.enabled=false;","maxratesearch":"BAPI.config().rate.enabled=false;","roomsearch":"BAPI.config().rooms.enabled=false;","locsearch":"BAPI.config().city.enabled=true; BAPI.config().location.enabled=false; BAPI.config().city.autocomplete=false;","propdetailrateavailtab":"BAPI.config().hideratesandavailabilitytab=false;","propdetail-availcal":"BAPI.config().displayavailcalendar=true;  BAPI.config().availcalendarmonths=6;","propdetailratestable":"BAPI.config().hideratestable=false;","propdetail-reviewtab":"BAPI.config().hasreviews=true;","poitypefilter":"BAPI.config().haspoitypefilter={}; BAPI.config().haspoitypefilter.enabled=true;"}');
+        //Overwrite previous settings. If we shouldn't overwrite, use get_option('bapi_sitesettings') to check beforehand
+        update_option('bapi_sitesettings', '{"searchmode-listview":"BAPI.config().searchmodes.listview=true;","searchmode-photoview":"BAPI.config().searchmodes.photoview=false;","searchmode-widephotoview":"BAPI.config().searchmodes.widephotoview=false;","searchmode-pagination":"BAPI.config().searchmodes.pagination=false;","searchmode-mapview":"BAPI.config().searchmodes.mapview=true;","mapviewType":"BAPI.config().mapviewType=\'ROADMAP\';","averagestarsreviews":"BAPI.config().hidestarsreviews=false;","defaultsearchresultview":"BAPI.config().defaultsearchresultview=\'tmpl-propertysearch-mapview\';","showunavailunits":"BAPI.config().restrictavail=false;","searchsort":"BAPI.config().sort=\'random\';","searchsortorder":"BAPI.config().sortdesc=false;","checkinoutmode":"BAPI.config().checkin.enabled=true; BAPI.config().checkout.enabled=true; BAPI.config().los.enabled=false;","deflos":"BAPI.config().los.defaultval=4; BAPI.config().los.minval=4;","categorysearch":"BAPI.config().category.enabled=false;","minsleepsearch":"BAPI.config().minsleeps={}; BAPI.config().minsleeps.enabled=false;","bedsearch":"BAPI.config().beds.enabled=true;","minbedsearch":"BAPI.config().minbeds={}; BAPI.config().minbeds.enabled=false;","maxbedsearch":"BAPI.config().beds.values=BAPI.config().beds.values.splice(0,1);BAPI.config().beds.minvalues=BAPI.config().beds.minvalues.splice(0,1);","amenitysearch":"BAPI.config().amenity.enabled=false;","devsearch":"BAPI.config().dev.enabled=false;","adultsearch":"BAPI.config().adults.enabled=true;","childsearch":"BAPI.config().children.enabled=false;","headlinesearch":"BAPI.config().headline.enabled=false;","maxratesearch":"BAPI.config().rate.enabled=false;","roomsearch":"BAPI.config().rooms.enabled=false;","locsearch":"BAPI.config().city.enabled=true; BAPI.config().location.enabled=false; BAPI.config().city.autocomplete=false;","propdetailrateavailtab":"BAPI.config().hideratesandavailabilitytab=false;","propdetail-availcal":"BAPI.config().displayavailcalendar=true;  BAPI.config().availcalendarmonths=6;","propdetailratestable":"BAPI.config().hideratestable=false;","propdetail-reviewtab":"BAPI.config().hasreviews=true;","poitypefilter":"BAPI.config().haspoitypefilter={}; BAPI.config().haspoitypefilter.enabled=true;"}');
     }
 
     /**
@@ -65,6 +64,7 @@ class ThemeActivation {
             }
 
         }
+
         if (!count($this->activeWidgets['under_header_right'])) {
 
             /* Create logins menu */
@@ -94,8 +94,8 @@ class ThemeActivation {
 
         /* Home page default widgets */
         if (!count($this->activeWidgets['page_home'])) {
-            include_once 'themeBAPI.php';
-            $themeBAPI = new ThemeBAPI();
+            include_once 'BAPIHelper.class.php';
+            $themeBAPI = new BAPIHelper();
 
             /* KD Hero */
             //TODO: Find and host proper default images for hero slider
@@ -173,12 +173,13 @@ class ThemeActivation {
                 $this->setWidget('footer_left', 'kd_menu', $kd_lmenu_content);
             }
         }
+
         if (!count($this->activeWidgets['footer_right'])) {
             /* Create footer menu */
             $footerMenuId = $this->createBapiMenu('Footer Menu', ['bapi_home', 'bapi_rentals', 'bapi_specials', 'bapi_about_us', 'bapi_contact']);
 
             if($footerMenuId) {
-                $this->setWidget('footer_right', 'kd_menu', ['menu' => $footerMenuId,]);
+                $this->setWidget('footer_right', 'kd_menu', ['menu' => $footerMenuId, 'align' => 'right']);
             }
         }
 
@@ -306,8 +307,8 @@ class ThemeActivation {
     private function setThemeMods() {
 
         //Fetch BAPI data to set as default values
-        $site_phone = $this->themeBAPI->getTelephone();
-        $site_logo = $this->themeBAPI->getSiteLogo();
+        $site_phone = $this->BAPIHelper->getTelephone();
+        $site_logo = $this->BAPIHelper->getSiteLogo();
 
         /* Define default values for customizer settings */
         $mods = array(
@@ -322,6 +323,7 @@ class ThemeActivation {
             'url-facebook'      => '#',
             'url-twitter'       => '#',
             'url-google'        => '#',
+            'url-blog'        => '#',
 
             //Global settings
             'site-phone'        => $site_phone,
