@@ -1,7 +1,7 @@
 {
-  "name": "Kigo-Discovery",
+  "name": "Discovery",
   "version": "0.5.0",
-  "description": "Kigo Discovery parent theme for Kigo powered WordPress sites.",
+  "description": "Discovery parent theme for Kigo powered WordPress sites.",
   "main": "index.php",
   "dependencies": {
     "gulp":             "",

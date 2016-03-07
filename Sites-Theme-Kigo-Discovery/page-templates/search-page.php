@@ -13,7 +13,7 @@
 
                 <div class="map mapContainer col-xs-12 col-md-6">
                     <div>
-                        <div class="loader"><div class="bar"></div></div>
+                        <div class="loader"><div class="bar primary-fill-color"></div></div>
                         <div id="mapContainer" class="loading" data-color="<?php echo get_theme_mod('primary-color') ?>"></div>
                         <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
                     </div>

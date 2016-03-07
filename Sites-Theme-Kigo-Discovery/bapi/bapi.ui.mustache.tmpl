@@ -2267,15 +2267,16 @@ Group: Properties
                     <div class="info">
                         <div class="top">
                             <div class="beds">
-                                {{#Bedrooms}}{{Bedrooms}} {{textdata.Beds}}{{/Bedrooms}} {{#Bathrooms}} /  {{Bathrooms}} {{textdata.Baths}}{{/Bathrooms}}
+                                {{#Type}}<span class="type">{{Type}}</span> / {{/Type}}
+                                {{#Bedrooms}}{{Bedrooms}} {{textdata.Beds}}{{/Bedrooms}}
+                                {{#Bathrooms}} /  {{Bathrooms}} {{textdata.Baths}}{{/Bathrooms}}
                             </div>
                             <div class="location">
-                                {{Type}}, {{{City}}}<br>
+                                {{#City}}<strong>{{textdata.City}}:</strong> {{City}}{{/City}}
                             </div>
                         </div>
                         <h5 class="title">{{Headline}}</h5>
-                        <div class="desc">{{{ContextData.SEO.PageTitle}}}</div>
-
+                        <div class="desc">{{{Summary}}}</div>
 
                         <div class="bottom">
                             {{#ContextData.Quote.PublicNotes}}
@@ -2312,7 +2313,6 @@ Group: Properties
             <div class="viewInMap"></div>
             <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
                 <div class="from secondary-fill-color">
-                    <!--<div class="tag">From:</div>-->
                     {{#ContextData.Quote.PublicNotes}}
                         <div class="price">
                             {{ContextData.Quote.PublicNotes}}
@@ -2334,8 +2334,12 @@ Group: Properties
             </a>
             <div class="info">
                 <h5 class="title">{{Headline}}</h5>
-                {{Type}}, {{{Location}}}<br>
-                {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}
+
+                {{#Type}}<strong>{{Type}}</strong>{{/Type}}
+                {{#City}}, {{City}}{{/City}}
+                {{#State}} ({{State}}){{/State}}<br>
+                {{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}} / {{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}<br>
+
                 <i class="kd-icon-right_arrow"></i>
             </div>
         </div>
