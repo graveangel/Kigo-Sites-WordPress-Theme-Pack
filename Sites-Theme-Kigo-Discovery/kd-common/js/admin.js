@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 09:47:40 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Mar 07 2016 20:37:36 GMT+0100 (Romance Standard Time) */
 var kd_admin = {
     init: function () {
     },
@@ -50,9 +50,7 @@ var kd_admin = {
         aux.addClass('init');
     },
     initCKEditors: function () {
-
         $('#widgets-right .kd_editor').ckeditor({});
-
     },
     initAceEditor: function () {
         if (!document.querySelectorAll('#custom_css').length)

@@ -40,7 +40,7 @@ var app = {
         checkHeader(); //Check in case page has loaded with scroll
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
-        window.addEventListener('scroll', debounce(checkHeader, 25)); //ms
+        window.addEventListener('scroll', debounce(checkHeader, 10)); //ms
 
         function checkHeader(){
 
@@ -50,7 +50,7 @@ var app = {
 
             var scrollMax = overHeader.clientHeight;
 
-            if(currentScroll >= scrollMax){
+            if(currentScroll >= 121){
                 header.classList.add('fixed');
             }else{
                 header.classList.remove('fixed');
@@ -77,7 +77,7 @@ var app = {
             console.log.apply(console, arguments);
     },
     bapiRender: function(entity, template, callback, data){
-        var options = {};
+        var options = {pagesize: 20, seo: true};
 
         BAPI.search(entity, options, function (sdata) {
             BAPI.get(sdata.result, entity, {}, function (gdata) {
@@ -92,6 +92,48 @@ var app = {
                 callback(html);
             });
         });
+    },
+    bapi: {
+        search: function(entity, callback, auxOptions){
+            var options = auxOptions || {};
+            BAPI.search(entity, options, function (sdata) {
+                callback(sdata);
+            });
+        },
+        get: function(entity, ids, callback, options){
+            BAPI.get(ids, entity, _.assign(options, {}), function (gdata) {
+                callback(gdata);
+            });
+        },
+        recursiveGet: function(entity, callback, auxOptions){
+            var options = auxOptions || {};
+            BAPI.search(entity, options, function (sdata) {
+                var propPages = _.chunk(sdata.result, options.pagesize);
+
+                if(auxOptions.waitForAll == 1){
+                    var all = [], iterations = 0;
+                    propPages.forEach(function(page, i){
+                        BAPI.get(page, entity, options, function (gdata) {
+                            iterations++;
+                            all = _.concat(all, gdata.result);
+
+                            if(iterations == (propPages.length)){ //Last iteration
+                                callback({result: all, textdata: BAPI.textdata});
+                            }
+                        });
+                    });
+                }else{
+                    propPages.forEach(function(page, i){
+                        BAPI.get(page, entity, options, function (gdata) {
+                            callback(gdata);
+                        });
+                    });
+                }
+            })
+        },
+        render: function(template, data){
+            return Mustache.render(BAPI.UI.mustacheHelpers.getPartials(template), data);
+        }
     },
     kdMove: function(){
         var moveEles = document.querySelectorAll('[data-move]');

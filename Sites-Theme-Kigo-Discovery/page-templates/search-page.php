@@ -7,25 +7,69 @@
             <?php the_widget('KD_Search') ?>
         </div>
 
-        <div class="row pad-15">
-            <div class="split-search col-xs-12">
+        <div class="row">
+
+            <div class="mapView hidden col-xs-12">
 
                 <div class="map mapContainer col-xs-12 col-md-6">
-                    <div id="mapContainer" data-markercolor="<?php echo get_theme_mod('primary-color') ?  : '#33baaf' ?>"></div>
-                    <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
+                    <div>
+                        <div class="loader"><div class="bar primary-fill-color"></div></div>
+                        <div id="mapContainer" class="loading" data-color="<?php echo get_theme_mod('primary-color') ?>"></div>
+                        <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
+                    </div>
                 </div>
 
-                <div
-                    id="results"
-                    class="bapi-summary propContainer col-xs-12 col-md-6"
-                    data-log="0"
-                    data-defaultsearchresultview="1"
-                    data-templatename="tmpl-propertysearch-listview"
-                    data-entity="property"
-                    data-showallresults="1">
-                </div>
+                <div class="mapProps col-xs-12 col-md-6">
+                    <div class="col-xs-12 top">
+                        <div class="available">
+                            <div>
+                                <span class="ppty-count-current">0</span>
+                                <span>&nbsp;out of&nbsp;</span>
+                                <span class="ppty-count-total">0</span>
+                                <span>&nbsp;properties loaded.</span>
+                            </div>
 
+                            <div class="btn-group viewToggle">
+                                <button class="btn v-list"><i class="fa fa-list"></i>List</button>
+                                <button class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 bottom">
+                        <div id="mapPropertiesContainer" class="row">
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <div class="listView hidden col-xs-12">
+                <div class="row listProps">
+                    <div class="col-xs-12 top">
+                        <div class="available">
+                            <div>
+                                <span class="ppty-count-current">0</span>
+                                <span>&nbsp;out of&nbsp;</span>
+                                <span class="ppty-count-total">0</span>
+                                <span>&nbsp;properties loaded.</span>
+                            </div>
+
+                            <div class="btn-group viewToggle">
+                                <button class="btn active"><i class="fa fa-list"></i>List</button>
+                                <button class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 bottom">
+                        <div id="listPropertiesContainer" class="row pad-15">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
 
     </div>

@@ -48,9 +48,6 @@ Group: Attractions
                                     </div>
                                 </div>
                             </div>
-                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
-                            <img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.ThumbnailURL}}" />
-                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
                         </div>
                         <div class="item-info shadow">
                             {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
@@ -205,7 +202,7 @@ Group: Attractions
                 <div><span>{{textdata.Category}}:</span><span>{{Type}}</span></div>
                 {{/Type}}
                 {{#Location}}
-                <div><span>{{textdata.Adivress}}:</span><span>{{&Location}}</span></div>
+                <div><span>{{textdata.Address}}:</span><span>{{&Location}}</span></div>
                 {{/Location}}
                 {{#Phone1}}
                 <div><span>{{textdata.Phone}}:</span><span>{{Phone1}}</span></div>
@@ -214,7 +211,7 @@ Group: Attractions
                 <div><span>{{textdata.Email}}:</span><span>{{Email}}</span></div>
                 {{/Email}}
                 {{#Website}}
-                <div><span>{{textdata.Web Adivress}}:</span><span><a href="{{&Website}}" target="_blank">{{Website}}</a></span></div>
+                <div><span>{{textdata.Web Address}}:</span><span><a href="{{&Website}}" target="_blank">{{Website}}</a></span></div>
                 {{/Website}}
             </div>
             <hr>

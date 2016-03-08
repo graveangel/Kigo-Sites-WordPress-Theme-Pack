@@ -218,16 +218,13 @@ $kd-featured-dark-bg: #293033;
             text-transform: uppercase;
             color: $light-text;
             font-size: 15px;
-            transition: box-shadow .2s, transform .2s;
-            transform: scale(1);
+            transition: box-shadow .2s;
 
             &:hover{
-              box-shadow: 0 0 8px 0 rgba(black, .44);
-              transform: scale(1.03);
+              box-shadow: 0 0 5px 0 rgba(black, .44);
             }
             &:active{
-              box-shadow: 0 0 4px 0 rgba(black, .48);
-              transform: scale(1.01);
+              box-shadow: 0 0 1px 0 rgba(black, .48);
             }
           }
         }

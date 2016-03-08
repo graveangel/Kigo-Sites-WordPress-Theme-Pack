@@ -14,15 +14,18 @@
   }
 
   .item-result {
-    height: 430px;
+    height: auto;
     text-align: center;
     border: 1px solid #eee;
     margin-bottom: 30px;
     padding-bottom: 20px;
 
     .item-images {
+      height: 255px;
       overflow                : hidden;
       position                : relative;
+      background-position: center;
+      background-size: cover;
       a {
         display             : block;
         text-align          : center;
@@ -67,6 +70,9 @@
         margin-top          : 20px;
         cursor              : pointer;
         padding             : 5px 20px;
+      }
+      .clearboth{
+        display: none;
       }
     }
 
@@ -124,6 +130,7 @@
 @media (min-width: $bp-sm) {
   .page-attractions-summary {
     .item-result {
+      height: 470px;
       .item-images {
         max-height              : 255px;
         overflow                : hidden;

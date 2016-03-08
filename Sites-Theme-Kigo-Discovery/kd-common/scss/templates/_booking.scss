@@ -56,6 +56,9 @@ body.page-template-mybooking{
       font-size: 14px;
       font-weight: normal;
     }
+    .checkbox{
+      padding-left: 35px;
+    }
   }
 
   input, textarea, select{
@@ -91,20 +94,66 @@ body.page-template-mybooking{
     }
   }
 
+  .amount-bk{
+    font-size: 14px;
+
+    .bold{
+      font-size: 20px;
+    }
+  }
+
   /* Sidebar */
 
-  .property-info{
+  .bapi-showrevise{
+//    width:150px;
+    padding: 5px 10px;
+//    font-size: 16px;
+//    margin: 15px auto 0;
+  }
 
-    span, p{
+  .property-info{
       font-family: "Montserrat";
       font-size: 14px;
+  }
+
+  #statement{
+    .item{
+      padding: 10px 0;
+    }
+
+    .total-block{
+      color: white;
+      padding: 15px;
+
+      p:first-of-type{
+
+        &, & span{
+          font-size: 32px;
+        }
+      }
+    }
+
+    #ofees{
+      span, input{
+        margin: 0;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  #discount{
+    label{
+      width: 100%;
+    }
+    small{
+      margin-left: 10px;
     }
   }
 
   @media screen and (min-width: $bp-tablet){
 
     .booking-page{
-    border-bottom: 1px solid $contact-border-color;
+      border-bottom: 1px solid $contact-border-color;
     }
 
     .booking-form{

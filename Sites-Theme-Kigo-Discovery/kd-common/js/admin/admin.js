@@ -49,9 +49,7 @@ var kd_admin = {
         aux.addClass('init');
     },
     initCKEditors: function () {
-
         $('#widgets-right .kd_editor').ckeditor({});
-
     },
     initAceEditor: function () {
         if (!document.querySelectorAll('#custom_css').length)

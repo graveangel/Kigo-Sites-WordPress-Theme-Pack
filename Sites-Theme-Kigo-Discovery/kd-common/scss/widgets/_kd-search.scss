@@ -12,14 +12,38 @@
     background: none; /* Gecko Browsers */
   }
 
+  .property-search-button-block{
+    padding: 0;
+  }
+
   & > div{
     float: none;
 
-    &:nth-of-type(n+6).search-button-block{
+    &:nth-of-type(n+7).search-button-block{
       position: relative;
       right: auto;
       top: auto;
       .more{
+        display: none;
+      }
+      .search{
+        width: 100%;
+      }
+    }
+
+    &:nth-of-type(n+7).search-button-block{
+      .more{
+        display: none;
+      }
+      .search{
+        width: 100%;
+      }
+    }
+
+    &.search-button-block {
+      display: block;
+      position: relative;
+      .more {
         display: none;
       }
       .search{
@@ -94,36 +118,40 @@
 
   }
 
-
   .picker{
     text-shadow: none;
   }
 
   @media screen and (min-width: 992px){
-//    padding-right: calc((100% / 6) + 15px);
 
-    &.open > div:nth-of-type(n+6){
+    &.open > div[data-field]:nth-of-type(n+6){
       display: block;
     }
 
-    & > div{
+    & > div {
       float: left;
       padding-left: 0;
 
-      &:last-of-type{
-        padding-right: 0;
-      }
-      &:nth-of-type(n+6){
-        display: none;
-      }
-      &:nth-of-type(5){
-        margin-right: 10%;
-      }
-      &:nth-of-type(n+6).search-button-block{
+      &.search-button-block {
         display: block;
         position: absolute;
         right: 15px;
         top: 15px;
+        padding: 0;
+        .more {
+          display: none;
+        }
+        .search{
+          width: 100%;
+        }
+      }
+
+      &:nth-of-type(n+7).search-button-block{
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        padding: 0;
         .more{
           float: left;
           display: inline-block;
@@ -146,18 +174,19 @@
           width: 70%;
         }
       }
+    }
 
-      &.search-button-block {
-        display: block;
-        position: absolute;
-        right: 15px;
-        top: 15px;
-        .more {
-          display: none;
-        }
-        .search{
-          width: 100%;
-        }
+    & > div[data-field]{
+
+      &:last-of-type{
+        padding-right: 0;
+      }
+      &:nth-of-type(n+6){
+        display: none;
+        margin-top: 15px;
+      }
+      &:nth-of-type(5){
+        margin-right: 10%;
       }
 
     }
@@ -168,7 +197,6 @@
 
     .category-block{
       padding: 0 15px;
-      margin-bottom: 10px;
       padding-left: 0;
 
       [data-field]::after{

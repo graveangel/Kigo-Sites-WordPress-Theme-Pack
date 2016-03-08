@@ -1,4 +1,4 @@
-/* Miquel Waller - Mon Feb 22 2016 09:47:40 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Mar 07 2016 20:56:05 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -2476,7 +2476,7 @@ select {
   margin: 0 auto; }
 
 .global-wrapper {
-  padding-top: 53px; }
+  padding-top: 50px; }
 
 .page-width {
   max-width: 1360px;
@@ -2513,6 +2513,10 @@ select {
   [data-move].hasMoved {
     display: initial;
     opacity: 1; }
+
+/* Backgrounds */
+.bg-white {
+  background-color: white; }
 
 /* Smooth invisible transition */
 .faded-out {
@@ -2615,7 +2619,6 @@ h1, h2, h3, h4, h5 {
     text-align: center; } }
 
 @media (min-width: 992px) {
-  /*md*/
   .md-left {
     text-align: left; }
   .md-right {
@@ -2631,7 +2634,6 @@ h1, h2, h3, h4, h5 {
   .lg-center {
     text-align: center; } }
 
-/* No-gutter helpers */
 /* Widget common */
 .kd-widget {
   padding: 15px; }
@@ -2653,6 +2655,49 @@ h1, h2, h3, h4, h5 {
 
 .pad-30 {
   padding: 30px; }
+
+.pad-x-15 {
+  padding: 0 15px; }
+
+.pad-x-20 {
+  padding: 0 20px; }
+
+.pad-x-30 {
+  padding: 0 30px; }
+
+.pad-y-15 {
+  padding: 15px 0; }
+
+.pad-y-20 {
+  padding: 20px 0; }
+
+.pad-y-30 {
+  padding: 30px 0; }
+
+/* Margins */
+.m-r-10 {
+  margin-right: 10px; }
+
+.m-r-15 {
+  margin-right: 15px; }
+
+.m-r-30 {
+  margin-right: 30px; }
+
+.m-l-10 {
+  margin-left: 10px; }
+
+.m-l-15 {
+  margin-left: 15px; }
+
+.m-l-30 {
+  margin-left: 30px; }
+
+.m-t-15p {
+  margin-top: 15%; }
+
+.m-auto {
+  margin: auto; }
 
 /* Generics */
 body {
@@ -2785,7 +2830,6 @@ a {
   top: 15px;
   left: 0;
   display: inline-block;
-  width: calc(100% - 50px);
   height: 50px;
   padding-left: 20px; }
   .header-background a.logo-link img {
@@ -2798,7 +2842,7 @@ a {
   padding: 10px 0;
   border-bottom: 1px solid #eee;
   transition: box-shadow .5s;
-  min-height: 80px; }
+  min-height: 83px; }
 
 @media screen and (min-width: 768px) {
   .header-background .under_header {
@@ -2850,7 +2894,8 @@ footer.footer {
     background-color: rgba(255, 255, 255, 0.2); }
   .template-property .hero {
     position: relative;
-    height: 200px; }
+    height: 300px;
+    background-color: #f9f9f9; }
   .template-property .hero-image {
     max-width: 100%;
     width: 100%;
@@ -2876,24 +2921,35 @@ footer.footer {
   .template-property .amenities-n-buttons {
     background-color: white;
     display: block;
-    padding-bottom: 54px; }
+    padding-bottom: 0; }
   .template-property .amenities {
     box-sizing: border-box;
-    padding: 60px 60px 0; }
+    padding: 15px; }
+    .template-property .amenities .alert {
+      white-space: normal; }
     .template-property .amenities ul li {
-      margin-bottom: 13px; }
+      width: 100%; }
       .template-property .amenities ul li .alert {
         margin-bottom: 0; }
-      .template-property .amenities ul li span.amenity-icon {
-        margin-right: 10px;
-        font-size: 18px; }
-      .template-property .amenities ul li span.amenity-name {
-        text-transform: uppercase;
-        color: #555;
-        margin-right: 5px;
-        vertical-align: top; }
-      .template-property .amenities ul li span.amenity-value {
-        color: #999; }
+      .template-property .amenities ul li span {
+        display: inline-block;
+        vertical-align: middle; }
+        .template-property .amenities ul li span.amenity-icon {
+          top: auto;
+          margin-right: 10px;
+          font-size: 15px; }
+        .template-property .amenities ul li span.amenity-name {
+          text-transform: uppercase;
+          color: #555;
+          margin-right: 5px; }
+        .template-property .amenities ul li span.amenity-value {
+          color: #999; }
+      .template-property .amenities ul li #book-block {
+        margin-top: 0; }
+  .template-property .buttons-box {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 15px; }
   .template-property .book-enq {
     padding: 0 15px;
     text-align: center; }
@@ -2906,19 +2962,27 @@ footer.footer {
   .template-property .inquire-button {
     margin: auto;
     max-width: 500px;
-    font-size: 25px;
-    border: none; }
+    border: none;
+    font-size: 16px;
+    color: white; }
   .template-property .ppt-images,
   .template-property .ppt-desc {
-    float: left;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    text-align: justify; }
   .template-property .ppt-images {
     width: 100%;
-    display: none;
-    overflow: hidden; }
+    overflow: hidden;
+    margin-bottom: 30px; }
+    .template-property .ppt-images p {
+      display: none; }
     .template-property .ppt-images ul {
-      height: 393px;
+      height: 400px;
       position: relative; }
+      .template-property .ppt-images ul li {
+        display: inline-block;
+        float: left;
+        width: 100%;
+        height: 100%; }
       .template-property .ppt-images ul > li.swiper-slide-active {
         overflow: hidden; }
       .template-property .ppt-images ul > li.more {
@@ -2928,16 +2992,22 @@ footer.footer {
         bottom: 10px;
         height: calc(50% - 20px);
         width: calc(50% - 20px);
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.75);
         text-align: center;
         font-size: 25px;
         line-height: 7em;
         color: #fff;
         font-family: "Montserrat", sans-serif;
         font-weight: 100;
-        display: none; }
-      .template-property .ppt-images ul > li img {
-        max-height: 100%; }
+        display: none;
+        transition: opacity .33s; }
+      .template-property .ppt-images ul > li a {
+        display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%;
+        width: 100%; }
     .template-property .ppt-images:hover {
       cursor: pointer; }
       .template-property .ppt-images:hover ul li.more {
@@ -3003,7 +3073,6 @@ footer.footer {
     color: #999;
     font-size: 14px; }
   .template-property .property-features {
-    margin-top: 50px;
     padding: 0 15px; }
     .template-property .property-features > ul > li {
       padding: 15px 0;
@@ -3057,14 +3126,21 @@ footer.footer {
     display: block;
     margin: auto;
     width: 51em; }
-  .template-property .review p {
-    font-size: 1.2em;
-    color: #999; }
+  .template-property .review {
+    margin-bottom: 30px; }
+    .template-property .review * {
+      background-color: transparent !important;
+      font-family: "Montserrat" !important; }
+    .template-property .review p, .template-property .review p * {
+      color: #adadad !important;
+      font-size: 12px;
+      font-weight: normal; }
+    .template-property .review .ratingstars {
+      display: block;
+      float: none; }
   .template-property #poi-map-prop {
     width: 100%;
     height: 300px; }
-  .template-property .r-n-stars {
-    margin-top: 15px; }
   .template-property .ratingstars {
     float: right; }
   .template-property .review-posted-on {
@@ -3072,13 +3148,11 @@ footer.footer {
     font-size: 16px; }
   .template-property .ppt-image-caption {
     min-height: 30px; }
-  .template-property .buttons-box {
-    display: inline; }
   .template-property span.prop-image.pull-left {
     margin-right: 10px; }
   .template-property #pano {
     position: relative;
-    z-index: 9999;
+    z-index: 450;
     height: 100%;
     display: block; }
 
@@ -3113,37 +3187,46 @@ Media Tablets horizontal
       padding: 15px;
       display: inline-block;
       float: left; }
+      .template-property .amenities .alert {
+        white-space: nowrap; }
       .template-property .amenities ul li {
-        float: left;
-        margin-right: 20px;
-        margin-bottom: 0; }
-        .template-property .amenities ul li span.amenity-name, .template-property .amenities ul li span.amenity-value {
-          font-size: 10px; }
-        .template-property .amenities ul li span.amenity-icon {
-          font-size: 18px; }
+        display: inline-block;
+        vertical-align: middle;
+        width: auto;
+        margin-right: 20px; }
+        .template-property .amenities ul li span {
+          display: inline-block;
+          vertical-align: middle; }
+          .template-property .amenities ul li span.amenity-name {
+            font-size: 10px; }
+          .template-property .amenities ul li span.amenity-value {
+            font-size: 11px; }
+          .template-property .amenities ul li span.amenity-icon {
+            font-size: 18px; }
     .template-property .book-enq {
-      padding: 20px 0px 0 0;
-      display: inline-block;
-      float: left;
+      padding: 20px 0 0 0;
       width: auto; }
       .template-property .book-enq span {
         float: left;
-        margin-right: 10px;
-        font-size: 11px; }
+        margin-right: 10px; }
       .template-property .book-enq span {
         line-height: 2.5em; }
       .template-property .book-enq > :last-child {
         margin: 0; }
     .template-property .book-now-button,
     .template-property .inquire-button {
-      float: right;
+      display: inline-block;
+      vertical-align: middle;
       margin-left: 10px;
-      font-size: 11px; }
+      font-size: 16px; }
     .template-property .property-description {
-      padding-top: 36px; }
+      padding: 15px 0; }
     .template-property .ppt-images {
-      padding-left: 15px;
-      max-width: 63%; }
+      max-width: 60%;
+      margin: 0 15px 10px 0;
+      float: left; }
+      .template-property .ppt-images .swiper-wrapper {
+        display: block !important; }
       .template-property .ppt-images ul {
         overflow: hidden; }
       .template-property .ppt-images ul li img {
@@ -3172,10 +3255,11 @@ Media Tablets horizontal
           background-size: cover; }
         .template-property .ppt-slides li img {
           visibility: hidden; }
-      .template-property .ppt-slides li:first-child, .template-property .ppt-slides li:nth-child(2) {
+      .template-property .ppt-slides li:first-child {
         width: 50%; }
-      .template-property .ppt-slides li:nth-child(2), .template-property .ppt-slides li:nth-child(3) {
-        height: 50%; }
+      .template-property .ppt-slides li:nth-child(2), .template-property .ppt-slides li:nth-child(2), .template-property .ppt-slides li:nth-child(3) {
+        height: 50%;
+        width: 50%; }
       .template-property .ppt-slides li:nth-child(2n+4) {
         clear: both; }
     .template-property .big,
@@ -3184,12 +3268,8 @@ Media Tablets horizontal
       float: left; }
     .template-property .med {
       max-height: 50%; }
-    .template-property .ppt-image-caption {
-      display: block; }
     .template-property .ppt-desc {
-      max-width: 37%;
-      box-sizing: border-box;
-      padding-right: 15px; }
+      box-sizing: border-box; }
     .template-property .ppt-desc-title {
       color: #333;
       font-size: 19px;
@@ -3198,8 +3278,7 @@ Media Tablets horizontal
       color: #999;
       font-size: 14px; }
     .template-property .property-features {
-      margin-top: 50px;
-      padding: 0 15px; }
+      padding: 0; }
     .template-property .amenities-list {
       margin-top: 12px; }
       .template-property .amenities-list .amenity-detail-list {
@@ -3232,14 +3311,17 @@ Media Tablets horizontal
           text-align: right; }
           .template-property .map-and-locations .poi-map-locations td:first-child .poi-map-item {
             color: #33baaf; }
+        .template-property .map-and-locations .poi-map-locations td:last-of-type {
+          min-width: 90px;
+          text-align: right; }
       .template-property .map-and-locations #poi-map-prop {
-        width: 70%;
+        width: 100%;
         height: 400px;
         display: inline-block;
         font-size: 14px; }
       .template-property .map-and-locations #map-side-bar {
         vertical-align: top;
-        width: 30%;
+        width: 100%;
         display: inline-block;
         font-size: 14px; } }
 
@@ -3293,32 +3375,17 @@ Media Tablets horizontal
 
 @media (min-width: 480px) {
   .rates-availability .ui-datepicker-group {
-    display: inline-block; } }
+    display: inline-block; }
+  #bapi-rateblock .buttons-box {
+    margin-top: 0; } }
 
 /*=============================================================================
 Media Desktop
 ============================================================================*/
 @media (min-width: 1106px) {
-  .template-property .amenities {
-    box-sizing: border-box;
-    padding: 15px;
-    display: inline-block;
-    float: left; }
-    .template-property .amenities ul li {
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 20px;
-      margin-bottom: 0; }
-      .template-property .amenities ul li span {
-        display: inline-block;
-        vertical-align: middle !important; }
-      .template-property .amenities ul li .amenity-name,
-      .template-property .amenities ul li .amenity-value {
-        font-size: 14px; }
   .template-property .book-enq {
     padding: 14px 0px 0 0;
     display: inline-block;
-    float: left;
     width: auto; }
     .template-property .book-enq span {
       float: left;
@@ -3328,15 +3395,10 @@ Media Desktop
       line-height: 2.5em; }
     .template-property .book-enq > :last-child {
       margin: 0; }
-  .template-property .book-now-button,
-  .template-property .inquire-button {
-    float: right;
-    margin-left: 10px;
-    font-size: 16px; }
-  .template-property .ppt-images {
-    padding-left: 15px; }
-  .template-property .ppt-desc {
-    padding-right: 15px; } }
+  .template-property .map-and-locations #poi-map-prop {
+    width: 70%; }
+  .template-property .map-and-locations #map-side-bar {
+    width: 30%; } }
 
 .similar-properties {
   font-size: 0; }
@@ -3371,25 +3433,12 @@ Media Desktop
     font-size: 1.1em; }
 
 .pop-up-form-link {
+  font-size: 12px;
   color: #33baaf;
   text-decoration: underline;
-  font-size: 13px;
   text-decoration-style: dotted; }
 
 .pop-up-booking-form {
-  display: none; }
-
-.bapi-rateblock {
-  display: inline-block;
-  float: left; }
-  .bapi-rateblock .alert {
-    max-width: 360px; }
-
-.sl-overlay {
-  background: rgba(0, 0, 0, 0.8); }
-
-.pop-up-booking-form.active {
-  display: block;
   position: fixed;
   height: 100%;
   width: 100%;
@@ -3397,44 +3446,37 @@ Media Desktop
   left: 0;
   background: rgba(0, 0, 0, 0.8);
   z-index: 9999; }
-  .pop-up-booking-form.active .booking-form {
+  .pop-up-booking-form .booking-form {
     box-sizing: border-box;
     border-radius: 5px;
     padding: 40px;
-    padding-top: 50px;
-    position: absolute;
     height: auto;
-    max-height: 380px;
     max-width: 400px;
-    left: 15px;
-    right: 15px;
-    top: 0%;
-    bottom: 0%;
-    margin: auto;
+    margin: 15% auto;
     background: #fff; }
-    .pop-up-booking-form.active .booking-form .glyphicons-list-alt {
+    .pop-up-booking-form .booking-form .glyphicons-list-alt {
       font-size: 30px;
       color: #999;
       margin-bottom: 15px; }
-    .pop-up-booking-form.active .booking-form .close {
+    .pop-up-booking-form .booking-form .close {
       position: absolute;
       right: 15px;
       top: 10px;
       z-index: 9991;
       opacity: 1; }
-      .pop-up-booking-form.active .booking-form .close::before {
+      .pop-up-booking-form .booking-form .close::before {
         content: '\00D7';
         font-weight: bold;
         color: #999;
         font-size: 35px; }
-    .pop-up-booking-form.active .booking-form .update-info-label {
+    .pop-up-booking-form .booking-form .update-info-label {
       font-size: 15px;
       color: #999;
       text-transform: uppercase;
       vertical-align: middle;
       line-height: 30px;
       margin-left: 10px; }
-    .pop-up-booking-form.active .booking-form .bapi-getquote {
+    .pop-up-booking-form .booking-form .bapi-getquote {
       margin: auto;
       float: none;
       text-align: center;
@@ -3444,21 +3486,30 @@ Media Desktop
       background-color: #f6af33;
       border-radius: 0;
       width: 150px; }
-    .pop-up-booking-form.active .booking-form .picker__input, .pop-up-booking-form.active .booking-form .quicksearch {
+    .pop-up-booking-form .booking-form .picker__input, .pop-up-booking-form .booking-form .quicksearch {
       cursor: default;
       padding: 10px;
       width: 100%;
       margin-bottom: 10px;
       border: 1px solid #bbb;
       border-radius: 5px; }
-    .pop-up-booking-form.active .booking-form label {
+    .pop-up-booking-form .booking-form label {
       float: left;
       clear: both; }
 
+.bapi-rateblock {
+  display: inline-block; }
+  .bapi-rateblock .alert {
+    max-width: 360px; }
+
+.sl-overlay {
+  background: rgba(0, 0, 0, 0.8); }
+
+.pop-up-booking-form.active {
+  display: block; }
+
 .template-property #book-block {
   display: inline-block; }
-  .template-property #book-block .pd .amenity-value {
-    font-size: 13px; }
 
 .template-property .amenities {
   width: 100%; }
@@ -3466,10 +3517,9 @@ Media Desktop
     width: 100%; }
 
 .template-property #bapi-rateblock {
-  position: static;
-  zoom: 1;
-  float: none;
-  display: block; }
+  display: inline-block;
+  vertical-align: middle;
+  float: none; }
   .template-property #bapi-rateblock .alert {
     padding: 0;
     display: inline-block; }
@@ -3477,14 +3527,6 @@ Media Desktop
 @media screen and (min-width: 768px) {
   .similar-prop {
     text-align: left; } }
-
-@media screen and (max-width: 976px) {
-  .template-property #book-block {
-    margin-top: 20px;
-    display: block; }
-  .template-property .buttons-box {
-    margin-top: 20px;
-    display: block; } }
 
 .about-us-template {
   /* HERO BLOCK --------------------------------------------------------------*/
@@ -3536,7 +3578,7 @@ Media Desktop
   .about-us-template .page-desc .description {
     background: transparent;
     display: inline-block;
-    padding: 15px 0; }
+    padding: 0 30px; }
     .about-us-template .page-desc .description .subtitle,
     .about-us-template .page-desc .description .title {
       display: none; }
@@ -3596,6 +3638,94 @@ Media Desktop
       font-size: 30px;
       margin-bottom: 50px; } }
 
+.list-property, body.page-template-search-page .listProps .property {
+  margin-bottom: 25px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  overflow: hidden; }
+  .list-property .image, body.page-template-search-page .listProps .property .image {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 200px; }
+  .list-property .info, body.page-template-search-page .listProps .property .info {
+    position: relative;
+    float: right;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: auto; }
+    .list-property .info > *, body.page-template-search-page .listProps .property .info > * {
+      padding-left: 10px; }
+    .list-property .info .top, body.page-template-search-page .listProps .property .info .top {
+      position: relative;
+      border-bottom: 1px solid #eee;
+      font-size: 0; }
+      .list-property .info .top .type, body.page-template-search-page .listProps .property .info .top .type {
+        font-size: 12px; }
+      .list-property .info .top .beds, body.page-template-search-page .listProps .property .info .top .beds, .list-property .info .top .location, body.page-template-search-page .listProps .property .info .top .location {
+        display: inline-block;
+        vertical-align: top;
+        width: auto;
+        padding: 8px 0;
+        padding-right: 10px; }
+        .list-property .info .top .beds.location, body.page-template-search-page .listProps .property .info .top .beds.location, .list-property .info .top .location.location, body.page-template-search-page .listProps .property .info .top .location.location {
+          padding: 8px 10px;
+          border-left: 1px solid #eee;
+          font-size: 12px; }
+    .list-property .info .title, body.page-template-search-page .listProps .property .info .title {
+      white-space: nowrap;
+      margin-bottom: 0; }
+    .list-property .info .desc, body.page-template-search-page .listProps .property .info .desc {
+      padding: 8px 10px; }
+    .list-property .info .bottom, body.page-template-search-page .listProps .property .info .bottom {
+      width: 100%;
+      font-size: 0;
+      border-top: 1px solid #eee; }
+      .list-property .info .bottom .price, body.page-template-search-page .listProps .property .info .bottom .price, .list-property .info .bottom .seeDetails, body.page-template-search-page .listProps .property .info .bottom .seeDetails {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+        font-size: 12px;
+        padding: 8px 0; }
+        .list-property .info .bottom .price.seeDetails, body.page-template-search-page .listProps .property .info .bottom .price.seeDetails, .list-property .info .bottom .seeDetails.seeDetails, body.page-template-search-page .listProps .property .info .bottom .seeDetails.seeDetails {
+          background-color: #444;
+          color: white;
+          text-align: center; }
+          .list-property .info .bottom .price.seeDetails:hover, body.page-template-search-page .listProps .property .info .bottom .price.seeDetails:hover, .list-property .info .bottom .seeDetails.seeDetails:hover, body.page-template-search-page .listProps .property .info .bottom .seeDetails.seeDetails:hover {
+            background-color: #555; }
+      .list-property .info .bottom .price > div, body.page-template-search-page .listProps .property .info .bottom .price > div {
+        display: inline-block; }
+      .list-property .info .bottom .tag, body.page-template-search-page .listProps .property .info .bottom .tag {
+        margin-right: 10px; }
+  .list-property .rate-warning, body.page-template-search-page .listProps .property .rate-warning {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    font-size: 11px;
+    padding: 5px 0;
+    line-height: 13px; }
+  @media screen and (min-width: 768px) {
+    .list-property, body.page-template-search-page .listProps .property {
+      height: 200px; }
+      .list-property .image, body.page-template-search-page .listProps .property .image {
+        width: 30%; }
+      .list-property .info, body.page-template-search-page .listProps .property .info {
+        width: 70%;
+        height: 100%; }
+        .list-property .info .top .beds, body.page-template-search-page .listProps .property .info .top .beds {
+          font-size: 12px; }
+        .list-property .info .desc, body.page-template-search-page .listProps .property .info .desc {
+          max-height: 105px;
+          overflow-y: auto; }
+        .list-property .info .bottom, body.page-template-search-page .listProps .property .info .bottom {
+          position: absolute;
+          bottom: 0;
+          left: 0; } }
+
 body.page-template-search-page .container {
   position: relative;
   padding: 0; }
@@ -3608,9 +3738,11 @@ body.page-template-search-page .split-search.listView .mapContainer {
 
 body.page-template-search-page .map {
   position: relative;
-  display: none;
-  background-color: #e9e9e9;
-  overflow: hidden; }
+  display: none; }
+  body.page-template-search-page .map > div {
+    width: 100%;
+    height: 100%;
+    background-color: #e5e3df; }
   body.page-template-search-page .map #mapContainer {
     width: 100%;
     height: 100%; }
@@ -3633,182 +3765,136 @@ body.page-template-search-page .map {
       font-size: 34px; }
 
 body.page-template-search-page .available {
-  padding: 10px 0;
+  padding: 10px 15px;
   font-size: 18px;
   text-align: right;
   line-height: 34px; }
   body.page-template-search-page .available span {
     float: left; }
 
-body.page-template-search-page .listProps .property {
-  margin-bottom: 25px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  height: 200px;
-  overflow: hidden; }
-  body.page-template-search-page .listProps .property .image {
-    display: inline-block;
-    vertical-align: top;
-    width: 30%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat; }
-  body.page-template-search-page .listProps .property .info {
-    position: relative;
-    float: right;
-    display: inline-block;
-    vertical-align: top;
-    width: 70%;
-    height: 100%; }
-    body.page-template-search-page .listProps .property .info > * {
-      padding-left: 10px; }
-    body.page-template-search-page .listProps .property .info .top {
-      position: relative;
-      border-bottom: 1px solid #eee;
-      font-size: 0; }
-      body.page-template-search-page .listProps .property .info .top .beds, body.page-template-search-page .listProps .property .info .top .location {
-        display: inline-block;
-        vertical-align: top;
-        width: 50%;
-        font-size: 14px;
-        padding: 8px 10px; }
-        body.page-template-search-page .listProps .property .info .top .beds.location, body.page-template-search-page .listProps .property .info .top .location.location {
-          border-left: 1px solid #eee; }
-    body.page-template-search-page .listProps .property .info .desc {
-      padding: 8px 10px; }
-    body.page-template-search-page .listProps .property .info .bottom {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      font-size: 0;
-      border-top: 1px solid #eee; }
-      body.page-template-search-page .listProps .property .info .bottom .price, body.page-template-search-page .listProps .property .info .bottom .seeDetails {
-        display: inline-block;
-        vertical-align: top;
-        width: 50%;
-        font-size: 14px;
-        padding: 8px 0; }
-        body.page-template-search-page .listProps .property .info .bottom .price.seeDetails, body.page-template-search-page .listProps .property .info .bottom .seeDetails.seeDetails {
-          background-color: #444;
-          color: white;
-          text-align: center; }
-          body.page-template-search-page .listProps .property .info .bottom .price.seeDetails:hover, body.page-template-search-page .listProps .property .info .bottom .seeDetails.seeDetails:hover {
-            background-color: #555; }
-      body.page-template-search-page .listProps .property .info .bottom .price > div {
-        display: inline-block; }
-      body.page-template-search-page .listProps .property .info .bottom .tag {
-        margin-right: 10px; }
-
-body.page-template-search-page .mapProps .property {
-  font-family: 'Open Sans';
-  cursor: pointer;
-  margin-bottom: 15px; }
-  body.page-template-search-page .mapProps .property:hover .viewInMap {
-    opacity: 1; }
-  body.page-template-search-page .mapProps .property .viewInMap {
+body.page-template-search-page .mapContainer {
+  padding: 0; }
+  body.page-template-search-page .mapContainer .loader {
     position: absolute;
-    z-index: 5;
-    top: 0;
-    left: 15px;
-    width: 50px;
-    height: 50px;
-    background-color: #33baaf;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACC0lEQVRYR81X7TEEURDsjgARcBEgAkSACLgInAgQASJABIgAGVwG7iJABKOat1Xr3Zv3cUuV+bvz0W9memaWaBAzWwWwD+AAwAaArWA+BTAD8ADgkeR7rVvWKprZMYBLAAKREwWfkLyr8V0EEF59E15d47PTUTbGpWzUAFB6N1si93SnJLdztlkAZnYL4GjJ4J3ZLcmx58MFYGa7AJ4cQ9VXjp/1PeiqRzywe51u7C8HQM53EgAOSaq+CxIaVf0Si5gh5ixIEkBovLeE/inJq1xJzGwS2BKrraUa0gOgdMYvmZMU94tiZpoJ65GiGKGe+iEegHMAZ5HuHUkBK4rTvBck5XdpAEkHKTRmlnrAYADXJFXfovxGBtSx91GkGclRMfo3LVM9kKTi/2SBXmlm4ro2Xyy5OZDKnOzb5kAAkKJiB0Z0Uk9oTwis1vIJAI8lSQrKtrQLUrWsaYO+TnZ+lAB4U60FRHZ6lgDo+FAWVloi9nQ/dDnlboKaeyA1VGrxFIdXDYBlszDXzTj4IqpghJcNt/P7BsUMdMrOdPOCV2/OFgDekEmBcIdVrFwNIJTCu5L6fl9I6pyrklYAOkheC55HJEXdKmkCELKQo2WRdoNKEACIltoB8clVRbvBAAKI1Mnunt65WjSXoEfL/rp2122pEYYA6CakYmTn/Z9kIJTi62fD+1EpvV7fPwE2COAht9GKbwAAAABJRU5ErkJggg==");
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity .33s; }
-    body.page-template-search-page .mapProps .property .viewInMap:hover {
-      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15) inset; }
-    body.page-template-search-page .mapProps .property .viewInMap:active {
-      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.33) inset; }
-  body.page-template-search-page .mapProps .property .image {
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    transition: opacity .5s ease .2s; }
+    body.page-template-search-page .mapContainer .loader.hidden {
+      opacity: 0; }
+    body.page-template-search-page .mapContainer .loader .bar {
+      height: 100%;
+      width: 0%;
+      transition: width .3s ease .3s; }
+
+body.page-template-search-page .mapProps {
+  padding: 0; }
+  body.page-template-search-page .mapProps .available {
+    padding-left: 30px;
+    padding-right: 15px; }
+  body.page-template-search-page .mapProps .property {
+    font-family: 'Open Sans';
+    cursor: pointer;
+    margin-bottom: 15px; }
+    body.page-template-search-page .mapProps .property:hover .viewInMap {
+      opacity: 1; }
+    body.page-template-search-page .mapProps .property .viewInMap {
+      display: none;
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 15px;
+      width: 50px;
+      height: 50px;
+      background-color: #33baaf;
+      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACC0lEQVRYR81X7TEEURDsjgARcBEgAkSACLgInAgQASJABIgAGVwG7iJABKOat1Xr3Zv3cUuV+bvz0W9memaWaBAzWwWwD+AAwAaArWA+BTAD8ADgkeR7rVvWKprZMYBLAAKREwWfkLyr8V0EEF59E15d47PTUTbGpWzUAFB6N1si93SnJLdztlkAZnYL4GjJ4J3ZLcmx58MFYGa7AJ4cQ9VXjp/1PeiqRzywe51u7C8HQM53EgAOSaq+CxIaVf0Si5gh5ixIEkBovLeE/inJq1xJzGwS2BKrraUa0gOgdMYvmZMU94tiZpoJ65GiGKGe+iEegHMAZ5HuHUkBK4rTvBck5XdpAEkHKTRmlnrAYADXJFXfovxGBtSx91GkGclRMfo3LVM9kKTi/2SBXmlm4ro2Xyy5OZDKnOzb5kAAkKJiB0Z0Uk9oTwis1vIJAI8lSQrKtrQLUrWsaYO+TnZ+lAB4U60FRHZ6lgDo+FAWVloi9nQ/dDnlboKaeyA1VGrxFIdXDYBlszDXzTj4IqpghJcNt/P7BsUMdMrOdPOCV2/OFgDekEmBcIdVrFwNIJTCu5L6fl9I6pyrklYAOkheC55HJEXdKmkCELKQo2WRdoNKEACIltoB8clVRbvBAAKI1Mnunt65WjSXoEfL/rp2122pEYYA6CakYmTn/Z9kIJTi62fD+1EpvV7fPwE2COAht9GKbwAAAABJRU5ErkJggg==");
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity .33s; }
+      body.page-template-search-page .mapProps .property .viewInMap:hover {
+        box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15) inset; }
+      body.page-template-search-page .mapProps .property .viewInMap:active {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.33) inset; }
+    body.page-template-search-page .mapProps .property .image {
+      position: relative;
+      display: block;
+      width: 100%;
+      background-color: #e9e9e9;
+      background-size: cover;
+      background-position: center; }
+      body.page-template-search-page .mapProps .property .image::before {
+        display: block;
+        content: '';
+        padding-top: 66.66%; }
+      body.page-template-search-page .mapProps .property .image .from {
+        position: absolute;
+        bottom: 20px;
+        right: 0;
+        background-color: #f6af33;
+        color: white;
+        padding: 8px 10px; }
+        body.page-template-search-page .mapProps .property .image .from .tag {
+          font-size: 12px; }
+        body.page-template-search-page .mapProps .property .image .from .price {
+          font-weight: bold;
+          font-size: 14px; }
+    body.page-template-search-page .mapProps .property .info {
+      position: relative;
+      font-size: 14px;
+      color: #adadad; }
+      body.page-template-search-page .mapProps .property .info .title {
+        font-size: 18px;
+        margin-bottom: 5px;
+        color: initial; }
+      body.page-template-search-page .mapProps .property .info i {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: calc(50% - 60px / 2);
+        height: 60px;
+        width: 60px;
+        transform: translateX(-15px);
+        line-height: 60px;
+        font-size: 60px;
+        transition: transform .2s;
+        will-change: transform; }
+    body.page-template-search-page .mapProps .property:hover .info i, body.page-template-search-page .mapProps .property:active .info i {
+      transform: translateX(0); }
+
+body.page-template-search-page .prop-infowindow {
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-right: 5px; }
+  body.page-template-search-page .prop-infowindow .image {
     position: relative;
     display: block;
-    width: 100%;
+    height: 200px;
+    width: 300px;
     background-color: #e9e9e9;
     background-size: cover;
-    background-position: center; }
-    body.page-template-search-page .mapProps .property .image::before {
-      display: block;
-      content: '';
-      padding-top: 66.66%; }
-    body.page-template-search-page .mapProps .property .image .from {
-      position: absolute;
-      bottom: 20px;
-      right: 0;
-      background-color: #f6af33;
-      color: white;
-      padding: 8px 10px; }
-      body.page-template-search-page .mapProps .property .image .from .tag {
-        font-size: 12px; }
-      body.page-template-search-page .mapProps .property .image .from .price {
-        font-weight: bold;
-        font-size: 14px; }
-  body.page-template-search-page .mapProps .property .info {
+    background-position: center;
+    border-bottom: 5px solid black; }
+  body.page-template-search-page .prop-infowindow .info {
     position: relative;
     font-size: 14px;
     color: #adadad; }
-    body.page-template-search-page .mapProps .property .info .title {
+    body.page-template-search-page .prop-infowindow .info .title {
+      width: 300px;
       font-size: 18px;
       margin-bottom: 5px;
       color: initial; }
-    body.page-template-search-page .mapProps .property .info i {
-      display: block;
-      position: absolute;
-      right: 0;
-      top: calc(50% - 60px / 2);
-      height: 60px;
-      width: 60px;
-      transform: translateX(-15px);
-      line-height: 60px;
-      font-size: 60px;
-      transition: transform .2s;
-      will-change: transform; }
-  body.page-template-search-page .mapProps .property:hover .info i, body.page-template-search-page .mapProps .property:active .info i {
-    transform: translateX(0); }
-
-body.page-template-search-page .prop-infowindow .image {
-  position: relative;
-  display: block;
-  height: 150px;
-  width: 240px;
-  background-color: #e9e9e9;
-  background-size: cover;
-  background-position: center; }
-  body.page-template-search-page .prop-infowindow .image .from {
-    position: absolute;
-    bottom: 20px;
-    right: 0;
-    background-color: #f6af33;
-    color: white;
-    padding: 8px 10px; }
-    body.page-template-search-page .prop-infowindow .image .from .tag {
-      font-size: 12px; }
-    body.page-template-search-page .prop-infowindow .image .from .price {
-      font-weight: bold;
-      font-size: 14px; }
-
-body.page-template-search-page .prop-infowindow .info {
-  position: relative;
-  font-size: 14px;
-  color: #adadad; }
-  body.page-template-search-page .prop-infowindow .info .title {
-    font-size: 18px;
-    margin-bottom: 5px;
-    color: initial; }
 
 @media screen and (min-width: 992px) {
   body.page-template-search-page .container {
     margin-top: 15px; }
   body.page-template-search-page .map {
     display: block;
-    padding: 0;
     height: 625px; }
   body.page-template-search-page .available {
-    padding-left: 30px;
     border-top: 1px solid #adadad;
     border-bottom: 1px solid #adadad; }
   body.page-template-search-page .listProps #propertiesContainer {
@@ -3823,8 +3909,10 @@ body.page-template-search-page .prop-infowindow .info {
       padding: 30px 15px 15px; }
       body.page-template-search-page .mapProps .bottom .row {
         margin: 0; }
-      body.page-template-search-page .mapProps .bottom .property .info {
-        min-height: 120px; }
+      body.page-template-search-page .mapProps .bottom .property {
+        min-height: 300px; }
+        body.page-template-search-page .mapProps .bottom .property .viewInMap {
+          display: block; }
         body.page-template-search-page .mapProps .bottom .property .info i {
           display: none; } }
 
@@ -4113,6 +4201,8 @@ body.page-template-mybooking {
     font-family: "Open Sans";
     font-size: 14px;
     font-weight: normal; }
+  body.page-template-mybooking .form-horizontal .checkbox {
+    padding-left: 35px; }
   body.page-template-mybooking input, body.page-template-mybooking textarea, body.page-template-mybooking select {
     font-family: "Open Sans";
     font-size: 14px;
@@ -4144,9 +4234,29 @@ body.page-template-mybooking {
   body.page-template-mybooking .btn-book-header .line2 {
     padding-top: 10px;
     padding-bottom: 10px; }
-  body.page-template-mybooking .property-info span, body.page-template-mybooking .property-info p {
+  body.page-template-mybooking .amount-bk {
+    font-size: 14px; }
+    body.page-template-mybooking .amount-bk .bold {
+      font-size: 20px; }
+  body.page-template-mybooking .bapi-showrevise {
+    padding: 5px 10px; }
+  body.page-template-mybooking .property-info {
     font-family: "Montserrat";
     font-size: 14px; }
+  body.page-template-mybooking #statement .item {
+    padding: 10px 0; }
+  body.page-template-mybooking #statement .total-block {
+    color: white;
+    padding: 15px; }
+    body.page-template-mybooking #statement .total-block p:first-of-type, body.page-template-mybooking #statement .total-block p:first-of-type span {
+      font-size: 32px; }
+  body.page-template-mybooking #statement #ofees span, body.page-template-mybooking #statement #ofees input {
+    margin: 0;
+    vertical-align: middle; }
+  body.page-template-mybooking #discount label {
+    width: 100%; }
+  body.page-template-mybooking #discount small {
+    margin-left: 10px; }
   @media screen and (min-width: 768px) {
     body.page-template-mybooking .booking-page {
       border-bottom: 1px solid #eee; }
@@ -4177,6 +4287,9 @@ body.page-template-mybooking {
     padding: 6px 18px;
     margin: 10px 0 20px;
     text-transform: uppercase; }
+
+body.page-template-other-detail-page .other-detail-page .flexslider {
+  margin-bottom: 0; }
 
 body.page-template-other-detail-page .other-detail-page .page-width {
   border-bottom: 1px solid #eee; }
@@ -4250,14 +4363,17 @@ body.page-template-other-detail-page .other-detail-page .button {
   float: none !important; }
 
 .page-attractions-summary .item-result {
-  height: 430px;
+  height: auto;
   text-align: center;
   border: 1px solid #eee;
   margin-bottom: 30px;
   padding-bottom: 20px; }
   .page-attractions-summary .item-result .item-images {
+    height: 255px;
     overflow: hidden;
-    position: relative; }
+    position: relative;
+    background-position: center;
+    background-size: cover; }
     .page-attractions-summary .item-result .item-images a {
       display: block;
       text-align: center;
@@ -4294,6 +4410,8 @@ body.page-template-other-detail-page .other-detail-page .button {
       margin-top: 20px;
       cursor: pointer;
       padding: 5px 20px; }
+    .page-attractions-summary .item-result .item-info .clearboth {
+      display: none; }
 
 .page-attractions-summary span.prop-location {
   margin-left: 10px; }
@@ -4332,15 +4450,17 @@ body.page-template-other-detail-page .other-detail-page .button {
         outline: none; }
 
 @media (min-width: 768px) {
-  .page-attractions-summary .item-result .item-images {
-    max-height: 255px;
-    overflow: hidden;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative; }
-    .page-attractions-summary .item-result .item-images a img {
-      visibility: hidden; }
+  .page-attractions-summary .item-result {
+    height: 470px; }
+    .page-attractions-summary .item-result .item-images {
+      max-height: 255px;
+      overflow: hidden;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative; }
+      .page-attractions-summary .item-result .item-images a img {
+        visibility: hidden; }
   .page-attractions-summary .control-group-attraction {
     text-align: left; }
   .page-attractions-summary .control-label, .page-attractions-summary .controls {
@@ -4383,6 +4503,15 @@ body.page-template-default aside, body.single aside {
 
 body.page-template-full-width article.body {
   padding-top: 30px; }
+
+body.error404 .page404 {
+  text-align: center; }
+
+body.error404 .error {
+  font-size: 50px; }
+
+body.error404 .message {
+  text-transform: none; }
 
 /* Widgets */
 .kd-hero {
@@ -4490,15 +4619,28 @@ body.page-template-full-width article.body {
   .kd-search ::-moz-selection {
     background: none;
     /* Gecko Browsers */ }
+  .kd-search .property-search-button-block {
+    padding: 0; }
   .kd-search > div {
     float: none; }
-    .kd-search > div:nth-of-type(n+6).search-button-block {
+    .kd-search > div:nth-of-type(n+7).search-button-block {
       position: relative;
       right: auto;
       top: auto; }
-      .kd-search > div:nth-of-type(n+6).search-button-block .more {
+      .kd-search > div:nth-of-type(n+7).search-button-block .more {
         display: none; }
-      .kd-search > div:nth-of-type(n+6).search-button-block .search {
+      .kd-search > div:nth-of-type(n+7).search-button-block .search {
+        width: 100%; }
+    .kd-search > div:nth-of-type(n+7).search-button-block .more {
+      display: none; }
+    .kd-search > div:nth-of-type(n+7).search-button-block .search {
+      width: 100%; }
+    .kd-search > div.search-button-block {
+      display: block;
+      position: relative; }
+      .kd-search > div.search-button-block .more {
+        display: none; }
+      .kd-search > div.search-button-block .search {
         width: 100%; }
   .kd-search form {
     margin-bottom: 0; }
@@ -4551,23 +4693,28 @@ body.page-template-full-width article.body {
   .kd-search .picker {
     text-shadow: none; }
   @media screen and (min-width: 992px) {
-    .kd-search.open > div:nth-of-type(n+6) {
+    .kd-search.open > div[data-field]:nth-of-type(n+6) {
       display: block; }
     .kd-search > div {
       float: left;
       padding-left: 0; }
-      .kd-search > div:last-of-type {
-        padding-right: 0; }
-      .kd-search > div:nth-of-type(n+6) {
-        display: none; }
-      .kd-search > div:nth-of-type(5) {
-        margin-right: 10%; }
-      .kd-search > div:nth-of-type(n+6).search-button-block {
+      .kd-search > div.search-button-block {
         display: block;
         position: absolute;
         right: 15px;
-        top: 15px; }
-        .kd-search > div:nth-of-type(n+6).search-button-block .more {
+        top: 15px;
+        padding: 0; }
+        .kd-search > div.search-button-block .more {
+          display: none; }
+        .kd-search > div.search-button-block .search {
+          width: 100%; }
+      .kd-search > div:nth-of-type(n+7).search-button-block {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        padding: 0; }
+        .kd-search > div:nth-of-type(n+7).search-button-block .more {
           float: left;
           display: inline-block;
           width: calc(30% - 15px);
@@ -4578,26 +4725,23 @@ body.page-template-full-width article.body {
           cursor: pointer;
           background-color: #eee;
           color: #999; }
-          .kd-search > div:nth-of-type(n+6).search-button-block .more:active, .kd-search > div:nth-of-type(n+6).search-button-block .more.active {
+          .kd-search > div:nth-of-type(n+7).search-button-block .more:active, .kd-search > div:nth-of-type(n+7).search-button-block .more.active {
             box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125); }
-        .kd-search > div:nth-of-type(n+6).search-button-block .search {
+        .kd-search > div:nth-of-type(n+7).search-button-block .search {
           float: left;
           display: inline-block;
           width: 70%; }
-      .kd-search > div.search-button-block {
-        display: block;
-        position: absolute;
-        right: 15px;
-        top: 15px; }
-        .kd-search > div.search-button-block .more {
-          display: none; }
-        .kd-search > div.search-button-block .search {
-          width: 100%; }
+    .kd-search > div[data-field]:last-of-type {
+      padding-right: 0; }
+    .kd-search > div[data-field]:nth-of-type(n+6) {
+      display: none;
+      margin-top: 15px; }
+    .kd-search > div[data-field]:nth-of-type(5) {
+      margin-right: 10%; }
     .kd-search form > * {
       display: inline-block; }
     .kd-search .category-block {
       padding: 0 15px;
-      margin-bottom: 10px;
       padding-left: 0; }
       .kd-search .category-block [data-field]::after {
         font-size: 28px;
@@ -4765,14 +4909,11 @@ body.page-template-full-width article.body {
               text-transform: uppercase;
               color: white;
               font-size: 15px;
-              transition: box-shadow .2s, transform .2s;
-              transform: scale(1); }
+              transition: box-shadow .2s; }
               .kd-featured .slider .prop .info .prop-details:hover {
-                box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.44);
-                transform: scale(1.03); }
+                box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.44); }
               .kd-featured .slider .prop .info .prop-details:active {
-                box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.48);
-                transform: scale(1.01); }
+                box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.48); }
       .kd-featured .swiper-container {
         height: 330px;
         width: calc(100% - (3 * 50px));
@@ -5028,10 +5169,13 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       color: white;
       text-transform: uppercase;
       background-color: #f6af33;
+      border-bottom: 1px solid white;
       text-decoration: none;
       white-space: nowrap; }
       .kd-menu li a:hover, .kd-menu li a:active {
         text-decoration: none; }
+    .kd-menu li .sub-menu a {
+      background-color: #999; }
   .kd-menu > .sub-menu {
     display: block;
     position: relative; }
@@ -5046,12 +5190,12 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
     width: 100%; }
   .kd-menu .toggle {
     float: right;
-    width: 53px;
-    height: 53px;
+    width: 50px;
+    height: 50px;
     font-size: 40px;
     text-align: center;
     background-color: #f6af33;
-    line-height: 53px;
+    line-height: 50px;
     color: white;
     cursor: pointer; }
     .kd-menu .toggle:active {
@@ -5334,9 +5478,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
   @media (min-width: 780px) {
     .kd-team .swiper-slide .member-caption {
       transform: translateY(0px);
-      opacity: 1; }
-    .kd-team .next-slide {
-      right: 0; } }
+      opacity: 1; } }
   @media (min-width: 992px) {
     .kd-team .team-member {
       display: inline-block;

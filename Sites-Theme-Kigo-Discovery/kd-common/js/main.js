@@ -1,4 +1,4 @@
-/* Edited - Mon Feb 22 2016 09:47:40 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Mar 07 2016 20:41:01 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -41,7 +41,7 @@ var app = {
         checkHeader(); //Check in case page has loaded with scroll
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
-        window.addEventListener('scroll', debounce(checkHeader, 25)); //ms
+        window.addEventListener('scroll', debounce(checkHeader, 10)); //ms
 
         function checkHeader(){
 
@@ -51,7 +51,7 @@ var app = {
 
             var scrollMax = overHeader.clientHeight;
 
-            if(currentScroll >= scrollMax){
+            if(currentScroll >= 121){
                 header.classList.add('fixed');
             }else{
                 header.classList.remove('fixed');
@@ -78,7 +78,7 @@ var app = {
             console.log.apply(console, arguments);
     },
     bapiRender: function(entity, template, callback, data){
-        var options = {};
+        var options = {pagesize: 20, seo: true};
 
         BAPI.search(entity, options, function (sdata) {
             BAPI.get(sdata.result, entity, {}, function (gdata) {
@@ -93,6 +93,48 @@ var app = {
                 callback(html);
             });
         });
+    },
+    bapi: {
+        search: function(entity, callback, auxOptions){
+            var options = auxOptions || {};
+            BAPI.search(entity, options, function (sdata) {
+                callback(sdata);
+            });
+        },
+        get: function(entity, ids, callback, options){
+            BAPI.get(ids, entity, _.assign(options, {}), function (gdata) {
+                callback(gdata);
+            });
+        },
+        recursiveGet: function(entity, callback, auxOptions){
+            var options = auxOptions || {};
+            BAPI.search(entity, options, function (sdata) {
+                var propPages = _.chunk(sdata.result, options.pagesize);
+
+                if(auxOptions.waitForAll == 1){
+                    var all = [], iterations = 0;
+                    propPages.forEach(function(page, i){
+                        BAPI.get(page, entity, options, function (gdata) {
+                            iterations++;
+                            all = _.concat(all, gdata.result);
+
+                            if(iterations == (propPages.length)){ //Last iteration
+                                callback({result: all, textdata: BAPI.textdata});
+                            }
+                        });
+                    });
+                }else{
+                    propPages.forEach(function(page, i){
+                        BAPI.get(page, entity, options, function (gdata) {
+                            callback(gdata);
+                        });
+                    });
+                }
+            })
+        },
+        render: function(template, data){
+            return Mustache.render(BAPI.UI.mustacheHelpers.getPartials(template), data);
+        }
     },
     kdMove: function(){
         var moveEles = document.querySelectorAll('[data-move]');
@@ -714,20 +756,19 @@ function getClassnameForCode(code){
     return codeToClassname[code];
 }
 
-app.modules.templates.propertyDetails = {
+app.bapiModules.templates.propertyDetails = {
     forceusemap: false,
     mobileBreak: 768,
     init: function () {
         if (this.cond())
         {
-            this.fixHeroImage()
-                    .openCloseAmenitiesList()
-                    .lightBoxAndCarousel()
-                    .imageHover()
-                    .popUpBookingForm()
-                    .checkPropSettings()
-                    .checkThumbs()
-                    .checkUseMap();
+            this
+            //          .fixHeroImage()
+                      .openCloseAmenitiesList()
+                      .lightBoxAndCarousel()
+                      .checkPropSettings()
+            //          .checkThumbs()
+                      .checkUseMap();
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {
@@ -744,45 +785,20 @@ app.modules.templates.propertyDetails = {
                 gallery.open(jQuery(jQuery('.ppt-slides a')[0]));
         });
 
-        //carousel
-        var ob = this;
-        if (jQuery(window).width() <= ob.mobileBreak)
-            ob.swiperCarousel();
+        if(window.innerWidth <=  768){
+            this.swiperCarousel();
+        }
 
-
-        //jQuery(window).resize(debounce(function (e) {
-        //    this.checkThumbs();
-        //    if (jQuery(window).width() <= ob.mobileBreak)
-        //        ob.swiperCarousel();
-        //    else if (typeof SWCarousel !== 'undefined' && SWCarousel) {
-        //        //destroying swipeslider
-        //        SWCarousel.destroy(true, true);
-        //        SWCarousel = null;
-        //        //removing swipeslider classes
-        //        jQuery('.ppt-slides').removeClass('swiper-wrapper');
-        //        jQuery('.ppt-slides > li').removeClass('swiper-slide');
-        //    }
-        //}.bind(this), 500));
-        return this;
-    },
-    imageHover: function () {
-        jQuery('.simple-lightbox').hover(function () {
-            jQuery("#ppt-image-caption").text(jQuery(this).attr('title'));
-        });
         return this;
     },
     swiperCarousel: function swiperCarousel() {
         if (typeof SWCarousel === 'undefined' || !SWCarousel)
         {
-            //Adding swipeslider classes
-            jQuery('.ppt-slides').addClass('swiper-wrapper');
-            jQuery('.ppt-slides > li').addClass('swiper-slide');
-            //Initializing swipeslider
             SWCarousel = new Swiper('.ppt-images', {
-                centeredSlides: true,
                 spaceBetween: 0,
                 nextButton: '.next-slide',
-                prevButton: '.prev-slide'
+                prevButton: '.prev-slide',
+                slidesPerView: 1
             });
         }
 
@@ -815,23 +831,6 @@ app.modules.templates.propertyDetails = {
         }
         return this;
     },
-    popUpBookingForm: function () {
-        jQuery(document).on('click', '.pop-up-form-link', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').addClass('active');
-        });
-
-        jQuery(document).on('click', '.booking-form', function (e) {
-            e.stopPropagation();
-        });
-
-        jQuery(document).on('click', '.booking-form .close, .pop-up-booking-form.active', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').removeClass('active');
-        });
-
-        return this;
-    },
     checkUseMap: function () {
         var pid = parseInt(jQuery('.bapi-entityadvisor').attr('data-pkid'));
         var lat = jQuery('.bapi-entityadvisor').attr('data-lat');
@@ -856,8 +855,6 @@ app.modules.templates.propertyDetails = {
         var mapbox = document.querySelector('.hero-image');
         
         if (usemap) {
-            
-            
             
             var map = new google.maps.Map(mapbox, {
                 center: {lat: parseFloat(lat), lng: parseFloat(long)},
@@ -986,132 +983,209 @@ app.modules.templates.propertyDetails = {
     }
 };
 
-app.modules.templates.searchPage = {
+app.bapiModules.templates.searchPage = {
     /* Element selectors */
+    defaultView: '',
     templateSelector: 'body.page-template-search-page',
-    mapSelector: '#mapContainer',
-    propertiesContainerSelector: '#propertiesContainer',
-    propertySelector: '',
+    mapEle: document.querySelector('#mapContainer'),
+    listInitted: false,
+    mapInitted: false,
+    /* Properties containers */
+    mapPropContainer: document.querySelector('#mapPropertiesContainer'),
+    listPropContainer: document.querySelector('#listPropertiesContainer'),
+    properties: [],
+    totalProps: 0,
+    /* Map */
     mapObj: null,
+    clustererObj: null,
+    spiderfyObj: null,
     markers: [],
+    propMarkers: {},
     bounds: null,
     openMarkers: [],
+
     /* Methods */
-    init: function(){
-        this.mapObj = this.initMap();
-        this.initMarkers();
-        this.mapResetEvents();
-        this.viewEvents();
-    },
     cond: function(){
         return document.querySelectorAll(this.templateSelector).length > 0;
     },
-    initMap: function(){
-        return new google.maps.Map(document.querySelector(this.mapSelector), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
+    init: function(){
+        this.viewToggle();
+        this.defaultView = BAPI.config().defaultsearchresultview;
+
+        switch(this.defaultView){
+            case 'tmpl-propertysearch-listview':
+                this.doListView();
+                break;
+            case 'tmpl-propertysearch-mapview':
+            default:
+                this.doMapView();
+                this.mapResetEvents();
+                break;
+        }
+    },
+    getProperties: function(success_callback, empty_callback){
+        var chunkSize = 10;
+
+        if(this.properties.length){
+            this.properties.forEach(function(prop, prop_i){
+
+                success_callback.call(this, prop, prop_i);
+
+                this.updateCounters();
+
+            }.bind(this));
+        }else {
+
+            app.bapi.search('property', function (sr) {
+                var ids = sr.result, total = sr.result.length;
+
+                /* Here we have ppty total amount */
+                this.totalProps = total;
+                this.updateCounters();
+
+                if(total == 0){
+                    empty_callback.call(this, {}, 0);
+                    return;
+                }
+
+                //Split property id's into page-sized chunks
+                var chunks = _.chunk(ids, chunkSize);
+
+                chunks.forEach(function (chunk, chunk_i) {
+
+                    app.bapi.get('property', chunk, function (gr) {
+
+                        gr.result.forEach(function (prop, prop_i) {
+
+                            //Store recovered properties
+                            this.properties = _.concat(this.properties, [prop]);
+
+                            success_callback.call(this, prop, prop_i);
+                            this.updateCounters();
+
+                        }.bind(this));
+
+                    }.bind(this), {pagesize: chunkSize, seo: true});
+
+                }.bind(this));
+
+            }.bind(this), BAPI.session.searchparams);
+
+        }
+    },
+    /* Map view */
+    updateCounters: function(){
+        var current = this.properties.length;
+        var percentage = current * 100 / this.totalProps;
+        $('.map .loader .bar').css('width', percentage+'%');
+        $('.ppty-count-current').text(current);
+        $('.ppty-count-total').text(this.totalProps);
+    },
+    initMap: function(latitude, longitude){
+        var defaultMapView = BAPI.config().mapviewType;
+
+        this.mapObj = new google.maps.Map(this.mapEle, {
+            center: {lat: latitude, lng: longitude},
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId[defaultMapView]
         });
+    },
+    initClusterer: function(){
+        var mcOptions = {gridSize: 50, maxZoom: 13};
+        this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
+    },
+    initSpiderfy: function(){
+        this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj);
+    },
+    addMarker: function(prop){
+
+        /* Create info window */
+        var infoWindow = new google.maps.InfoWindow({
+            content: '<div class="info-html prop-infowindow">'+
+            '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
+            '</a><div class="info">' +
+            '<h5 class="title">' + prop.Headline + '</h5>'
+            + prop.Location + "</div></div>"
+        });
+
+        /* Create marker + store info window inside for later use (also in property ele) */
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
+            map: this.mapObj,
+            iw: infoWindow,
+            icon: {
+                path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3"+
+                "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
+                fillColor: this.mapEle.dataset.color,
+                fillOpacity: 1,
+                strokeColor: 'rgba(0,0,0,.25)',
+                strokeWeight: 1
+            }
+        });
+
+        //Standard event handling
+        /* Add event listeners to show info window */
+        //marker.addListener('click', this.openMarker.bind(this, marker));
+
+        /* Add marker to Clusterer */
+        this.clustererObj.addMarker(marker);
+
+        /* Add marker to spidify */
+        this.spiderfyObj.addMarker(marker);
+        //Spidify event handling
+        this.spiderfyObj.addListener('click', function(marker) {
+            this.openMarker(marker);
+        }.bind(this));
+
+        /* We store markers for later use */
+        this.markers.push(marker);
+        this.propMarkers[prop.AltID] = marker;
+    },
+    openMarker: function(marker){
+        /* first, we close any open marker InfoWindows */
+        this.openMarkers.map(function(m){m.iw.close()});
+        /* then we can open the new marker InfoWindow */
+        this.mapObj.setZoom(15);
+
+        var adjustedPos = new google.maps.LatLng({lat: marker.getPosition().lat() + 0.004623495678337974, lng: marker.getPosition().lng()});
+        this.mapObj.panTo(adjustedPos);
+
+        _.delay(function(){
+            marker.iw.open(this.mapObj, marker);
+        }.bind(this), 250);
+        /* we store the open InfoWindows to keep track */
+        this.openMarkers.push(marker);
+    },
+    addMapProps: function(){
+        //Render properties
+        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: this.properties, textdata: BAPI.textdata});
+        this.mapPropContainer.innerHTML = propHTML;
+
+        //Attach event listeneers
+        var props = this.mapPropContainer.querySelectorAll('[data-altid]');
+
+        _(props).forEach(function(prop){
+            var markerToggle = prop.querySelector('.viewInMap');
+            var altid = prop.dataset.altid;
+            markerToggle.addEventListener('click', function(){
+                var marker = this.propMarkers[altid];
+                this.openMarker(marker);
+            }.bind(this));
+        }.bind(this));
     },
     mapResetEvents: function(){
         var ele = document.querySelector('#resetMap');
         ele.addEventListener('click', this.centerMap.bind(this));
     },
-    initMarkers: function(){
-        var properties = null;
-        var propertiesContainer = document.querySelector(this.propertiesContainerSelector);
-
-        /* Check if properties have been populated, if not observe until they arrive */
-        if(propertiesContainer.children.length > 0){ //Properties already loaded
-            properties = this.getProperties();
-            this.propsToMarkers(properties);
-            this.centerMap();
-        }else{ //Properties not yet loaded
-            var observer = new MutationObserver(function(mutations){
-                    properties = this.getProperties();
-                    this.propsToMarkers(properties);
-                    this.centerMap();
-                    observer.disconnect();
-                }.bind(this)
-            );
-            observer.observe(propertiesContainer, {childList: true});
-        }
-    },
-    getProperties: function(){
-        return document.querySelectorAll(this.propertiesContainerSelector+' .property');
-    },
-    propsToMarkers: function(props){
-        for(var i = 0; i < props.length; i++){
-
-            var prop = props[i], //Get a property from the list
-                mapObj = this.mapObj, //Save mapObj for later use
-                propMarker = JSON.parse(prop.dataset.marker), //Parse dataset marker object
-                coords = propMarker.coord, //Get marker coordinates
-                iwEle = prop.querySelector('.prop-map-location'); //Get the marker's info window
-
-            /* Create info window */
-            var infoWindow = new google.maps.InfoWindow({
-                content: iwEle.querySelector('.info-html').outerHTML
-            });
-
-
-            /* Get the primary color from the map container to set marker icon color */
-            var markerColor = document.querySelector(this.mapSelector).dataset.markercolor;
-
-            /* Create an SVG icon, fill in primary color */
-            var icon = {
-                path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3"+
-                "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
-                fillColor: markerColor,
-                fillOpacity: 1,
-                strokeColor: 'rgba(0,0,0,.25)',
-                strokeWeight: 1
-            };
-
-            /* Create marker + store info window inside for later use (also in property ele) */
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(coords.lat, coords.lng),
-                map: this.mapObj,
-                iw: infoWindow,
-                icon: icon
-            });
-
-            prop.marker = marker;
-
-            /* Add event listeners to show info window */
-            marker.addListener('click', function(marker) {
-                this.openMarkers.map(function(m){m.iw.close()})
-                marker.iw.open(mapObj, marker);
-                this.openMarkers.push(marker);
-            }.bind(this, marker));
-
-
-            /* Add event listeners for list items */
-            prop.querySelector('.viewInMap').addEventListener('click',
-                function(prop) {
-                    /* first, we close any open marker InfoWindows */
-                    this.openMarkers.map(function(m){m.iw.close()})
-                    /* then we can open the new marker InfoWindow */
-                    prop.marker.iw.open(mapObj, prop.marker);
-                    /* we store the open InfoWindows to keep track */
-                    this.openMarkers.push(prop.marker);
-                }.bind(this, prop)
-            );
-
-            /* We store markers for later use */
-            this.markers.push(marker);
-        }
-    },
     centerMap: function(){
-        /*
-         If the map is initializing, we create new bounds to center all markers on the map.
-         If not initializing (re-centering the map) we reset zoom & center position to initial values.
-         */
+
         if(this.bounds == null) {
             var bounds = new google.maps.LatLngBounds();
             var markers = this.markers;
             /* Extend bounds to all markers and fit view */
-            for (index in markers) {
-                var data = markers[index];
+            for (i in markers) {
+                var data = markers[i];
                 bounds.extend(new google.maps.LatLng(data.position.lat(), data.position.lng()));
             }
             this.bounds = bounds;
@@ -1121,22 +1195,72 @@ app.modules.templates.searchPage = {
             this.mapObj.fitBounds(this.bounds);
         }
     },
-    viewEvents: function(){
-        var wrapper = document.querySelector('.split-search'),
-            propContainer = document.querySelector('.propContainer'),
-            listTmpl = 'tmpl-propertysearch-listview',
-            mapTmpl = 'tmpl-propertysearch-mapview';
+    /* View initializers */
+    doMapView: function(){
+        /* Update view layout */
+        document.querySelector('.listView').classList.add('hidden');
+        document.querySelector('.mapView').classList.remove('hidden');
+        //document.querySelector('.viewToggle .v-map').classList.add('active');
 
-        propContainer.addEventListener('click', function(e){
-            console.log(e.target);
-            if(e.target.dataset.template == listTmpl){
-                wrapper.classList.add('listView');
-            }else if(e.target.dataset.template == mapTmpl){
-                wrapper.classList.remove('listView');
+        if(this.mapInitted){return;}
+
+        this.getProperties(function(prop, prop_i){
+            //Search has returned properties
+
+            if(this.markers.length == 0){
+                //First iteration, we can initialize map on first location coordinates
+                //Also initialize Marker Clusterer to start adding markers to it
+
+                this.initMap(prop.Latitude, prop.Longitude);
+                this.initClusterer();
+                this.initSpiderfy();
             }
-        });
 
+            this.addMarker(prop);
+
+            //Last marker iteration
+            if(this.properties.length == this.totalProps){
+                this.centerMap();
+                this.addMapProps();
+                this.mapInitted = true;
+            }
+        }, function(){
+            //Search has returned no properties (empty)
+            this.addMapProps();
+        });
+    },
+    doListView: function(){
+        /* Update view layout */
+        document.querySelector('.mapView').classList.add('hidden');
+        document.querySelector('.listView').classList.remove('hidden');
+        //document.querySelector('.viewToggle .v-list').classList.add('active');
+
+        if(this.listInitted)return;
+
+        this.getProperties(function(prop, prop_i){
+
+                prop.Summary = prop.Summary.substr(0, 200) + '...';
+                //Search has returned properties
+                var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
+                this.listPropContainer.innerHTML += propHTML;
+            },
+            function(){
+                //Search has returned no properties (empty)
+
+                var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [], textdata: BAPI.textdata});
+                this.listPropContainer.innerHTML += propHTML;
+            });
+
+
+        this.listInitted = true;
+    },
+    /* View toggle */
+    viewToggle: function(){
+        /* View toggle buttons */
+        document.querySelector('.viewToggle .v-map').addEventListener('click', this.doMapView.bind(this));
+        document.querySelector('.viewToggle .v-list').addEventListener('click', this.doListView.bind(this));
     }
+
 };
 app.bapiModules.widgets.buckets = {
     selector: '.kd-buckets',
@@ -1336,7 +1460,6 @@ app.modules.widgets.team = {
             var swiperEle = teamSliders[i];
             var swiper = new Swiper(swiperEle,
                 {
-                    spaceBetween: 15,
                     nextButton: '.next-slide',
                     prevButton: '.prev-slide',
                     slidesPerView: swiperEle.dataset.columns || 5,

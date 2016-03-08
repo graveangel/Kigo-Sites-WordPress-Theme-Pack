@@ -1,9 +1,3 @@
-/*
-* Installation: Move 'package.json' to root theme folder & install.
-* Run 'gulpfile.js' from /build/gulp folder
-* */
-
-
 'use strict';
 
 var     gulp = require('gulp')
@@ -27,7 +21,7 @@ gulp.task('styles', function () {
     var date = new Date();
     gulp.src(mainStyle)
         .pipe(sass().on('error', sass.logError))
-        .pipe(header('/* Miquel Waller - '+date+' */\n'))
+        .pipe(header('/* Edited - '+date+' */\n'))
         .pipe(gulp.dest(stylesDestination))
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))

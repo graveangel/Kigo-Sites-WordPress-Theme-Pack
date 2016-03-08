@@ -8,7 +8,6 @@ app.modules.widgets.team = {
             var swiperEle = teamSliders[i];
             var swiper = new Swiper(swiperEle,
                 {
-                    spaceBetween: 15,
                     nextButton: '.next-slide',
                     prevButton: '.prev-slide',
                     slidesPerView: swiperEle.dataset.columns || 5,

@@ -4,7 +4,6 @@
     padding                       : 0;
   }
 
-
   .sl-wrapper .sl-navigation button{
     background-color: rgba(white, .2);
   }
@@ -12,7 +11,8 @@
   /* Hero ---------------------------------------------------------------------*/
   .hero {
     position                      : relative;
-    height                        : 200px;
+    height                        : 300px;
+    background-color: #f9f9f9;
   }
   .hero-image {
     max-width                     : 100%;
@@ -45,39 +45,57 @@
   .amenities-n-buttons {
     background-color: white;
     display                       : block;
-    padding-bottom                : 54px;
+    padding-bottom                : 0;
   }
   /* Top amenities ------------------------------------------------------------*/
   .amenities {
     box-sizing                    : border-box;
-    padding                       : 60px 60px 0;
+    padding                       : 15px;
+
+    .alert{
+      white-space: normal;
+    }
+
     ul {
       li {
-        margin-bottom         : 13px;
+        width: 100%;
+        //        margin-bottom         : 15px;
 
         .alert{
           margin-bottom: 0;
         }
 
         span {
+          display: inline-block;
+          vertical-align: middle;
+
           &.amenity-icon {
+            top: auto;
             margin-right  : 10px;
-            font-size     : 18px;
+            font-size     : 15px;
           }
           &.amenity-name {
             text-transform: uppercase;
             color         : $dark-text;
             margin-right  : 5px;
-            vertical-align: top;
           }
           &.amenity-value {
             color         : $tertiary-color;
           }
         }
+
+        #book-block{
+          margin-top: 0;
+        }
       }
     }
   }
   /* Book and inquire buttons---------------------------------------------------*/
+  .buttons-box{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 15px;
+  }
   .book-enq {
     padding                       : 0 15px;
     text-align                    : center;
@@ -92,8 +110,9 @@
   .inquire-button{
     margin                        : auto;
     max-width                     : 500px;
-    font-size                     : 25px;
     border                        : none;
+    font-size: 16px;
+    color: white;
   }
 
   /* Property descriptions-----------------------------------------------------*/
@@ -101,17 +120,28 @@
   // Images on the left
   .ppt-images,
   .ppt-desc{
-    float                     : left;
     box-sizing                : border-box;
+    text-align: justify;
   }
 
   .ppt-images {
     width                     : 100%;
-    display                   : none;
     overflow                  : hidden;
+    margin-bottom: 30px;
+
+    p{
+      display: none;
+    }
+
     ul {
-      height                : 393px;
+      height                : 400px;
       position              : relative;
+      li{
+        display: inline-block;
+        float: left;
+        width: 100%;
+        height: 100%;
+      }
       > li.swiper-slide-active {
         overflow          : hidden;
       }
@@ -122,7 +152,7 @@
         bottom            : 10px;
         height            : calc(50% - 20px);
         width             : calc(50% - 20px);
-        background        : rgba(0,0,0,0.5);
+        background        : rgba(0,0,0,0.75);
         text-align        : center;
         font-size         : 25px;
         line-height       : 7em;
@@ -130,10 +160,15 @@
         font-family       : "Montserrat", sans-serif;
         font-weight       : 100;
         display           : none;
+        transition: opacity .33s;
       }
-      > li img{
-        //position        : absolute;
-        max-height        : 100%;
+      > li a{
+        display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 100%;
+        width: 100%;
       }
     }
 
@@ -153,7 +188,6 @@
       right                 : 0;
     }
   }
-
 
   //mobile only Slider controls
   .slider-controls {
@@ -210,7 +244,7 @@
     padding                   :  0 15px 15px;
     font-family               : "Montserrat", sans-serif;
     p{
-//      padding                   : 15px;
+      //      padding                   : 15px;
       font-family               : "Montserrat", sans-serif;
       color                     : $tertiary-color;
       font-size                 : 14px;
@@ -234,11 +268,10 @@
 
   /*Property features---------------------------------------------*/
   .property-features {
-    margin-top                    : 50px ;
-    padding                       : 0 15px;
+    padding: 0 15px;
     > ul {
       > li {
-        padding               :15px 0;
+        padding               : 15px 0;
         border-top            : 1px solid #ccc;
         position              : relative;
         max-height            : 59px;
@@ -309,17 +342,24 @@
     width                         : 51em;
   }
   .review{
-    p{
-      font-size: 1.2em;
-      color: $tertiary-color;
+    margin-bottom: 30px;
+    *{
+      background-color: transparent !important;
+      font-family: $primary-font !important;
+    }
+    p, p *{
+      color: $light-gray !important;
+      font-size: 12px;
+      font-weight: normal;
+    }
+    .ratingstars{
+      display: block;
+      float: none;
     }
   }
   #poi-map-prop{
     width: 100%;
     height: 300px;
-  }
-  .r-n-stars{
-    margin-top: 15px;
   }
   .ratingstars {
     float: right;
@@ -332,18 +372,13 @@
     min-height: 30px;
   }
 
-  .buttons-box {
-    display: inline;
-  }
-
-
   span.prop-image.pull-left{
-    margin-right                  : 10px;
+    margin-right: 10px;
   }
 
   #pano {
     position            : relative;
-    z-index             : 9999;
+    z-index             : 450;
     height              : 100%;
     display             : block;
   }
@@ -387,14 +422,24 @@ Media Tablets horizontal
       padding                   : 15px;
       display                   :inline-block;
       float                     : left;
+      .alert{
+        white-space: nowrap;
+      }
       ul {
         li {
-          float             : left;
+          display: inline-block;
+          vertical-align: middle;
+          width: auto;
           margin-right      : 20px;
-          margin-bottom     : 0;
+
           span {
-            &.amenity-name,&.amenity-value {
+            display: inline-block;
+            vertical-align: middle;
+            &.amenity-name{
               font-size : 10px;
+            }
+            &.amenity-value {
+              font-size: 11px;
             }
             &.amenity-icon {
               font-size : 18px;
@@ -406,14 +451,11 @@ Media Tablets horizontal
     }
 
     .book-enq {
-      padding                   : 20px 0px 0 0;
-      display                   :inline-block;
-      float                     : left;
+      padding                   : 20px 0 0 0;
       width                     : auto;
       span{
         float                 : left;
         margin-right          : 10px;
-        font-size             : 11px;
       }
 
       span {
@@ -425,20 +467,27 @@ Media Tablets horizontal
       }
 
     }
+
     .book-now-button,
     .inquire-button {
-      float                     : right;
-      margin-left              : 10px;
-      font-size                 : 11px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+      font-size: 16px;
     }
 
     .property-description {
-      padding-top               : 36px;
-
+      padding: 15px 0;
     }
     .ppt-images {
-      padding-left              : 15px;
-      max-width                 : 63%;
+      max-width                 : 60%;
+      margin: 0 15px 10px 0;
+      float: left;
+
+      .swiper-wrapper{
+        display: block !important;
+      }
+
       ul{
         overflow              : hidden;
       }
@@ -459,8 +508,8 @@ Media Tablets horizontal
           position          : absolute;
         }
       }
-
     }
+
     .slider-controls {
       display                   : none;
     }
@@ -479,11 +528,13 @@ Media Tablets horizontal
           visibility: hidden;
         }
       }
-      li:first-child, li:nth-child(2) {
+      li:first-child{
         width: 50%;
       }
-      li:nth-child(2),li:nth-child(3){
+
+      li:nth-child(2), li:nth-child(2),li:nth-child(3){
         height: 50%;
+        width: 50%;
       }
       li:nth-child(2n+4){
         clear:both;
@@ -500,14 +551,12 @@ Media Tablets horizontal
       max-height                : 50%;
     }
     .ppt-image-caption {
-      display                   : block;
+      //      display                   : block;
     }
 
 
     .ppt-desc {
-      max-width                 :37%;
       box-sizing                : border-box;
-      padding-right             : 15px;
     }
     .ppt-desc-title {
       color                     : #333;
@@ -520,9 +569,7 @@ Media Tablets horizontal
     }
 
     .property-features {
-      margin-top                : 50px ;
-      padding                   : 0 15px;
-
+      padding                   : 0;
     }
 
     .amenities-list {
@@ -566,18 +613,23 @@ Media Tablets horizontal
             }
           }
           border: none;
+
+          &:last-of-type{
+            min-width: 90px;
+            text-align: right;
+          }
         }
       }
       font-size: 0;
       #poi-map-prop{
-        width: 70%;
+        width: 100%;
         height: 400px;
         display: inline-block;
         font-size: 14px;
       }
       #map-side-bar{
         vertical-align: top;
-        width: 30%;
+        width: 100%;
         display: inline-block;
         font-size: 14px;
       }
@@ -652,6 +704,10 @@ Media Tablets horizontal
   {
     display: inline-block;
   }
+
+  #bapi-rateblock .buttons-box{
+    margin-top: 0;
+  }
 }
 /*=============================================================================
 Media Desktop
@@ -659,37 +715,10 @@ Media Desktop
 @media (min-width                     : 1106px){
   .template-property {
 
-    .amenities {
-      box-sizing                : border-box;
-      padding                   : 15px;
-      display                   :inline-block;
-      float                     : left;
-      ul {
-        li {
-          display: inline-block;
-          vertical-align: middle;
-          margin-right      : 20px;
-          margin-bottom     : 0;
-
-          span{
-            display: inline-block;
-            vertical-align: middle !important;
-          }
-
-          .amenity-name,
-          .amenity-value {
-            font-size : 14px;
-            &.your-dates{
-            }
-          }
-        }
-      }
-    }
 
     .book-enq {
       padding                   : 14px 0px 0 0;
-      display                   :inline-block;
-      float                     : left;
+      display                   : inline-block;
       width                     : auto;
       span {
         float                 : left;
@@ -704,21 +733,15 @@ Media Desktop
       > :last-child {
         margin                : 0;
       }
-
-    }
-    .book-now-button,
-    .inquire-button {
-      float                     : right;
-      margin-left              : 10px;
-      font-size                 : 16px;
     }
 
-
-    .ppt-images {
-      padding-left              : 15px;
-    }
-    .ppt-desc {
-      padding-right             : 15px;
+    .map-and-locations{
+      #poi-map-prop{
+        width: 70%;
+      }
+      #map-side-bar{
+        width: 30%;
+      }
     }
   }
 }
@@ -765,28 +788,12 @@ Media Desktop
 }
 
 .pop-up-form-link {
+  font-size: 12px;
   color: $primary-color;
   text-decoration:underline;
-  font-size: 13px;
   text-decoration-style: dotted;
 }
 .pop-up-booking-form {
-  display: none;
-}
-
-.bapi-rateblock {
-  display: inline-block;
-  float: left;
-  .alert{
-    max-width: 360px;
-  }
-}
-.sl-overlay {
-  background: rgba(0,0,0,0.8);
-}
-
-.pop-up-booking-form.active {
-  display:    block;
   position:   fixed;
   height:     100%;
   width:      100%;
@@ -794,21 +801,15 @@ Media Desktop
   left:       0;
   background: rgba(0,0,0,0.8);
   z-index:    9999;
+
   .booking-form {
-    box-sizing:    border-box;
+    box-sizing: border-box;
     border-radius: 5px;
-    padding:       40px;
-    padding-top:   50px;
-    position:      absolute;
-    height:        auto;
-    max-height:    380px;
-    max-width:     400px;
-    left:          15px;
-    right:         15px;
-    top:           0%;
-    bottom:        0%;
-    margin:        auto;
-    background:    #fff;
+    padding: 40px;
+    height: auto;
+    max-width: 400px;
+    margin: 15% auto;
+    background: #fff;
     .glyphicons-list-alt{
       font-size: 30px;
       color: #999;
@@ -866,15 +867,24 @@ Media Desktop
 
 }
 
+.bapi-rateblock {
+  display: inline-block;
+  .alert{
+    max-width: 360px;
+  }
+}
+.sl-overlay {
+  background: rgba(0,0,0,0.8);
+}
+
+.pop-up-booking-form.active {
+  display: block;
+}
+
 
 .template-property{
   #book-block {
     display: inline-block;
-    .pd {
-      .amenity-value {
-        font-size: 13px;
-      }
-    }
   }
   .amenities {
     width: 100%;
@@ -883,10 +893,9 @@ Media Desktop
     }
   }
   #bapi-rateblock {
-    position: static;
-    zoom: 1;
+    display: inline-block;
+    vertical-align: middle;
     float: none;
-    display: block;
     .alert {
       padding: 0;
       display: inline-block;
@@ -898,19 +907,4 @@ Media Desktop
   .similar-prop{
     text-align: left;
   }
-}
-
-
-@media screen and (max-width:976px){
-  .template-property{
-    #book-block {
-      margin-top: 20px;
-      display: block;
-    }
-    .buttons-box {
-      margin-top: 20px;
-      display: block;
-    }
-  }
-
 }
