@@ -134,7 +134,10 @@ class Core {
             'BAPI_HP_Logo',
             'BAPI_HP_Search',
             'BAPI_Search',
+            'BAPI_Property_Finders',
+            'BAPI_Featured_Properties',
             'BAPI_Similar_Properties',
+            'BAPI_Specials_Widget',
         ];
 
         add_action('widgets_init', function() use ($unwantedWidgets) {
@@ -244,30 +247,25 @@ class Core {
          */
         define('CONCATENATE_SCRIPTS', false);
 
-        function customize_register_init($wp_customize) {
+        add_action('customize_register', function ($wp_customize) {
             $wp_customize->remove_section('title_tagline');
             $wp_customize->remove_section('static_front_page');
             $wp_customize->remove_section('nav');
             $wp_customize->remove_section('background_color');
-        }
+        });
 
-        add_action('customize_register', 'customize_register_init');
 
-        function prefix_custom_site_icon_size($sizes) {
+        add_filter('site_icon_image_sizes', function ($sizes) {
             $sizes = array(16, 32, 64, 192, 180);
 
             return $sizes;
-        }
+        });
 
-        add_filter('site_icon_image_sizes', 'prefix_custom_site_icon_size');
-
-        function prefix_custom_site_icon_tag($meta_tags) {
+        add_filter('site_icon_meta_tags', function ($meta_tags) {
             $meta_tags[] = sprintf('<link rel="icon" href="%s" sizes="64x64" />', esc_url(get_theme_mod("site-favicon")));
 
             return $meta_tags;
-        }
-
-        add_filter('site_icon_meta_tags', 'prefix_custom_site_icon_tag');
+        });
 
         /* Customizer */
         if (file_exists(get_template_directory() . '/inc/customizer/customizer-library/customizer-library.php')) {
@@ -280,11 +278,9 @@ class Core {
             // Additional filters and actions based on theme customizer selections.
             require get_template_directory() . '/inc/customizer/mods.php';
         } else {
-            add_action('customizer-library-notices', 'demo_customizer_library_notice');
-        }
-
-        function demo_customizer_library_notice() {
-            _e('<p>Notice: The "customizer-library" sub-module is not loaded.</p><p>Please add it to the "inc/customizer" directory: <a href="https://github.com/devinsays/customizer-library">https://github.com/devinsays/customizer-library</a>.</p><p>The demo, including submodules, can also be installed via Git: "git clone --recursive git@github.com:devinsays/customizer-library-demo".</p>', 'demo');
+            add_action('customizer-library-notices', function () {
+                _e('<p>Notice: The "customizer-library" sub-module is not loaded.</p><p>Please add it to the "inc/customizer" directory: <a href="https://github.com/devinsays/customizer-library">https://github.com/devinsays/customizer-library</a>.</p><p>The demo, including submodules, can also be installed via Git: "git clone --recursive git@github.com:devinsays/customizer-library-demo".</p>', 'demo');
+            });
         }
 
     }
