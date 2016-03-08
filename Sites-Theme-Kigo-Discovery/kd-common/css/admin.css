@@ -1,4 +1,4 @@
-/* Edited - Tue Mar 08 2016 12:24:12 GMT+0100 (Romance Standard Time) */
+/* Edited - Tue Mar 08 2016 12:53:04 GMT+0100 (Romance Standard Time) */
 /*
 To update 'Kigo Discovery' font you must extract the downloaded font from 'https://icomoon.io/'
 into '/kd-common/fonts' and make sure the resulting folder has the same name.
@@ -170,7 +170,7 @@ div#widgets-left {
     display: block !important; }
   div#widgets-left.filter_default .widget {
     display: block; }
-  div#widgets-left.filter_default .widget[id*="_kd_"], div#widgets-left.filter_default .widget[id*="_old_"] {
+  div#widgets-left.filter_default .widget[id*="_kd_"], div#widgets-left.filter_default .widget[id*="_bapi_"] {
     display: none; }
   div#widgets-left #available-widgets .widget {
     float: left;
