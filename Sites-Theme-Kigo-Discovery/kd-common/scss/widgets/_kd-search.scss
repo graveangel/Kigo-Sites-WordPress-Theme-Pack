@@ -104,7 +104,7 @@
       line-height: 50px;
     }
     &[data-field="location"]::after{
-      content: "\E243";
+      content: "\E503";
     }
     &[data-field="checkin"]::after{
       content: "\E046";
@@ -113,6 +113,30 @@
       content: "\E046";
     }
     &[data-field="adults"]::after{
+      content: "\E025";
+    }
+    &[data-field="children"]::after{
+      content: "\E005";
+    }
+    &[data-field="category"]::after{
+      content: "\E619";
+    }
+    &[data-field="dev"]::after{
+      content: "\E620";
+    }
+    &[data-field="sleeps"]::after{
+      content: "\E496";
+    }
+    &[data-field="beds"]::after{
+      content: "\E474";
+    }
+    &[data-field="baths"]::after{
+      content: "\E514";
+    }
+    &[data-field="rooms"]::after{
+      content: "\E025";
+    }
+    &[data-field="headline"]::after{
       content: "\E025";
     }
 

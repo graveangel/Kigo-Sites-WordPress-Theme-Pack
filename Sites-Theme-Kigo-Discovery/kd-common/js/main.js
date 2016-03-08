@@ -1,4 +1,4 @@
-/* Edited - Tue Mar 08 2016 12:24:12 GMT+0100 (Romance Standard Time) */
+/* Edited - Tue Mar 08 2016 18:03:43 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -1239,7 +1239,10 @@ app.bapiModules.templates.searchPage = {
 
         this.getProperties(function(prop, prop_i){
 
-                prop.Summary = prop.Summary.substr(0, 200) + '...';
+
+                prop.Summary = prop.Summary.length <= 200
+                    ? prop.Summary
+                    : prop.Summary.replace(/(<([^>]+)>)/ig,"").substr(0, 200) + '... <a href="'+prop.ContextData.SEO.DetailURL+'">['+BAPI.textdata.more+']</a>';
                 //Search has returned properties
                 var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
                 this.listPropContainer.innerHTML += propHTML;

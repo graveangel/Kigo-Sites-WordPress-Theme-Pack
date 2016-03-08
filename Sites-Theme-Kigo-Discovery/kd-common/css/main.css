@@ -1,4 +1,4 @@
-/* Edited - Tue Mar 08 2016 12:53:04 GMT+0100 (Romance Standard Time) */
+/* Edited - Tue Mar 08 2016 17:58:56 GMT+0100 (Romance Standard Time) */
 /*
 
 Theme styles outline:
@@ -3797,7 +3797,6 @@ body.page-template-search-page .mapProps {
     padding-right: 15px; }
   body.page-template-search-page .mapProps .property {
     font-family: 'Open Sans';
-    cursor: pointer;
     margin-bottom: 15px; }
     body.page-template-search-page .mapProps .property:hover .viewInMap {
       opacity: 1; }
@@ -3825,7 +3824,8 @@ body.page-template-search-page .mapProps {
       width: 100%;
       background-color: #e9e9e9;
       background-size: cover;
-      background-position: center; }
+      background-position: center;
+      cursor: pointer; }
       body.page-template-search-page .mapProps .property .image::before {
         display: block;
         content: '';
@@ -3876,8 +3876,7 @@ body.page-template-search-page .prop-infowindow {
     width: 300px;
     background-color: #e9e9e9;
     background-size: cover;
-    background-position: center;
-    border-bottom: 5px solid black; }
+    background-position: center; }
   body.page-template-search-page .prop-infowindow .info {
     position: relative;
     font-size: 14px;
@@ -4683,12 +4682,28 @@ body.error404 .message {
       text-align: center;
       line-height: 50px; }
     .kd-search .category-block[data-field="location"]::after {
-      content: "\E243"; }
+      content: "\E503"; }
     .kd-search .category-block[data-field="checkin"]::after {
       content: "\E046"; }
     .kd-search .category-block[data-field="checkout"]::after {
       content: "\E046"; }
     .kd-search .category-block[data-field="adults"]::after {
+      content: "\E025"; }
+    .kd-search .category-block[data-field="children"]::after {
+      content: "\E005"; }
+    .kd-search .category-block[data-field="category"]::after {
+      content: "\E619"; }
+    .kd-search .category-block[data-field="dev"]::after {
+      content: "\E620"; }
+    .kd-search .category-block[data-field="sleeps"]::after {
+      content: "\E496"; }
+    .kd-search .category-block[data-field="beds"]::after {
+      content: "\E474"; }
+    .kd-search .category-block[data-field="baths"]::after {
+      content: "\E514"; }
+    .kd-search .category-block[data-field="rooms"]::after {
+      content: "\E025"; }
+    .kd-search .category-block[data-field="headline"]::after {
       content: "\E025"; }
   .kd-search .picker {
     text-shadow: none; }
