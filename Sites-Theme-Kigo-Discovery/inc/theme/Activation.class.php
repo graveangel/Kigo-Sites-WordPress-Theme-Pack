@@ -323,7 +323,6 @@ class Activation {
             'url-facebook'      => '#',
             'url-twitter'       => '#',
             'url-google'        => '#',
-            'url-blog'        => '#',
 
             //Global settings
             'site-phone'        => $site_phone,

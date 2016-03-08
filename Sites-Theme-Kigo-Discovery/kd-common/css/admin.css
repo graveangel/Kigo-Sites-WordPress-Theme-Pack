@@ -1,4 +1,4 @@
-/* Edited - Mon Mar 07 2016 20:56:05 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Mar 07 2016 12:08:04 GMT+0100 (Romance Standard Time) */
 /*
 To update 'Kigo Discovery' font you must extract the downloaded font from 'https://icomoon.io/'
 into '/kd-common/fonts' and make sure the resulting folder has the same name.
@@ -166,7 +166,7 @@ div#widgets-left {
     display: block !important; }
   div#widgets-left.filter_kigo .widget {
     display: none; }
-  div#widgets-left.filter_kigo .widget[id*="_bapi_"] {
+  div#widgets-left.filter_kigo .widget[id*="_old_"] {
     display: block !important; }
   div#widgets-left.filter_default .widget {
     display: block; }
@@ -182,16 +182,16 @@ div#widgets-left {
     float: left; }
 
 /* Color widget headers */
-#widget-list .widget[id*="_kd_"] .widget-top {
+#widget-list .widget[id*="kd_"] .widget-top {
   background-color: rgba(51, 186, 175, 0.3); }
 
-#widget-list .widget[id*="_bapi_"] .widget-top {
+#widget-list .widget[id*="old_"] .widget-top {
   background-color: rgba(246, 175, 51, 0.3); }
 
-#widgets-right .widget[id*="_kd_"] .widget-top {
+#widgets-right .widget[id*="kd_"] .widget-top {
   background-color: rgba(51, 186, 175, 0.7); }
 
-#widgets-right .widget[id*="_bapi_"] .widget-top {
+#widgets-right .widget[id*="old_"] .widget-top {
   background-color: rgba(246, 175, 51, 0.3); }
 
 /* Individual widgets */

@@ -1,4 +1,4 @@
-/* Edited - Mon Mar 07 2016 20:41:01 GMT+0100 (Romance Standard Time) */
+/* Edited - Mon Mar 07 2016 15:58:09 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */
@@ -1031,7 +1031,7 @@ app.bapiModules.templates.searchPage = {
 
                 success_callback.call(this, prop, prop_i);
 
-                this.updateCounters();
+                    this.updateCounters();
 
             }.bind(this));
         }else {
@@ -1098,18 +1098,25 @@ app.bapiModules.templates.searchPage = {
         this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj);
     },
     addMarker: function(prop){
-
         /* Create info window */
         var infoWindow = new google.maps.InfoWindow({
             content: '<div class="info-html prop-infowindow">'+
             '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
-            '</a><div class="info">' +
-            '<h5 class="title">' + prop.Headline + '</h5>'
-            + prop.Location + "</div></div>"
+            '<div class="from secondary-fill-color">' +
+            //'<div class="tag">From:</div>' +
+            //'<div class="price">' + (prop.ContextData.Quote.QuoteDisplay.value != '' ? prop.ContextData.Quote.QuoteDisplay.prefix+': '+prop.ContextData.Quote.QuoteDisplay.value+' '+prop.ContextData.Quote.QuoteDisplay.suffix : prop.ContextData.Quote.ValidationMessage ) +'</div>' +
+            '</div>' +
+            '</a>' +
+            '<div class="info">' +
+            '<h5 class="title">' + prop.Headline + '</h5>' +
+            + prop.Type + ', ' + prop.Location + '<br>' +
+            BAPI.textdata.Beds + ' ' + prop.Bedrooms + ' / ' + BAPI.textdata.Baths + ' ' + prop.Bathrooms +
+            '</div>' +
+            '</div>'
         });
 
         /* Create marker + store info window inside for later use (also in property ele) */
-
+        
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
             map: this.mapObj,
@@ -1153,8 +1160,8 @@ app.bapiModules.templates.searchPage = {
 
         _.delay(function(){
             marker.iw.open(this.mapObj, marker);
+            /* we store the open InfoWindows to keep track */
         }.bind(this), 250);
-        /* we store the open InfoWindows to keep track */
         this.openMarkers.push(marker);
     },
     addMapProps: function(){
@@ -1238,18 +1245,16 @@ app.bapiModules.templates.searchPage = {
         if(this.listInitted)return;
 
         this.getProperties(function(prop, prop_i){
+            //Search has returned properties
+            var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
+            this.listPropContainer.innerHTML += propHTML;
+        },
+        function(){
+            //Search has returned no properties (empty)
 
-                prop.Summary = prop.Summary.substr(0, 200) + '...';
-                //Search has returned properties
-                var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
-                this.listPropContainer.innerHTML += propHTML;
-            },
-            function(){
-                //Search has returned no properties (empty)
-
-                var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [], textdata: BAPI.textdata});
-                this.listPropContainer.innerHTML += propHTML;
-            });
+            var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [], textdata: BAPI.textdata});
+            this.listPropContainer.innerHTML += propHTML;
+        });
 
 
         this.listInitted = true;

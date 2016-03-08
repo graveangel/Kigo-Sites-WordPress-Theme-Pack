@@ -153,7 +153,7 @@ div#widgets-left{
     .widget{
       display: none;
     }
-    .widget[id*="_bapi_"]{
+    .widget[id*="_old_"]{
       display: block !important;
     }
   }
@@ -174,19 +174,19 @@ div#widgets-left{
 /* Color widget headers */
 
 #widget-list{
-  .widget[id*="_kd_"] .widget-top{
+  .widget[id*="kd_"] .widget-top{
     background-color: rgba($primary-color, .3);
   }
-  .widget[id*="_bapi_"] .widget-top{
+  .widget[id*="old_"] .widget-top{
     background-color: rgba($secondary-color, .3);
   }
 }
 
 #widgets-right{
-  .widget[id*="_kd_"] .widget-top{
+  .widget[id*="kd_"] .widget-top{
     background-color: rgba($primary-color, .7);
   }
-  .widget[id*="_bapi_"] .widget-top{
+  .widget[id*="old_"] .widget-top{
     background-color: rgba($secondary-color, .3);
   }
 }
