@@ -1,4 +1,3 @@
-
 /*
 
 Theme styles outline:
@@ -4704,7 +4703,7 @@ body.error404 .message {
     .kd-search .category-block[data-field="rooms"]::after {
       content: "\E025"; }
     .kd-search .category-block[data-field="headline"]::after {
-      content: "\E025"; }
+      content: "\E021"; }
   .kd-search .picker {
     text-shadow: none; }
   @media screen and (min-width: 992px) {

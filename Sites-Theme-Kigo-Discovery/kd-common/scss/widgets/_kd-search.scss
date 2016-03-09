@@ -118,10 +118,10 @@
     &[data-field="children"]::after{
       content: "\E005";
     }
-    &[data-field="category"]::after{
+    &[data-field="category"]::after{ //TODO: Find icon
       content: "\E619";
     }
-    &[data-field="dev"]::after{
+    &[data-field="dev"]::after{ //TODO: Find icon
       content: "\E620";
     }
     &[data-field="sleeps"]::after{
@@ -137,7 +137,7 @@
       content: "\E025";
     }
     &[data-field="headline"]::after{
-      content: "\E025";
+      content: "\E021";
     }
 
   }

@@ -43,7 +43,6 @@ class Activation {
 
         if (!count($this->activeWidgets['header_right'])) {
 
-            //TODO: Add initial widgets if any
         }
 
         if (!count($this->activeWidgets['under_header_left'])) {
@@ -98,7 +97,7 @@ class Activation {
             $themeBAPI = new BAPIHelper();
 
             /* KD Hero */
-            //TODO: Find and host proper default images for hero slider
+
             $themePath = get_template_directory_uri();
             $kd_hero_content = array(
                 'color' => '#ffffff',
@@ -134,7 +133,7 @@ class Activation {
 
             $kd_pblock_content = [
                 'page' => $aboutUsPage->ID,
-                'image' => 'http://i.imgsafe.org/e32b879.png', //TODO: Possibly replace image if not on proper host
+                'image' => 'http://i.imgsafe.org/e32b879.png', //TODO: Replace with local image
                 'align' => 'left',
             ];
             $this->setWidget('page_home', 'kd_page_block', $kd_pblock_content);
@@ -274,8 +273,6 @@ class Activation {
 
         return $menu_id; //We return the menu id
     }
-
-    //TODO: Clean up both 'createBapiMenu' and 'createCustomMenu' to reuse code.
 
     private function createCustomMenu($name, $items){
         // Check if the menu exists

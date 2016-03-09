@@ -1,4 +1,3 @@
-/* Edited - Tue Mar 08 2016 17:58:56 GMT+0100 (Romance Standard Time) */
 var kd_admin = {
     init: function () {
     },
@@ -294,9 +293,6 @@ var kd_admin = {
             selectionHeader: "<div class='custom-header'><a href='#' class='kd-button filled multiselect-js-deselectall'>Deselect All</a></div><br><input type='text' class='search-input' autocomplete='on' placeholder='Search within selected'><br><br>",
             afterInit: function (ms) {
 
-
-
-
                 var that = this,
                     $selectableSearch = that.$selectableUl.prev().prev().prev(),
                     $selectionSearch = that.$selectionUl.prev().prev().prev(),
@@ -307,7 +303,6 @@ var kd_admin = {
                     e.preventDefault();
                     that.select_all();
                 });
-
 
                 $('.multiselect-js-deselectall').click(function (e) {
                     e.preventDefault();
@@ -323,7 +318,6 @@ var kd_admin = {
                         }
                     });
 
-
                 that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
                     .on('keydown', function (e) {
                         if (e.which == 40) {
@@ -333,11 +327,8 @@ var kd_admin = {
                         }
                     });
 
-
             }
         });
-
-
 
         $(document).on('click', '*[id*="kd_featured"] input[id*="userandom"]', function (e) {
             if ($(this).attr('checked')) {
@@ -349,7 +340,6 @@ var kd_admin = {
                 $(this).parent().find('.multiselectjs').prev().show();
                 $(this).parent().find('.multiselectjs').prev().prev().show();
             }
-
         });
         $('.multiselectjs').multiSelect('refresh');
 
