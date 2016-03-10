@@ -170,7 +170,7 @@ div#widgets-left {
     display: block !important; }
   div#widgets-left.filter_default .widget {
     display: block; }
-  div#widgets-left.filter_default .widget[id*="_kd_"], div#widgets-left.filter_default .widget[id*="_old_"] {
+  div#widgets-left.filter_default .widget[id*="_kd_"], div#widgets-left.filter_default .widget[id*="_bapi_"] {
     display: none; }
   div#widgets-left #available-widgets .widget {
     float: left;
@@ -561,7 +561,7 @@ Administration option pages.
       margin-right: 20px; }
 
 .sortable {
-  width: "97%";
+  width: 97%;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

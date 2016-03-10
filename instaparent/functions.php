@@ -1356,10 +1356,11 @@ function load_selected_font() {
 	$OptionsSelected = get_option('instaparent_theme_options');
 	/* we get the preset selected which is in radioinput*/
 	$fontStyle = $OptionsSelected['fontStyle'];
+        $paragraphStyle = $OptionsSelected['paragraphfontStyle'];
 
         if(!empty($fontStyle)){
             // Font options
-            $fonts = array($fontStyle);
+            $fonts = array($fontStyle,$paragraphStyle);
             include 'insta-common/themeoptions/extensions/fonts.php';
             $font_uri = customizer_library_get_google_font_uri( $fonts );
 
@@ -1376,9 +1377,10 @@ function applyFontStyle(){
 	$OptionsSelected = get_option('instaparent_theme_options');
 	/* we get the preset selected which is in radioinput*/
 	$fontStyle = $OptionsSelected['fontStyle'];
+        $paragraphStyle = $OptionsSelected['paragraphfontStyle'];
         if(!empty($fontStyle)){
         ?>
-            <style type="text/css" media="screen">h1,h2,h3,p{font-family:<?php echo $fontStyle; ?>;}</style>
+            <style type="text/css" media="screen">h1,h2,h3{font-family:<?php echo $fontStyle; ?>;}p{font-family:<?php echo $paragraphStyle; ?>;}</style>
         <?php
         }
 
