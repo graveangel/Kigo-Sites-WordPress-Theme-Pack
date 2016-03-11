@@ -233,6 +233,11 @@ body.page-template-search-page{
       padding-right: 15px;
     }
 
+    #mapPropertiesContainer.loading{
+      opacity: .5;
+      transition: opacity .33s;
+    }
+
     .property{
       font-family: 'Open Sans';
       margin-bottom: 15px;

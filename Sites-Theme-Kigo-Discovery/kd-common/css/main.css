@@ -3794,6 +3794,9 @@ body.page-template-search-page .mapProps {
   body.page-template-search-page .mapProps .available {
     padding-left: 30px;
     padding-right: 15px; }
+  body.page-template-search-page .mapProps #mapPropertiesContainer.loading {
+    opacity: .5;
+    transition: opacity .33s; }
   body.page-template-search-page .mapProps .property {
     font-family: 'Open Sans';
     margin-bottom: 15px; }

@@ -30,8 +30,8 @@
                             </div>
 
                             <div class="btn-group viewToggle">
-                                <button class="btn v-list"><i class="fa fa-list"></i>&nbsp;List</button>
-                                <button class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                                <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;List</button>
+                                <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
                             </div>
                         </div>
                     </div>
@@ -55,8 +55,8 @@
                             </div>
 
                             <div class="btn-group viewToggle">
-                                <button class="btn active"><i class="fa fa-list"></i>&nbsp;List</button>
-                                <button class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                                <button disabled class="btn active"><i class="fa fa-list"></i>&nbsp;List</button>
+                                <button disabled class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
                             </div>
                         </div>
                     </div>

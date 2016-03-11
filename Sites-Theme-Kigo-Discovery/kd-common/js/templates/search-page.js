@@ -18,6 +18,7 @@ app.bapiModules.templates.searchPage = {
     propMarkers: {},
     bounds: null,
     openMarkers: [],
+    currentViewMarkers: [],
 
     /* Methods */
     cond: function(){
@@ -110,7 +111,7 @@ app.bapiModules.templates.searchPage = {
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     initSpiderfy: function(){
-        this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj);
+        this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj, {markersWontMove: true, markersWontHide: true, keepSpiderfied: true, legWeight : 2});
     },
     addMarker: function(prop){
 
@@ -127,6 +128,7 @@ app.bapiModules.templates.searchPage = {
 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
+            prop: prop,
             map: this.mapObj,
             iw: infoWindow,
             icon: {
@@ -172,9 +174,9 @@ app.bapiModules.templates.searchPage = {
         /* we store the open InfoWindows to keep track */
         this.openMarkers.push(marker);
     },
-    addMapProps: function(){
+    addMapProps: function(properties){
         //Render properties
-        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: this.properties, textdata: BAPI.textdata});
+        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: properties, textdata: BAPI.textdata});
         this.mapPropContainer.innerHTML = propHTML;
 
         //Attach event listeneers
@@ -210,6 +212,41 @@ app.bapiModules.templates.searchPage = {
             this.mapObj.fitBounds(this.bounds);
         }
     },
+    mapBoundProps: function(){
+        /* listen events for loading ui */
+        google.maps.event.addListener(this.mapObj, 'dragstart', function(){
+            this.mapPropContainer.classList.add('loading');
+        }.bind(this));
+
+        google.maps.event.addListener(this.mapObj, 'zoom_changed', function(){
+            this.mapPropContainer.classList.add('loading');
+        }.bind(this));
+
+        google.maps.event.addListener(this.mapObj, 'idle', function(){
+            this.mapPropContainer.classList.remove('loading');
+        }.bind(this));
+
+        /* on map move (bounds change) we check to see what markers are visible to display related props */
+        google.maps.event.addListener(this.mapObj, 'bounds_changed',
+            _.debounce(
+            function() {
+                this.currentViewMarkers = [];
+                this.markers.forEach(function(marker){
+                    if(this.mapObj.getBounds().contains(marker.getPosition())){
+                        this.currentViewMarkers.push(marker);
+                    }
+                }.bind(this));
+
+                var visibleProps = [];
+
+                this.currentViewMarkers.forEach(function(m){
+                    visibleProps.push(m.prop);
+                });
+
+                this.addMapProps(visibleProps);
+            }.bind(this), 250)
+        );
+    },
     /* View initializers */
     doMapView: function(){
         /* Update view layout */
@@ -229,6 +266,7 @@ app.bapiModules.templates.searchPage = {
                 this.initMap(prop.Latitude, prop.Longitude);
                 this.initClusterer();
                 this.initSpiderfy();
+                this.mapBoundProps();
             }
 
             this.addMarker(prop);
@@ -236,12 +274,13 @@ app.bapiModules.templates.searchPage = {
             //Last marker iteration
             if(this.properties.length == this.totalProps){
                 this.centerMap();
-                this.addMapProps();
+                //this.addMapProps(this.properties); <- taken care by 'mapBoundProps'
                 this.mapInitted = true;
+                _.map(document.querySelectorAll('.viewToggle button'), function(button){button.removeAttribute('disabled')});
             }
         }, function(){
             //Search has returned no properties (empty)
-            this.addMapProps();
+            this.addMapProps(this.properties);
         });
     },
     doListView: function(){
@@ -261,6 +300,8 @@ app.bapiModules.templates.searchPage = {
                 //Search has returned properties
                 var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
                 this.listPropContainer.innerHTML += propHTML;
+
+                _.map(document.querySelectorAll('.viewToggle button'), function(button){button.removeAttribute('disabled')});
             },
             function(){
                 //Search has returned no properties (empty)
@@ -268,7 +309,6 @@ app.bapiModules.templates.searchPage = {
                 var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [], textdata: BAPI.textdata});
                 this.listPropContainer.innerHTML += propHTML;
             });
-
 
         this.listInitted = true;
     },
