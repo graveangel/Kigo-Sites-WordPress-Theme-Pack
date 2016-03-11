@@ -192,8 +192,11 @@ app.bapiModules.templates.searchPage = {
         }.bind(this));
     },
     mapResetEvents: function(){
-        var ele = document.querySelector('#resetMap');
-        ele.addEventListener('click', this.centerMap.bind(this));
+        var eles = document.querySelectorAll('.resetMap');
+
+        _.map(eles, function(ele){
+            ele.addEventListener('click', this.centerMap.bind(this));
+        }.bind(this));
     },
     centerMap: function(){
 
@@ -218,10 +221,6 @@ app.bapiModules.templates.searchPage = {
             this.mapPropContainer.classList.add('loading');
         }.bind(this));
 
-        google.maps.event.addListener(this.mapObj, 'zoom_changed', function(){
-            this.mapPropContainer.classList.add('loading');
-        }.bind(this));
-
         google.maps.event.addListener(this.mapObj, 'idle', function(){
             this.mapPropContainer.classList.remove('loading');
         }.bind(this));
@@ -239,11 +238,13 @@ app.bapiModules.templates.searchPage = {
 
                 var visibleProps = [];
 
+                /* Grab visible marker properties */
                 this.currentViewMarkers.forEach(function(m){
                     visibleProps.push(m.prop);
                 });
+                this.addMapProps(visibleProps); //Render them
 
-                this.addMapProps(visibleProps);
+                $('.ppty-count-current').text(visibleProps.length);
             }.bind(this), 250)
         );
     },

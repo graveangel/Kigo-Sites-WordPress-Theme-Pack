@@ -3770,6 +3770,10 @@ body.page-template-search-page .available {
   line-height: 34px; }
   body.page-template-search-page .available span {
     float: left; }
+  body.page-template-search-page .available a {
+    font-size: 12px;
+    vertical-align: middle;
+    margin-left: 20px; }
 
 body.page-template-search-page .mapContainer {
   padding: 0; }
