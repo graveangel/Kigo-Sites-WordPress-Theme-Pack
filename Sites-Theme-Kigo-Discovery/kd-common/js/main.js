@@ -1,4 +1,3 @@
-/* Edited - Tue Mar 01 2016 13:27:16 GMT+0100 (Romance Standard Time) */
 var app = {
 
     /* Attributes */

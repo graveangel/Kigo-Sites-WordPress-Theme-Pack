@@ -1,4 +1,3 @@
-/* Edited - Tue Mar 01 2016 15:43:43 GMT+0100 (Romance Standard Time) */
 var kd_admin = {
     init: function () {
     },
