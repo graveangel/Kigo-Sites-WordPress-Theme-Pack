@@ -48,28 +48,19 @@
 
 <script id="tmpl-allproperties" type="text/html">
     <table class="">
-        <!--<table class="table table-bordered table-striped">-->
         <thead>
         <tr>
-            <!--<th></th>-->
             <th>{{textdata.Property Name}}</th>
             <th>{{textdata.Category}}</th>
             <th>{{textdata.Beds}}</th>
             <th>{{textdata.Baths}}</th>
             <th>{{textdata.Sleeps}}</th>
-            <!--<th>{{textdata.Amenities}}</th>-->
             <th>{{textdata.Rates}}</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
         {{#result}}
             <tr>
-                <!--<td>-->
-                <!--<button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="{{ID}}" type="button" data-toggle="button">-->
-                <!--<span class="halflings heart-empty"><i></i>{{^inmylist}}{{textdata.WishList}}{{/inmylist}}{{#inmylist}}{{textdata.WishListed}}{{/inmylist}}</span>-->
-                <!--</button>		-->
-                <!--</td>-->
                 <td>
                     {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
                     {{Headline}}
@@ -79,7 +70,6 @@
                 <td>{{Bedrooms}}</td>
                 <td>{{Bathrooms}}</td>
                 <td>{{Sleeps}}</td>
-                <!--<td><span>{{TopAmenities}}</span></td>   -->
                 <td>{{ContextData.Quote.PublicNotes}}</td>
                 <td>
                     {{^IsBookable}}
@@ -94,7 +84,9 @@
         </tbody>
     </table>
     <div class="clearfix"></div>
-        {{> partial-more-results}}
+        {{^islastpage}}<div class="showmore"><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</span></div>{{/islastpage}}
+        {{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
+
 </script>
 
 <script id="tmpl-properties-ratetable" type="text/html">
@@ -111,30 +103,30 @@
     {{#ContextData.Rates.Values}}
         <tr>
         {{#0}}<td>{{0}}</td>{{/0}}
-{{#1}}<td>{{1}}</td>{{/1}}
-{{#2}}<td>{{2}}</td>{{/2}}
-{{#3}}<td>{{3}}</td>{{/3}}
-{{#4}}<td>{{4}}</td>{{/4}}
-{{#5}}<td>{{5}}</td>{{/5}}
-{{#6}}<td>{{6}}</td>{{/6}}
-{{#7}}<td>{{7}}</td>{{/7}}
-{{#8}}<td>{{8}}</td>{{/8}}
-{{#9}}<td>{{9}}</td>{{/9}}
-{{#10}}<td>{{10}}</td>{{/10}}
-{{#11}}<td>{{11}}</td>{{/11}}
-{{#12}}<td>{{12}}</td>{{/12}}
-{{#13}}<td>{{13}}</td>{{/13}}
-{{#14}}<td>{{14}}</td>{{/14}}
-{{#15}}<td>{{15}}</td>{{/15}}
-{{#16}}<td>{{16}}</td>{{/16}}
-{{#17}}<td>{{17}}</td>{{/17}}
-{{#18}}<td>{{18}}</td>{{/18}}
-{{#19}}<td>{{19}}</td>{{/19}}
-{{#20}}<td>{{20}}</td>{{/20}}
-</tr>
-{{/ContextData.Rates.Values}}
-</tbody>
-</table>
+        {{#1}}<td>{{1}}</td>{{/1}}
+        {{#2}}<td>{{2}}</td>{{/2}}
+        {{#3}}<td>{{3}}</td>{{/3}}
+        {{#4}}<td>{{4}}</td>{{/4}}
+        {{#5}}<td>{{5}}</td>{{/5}}
+        {{#6}}<td>{{6}}</td>{{/6}}
+        {{#7}}<td>{{7}}</td>{{/7}}
+        {{#8}}<td>{{8}}</td>{{/8}}
+        {{#9}}<td>{{9}}</td>{{/9}}
+        {{#10}}<td>{{10}}</td>{{/10}}
+        {{#11}}<td>{{11}}</td>{{/11}}
+        {{#12}}<td>{{12}}</td>{{/12}}
+        {{#13}}<td>{{13}}</td>{{/13}}
+        {{#14}}<td>{{14}}</td>{{/14}}
+        {{#15}}<td>{{15}}</td>{{/15}}
+        {{#16}}<td>{{16}}</td>{{/16}}
+        {{#17}}<td>{{17}}</td>{{/17}}
+        {{#18}}<td>{{18}}</td>{{/18}}
+        {{#19}}<td>{{19}}</td>{{/19}}
+        {{#20}}<td>{{20}}</td>{{/20}}
+        </tr>
+    {{/ContextData.Rates.Values}}
+    </tbody>
+    </table>
 {{/result}}
 </script>
 /*

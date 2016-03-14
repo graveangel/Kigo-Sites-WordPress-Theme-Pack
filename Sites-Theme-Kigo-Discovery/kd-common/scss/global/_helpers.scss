@@ -1,6 +1,23 @@
 /* Helper classes */
 
 
+
+/* Listing 'show more' trigger */
+
+.showmore, .nomore{
+  margin-top: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity .2s;
+
+  &:hover{
+    opacity: .8;
+  }
+  a, span{
+    display: block;
+  }
+}
+
 /* Max select input fix */
 
 select{
@@ -67,18 +84,13 @@ select{
 //}
 
 .row-nopadding{
-//  margin-left: 0;
-//  margin-right: 0;
+  //  margin-left: 0;
+  //  margin-right: 0;
   [class*="col-"] {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
 }
-
-.nomore{
-  text-align: center;
-}
-
 
 /* Fade in movers */
 
@@ -125,8 +137,35 @@ header h1{
   font-family: 'Montserrat';
 }
 
-.blockUI{ //Hide all BlockUI
-  display: none !important;
+.blockUI {
+  font-size: 0;
+
+  img{
+    display: none !important;
+  }
+
+  &.blockOverlay {
+    opacity: 1 !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  &.blockElement{
+    margin: 50px;
+    height: 28px !important;
+    width: 28px !important;
+    animation: rotate 0.8s infinite linear;
+    border: 8px solid #444 !important;
+    border-right-color: transparent !important;
+    border-radius: 50%;
+    background: transparent !important;
+  }
+
+  @keyframes rotate {
+    0%    { transform: rotate(0deg); }
+    100%  { transform: rotate(360deg); }
+  }
+
 }
 
 .kd-icon{

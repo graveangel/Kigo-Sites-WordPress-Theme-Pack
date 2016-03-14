@@ -2453,6 +2453,17 @@ i {
 /* Colors */
 /* Import helper classes */
 /* Helper classes */
+/* Listing 'show more' trigger */
+.showmore, .nomore {
+  margin-top: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity .2s; }
+  .showmore:hover, .nomore:hover {
+    opacity: .8; }
+  .showmore a, .showmore span, .nomore a, .nomore span {
+    display: block; }
+
 /* Max select input fix */
 select {
   -webkit-appearance: none; }
@@ -2501,9 +2512,6 @@ select {
   padding-left: 0 !important;
   padding-right: 0 !important; }
 
-.nomore {
-  text-align: center; }
-
 /* Fade in movers */
 [data-move] {
   display: none;
@@ -2535,7 +2543,28 @@ h1, h2, h3, h4, h5 {
   font-family: 'Montserrat'; }
 
 .blockUI {
-  display: none !important; }
+  font-size: 0; }
+  .blockUI img {
+    display: none !important; }
+  .blockUI.blockOverlay {
+    opacity: 1 !important;
+    background-color: transparent !important;
+    background-image: none !important; }
+  .blockUI.blockElement {
+    margin: 50px;
+    height: 28px !important;
+    width: 28px !important;
+    animation: rotate 0.8s infinite linear;
+    border: 8px solid #444 !important;
+    border-right-color: transparent !important;
+    border-radius: 50%;
+    background: transparent !important; }
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
 
 .kd-icon {
   color: white;
