@@ -74,7 +74,6 @@ if($fblikeshare === 1 || $fblikeshare === FALSE ){
         var force_usemap = false;
 <?php endif; ?>
 
-
 <?php if (isset($property->usemap_layout) && !empty($property->force_usemap) && $property->force_usemap): ?>
         usemap_layout = <?php echo $property->usemap_layout; ?>
 <?php else: ?>

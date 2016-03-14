@@ -1180,7 +1180,7 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 	.bapi-summary table tr td:last-child,.bapi-summary table tr th:last-child{display:none;}
 	
 	/* attraction summary page */
-	.poi-results .bapi-map,.poi-results .item-result .item-images .number-tag{display:none;}
+	/*.poi-results .bapi-map,.poi-results .item-result .item-images .number-tag{display:none;}*/
 	.search-result-controls .form-horizontal .control-group-attraction .control-label{width:auto;}
 	.search-result-controls .form-horizontal .control-group-attraction .controls{margin-left:0;}
 	
@@ -1242,3 +1242,14 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 @media (max-height: 480px) {.map-view-page #prop-map{height:400px;}}
 
 @media (max-height: 960px) {}
+
+/* Hide homepage search until properly positioned */
+.home-qsearch {
+  	display: none;
+  	opacity: 0;
+  	transition: opacity .2s;
+}
+.home-qsearch.qsFixed {
+	display: block;
+	opacity: 1;
+}

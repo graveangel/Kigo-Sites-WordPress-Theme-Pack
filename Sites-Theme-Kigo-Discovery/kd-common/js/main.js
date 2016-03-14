@@ -37,23 +37,28 @@ var app = {
     },
     fixedHeader: function(){
 
-        checkHeader(); //Check in case page has loaded with scroll
+        var body = document.querySelector('body'),
+            header = document.querySelector('.header-background'),
+            underHeader = document.querySelector('.header-background .under_header');
+
+        var scrollMax = header.clientHeight - underHeader.clientHeight;
+
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
-        window.addEventListener('scroll', debounce(checkHeader, 25)); //ms
+        window.addEventListener('scroll', debounce(checkHeader, 10)); //ms
+
+        checkHeader(); //Check in case page has loaded with scroll
 
         function checkHeader(){
-
-            var currentScroll = window.scrollY,
-                header = document.querySelector('.header-background'),
-                overHeader = document.querySelector('.header-background .header');
-
-            var scrollMax = overHeader.clientHeight;
-
-            if(currentScroll >= 121){
+            var currentScroll = window.scrollY;
+            
+            if(currentScroll >= scrollMax){
                 header.classList.add('fixed');
-            }else{
+                body.style.paddingTop = underHeader.clientHeight + 'px';
+            }
+            else{
                 header.classList.remove('fixed');
+                body.style.paddingTop = 0;
             }
         }
     },
@@ -755,20 +760,19 @@ function getClassnameForCode(code){
     return codeToClassname[code];
 }
 
-app.modules.templates.propertyDetails = {
+app.bapiModules.templates.propertyDetails = {
     forceusemap: false,
     mobileBreak: 768,
     init: function () {
         if (this.cond())
         {
-            this.fixHeroImage()
-                    .openCloseAmenitiesList()
-                    .lightBoxAndCarousel()
-                    .imageHover()
-                    .popUpBookingForm()
-                    .checkPropSettings()
-                    .checkThumbs()
-                    .checkUseMap();
+            this
+            //          .fixHeroImage()
+                      .openCloseAmenitiesList()
+                      .lightBoxAndCarousel()
+                      .checkPropSettings()
+            //          .checkThumbs()
+                      .checkUseMap();
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {
@@ -785,45 +789,20 @@ app.modules.templates.propertyDetails = {
                 gallery.open(jQuery(jQuery('.ppt-slides a')[0]));
         });
 
-        //carousel
-        var ob = this;
-        if (jQuery(window).width() <= ob.mobileBreak)
-            ob.swiperCarousel();
+        if(window.innerWidth <=  768){
+            this.swiperCarousel();
+        }
 
-
-        //jQuery(window).resize(debounce(function (e) {
-        //    this.checkThumbs();
-        //    if (jQuery(window).width() <= ob.mobileBreak)
-        //        ob.swiperCarousel();
-        //    else if (typeof SWCarousel !== 'undefined' && SWCarousel) {
-        //        //destroying swipeslider
-        //        SWCarousel.destroy(true, true);
-        //        SWCarousel = null;
-        //        //removing swipeslider classes
-        //        jQuery('.ppt-slides').removeClass('swiper-wrapper');
-        //        jQuery('.ppt-slides > li').removeClass('swiper-slide');
-        //    }
-        //}.bind(this), 500));
-        return this;
-    },
-    imageHover: function () {
-        jQuery('.simple-lightbox').hover(function () {
-            jQuery("#ppt-image-caption").text(jQuery(this).attr('title'));
-        });
         return this;
     },
     swiperCarousel: function swiperCarousel() {
         if (typeof SWCarousel === 'undefined' || !SWCarousel)
         {
-            //Adding swipeslider classes
-            jQuery('.ppt-slides').addClass('swiper-wrapper');
-            jQuery('.ppt-slides > li').addClass('swiper-slide');
-            //Initializing swipeslider
             SWCarousel = new Swiper('.ppt-images', {
-                centeredSlides: true,
                 spaceBetween: 0,
                 nextButton: '.next-slide',
-                prevButton: '.prev-slide'
+                prevButton: '.prev-slide',
+                slidesPerView: 1
             });
         }
 
@@ -856,23 +835,6 @@ app.modules.templates.propertyDetails = {
         }
         return this;
     },
-    popUpBookingForm: function () {
-        jQuery(document).on('click', '.pop-up-form-link', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').addClass('active');
-        });
-
-        jQuery(document).on('click', '.booking-form', function (e) {
-            e.stopPropagation();
-        });
-
-        jQuery(document).on('click', '.booking-form .close, .pop-up-booking-form.active', function (e) {
-            e.preventDefault();
-            jQuery('.pop-up-booking-form').removeClass('active');
-        });
-
-        return this;
-    },
     checkUseMap: function () {
         var pid = parseInt(jQuery('.bapi-entityadvisor').attr('data-pkid'));
         var lat = jQuery('.bapi-entityadvisor').attr('data-lat');
@@ -897,8 +859,6 @@ app.modules.templates.propertyDetails = {
         var mapbox = document.querySelector('.hero-image');
         
         if (usemap) {
-            
-            
             
             var map = new google.maps.Map(mapbox, {
                 center: {lat: parseFloat(lat), lng: parseFloat(long)},
@@ -1042,10 +1002,12 @@ app.bapiModules.templates.searchPage = {
     /* Map */
     mapObj: null,
     clustererObj: null,
+    spiderfyObj: null,
     markers: [],
     propMarkers: {},
     bounds: null,
     openMarkers: [],
+    currentViewMarkers: [],
 
     /* Methods */
     cond: function(){
@@ -1066,15 +1028,15 @@ app.bapiModules.templates.searchPage = {
                 break;
         }
     },
-    getProperties: function(iteration_callback){
+    getProperties: function(success_callback, empty_callback){
         var chunkSize = 10;
 
         if(this.properties.length){
             this.properties.forEach(function(prop, prop_i){
 
-                iteration_callback.call(this, prop, prop_i);
+                success_callback.call(this, prop, prop_i);
 
-                    this.updateCounters();
+                this.updateCounters();
 
             }.bind(this));
         }else {
@@ -1086,19 +1048,24 @@ app.bapiModules.templates.searchPage = {
                 this.totalProps = total;
                 this.updateCounters();
 
+                if(total == 0){
+                    empty_callback.call(this, {}, 0);
+                    return;
+                }
+
                 //Split property id's into page-sized chunks
                 var chunks = _.chunk(ids, chunkSize);
 
                 chunks.forEach(function (chunk, chunk_i) {
 
                     app.bapi.get('property', chunk, function (gr) {
-                        
-                        //Store recovered properties
-                        this.properties = _.concat(this.properties, gr.result);
 
                         gr.result.forEach(function (prop, prop_i) {
 
-                            iteration_callback.call(this, prop, prop_i);
+                            //Store recovered properties
+                            this.properties = _.concat(this.properties, [prop]);
+
+                            success_callback.call(this, prop, prop_i);
                             this.updateCounters();
 
                         }.bind(this));
@@ -1120,35 +1087,37 @@ app.bapiModules.templates.searchPage = {
         $('.ppty-count-total').text(this.totalProps);
     },
     initMap: function(latitude, longitude){
+        var defaultMapView = BAPI.config().mapviewType;
+
         this.mapObj = new google.maps.Map(this.mapEle, {
             center: {lat: latitude, lng: longitude},
-            zoom: 8
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId[defaultMapView]
         });
     },
     initClusterer: function(){
-        var mcOptions = {gridSize: 50, maxZoom: 10};
+        var mcOptions = {gridSize: 50, maxZoom: 13};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
+    initSpiderfy: function(){
+        this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj, {markersWontMove: true, markersWontHide: true, keepSpiderfied: true, legWeight : 2});
+    },
     addMarker: function(prop){
+
         /* Create info window */
         var infoWindow = new google.maps.InfoWindow({
             content: '<div class="info-html prop-infowindow">'+
             '<a href="' + prop.ContextData.SEO.DetailURL + '" class="image" style="background-image: url(' + prop.PrimaryImage.ThumbnailURL + ')">'+
-            '<div class="from secondary-fill-color">' +
-            //'<div class="tag">From:</div>' +
-            '<div class="price">' +prop.ContextData.Quote.PublicNotes +'</div>' +
-            '</div></a>' +
-            '<div class="info">' +
-            '<h5 class="title">' + prop.Headline + '</h5>' +
-            + prop.Type + ', ' + prop.Location + '<br>' +
-            BAPI.textdata.Beds + ' ' + prop.Bedrooms + ' / ' + BAPI.textdata.Baths + ' ' + prop.Bathrooms +
-            '</div>' +
-            '</div>'
+            '</a><div class="info">' +
+            '<h5 class="title">' + prop.Headline + '</h5>'
+            + prop.Location + "</div></div>"
         });
 
         /* Create marker + store info window inside for later use (also in property ele) */
+
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
+            prop: prop,
             map: this.mapObj,
             iw: infoWindow,
             icon: {
@@ -1161,8 +1130,19 @@ app.bapiModules.templates.searchPage = {
             }
         });
 
+        //Standard event handling
         /* Add event listeners to show info window */
-        marker.addListener('click', this.openMarker.bind(this, marker));
+        //marker.addListener('click', this.openMarker.bind(this, marker));
+
+        /* Add marker to Clusterer */
+        this.clustererObj.addMarker(marker);
+
+        /* Add marker to spidify */
+        this.spiderfyObj.addMarker(marker);
+        //Spidify event handling
+        this.spiderfyObj.addListener('click', function(marker) {
+            this.openMarker(marker);
+        }.bind(this));
 
         /* We store markers for later use */
         this.markers.push(marker);
@@ -1179,14 +1159,13 @@ app.bapiModules.templates.searchPage = {
 
         _.delay(function(){
             marker.iw.open(this.mapObj, marker);
-        }.bind(this), 500);
-
+        }.bind(this), 250);
         /* we store the open InfoWindows to keep track */
         this.openMarkers.push(marker);
     },
-    addMapProps: function(){
+    addMapProps: function(properties){
         //Render properties
-        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: this.properties, textdata: BAPI.textdata});
+        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: properties, textdata: BAPI.textdata});
         this.mapPropContainer.innerHTML = propHTML;
 
         //Attach event listeneers
@@ -1202,8 +1181,11 @@ app.bapiModules.templates.searchPage = {
         }.bind(this));
     },
     mapResetEvents: function(){
-        var ele = document.querySelector('#resetMap');
-        ele.addEventListener('click', this.centerMap.bind(this));
+        var eles = document.querySelectorAll('.resetMap');
+
+        _.map(eles, function(ele){
+            ele.addEventListener('click', this.centerMap.bind(this));
+        }.bind(this));
     },
     centerMap: function(){
 
@@ -1211,8 +1193,8 @@ app.bapiModules.templates.searchPage = {
             var bounds = new google.maps.LatLngBounds();
             var markers = this.markers;
             /* Extend bounds to all markers and fit view */
-            for (index in markers) {
-                var data = markers[index];
+            for (i in markers) {
+                var data = markers[i];
                 bounds.extend(new google.maps.LatLng(data.position.lat(), data.position.lng()));
             }
             this.bounds = bounds;
@@ -1221,45 +1203,102 @@ app.bapiModules.templates.searchPage = {
             /* We revert to the initial map state */
             this.mapObj.fitBounds(this.bounds);
         }
+    },
+    mapBoundProps: function(){
+        /* listen events for loading ui */
+        google.maps.event.addListener(this.mapObj, 'dragstart', function(){
+            this.mapPropContainer.classList.add('loading');
+        }.bind(this));
 
+        google.maps.event.addListener(this.mapObj, 'idle', function(){
+            this.mapPropContainer.classList.remove('loading');
+        }.bind(this));
+
+        /* on map move (bounds change) we check to see what markers are visible to display related props */
+        google.maps.event.addListener(this.mapObj, 'bounds_changed',
+            _.debounce(
+            function() {
+                this.currentViewMarkers = [];
+                this.markers.forEach(function(marker){
+                    if(this.mapObj.getBounds().contains(marker.getPosition())){
+                        this.currentViewMarkers.push(marker);
+                    }
+                }.bind(this));
+
+                var visibleProps = [];
+
+                /* Grab visible marker properties */
+                this.currentViewMarkers.forEach(function(m){
+                    visibleProps.push(m.prop);
+                });
+                this.addMapProps(visibleProps); //Render them
+
+                $('.ppty-count-current').text(visibleProps.length);
+            }.bind(this), 250)
+        );
     },
     /* View initializers */
     doMapView: function(){
         /* Update view layout */
         document.querySelector('.listView').classList.add('hidden');
         document.querySelector('.mapView').classList.remove('hidden');
-        document.querySelector('.viewToggle .v-map').classList.add('active');
+        //document.querySelector('.viewToggle .v-map').classList.add('active');
 
         if(this.mapInitted){return;}
 
-        this.initMap(0,0);
-
         this.getProperties(function(prop, prop_i){
+            //Search has returned properties
+
+            if(this.markers.length == 0){
+                //First iteration, we can initialize map on first location coordinates
+                //Also initialize Marker Clusterer to start adding markers to it
+
+                this.initMap(prop.Latitude, prop.Longitude);
+                this.initClusterer();
+                this.initSpiderfy();
+                this.mapBoundProps();
+            }
 
             this.addMarker(prop);
 
             //Last marker iteration
-            if(this.markers.length == this.totalProps){
-                this.initClusterer();
+            if(this.properties.length == this.totalProps){
                 this.centerMap();
-                this.addMapProps();
+                //this.addMapProps(this.properties); <- taken care by 'mapBoundProps'
                 this.mapInitted = true;
+                _.map(document.querySelectorAll('.viewToggle button'), function(button){button.removeAttribute('disabled')});
             }
+        }, function(){
+            //Search has returned no properties (empty)
+            this.addMapProps(this.properties);
         });
     },
     doListView: function(){
         /* Update view layout */
         document.querySelector('.mapView').classList.add('hidden');
         document.querySelector('.listView').classList.remove('hidden');
-        document.querySelector('.viewToggle .v-list').classList.add('active');
+        //document.querySelector('.viewToggle .v-list').classList.add('active');
 
         if(this.listInitted)return;
 
         this.getProperties(function(prop, prop_i){
-            var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
-            this.listPropContainer.innerHTML += propHTML;
-        });
 
+
+                prop.Summary = prop.Summary.length <= 200
+                    ? prop.Summary
+                    : prop.Summary.replace(/(<([^>]+)>)/ig,"").substr(0, 200) + '... <a href="'+prop.ContextData.SEO.DetailURL+'">['+BAPI.textdata.more+']</a>';
+                //Search has returned properties
+                var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
+                this.listPropContainer.innerHTML += propHTML;
+
+                _.map(document.querySelectorAll('.viewToggle button'), function(button){button.removeAttribute('disabled')});
+            },
+            function(){
+                //Search has returned no properties (empty)
+
+                var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [], textdata: BAPI.textdata});
+                this.listPropContainer.innerHTML += propHTML;
+            });
 
         this.listInitted = true;
     },

@@ -40,6 +40,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       color: white;
       text-transform: uppercase;
       background-color: $secondary-color;
+      border-bottom: 1px solid white;
       text-decoration: none;
       white-space: nowrap;
 
@@ -48,6 +49,12 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       }
     }
 
+
+    .sub-menu{
+      a{
+        background-color: $tertiary-color;
+      }
+    }
   }
 
   & > .sub-menu{

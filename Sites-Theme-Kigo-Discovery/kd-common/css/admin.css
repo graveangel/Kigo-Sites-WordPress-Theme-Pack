@@ -165,11 +165,11 @@ div#widgets-left {
     display: block !important; }
   div#widgets-left.filter_kigo .widget {
     display: none; }
-  div#widgets-left.filter_kigo .widget[id*="_old_"] {
+  div#widgets-left.filter_kigo .widget[id*="_bapi_"] {
     display: block !important; }
   div#widgets-left.filter_default .widget {
     display: block; }
-  div#widgets-left.filter_default .widget[id*="_kd_"], div#widgets-left.filter_default .widget[id*="_old_"] {
+  div#widgets-left.filter_default .widget[id*="_kd_"], div#widgets-left.filter_default .widget[id*="_bapi_"] {
     display: none; }
   div#widgets-left #available-widgets .widget {
     float: left;
@@ -181,16 +181,16 @@ div#widgets-left {
     float: left; }
 
 /* Color widget headers */
-#widget-list .widget[id*="kd_"] .widget-top {
+#widget-list .widget[id*="_kd_"] .widget-top {
   background-color: rgba(51, 186, 175, 0.3); }
 
-#widget-list .widget[id*="old_"] .widget-top {
+#widget-list .widget[id*="_bapi_"] .widget-top {
   background-color: rgba(246, 175, 51, 0.3); }
 
-#widgets-right .widget[id*="kd_"] .widget-top {
+#widgets-right .widget[id*="_kd_"] .widget-top {
   background-color: rgba(51, 186, 175, 0.7); }
 
-#widgets-right .widget[id*="old_"] .widget-top {
+#widgets-right .widget[id*="_bapi_"] .widget-top {
   background-color: rgba(246, 175, 51, 0.3); }
 
 /* Individual widgets */
@@ -255,7 +255,6 @@ div#widgets-left {
 .widget-inside .option-description {
   display: block; }
 
-/* TODO: Clean up styles into [fields, page, controls, etc.] */
 /* Button inputs */
 .buttonInputs {
   position: relative;

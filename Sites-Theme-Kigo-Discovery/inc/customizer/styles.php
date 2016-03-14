@@ -27,7 +27,16 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                     '.primary-fill-color',
                 ),
                 'declarations' => array(
-                    'background-color' => $color . " !important"
+                    'background-color' => $color . " !important",
+                    'color' => 'white',
+                )
+            ));
+            Customizer_Library_Styles()->add(array(
+                'selectors' => array(
+                    '.primary-fill-color:hover',
+                ),
+                'declarations' => array(
+                    'color' => "white !important"
                 )
             ));
 
@@ -245,7 +254,7 @@ if (!function_exists('customizer_library_demo_styles')) :
         $css = Customizer_Library_Styles()->build();
 
         if (!empty($css)) {
-            echo "\n<!-- Begin Custom CSS -->\n<style type=\"text/css\" id=\"demo-custom-css\">\n";
+            echo "\n<!-- Begin Custom CSS -->\n<style type=\"text/css\" id=\"customizer-styles\">\n";
             echo $css;
             echo "\n</style>\n<!-- End Custom CSS -->\n";
         }
