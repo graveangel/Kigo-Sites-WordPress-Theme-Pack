@@ -1,5 +1,14 @@
 /* Customizer styles */
 
+
+/* CKEditor z-index fix */
+
+.cke_dialog_background_cover, .cke_reset_all[role="dialog"], .cke_panel{
+  z-index: 600000 !important;
+  position: fixed !important;
+}
+
+
 #customize-theme-controls > ul{
   > li[id *= "kd_"]{
     > h3.accordion-section-title {
