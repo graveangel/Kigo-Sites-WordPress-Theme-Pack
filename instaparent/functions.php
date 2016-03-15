@@ -230,8 +230,35 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Kigo Footer (Common)', 'instaparent' ),
+		'name' => __( 'Kigo Footer 1 (Common)', 'instaparent' ),
 		'id' => 'insta-footer',
+		'description' => __( 'The Footer of the page', 'instaparent' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+        register_sidebar( array(
+		'name' => __( 'Kigo Footer 2 (Common)', 'instaparent' ),
+		'id' => 'insta-footer-2',
+		'description' => __( 'The Footer of the page', 'instaparent' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+        register_sidebar( array(
+		'name' => __( 'Kigo Footer 3 (Common)', 'instaparent' ),
+		'id' => 'insta-footer-3',
+		'description' => __( 'The Footer of the page', 'instaparent' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+        register_sidebar( array(
+		'name' => __( 'Kigo Footer 4 (Common)', 'instaparent' ),
+		'id' => 'insta-footer-4',
 		'description' => __( 'The Footer of the page', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
@@ -1422,7 +1449,7 @@ class Insta_Latest_Blog_Posts extends WP_Widget {
 		/* we get the number of posts */
 		$numberOfPosts = @$instance['numberOfPosts'];
 		/* we get the number of rows */
-		$rowSize = @$instance['rowSize'];
+		$rowSize = @$instance['rowSize'] < 1 ? 1 : @$instance['rowSize'];
 		/* Do we display images? */
 		$bDisplayImage =  @$instance['displayImage'];
 		/* Do we display the date? */		
@@ -1435,6 +1462,7 @@ class Insta_Latest_Blog_Posts extends WP_Widget {
 		$sPostLink =  trim(@$instance['postLinkString']);
 		/* we calculate the number of post for each row, we round the result so we dont get decimal values, this value cant be below 1 */
 		$numberOfPostsForEachRow = ceil($numberOfPosts / $rowSize);
+                $numberOfPostsForEachRow = $numberOfPostsForEachRow < 1 ? 1 : $numberOfPostsForEachRow;
 		/* we calculate the number of the column this value can only be multiples of 12 (12,6,4,3,2,1) cant be a decimal and it cant be greater than 12 or less than 1*/				
 		$spanValue = ceil(12/$numberOfPostsForEachRow);
 		if($spanValue > 12)

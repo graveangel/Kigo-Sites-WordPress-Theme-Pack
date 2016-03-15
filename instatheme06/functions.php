@@ -52,7 +52,7 @@ function childtheme_widgets_init(){
 		'name' => __( 'Footer Navigation Menu', 'instaparent' ),
 		'id' => 'insta-footer-nav',
 		'description' => __( 'The Footer navigation Menu', 'instaparent' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s nav span3">',
+		'before_widget' => '<div id="%1$s" class="widget %2$s nav">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="title">',
 		'after_title' => '</h3>',
@@ -66,7 +66,16 @@ function childtheme_widgets_init(){
 		'before_title' => '<h3 class="title">',
 		'after_title' => '</h3>',
 	) );
+        
 }
+function remove_some_widgets(){
+
+	// Unregister some of the widgetareas
+	unregister_sidebar( 'insta-footer-3' );
+	unregister_sidebar( 'insta-footer-4' );
+}
+add_action( 'widgets_init', 'remove_some_widgets', 11 );
+
 function childtheme_override_presetwidgets_commonareas() {
 	/*for insta-header-left*/
 	update_option( 'widget_bapi_hp_logo', array( 2 => array( 'title' => '' )) );
