@@ -4197,7 +4197,7 @@ body.page-template-contact-page {
     .contact-form #have-question ul li textarea {
       width: 100%; } }
 
-body.page-template-mybooking {
+#bookingform {
   max-width: 1360px;
   margin: 0 auto;
   /* Header */
@@ -4205,98 +4205,98 @@ body.page-template-mybooking {
   /* Blocks */
   /* Main form block */
   /* Sidebar */ }
-  body.page-template-mybooking h1 {
+  #bookingform h1 {
     margin-bottom: 5px; }
-  body.page-template-mybooking .booked_prop {
+  #bookingform .booked_prop {
     text-align: center;
     margin-bottom: 30px; }
-  body.page-template-mybooking .booking-prop-img {
+  #bookingform .booking-prop-img {
     margin: 20px 0 0;
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee; }
-    body.page-template-mybooking .booking-prop-img a {
+    #bookingform .booking-prop-img a {
       display: block;
       height: 400px;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center; }
-  body.page-template-mybooking legend {
+  #bookingform legend {
     border: none;
     margin: 20px 0 10px;
     font-family: Montserrat;
     font-size: 24px; }
-  body.page-template-mybooking hr {
+  #bookingform hr {
     display: none; }
-  body.page-template-mybooking .form-horizontal .control-label {
+  #bookingform .form-horizontal .control-label {
     text-align: left;
     display: block;
     margin-bottom: 5px;
     font-family: "Open Sans";
     font-size: 14px;
     font-weight: normal; }
-  body.page-template-mybooking .form-horizontal .checkbox {
+  #bookingform .form-horizontal .checkbox {
     padding-left: 35px; }
-  body.page-template-mybooking input, body.page-template-mybooking textarea, body.page-template-mybooking select {
+  #bookingform input, #bookingform textarea, #bookingform select {
     font-family: "Open Sans";
     font-size: 14px;
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 3px; }
-  body.page-template-mybooking .credit-icon {
+  #bookingform .credit-icon {
     text-align: right; }
-  body.page-template-mybooking .credit-icon span[class*="creditcard-"] {
+  #bookingform .credit-icon span[class*="creditcard-"] {
     background: url("../img/credit-cards.jpg") no-repeat;
     display: inline-block;
     width: 36px;
     height: 24px; }
-  body.page-template-mybooking .credit-icon span.creditcard-amex {
+  #bookingform .credit-icon span.creditcard-amex {
     background-position: 0 0; }
-  body.page-template-mybooking .credit-icon span.creditcard-dinersclub {
+  #bookingform .credit-icon span.creditcard-dinersclub {
     background-position: 0 -74px; }
-  body.page-template-mybooking .credit-icon span.creditcard-discover {
+  #bookingform .credit-icon span.creditcard-discover {
     background-position: 0 -148px; }
-  body.page-template-mybooking .credit-icon span.creditcard-mastercard {
+  #bookingform .credit-icon span.creditcard-mastercard {
     background-position: 0 -222px; }
-  body.page-template-mybooking .credit-icon span.creditcard-visa {
+  #bookingform .credit-icon span.creditcard-visa {
     background-position: 0 -296px; }
-  body.page-template-mybooking .amount-bk {
+  #bookingform .amount-bk {
     line-height: 50px; }
-  body.page-template-mybooking .control-group.accept {
+  #bookingform .control-group.accept {
     margin-bottom: 10px; }
-  body.page-template-mybooking .btn-book-header .line2 {
+  #bookingform .btn-book-header .line2 {
     padding-top: 10px;
     padding-bottom: 10px; }
-  body.page-template-mybooking .amount-bk {
+  #bookingform .amount-bk {
     font-size: 14px; }
-    body.page-template-mybooking .amount-bk .bold {
+    #bookingform .amount-bk .bold {
       font-size: 20px; }
-  body.page-template-mybooking .bapi-showrevise {
+  #bookingform .bapi-showrevise {
     padding: 5px 10px; }
-  body.page-template-mybooking .property-info {
+  #bookingform .property-info {
     font-family: "Montserrat";
     font-size: 14px; }
-  body.page-template-mybooking #statement .item {
+  #bookingform #statement .item {
     padding: 10px 0; }
-  body.page-template-mybooking #statement .total-block {
+  #bookingform #statement .total-block {
     color: white;
     padding: 15px; }
-    body.page-template-mybooking #statement .total-block p:first-of-type, body.page-template-mybooking #statement .total-block p:first-of-type span {
+    #bookingform #statement .total-block p:first-of-type, #bookingform #statement .total-block p:first-of-type span {
       font-size: 32px; }
-  body.page-template-mybooking #statement #ofees span, body.page-template-mybooking #statement #ofees input {
+  #bookingform #statement #ofees span, #bookingform #statement #ofees input {
     margin: 0;
     vertical-align: middle; }
-  body.page-template-mybooking #discount label {
+  #bookingform #discount label {
     width: 100%; }
-  body.page-template-mybooking #discount small {
+  #bookingform #discount small {
     margin-left: 10px; }
   @media screen and (min-width: 768px) {
-    body.page-template-mybooking .booking-page {
+    #bookingform .booking-page {
       border-bottom: 1px solid #eee; }
-    body.page-template-mybooking .booking-form {
+    #bookingform .booking-form {
       border-right: 1px solid #eee; }
-    body.page-template-mybooking .property-info .pd > div[id] {
+    #bookingform .property-info .pd > div[id] {
       padding: 20px 0;
       border-bottom: 1px solid #eee; } }
 
