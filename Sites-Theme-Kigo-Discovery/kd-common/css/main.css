@@ -4202,6 +4202,7 @@ body.page-template-contact-page {
   margin: 0 auto;
   /* Header */
   /* Cover image */
+  /* Change info modals */
   /* Blocks */
   /* Main form block */
   /* Sidebar */ }
@@ -4221,6 +4222,8 @@ body.page-template-contact-page {
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center; }
+  #bookingform .modal-footer {
+    border: none; }
   #bookingform legend {
     border: none;
     margin: 20px 0 10px;
