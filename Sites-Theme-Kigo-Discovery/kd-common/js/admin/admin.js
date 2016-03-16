@@ -49,7 +49,13 @@ var kd_admin = {
         aux.addClass('init');
     },
     initCKEditors: function () {
-        $('#widgets-right .kd_editor').ckeditor({});
+        $('#widgets-right .kd_editor').ckeditor(debounce(function(){
+            this.on('change', function(){ 
+                var changeEvent = new Event('change', {'bubbles': true});
+                this.updateElement();
+                this.element.$.dispatchEvent(changeEvent);
+            });
+        }, 1000));
     },
     initAceEditor: function () {
         if (!document.querySelectorAll('#custom_css').length)
@@ -97,9 +103,6 @@ var kd_admin = {
                 {
                     var editor = ace.edit(htmleditors[e].id);
                     var editor_id = htmleditors[e].id;
-
-
-
 
                     editor.setTheme("ace/theme/monokai");
                     editor.getSession().setMode("ace/mode/html");
