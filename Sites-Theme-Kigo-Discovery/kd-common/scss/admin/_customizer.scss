@@ -3,9 +3,12 @@
 
 /* CKEditor z-index fix */
 
-.cke_dialog_background_cover, .cke_reset_all[role="dialog"], .cke_panel{
-  z-index: 600000 !important;
-  position: fixed !important;
+.cke_dialog_background_cover{
+  z-index: 600000 !important; //Customizer is 500000
+}
+
+.cke_reset_all[role="dialog"], .cke_dialog, .cke_panel{
+  z-index: 600001 !important; //Must be higher than backdrop
 }
 
 
