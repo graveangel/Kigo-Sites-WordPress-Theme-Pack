@@ -1,4 +1,3 @@
-/* Edited - Tue Mar 08 2016 17:58:56 GMT+0100 (Romance Standard Time) */
 var kd_admin = {
     init: function () {
     },
@@ -50,7 +49,13 @@ var kd_admin = {
         aux.addClass('init');
     },
     initCKEditors: function () {
-        $('#widgets-right .kd_editor').ckeditor({});
+        $('#widgets-right .kd_editor').ckeditor(debounce(function(){
+            this.on('change', function(){ 
+                var changeEvent = new Event('change', {'bubbles': true});
+                this.updateElement();
+                this.element.$.dispatchEvent(changeEvent);
+            });
+        }, 1000));
     },
     initAceEditor: function () {
         if (!document.querySelectorAll('#custom_css').length)
@@ -98,9 +103,6 @@ var kd_admin = {
                 {
                     var editor = ace.edit(htmleditors[e].id);
                     var editor_id = htmleditors[e].id;
-
-
-
 
                     editor.setTheme("ace/theme/monokai");
                     editor.getSession().setMode("ace/mode/html");
@@ -294,9 +296,6 @@ var kd_admin = {
             selectionHeader: "<div class='custom-header'><a href='#' class='kd-button filled multiselect-js-deselectall'>Deselect All</a></div><br><input type='text' class='search-input' autocomplete='on' placeholder='Search within selected'><br><br>",
             afterInit: function (ms) {
 
-
-
-
                 var that = this,
                     $selectableSearch = that.$selectableUl.prev().prev().prev(),
                     $selectionSearch = that.$selectionUl.prev().prev().prev(),
@@ -307,7 +306,6 @@ var kd_admin = {
                     e.preventDefault();
                     that.select_all();
                 });
-
 
                 $('.multiselect-js-deselectall').click(function (e) {
                     e.preventDefault();
@@ -323,7 +321,6 @@ var kd_admin = {
                         }
                     });
 
-
                 that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
                     .on('keydown', function (e) {
                         if (e.which == 40) {
@@ -333,11 +330,8 @@ var kd_admin = {
                         }
                     });
 
-
             }
         });
-
-
 
         $(document).on('click', '*[id*="kd_featured"] input[id*="userandom"]', function (e) {
             if ($(this).attr('checked')) {
@@ -349,7 +343,6 @@ var kd_admin = {
                 $(this).parent().find('.multiselectjs').prev().show();
                 $(this).parent().find('.multiselectjs').prev().prev().show();
             }
-
         });
         $('.multiselectjs').multiSelect('refresh');
 

@@ -3,7 +3,7 @@ $limit = $i['limit'] ? : -1;
 $items = new WP_Query(['post_type' => 'item', 'type' => $i['type'], 'orderby' => 'menu_order', 'posts_per_page' => $limit]);
 $num = count($items->posts);
 
-$cols = $i['columns'] ? : false; //TODO: fix columns for list view
+$cols = $i['columns'] ? : false;
 $col = $cols ? 12 / $cols : ($num > 4 ? 4 : (12 / $num));
 
 $display = $i['display'] ? : 'list';

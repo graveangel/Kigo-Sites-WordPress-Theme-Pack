@@ -37,23 +37,28 @@ var app = {
     },
     fixedHeader: function(){
 
-        checkHeader(); //Check in case page has loaded with scroll
+        var body = document.querySelector('body'),
+            header = document.querySelector('.header-background'),
+            underHeader = document.querySelector('.header-background .under_header');
+
+        var scrollMax = header.clientHeight - underHeader.clientHeight;
+
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
         window.addEventListener('scroll', debounce(checkHeader, 10)); //ms
 
+        checkHeader(); //Check in case page has loaded with scroll
+
         function checkHeader(){
-
-            var currentScroll = window.scrollY,
-                header = document.querySelector('.header-background'),
-                overHeader = document.querySelector('.header-background .header');
-
-            var scrollMax = overHeader.clientHeight;
-
-            if(currentScroll >= 121){
+            var currentScroll = window.scrollY;
+            
+            if(currentScroll >= scrollMax){
                 header.classList.add('fixed');
-            }else{
+                body.style.paddingTop = underHeader.clientHeight + 'px';
+            }
+            else{
                 header.classList.remove('fixed');
+                body.style.paddingTop = 0;
             }
         }
     },

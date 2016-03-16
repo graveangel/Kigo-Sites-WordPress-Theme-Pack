@@ -1,6 +1,6 @@
 $contact-border-color: #eee;
 
-body.page-template-mybooking{
+#bookingform{
 
   max-width: $container-max-width;
   margin: 0 auto;
@@ -30,6 +30,12 @@ body.page-template-mybooking{
       background-repeat: no-repeat;
       background-position: center;
     }
+  }
+
+  /* Change info modals */
+
+  .modal-footer{
+    border: none;
   }
 
   /* Blocks */
