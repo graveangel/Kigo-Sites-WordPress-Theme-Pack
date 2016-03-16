@@ -446,7 +446,7 @@ dd{margin-bottom:20px;}
 
 /*-- for all tables --*/
 .table{font-size:12px;}
-.table thead tr th{white-space:nowrap;}/*lets keep titles in 1 line*/
+.table thead tr th{white-space: normal;}/*lets keep titles in 1 line*/
 .table-bordered,.table-bordered th, .table-bordered td{border-color:#ccc;}/*change the border color since we are using a similar one in the background*/
 .table-striped{background-color:#f7f7f7;}/*change the striped table backgrounds*/
 .table-striped tbody > tr:nth-child(2n+1) > td, .table-striped tbody > tr:nth-child(2n+1) > th{background:#fff;}
