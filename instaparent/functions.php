@@ -1247,11 +1247,17 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
 			/* we get the hex value for the text color selected */
 			$footerTxtColor = $OptionsSelected['footerTextColor'];
 			/* we get the color for the Menu Hover background */
-			$FooterHoverColor = $OptionsSelected['footerHoverColor'];	
+			$footerLinkTextColor = empty($OptionsSelected['footerLinkTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkTextColor'];
 			/* we get the color for the Menu Hover text */
-			$FooterHoverTextColor = $OptionsSelected['footerHoverTextColor'];
-			
-			$theStyleForTheFooter='body #insta-footer{background:'.$footerBgColor.';color:'.$footerTxtColor.';}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-links a,body #insta-footer a:hover,body #insta-footer .widget_bapi_footer .footer-links a:hover,body #insta-footer .halflings.white i:before{color:'.$footerTxtColor.';}body #insta-footer .top-links .caret {border-bottom-color:'.$footerTxtColor.';border-top-color:'.$footerTxtColor.';}';
+			$footerLinkHoverTextColor = empty($OptionsSelected['footerLinkHoverTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkHoverTextColor'];
+
+			$theStyleForTheFooter='body #insta-footer{background:'.$footerBgColor.';color:'.$footerTxtColor.';}'
+                                . 'body #insta-footer a,'
+                                . 'body #insta-footer .widget_bapi_footer .footer-links a{color:'.$footerLinkTextColor.';}'
+                                . 'body #insta-footer a:hover,'
+                                . 'body #insta-footer .widget_bapi_footer .footer-links a:hover{color:'.$footerLinkHoverTextColor.';}'
+                                . 'body #insta-footer .halflings.white i:before{color:'.$footerTxtColor.';}'
+                                . 'body #insta-footer .top-links .caret {border-bottom-color:'.$footerTxtColor.';border-top-color:'.$footerTxtColor.';}';
 
 		}else{
 			$theStyleForTheFooter=$footerstyles_CSS[$footerStyleName];
