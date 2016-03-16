@@ -52,7 +52,7 @@ if(!$no_widgets){ $column_width = 12/$num_columns;}
                 
                     <?php
 					if ( !is_active_widget( false, false, 'bapi_footer', true ) ) {
-						echo '<div class="span12"><div class="widget widget_bapi_footer brandinglink"><div class="footer"><div class="footer-links"><span class="poweredby"><a rel="nofollow" target="_blank" href="http://www.InstaManager.com">Vacation Rental Software by InstaManager</a></span></div><div class="clear"></div></div></div></div>';
+						echo '<div class="span12"><div class="widget widget_bapi_footer brandinglink"><div class="footer"><div class="footer-links"><span class="poweredby"><a rel="nofollow" target="_blank" href="http://www.kigo.net">Powered by Kigo</a></span></div><div class="clear"></div></div></div></div>';
 					}
 				?>
             </div>

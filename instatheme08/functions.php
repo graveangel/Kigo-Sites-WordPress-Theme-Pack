@@ -60,6 +60,12 @@ function childtheme_widgets_init(){
 		'after_title' => '</h3>',
 	) );
 }
+function remove_some_widgets(){
+
+	// Unregister some of the widgetareas
+	unregister_sidebar( 'insta-footer-4' );
+}
+add_action( 'widgets_init', 'remove_some_widgets', 11 );
 /*
 *
 * setting the widgets for the Common Widget Areas
