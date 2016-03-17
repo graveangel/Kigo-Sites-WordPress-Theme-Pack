@@ -34,7 +34,7 @@ class Core {
         @define('WP_DEFAULT_THEME', 'Sites-Theme-Kigo-Discovery');
 
         /* Allow unfiltered uploads */
-        @define('ALLOW_UNFILTERED_UPLOADS', true);
+//        @define('ALLOW_UNFILTERED_UPLOADS', true);  --> Disabled by request
 
 //        remove_action('init', 'urlHandler_bapidefaultpages', 1 );
         remove_action('init', 'bapi_setup_default_pages', 5);
