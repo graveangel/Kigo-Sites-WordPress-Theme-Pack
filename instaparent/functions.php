@@ -1726,9 +1726,112 @@ echo '</div>';
 
 }
 
+
+class Kigo_Social_Icons_Widget extends WP_Widget {
+
+	public function __construct() {
+		parent::__construct(
+	 		'kigo_social_icons', // Base ID
+			'Kigo Social Icons', // Name
+			array( 'description' => __( 'Displays the Social Media Icons filled in the Customizer', 'instaparent' ), ) // Args
+		);
+	}
+
+	public function widget( $args, $instance ) {
+		extract($args);
+		echo $before_widget;
+		?>
+                <ul class="inline">
+                    <?php if(get_theme_mod('url-facebook')):?>
+                        <li><a href="<?php echo get_theme_mod('url-facebook'); ?>" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                    <?php endif; ?>
+
+                    <?php if(get_theme_mod('url-twitter')):?>
+                        <li><a href="<?php echo get_theme_mod('url-twitter'); ?>" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <?php endif; ?>
+
+                    <?php if(get_theme_mod('url-google')):?>
+                        <li><a href="<?php echo get_theme_mod('url-google'); ?>" target="_blank" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
+                    <?php endif; ?>
+
+                    <?php if(get_theme_mod('url-linkedin')):?>
+                        <li><a href="<?php echo get_theme_mod('url-linkedin'); ?>" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    <?php endif; ?>
+
+                    <?php if(get_theme_mod('url-youtube')):?>
+                        <li><a href="<?php echo get_theme_mod('url-youtube'); ?>" target="_blank" title="Youtube"><i class="fa fa-youtube"></i></a></li>
+                    <?php endif; ?>
+
+                    <?php if(get_theme_mod('url-pinterest')):?>
+                        <li><a href="<?php echo get_theme_mod('url-pinterest'); ?>" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+                    <?php endif; ?>
+
+                    <?php if(get_theme_mod('url-blog')):?>
+                        <li><a href="<?php echo get_theme_mod('url-blog'); ?>" target="_blank" title="Blog"><i class="fa fa-rss"></i></a></li>
+                    <?php endif; ?>
+                </ul>
+		<?php
+		echo $after_widget;
+	}
+
+	public function update( $new_instance, $old_instance ) {
+		$instance = array();
+		return $instance;
+	}	
+
+} // class BAPI_DetailOverview_Widget
+
 /* We first load our widget */
 add_action( 'widgets_init', 'register_my_widget' );
 /* Register our widget in WordPress so that it is available under the widgets section. */
 function register_my_widget() {  
     register_widget( 'Insta_Latest_Blog_Posts' );  
+    register_widget( 'Kigo_Social_Icons_Widget' );
 }
+
+
+
+/*-------------------------------------------------------------------------------------*/
+
+/**
+ * Customizer Library Demo functions and definitions
+ *
+ * @package Customizer Library Demo
+ */
+
+// Default styles
+function demo_styles() {
+	wp_enqueue_style( 'demo-style', get_stylesheet_uri() );
+}
+add_action( 'wp_enqueue_scripts', 'demo_styles' );
+
+if ( file_exists ( get_template_directory() . '/inc/customizer/customizer-library/customizer-library.php' ) ) :
+
+// Helper library for the theme customizer.
+require get_template_directory() . '/inc/customizer/customizer-library/customizer-library.php';
+
+// Define options for the theme customizer.
+require get_template_directory() . '/inc/customizer/customizer-options.php';
+
+// Output inline styles based on theme customizer selections.
+require get_template_directory() . '/inc/customizer/styles.php';
+
+// Additional filters and actions based on theme customizer selections.
+require get_template_directory() . '/inc/customizer/mods.php';
+
+else :
+
+add_action( 'customizer-library-notices', 'demo_customizer_library_notice' );
+
+endif;
+
+function demo_customizer_library_notice() {
+
+	_e( '<p>Notice: The "customizer-library" sub-module is not loaded.</p>', 'demo' );
+
+}
+function instaparent_styles(){
+    /* Font Awesome */
+    wp_enqueue_style('fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+}
+add_action('wp_enqueue_scripts', 'instaparent_styles');

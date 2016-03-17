@@ -1084,6 +1084,13 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 /* */
 #txtAmountToCharge1{text-align:right;}
 
+/* font awesome icons Kigo Social Widget */
+.widget_kigo_social_icons{padding:15px 0;}
+.widget_kigo_social_icons ul.inline{padding:0;margin:0;}
+.widget_kigo_social_icons ul li{padding:0;}
+.widget_kigo_social_icons ul li a{font-size:25px;display:block;height:35px;text-align:center;width:35px;padding-top:10px;box-sizing:border-box;}
+.widget_kigo_social_icons ul li .fa{vertical-align:middle;}
+
 /* =Media queries
 -------------------------------------------------------------- */
 
