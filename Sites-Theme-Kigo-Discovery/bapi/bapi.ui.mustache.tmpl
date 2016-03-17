@@ -828,7 +828,7 @@ Group: Attractions
             <legend class="accept">4. {{textdata.Accept Terms and Conditions}}</legend>
             <div class="control-group accept">
                 <p style="display:none">{{config.rentalpolicysummary}}</p>
-                <div class="row">dsgsg
+                <div class="row">
                     <label class="checkbox col-xs-12">
                         <small>
                             <em>
@@ -1092,6 +1092,8 @@ Group: Attractions
                         {{textdata.Amount to Pay Now}}
                         {{#Statement}}
                             <span class="bold">{{Statement.AmountPaid.CurrencySymbol}}&nbsp;{{sTotalDueNow.Integer}}.{{sTotalDueNow.Decimal}}</span>
+                            <input id="txtAmountToCharge1" type="hidden" class="row-fluid bookingfield span4" value="{{sTotalDueNow.Integer}}"/>
+                            <input id="txtAmountToCharge2" type="hidden" class="row-fluid bookingfield span3" value="{{sTotalDueNow.Decimal}}"/>
                         {{/Statement}}
                     </div>
                 {{/result}}
