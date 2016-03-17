@@ -738,6 +738,8 @@
                         {{textdata.Amount to Pay Now}}
                         {{#Statement}}
                             <span class="bold">{{Statement.AmountPaid.CurrencySymbol}}&nbsp;{{sTotalDueNow.Integer}}.{{sTotalDueNow.Decimal}}</span>
+                            <input id="txtAmountToCharge1" type="hidden" class="row-fluid bookingfield span4" value="{{sTotalDueNow.Integer}}"/>
+                            <input id="txtAmountToCharge2" type="hidden" class="row-fluid bookingfield span3" value="{{sTotalDueNow.Decimal}}"/>
                         {{/Statement}}
                     </div>
                 {{/result}}
