@@ -230,7 +230,7 @@ endif;
 	) );
 	
 	register_sidebar( array(
-		'name' => __( 'Kigo Footer 1 (Common)', 'instaparent' ),
+		'name' => __( 'Kigo Footer (Common)', 'instaparent' ),
 		'id' => 'insta-footer',
 		'description' => __( 'The Footer of the page', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
@@ -239,9 +239,18 @@ endif;
 		'after_title' => '</h3>',
 	) );
         register_sidebar( array(
+		'name' => __( 'Kigo Footer 1 (Common)', 'instaparent' ),
+		'id' => 'insta-footer-1',
+		'description' => __( 'Footer outer left area', 'instaparent' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+        register_sidebar( array(
 		'name' => __( 'Kigo Footer 2 (Common)', 'instaparent' ),
 		'id' => 'insta-footer-2',
-		'description' => __( 'The Footer of the page', 'instaparent' ),
+		'description' => __( 'Footer middle left area', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="widget-title">',
@@ -250,7 +259,7 @@ endif;
         register_sidebar( array(
 		'name' => __( 'Kigo Footer 3 (Common)', 'instaparent' ),
 		'id' => 'insta-footer-3',
-		'description' => __( 'The Footer of the page', 'instaparent' ),
+		'description' => __( 'Footer middle right area', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="widget-title">',
@@ -259,7 +268,7 @@ endif;
         register_sidebar( array(
 		'name' => __( 'Kigo Footer 4 (Common)', 'instaparent' ),
 		'id' => 'insta-footer-4',
-		'description' => __( 'The Footer of the page', 'instaparent' ),
+		'description' => __( 'Footer outer right area', 'instaparent' ),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="widget-title">',
