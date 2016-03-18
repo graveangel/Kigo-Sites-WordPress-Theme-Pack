@@ -4742,7 +4742,7 @@ body.error404 .message {
     .kd-search .category-block[data-field="children"]::after {
       content: "\E005"; }
     .kd-search .category-block[data-field="category"]::after {
-      content: "\E619"; }
+      content: "\e619"; }
     .kd-search .category-block[data-field="dev"]::after {
       content: "\E620"; }
     .kd-search .category-block[data-field="sleeps"]::after {
