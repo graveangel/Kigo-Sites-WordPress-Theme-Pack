@@ -1,6 +1,12 @@
 $contact-border-color: #eee;
 
-#bookingform{
+
+.validity-tooltip{
+  position: absolute;
+  right: 15px;
+}
+
+#bookingform, #paymentform{
 
   max-width: $container-max-width;
   margin: 0 auto;
@@ -52,6 +58,16 @@ $contact-border-color: #eee;
   }
 
   /* Main form block */
+
+  .control-group{
+    margin: 15px 0;
+
+    &::after{
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
 
   .form-horizontal{
     .control-label{

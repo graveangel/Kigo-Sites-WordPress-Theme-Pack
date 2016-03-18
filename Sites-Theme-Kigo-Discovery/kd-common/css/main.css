@@ -4197,7 +4197,11 @@ body.page-template-contact-page {
     .contact-form #have-question ul li textarea {
       width: 100%; } }
 
-#bookingform {
+.validity-tooltip {
+  position: absolute;
+  right: 15px; }
+
+#bookingform, #paymentform {
   max-width: 1360px;
   margin: 0 auto;
   /* Header */
@@ -4206,100 +4210,106 @@ body.page-template-contact-page {
   /* Blocks */
   /* Main form block */
   /* Sidebar */ }
-  #bookingform h1 {
+  #bookingform h1, #paymentform h1 {
     margin-bottom: 5px; }
-  #bookingform .booked_prop {
+  #bookingform .booked_prop, #paymentform .booked_prop {
     text-align: center;
     margin-bottom: 30px; }
-  #bookingform .booking-prop-img {
+  #bookingform .booking-prop-img, #paymentform .booking-prop-img {
     margin: 20px 0 0;
     text-align: center;
     padding-bottom: 20px;
     border-bottom: 1px solid #eee; }
-    #bookingform .booking-prop-img a {
+    #bookingform .booking-prop-img a, #paymentform .booking-prop-img a {
       display: block;
       height: 400px;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center; }
-  #bookingform .modal-footer {
+  #bookingform .modal-footer, #paymentform .modal-footer {
     border: none; }
-  #bookingform legend {
+  #bookingform legend, #paymentform legend {
     border: none;
     margin: 20px 0 10px;
     font-family: Montserrat;
     font-size: 24px; }
-  #bookingform hr {
+  #bookingform hr, #paymentform hr {
     display: none; }
-  #bookingform .form-horizontal .control-label {
+  #bookingform .control-group, #paymentform .control-group {
+    margin: 15px 0; }
+    #bookingform .control-group::after, #paymentform .control-group::after {
+      display: block;
+      content: '';
+      clear: both; }
+  #bookingform .form-horizontal .control-label, #paymentform .form-horizontal .control-label {
     text-align: left;
     display: block;
     margin-bottom: 5px;
     font-family: "Open Sans";
     font-size: 14px;
     font-weight: normal; }
-  #bookingform .form-horizontal .checkbox {
+  #bookingform .form-horizontal .checkbox, #paymentform .form-horizontal .checkbox {
     padding-left: 35px; }
-  #bookingform input, #bookingform textarea, #bookingform select {
+  #bookingform input, #bookingform textarea, #bookingform select, #paymentform input, #paymentform textarea, #paymentform select {
     font-family: "Open Sans";
     font-size: 14px;
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid #ccc;
     border-radius: 3px; }
-  #bookingform .credit-icon {
+  #bookingform .credit-icon, #paymentform .credit-icon {
     text-align: right; }
-  #bookingform .credit-icon span[class*="creditcard-"] {
+  #bookingform .credit-icon span[class*="creditcard-"], #paymentform .credit-icon span[class*="creditcard-"] {
     background: url("../img/credit-cards.jpg") no-repeat;
     display: inline-block;
     width: 36px;
     height: 24px; }
-  #bookingform .credit-icon span.creditcard-amex {
+  #bookingform .credit-icon span.creditcard-amex, #paymentform .credit-icon span.creditcard-amex {
     background-position: 0 0; }
-  #bookingform .credit-icon span.creditcard-dinersclub {
+  #bookingform .credit-icon span.creditcard-dinersclub, #paymentform .credit-icon span.creditcard-dinersclub {
     background-position: 0 -74px; }
-  #bookingform .credit-icon span.creditcard-discover {
+  #bookingform .credit-icon span.creditcard-discover, #paymentform .credit-icon span.creditcard-discover {
     background-position: 0 -148px; }
-  #bookingform .credit-icon span.creditcard-mastercard {
+  #bookingform .credit-icon span.creditcard-mastercard, #paymentform .credit-icon span.creditcard-mastercard {
     background-position: 0 -222px; }
-  #bookingform .credit-icon span.creditcard-visa {
+  #bookingform .credit-icon span.creditcard-visa, #paymentform .credit-icon span.creditcard-visa {
     background-position: 0 -296px; }
-  #bookingform .amount-bk {
+  #bookingform .amount-bk, #paymentform .amount-bk {
     line-height: 50px; }
-  #bookingform .control-group.accept {
+  #bookingform .control-group.accept, #paymentform .control-group.accept {
     margin-bottom: 10px; }
-  #bookingform .btn-book-header .line2 {
+  #bookingform .btn-book-header .line2, #paymentform .btn-book-header .line2 {
     padding-top: 10px;
     padding-bottom: 10px; }
-  #bookingform .amount-bk {
+  #bookingform .amount-bk, #paymentform .amount-bk {
     font-size: 14px; }
-    #bookingform .amount-bk .bold {
+    #bookingform .amount-bk .bold, #paymentform .amount-bk .bold {
       font-size: 20px; }
-  #bookingform .bapi-showrevise {
+  #bookingform .bapi-showrevise, #paymentform .bapi-showrevise {
     padding: 5px 10px; }
-  #bookingform .property-info {
+  #bookingform .property-info, #paymentform .property-info {
     font-family: "Montserrat";
     font-size: 14px; }
-  #bookingform #statement .item {
+  #bookingform #statement .item, #paymentform #statement .item {
     padding: 10px 0; }
-  #bookingform #statement .total-block {
+  #bookingform #statement .total-block, #paymentform #statement .total-block {
     color: white;
     padding: 15px; }
-    #bookingform #statement .total-block p:first-of-type, #bookingform #statement .total-block p:first-of-type span {
+    #bookingform #statement .total-block p:first-of-type, #bookingform #statement .total-block p:first-of-type span, #paymentform #statement .total-block p:first-of-type, #paymentform #statement .total-block p:first-of-type span {
       font-size: 32px; }
-  #bookingform #statement #ofees span, #bookingform #statement #ofees input {
+  #bookingform #statement #ofees span, #bookingform #statement #ofees input, #paymentform #statement #ofees span, #paymentform #statement #ofees input {
     margin: 0;
     vertical-align: middle; }
-  #bookingform #discount label {
+  #bookingform #discount label, #paymentform #discount label {
     width: 100%; }
-  #bookingform #discount small {
+  #bookingform #discount small, #paymentform #discount small {
     margin-left: 10px; }
   @media screen and (min-width: 768px) {
-    #bookingform .booking-page {
+    #bookingform .booking-page, #paymentform .booking-page {
       border-bottom: 1px solid #eee; }
-    #bookingform .booking-form {
+    #bookingform .booking-form, #paymentform .booking-form {
       border-right: 1px solid #eee; }
-    #bookingform .property-info .pd > div[id] {
+    #bookingform .property-info .pd > div[id], #paymentform .property-info .pd > div[id] {
       padding: 20px 0;
       border-bottom: 1px solid #eee; } }
 
@@ -4732,7 +4742,7 @@ body.error404 .message {
     .kd-search .category-block[data-field="children"]::after {
       content: "\E005"; }
     .kd-search .category-block[data-field="category"]::after {
-      content: "\E619"; }
+      content: "\e619"; }
     .kd-search .category-block[data-field="dev"]::after {
       content: "\E620"; }
     .kd-search .category-block[data-field="sleeps"]::after {
