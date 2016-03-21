@@ -5677,41 +5677,41 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
   color: white; }
 
 /* Legacy widgets */
-.inquiry-form {
+.bapi-inquiry-form {
   width: 100%; }
-  .inquiry-form .title {
+  .bapi-inquiry-form .title {
     display: inline-block;
     vertical-align: middle;
     font-size: 24px;
     margin: 0 0 10px; }
-    .inquiry-form .title::before {
+    .bapi-inquiry-form .title::before {
       display: inline-block;
       vertical-align: middle;
       font-family: 'FontAwesome';
       font-size: 18px;
       content: '\f002';
       margin-right: 15px; }
-  .inquiry-form li {
+  .bapi-inquiry-form li {
     margin-bottom: 10px; }
-    .inquiry-form li.row-fluid {
+    .bapi-inquiry-form li.row-fluid {
       font-size: 0; }
-      .inquiry-form li.row-fluid .span6 {
+      .bapi-inquiry-form li.row-fluid .span6 {
         display: inline-block;
         width: calc(50% - 5px);
         margin-right: 5px;
         font-size: 12px; }
-        .inquiry-form li.row-fluid .span6:last-of-type {
+        .bapi-inquiry-form li.row-fluid .span6:last-of-type {
           margin-right: 0;
           margin-left: 5px; }
-  .inquiry-form input, .inquiry-form select, .inquiry-form textarea {
+  .bapi-inquiry-form input, .bapi-inquiry-form select, .bapi-inquiry-form textarea {
     padding: 5px 15px;
     width: 100%;
     border: 1px solid #ccc;
     border-radius: 3px;
     color: #999; }
-  .inquiry-form textarea {
+  .bapi-inquiry-form textarea {
     min-height: 150px; }
-  .inquiry-form #btn-leadrequest {
+  .bapi-inquiry-form #btn-leadrequest {
     display: block;
     border: none;
     width: 140px;
