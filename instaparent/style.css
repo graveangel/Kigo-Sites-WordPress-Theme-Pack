@@ -1085,11 +1085,17 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 #txtAmountToCharge1{text-align:right;}
 
 /* font awesome icons Kigo Social Widget */
-.widget_kigo_social_icons{padding:15px 0;}
+.widget_kigo_social_icons{padding:15px 0 0;}
 .widget_kigo_social_icons ul.inline{padding:0;margin:0;}
 .widget_kigo_social_icons ul li{padding:0;}
-.widget_kigo_social_icons ul li a{font-size:25px;display:block;height:35px;text-align:center;width:35px;padding-top:10px;box-sizing:border-box;}
+.widget_kigo_social_icons ul li a{font-size:25px;display:block;height:35px;text-align:center;width:35px;}
 .widget_kigo_social_icons ul li .fa{vertical-align:middle;}
+
+/* Kigo_Nav_Menu_Widget widget */
+.widget_kigo_custom_menu .dir_horizontal{list-style:none;margin-left:0;margin-top:15px;}
+.widget_kigo_custom_menu .dir_horizontal li{display:inline-block;padding:0 5px;}
+.widget_kigo_custom_menu .dir_horizontal li a{}
+.widget_kigo_custom_menu .dir_horizontal .sub-menu{display:none;}
 
 /* =Media queries
 -------------------------------------------------------------- */

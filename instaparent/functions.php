@@ -736,6 +736,11 @@ if ( function_exists( 'childtheme_override_presetwidgets_commonareas') )  {
 		update_option( 'widget_mr-social-sharing-toolkit-follow-widget', array( 2 => array( 'title' => '' )) );
 		/*for insta-footer*/
 		update_option( 'widget_bapi_footer', array( 2 => array( 'title' => '' )) );
+                
+                /*for insta-footer-1*/
+		update_option( 'widget_kigo_social_icons', array() );
+                /*for insta-footer-4*/
+		update_option( 'widget_kigo_custom_menu', array( 2 => array( 'nav_menu' => 'main-navigation-menu' )) );
 		
 	}
 }
@@ -930,6 +935,9 @@ if ( function_exists( 'childtheme_override_setwidgets_commonareas') )  {
 		$arrayOfSidebars['insta-header-left'][0] = 'bapi_hp_logo-2';
 		$arrayOfSidebars['insta-header-right'][0] = 'mr-social-sharing-toolkit-follow-widget-2';
 		$arrayOfSidebars['insta-footer'][0] = 'bapi_footer-2';
+                
+                $arrayOfSidebars['insta-footer-1'][0] = 'kigo_social_icons-2';
+                $arrayOfSidebars['insta-footer-4'][0] = 'kigo_custom_menu-2';
 		
 		return $arrayOfSidebars;
 	}
@@ -1013,6 +1021,23 @@ function set_default_theme_widgets () {
 	
 	setSlideshowImages();
 	
+        /* Define default values for customizer settings */
+        $mods = array(
+
+            //Social settings
+            'url-facebook'      => '#',
+            'url-twitter'       => '#',
+            'url-google'        => '#',
+            'url-blog'        => '#',
+
+        );
+
+        foreach ($mods as $name => $val) {
+            if(!get_theme_mod($name)){
+                set_theme_mod($name, $val);
+            }
+        }
+        
 	//lets update the current array of sidebars
 	update_option('sidebars_widgets', $active_widgets);	
 }
@@ -1429,369 +1454,15 @@ function applyFontStyle(){
 }
 add_action('wp_head','applyFontStyle',100);
 
-/*----------------------- Insta custom widgets ----------------------------------*/
-
-/*
-*
-* Latest Blog Post Widget
-* 
-*/
-class Insta_Latest_Blog_Posts extends WP_Widget {	
-	
-	/**
-	 * Register widget with WordPress.
-	 */
-    public function __construct() {
-		parent::__construct(
-	 		'insta_latest_blog_posts', // Base ID
-			'Kigo Latest Blog Posts', // Name
-			array( 'description' => __( 'Kigo Latest Blog Posts', 'text_domain' ), ) // Args
-		);
-	}
-	
-	/**
-	 * Front-end display of widget.
-	 *
-	 * @see WP_Widget::widget()
-	 *
-	 * @param array $args     Widget arguments.
-	 * @param array $instance Saved values from database.
-	 */
-	public function widget( $args, $instance ) {
-		extract($args);
-		/* we get the title */
-		$title = apply_filters('widget_title',$instance['title']);
-		/* we get the number of posts */
-		$numberOfPosts = @$instance['numberOfPosts'];
-		/* we get the number of rows */
-		$rowSize = @$instance['rowSize'] < 1 ? 1 : @$instance['rowSize'];
-		/* Do we display images? */
-		$bDisplayImage =  @$instance['displayImage'];
-		/* Do we display the date? */		
-		$bDisplayDate =  @$instance['displayDate'];
-		/* we get the format of the date */
-		$sDateFormat =  @$instance['dateFormat'];
-		/* Do we display the title?*/
-		$bDisplayTitle =  @$instance['displayTitle'];
-		/* we get the string for the read more link */
-		$sPostLink =  trim(@$instance['postLinkString']);
-		/* we calculate the number of post for each row, we round the result so we dont get decimal values, this value cant be below 1 */
-		$numberOfPostsForEachRow = ceil($numberOfPosts / $rowSize);
-                $numberOfPostsForEachRow = $numberOfPostsForEachRow < 1 ? 1 : $numberOfPostsForEachRow;
-		/* we calculate the number of the column this value can only be multiples of 12 (12,6,4,3,2,1) cant be a decimal and it cant be greater than 12 or less than 1*/				
-		$spanValue = ceil(12/$numberOfPostsForEachRow);
-		if($spanValue > 12)
-		{$spanValue = 12;}
-		if($spanValue < 1)
-		{$spanValue = 1;}
-		
-		echo $before_widget;
-		if(!empty($title))
-			echo $before_title.'<span class="glyphicons pen"><i></i>'.$title.'</span>'.$after_title;	
-				
-		?>
-
-<?php 
-/* we do the query to retun a number of posts based on the captured value */
-$the_query = new WP_Query( 'showposts='.$numberOfPosts );
-/* We count the number of outputs we are doing */
-$numPostsWeOutputted = 0;
-/* We count the number of rows */
-$numRowsWeOutputted = 1;
-/* we output the start of the first row */
-echo '<div class="row-fluid row-0">';
-/* we start looping the posts*/
-while ($the_query -> have_posts()) : $the_query -> the_post();
-/* we start outputing each post with his respective classname, here we add the bootstrap column number we calculated before */
-?>
-<div class="span<?php echo $spanValue?> post-<?php echo $numPostsWeOutputted?>" >
-<div class="post-block">
-<?php
-/* we output the featured image if the post has one and if the widget was set to display images */
-if ( $bDisplayImage && has_post_thumbnail()  ) {
-	echo '<div class="post-image"><a href="'. get_permalink(@$post->ID) . '">';
-	the_post_thumbnail();
-	echo '</a></div>';
+if (include('inc/custom-widgets.php')){
+    add_action("widgets_init", "load_custom_widgets");
 }
-/* we display the date of the post */
-if($bDisplayDate){
-	 echo '<h5 class="post-date">'.get_the_date($sDateFormat).'</h5>';
-}
-/* we display the title of the post */
- if($bDisplayTitle){
-	 echo '<h4 class="post-title"><a href="'. get_permalink(@$post->ID) . '">'.get_the_title().'</a></h4>';
-} 
-/* we display the post excerpt */
-?>
-  <div class="post-excerpt">
-  <p>
-    <?php
-	/* we get the excerpt */ 
-	$subject = get_the_excerpt();
-	/* if a link text was specified, we replace the default string for a link to the full post */
-	  if($sPostLink != '')
-	  {
-		  /* we get the position of the default string*/
-	  	$pos = strrpos($subject,'[...]');
-		/* it will be a number if it was found, false otherwise */
-		  if($pos !== false)
-		  {
-			  /* we replace the default string */	  
-			  $subject = substr_replace($subject, ' <a class="full-post-link" href="'. get_permalink(@$post->ID) . '">'.$sPostLink.'</a>', $pos, strlen('[...]'));
-		  }
-	  }
-	/* we output the excerpt */	
-    echo $subject;	
-	?>
-    </p>
-  </div>
-  </div>
-</div>
-<?php
-/* we increment our counter to keep track of the post we already outputted */
-$numPostsWeOutputted ++;
-/* we check if we outputted all the post specified in the widget */
-if($numPostsWeOutputted != $numberOfPosts)
-{
-	/* we check we outputted the number of post for each row */
-	if($numPostsWeOutputted == $numberOfPostsForEachRow * $numRowsWeOutputted)
-	{
-		/* we output the cloding of the row and start a new one */
-		echo '</div><div class="row-fluid row-'.$numRowsWeOutputted.'">';
-		/* we keep track of the number of rows we outputted*/
-		$numRowsWeOutputted++;
-	}
-}
-
-endwhile;
-/* we close the last row */
-echo '</div>';
-?>
-
-<?php
-		echo $after_widget;
-	}
-	
-	/**
-	 * Back-end widget form.
-	 *
-	 * @see WP_Widget::form()
-	 *
-	 * @param array $instance Previously saved values from database.
-	 */
-	public function form( $instance ) {
-		// the title
-		if ( isset( $instance[ 'title' ] ) ) { $title = esc_attr($instance[ 'title' ]); }
-		else { $title = 'Latest Blog Posts'; }
-		// the number of posts
-		if ( isset( $instance[ 'numberOfPosts' ] ) && !empty($instance[ 'numberOfPosts' ])) { 
-			$numberOfPosts =  esc_attr($instance['numberOfPosts']); 
-		}else { $numberOfPosts = '1'; }
-		
-		// the link to the full post
-		if ( isset( $instance[ 'postLinkString' ] ) && !empty($instance[ 'postLinkString' ])) { 
-			$sPostLink =  esc_attr($instance['postLinkString']); 
-		}
-		
-		// the number of rows
-		if ( isset( $instance[ 'rowSize' ] ) && !empty($instance[ 'rowSize' ]) ) { $rowSize =  esc_attr($instance['rowSize']); }
-		else { $rowSize = '1'; }
-		
-		// Show image checkbox
-		if ( isset( $instance[ 'displayImage' ] ) ) { $bDisplayImage = esc_attr($instance[ 'displayImage' ]); }
-		else{ $bDisplayImage = false;}
-		
-		// Show date checkbox
-		if ( isset( $instance[ 'displayDate' ] ) ) { $bDisplayDate = esc_attr($instance[ 'displayDate' ]); }
-		else{ $bDisplayDate = false;}
-		
-		// Show date format input
-		if ( isset( $instance[ 'dateFormat' ] ) && !empty($instance[ 'dateFormat' ]) ) { $sDateFormat = esc_attr($instance[ 'dateFormat' ]); }	
-		else { $sDateFormat = 'F, Y'; }
-			
-		// Show title checkbox
-		if ( isset( $instance[ 'displayTitle' ] ) ) { $bDisplayTitle = esc_attr($instance[ 'displayTitle' ]); }
-		else{ $bDisplayTitle = false;}
-				
-		?>
-<p>
-  <label for="<?php echo $this->get_field_id( 'title' ); ?>">
-    <?php _e( 'Title:' ); ?>
-  </label>
-  <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-</p>
-<p>
-  <label for="<?php echo $this->get_field_id( 'postLinkString' ); ?>">
-    <?php _e( 'Text Link for Full Post:' ); ?>
-  </label>
-  <input class="widefat" id="<?php echo $this->get_field_id( 'postLinkString' ); ?>" name="<?php echo $this->get_field_name( 'postLinkString' ); ?>" type="text" value="<?php echo esc_attr( $sPostLink ); ?>" />
-  <br/>
-  <small>If left blank it will default to [...]</small>
-</p>
-<p>
-  <label for="<?php echo $this->get_field_id( 'numberOfPosts' ); ?>">
-    <?php _e( '# of posts:' ); ?>
-  </label>
-  <input id="<?php echo $this->get_field_id( 'numberOfPosts' ); ?>" name="<?php echo $this->get_field_name( 'numberOfPosts' ); ?>" type="text" value="<?php echo esc_attr( $numberOfPosts ); ?>" size="2" />
-</p>
-<p>
-<label for="<?php echo $this->get_field_id( 'rowSize' ); ?>">
-  <?php _e( '# of Rows:' ); ?>
-</label>
-<input id="<?php echo $this->get_field_id( 'rowSize' ); ?>" name="<?php echo $this->get_field_name( 'rowSize' ); ?>" type="text" value="<?php echo esc_attr( $rowSize ); ?>" size="2" />
-</p>
-
-<p>
-<input id="<?php echo $this->get_field_id('displayImage'); ?>" name="<?php echo $this->get_field_name('displayImage'); ?>" class="checkbox" type="checkbox" value="1" <?php checked( '1', $bDisplayImage ); ?>/>
-<label for="<?php echo $this->get_field_id( 'displayImage' ); ?>">
-  <?php _e( 'Display Post Image?' ); ?>
-</label>
-</p>
-<p>
-<input id="<?php echo $this->get_field_id('displayTitle'); ?>" name="<?php echo $this->get_field_name('displayTitle'); ?>" class="checkbox" type="checkbox" value="1" <?php checked( '1', $bDisplayTitle ); ?>/>
-<label for="<?php echo $this->get_field_id( 'displayTitle' ); ?>">
-  <?php _e( 'Display Post Title?' ); ?>
-</label>
-</p>
-<p id="<?php echo $this->get_field_id('displayDate'); ?>-block">
-<input id="<?php echo $this->get_field_id('displayDate'); ?>" name="<?php echo $this->get_field_name('displayDate'); ?>" class="checkbox" type="checkbox" value="1" <?php checked( '1', $bDisplayDate ); ?>/>
-<label for="<?php echo $this->get_field_id( 'displayDate' ); ?>">
-  <?php _e( 'Display Post Date?' ); ?>
-</label>
-</p>
-<div id="<?php echo $this->get_field_id('displayDate'); ?>-format-block" <?php if(!$bDisplayDate){echo 'style="display:none;"';} ?>>
-<p>
-  <label for="<?php echo $this->get_field_id( 'dateFormat' ); ?>">
-    <?php _e( 'Date Format:' ); ?>
-  </label>
-  <input class="widefat" id="<?php echo $this->get_field_id( 'dateFormat' ); ?>" name="<?php echo $this->get_field_name( 'dateFormat' ); ?>" type="text" value="<?php echo esc_attr( $sDateFormat ); ?>" />
-  <br/>
-  <small>Format Characters</small>
-</p>
-<div class="insta-lbp-date-help-block">
-<ul class="ul-square">
-<li><small>l = Full name for day of the week (lower-case L).</small></li>
-<li><small>F = Full name for the month.</small></li>
-<li><small>j = The day of the month.</small></li>
-<li><small>Y = The year in 4 digits. (lower-case y gives the year's last 2 digits)</small></li>
-</ul>
-<p><small>(Commas are read literally.)</small></p>
-</div>
-</div>
-
-<?php 
-	
-	}
-	
-	/**
-	 * Sanitize widget form values as they are saved.
-	 *
-	 * @see WP_Widget::update()
-	 *
-	 * @param array $new_instance Values just sent to be saved.
-	 * @param array $old_instance Previously saved values from database.
-	 *
-	 * @return array Updated safe values to be saved.
-	 */
-	public function update( $new_instance, $old_instance ) {
-		$instance = array();
-		$instance['title'] = ( !empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		
-		/* we check if the value is a number */
-		if(is_numeric(strip_tags($new_instance['numberOfPosts'])))
-		{
-			$instance['numberOfPosts'] = strip_tags($new_instance['numberOfPosts']);
-		}else{
-			$instance['numberOfPosts'] = '';
-		}
-		
-		/* we check if the value is a number */
-		if(is_numeric(strip_tags($new_instance['rowSize'])))
-		{
-			$instance['rowSize'] =  strip_tags($new_instance['rowSize']);
-		}else{
-			$instance['rowSize'] = '';
-		}
-		
-		$instance['displayImage'] =  strip_tags($new_instance['displayImage']);
-		$instance['displayDate'] =  strip_tags($new_instance['displayDate']);
-		
-		$instance['dateFormat'] =  trim($new_instance['dateFormat']);
-		
-		$instance['displayTitle'] =  strip_tags($new_instance['displayTitle']);		
-		$instance['postLinkString'] =  strip_tags($new_instance['postLinkString']);
-		
-		return $instance;
-	}
-
-}
-
-
-class Kigo_Social_Icons_Widget extends WP_Widget {
-
-	public function __construct() {
-		parent::__construct(
-	 		'kigo_social_icons', // Base ID
-			'Kigo Social Icons', // Name
-			array( 'description' => __( 'Displays the Social Media Icons filled in the Customizer', 'instaparent' ), ) // Args
-		);
-	}
-
-	public function widget( $args, $instance ) {
-		extract($args);
-		echo $before_widget;
-		?>
-                <ul class="inline">
-                    <?php if(get_theme_mod('url-facebook')):?>
-                        <li><a href="<?php echo get_theme_mod('url-facebook'); ?>" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                    <?php endif; ?>
-
-                    <?php if(get_theme_mod('url-twitter')):?>
-                        <li><a href="<?php echo get_theme_mod('url-twitter'); ?>" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                    <?php endif; ?>
-
-                    <?php if(get_theme_mod('url-google')):?>
-                        <li><a href="<?php echo get_theme_mod('url-google'); ?>" target="_blank" title="Google plus"><i class="fa fa-google-plus"></i></a></li>
-                    <?php endif; ?>
-
-                    <?php if(get_theme_mod('url-linkedin')):?>
-                        <li><a href="<?php echo get_theme_mod('url-linkedin'); ?>" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                    <?php endif; ?>
-
-                    <?php if(get_theme_mod('url-youtube')):?>
-                        <li><a href="<?php echo get_theme_mod('url-youtube'); ?>" target="_blank" title="Youtube"><i class="fa fa-youtube"></i></a></li>
-                    <?php endif; ?>
-
-                    <?php if(get_theme_mod('url-pinterest')):?>
-                        <li><a href="<?php echo get_theme_mod('url-pinterest'); ?>" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-                    <?php endif; ?>
-
-                    <?php if(get_theme_mod('url-blog')):?>
-                        <li><a href="<?php echo get_theme_mod('url-blog'); ?>" target="_blank" title="Blog"><i class="fa fa-rss"></i></a></li>
-                    <?php endif; ?>
-                </ul>
-		<?php
-		echo $after_widget;
-	}
-
-	public function update( $new_instance, $old_instance ) {
-		$instance = array();
-		return $instance;
-	}	
-
-} // class BAPI_DetailOverview_Widget
-
-/* We first load our widget */
-add_action( 'widgets_init', 'register_my_widget' );
-/* Register our widget in WordPress so that it is available under the widgets section. */
-function register_my_widget() {  
-    register_widget( 'Insta_Latest_Blog_Posts' );  
+function load_custom_widgets() {
+    //unregister_widget("WP_Nav_Menu_Widget");
+    register_widget( 'Kigo_Nav_Menu_Widget' );
+    register_widget( 'Insta_Latest_Blog_Posts' );
     register_widget( 'Kigo_Social_Icons_Widget' );
 }
-
-
-
-/*-------------------------------------------------------------------------------------*/
 
 /**
  * Customizer Library Demo functions and definitions
