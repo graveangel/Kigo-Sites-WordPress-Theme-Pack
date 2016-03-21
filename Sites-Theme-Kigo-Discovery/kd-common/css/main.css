@@ -4199,7 +4199,9 @@ body.page-template-contact-page {
 
 .validity-tooltip {
   position: absolute;
-  right: 15px; }
+  right: 15px;
+  transform: translate3d(-111px, 24px, 0);
+  color: red; }
 
 #bookingform, #paymentform {
   max-width: 1360px;
@@ -4659,7 +4661,8 @@ body.error404 .message {
   display: block;
   padding: 15px;
   background-color: transparent !important;
-  /* Remove selection color */ }
+  /* Remove selection color */
+  /* Amenities dropdown checkboxes */ }
   .kd-search ::selection {
     background: none;
     /* WebKit/Blink Browsers */ }
@@ -4706,6 +4709,18 @@ body.error404 .message {
     text-transform: uppercase;
     cursor: pointer;
     -webkit-appearance: none; }
+  .kd-search .dropdown-checkbox-toggle {
+    width: 100%;
+    padding: 14px 45px 13px 15px;
+    background-color: transparent;
+    border: 1px solid #cccccc;
+    color: #999;
+    text-align: left; }
+    .kd-search .dropdown-checkbox-toggle .caret {
+      margin-left: 5px; }
+  .kd-search .dropdown-checkbox-content {
+    width: 100%;
+    padding: 20px; }
   .kd-search .search {
     padding: 15px;
     background-color: #33baaf;
