@@ -1689,3 +1689,7 @@ add_action( 'widgets_init', 'register_my_widget' );
 function register_my_widget() {  
     register_widget( 'Insta_Latest_Blog_Posts' );  
 }
+
+
+//Include new widgets
+include 'widgets/widgets_include.php';
