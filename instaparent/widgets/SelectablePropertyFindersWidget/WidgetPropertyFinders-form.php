@@ -30,8 +30,8 @@
 </label>
 <ul class="sortable propery_finders_sortable_list">
        <?php
-
-       foreach($ins['property_finders'] as $pfindid => $name){
+       if(is_array($ins['property_finders']) && count($ins['property_finders'])){
+        foreach($ins['property_finders'] as $pfindid => $name){
 
             ?>
             <li>
@@ -42,9 +42,12 @@
             </label>
             </li>
                 <?php
-        }
-
-        foreach($this->getPropertyFinders() as $pfindid => $name){
+        } 
+       }
+       
+       $bpspecialoffers = $this->getPropertyFinders();
+       if(is_array($bpspecialoffers) && count($bpspecialoffers)){
+            foreach( $bpspecialoffers as $pfindid => $name){
             $checked = '';
             if(!empty($ins['property_finders'][$pfindid])) continue;
             ?>
@@ -57,6 +60,10 @@
             </li>
                 <?php
         }
+       }else{
+        echo "<li><p>There are no property finders available. </p></li>";
+       }
+        
     ?>
 </ul>
 
