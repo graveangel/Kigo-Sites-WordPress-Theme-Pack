@@ -75,6 +75,25 @@
     -webkit-appearance: none; //Mac SELECT input padding fix
   }
 
+  /* Amenities dropdown checkboxes */
+
+  .dropdown-checkbox-toggle{
+    width: 100%;
+    padding: 14px 45px 13px 15px;
+    background-color: transparent;
+    border: 1px solid #cccccc;
+    color: $tertiary-color;
+    text-align: left;
+
+    .caret{
+      margin-left: 5px;
+    }
+  }
+  .dropdown-checkbox-content{
+    width: 100%;
+    padding: 20px;
+  }
+
   .search{
     padding: 15px;
     background-color: $primary-color;

@@ -137,7 +137,8 @@ class Core {
             'BAPI_Property_Finders',
             'BAPI_Featured_Properties',
             'BAPI_Similar_Properties',
-            'BAPI_Specials_Widget',
+            'BAPI_Specials_Widg et',
+            'WP_Widget_Search',
         ];
 
         add_action('widgets_init', function() use ($unwantedWidgets) {
@@ -317,12 +318,12 @@ class Core {
             wp_enqueue_script('lodash', 'https://cdn.jsdelivr.net/lodash/4.5.1/lodash.min.js' , array(), '', false);
 
             /* Bootstrap - https://github.com/dbushell/Pikaday */
-            wp_enqueue_script('kd-bootstrap', $commonPath . '/lib/bootstrap/js/bootstrap.min.js', array(), '', true);
-            wp_enqueue_style('kd-bootstrap', $commonPath . '/lib/bootstrap/css/bootstrap.min.css');
+            wp_enqueue_script('bootstrap', $commonPath . '/lib/bootstrap/js/bootstrap.min.js', array(), '', false);
+            wp_enqueue_style('bootstrap', $commonPath . '/lib/bootstrap/css/bootstrap.min.css');
 
-            /* Wweather Icons */
-//            wp_enqueue_style('weather-icons-css', $commonPath.'/lib/weather-icons/weather-icons.min.css');
-//            wp_enqueue_style('weather-icons-wind-css', $commonPath.'/lib/weather-icons/weather-icons-wind.min.css');
+            /* Bootstrap DropdownCheckbox - https://github.com/Nelrohd/bootstrap-dropdown-checkbox */
+            wp_enqueue_script('bootstrap-dropdown', $commonPath . '/lib/bootstrap-dropdown-checkbox/js/bootstrap-dropdown-checkbox.min.js', array(), '', false);
+            wp_enqueue_style('bootstrap-dropdown', $commonPath . '/lib/bootstrap-dropdown-checkbox/css/bootstrap-dropdown-checkbox.css');
 
             /* Pickadate.js styles */
             wp_enqueue_style('pickadate', $commonPath . '/lib/pickadate/default.css');
