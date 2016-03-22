@@ -34,7 +34,8 @@
 <ul class="sortable special_offers_sortable_list">
        <?php
 
-       foreach($ins['special_offers'] as $spoffid => $name){
+       if(is_array($ins['special_offers']) && count($ins['special_offers'])){
+        foreach($ins['special_offers'] as $spoffid => $name){
 
             ?>
             <li>
@@ -46,8 +47,11 @@
             </li>
                 <?php
         }
+       }
 
-        foreach($this->getSpecialOffers() as $spoffid => $name){
+       $bpspecialoffers = $this->getSpecialOffers();
+        if(is_array($bpspecialoffers) && count($bpspecialoffers)){
+            foreach($bpspecialoffers as $spoffid => $name){
             $checked = '';
             if(!empty($ins['special_offers'][$spoffid])) continue;
             ?>
@@ -59,6 +63,9 @@
             </label>
             </li>
                 <?php
+        }
+        }else{
+            echo "<li><p>There are no special offers available.</p></li>";
         }
     ?>
 </ul>
