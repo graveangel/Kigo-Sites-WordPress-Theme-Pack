@@ -60,28 +60,28 @@ class XBAPI extends \BAPI {
      * @param string $findIds
      * @return array of objects
      */
-    function getPropertyFinders($findIds=null){
+    function getPropertyFinders($findIds=[]){
 
         if(empty($findIds))
-            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=searches&seo=1'))->result;
+            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=searches&seo=1'))->result ? : [];
         else
             $findIds = array_values($findIds);
             
-        $pfinders = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids='.implode(',',$findIds).'&seo=1'))->result;
+        $pfinders = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids='.implode(',',$findIds).'&seo=1'))->result ? : [];
         return $pfinders;
     }
 
 
-    function getSpecialOffers($findIds=null)
+    function getSpecialOffers($findIds=[])
     {
 
 
         if(empty($findIds))
-            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=specials&seo=1'))->result;
+            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=specials&seo=1'))->result ? : [];
         else
             $findIds = array_values($findIds);
 
-        $spoffers = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids='.implode(',',$findIds).'&seo=1'))->result;
+        $spoffers = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids='.implode(',',$findIds).'&seo=1'))->result ? : [];
 
         return $spoffers;
     }
