@@ -137,7 +137,8 @@ class Core {
             'BAPI_Property_Finders',
             'BAPI_Featured_Properties',
             'BAPI_Similar_Properties',
-            'BAPI_Specials_Widget',
+            'BAPI_Specials_Widg et',
+            'WP_Widget_Search',
         ];
 
         add_action('widgets_init', function() use ($unwantedWidgets) {
