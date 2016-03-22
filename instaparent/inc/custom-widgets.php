@@ -337,6 +337,10 @@ class Kigo_Social_Icons_Widget extends WP_Widget {
                         <li><a href="<?php echo get_theme_mod('url-pinterest'); ?>" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
                     <?php endif; ?>
 
+                    <?php if(get_theme_mod('url-instagram')):?>
+                        <li><a href="<?php echo get_theme_mod('url-pinterest'); ?>" target="_blank" title="Pinterest"><i class="fa fa-instagram"></i></a></li>
+                    <?php endif; ?>
+
                     <?php if(get_theme_mod('url-blog')):?>
                         <li><a href="<?php echo get_theme_mod('url-blog'); ?>" target="_blank" title="Blog"><i class="fa fa-rss"></i></a></li>
                     <?php endif; ?>
