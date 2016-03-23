@@ -103,7 +103,8 @@ class XBAPI extends \BAPI {
         );
 
         $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
-        $output = $response['body'];
+
+        $output = is_array($response) ? $response['body'] : "{}";
 
         return $output;
     }
