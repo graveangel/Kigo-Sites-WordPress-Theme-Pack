@@ -94,12 +94,17 @@ class XBAPI extends \BAPI {
      * @return string
      */
     private function xconnect($requestString) {
-        $nconnection = curl_init();
-        curl_setopt($nconnection, CURLOPT_USERAGENT, 'InstaSites Agent');
-        curl_setopt($nconnection, CURLOPT_URL, $this->base_url . $requestString . '&apikey=' . $this->api_key);
-        curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($nconnection);
-        curl_close($nconnection);
+
+        $args = array(
+            'timeout'     => 30,
+            'redirection' => 35,
+            'httpversion' => '1.0',
+            'user-agent'  => 'InstaSites Agent',
+        );
+
+        $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
+        $output = $response['body'];
+
         return $output;
     }
 
