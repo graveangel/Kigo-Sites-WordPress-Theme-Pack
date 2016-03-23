@@ -345,7 +345,7 @@ function theme_options_do_page() {
           <div class="themeOptionContent">
             <table class="form-table">
                 <tr>
-                    <th scope="row"><?php _e( 'Font Style', 'instaparent' ); ?></th>
+                    <th scope="row"><?php _e( 'Title Font Style', 'instaparent' ); ?></th>
                     <td>
                     <select id="instaparent_theme_options_fontStyle" name="instaparent_theme_options[fontStyle]" value="<?php esc_attr_e( $options['fontStyle'] ); ?>">
                         <option value="" >--- Default Font ---</option>
@@ -363,8 +363,27 @@ function theme_options_do_page() {
                     </td>
                 </tr>
                 <tr>
+                    <th scope="row"><?php _e( 'Paragraph Font Style', 'instaparent' ); ?></th>
+                    <td>
+                    <select id="instaparent_theme_options_paragraphfontStyle" name="instaparent_theme_options[paragraphfontStyle]" value="<?php esc_attr_e( $options['paragraphfontStyle'] ); ?>">
+                        <option value="" >--- Default Font ---</option>
+<?php
+    foreach($font_choices as $p => $w):
+        $selected = "";
+        if($p == $options['paragraphfontStyle']){$selected = "selected";}
+        echo '<option value="'.$p.'" '.$selected.'>'.$w.'</option>'; 
+    endforeach;
+?>
+</select>
+                    
+                    
+                    
+                    </td>
+                </tr>
+                <tr>
                 <td colspan="2"><hr/></td>
               </tr>
+
               <?php
 				/**
 				 * The Menu Style option
