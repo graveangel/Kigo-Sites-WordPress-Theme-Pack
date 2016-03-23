@@ -35,6 +35,10 @@ if ( function_exists( 'getTextDataArray') )  {
 	$textDataArray = getTextDataArray();
 }
 
+/* lets get the name of the theme folder to see which theme it is */
+$currentThemeName = substr(strrchr(get_stylesheet_directory(), "/"), 1);
+$itsInstaTheme = strpos($currentThemeName, "ct-") !== FALSE ? FALSE : TRUE;
+
 function instaparent_setup() {
 
 	// This theme styles the visual editor with editor-style.css to match the theme style.
@@ -174,7 +178,7 @@ add_filter( 'wp_title', 'instaparent_wp_title', 10, 2 );
  *
  */
 function instaparent_widgets_init() {
-	
+global $itsInstaTheme;
 if ( function_exists( 'childtheme_widgets_init' ) ) :
 childtheme_widgets_init();
 endif;
@@ -238,43 +242,44 @@ endif;
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	) );
-        register_sidebar( array(
-		'name' => __( 'Kigo Footer 1 (Common)', 'instaparent' ),
-		'id' => 'insta-footer-1',
-		'description' => __( 'Footer outer left area', 'instaparent' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-        register_sidebar( array(
-		'name' => __( 'Kigo Footer 2 (Common)', 'instaparent' ),
-		'id' => 'insta-footer-2',
-		'description' => __( 'Footer middle left area', 'instaparent' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-        register_sidebar( array(
-		'name' => __( 'Kigo Footer 3 (Common)', 'instaparent' ),
-		'id' => 'insta-footer-3',
-		'description' => __( 'Footer middle right area', 'instaparent' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-        register_sidebar( array(
-		'name' => __( 'Kigo Footer 4 (Common)', 'instaparent' ),
-		'id' => 'insta-footer-4',
-		'description' => __( 'Footer outer right area', 'instaparent' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-	) );
-	
+        if($itsInstaTheme){
+            register_sidebar( array(
+                    'name' => __( 'Kigo Footer 1 (Common)', 'instaparent' ),
+                    'id' => 'insta-footer-1',
+                    'description' => __( 'Footer outer left area', 'instaparent' ),
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                    'after_widget' => '</div>',
+                    'before_title' => '<h3 class="widget-title">',
+                    'after_title' => '</h3>',
+            ) );
+            register_sidebar( array(
+                    'name' => __( 'Kigo Footer 2 (Common)', 'instaparent' ),
+                    'id' => 'insta-footer-2',
+                    'description' => __( 'Footer middle left area', 'instaparent' ),
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                    'after_widget' => '</div>',
+                    'before_title' => '<h3 class="widget-title">',
+                    'after_title' => '</h3>',
+            ) );
+            register_sidebar( array(
+                    'name' => __( 'Kigo Footer 3 (Common)', 'instaparent' ),
+                    'id' => 'insta-footer-3',
+                    'description' => __( 'Footer middle right area', 'instaparent' ),
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                    'after_widget' => '</div>',
+                    'before_title' => '<h3 class="widget-title">',
+                    'after_title' => '</h3>',
+            ) );
+            register_sidebar( array(
+                    'name' => __( 'Kigo Footer 4 (Common)', 'instaparent' ),
+                    'id' => 'insta-footer-4',
+                    'description' => __( 'Footer outer right area', 'instaparent' ),
+                    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+                    'after_widget' => '</div>',
+                    'before_title' => '<h3 class="widget-title">',
+                    'after_title' => '</h3>',
+            ) );
+        }
 	register_sidebar( array(
 		'name' => __( 'Kigo Left Home', 'instaparent' ),
 		'id' => 'insta-left-home',
@@ -1458,10 +1463,13 @@ if (include('inc/custom-widgets.php')){
     add_action("widgets_init", "load_custom_widgets");
 }
 function load_custom_widgets() {
+    global $itsInstaTheme;
     //unregister_widget("WP_Nav_Menu_Widget");
-    register_widget( 'Kigo_Nav_Menu_Widget' );
+    if ( $itsInstaTheme){
+        register_widget( 'Kigo_Nav_Menu_Widget' );
+        register_widget( 'Kigo_Social_Icons_Widget' );
+    }
     register_widget( 'Insta_Latest_Blog_Posts' );
-    register_widget( 'Kigo_Social_Icons_Widget' );
 }
 
 /**
@@ -1476,7 +1484,9 @@ function demo_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'demo_styles' );
 
-if ( file_exists ( get_template_directory() . '/inc/customizer/customizer-library/customizer-library.php' ) ) :
+
+/* only for instathemes */
+if ( $itsInstaTheme  && file_exists ( get_template_directory() . '/inc/customizer/customizer-library/customizer-library.php' ) ) :
 
 // Helper library for the theme customizer.
 require get_template_directory() . '/inc/customizer/customizer-library/customizer-library.php';
@@ -1491,12 +1501,12 @@ require get_template_directory() . '/inc/customizer/styles.php';
 require get_template_directory() . '/inc/customizer/mods.php';
 
 else :
-
-add_action( 'customizer-library-notices', 'demo_customizer_library_notice' );
-
+if($itsInstaTheme){
+    add_action( 'customizer-library-notices', 'demo_customizer_library_notice_instaparent' );
+}
 endif;
 
-function demo_customizer_library_notice() {
+function demo_customizer_library_notice_instaparent() {
 
 	_e( '<p>Notice: The "customizer-library" sub-module is not loaded.</p>', 'demo' );
 
