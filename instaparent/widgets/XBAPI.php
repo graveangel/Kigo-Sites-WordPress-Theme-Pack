@@ -66,8 +66,21 @@ class XBAPI extends \BAPI {
             $findIds = json_decode($this->xconnect('/ws/?method=search&entity=searches&seo=1'))->result ? : [];
         else
             $findIds = array_values($findIds);
-            
-        $pfinders = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids='.implode(',',$findIds).'&seo=1'))->result ? : [];
+
+        $maxnum = 10;
+        $pfToRequest = array_chunk($findIds, $maxnum);
+
+
+
+        $pfinders = [];
+
+        foreach ($pfToRequest as $pfToRequestids) {
+            $ids = implode(',', $pfToRequestids);
+
+            $pfinders_ = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids='.$ids.'&seo=1'))->result ? : [];
+            $pfinders = array_merge($pfinders, $pfinders_);
+        }
+
         return $pfinders;
     }
 
@@ -81,7 +94,17 @@ class XBAPI extends \BAPI {
         else
             $findIds = array_values($findIds);
 
-        $spoffers = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids='.implode(',',$findIds).'&seo=1'))->result ? : [];
+        $maxnum = 10;
+        $spoffRequest = array_chunk($findIds, $maxnum);
+
+        $spoffers = [];
+
+        foreach ($spoffRequest as $spoffRequestids) {
+            $ids = implode(',', $spoffRequestids);
+            $spoffers_ = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids='.$ids.'&seo=1'))->result ? : [];
+            $spoffers = array_merge($spoffers, $spoffers_);
+        }
+
 
         return $spoffers;
     }
@@ -94,18 +117,14 @@ class XBAPI extends \BAPI {
      * @return string
      */
     private function xconnect($requestString) {
-
-        $args = array(
-            'timeout'     => 30,
-            'redirection' => 35,
-            'httpversion' => '1.0',
-            'user-agent'  => 'InstaSites Agent',
-        );
-
-        $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
-        $output = $response['body'];
-
+        $nconnection = curl_init();
+        curl_setopt($nconnection, CURLOPT_USERAGENT, 'InstaSites Agent');
+        curl_setopt($nconnection, CURLOPT_URL, $this->base_url . $requestString . '&apikey=' . $this->api_key);
+        curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
+        $output = curl_exec($nconnection);
+        curl_close($nconnection);
         return $output;
     }
 
 }
+
