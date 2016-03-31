@@ -26,7 +26,7 @@ $specialOffers = $xbapi->getSpecialOffers($ins['special_offers']);
                         <span class="kigo-spoffer-name"><a href="<?php echo $spoffer->ContextData->SEO->DetailURL; ?>"><?php echo $spoffer->Name ?></a></span>
                         <hr>
                         <div class="kigo-spoffer-description">
-                            <?php echo $spoffer->Description; ?>
+                            <?php echo $spoffer->Summary; ?>
                         </div>
 
                     </div>
