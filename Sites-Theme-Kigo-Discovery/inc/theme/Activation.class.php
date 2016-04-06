@@ -105,7 +105,7 @@ class Activation {
                 'primary_text' => 'FIND A PLACE TO STAY',
                 'secondary_text' => 'A NEW WAY TO DISCOVER AND ENJOY ADVENTURES',
                 'button_value' => 'SEARCH RENTALS',
-                'button_link' => '#',
+                'button_link' => '/rentals/rentalsearch',
                 'slides' => [
                     $themePath.'/kd-common/img/hero/barcelona.jpg',
                     $themePath.'/kd-common/img/hero/florence.jpg',
