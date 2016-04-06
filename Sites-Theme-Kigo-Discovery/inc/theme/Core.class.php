@@ -68,7 +68,7 @@ class Core {
             remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10);    // #5
 
             add_filter('the_generator', '__return_false');            // #6
-            add_filter('show_admin_bar','__return_false');            // #7
+//            add_filter('show_admin_bar','__return_false');            // #7
 
             remove_action( 'wp_head', 'print_emoji_detection_script', 7 );  // #8
             remove_action( 'wp_print_styles', 'print_emoji_styles' );
