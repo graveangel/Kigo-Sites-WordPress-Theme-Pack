@@ -4434,15 +4434,17 @@ body.page-template-other-detail-page .other-detail-page .button {
       content: '\25BE';
       font-size: 40px;
       position: absolute;
-      top: 5px;
-      right: 5px; }
+      top: 10px;
+      right: 10px;
+      z-index: -1; }
     .page-attractions-summary .control-group-attraction .controls select {
       width: 230px;
       border: none;
       border-radius: 0;
       font-size: 15px;
       padding: 5px;
-      box-sizing: border-box; }
+      box-sizing: border-box;
+      background-color: transparent; }
       .page-attractions-summary .control-group-attraction .controls select:focus {
         border: none;
         outline: none; }

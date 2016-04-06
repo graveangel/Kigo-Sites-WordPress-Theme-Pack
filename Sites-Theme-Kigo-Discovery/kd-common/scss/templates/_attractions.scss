@@ -104,11 +104,12 @@
       border                  : 2px solid lightgrey;
 
       &::after {
-        content             : '\25BE';
-        font-size           : 40px;
-        position            : absolute;
-        top                 : 5px;
-        right               : 5px;
+        content: '\25BE';
+        font-size: 40px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: -1;
       }
 
       select {
@@ -118,6 +119,8 @@
         font-size           : 15px;
         padding             : 5px;
         box-sizing          : border-box;
+        background-color: transparent;
+
         &:focus {
           border          : none;
           outline         : none;
