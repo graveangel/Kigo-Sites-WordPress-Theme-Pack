@@ -68,7 +68,7 @@ class Activation {
         if (!count($this->activeWidgets['under_header_right'])) {
 
             /* Create logins menu */
-            $loginMenuId = $this->createCustomMenu('Logins', ['Owner Login' => '#']);
+            $loginMenuId = $this->createCustomMenu('Logins', ['Owner Login' => 'https://newapp.kigo.net/']);
 
             $kd_login_menu_content = [
                 'menu' => $loginMenuId,
