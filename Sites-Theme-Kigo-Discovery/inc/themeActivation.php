@@ -246,6 +246,7 @@ class ThemeActivation {
             $bapiId = $multilevel ? $parentBapiId : $pageBapiId;
 
             $resultArr = get_posts(['post_type' => 'page', 'meta_key' => 'bapi_page_id', 'meta_value' => $bapiId]);
+            //TODO: If no result, create as custom page (# link)
 
             if(empty($resultArr)){ //If a page doesn't exists, we delete menu & exit
                 wp_delete_nav_menu($menu_id);
