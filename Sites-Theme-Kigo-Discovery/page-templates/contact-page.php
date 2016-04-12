@@ -2,7 +2,7 @@
 //Template name: Contact Page
 get_header();
 the_post();
-$themeBAPI = new BAPIHelper();
+$themeBAPI = new Discovery\BAPIHelper();
 $bapi_solutiondata = $themeBAPI->getData();
 $textDataArray = $themeBAPI->getTextDataArray();
 
