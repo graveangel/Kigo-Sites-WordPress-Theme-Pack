@@ -3433,9 +3433,13 @@ Media Desktop
 
 .pop-up-form-link {
   font-size: 12px;
-  color: #33baaf;
-  text-decoration: underline;
-  text-decoration-style: dotted; }
+  color: white;
+  background: #33baaf;
+  padding: 12px;
+  text-decoration: none;
+  text-transform: uppercase; }
+  .pop-up-form-link:hover {
+    color: white; }
 
 .pop-up-booking-form {
   position: fixed;

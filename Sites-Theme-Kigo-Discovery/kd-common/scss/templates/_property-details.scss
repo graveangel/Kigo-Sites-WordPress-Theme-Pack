@@ -789,9 +789,15 @@ Media Desktop
 
 .pop-up-form-link {
   font-size: 12px;
-  color: $primary-color;
-  text-decoration:underline;
-  text-decoration-style: dotted;
+  color: white;
+  background: #33baaf;
+  padding: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover{
+    color: white;
+  }
 }
 .pop-up-booking-form {
   position:   fixed;
