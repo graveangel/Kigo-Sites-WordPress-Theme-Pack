@@ -85,6 +85,8 @@ function childtheme_override_setwidgets_commonareas($arrayOfSidebars) {
 	
 	
 	$arrayOfSidebars['insta-footer'][0] = 'bapi_footer-2';
+    $arrayOfSidebars['insta-footer-1'][0] = 'kigo_social_icons-2';
+    $arrayOfSidebars['insta-footer-4'][0] = 'kigo_custom_menu-2';
 	
 	return $arrayOfSidebars;
 }

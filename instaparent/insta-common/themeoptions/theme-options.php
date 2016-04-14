@@ -506,23 +506,15 @@ function theme_options_do_page() {
                 <th scope="row"><?php _e( 'Footer Text Color', 'instaparent' ); ?></th>
                 <td><input type="text" id="instaparent_theme_options_footerTextColor" name="instaparent_theme_options[footerTextColor]" value="<?php esc_attr_e( $options['footerTextColor'] ); ?>" data-default-color="#ffffff" /></td>
               </tr>
-              </table>
               
-              <?php
-				/**
-				 * The Footer Hover Style colorpicker
-				 */
-				?>
-              <table>
-<!--              <tr valign="top">
-                <th scope="row"><?php _e( 'Footer Hover Color', 'instaparent' ); ?></th>
-                <td><input type="text" id="instaparent_theme_options_footerHoverColor" name="instaparent_theme_options[footerHoverColor]" value="<?php esc_attr_e( $options['footerHoverColor'] ); ?>" data-default-color="#000000" />                  
-                  </td>
+              <tr valign="top">
+                <th scope="row"><?php _e( 'Footer Link Text Color', 'instaparent' ); ?></th>
+                <td><input type="text" id="instaparent_theme_options_footerLinkTextColor" name="instaparent_theme_options[footerLinkTextColor]" value="<?php esc_attr_e( $options['footerLinkTextColor'] ); ?>" data-default-color="#ffffff" /></td>
               </tr>
               <tr valign="top">
-                <th scope="row"><?php _e( 'Footer Hover Text Color', 'instaparent' ); ?></th>
-                <td><input type="text" id="instaparent_theme_options_footerHoverTextColor" name="instaparent_theme_options[footerHoverTextColor]" value="<?php esc_attr_e( $options['footerHoverTextColor'] ); ?>" data-default-color="#ffffff" /></td>
-              </tr>-->
+                <th scope="row"><?php _e( 'Footer Link Hover Text Color', 'instaparent' ); ?></th>
+                <td><input type="text" id="instaparent_theme_options_footerLinkHoverTextColor" name="instaparent_theme_options[footerLinkHoverTextColor]" value="<?php esc_attr_e( $options['footerLinkHoverTextColor'] ); ?>" data-default-color="#ffffff" /></td>
+              </tr>
               </table>
               
               </td>
@@ -790,8 +782,8 @@ jQuery(document).ready(function() {
 	jQuery('#instaparent_theme_options_menuTextColor').wpColorPicker();
         
         jQuery('#instaparent_theme_options_footerBackgroundColor').wpColorPicker();
-	jQuery('#instaparent_theme_options_footerHoverTextColor').wpColorPicker();
-	jQuery('#instaparent_theme_options_footerHoverColor').wpColorPicker();
+	jQuery('#instaparent_theme_options_footerLinkTextColor').wpColorPicker();
+	jQuery('#instaparent_theme_options_footerLinkHoverTextColor').wpColorPicker();
 	jQuery('#instaparent_theme_options_footerTextColor').wpColorPicker();
         
 	jQuery('#instaparent_theme_options_FPBackgroundColor').wpColorPicker();
