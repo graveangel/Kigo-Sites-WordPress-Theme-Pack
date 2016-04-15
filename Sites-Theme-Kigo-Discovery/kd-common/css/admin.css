@@ -1,4 +1,3 @@
-
 /*
 To update 'Kigo Discovery' font you must extract the downloaded font from 'https://icomoon.io/'
 into '/kd-common/fonts' and make sure the resulting folder has the same name.
@@ -561,7 +560,7 @@ Administration option pages.
       margin-right: 20px; }
 
 .sortable {
-  width: 97%;
+  width: "97%";
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

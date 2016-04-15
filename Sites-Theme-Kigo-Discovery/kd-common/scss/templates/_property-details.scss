@@ -789,10 +789,15 @@ Media Desktop
 
 .pop-up-form-link {
   font-size: 12px;
-  color: $primary-color;
-  text-decoration:underline;
-  text-decoration-style: dotted;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &.update{
+    margin: 0 15px;
+    text-decoration: underline;
+  }
 }
+
 .pop-up-booking-form {
   position:   fixed;
   height:     100%;
@@ -815,6 +820,7 @@ Media Desktop
       color: #999;
       margin-bottom: 15px;
     }
+
     .close {
       position: absolute;
       right:    15px;
@@ -827,9 +833,8 @@ Media Desktop
         color:       #999;
         font-size:   35px;
       }
-
-
     }
+
     .update-info-label {
       font-size: 15px;
       color: #999;

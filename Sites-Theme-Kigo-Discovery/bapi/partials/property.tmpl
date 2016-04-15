@@ -109,47 +109,41 @@
                     <ul class="amenities-list">
                         <li>
                             <ul class="amenity-detail-list p-details">
+
                                 {{#Development}}
                                     <li class="pd-name">{{textdata.Development}}:</li>
                                     <li class="p-detail"><span>{{Development}}</span></li>
                                 {{/Development}}
-
 
                                 {{#Type}}
                                     <li class="pd-name">{{textdata.Category}}:</li>
                                     <li class="p-detail"><span>{{Type}}</span></li>
                                 {{/Type}}
 
-
                                 {{#Beds}}
                                     <li class="pd-name">{{textdata.Beds}}:</li>
                                     <li class="p-detail"><span>{{Beds}}</span></li>
                                 {{/Beds}}
-
 
                                 {{#Baths}}
                                     <li class="pd-name">{{textdata.Baths}}:</li>
                                     <li class="p-detail"><span>{{Baths}}</span></li>
                                 {{/Baths}}
 
-
                                 {{#Sleeps}}
                                     <li class="pd-name">{{textdata.Sleeps}}:</li>
                                     <li class="p-detail"><span>{{Sleeps}}</span></li>
                                 {{/Sleeps}}
-
 
                                 {{#Stories}}
                                     <li class="pd-name">{{textdata.Stories}}:</li>
                                     <li class="p-detail"><span>{{Stories}}</span></li>
                                 {{/Stories}}
 
-
                                 {{#Floor}}
                                     <li class="pd-name">{{textdata.Floor}}:</li>
                                     <li class="p-detail"><span>{{Floor}}</span></li>
                                 {{/Floor}}
-
 
                             </ul>
                         </li>
@@ -275,7 +269,7 @@
                 </span>
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
-                <div class="alert alert-error"><a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link">{{ContextData.Quote.ValidationMessage}}</a></div>
+                <div class="alert alert-error"><a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</a></div>
             {{/ContextData.Quote.IsValid}}
         </span>
 
@@ -284,7 +278,7 @@
 
                 {{#ContextData.Quote.IsValid}}
                     <span class="amenity-value">
-                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link">{{textdata.Update}}</a>
+                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link update">{{textdata.Update}}</a>
                     </span>
                 {{/ContextData.Quote.IsValid}}
 

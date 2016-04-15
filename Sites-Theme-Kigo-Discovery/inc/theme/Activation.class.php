@@ -68,7 +68,7 @@ class Activation {
         if (!count($this->activeWidgets['under_header_right'])) {
 
             /* Create logins menu */
-            $loginMenuId = $this->createCustomMenu('Logins', ['Owner Login' => '#']);
+            $loginMenuId = $this->createCustomMenu('Logins', ['Owner Login' => 'https://newapp.kigo.net/']);
 
             $kd_login_menu_content = [
                 'menu' => $loginMenuId,
@@ -105,7 +105,7 @@ class Activation {
                 'primary_text' => 'FIND A PLACE TO STAY',
                 'secondary_text' => 'A NEW WAY TO DISCOVER AND ENJOY ADVENTURES',
                 'button_value' => 'SEARCH RENTALS',
-                'button_link' => '#',
+                'button_link' => '/rentals/rentalsearch',
                 'slides' => [
                     $themePath.'/kd-common/img/hero/barcelona.jpg',
                     $themePath.'/kd-common/img/hero/florence.jpg',
@@ -259,7 +259,7 @@ class Activation {
             /* We add each page object into the new menu */
             $itemId = wp_update_nav_menu_item($menu_id, 0, array(
                     'menu-item-title' => $page->post_title,
-                    'menu-item-url' => get_the_permalink($page->ID),
+                    'menu-item-url' => $multilevel ? '#' : get_the_permalink($page->ID),
                     'menu-item-object' => 'page',
                     'menu-item-object-id' => $page->ID,
                     'menu-item-status' => 'publish',
@@ -343,7 +343,7 @@ class Activation {
 
             //Contact us
             'contact-subtitle' => 'Drop us a line!',
-            'contact-left' => 'Left side content',
+            'contact-left' => '',
             'contact-under' => 'Find us on the map',
 
         );
