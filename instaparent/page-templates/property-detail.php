@@ -15,7 +15,9 @@ global $bapi_all_options;
 //$settings = json_decode($bapi_all_options['bapi_sitesettings']);
 $settings = get_option('bapi_sitesettings_raw');
 
-//echo "<pre>"; print_r($data); echo "</pre>";
+$settings['propdetail-availcal'] = filter_var($settings['propdetail-availcal'], FILTER_SANITIZE_NUMBER_INT);
+
+echo "<pre>"; print_r($settings); echo "</pre>";
 
 ?>
 <?php get_header(); ?>
@@ -124,7 +126,7 @@ $settings = get_option('bapi_sitesettings_raw');
                       <li><a href="#tab2" data-toggle="tab"><?php echo $translations['Rates']; ?></a></li>
                     <?php } ?>
                   <?php } ?>
-                  <?php if($settings['propdetail-availcal'] != 'Hide Availability Calendars') { ?>
+                  <?php if(isset($settings['propdetail-availcal']) && $settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
                     <li><a href="#tab2" data-toggle="tab"><?php echo $translations['Rates']; ?></a></li>
                   <?php } ?>
                 <?php } ?>
@@ -176,12 +178,12 @@ $settings = get_option('bapi_sitesettings_raw');
                   <?php if($settings['propdetail-availcal'] != 'Hide Availability Calendars') { ?>
                     <?php if($settings['propdetailratestable'] != 'on') { ?>
                     <h3><?php echo $translations['Rates & Availability']; ?></h3>
-                    <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+                    <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
                     <hr/>
                     <?php } ?>
                     <?php if($settings['propdetailratestable'] == 'on') { ?>
                     <h3><?php echo $translations['Availability']; ?></h3>
-                    <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+                    <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
                     <?php } ?>
                     <?php if($settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
                       <h3><?php echo $translations['Rates']; ?></h3>
@@ -409,6 +411,21 @@ jQuery(document).ready(function($) {
         BAPI.UI.setupmapwidgetshelper();
       }
     }
+
+    //Calendar
+    $.each($('.bapi-availcalendar'), function (i, item){
+      var ctl = $(item);  ctl.css({'border':'1px solid #f0f', 'padding':'1em'});
+      var pkid = ctl.attr("data-pkid");
+      if (pkid!==null && pkid!='') {
+        BAPI.get(pkid, BAPI.entities.property, { "avail": 1, "rates": 1 }, function(data) {
+          var selector = '#' + ctl.attr('id');
+          var options = {};
+          try { options = $.parseJSON(ctl.attr('data-options')); } catch(err) { }
+          BAPI.log("Creating availability calendar for " + selector, 3);
+          context.createAvailabilityWidget(selector, data, options);
+        });
+      }
+    });
 });
 </script>
 <?php get_footer(); ?>
