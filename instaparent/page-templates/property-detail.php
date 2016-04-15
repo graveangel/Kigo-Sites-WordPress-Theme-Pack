@@ -15,6 +15,8 @@ global $bapi_all_options;
 //$settings = json_decode($bapi_all_options['bapi_sitesettings']);
 $settings = get_option('bapi_sitesettings_raw');
 
+//echo "<pre>"; print_r($data); echo "</pre>";
+
 ?>
 <?php get_header(); ?>
 <article class="property-detail-page">
@@ -128,8 +130,8 @@ $settings = get_option('bapi_sitesettings_raw');
                 <?php } ?>
                 <li><a href="#tab3" data-toggle="tab"><?php echo $translations['Amenities']; ?></a></li>
                 <li><a href="#tab4" id="tabs4" data-toggle="tab"><?php echo $translations['Attractions']; ?></a></li>
-                <?php if($settings['propdetail-reviewtab']) { ?>  
-                <li><a href="#tab5" data-toggle="tab"><?php echo $translations['Reviews']; ?></a></li>
+                <?php if(isset($settings['propdetail-reviewtab']) && $settings['propdetail-reviewtab'] == 'on') { ?>  
+                <li><a href="#tab5" data-toggle="tab"><?php echo $translations['Reviews'].' ('.count($data->ContextData->Reviews).')'; ?></a></li>
                 <?php } ?>
               </ul>     
               <div class="tab-content">
@@ -188,8 +190,23 @@ $settings = get_option('bapi_sitesettings_raw');
                   <?php if($settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
                     <h3><?php echo $translations['Rates']; ?></h3>
                   <?php } ?>
-                  <?php if($settings['propdetailratestable']) { ?>
-                  <div id="ratetable" class="bapi-ratetable" data-pkid="<?php echo $data->ID; ?>"></div>
+                  <?php if( !isset($settings['propdetailratestable']) || $settings['propdetailratestable'] != 'on') { ?>
+                    <table class="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                          <?php foreach($data->ContextData->Rates->Keys as $key) { ?>
+                            <th><?php echo $key; ?></th>
+                          <?php }?>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <?php foreach($data->ContextData->Rates->Values[0] as $value) { ?>
+                            <td><?php echo $value; ?></td>
+                        <?php } ?>
+                        </tr>
+                      </tbody>
+                    </table>
                   <?php } ?>
                   </div>
                   </div>
@@ -285,12 +302,13 @@ $settings = get_option('bapi_sitesettings_raw');
                 </div>
                 </div>
                 </div>
-                <?php if($settings['hasreviews']) { ?>
+                <?php if(isset($settings['propdetail-reviewtab']) && $settings['propdetail-reviewtab'] == 'on') { ?>
                 <div class="tab-pane" id="tab5">
                 <div class="row-fluid">
                 <div class="span12 box-sides">
                 <a class="flipkeyPowered" rel="nofollow" target="_blank" href="//www.flipkey.com"><span></span></a>
                 <div class="clearfix"></div>
+                <?php if( count($data->ContextData->Reviews) == 0) { _e('There are no reviews at this time.'); echo "<br />"; } ?>
                 <?php foreach($data->ContextData->Reviews as $review) { ?>
                   <div class="row-fluid review">
                     <div class="span2 left-side">
@@ -368,4 +386,29 @@ $settings = get_option('bapi_sitesettings_raw');
 </div>
 
 </article>
+
+<script>
+jQuery(document).ready(function($) {
+  if( $('.bapi-map').length > 0 ) {
+      if(
+        0 === $('#google-map-script').length &&
+        (
+          !$.isPlainObject( window.google ) ||
+          !$.isPlainObject( window.google.maps )
+        )
+      ) {
+        BAPI.log("loading google maps.");
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.id = "google-map-script";
+        script.src = "//maps.google.com/maps/api/js?sensor=false&callback=BAPI.UI.setupmapwidgetshelper";
+        document.body.appendChild(script);
+      }
+      else {
+        BAPI.log("google maps already loaded.");
+        BAPI.UI.setupmapwidgetshelper();
+      }
+    }
+});
+</script>
 <?php get_footer(); ?>
