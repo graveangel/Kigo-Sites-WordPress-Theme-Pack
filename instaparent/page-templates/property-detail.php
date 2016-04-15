@@ -17,7 +17,9 @@ $settings = get_option('bapi_sitesettings_raw');
 
 $settings['propdetail-availcal'] = filter_var($settings['propdetail-availcal'], FILTER_SANITIZE_NUMBER_INT);
 
-echo "<pre>"; print_r($settings); echo "</pre>";
+$locale = explode('_', get_locale())[0];
+
+echo "<pre>"; print_r($data->ContextData->Availability); echo "</pre>";
 
 ?>
 <?php get_header(); ?>
@@ -178,7 +180,7 @@ echo "<pre>"; print_r($settings); echo "</pre>";
                   <?php if($settings['propdetail-availcal'] != 'Hide Availability Calendars') { ?>
                     <?php if($settings['propdetailratestable'] != 'on') { ?>
                     <h3><?php echo $translations['Rates & Availability']; ?></h3>
-                    <div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+                    <div id="avail" class="bapi-availcalendar" data-availability='<?php echo json_encode($data->ContextData->Availability); ?>' data-locale="<?php echo $locale; ?>" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
                     <hr/>
                     <?php } ?>
                     <?php if($settings['propdetailratestable'] == 'on') { ?>
@@ -412,19 +414,88 @@ jQuery(document).ready(function($) {
       }
     }
 
-    //Calendar
-    $.each($('.bapi-availcalendar'), function (i, item){
-      var ctl = $(item);  ctl.css({'border':'1px solid #f0f', 'padding':'1em'});
-      var pkid = ctl.attr("data-pkid");
-      if (pkid!==null && pkid!='') {
-        BAPI.get(pkid, BAPI.entities.property, { "avail": 1, "rates": 1 }, function(data) {
-          var selector = '#' + ctl.attr('id');
-          var options = {};
-          try { options = $.parseJSON(ctl.attr('data-options')); } catch(err) { }
-          BAPI.log("Creating availability calendar for " + selector, 3);
-          context.createAvailabilityWidget(selector, data, options);
-        });
+    function mergeContiguosDates(ArrayOfBookings){
+      var mergedBookings = [];
+      function populateNotAvailableDaysArray(item, index, array)
+      {
+        if (mergedBookings.length == 0)
+        {
+          mergedBookings.push(item);
+        }else{
+          var theLastItem = mergedBookings.length-1;
+          /* if the check out of the previous booking is the same as the check in of the current booking merge */
+          if(mergedBookings[theLastItem].SCheckOut == item.SCheckIn)
+          {
+            mergedBookings[theLastItem].SCheckOut = item.SCheckOut;
+            mergedBookings[theLastItem].CheckOut = item.CheckOut;
+          }else{
+            mergedBookings.push(item);
+          }
+        }
       }
+      if(typeof(ArrayOfBookings)!=='undefined' && ArrayOfBookings !== null){
+        ArrayOfBookings.forEach(populateNotAvailableDaysArray);
+      }
+      return mergedBookings;
+    }
+
+    //Calendar
+    $.each($('.bapi-availcalendar'), function (i, targetid){
+      var options = $(this).data('options'),
+          lang = $(this).data('locale') == 'en' ? '' : $(this).data('locale'),
+          notavailableArrayDays = [];
+
+          notavailableArrayDays = mergeContiguosDates($(this).data('availability'));
+
+      if (typeof (options) === "undefined" || options === null) { options = new Object(); }
+      if (typeof (options.availcalendarmonths) === "undefined" || options.availcalendarmonths === null) { options.availcalendarmonths = 6; }
+      if (typeof (options.minbookingdays) === "undefined" || options.minbookingdays === null) { options.minbookingdays = 0; }
+      if (typeof (options.maxbookingdays) === "undefined" || options.maxbookingdays === null) {
+        //based on months now
+        options.maxbookingdays = BAPI.config().maxbookingdays; 
+      }
+
+      $.datepicker.setDefaults( $.datepicker.regional[ lang ] );
+
+      console.log(options);
+      console.log(notavailableArrayDays);
+
+      $(targetid).datepicker({
+        numberOfMonths: options.numberOfMonths,
+        minDate: options.minbookingdays,
+        maxDate: "+" + options.maxbookingdays + "D",
+        createButton: false,
+        beforeShowDay: function (date) {
+          if (notavailableArrayDays.length == 0) {
+            return [true, "avail"];
+          }
+          var tdate = date;
+          var bavail = true;
+          var itscheckin = false;
+          var itscheckout = false;
+          function checkDateSetFlags(item, index, array) {
+            var cin = new Date(item.SCheckIn),
+                cout = new Date(item.SCheckOut);
+
+            if (tdate>cin && tdate<cout) {        
+              bavail = false;       
+            }
+            /* its check in ? */
+            if(cin-tdate==0){
+              itscheckin = true;
+            }
+            /* its check out ? */
+            if(cout-tdate==0){
+              itscheckout = true;
+            }
+          }
+          notavailableArrayDays.forEach(checkDateSetFlags);
+          if (bavail && !itscheckin && !itscheckout) { return [true, "avail", "Available"]; }
+          else if(itscheckout) { return [true, "checkInDate", "Check-in Only"]; }
+          else if(itscheckin) { return [true, "checkOutDate", "Check-out Only"]; }
+          else { return [false, "datepicker-notavailable", "Unavailable"]; }
+        }
+      });
     });
 });
 </script>
