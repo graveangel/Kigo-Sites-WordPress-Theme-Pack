@@ -19,7 +19,7 @@ $settings['propdetail-availcal'] = filter_var($settings['propdetail-availcal'], 
 
 $locale = explode('_', get_locale())[0];
 
-echo "<pre>"; print_r($data->ContextData->Availability); echo "</pre>";
+//echo "<pre>"; print_r($data->ContextData->Availability); echo "</pre>";
 
 ?>
 <?php get_header(); ?>
@@ -312,7 +312,7 @@ echo "<pre>"; print_r($data->ContextData->Availability); echo "</pre>";
                 <div class="span12 box-sides">
                 <a class="flipkeyPowered" rel="nofollow" target="_blank" href="//www.flipkey.com"><span></span></a>
                 <div class="clearfix"></div>
-                <?php if( count($data->ContextData->Reviews) == 0) { _e('There are no reviews at this time.'); echo "<br />"; } ?>
+                <?php if( count($data->ContextData->Reviews) == 0) { _e('There are no reviews at this time.'); echo "<br /><br />"; } ?>
                 <?php foreach($data->ContextData->Reviews as $review) { ?>
                   <div class="row-fluid review">
                     <div class="span2 left-side">
