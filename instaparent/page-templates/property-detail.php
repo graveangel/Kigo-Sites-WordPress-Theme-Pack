@@ -21,6 +21,21 @@ $locale = explode('_', get_locale())[0];
 
 //echo "<pre>"; print_r($data->ContextData->Availability); echo "</pre>";
 
+//Foreach, omit past dates
+$bookings = [];
+foreach($data->ContextData->Availability as $booking) {
+  $now = date('d-m-Y');
+  $checkout = explode('/',$booking->SCheckOut);
+  $checkout = array($checkout[1], $checkout[0], $checkout[2]);
+  $checkout = implode('-', $checkout);
+
+  if(strtotime($now) < strtotime($checkout)) {
+    $bookings[] = $booking;
+  }
+}
+
+echo "<pre>"; print_r($bookings); echo "</pre>";
+
 ?>
 <?php get_header(); ?>
 <article class="property-detail-page">
@@ -456,9 +471,6 @@ jQuery(document).ready(function($) {
       }
 
       $.datepicker.setDefaults( $.datepicker.regional[ lang ] );
-
-      console.log(options);
-      console.log(notavailableArrayDays);
 
       $(targetid).datepicker({
         numberOfMonths: options.numberOfMonths,
