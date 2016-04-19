@@ -29,12 +29,10 @@ foreach($data->ContextData->Availability as $booking) {
   $checkout = array($checkout[1], $checkout[0], $checkout[2]);
   $checkout = implode('-', $checkout);
 
-  if(strtotime($now) < strtotime($checkout)) {
+  if(strtotime($checkout) > strtotime($now)) {
     $bookings[] = $booking;
   }
 }
-
-echo "<pre>"; print_r($bookings); echo "</pre>";
 
 ?>
 <?php get_header(); ?>
@@ -195,7 +193,7 @@ echo "<pre>"; print_r($bookings); echo "</pre>";
                   <?php if($settings['propdetail-availcal'] != 'Hide Availability Calendars') { ?>
                     <?php if($settings['propdetailratestable'] != 'on') { ?>
                     <h3><?php echo $translations['Rates & Availability']; ?></h3>
-                    <div id="avail" class="bapi-availcalendar" data-availability='<?php echo json_encode($data->ContextData->Availability); ?>' data-locale="<?php echo $locale; ?>" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+                    <div id="avail" class="bapi-availcalendar" data-availability='<?php echo json_encode($bookings); ?>' data-locale="<?php echo $locale; ?>" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
                     <hr/>
                     <?php } ?>
                     <?php if($settings['propdetailratestable'] == 'on') { ?>
