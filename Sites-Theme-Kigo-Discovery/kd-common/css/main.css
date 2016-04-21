@@ -3462,9 +3462,14 @@ Media Desktop
 
 .pop-up-form-link {
   font-size: 12px;
-  color: #33baaf;
-  text-decoration: underline;
-  text-decoration-style: dotted; }
+  text-decoration-style: dotted;
+  color: white;
+  padding: 12px;
+  text-decoration: none;
+  text-transform: uppercase; }
+  .pop-up-form-link.update {
+    margin: 0 15px;
+    text-decoration: underline; }
 
 .pop-up-booking-form {
   position: fixed;
