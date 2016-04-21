@@ -3305,8 +3305,6 @@ Media Tablets horizontal
     .template-property .ppt-desc-text {
       color: #999;
       font-size: 14px; }
-    .template-property .property-features {
-      padding: 0; }
     .template-property .amenities-list {
       margin-top: 12px; }
       .template-property .amenities-list .amenity-detail-list {
@@ -3462,8 +3460,6 @@ Media Desktop
 
 .pop-up-form-link {
   font-size: 12px;
-  text-decoration-style: dotted;
-  color: white;
   padding: 12px;
   text-decoration: none;
   text-transform: uppercase; }

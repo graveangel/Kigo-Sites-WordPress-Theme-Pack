@@ -4,7 +4,7 @@ namespace Discovery;
 
 get_header();
 the_post();
-$themeBAPI = new statusBAPIHelper();
+$themeBAPI = new BAPIHelper();
 $bapi_solutiondata = $themeBAPI->getData();
 $textDataArray = $themeBAPI->getTextDataArray();
 
