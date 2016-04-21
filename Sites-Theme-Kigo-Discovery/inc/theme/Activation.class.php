@@ -258,7 +258,7 @@ class Activation {
             /* We add each page object into the new menu */
             $itemId = wp_update_nav_menu_item($menu_id, 0, array(
                     'menu-item-title' => $page->post_title,
-                    'menu-item-url' => get_the_permalink($page->ID),
+                    'menu-item-url' => $multilevel ? '#' : get_the_permalink($page->ID),
                     'menu-item-object' => 'page',
                     'menu-item-object-id' => $page->ID,
                     'menu-item-status' => 'publish',
