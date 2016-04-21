@@ -4289,7 +4289,8 @@ body.page-template-contact-page {
     #bookingform .amount-bk .bold, #paymentform .amount-bk .bold {
       font-size: 20px; }
   #bookingform .bapi-showrevise, #paymentform .bapi-showrevise {
-    padding: 5px 10px; }
+    padding: 5px 10px;
+    cursoir: pointer; }
   #bookingform .property-info, #paymentform .property-info {
     font-family: "Montserrat";
     font-size: 14px; }
