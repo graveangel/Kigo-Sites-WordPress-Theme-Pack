@@ -340,7 +340,7 @@ class Activation {
 
             //Contact us
             'contact-subtitle' => 'Drop us a line!',
-            'contact-left' => 'Left side content',
+            'contact-left' => '',
             'contact-under' => 'Find us on the map',
 
         );
