@@ -15,7 +15,7 @@
                     <div>
                         <div class="loader"><div class="bar primary-fill-color"></div></div>
                         <div id="mapContainer" class="loading" data-color="<?php echo get_theme_mod('primary-color') ?>"></div>
-                        <div id="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
+                        <div id="resetMap" class="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
                     </div>
                 </div>
 
@@ -23,15 +23,15 @@
                     <div class="col-xs-12 top">
                         <div class="available">
                             <div>
+                                <span>Showing&nbsp;</span>
                                 <span class="ppty-count-current">0</span>
-                                <span>&nbsp;out of&nbsp;</span>
-                                <span class="ppty-count-total">0</span>
-                                <span>&nbsp;properties loaded.</span>
+                                <span>&nbsp;properties on map</span>
+                                <span class="resetMap"><a href="#">[reset]</a></span>
                             </div>
 
                             <div class="btn-group viewToggle">
-                                <button class="btn v-list"><i class="fa fa-list"></i>&nbsp;List</button>
-                                <button class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                                <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;List</button>
+                                <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
                             </div>
                         </div>
                     </div>
@@ -55,8 +55,8 @@
                             </div>
 
                             <div class="btn-group viewToggle">
-                                <button class="btn active"><i class="fa fa-list"></i>&nbsp;List</button>
-                                <button class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                                <button disabled class="btn active"><i class="fa fa-list"></i>&nbsp;List</button>
+                                <button disabled class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
                             </div>
                         </div>
                     </div>
