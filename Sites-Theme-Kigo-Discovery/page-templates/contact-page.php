@@ -1,8 +1,10 @@
 <?php
+namespace Discovery;
 //Template name: Contact Page
+
 get_header();
 the_post();
-$themeBAPI = new Discovery\BAPIHelper();
+$themeBAPI = new statusBAPIHelper();
 $bapi_solutiondata = $themeBAPI->getData();
 $textDataArray = $themeBAPI->getTextDataArray();
 
