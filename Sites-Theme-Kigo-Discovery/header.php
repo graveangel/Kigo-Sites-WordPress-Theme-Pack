@@ -58,14 +58,13 @@
                                 <a href="tel:<?php echo get_theme_mod('site-phone'); ?>"><?php echo get_theme_mod('site-phone'); ?></a>
                             </div>
                         <?php endif; ?>
-
-                        <?php if(is_active_sidebar('header_right')): ?>
-                            <div class="col-xs-12">
-                                <?php dynamic_sidebar('header_right');   ?>
-                            </div>
-                        <?php endif; ?>
-
                     </div>
+
+                    <?php if(is_active_sidebar('header_right')): ?>
+                        <div class="col-xs-12">
+                            <?php dynamic_sidebar('header_right');   ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
