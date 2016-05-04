@@ -122,25 +122,25 @@ class XBAPI extends \BAPI {
 
         //If first method failed try second
 
-        if (empty($output)) {
-            
-            try{
-            
-            $args = array(
-                'timeout' => 30,
-                'redirection' => 35,
-                'httpversion' => '1.0',
-                'user-agent' => 'InstaSites Agent',
-            );
-            
-            $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
-            $output = $response['body'];
-            }catch(\Exception $err){
-                dd($err, true);
-            }
-            
-        }
-        
+//        if (empty($output)) {
+//            
+//            try{
+//            
+//            $args = array(
+//                'timeout' => 30,
+//                'redirection' => 35,
+//                'httpversion' => '1.0',
+//                'user-agent' => 'InstaSites Agent',
+//            );
+//            
+//            $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
+//            $output = $response['body'];
+//            }catch(\Exception $err){
+//                dd($err, true);
+//            }
+//            
+//        }
+//        
   
 
         return $output;
