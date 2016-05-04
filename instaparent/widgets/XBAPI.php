@@ -117,14 +117,58 @@ class XBAPI extends \BAPI {
      * @return string
      */
     private function xconnect($requestString) {
-
-        $nconnection = curl_init();
-        curl_setopt($nconnection, CURLOPT_USERAGENT, 'InstaSites Agent');
-        curl_setopt($nconnection, CURLOPT_URL, $this->base_url . $requestString . '&apikey=' . $this->api_key);
-        curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($nconnection);
-        curl_close($nconnection);
+        //Method 1:
+        $context =  stream_context_create(array(
+			'http' => array(
+				'method' => "GET",
+				'header' => "User-Agent: InstaSites Agent\r\nReferer: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."\r\n"
+			)
+		));
+                    
+        $output = file_get_contents($this->base_url . $requestString . '&apikey=' . $this->api_key,false, $context );
         
+        
+        
+        //Method 2:
+        if(empty($output))
+        {
+            $nconnection = curl_init();
+            curl_setopt($nconnection, CURLOPT_USERAGENT, 'InstaSites Agent');
+            curl_setopt($nconnection, CURLOPT_URL, $this->base_url . $requestString . '&apikey=' . $this->api_key);
+            curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
+            $output = curl_exec($nconnection);
+            curl_close($nconnection);
+        }
+        
+
+
+
+        //Method 3:
+        if (empty($output)) {
+
+            try {
+
+                $args = array(
+                    'timeout' => 30,
+                    'redirection' => 35,
+                    'httpversion' => '1.0',
+                    'user-agent' => 'InstaSites Agent',
+                );
+
+                $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
+                $response = null;
+                if(!empty($response))
+                    $output = $response['body'];
+                else
+                    $output = null;
+               
+            } catch (\Exception $err) {
+                dd($err, true);
+            }
+        }
+
+
+
         return $output;
     }
 
