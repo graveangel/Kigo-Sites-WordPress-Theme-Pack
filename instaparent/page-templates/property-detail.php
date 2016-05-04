@@ -23,14 +23,16 @@ $locale = explode('_', get_locale())[0];
 
 //Foreach, omit past dates
 $bookings = [];
-foreach($data->ContextData->Availability as $booking) {
-  $now = date('d-m-Y');
-  $checkout = explode('/',$booking->SCheckOut);
-  $checkout = array($checkout[1], $checkout[0], $checkout[2]);
-  $checkout = implode('-', $checkout);
+if($data) {
+  foreach($data->ContextData->Availability as $booking) {
+    $now = date('d-m-Y');
+    $checkout = explode('/',$booking->SCheckOut);
+    $checkout = array($checkout[1], $checkout[0], $checkout[2]);
+    $checkout = implode('-', $checkout);
 
-  if(strtotime($checkout) > strtotime($now)) {
-    $bookings[] = $booking;
+    if(strtotime($checkout) > strtotime($now)) {
+      $bookings[] = $booking;
+    }
   }
 }
 
