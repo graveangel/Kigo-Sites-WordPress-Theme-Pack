@@ -120,6 +120,10 @@ class XBAPI extends \BAPI {
 
         //If first method failed try second
         if (empty($output)) {
+            
+            dd($output, true);
+            
+            
             $args = array(
                 'timeout' => 30,
                 'redirection' => 35,
@@ -129,9 +133,10 @@ class XBAPI extends \BAPI {
             
             $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
             $output = $response['body'];
+            
         }
         
-        dd($output, true);
+  
 
         return $output;
     }
