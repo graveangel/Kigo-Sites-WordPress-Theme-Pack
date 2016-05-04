@@ -126,10 +126,12 @@ class XBAPI extends \BAPI {
                 'httpversion' => '1.0',
                 'user-agent' => 'InstaSites Agent',
             );
-
+            
             $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
             $output = $response['body'];
         }
+        
+        dd($output, true);
 
         return $output;
     }
