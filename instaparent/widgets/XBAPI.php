@@ -117,6 +117,8 @@ class XBAPI extends \BAPI {
         curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($nconnection);
         curl_close($nconnection);
+        
+        dd($this->base_url . $requestString . '&apikey=' . $this->api_key, true);
 
         //If first method failed try second
 
