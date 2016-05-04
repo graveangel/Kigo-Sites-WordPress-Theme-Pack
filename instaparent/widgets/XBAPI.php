@@ -1,5 +1,7 @@
 <?php
+
 namespace Kigo\Themes\instaparent;
+
 /**
  * XBAPI is Bapi Extended.
  */
@@ -26,9 +28,6 @@ class XBAPI extends \BAPI {
         parent::__construct($this->api_key, $this->base_url);
     }
 
-
-
-
     /**
      * This function gets all properties of this solution.
      * @return array   returns an array;
@@ -54,15 +53,14 @@ class XBAPI extends \BAPI {
         return $props;
     }
 
-
     /**
      *
      * @param string $findIds
      * @return array of objects
      */
-    function getPropertyFinders($findIds=[]){
+    function getPropertyFinders($findIds = []) {
 
-        if(empty($findIds))
+        if (empty($findIds))
             $findIds = json_decode($this->xconnect('/ws/?method=search&entity=searches&seo=1'))->result ? : [];
         else
             $findIds = array_values($findIds);
@@ -77,19 +75,17 @@ class XBAPI extends \BAPI {
         foreach ($pfToRequest as $pfToRequestids) {
             $ids = implode(',', $pfToRequestids);
 
-            $pfinders_ = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids='.$ids.'&seo=1'))->result ? : [];
+            $pfinders_ = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids=' . $ids . '&seo=1'))->result ? : [];
             $pfinders = array_merge($pfinders, $pfinders_);
         }
 
         return $pfinders;
     }
 
-
-    function getSpecialOffers($findIds=[])
-    {
+    function getSpecialOffers($findIds = []) {
 
 
-        if(empty($findIds))
+        if (empty($findIds))
             $findIds = json_decode($this->xconnect('/ws/?method=search&entity=specials&seo=1'))->result ? : [];
         else
             $findIds = array_values($findIds);
@@ -101,15 +97,13 @@ class XBAPI extends \BAPI {
 
         foreach ($spoffRequest as $spoffRequestids) {
             $ids = implode(',', $spoffRequestids);
-            $spoffers_ = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids='.$ids.'&seo=1'))->result ? : [];
+            $spoffers_ = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids=' . $ids . '&seo=1'))->result ? : [];
             $spoffers = array_merge($spoffers, $spoffers_);
         }
 
 
         return $spoffers;
     }
-
-
 
     /**
      * Makes a request to the bapi via webservice.
@@ -123,8 +117,21 @@ class XBAPI extends \BAPI {
         curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($nconnection);
         curl_close($nconnection);
+
+        //If first method failed try second
+        if (empty($output)) {
+            $args = array(
+                'timeout' => 30,
+                'redirection' => 35,
+                'httpversion' => '1.0',
+                'user-agent' => 'InstaSites Agent',
+            );
+
+            $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
+            $output = $response['body'];
+        }
+
         return $output;
     }
 
 }
-
