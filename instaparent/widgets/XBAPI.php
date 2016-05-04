@@ -118,12 +118,12 @@ class XBAPI extends \BAPI {
         $output = curl_exec($nconnection);
         curl_close($nconnection);
         
-        dd($output, true);
+        
 
         //If first method failed try second
 
         if (empty($output)) {
-            
+           
             try{
             
             $args = array(
@@ -134,6 +134,7 @@ class XBAPI extends \BAPI {
             );
             
             $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
+             dd($response, true);
             $output = $response['body'];
             }catch(\Exception $err){
                 dd($err, true);
