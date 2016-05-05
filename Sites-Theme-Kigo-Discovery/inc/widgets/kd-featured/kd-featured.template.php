@@ -41,7 +41,7 @@ $bg_right = $i['color'] ? 'style="background-color: rgba(255,255,255,.1)"' : '';
         </div>
 
         <div class="action">
-            <a class="kd-button" href="<?php echo $i['link'] ? : '/rentals' ?>">See all properties</a>
+            <a class="kd-button" href="<?php echo $i['link'] ? : '/rentals' ?>"><?php echo $i['text'] ? : 'See all properties' ?></a>
         </div>
 
     </div>
