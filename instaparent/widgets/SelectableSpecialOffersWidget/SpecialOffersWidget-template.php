@@ -3,6 +3,7 @@
 use Kigo\Themes\instaparent\XBAPI;
 
 $xbapi = new XBAPI();
+$existentsp = array_keys($this->getSpecialOffers());
 $specialOffers = $xbapi->getSpecialOffers($ins['special_offers']);
 //    dd($pfinders, true);
 ?>
@@ -15,6 +16,8 @@ $specialOffers = $xbapi->getSpecialOffers($ins['special_offers']);
 
     <div class="kigo-spoffers-items">
         <?php foreach ($specialOffers as $spoffer) {
+            if(!in_array((int)$spoffer->ID, $existentsp)) 
+                continue;
             ?>
             <div class="kigo-spoffer width<?php echo $ins['items_per_row']; ?>">
 

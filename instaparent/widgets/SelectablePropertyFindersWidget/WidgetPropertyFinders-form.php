@@ -28,11 +28,17 @@
 <label>
     <h3>Select property Finders:</h3>
 </label>
+
 <ul class="sortable propery_finders_sortable_list">
        <?php
+
+       //Compare current property finders with the ones in the app.
+       $existentppfob = $this->getPropertyFinders();
+       $existentppf = array_keys($existentppfob);
+
        if(is_array($ins['property_finders']) && count($ins['property_finders'])){
         foreach($ins['property_finders'] as $pfindid => $name){
-
+                if(!in_array($pfindid, $existentppf)) continue;
             ?>
             <li>
             <label>
@@ -42,12 +48,12 @@
             </label>
             </li>
                 <?php
-        } 
+        }
        }
-       
-       $bpspecialoffers = $this->getPropertyFinders();
-       if(is_array($bpspecialoffers) && count($bpspecialoffers)){
-            foreach( $bpspecialoffers as $pfindid => $name){
+
+       $bppropertyfinders = $existentppfob;
+       if(is_array($bppropertyfinders) && count($bppropertyfinders)){
+            foreach( $bppropertyfinders as $pfindid => $name){
             $checked = '';
             if(!empty($ins['property_finders'][$pfindid])) continue;
             ?>
@@ -63,7 +69,7 @@
        }else{
         echo "<li><p>There are no property finders available. </p></li>";
        }
-        
+
     ?>
 </ul>
 

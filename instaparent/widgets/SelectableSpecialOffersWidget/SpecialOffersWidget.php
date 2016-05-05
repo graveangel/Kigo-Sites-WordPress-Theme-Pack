@@ -11,8 +11,8 @@ class SpecialOffersWidget extends WidgetBase{
 
          $args = [
              'base_id'      => 'kigo_sortable_special_offers',
-             'visible_name' => 'Kigo Sortable Special Offers',
-             'description'  => 'This widget can select and sort the Special Offers to display in it.',
+             'visible_name' => 'Kigo Sortable Specials',
+             'description'  => 'Use this to select and sort your Specials that you setup in the Kigo App',
              'textdomain'   => __TEXTDOMAIN__,
          ];
 

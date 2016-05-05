@@ -33,10 +33,12 @@
 <h3>Select Special Offers</h3>
 <ul class="sortable special_offers_sortable_list">
        <?php
-
+       //Compare current specials with the ones in the app.
+       $existentspob = $this->getSpecialOffers();
+       $existentsp = array_keys($existentspob);
        if(is_array($ins['special_offers']) && count($ins['special_offers'])){
         foreach($ins['special_offers'] as $spoffid => $name){
-
+            if(!in_array($spoffid, $existentsp)) continue;
             ?>
             <li>
             <label>
@@ -49,7 +51,7 @@
         }
        }
 
-       $bpspecialoffers = $this->getSpecialOffers();
+       $bpspecialoffers = $existentspob;
         if(is_array($bpspecialoffers) && count($bpspecialoffers)){
             foreach($bpspecialoffers as $spoffid => $name){
             $checked = '';
