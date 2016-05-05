@@ -133,35 +133,7 @@ class XBAPI extends \BAPI {
             $output = curl_exec($nconnection);
             curl_close($nconnection);
         }
-        
-
-
-
-        //Method 3:
-        if (empty($output)) {
-
-            try {
-
-                $args = array(
-                    'timeout' => 30,
-                    'redirection' => 35,
-                    'httpversion' => '1.0',
-                    'user-agent' => 'InstaSites Agent',
-                );
-
-                $response = wp_remote_get($this->base_url . $requestString . '&apikey=' . $this->api_key, $args);
-                $response = null;
-                if(!empty($response))
-                    $output = $response['body'];
-                else
-                    $output = null;
-               
-            } catch (\Exception $err) {
-                dd($err, true);
-            }
-        }
-
-
+       
 
         return $output;
     }
