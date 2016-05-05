@@ -1,5 +1,7 @@
 <?php
+namespace Discovery;
 //Template name: Contact Page
+
 get_header();
 the_post();
 $themeBAPI = new BAPIHelper();

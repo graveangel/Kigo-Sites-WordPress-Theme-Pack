@@ -57,4 +57,3 @@ Template Name: About us Page
 
 </div>
 <?php get_footer(); ?>
-<!-- TODO: put JS and resolve description on tablets -->
