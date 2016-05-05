@@ -85,7 +85,7 @@ var app = {
         var options = {pagesize: 20, seo: true};
 
         BAPI.search(entity, options, function (sdata) {
-            BAPI.get(sdata.result, entity, {}, function (gdata) {
+            BAPI.get(sdata.result, entity, {pagesize: 20}, function (gdata) {
                 var aux_data = {};
                 aux_data.result = gdata.result;
                 aux_data.config = BAPI.config();
