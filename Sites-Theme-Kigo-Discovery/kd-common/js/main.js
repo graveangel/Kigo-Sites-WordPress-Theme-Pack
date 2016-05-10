@@ -80,7 +80,7 @@ var app = {
         var options = {pagesize: 20, seo: true};
 
         BAPI.search(entity, options, function (sdata) {
-            BAPI.get(sdata.result, entity, {}, function (gdata) {
+            BAPI.get(sdata.result, entity, options, function (gdata) {
                 var aux_data = {};
                 aux_data.result = gdata.result;
                 aux_data.config = BAPI.config();
@@ -744,7 +744,7 @@ window.addEventListener('DOMContentLoaded', app.initBapi.bind(app));
     }
 
 })(self);
-/* 
+/*
  * Array List of the 47 status code of the Yahoo weather
  */
 var codeToClassname=["wi-tornado","wi-day-thunderstorm","wi-hurricane","wi-thunderstorm","wi-storm-showers","wi-rain-mix","wi-rain-mix","wi-rain-mix","wi-rain-mix","wi-snow","wi-rain-mix","wi-showers","wi-showers","wi-snow","wi-snow","wi-rain-mix","wi-snow","wi-rain-mix","wi-hail","wi-fog","wi-fog","wi-fog","wi-fog","wi-fog","wi-cloudy-gusts","wi-cloudy-gusts","wi-cloudy","wi-night-cloudy","wi-day-cloudy","wi-night-partly-cloudy","wi-day-cloudy","wi-night-clear","wi-day-sunny","wi-night-clear","wi-day-sunny","wi-rain-mix","wi-hot","wi-storm-showers","wi-storm-showers","wi-storm-showers","wi-showers","wi-snow","wi-showers","wi-rain-mix","wi-cloudy","wi-storm-showers","wi-hail","wi-storm-showers"];
@@ -834,7 +834,7 @@ app.bapiModules.templates.propertyDetails = {
         var pid = parseInt(jQuery('.bapi-entityadvisor').attr('data-pkid'));
         var lat = jQuery('.bapi-entityadvisor').attr('data-lat');
         var long = jQuery('.bapi-entityadvisor').attr('data-long');
-       
+
         var selected = selected_usemap;
 
         var usemap = false;
@@ -843,18 +843,18 @@ app.bapiModules.templates.propertyDetails = {
                 usemap = true;
             }
         });
-   
-        
+
+
         if(/comingsoon\.gif/.test(jQuery('.bapi-entityadvisor').attr('data-bg'))){
             usemap = true;
         }
- 
+
         if(this.forceusemap) usemap = true;
-        
+
         var mapbox = document.querySelector('.hero-image');
-        
+
         if (usemap) {
-            
+
             var map = new google.maps.Map(mapbox, {
                 center: {lat: parseFloat(lat), lng: parseFloat(long)},
                 scrollwheel: false,
@@ -862,7 +862,7 @@ app.bapiModules.templates.propertyDetails = {
             });
 
             var marker_color = document.querySelector('.template-property[data-markercolor]').dataset.markercolor;
-            
+
             function setMarker(){
                  var icon = {
                 path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3" +
@@ -882,7 +882,7 @@ app.bapiModules.templates.propertyDetails = {
             });
 
             }
-            
+
             function setStreetView(){
                 var panorama = new google.maps.StreetViewPanorama(
                     document.getElementById('pano'), {
@@ -892,21 +892,21 @@ app.bapiModules.templates.propertyDetails = {
                     pitch: 10
                 }
             });
-            
+
             map.setStreetView(panorama);
             }
-            
+
             function setMapStreetview(){
                 jQuery(mapbox).css('width','50%');
-                
+
                 var center = map.getCenter();
                 google.maps.event.trigger(map, "resize");
-                map.setCenter(center); 
-                
+                map.setCenter(center);
+
                  jQuery('#pano').css('width','50%').css('left','50%');
             }
-            
-            
+
+
             switch(selected_usemap_layout) {
                 case 0:
                     setMarker();
@@ -922,7 +922,7 @@ app.bapiModules.templates.propertyDetails = {
                     setStreetView();
                     jQuery(mapbox).hide;
                     break;
-                    
+
                 default:
                     setMarker();
                     setStreetView();
@@ -960,21 +960,21 @@ app.bapiModules.templates.propertyDetails = {
                 $('.ppt-slides li:first-child').css('width','100%');
             }
         }
-      return this;  
+      return this;
     },
     checkPropSettings: function(){
         if(force_usemap){
             this.forceusemap = true;
         }
-        
+
         if(forced_featured){
             this.forcedfeatured = true;
         }
-        
+
         if(usemap_layout>=0 && force_usemap){
             selected_usemap_layout = usemap_layout;
         }
-        
+
         return this;
     },
     cond: function cond() {
