@@ -1116,6 +1116,10 @@ function instaparent_preset_styles() {
 		$footerStyleName = @$OptionsSelected['footerstyles'];
 		/* we get the Featured Properties Selected */
 		$FPstyle = @$OptionsSelected['FPstyles'];
+                /* we get the h1 and titles color Selected */
+		$h1styles = @$OptionsSelected['h1styles'];
+                /* we get the paragraphs color Selected */
+		$paragraphs_styles = @$OptionsSelected['paragraphs_styles'];
 		/* we get the Logo Size Selected */
 		$logoSize = @$OptionsSelected['logoSize'];
 		$customlogoSize = @$OptionsSelected['logoSize_custom'];
@@ -1335,6 +1339,35 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
 	}
 	
 	}
+        
+        /* we check if the var is set or empty or if it is the default option,
+	TODO: a function that checks this */
+	if (isset($h1styles) && !empty($h1styles) && $h1styles != 'default') 
+	{
+	/* we get the color for the h1 and titles color */
+	$h1TextColor = $OptionsSelected['h1TextColor'];
+	
+            /* we check if the var is set or empty or if it is the default option */
+            if (isset($h1TextColor) && !empty($h1TextColor) && $h1TextColor != 'default') 
+            {
+                    $CustomCSSstyle = $CustomCSSstyle . 'body h1,body h3.widget-title,body .widget_bapi_hp_search .widget-title{color:'.$h1TextColor.';}';
+            }
+	}
+        
+        /* we check if the var is set or empty or if it is the default option,
+	TODO: a function that checks this */
+	if (isset($paragraphs_styles) && !empty($paragraphs_styles) && $paragraphs_styles != 'default') 
+	{
+	/* we get the color for the h1 and titles color */
+	$paragraphs_TextColor = $OptionsSelected['paragraphs_TextColor'];
+	
+            /* we check if the var is set or empty or if it is the default option */
+            if (isset($paragraphs_TextColor) && !empty($paragraphs_TextColor) && $paragraphs_TextColor != 'default') 
+            {
+                    $CustomCSSstyle = $CustomCSSstyle . 'body p{color:'.$paragraphs_TextColor.';}';
+            }
+	}
+        
 	
 	if (isset($logoSize) && !empty($logoSize) && $logoSize != 'default') 
 	{
