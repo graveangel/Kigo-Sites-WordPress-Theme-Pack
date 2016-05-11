@@ -12,6 +12,9 @@ get_header();
 $data = get_post_meta(get_the_ID(), 'bapi_property_data', true);
 
 $data = json_decode($data);
+$context = $data->ContextData;
+
+if(isset($_GET['debug'])) { echo "<pre>"; print_r($data); echo "</pre>"; }
 
 $translations = getbapitextdata();
 
@@ -19,10 +22,13 @@ global $bapi_all_options;
 //$settings = json_decode($bapi_all_options['bapi_sitesettings']);
 $settings = get_option('bapi_sitesettings_raw');
 
-//echo "<pre>"; print_r($settings); echo "</pre>";	
+if(isset($_GET['debug'])) { echo "<pre>"; print_r($settings); echo "</pre>"; }
+
+if($_GET['debug'] == 'session') { echo "<pre>"; print_r($_SESSION); echo "</pre>"; }
 
 if($data) {
 ?>
+
 <article class="span9">
 	<div class="bapi-entityadvisor" data-pkid="<?php echo $data->ID; ?>" data-entity="property"></div>
 		<section class="row-fluid">
@@ -320,9 +326,9 @@ if($data) {
 
 <aside class="span3">
   
-  		<?php if ( is_active_sidebar( 'insta-right-sidebar-prop-detail' ) ) : ?>		
-            <?php dynamic_sidebar( 'insta-right-sidebar-prop-detail' ); ?>		
-        <?php endif; ?>
+	<?php if ( is_active_sidebar( 'insta-right-sidebar-prop-detail' ) ) : ?>		
+	    <?php dynamic_sidebar( 'insta-right-sidebar-prop-detail' ); ?>		
+	<?php endif; ?>
         
 </aside>
 		<span class="end"></span>
@@ -350,6 +356,7 @@ if($data) {
 		</main><!-- #main -->
 	</div><!-- #primary -->
 */ ?>
-<?php
 
+
+<?php
 get_footer();
