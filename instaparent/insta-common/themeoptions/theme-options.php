@@ -175,6 +175,16 @@ $h1styles_options = array(
         'label' => __('Custom', 'instaparent')
     )
 );
+$h2styles_options = array(
+    'default' => array(
+        'value' => 'default',
+        'label' => __('Default', 'instaparent')
+    ),
+    'h2customStyle' => array(
+        'value' => 'h2customStyle',
+        'label' => __('Custom', 'instaparent')
+    )
+);
 
 $paragraphs_styles_options = array(
     'default' => array(
@@ -263,7 +273,7 @@ $font_choices = customizer_library_get_font_choices();
  * Create the options page
  */
 function theme_options_do_page() {
-    global $presetStyle_options, $menustyles_options, $FPstyles_options, $logoSize_options, $logoSize_custom_options, $currentThemeName, $themeSetting, $customCSS_options, $itsGenericTheme, $font_choices, $footerstyles_options, $h1styles_options, $paragraphs_styles_options;
+    global $presetStyle_options, $menustyles_options, $FPstyles_options, $logoSize_options, $logoSize_custom_options, $currentThemeName, $themeSetting, $customCSS_options, $itsGenericTheme, $font_choices, $footerstyles_options, $h1styles_options,$h2styles_options, $paragraphs_styles_options;
 
     if (!isset($_REQUEST['settings-updated']))
         $_REQUEST['settings-updated'] = false;
@@ -614,7 +624,7 @@ function theme_options_do_page() {
                                      */
                                     ?>
                                     <tr class="h1style" valign="top">
-                                        <th scope="row"><?php _e('H1 and Widget/Page Title Color', 'instaparent'); ?></th>
+                                        <th scope="row"><?php _e('Titles Main <p class="description nobold"><small>(Changes H1, Widget & Main Page Titles)</small></p>', 'instaparent'); ?></th>
                                         <td><?php
                                             if (!isset($options['h1styles'])){$options['h1styles'] = 'default';}
                                             if (!isset($checkedh1)){$checkedh1 = '';}
@@ -641,6 +651,50 @@ function theme_options_do_page() {
                                                 <tr valign="top">
                                                     <th scope="row"><?php _e('Color', 'instaparent'); ?></th>
                                                     <td><input type="text" id="instaparent_theme_options_h1TextColor" name="instaparent_theme_options[h1TextColor]" value="<?php esc_attr_e($options['h1TextColor']); ?>" data-default-color="#000000" /></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2"><hr/></td>
+                                    </tr>
+                                    
+                                    <?php
+                                    /**
+                                     * The H2 Title Color option
+                                     */
+                                    ?>
+                                    <tr class="h2style" valign="top">
+                                        <th scope="row"><?php _e('Titles Secondary <p class="description nobold"><small>(Changes H2 Titles)</small></p>', 'instaparent'); ?></th>
+                                        <td><?php
+                                            if (!isset($options['h2styles'])){$options['h2styles'] = 'default';}
+                                            if (!isset($checkedh2)){$checkedh2 = '';}
+                                            foreach ($h2styles_options as $h2style) {
+                                                $h2style_setting = $options['h2styles'];
+                                                $checkedh2 = (!empty($h2style_setting) && $h2style_setting == $h2style['value']) ? 'checked="checked"' : '';
+                                                ?>
+                                                <label>
+                                                    <input id="<?php esc_attr_e($h2style['value']); ?>" type="radio" name="instaparent_theme_options[h2styles]" value="<?php esc_attr_e($h2style['value']); ?>" <?php echo $checkedh2; ?> />
+                                                <?php echo $h2style['label']; ?> </label>
+                                                <br/>
+            <?php
+        }
+                                        ?>
+                                        </td>
+                                    <tr class="customh2StyleBlock subBlock" >
+                                        <td colspan="2">
+                                            <?php
+                                            /**
+                                             * The H2 Title Color colorpicker
+                                             */
+                                            ?>
+                                            <table>
+                                                <tr valign="top">
+                                                    <th scope="row"><?php _e('Color', 'instaparent'); ?></th>
+                                                    <td><input type="text" id="instaparent_theme_options_h2TextColor" name="instaparent_theme_options[h2TextColor]" value="<?php esc_attr_e($options['h2TextColor']); ?>" data-default-color="#000000" /></td>
                                                 </tr>
                                             </table>
                                         </td>
@@ -887,6 +941,7 @@ function theme_options_do_page() {
             });
 
             /* For the color picker */
+            /* TODO: this needs to be in 1 line*/
             jQuery('#instaparent_theme_options_menuBackgroundColor').wpColorPicker();
             jQuery('#instaparent_theme_options_menuHoverTextColor').wpColorPicker();
             jQuery('#instaparent_theme_options_menuHoverColor').wpColorPicker();
@@ -900,6 +955,7 @@ function theme_options_do_page() {
             jQuery('#instaparent_theme_options_FPBackgroundColor').wpColorPicker();
             jQuery('#instaparent_theme_options_FPTextColor').wpColorPicker();
             jQuery('#instaparent_theme_options_h1TextColor').wpColorPicker();
+            jQuery('#instaparent_theme_options_h2TextColor').wpColorPicker();
             jQuery('#instaparent_theme_options_paragraphs_TextColor').wpColorPicker();
 
             /* show colorpickers if the user selects the custom option */
@@ -907,6 +963,7 @@ function theme_options_do_page() {
             customStyleSelected("#customFooterStyle", ".customFooterStyleBlock");
             customStyleSelected("#FPcustomStyle", ".customFPStyleBlock");
             customStyleSelected("#h1customStyle", ".customh1StyleBlock");
+            customStyleSelected("#h2customStyle", ".customh2StyleBlock");
             customStyleSelected("#paragraphs_customStyle", ".customparagraphs_StyleBlock");
             customStyleSelected("#custom", ".customLogoSizeBlock");
 
@@ -925,6 +982,9 @@ function theme_options_do_page() {
             });
             jQuery(".h1style").click(function () {
                 customStyleSelected("#h1customStyle", ".customh1StyleBlock");
+            });
+            jQuery(".h2style").click(function () {
+                customStyleSelected("#h2customStyle", ".customh2StyleBlock");
             });
             jQuery(".paragraphs_style").click(function () {
                 customStyleSelected("#paragraphs_customStyle", ".customparagraphs_StyleBlock");
@@ -975,7 +1035,7 @@ function theme_options_do_page() {
  * Sanitize and validate input. Accepts an array, return a sanitized array.
  */
 function theme_options_validate($input) {
-    global $presetStyle_options, $menustyles_options, $FPstyles_options, $logoSize_options, $logoSize_custom_options, $customCSS_options, $footerstyles_options,$h1styles_options,$paragraphs_styles_options;
+    global $presetStyle_options, $menustyles_options, $FPstyles_options, $logoSize_options, $logoSize_custom_options, $customCSS_options, $footerstyles_options,$h1styles_options,$h2styles_options,$paragraphs_styles_options;
 
     // Our radio option must actually be in our array of radio options
     if (!isset($input['presetStyle']))
@@ -1003,6 +1063,9 @@ function theme_options_validate($input) {
     
     if (!array_key_exists($input['h1styles'], $h1styles_options))
         $input['h1styles'] = null;
+    
+    if (!array_key_exists($input['h2styles'], $h2styles_options))
+        $input['h2styles'] = null;
     
     if (!array_key_exists($input['paragraphs_styles'], $paragraphs_styles_options))
         $input['paragraphs_styles'] = null;
