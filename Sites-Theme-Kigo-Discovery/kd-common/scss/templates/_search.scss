@@ -193,6 +193,12 @@ body.page-template-search-page{
     span{
       float: left;
     }
+
+    a{
+      font-size: 12px;
+      vertical-align: middle;
+      margin-left: 20px;
+    }
   }
 
   .listProps{
@@ -231,6 +237,11 @@ body.page-template-search-page{
     .available{
       padding-left: 30px;
       padding-right: 15px;
+    }
+
+    #mapPropertiesContainer.loading{
+      opacity: .5;
+      transition: opacity .33s;
     }
 
     .property{

@@ -275,7 +275,7 @@
                 </span>
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
-                <div class="alert alert-error"><a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link">{{ContextData.Quote.ValidationMessage}}</a></div>
+                <div class="alert alert-error"><a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</a></div>
             {{/ContextData.Quote.IsValid}}
         </span>
 
@@ -284,7 +284,7 @@
 
                 {{#ContextData.Quote.IsValid}}
                     <span class="amenity-value">
-                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link">{{textdata.Update}}</a>
+                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link update">{{textdata.Update}}</a>
                     </span>
                 {{/ContextData.Quote.IsValid}}
 
