@@ -723,14 +723,14 @@ endif;
 * Creating the widgets for the Common Widget Areas
 *
 */
-if ( function_exists( 'childtheme_override_presetwidgets_commonareas') )  {
+if ( function_exists( 'childtheme_override_presetwidgets_commonareas') )  { 
     /**
      * run the child override
      */
     function presetwidgets_commonareas() {
     	childtheme_override_presetwidgets_commonareas();
     }
-} else {
+} else { 
 	/**
 	 * Run the default Parent function
 	 */
@@ -1095,6 +1095,7 @@ if ( function_exists( 'childtheme_override_get_theme_options') )  {
  *
  */
 function instaparent_preset_styles() {
+	wp_enqueue_style( 'default-styles', get_stylesheet_uri() );
 	/* we will put all the custom CSS here and output it in the <head> */
 	$CustomCSSstyle="";
 	/* lets get the name of the theme folder to see which theme it is */
@@ -1411,12 +1412,14 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
 	
 	/* if there is no custom CSS lets not output anything*/
 	if($CustomCSSstyle!="")
-	{
+	{ 
 	/* outputting the CSS in the head */
-		echo '<!-- Custom CSS Styles -->' . "\n";
-                echo '<style type="text/css" media="all">' . "\n";
-		echo $CustomCSSstyle . "\n";
-		echo '</style>' . "\n";
+
+
+	$clean =  wp_kses( $CustomCSSstyle, array( "\'", '\"' ) ); 
+
+	wp_add_inline_style( 'default-styles', $clean );
+
 	}
 	
 }
@@ -1479,10 +1482,10 @@ function load_custom_widgets() {
  */
 
 // Default styles
-function demo_styles() {
-	wp_enqueue_style( 'demo-style', get_stylesheet_uri() );
+function default_styles() {
+	wp_enqueue_style( 'default-styles', get_stylesheet_uri() );
 }
-add_action( 'wp_enqueue_scripts', 'demo_styles' );
+//add_action( 'wp_enqueue_styles', 'default_styles' );
 
 
 /* only for instathemes */
