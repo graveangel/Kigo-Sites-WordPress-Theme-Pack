@@ -27,7 +27,7 @@ if(!empty($bapi_meta_title) && !empty($custom_page_title_option)){
 <!--[if lt IE 9]>
 <script src="<?php echo $themeUrl; ?>/insta-common/js/html5.js" type="text/javascript"></script>
 <![endif]-->
-<link rel="stylesheet" id="instaparent-style-css" href="<?php echo wp_make_link_relative(get_stylesheet_uri()); ?>" type="text/css" media="all" />
+
 <?php wp_head(); ?>
 <link rel="stylesheet" href="<?php echo $themeUrl; ?>/insta-common/css/print.css" type="text/css" media="print" />
 </head>
