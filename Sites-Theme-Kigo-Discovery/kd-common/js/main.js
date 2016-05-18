@@ -1215,32 +1215,32 @@ app.bapiModules.templates.searchPage = {
             {
                 //textColor: 'white',
                 url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m1.png',
-                height: 50,
-                width: 50
+                height: 52,
+                width: 52
             },
             {
                 //textColor: 'white',
                 url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m2.png',
-                height: 50,
-                width: 50
+                height: 52,
+                width: 52
             },
             {
                 //textColor: 'white',
                 url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m3.png',
-                height: 50,
-                width: 50
+                height: 52,
+                width: 52
             },
             {
                 //textColor: 'white',
                 url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m4.png',
-                height: 50,
-                width: 50
+                height: 52,
+                width: 52
             },
             {
                 //textColor: 'white',
                 url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m5.png',
-                height: 50,
-                width: 50
+                height: 52,
+                width: 52
             }
         ];
 
