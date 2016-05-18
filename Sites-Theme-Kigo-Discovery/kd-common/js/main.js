@@ -1211,7 +1211,40 @@ app.bapiModules.templates.searchPage = {
         });
     },
     initClusterer: function(){
-        var mcOptions = {gridSize: 50, maxZoom: 13};
+        var clusterStyles = [
+            {
+                //textColor: 'white',
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m1.png',
+                height: 50,
+                width: 50
+            },
+            {
+                //textColor: 'white',
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m2.png',
+                height: 50,
+                width: 50
+            },
+            {
+                //textColor: 'white',
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m3.png',
+                height: 50,
+                width: 50
+            },
+            {
+                //textColor: 'white',
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m4.png',
+                height: 50,
+                width: 50
+            },
+            {
+                //textColor: 'white',
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m5.png',
+                height: 50,
+                width: 50
+            }
+        ];
+
+        var mcOptions = {gridSize: 50, maxZoom: 13, styles: clusterStyles};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     initSpiderfy: function(){
