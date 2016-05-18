@@ -1210,8 +1210,38 @@ app.bapiModules.templates.searchPage = {
             mapTypeId: google.maps.MapTypeId[defaultMapView]
         });
     },
+
     initClusterer: function(){
-        var mcOptions = {gridSize: 50, maxZoom: 13};
+        var size = [53, 56, 66, 78, 90];
+        var clusterStyles = [
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m1.png',
+                height: size[0],
+                width: size[0]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m2.png',
+                height: size[1],
+                width: size[1]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m3.png',
+                height: size[2],
+                width: size[2]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m4.png',
+                height: size[3],
+                width: size[3]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m5.png',
+                height: size[4],
+                width: size[4]
+            }
+        ];
+
+        var mcOptions = {gridSize: 50, maxZoom: 13, styles: clusterStyles};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     initSpiderfy: function(){
