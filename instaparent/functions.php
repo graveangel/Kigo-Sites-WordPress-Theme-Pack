@@ -1416,7 +1416,7 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
 	/* outputting the CSS in the head */
 
 
-	$clean =  wp_kses( $CustomCSSstyle, array( "\'", '\"' ) ); 
+	$clean =  wp_strip_all_tags($CustomCSSstyle);
 
 	wp_add_inline_style( 'default-styles', $clean );
 
