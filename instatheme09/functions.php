@@ -46,7 +46,12 @@ function childtheme_override_presetwidgets_commonareas() {
 	update_option( 'widget_bapi_header', array( 2 => array( 'title' => '' )) );
 	update_option( 'widget_bapi_weather_widget', array( 2 => array( 'title' => '' )) );
 	/*for insta-footer*/
-	update_option( 'widget_bapi_footer', array( 2 => array( 'title' => '' )) );	
+	update_option( 'widget_bapi_footer', array( 2 => array( 'title' => '' )) );
+        
+        /*for insta-footer-1*/
+        update_option( 'widget_kigo_social_icons', array( 2 => array()) );
+        /*for insta-footer-4*/
+        update_option( 'widget_kigo_custom_menu', array( 2 => array( 'nav_menu' => 'main-navigation-menu' )) );
 }
 /*
 *
@@ -58,6 +63,9 @@ function childtheme_override_setwidgets_commonareas($arrayOfSidebars) {
 		$arrayOfSidebars['insta-header-left'][0] = 'bapi_hp_logo-2';
 		$arrayOfSidebars['insta-header-right'][0] = 'bapi_weather_widget-2';
 		$arrayOfSidebars['insta-footer'][0] = 'bapi_footer-2';
+                
+                $arrayOfSidebars['insta-footer-1'][0] = 'kigo_social_icons-2';
+                $arrayOfSidebars['insta-footer-4'][0] = 'kigo_custom_menu-2';
 		return $arrayOfSidebars;
 }
 /*

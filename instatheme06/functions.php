@@ -48,7 +48,7 @@ function childtheme_widgets_init(){
 		'before_title' => '<h3 class="title">',
 		'after_title' => '</h3>',
 	) );
-    register_sidebar( array(
+        register_sidebar( array(
 		'name' => __( 'Footer Navigation Menu', 'instaparent' ),
 		'id' => 'insta-footer-nav',
 		'description' => __( 'The Footer navigation Menu', 'instaparent' ),
@@ -66,6 +66,7 @@ function childtheme_widgets_init(){
 		'before_title' => '<h3 class="title">',
 		'after_title' => '</h3>',
 	) );
+        
 }
 function childtheme_override_presetwidgets_commonareas() {
 	/*for insta-header-left*/
@@ -75,6 +76,11 @@ function childtheme_override_presetwidgets_commonareas() {
 	update_option( 'widget_mr-social-sharing-toolkit-follow-widget', array( 2 => array( 'title' => '' )) );
 	update_option( 'widget_bapi_footer', array( 2 => array( 'title' => '' )) );
 	//update_option( 'widget_text', array( 2 => array( 'title' => '','text' => '<p><span class="phone">1-800-941-0868</span> <span class="address"> Address, City, Zip Code</span> <a class="email" href="#">address@email.com</a></p>'),3 => array( 'title' => '','text' => '<div class="hp-testimonials"><h3>Testimonials</h3><p class="quote">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh. Donec id elit non mi porta gravida at eget metus. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p><p class="author"><span>John Smith</span>, Los Angeles, CA  -  February 17, 2013</p></div>')) );
+        
+        /*for insta-footer-1*/
+        update_option( 'widget_kigo_social_icons', array( 2 => array()) );
+        /*for insta-footer-4*/
+        update_option( 'widget_kigo_custom_menu', array( 2 => array( 'nav_menu' => 'main-navigation-menu' )) );
 	
 }
 /*
@@ -89,6 +95,9 @@ function childtheme_override_setwidgets_commonareas($arrayOfSidebars) {
 		$arrayOfSidebars['insta-footer'][0] = 'bapi_footer-2';
 		$arrayOfSidebars['insta-footer-info'][0] = 'text-2';
 		$arrayOfSidebars['insta-footer-nav'][0] = 'mr-social-sharing-toolkit-follow-widget-2';
+                
+                $arrayOfSidebars['insta-footer-1'][0] = 'kigo_social_icons-2';
+                $arrayOfSidebars['insta-footer-4'][0] = 'kigo_custom_menu-2';
 		return $arrayOfSidebars;
 }
 /*
