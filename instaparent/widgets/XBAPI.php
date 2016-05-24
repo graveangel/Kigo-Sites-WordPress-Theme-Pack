@@ -117,14 +117,15 @@ class XBAPI extends \BAPI {
      * @return string
      */
     private function xconnect($requestString) {
+
         $nconnection = curl_init();
         curl_setopt($nconnection, CURLOPT_USERAGENT, 'InstaSites Agent');
         curl_setopt($nconnection, CURLOPT_URL, $this->base_url . $requestString . '&apikey=' . $this->api_key);
         curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($nconnection);
         curl_close($nconnection);
+        
         return $output;
     }
 
 }
-

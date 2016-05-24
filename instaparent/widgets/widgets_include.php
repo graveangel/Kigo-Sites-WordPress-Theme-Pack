@@ -23,7 +23,7 @@ function dd($f, $d = false) {
 
 
 // DEV..........................................................................
-define('__DEV__', true);
+define('__DEV__', false);
 
 //Theme dir
 define('__PARENT_DIR__', get_template_directory());
@@ -76,3 +76,5 @@ require_once('XBAPI.php');
 require_once('WidgetBase.php');
 //Property finders widget.......
 require_once ('SelectablePropertyFindersWidget/init.php');
+//Special Offers widget.......
+require_once ('SelectableSpecialOffersWidget/init.php');
