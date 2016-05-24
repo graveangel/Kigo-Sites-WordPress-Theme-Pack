@@ -1519,3 +1519,16 @@ function instaparent_styles(){
     wp_enqueue_style('fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 }
 add_action('wp_enqueue_scripts', 'instaparent_styles');
+
+}
+
+/* We first load our widget */
+add_action( 'widgets_init', 'register_my_widget' );
+/* Register our widget in WordPress so that it is available under the widgets section. */
+function register_my_widget() {  
+    register_widget( 'Insta_Latest_Blog_Posts' );  
+}
+
+
+//Include new widgets
+include 'widgets/widgets_include.php';
