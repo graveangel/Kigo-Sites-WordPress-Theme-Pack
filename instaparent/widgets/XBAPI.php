@@ -47,7 +47,7 @@ class XBAPI extends \BAPI {
 
         foreach ($propsToRequest as $requestIds) {
             $ids = implode(',', $requestIds);
-            $propsRequested = json_decode($this->xconnect('/ws/?method=get&entity=property&seo=1&ids=' . $ids));
+            $propsRequested = json_decode($this->xconnect('/ws/?method=get&entity=property&pagesize='.$maxnum.'&seo=1&ids=' . $ids));
             $props = array_merge($props, $propsRequested->result);
         }
 
