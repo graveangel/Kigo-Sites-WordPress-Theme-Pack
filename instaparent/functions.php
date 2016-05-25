@@ -1520,8 +1520,6 @@ function instaparent_styles(){
 }
 add_action('wp_enqueue_scripts', 'instaparent_styles');
 
-}
-
 /* We first load our widget */
 add_action( 'widgets_init', 'register_my_widget' );
 /* Register our widget in WordPress so that it is available under the widgets section. */
