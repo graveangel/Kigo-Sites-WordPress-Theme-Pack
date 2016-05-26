@@ -26,6 +26,31 @@ class Core {
      */
     private function configure() {
 
+        global $allowedtags;
+
+        $allowedtags += [
+            'i' => array(
+                'class' => true,
+                'id' => true,
+            ),
+            'img' => array(
+                'alt' => true,
+                'align' => true,
+                'border' => true,
+                'height' => true,
+                'hspace' => true,
+                'longdesc' => true,
+                'vspace' => true,
+                'src' => true,
+                'usemap' => true,
+                'width' => true,
+            ),
+            'div' => array(
+                'class' => true,
+                'id' => true,
+            )
+        ];
+
         /* Enable custom post thumbnails */
         add_theme_support('post-thumbnails', array('item', 'team', 'page'));
 
@@ -37,7 +62,7 @@ class Core {
 //        @define('ALLOW_UNFILTERED_UPLOADS', true);  --> Disabled by request
 
 //        remove_action('init', 'urlHandler_bapidefaultpages', 1 );
-        remove_action('init', 'bapi_setup_default_pages', 5);
+//        remove_action('init', 'bapi_setup_default_pages', 5);
 
     }
 
