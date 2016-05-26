@@ -45,6 +45,9 @@ function customizer_library_demo_options() {
     // Property detail options
     include "property-detail.php";
 
+    // Footer
+    include "footer.php";
+
 	// Adds the sections to the $options array
 	$options['sections'] = $sections;
 
