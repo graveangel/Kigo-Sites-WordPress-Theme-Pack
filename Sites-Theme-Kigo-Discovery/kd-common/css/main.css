@@ -5688,6 +5688,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       .kd-menu li a:hover, .kd-menu li a:active {
         text-decoration: none; }
     .kd-menu li .sub-menu a {
+      display: block;
       background-color: #999; }
   .kd-menu > .sub-menu {
     display: block;
@@ -5783,7 +5784,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
             background-color: rgba(0, 0, 0, 0.05); }
         .kd-menu .sub-menu li {
           display: block;
-          margin: 0;
+          margin: 0 !important;
           border-bottom: 1px solid #eee;
           background-color: white;
           text-align: left; }
@@ -5795,6 +5796,14 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
             display: block;
             padding: 10px 25px;
             background-color: transparent; } }
+
+@media screen and (min-width: 768px) {
+  footer.footer .kd-menu .menu-item-has-children::after {
+    transform: rotate(180deg);
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmklEQVQ4T62S0Q2CMBRFTyeATWQERpAJxA3chBHQCWSEsoGjwAbmJrYh0Cq2vM+m9+TkvWvIHJOZ5xDACzglmlgZTECRCJgFqACbAJmB2u3gDDz/tGiAYbnEFuh3Qq7AXX/XV7gB3Q+ID4cAehP5EoE8AJn6ifUgBNmEYwaOvuzHqI2HrL41sfycVzmF1ZfNHFLlnZcLf8s2eAMP6xPwcVtx3QAAAABJRU5ErkJggg=="); }
+  footer.footer .kd-menu .sub-menu {
+    top: auto;
+    bottom: 100%; } }
 
 .kd-social {
   display: inline-block;
