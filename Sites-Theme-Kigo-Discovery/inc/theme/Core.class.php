@@ -55,8 +55,8 @@ class Core {
         add_theme_support('post-thumbnails', array('item', 'team', 'page'));
 
         /* Default theme fallback */
-        @define('KIGO_SELF_HOSTED', FALSE);
-        @define('WP_DEFAULT_THEME', 'Sites-Theme-Kigo-Discovery');
+//        @define('KIGO_SELF_HOSTED', FALSE);
+//        @define('WP_DEFAULT_THEME', 'Sites-Theme-Kigo-Discovery');
 
         /* Allow unfiltered uploads */
 //        @define('ALLOW_UNFILTERED_UPLOADS', true);  --> Disabled by request
@@ -149,6 +149,8 @@ class Core {
             include_once $this->themePath."/inc/widgets/$prefix-$widget/$prefix-$widget.php";
         });
 
+        include_once $this->themePath . '/inc/widgets/redeclaredWidgets.php';
+
         /* Remove unwanted widgets */
 
         $unwantedWidgets = [
@@ -162,7 +164,7 @@ class Core {
             'BAPI_Property_Finders',
             'BAPI_Featured_Properties',
             'BAPI_Similar_Properties',
-            'BAPI_Specials_Widg et',
+            'BAPI_Specials_Widget',
             'WP_Widget_Search',
         ];
 
