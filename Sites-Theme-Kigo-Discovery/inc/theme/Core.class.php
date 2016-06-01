@@ -52,7 +52,7 @@ class Core {
         ];
 
         /* Enable custom post thumbnails */
-        add_theme_support('post-thumbnails', array('item', 'team', 'page'));
+        add_theme_support('post-thumbnails', array('item', 'team', 'page', 'post'));
 
         /* Default theme fallback */
 //        @define('KIGO_SELF_HOSTED', FALSE);
@@ -165,7 +165,7 @@ class Core {
             'BAPI_Featured_Properties',
             'BAPI_Similar_Properties',
             'BAPI_Specials_Widget',
-            'WP_Widget_Search',
+            //'WP_Widget_Search',
         ];
 
         add_action('widgets_init', function() use ($unwantedWidgets) {
@@ -228,6 +228,13 @@ class Core {
                 ),
             );
 
+            $group['pages_listing'] = array(
+                array(
+                    'name' => 'Blog listing',
+                    'id' => 'page_blog_listing',
+                ),
+            );
+
             $group['sidebars'] = array(
                 array(
                     'name' => 'Default page sidebar',
@@ -240,9 +247,14 @@ class Core {
             );
 
             for ($i = 0; $i < 2; $i++) {
+
                 foreach ($group as $name => $sidebars) {
+
+                    if(empty($sidebars[$i])) continue;
+
                     register_sidebar($sidebars[$i] + ['before_title' => '', 'after_title' => '', 'before_widget' => '', 'after_widget' => '']);
                 }
+
             }
         }
         );
@@ -460,4 +472,3 @@ class Core {
         });
     }
 }
-
