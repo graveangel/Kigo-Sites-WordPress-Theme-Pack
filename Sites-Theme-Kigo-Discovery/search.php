@@ -17,14 +17,18 @@
 		$post_types_to_filter = [];
 
 		$search_query_types = $search_query[0]['types'] ? : $search_query[1]['types'];
-
+		$s = empty($search_query[0]['s']) ? '' : $search_query[0]['s'];
 		if(!empty($search_query_types))
 		{
 			$post_types_to_filter = explode(',',urldecode($search_query_types));
 		}
 
 		if(!empty($post_types_to_filter))
-			query_posts(['post_type' => $post_types_to_filter]);
+			{
+				global $wp_query;
+				$args = array_merge( $wp_query->query_vars, array( 'post_type' => $post_types_to_filter,'s' => $s ) );
+				query_posts($args);
+			}
 
 		if ( have_posts() ) :
 			while ( have_posts() ) :
