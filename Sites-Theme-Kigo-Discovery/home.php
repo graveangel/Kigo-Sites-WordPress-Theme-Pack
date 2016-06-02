@@ -20,7 +20,7 @@
 					<!-- thumbnail -->
 					<div class="image col-lg-2 col-xs-12">
 
-						<?php $attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') ); ?>
+						<?php $attachments = has_post_thumbnail(); ?>
 						<?php if($attachments): ?>
 							<a href="<?php the_permalink(); ?>">
 								<?php the_post_thumbnail('thumbnail'); ?>
