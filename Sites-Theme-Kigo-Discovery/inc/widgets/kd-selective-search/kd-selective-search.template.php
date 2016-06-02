@@ -7,6 +7,8 @@
        * Geting posts to filter for the form
        *
        */
+      $filter_post_types = [];
+      
        if($i['inherit'])
        {
          //Getting the search query
@@ -15,7 +17,7 @@
      		$kd_post_types = [];
 
      		$search_query_types = $search_query[0]['types'] ? : $search_query[1]['types'];
-        $filter_post_types = [];
+
 
      		if(!empty($search_query_types))
      		{
