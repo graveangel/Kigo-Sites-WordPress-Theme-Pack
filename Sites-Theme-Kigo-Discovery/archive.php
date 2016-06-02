@@ -23,7 +23,7 @@
 						<?php $attachments = get_children( array('post_parent' => get_the_ID(), 'post_type' => 'attachment', 'post_mime_type' => 'image') ); ?>
 						<?php if($attachments): ?>
 							<a href="<?php the_permalink(); ?>">
-								<?php the_post_thumbnail( 'thumbnail', array( 'class' => 'alignleft' ) );; ?>
+								<?php the_post_thumbnail('thumbnail'); ?>
 							</a>
 						<?php endif; ?>
 
