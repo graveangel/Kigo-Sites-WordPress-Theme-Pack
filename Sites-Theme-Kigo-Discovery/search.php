@@ -2,14 +2,30 @@
 <div class="blog-listing page-width">
 	<!-- Blog listing sidebar -->
 	<div class="col-xs-12 page-blog-listing-sidebar">
-		<?php if (is_active_sidebar('page_blog_listing')) : ?>
-							<?php dynamic_sidebar('page_blog_listing'); ?>
+		<?php if (is_active_sidebar('page_search_listing')) : ?>
+							<?php dynamic_sidebar('page_search_listing'); ?>
 		<?php endif; ?>
 	</div>
 
 	<!-- Blog listing -->
 	<div class="col-xs-12">
 		<?php
+
+		//Getting the search query
+		$search_query = kd_get_search_query();
+
+		$post_types_to_filter = [];
+
+		$search_query_types = $search_query[0]['types'] ? : $search_query[1]['types'];
+
+		if(!empty($search_query_types))
+		{
+			$post_types_to_filter = explode(',',urldecode($search_query_types));
+		}
+
+		if(!empty($post_types_to_filter))
+			query_posts(['post_type' => $post_types_to_filter]);
+
 		if ( have_posts() ) :
 			while ( have_posts() ) :
 				the_post(); ?>
