@@ -18,7 +18,8 @@
 		$post_types_to_filter = [];
 
 		$search_query_types = $search_query[0]['types'] ? : $search_query[1]['types'];
-		$s = empty($search_query[0]['s']) ? '' : $search_query[0]['s'];
+		$s = urldecode(empty($search_query[0]['s']) ? '' : $search_query[0]['s']);
+
 		if(!empty($search_query_types))
 		{
 			$post_types_to_filter = explode(',',urldecode($search_query_types));
