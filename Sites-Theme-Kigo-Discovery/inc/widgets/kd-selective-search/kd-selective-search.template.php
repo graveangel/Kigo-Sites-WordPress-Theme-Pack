@@ -28,7 +28,7 @@
        }
        else
        {
-         $kd_post_types = get_theme_mod('kd_post_types');
+         $kd_post_types = get_theme_mod('kd_post_types', []);
 
 
          foreach($kd_post_types as $kd_post_type_val)
