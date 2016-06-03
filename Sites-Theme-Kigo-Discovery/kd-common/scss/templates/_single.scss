@@ -1,0 +1,25 @@
+body.single
+{
+  article
+  {
+    padding: 0 15px;
+  }
+  .image
+  {
+    margin: 30px 0;
+  }
+  aside
+  {
+    padding: 0!important;
+  }
+}
+
+@media (min-width: $bp-lg) {
+  .single
+  {
+    aside
+    {
+      padding: 20px 40px!important;
+    }
+  }
+}

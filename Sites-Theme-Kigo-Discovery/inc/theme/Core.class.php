@@ -235,15 +235,42 @@ class Core {
 
             $group['pages_listing'] = array(
                 array(
-                    'name' => 'Blog listing',
+                    'name' => 'Blog Listing Top',
                     'id' => 'page_blog_listing',
                 ),
                 array(
-                    'name' => 'Search page listing',
+                    'name' => 'Search page Listing Top',
                     'id' => 'page_search_listing',
                 ),
-
             );
+
+            $group['pages_listing2'] = array(
+                array(
+                    'name' => 'Archive Listing Top',
+                    'id' => 'page_archive_listing',
+                ),
+            );
+
+
+            $group['pages_listing_right'] = array(
+                array(
+                    'name' => 'Blog Listing Right',
+                    'id' => 'page_blog_listing_right',
+                ),
+                array(
+                    'name' => 'Search page Listing Right',
+                    'id' => 'page_search_listing_right',
+                ),
+            );
+
+            $group['pages_listing_right2'] = array(
+                array(
+                    'name' => 'Archive Listing Right',
+                    'id' => 'page_archive_listing_right',
+                ),
+            );
+
+
 
             $group['sidebars'] = array(
                 array(

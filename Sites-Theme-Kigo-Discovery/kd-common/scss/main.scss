@@ -22,6 +22,7 @@ This file is used to organize imports, it shouldn't contain any styles.
 @import 'templates/property-details';
 @import 'templates/about-us';
 @import 'templates/search';
+@import 'templates/single';
 @import 'templates/contact';
 @import 'templates/booking';
 @import 'templates/payment';
@@ -52,6 +53,9 @@ This file is used to organize imports, it shouldn't contain any styles.
 @import 'widgets/kd-weather';
 @import 'widgets/kd-specials';
 @import 'widgets/kd-map';
+@import 'widgets/kd-selective-search';
+
+
 
 @import 'widgets/wp/wordpress-search-widget';
 

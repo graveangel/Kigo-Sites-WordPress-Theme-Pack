@@ -1,0 +1,57 @@
+.kd-selective-search-box
+{
+  input[type="submit"]
+  {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 200;
+  }
+
+  .currently-filtering
+  {
+    text-align: center;
+    color: #eee;
+    a
+    {
+      color: #eee;
+      &:hover
+      {
+        color: #ddd;
+      }
+    }
+
+    &.title
+    {
+      color: #ddd;
+      font-weight: 100;
+      margin: 15px auto;
+    }
+
+    .clearsearch
+    {
+      color: #ddd;
+    }
+  }
+
+
+}
+
+@media (min-width: $bp-lg)
+{
+  aside .kd-selective-search-box,
+  .sidebar-right .kd-selective-search-box
+  {
+
+    .currently-filtering
+    {
+      text-align: initial;
+      color: #eee;
+
+      &.title
+      {
+        color: #ddd;
+        font-weight: 100;
+      }
+    }
+  }
+}

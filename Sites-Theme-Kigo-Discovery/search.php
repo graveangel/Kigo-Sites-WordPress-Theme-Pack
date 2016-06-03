@@ -8,7 +8,8 @@
 	</div>
 
 	<!-- Blog listing -->
-	<div class="col-xs-12">
+	<div class="col-xs-12 col-lg-9">
+		<div class="results">
 		<?php
 
 		//Getting the search query
@@ -38,7 +39,7 @@
 				<div class="listed-blog col-xs-12 col-md-12">
 
 					<!-- thumbnail -->
-					<div class="image col-lg-2 col-xs-12">
+					<div class="image col-lg-2 col-xs-12 paddingless">
 
 						<?php $attachments = has_post_thumbnail(); ?>
 						<?php if($attachments): ?>
@@ -50,7 +51,7 @@
 					</div>
 
 					<!-- text -->
-					<div class="text col-lg-10 col-xs-12">
+					<div class="text col-lg-10 col-xs-12 paddingless">
 
 						<!-- the title -->
 						<a href="<?php the_permalink(); ?>">
@@ -67,6 +68,7 @@
 			<?php endwhile; // end while
 		endif; // end if
 		?>
+	</div>
 
 
 		<div class="results-info">
@@ -87,7 +89,11 @@
 		</div>
 	</div>
 
-
+	<div class="col-xs-12 col-lg-3 sidebar-right">
+		<?php if (is_active_sidebar('page_search_listing_right')) : ?>
+							<?php dynamic_sidebar('page_search_listing_right'); ?>
+		<?php endif; ?>
+	</div>
 
 
 </div>

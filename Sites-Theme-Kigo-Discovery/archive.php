@@ -2,13 +2,14 @@
 <div class="blog-listing page-width">
 	<!-- Blog listing sidebar -->
 	<div class="col-xs-12 page-blog-listing-sidebar">
-		<?php if (is_active_sidebar('page_blog_listing')) : ?>
-							<?php dynamic_sidebar('page_blog_listing'); ?>
+		<?php if (is_active_sidebar('page_archive_listing')) : ?>
+							<?php dynamic_sidebar('page_archive_listing'); ?>
 		<?php endif; ?>
 	</div>
 
 	<!-- Blog listing -->
-	<div class="col-xs-12">
+		<div class="col-xs-12 col-lg-9">
+			<div class="results">
 		<?php
 		if ( have_posts() ) :
 			while ( have_posts() ) :
@@ -18,7 +19,7 @@
 				<div class="listed-blog col-xs-12 col-md-12">
 
 					<!-- thumbnail -->
-					<div class="image col-lg-2 col-xs-12">
+					<div class="image col-lg-2 col-xs-12 paddingless">
 
 						<?php $attachments = has_post_thumbnail(); ?>
 						<?php if($attachments): ?>
@@ -30,7 +31,7 @@
 					</div>
 
 					<!-- text -->
-					<div class="text col-lg-10 col-xs-12">
+					<div class="text col-lg-10 col-xs-12 paddingless">
 
 						<!-- the title -->
 						<a href="<?php the_permalink(); ?>">
@@ -44,9 +45,11 @@
 					</div>
 				</div>
 
+
 			<?php endwhile; // end while
 		endif; // end if
 		?>
+		</div>
 
 
 		<div class="results-info">
@@ -66,7 +69,11 @@
 			</h4>
 		</div>
 	</div>
-
+	<div class="col-xs-12 col-lg-3 sidebar-right">
+		<?php if (is_active_sidebar('page_archive_listing_right')) : ?>
+							<?php dynamic_sidebar('page_archive_listing_right'); ?>
+		<?php endif; ?>
+	</div>
 
 
 
