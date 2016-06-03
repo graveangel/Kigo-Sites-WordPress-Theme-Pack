@@ -111,24 +111,24 @@ var app = {
             });
         },
         recursiveGet: function(entity, callback, auxOptions){
-            var options = auxOptions || {};
+            var options = auxOptions || {pagesize: 20, waitForAll: false};
             BAPI.search(entity, options, function (sdata) {
-                var propPages = _.chunk(sdata.result, options.pagesize);
+                var pages = _.chunk(sdata.result, options.pagesize);
 
-                if(auxOptions.waitForAll == 1){
+                if(options.waitForAll == 1){
                     var all = [], iterations = 0;
-                    propPages.forEach(function(page, i){
+                    pages.forEach(function(page, i){
                         BAPI.get(page, entity, options, function (gdata) {
                             iterations++;
                             all = _.concat(all, gdata.result);
 
-                            if(iterations == (propPages.length)){ //Last iteration
+                            if(iterations == (pages.length)){ //Last iteration
                                 callback({result: all, textdata: BAPI.textdata});
                             }
                         });
                     });
                 }else{
-                    propPages.forEach(function(page, i){
+                    pages.forEach(function(page, i){
                         BAPI.get(page, entity, options, function (gdata) {
                             callback(gdata);
                         });

@@ -26,18 +26,46 @@ class Core {
      */
     private function configure() {
 
+        global $allowedtags;
+
+        $allowedtags += [
+            'i' => array(
+                'class' => true,
+                'id' => true,
+            ),
+            'img' => array(
+                'alt' => true,
+                'align' => true,
+                'border' => true,
+                'height' => true,
+                'hspace' => true,
+                'longdesc' => true,
+                'vspace' => true,
+                'src' => true,
+                'usemap' => true,
+                'width' => true,
+            ),
+            'div' => array(
+                'class' => true,
+                'id' => true,
+            )
+        ];
+
         /* Enable custom post thumbnails */
-        add_theme_support('post-thumbnails', array('item', 'team', 'page'));
+        add_theme_support('post-thumbnails', array('item', 'team', 'page', 'post'));
 
         /* Default theme fallback */
-        @define('KIGO_SELF_HOSTED', FALSE);
-        @define('WP_DEFAULT_THEME', 'Sites-Theme-Kigo-Discovery');
+//        @define('KIGO_SELF_HOSTED', FALSE);
+//        @define('WP_DEFAULT_THEME', 'Sites-Theme-Kigo-Discovery');
 
         /* Allow unfiltered uploads */
 //        @define('ALLOW_UNFILTERED_UPLOADS', true);  --> Disabled by request
 
 //        remove_action('init', 'urlHandler_bapidefaultpages', 1 );
-        remove_action('init', 'bapi_setup_default_pages', 5);
+//        remove_action('init', 'bapi_setup_default_pages', 5);
+//
+          add_filter( 'query_vars', [$this,'add_query_vars_filter'] );
+          add_action('init',[$this,'kd_get_post_types'],99999);
 
     }
 
@@ -85,6 +113,7 @@ class Core {
         include_once $this->themePath.'/inc/cpt/kd-team.php';
 
 
+
         /* Load sidebars */
         $this->sidebars();
         /* Load widgets */
@@ -116,6 +145,7 @@ class Core {
             'map',
             'content',
             'specials',
+            'selective-search',
         ];
 
         /* Include active widgets */
@@ -123,6 +153,8 @@ class Core {
             $prefix = 'kd';
             include_once $this->themePath."/inc/widgets/$prefix-$widget/$prefix-$widget.php";
         });
+
+        include_once $this->themePath . '/inc/widgets/redeclaredWidgets.php';
 
         /* Remove unwanted widgets */
 
@@ -137,7 +169,7 @@ class Core {
             'BAPI_Property_Finders',
             'BAPI_Featured_Properties',
             'BAPI_Similar_Properties',
-            'BAPI_Specials_Widg et',
+            'BAPI_Specials_Widget',
             'WP_Widget_Search',
         ];
 
@@ -201,6 +233,18 @@ class Core {
                 ),
             );
 
+            $group['pages_listing'] = array(
+                array(
+                    'name' => 'Blog listing',
+                    'id' => 'page_blog_listing',
+                ),
+                array(
+                    'name' => 'Search page listing',
+                    'id' => 'page_search_listing',
+                ),
+
+            );
+
             $group['sidebars'] = array(
                 array(
                     'name' => 'Default page sidebar',
@@ -213,9 +257,14 @@ class Core {
             );
 
             for ($i = 0; $i < 2; $i++) {
+
                 foreach ($group as $name => $sidebars) {
+
+                    if(empty($sidebars[$i])) continue;
+
                     register_sidebar($sidebars[$i] + ['before_title' => '', 'after_title' => '', 'before_widget' => '', 'after_widget' => '']);
                 }
+
             }
         }
         );
@@ -432,5 +481,34 @@ class Core {
             }
         });
     }
-}
 
+
+    /**
+     * Adds the "types" parameter to the search query
+     * @param array $vars The variables in the search query.
+     */
+    public function add_query_vars_filter( $vars ){
+      $vars[] = "types";
+      return $vars;
+    }
+
+    /**
+     * Updates the post types theme mod
+     */
+    function kd_get_post_types()
+    {
+        $args = array(
+           '_builtin' => false,
+           'public'   => true,
+        );
+
+        $output = 'names'; // names or objects, note names is the default
+        $operator = 'or'; // 'and' or 'or'
+
+
+        $kd_post_types = get_post_types( $args, $output, $operator );
+
+        set_theme_mod('kd_post_types',$kd_post_types);
+    }
+
+}

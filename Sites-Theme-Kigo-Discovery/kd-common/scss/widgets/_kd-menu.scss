@@ -52,6 +52,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
 
     .sub-menu{
       a{
+        display: block;
         background-color: $tertiary-color;
       }
     }
@@ -209,7 +210,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
 
       li{
         display: block;
-        margin: 0;
+        margin: 0 !important;
         border-bottom: 1px solid #eee;
         background-color: white;
         text-align: left;
@@ -228,6 +229,21 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
           background-color: transparent;
         }
       }
+    }
+  }
+}
+
+footer.footer .kd-menu{
+  @media screen and (min-width: $bp-tablet) {
+    .menu-item-has-children{
+      &::after{
+        transform: rotate(180deg);
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmklEQVQ4T62S0Q2CMBRFTyeATWQERpAJxA3chBHQCWSEsoGjwAbmJrYh0Cq2vM+m9+TkvWvIHJOZ5xDACzglmlgZTECRCJgFqACbAJmB2u3gDDz/tGiAYbnEFuh3Qq7AXX/XV7gB3Q+ID4cAehP5EoE8AJn6ifUgBNmEYwaOvuzHqI2HrL41sfycVzmF1ZfNHFLlnZcLf8s2eAMP6xPwcVtx3QAAAABJRU5ErkJggg==');
+      }
+    }
+    .sub-menu{
+      top: auto;
+      bottom: 100%;
     }
   }
 }

@@ -63,7 +63,7 @@ add_action('save_post', 'save_post_sidebar_meta_box', 10, 2);
  */
 
 function post_sidebar_meta_box() {
-    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+    $post_id = isset($_GET['post']) ? $_GET['post'] : $_POST['post_ID'] ;
     $currentTemplate = get_post_meta($post_id,'_wp_page_template', true);
     $templates = get_page_templates();
 

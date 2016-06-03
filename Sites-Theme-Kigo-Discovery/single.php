@@ -7,7 +7,7 @@
                     <div class="col-md-4 col-xs-12">
                         <div class="image"><?php the_post_thumbnail('original') ?></div>
                     </div>
-                    <div class="col-md-5 col-xs-12">
+                    <div class="col-md-8 col-xs-12">
                         <?php }else{ ?>
 
                         <div class="col-md-12 col-xs-12">

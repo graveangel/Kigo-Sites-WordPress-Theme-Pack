@@ -13,10 +13,10 @@
                 <?php if(get_theme_mod("terms-privacy", true)):?>
                     <div class="kd-widget kd-copy row">
                         <div class="col-sm-6 col-xs-12 xs-center sm-left">
-                            <span>Copyright &copy;2015 Discovery Rentals. All Rights Reserved.</span><!-- TODO: Change with dynamic value -->
+                            <span><?php echo get_theme_mod('footer-left-text', 'Copyright &copy;2015 Discovery Rentals. All Rights Reserved.') ?></span>
                         </div>
                         <div class="col-sm-6 col-xs-12 xs-center sm-right">
-                            <span>Vacation Rental Software by Kigo.</span>
+                            <span><?php echo get_theme_mod('footer-right-text', 'Vacation Rental Software by Kigo.') ?></span>
                         </div>
                     </div>
                 <?php endif; ?>

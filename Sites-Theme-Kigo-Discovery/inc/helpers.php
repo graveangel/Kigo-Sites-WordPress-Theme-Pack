@@ -168,3 +168,27 @@ function fb_opengraph() {
         return;
     }
 }
+
+
+/**
+ * returns an array of the search query.
+ * @return array key=value of the search query.
+ */
+function kd_get_search_query()
+{
+    global $query_string;
+
+    $searchquery_array = explode('&',$query_string);
+
+    foreach($searchquery_array as $ind => $query_item)
+    {
+        $key_val = explode('=',$query_item);
+
+        $searchquery_array[$ind] =
+        [
+            $key_val[0]  => $key_val[1]
+        ];
+    }
+
+    return $searchquery_array;
+}

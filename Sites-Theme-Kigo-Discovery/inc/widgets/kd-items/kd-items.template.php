@@ -1,7 +1,7 @@
 <?php
 $limit = $i['limit'] ? : -1;
 $items = new WP_Query(['post_type' => 'item', 'type' => $i['type'], 'orderby' => 'menu_order', 'posts_per_page' => $limit]);
-$num = count($items->posts);
+$num = count($items->posts) ? : 1;
 
 $cols = $i['columns'] ? : false;
 $col = $cols ? 12 / $cols : ($num > 4 ? 4 : (12 / $num));
@@ -19,8 +19,16 @@ $display = $i['display'] ? : 'list';
                 <?php while($items->have_posts()): $items->the_post(); ?>
                     <div class="item-block swiper-slide">
                         <div class="icon"><i class="fa <?php echo get_post_meta( get_the_ID(), 'item_icon', true ) ?>"></i></div>
-                        <div class="title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></div><i class="kd-icon-down_arrow open-close"></i>
-                        <div class="body"><?php the_content(); ?></div>
+                        <div class="title">
+                            <?php if($i['no_link'] !== 'on'): ?>
+                                <a href="<?php the_permalink() ?>">
+                                    <?php the_title(); ?>
+                                </a>
+                            <?php else: ?>
+                                <?php the_title(); ?>
+                            <?php endif; ?>
+                        </div><i class="kd-icon-down_arrow open-close"></i>
+                        <?php if($i['no_desc'] !== 'on'): ?><div class="body"><?php the_content(); ?></div><?php endif; ?>
                     </div>
                 <?php endwhile; ?>
             </div>
@@ -34,8 +42,14 @@ $display = $i['display'] ? : 'list';
         <?php while($items->have_posts()): $items->the_post(); ?>
             <div class="item-block col-xs-12 col-md-6 col-lg-<?php echo $col ?>">
                 <div class="icon"><i class="fa <?php echo get_post_meta( get_the_ID(), 'item_icon', true ) ?>"></i></div>
-                <div class="title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></div><i class="kd-icon-down_arrow open-close"></i>
-                <div class="body"><?php the_content(); ?></div>
+                <div class="title">
+                    <?php if($i['no_link'] !== 'on'): ?>
+                        <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+                    <?php else: ?>
+                        <?php the_title(); ?>
+                    <?php endif; ?>
+                </div><i class="kd-icon-down_arrow open-close"></i>
+                <?php if($i['no_desc'] !== 'on'): ?><div class="body"><?php the_content(); ?></div><?php endif; ?>
             </div>
         <?php endwhile; ?>
 
