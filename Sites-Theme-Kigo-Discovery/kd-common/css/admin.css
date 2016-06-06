@@ -488,6 +488,9 @@ Administration option pages.
     width: 100%;
     height: 500px;
     height: calc(100vh - 400px); }
+  .kd-options .disclaimer {
+    margin: 15px 0;
+    padding: 10px; }
 
 /* kd options panel */
 .kd-options-panel {

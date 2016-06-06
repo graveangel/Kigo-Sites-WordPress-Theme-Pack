@@ -15,24 +15,24 @@ function kd_header_widgets(){
 function kd_options_panel(){
 
     if(isset($_POST['kd-option-properties'])){
-         $selected = '';
-         if(isset($_POST['kd-option-properties']['usemap'])){
-             $selected = json_encode($_POST['kd-option-properties']['usemap']);
-             set_theme_mod('kd_usemap_properties_layout',$_POST['kd-option-properties']['layout']);
-         }
+        $selected = '';
+        if(isset($_POST['kd-option-properties']['usemap'])){
+            $selected = json_encode($_POST['kd-option-properties']['usemap']);
+            set_theme_mod('kd_usemap_properties_layout',$_POST['kd-option-properties']['layout']);
+        }
         set_theme_mod('kd_usemap_properties',$selected);
     }
-    
+
     if(isset($_POST['property-detail-settings'])){
         set_theme_mod('kd_properties_settings',$_POST['property-detail-settings']);
     }
-    
+
     include "options-panel.php";
 }
 
 function kd_settings_page_custom_css() {
     if(!empty($_POST)){
-        $css = $_POST['kd-custom-css'];
+        $css = wp_strip_all_tags($_POST['kd-custom-css']);
         $use = isset($_POST['use_css']);
 
         /* Minimize custom CSS & store both versions */
@@ -49,6 +49,7 @@ function kd_settings_page_custom_css() {
 
     $use_css = get_theme_mod('kd-use-css');
     $custom_css = get_theme_mod('kd-custom-css');
+    
     /* Get total css (min) size */
     $custom_css_min = get_theme_mod('kd-custom-css-min');
     $custom_css_size = mb_strlen($custom_css_min, '8bit');
@@ -59,11 +60,13 @@ function kd_settings_page_custom_css() {
             <p>
                 <label for="enable_css">Enable using custom css:  <input type="checkbox" <?php checked(1, $use_css) ?> name="use_css" id="enable_css" /></label>
             </p>
-            <p class="disclaimer">
+
+            <div class="disclaimer notice notice-warning">
                 Custom CSS changes have the <strong>potential to cause harm to the style of your website</strong>. Any changes made are at your own risk.
                 If you need to revert your changes for any reason, simply turn off custom CSS.<br>
                 The following styles are minified and included into the header of the site.
-            </p>
+            </div>
+
             <div id="custom_css" class="aceEditor" data-mode="css" data-input="custom_css_input"><?php echo $custom_css; ?></div>
             <input type="hidden" id="custom_css_input" name="kd-custom-css" value="<?php echo $custom_css; ?>"/>
             <button type="submit" class="btn btn-primary" name="button">SAVE CSS</button>
@@ -75,8 +78,8 @@ function kd_settings_page_custom_css() {
 function kd_settings_page_custom_js() {
     if(!empty($_POST)){
 
-        $hjs = stripslashes($_POST['kd-custom-h-js']); //Header scripts
-        $fjs = stripslashes($_POST['kd-custom-f-js']); //Footer scripts
+        $hjs = wp_strip_all_tags(stripslashes($_POST['kd-custom-h-js'])); //Header scripts
+        $fjs = wp_strip_all_tags(stripslashes($_POST['kd-custom-f-js'])); //Footer scripts
 
         $use_header = isset($_POST['use_h_js']);
         $use_footer = isset($_POST['use_f_js']);
