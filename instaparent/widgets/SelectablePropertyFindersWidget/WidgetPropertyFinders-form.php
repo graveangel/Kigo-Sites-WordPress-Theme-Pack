@@ -47,13 +47,14 @@
                 <span class="draggme">&equiv;</span>
             </label>
             </li>
-                <?php
+        <?php
         }
        }
 
        $bppropertyfinders = $existentppfob;
        if(is_array($bppropertyfinders) && count($bppropertyfinders)){
             foreach( $bppropertyfinders as $pfindid => $name){
+
             $checked = '';
             if(!empty($ins['property_finders'][$pfindid])) continue;
             ?>
