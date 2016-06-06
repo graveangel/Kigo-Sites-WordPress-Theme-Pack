@@ -1308,117 +1308,107 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
         $FPTextColor = $OptionsSelected['FPTextColor'];
 
         /* we check if the var is set or empty or if it is the default option */
-	if (isset($footerStyleName) && !empty($footerStyleName) && $footerStyleName != 'default') 
-	{
-		/* lets create a var for the CSS */
-		$theStyleForTheFooter='';
-		
-		/* check if they selected custom */
-		if($footerStyleName == 'customFooterStyle'){			
+		if (isset($footerStyleName) && !empty($footerStyleName) && $footerStyleName != 'default') {
+			/* lets create a var for the CSS */
+			$theStyleForTheFooter='';
 			
-			/* we get the hex value for the background color selected */
-			$footerBgColor = $OptionsSelected['footerBackgroundColor'];
-			/* we get the hex value for the text color selected */
-			$footerTxtColor = $OptionsSelected['footerTextColor'];
-			/* we get the color for the Menu Hover background */
-			$footerLinkTextColor = empty($OptionsSelected['footerLinkTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkTextColor'];
-			/* we get the color for the Menu Hover text */
-			$footerLinkHoverTextColor = empty($OptionsSelected['footerLinkHoverTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkHoverTextColor'];
+			/* check if they selected custom */
+			if($footerStyleName == 'customFooterStyle'){			
+				
+				/* we get the hex value for the background color selected */
+				$footerBgColor = $OptionsSelected['footerBackgroundColor'];
+				/* we get the hex value for the text color selected */
+				$footerTxtColor = $OptionsSelected['footerTextColor'];
+				/* we get the color for the Menu Hover background */
+				$footerLinkTextColor = empty($OptionsSelected['footerLinkTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkTextColor'];
+				/* we get the color for the Menu Hover text */
+				$footerLinkHoverTextColor = empty($OptionsSelected['footerLinkHoverTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkHoverTextColor'];
 
-			$theStyleForTheFooter='body #insta-footer{background:'.$footerBgColor.';color:'.$footerTxtColor.';}'
-                                . 'body #insta-footer a,'
-                                . 'body #insta-footer .widget_bapi_footer .footer-links a{color:'.$footerLinkTextColor.';}'
-                                . 'body #insta-footer a:hover,'
-                                . 'body #insta-footer .widget_bapi_footer .footer-links a:hover{color:'.$footerLinkHoverTextColor.';}'
-                                . 'body #insta-footer .halflings.white i:before{color:'.$footerTxtColor.';}'
-                                . 'body #insta-footer .top-links .caret {border-bottom-color:'.$footerTxtColor.';border-top-color:'.$footerTxtColor.';}';
+				$theStyleForTheFooter='body #insta-footer{background:'.$footerBgColor.';color:'.$footerTxtColor.';}'
+	                                . 'body #insta-footer a,'
+	                                . 'body #insta-footer .widget_bapi_footer .footer-links a{color:'.$footerLinkTextColor.';}'
+	                                . 'body #insta-footer a:hover,'
+	                                . 'body #insta-footer .widget_bapi_footer .footer-links a:hover{color:'.$footerLinkHoverTextColor.';}'
+	                                . 'body #insta-footer .halflings.white i:before{color:'.$footerTxtColor.';}'
+	                                . 'body #insta-footer .top-links .caret {border-bottom-color:'.$footerTxtColor.';border-top-color:'.$footerTxtColor.';}';
 
-		}else{
-			$theStyleForTheFooter=$footerstyles_CSS[$footerStyleName];
-			
+			} else {
+				$theStyleForTheFooter=$footerstyles_CSS[$footerStyleName];
+			}
 		}
-	/* add the CSS to the Custom CSS var so it gets outputted*/
-	$CustomCSSstyle = $CustomCSSstyle . $theStyleForTheFooter;
+		
+		/* add the CSS to the Custom CSS var so it gets outputted*/
+		$CustomCSSstyle = $CustomCSSstyle . $theStyleForTheFooter;
 		
 	}
 
 	/* we check if the var is set or empty or if it is the default option,
 	TODO: a function that checks this */
-	if (isset($FPstyle) && !empty($FPstyle) && $FPstyle != 'default') 
-	{
-	/* we get the color for the Featured Properties background */
-	$FPBackgroundColor = $OptionsSelected['FPBackgroundColor'];	
-	/* we get the color for the Featured Properties text */
-	$FPTextColor = $OptionsSelected['FPTextColor'];
-	
-	/* we check if the var is set or empty or if it is the default option */
-	if (isset($FPBackgroundColor) && !empty($FPBackgroundColor) && $FPBackgroundColor != 'default') 
-	{
-		/* check if this theme is theme05 which has a different FP */
-			if($currentThemeName == 'instatheme05')
-			{
-				$CustomCSSstyle = $CustomCSSstyle . 'body .widget_bapi_featured_properties .fp-featured{border-color:'.$FPBackgroundColor.';}body .widget_bapi_featured_properties .fp-image,body .widget_bapi_featured_properties .fp-outer{background:'.$FPBackgroundColor.';}';
-			}else{
-		$CustomCSSstyle = $CustomCSSstyle . 'body .insta-bottom-left-home .widget_bapi_featured_properties .fp-outer,body .widget_bapi_featured_properties .fp-featured .fp-outer{background:'.$FPBackgroundColor.';}body.instatheme04 .insta-bottom-left-home .widget_bapi_featured_properties .property-link{color:'.$FPBackgroundColor.';} ';
-			}
-	}
-	/* we check if the var is set or empty or if it is the default option */
-	if (isset($FPTextColor) && !empty($FPTextColor) && $FPTextColor != 'default') 
-	{
-		$CustomCSSstyle = $CustomCSSstyle . 'body .insta-bottom-left-home .widget_bapi_featured_properties .fp-title a,body .insta-bottom-left-home .widget_bapi_featured_properties .fp-details,body .insta-bottom-left-home .widget_bapi_featured_properties .fp-rates,body .insta-bottom-left-home .widget_bapi_featured_properties .property-link,body .insta-bottom-left-home .widget_bapi_featured_properties .property-link span,body .widget_bapi_featured_properties .fp-title a,body .widget_bapi_featured_properties .fp-details,body .widget_bapi_featured_properties .fp-rates,body .widget_bapi_featured_properties .property-link,body .widget_bapi_featured_properties .property-link span,body.instatheme02 .widget_bapi_featured_properties .fp-details, body.instatheme02 .widget_bapi_featured_properties .fp-rates{color:'.$FPTextColor.';}body .widget_bapi_featured_properties hr{ border-bottom-color:'.$FPTextColor.';border-top-color:'.$FPTextColor.';}body .widget_bapi_featured_properties .property-link{background-color:transparent;}';
-			
-	}
+	if (isset($FPstyle) && !empty($FPstyle) && $FPstyle != 'default') {
+		/* we get the color for the Featured Properties background */
+		$FPBackgroundColor = $OptionsSelected['FPBackgroundColor'];	
+		/* we get the color for the Featured Properties text */
+		$FPTextColor = $OptionsSelected['FPTextColor'];
+		
+		/* we check if the var is set or empty or if it is the default option */
+		if (isset($FPBackgroundColor) && !empty($FPBackgroundColor) && $FPBackgroundColor != 'default') {
+			/* check if this theme is theme05 which has a different FP */
+				if($currentThemeName == 'instatheme05') {
+					$CustomCSSstyle = $CustomCSSstyle . 'body .widget_bapi_featured_properties .fp-featured{border-color:'.$FPBackgroundColor.';}body .widget_bapi_featured_properties .fp-image,body .widget_bapi_featured_properties .fp-outer{background:'.$FPBackgroundColor.';}';
+				} else {
+					$CustomCSSstyle = $CustomCSSstyle . 'body .insta-bottom-left-home .widget_bapi_featured_properties .fp-outer,body .widget_bapi_featured_properties .fp-featured .fp-outer{background:'.$FPBackgroundColor.';}body.instatheme04 .insta-bottom-left-home .widget_bapi_featured_properties .property-link{color:'.$FPBackgroundColor.';} ';
+				}
+		}
+		/* we check if the var is set or empty or if it is the default option */
+		if (isset($FPTextColor) && !empty($FPTextColor) && $FPTextColor != 'default') {
+			$CustomCSSstyle = $CustomCSSstyle . 'body .insta-bottom-left-home .widget_bapi_featured_properties .fp-title a,body .insta-bottom-left-home .widget_bapi_featured_properties .fp-details,body .insta-bottom-left-home .widget_bapi_featured_properties .fp-rates,body .insta-bottom-left-home .widget_bapi_featured_properties .property-link,body .insta-bottom-left-home .widget_bapi_featured_properties .property-link span,body .widget_bapi_featured_properties .fp-title a,body .widget_bapi_featured_properties .fp-details,body .widget_bapi_featured_properties .fp-rates,body .widget_bapi_featured_properties .property-link,body .widget_bapi_featured_properties .property-link span,body.instatheme02 .widget_bapi_featured_properties .fp-details, body.instatheme02 .widget_bapi_featured_properties .fp-rates{color:'.$FPTextColor.';}body .widget_bapi_featured_properties hr{ border-bottom-color:'.$FPTextColor.';border-top-color:'.$FPTextColor.';}body .widget_bapi_featured_properties .property-link{background-color:transparent;}';
+				
+		}
 	
 	}
         
         /* we check if the var is set or empty or if it is the default option,
 	TODO: a function that checks this */
-	if (isset($h1styles) && !empty($h1styles) && $h1styles != 'default') 
-	{
-	/* we get the color for the h1 and titles color */
-	$h1TextColor = $OptionsSelected['h1TextColor'];
-	
-            /* we check if the var is set or empty or if it is the default option */
-            if (isset($h1TextColor) && !empty($h1TextColor) && $h1TextColor != 'default') 
-            {
-                    $CustomCSSstyle = $CustomCSSstyle . 'body h1,body h3.widget-title,body .widget_bapi_hp_search .widget-title{color:'.$h1TextColor.';}';
-            }
+	if (isset($h1styles) && !empty($h1styles) && $h1styles != 'default') {
+		/* we get the color for the h1 and titles color */
+		$h1TextColor = $OptionsSelected['h1TextColor'];
+		
+        /* we check if the var is set or empty or if it is the default option */
+        if (isset($h1TextColor) && !empty($h1TextColor) && $h1TextColor != 'default') {
+        	$CustomCSSstyle = $CustomCSSstyle . 'body h1,body h3.widget-title,body .widget_bapi_hp_search .widget-title{color:'.$h1TextColor.';}';
+        }
 	}
         /* we check if the var is set or empty or if it is the default option,
 	TODO: a function that checks this */
-	if (isset($h2styles) && !empty($h2styles) && $h2styles != 'default') 
-	{
-	/* we get the color for the h1 and titles color */
-	$h2TextColor = $OptionsSelected['h2TextColor'];
+	if (isset($h2styles) && !empty($h2styles) && $h2styles != 'default') {
+		/* we get the color for the h1 and titles color */
+		$h2TextColor = $OptionsSelected['h2TextColor'];
 	
-            /* we check if the var is set or empty or if it is the default option */
-            if (isset($h2TextColor) && !empty($h2TextColor) && $h2TextColor != 'default') 
-            {
-                    $CustomCSSstyle = $CustomCSSstyle . '.marker-infowindow .prop-title a,body h2.title,body .list-view-page .property-info h2,body .development-results .portal-info h2,body .marketarea-listview-page .portal-info h2,body .list-view-page .property-info h2 a,body .development-results .portal-info h2 a,body .marketarea-listview-page .portal-info h2 a,body .gallery-view-page .property-title a,body .map-view-page .marker-infowindow .prop-title a b,body .item-result .item-info .title{color:'.$h2TextColor.';}';
-            }
+        /* we check if the var is set or empty or if it is the default option */
+        if (isset($h2TextColor) && !empty($h2TextColor) && $h2TextColor != 'default') {
+        	$CustomCSSstyle = $CustomCSSstyle . '.marker-infowindow .prop-title a,body h2.title,body .list-view-page .property-info h2,body .development-results .portal-info h2,body .marketarea-listview-page .portal-info h2,body .list-view-page .property-info h2 a,body .development-results .portal-info h2 a,body .marketarea-listview-page .portal-info h2 a,body .gallery-view-page .property-title a,body .map-view-page .marker-infowindow .prop-title a b,body .item-result .item-info .title{color:'.$h2TextColor.';}';
+        }
 	}
         
-        /* we check if the var is set or empty or if it is the default option,
+    /* we check if the var is set or empty or if it is the default option,
 	TODO: a function that checks this */
-	if (isset($paragraphs_styles) && !empty($paragraphs_styles) && $paragraphs_styles != 'default') 
-	{
-	/* we get the color for the h1 and titles color */
-	$paragraphs_TextColor = $OptionsSelected['paragraphs_TextColor'];
+	if (isset($paragraphs_styles) && !empty($paragraphs_styles) && $paragraphs_styles != 'default') {
+		/* we get the color for the h1 and titles color */
+		$paragraphs_TextColor = $OptionsSelected['paragraphs_TextColor'];
 	
-            /* we check if the var is set or empty or if it is the default option */
-            if (isset($paragraphs_TextColor) && !empty($paragraphs_TextColor) && $paragraphs_TextColor != 'default') 
-            {
-                    $CustomCSSstyle = $CustomCSSstyle . 'body p{color:'.$paragraphs_TextColor.';}';
-            }
+        /* we check if the var is set or empty or if it is the default option */
+        if (isset($paragraphs_TextColor) && !empty($paragraphs_TextColor) && $paragraphs_TextColor != 'default') {
+        	$CustomCSSstyle = $CustomCSSstyle . 'body p{color:'.$paragraphs_TextColor.';}';
+        }
 	}
         
 	
-	if (isset($logoSize) && !empty($logoSize) && $logoSize != 'default') 
-	{
-		if( $customlogoSize <= 34 )
+	if (isset($logoSize) && !empty($logoSize) && $logoSize != 'default') {
+		if( $customlogoSize <= 34 ) {
 			$mtop = 62;
-		else
-		    $mtop = $customlogoSize + 26; 	 
+		} else {
+			$mtop = $customlogoSize + 26; 	 
+		}
 		
 		/* An array of CSS, each theme needs 2 different CSS, 1 for small and 1 for Large*/
 		$logoSizeByTheme = array(
@@ -1467,40 +1457,32 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
 
 				)	
 		);
+		
 		/* lets check if the theme exist on the logosizearray if not we will use instatheme01 by default*/
-		if($logoSizeByTheme[$currentThemeName][$logoSize] == '')
-		{
+		if($logoSizeByTheme[$currentThemeName][$logoSize] == '') {
 			/* add the CSS to the Custom CSS var so it gets outputted*/
 			$CustomCSSstyle = $CustomCSSstyle . $logoSizeByTheme['instatheme01'][$logoSize];
-		}else{
+		} else {
 			/* add the CSS to the Custom CSS var so it gets outputted*/
 			$CustomCSSstyle = $CustomCSSstyle . $logoSizeByTheme[$currentThemeName][$logoSize];
 		}
-		
-		
 	}
 	
-	if (isset($customCSS) && !empty($customCSS) && $customCSS != '0')
-	{
+	if (isset($customCSS) && !empty($customCSS) && $customCSS != '0') {
 		/* add the CSS to the Custom CSS var so it gets outputted*/
 		$CustomCSSstyle = $CustomCSSstyle . $OptionsSelected['customInlineCSS'];
 	}
 	
 	/* if there is no custom CSS lets not output anything*/
-	if($CustomCSSstyle!="")
-	{ 
-	/* outputting the CSS in the head */
-
-
-	$clean =  wp_strip_all_tags($CustomCSSstyle);
-
-	wp_add_inline_style( 'default-styles', $clean );
-
+	if($CustomCSSstyle!="") { 
+		/* outputting the CSS in the head */
+		$clean =  wp_strip_all_tags($CustomCSSstyle);
+		wp_add_inline_style( 'default-styles', $clean );
 	}
 
 }
-
 add_action('wp_enqueue_scripts', 'instaparent_preset_styles');
+
 
 function load_selected_font() {
 
@@ -1600,6 +1582,7 @@ add_action('wp_enqueue_scripts', 'instaparent_styles');
 
 /* We first load our widget */
 add_action( 'widgets_init', 'register_my_widget' );
+
 /* Register our widget in WordPress so that it is available under the widgets section. */
 function register_my_widget() {  
     register_widget( 'Insta_Latest_Blog_Posts' );  
@@ -1607,15 +1590,6 @@ function register_my_widget() {
 
 add_action('wp_enqueue_scripts', 'instaparent_styles');
 
-
-
-/* We first load our widget */
-add_action('widgets_init', 'register_my_widget');
-/* Register our widget in WordPress so that it is available under the widgets section. */
-
-function register_my_widget() {
-    register_widget('Insta_Latest_Blog_Posts');
-}
 
 //Include new widgets
 include 'widgets/widgets_include.php';
