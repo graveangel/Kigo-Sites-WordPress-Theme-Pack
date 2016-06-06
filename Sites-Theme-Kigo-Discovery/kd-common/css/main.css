@@ -3374,6 +3374,7 @@ footer.footer {
   .template-property .page-width {
     position: static; }
   .template-property .title {
+    max-width: 1360px;
     padding: 15px;
     position: absolute;
     bottom: 0;
