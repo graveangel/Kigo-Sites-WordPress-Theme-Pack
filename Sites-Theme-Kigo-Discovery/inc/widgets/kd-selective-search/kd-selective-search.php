@@ -41,7 +41,7 @@ class KD_SelectiveSearch extends KD_Widget2 {
             ],
         ];
 
-        $post_types = get_theme_mod('kd_post_types');
+        $post_types = get_theme_mod('kd_post_types', []);
 
         $post_type_controls = [];
 
