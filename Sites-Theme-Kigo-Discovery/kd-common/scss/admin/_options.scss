@@ -33,6 +33,10 @@ Administration option pages.
     font-size: 12px;
   }
 
+  h5{
+    margin: 0;
+  }
+
   .ace_editor{
     width: 100%;
     height: 500px;
@@ -40,7 +44,8 @@ Administration option pages.
   }
 
   .disclaimer{
-
+    margin: 15px 0;
+    padding: 10px;
   }
 }
 
