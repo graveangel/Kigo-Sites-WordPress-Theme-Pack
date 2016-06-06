@@ -1,4 +1,3 @@
-
 /*
 To update 'Kigo Discovery' font you must extract the downloaded font from 'https://icomoon.io/'
 into '/kd-common/fonts' and make sure the resulting folder has the same name.
@@ -9,6 +8,13 @@ i {
 
 /* Colors */
 /* Customizer styles */
+/* CKEditor z-index fix */
+.cke_dialog_background_cover {
+  z-index: 600000 !important; }
+
+.cke_reset_all[role="dialog"], .cke_dialog, .cke_panel {
+  z-index: 600001 !important; }
+
 #customize-theme-controls > ul > li[id*="kd_"] > h3.accordion-section-title {
   background-color: rgba(51, 186, 175, 0.5); }
   #customize-theme-controls > ul > li[id*="kd_"] > h3.accordion-section-title:focus {
@@ -256,7 +262,6 @@ div#widgets-left {
 .widget-inside .option-description {
   display: block; }
 
-/* TODO: Clean up styles into [fields, page, controls, etc.] */
 /* Button inputs */
 .buttonInputs {
   position: relative;
@@ -561,7 +566,7 @@ Administration option pages.
       margin-right: 20px; }
 
 .sortable {
-  width: 97%;
+  width: "97%";
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

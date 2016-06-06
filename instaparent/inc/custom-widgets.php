@@ -459,7 +459,7 @@ class Kigo_Social_Icons_Widget extends WP_Widget {
 			<label for="<?php echo $this->get_field_id('menu_direction'); ?>"><?php _e( 'Menu Direction:' ); ?></label>
 			<select name="<?php echo $this->get_field_name('menu_direction'); ?>" id="<?php echo $this->get_field_id('sortby'); ?>" class="widefat">
 				<option value="dir_horizontal"<?php selected( $instance['menu_direction'], 'dir_horizontal' ); ?>><?php _e('Horizontal'); ?></option>
-				<option value="dir_vertical"<?php selected( $instance['menu_direction'], 'dir_vertical' ); ?>><?php _e('Vertical'); ?></option>
+<!--				<option value="dir_vertical"<?php selected( $instance['menu_direction'], 'dir_vertical' ); ?>><?php _e('Vertical'); ?></option>-->
 			</select>
 		</p>
 		<p class="nav-menu-widget-no-menus-message" <?php if ( ! empty( $menus ) ) { echo ' style="display:none" '; } ?>>

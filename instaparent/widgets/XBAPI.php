@@ -47,7 +47,7 @@ class XBAPI extends \BAPI {
 
         foreach ($propsToRequest as $requestIds) {
             $ids = implode(',', $requestIds);
-            $propsRequested = json_decode($this->xconnect('/ws/?method=get&entity=property&seo=1&ids=' . $ids));
+            $propsRequested = json_decode($this->xconnect('/ws/?method=get&entity=property&pagesize='.$maxnum.'&seo=1&ids=' . $ids));
             $props = array_merge($props, $propsRequested->result);
         }
 
@@ -118,13 +118,28 @@ class XBAPI extends \BAPI {
      */
     private function xconnect($requestString) {
 
-        $nconnection = curl_init();
-        curl_setopt($nconnection, CURLOPT_USERAGENT, 'InstaSites Agent');
-        curl_setopt($nconnection, CURLOPT_URL, $this->base_url . $requestString . '&apikey=' . $this->api_key);
-        curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
-        $output = curl_exec($nconnection);
-        curl_close($nconnection);
+        //Method 1:
+        $context =  stream_context_create(array(
+			'http' => array(
+				'method' => "GET",
+				'header' => "User-Agent: InstaSites Agent\r\nReferer: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."\r\n"
+			)
+		));
+                    
+        $output = file_get_contents($this->base_url . $requestString . '&apikey=' . $this->api_key,false, $context );
+              
         
+        //Method 2:
+        if(empty($output))
+        {
+            $nconnection = curl_init();
+            curl_setopt($nconnection, CURLOPT_USERAGENT, 'InstaSites Agent');
+            curl_setopt($nconnection, CURLOPT_URL, $this->base_url . $requestString . '&apikey=' . $this->api_key);
+            curl_setopt($nconnection, CURLOPT_RETURNTRANSFER, 1);
+            $output = curl_exec($nconnection);
+            curl_close($nconnection);
+        }
+
         return $output;
     }
 

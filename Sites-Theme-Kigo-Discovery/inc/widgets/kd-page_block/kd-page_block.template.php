@@ -37,7 +37,7 @@ $buttons = [
             <div class="info">
                 <div class="inner">
                     <?php if($i['displayTitle'] == 'on' && empty($i['customTitle'])){ ?>
-                        <h4 class="title"><?php echo $page->post_title ?></h4> <!-- TODO: fix global page title -->
+                        <h4 class="title"><?php echo $page->post_title ?></h4>
                     <?php } ?>
                     <?php if(!empty($i['customTitle'])){ ?>
                         <h4 class="title"><?php echo $i['customTitle'] ?></h4>

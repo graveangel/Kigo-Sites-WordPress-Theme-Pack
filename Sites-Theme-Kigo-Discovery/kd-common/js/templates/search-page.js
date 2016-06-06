@@ -14,10 +14,12 @@ app.bapiModules.templates.searchPage = {
     mapObj: null,
     clustererObj: null,
     spiderfyObj: null,
+    bounds: null,
+
     markers: [],
     propMarkers: {},
-    bounds: null,
     openMarkers: [],
+    currentViewMarkers: [],
 
     /* Methods */
     cond: function(){
@@ -34,12 +36,13 @@ app.bapiModules.templates.searchPage = {
             case 'tmpl-propertysearch-mapview':
             default:
                 this.doMapView();
-                this.mapResetEvents();
                 break;
         }
+
+        this.mapResetEvents();
     },
     getProperties: function(success_callback, empty_callback){
-        var chunkSize = 10;
+        var chunkSize = 20;
 
         if(this.properties.length){
             this.properties.forEach(function(prop, prop_i){
@@ -99,18 +102,154 @@ app.bapiModules.templates.searchPage = {
     initMap: function(latitude, longitude){
         var defaultMapView = BAPI.config().mapviewType;
 
+        var mapStyles = [
+            {
+                "featureType": "landscape",
+                "stylers": [
+                    {
+                        "hue": "#FFBB00"
+                    },
+                    {
+                        "saturation": 43.400000000000006
+                    },
+                    {
+                        "lightness": 37.599999999999994
+                    },
+                    {
+                        "gamma": 1
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "stylers": [
+                    {
+                        "hue": "#FFC200"
+                    },
+                    {
+                        "saturation": -61.8
+                    },
+                    {
+                        "lightness": 45.599999999999994
+                    },
+                    {
+                        "gamma": 1
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "stylers": [
+                    {
+                        "hue": "#FF0300"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 51.19999999999999
+                    },
+                    {
+                        "gamma": 1
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "stylers": [
+                    {
+                        "hue": "#FF0300"
+                    },
+                    {
+                        "saturation": -100
+                    },
+                    {
+                        "lightness": 52
+                    },
+                    {
+                        "gamma": 1
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "stylers": [
+                    {
+                        "hue": "#0078FF"
+                    },
+                    {
+                        "saturation": -13.200000000000003
+                    },
+                    {
+                        "lightness": 2.4000000000000057
+                    },
+                    {
+                        "gamma": 1
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "stylers": [
+                    {
+                        "hue": "#00FF6A"
+                    },
+                    {
+                        "saturation": -1.0989010989011234
+                    },
+                    {
+                        "lightness": 11.200000000000017
+                    },
+                    {
+                        "gamma": 1
+                    }
+                ]
+            }
+        ];
+
         this.mapObj = new google.maps.Map(this.mapEle, {
             center: {lat: latitude, lng: longitude},
             zoom: 8,
+            styles: mapStyles,
             mapTypeId: google.maps.MapTypeId[defaultMapView]
         });
     },
+
     initClusterer: function(){
-        var mcOptions = {gridSize: 50, maxZoom: 13};
+        var size = [53, 56, 66, 78, 90];
+        var clusterStyles = [
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m1.png',
+                height: size[0],
+                width: size[0]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m2.png',
+                height: size[1],
+                width: size[1]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m3.png',
+                height: size[2],
+                width: size[2]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m4.png',
+                height: size[3],
+                width: size[3]
+            },
+            {
+                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m5.png',
+                height: size[4],
+                width: size[4]
+            }
+        ];
+
+        var mcOptions = {gridSize: 50, maxZoom: 13, styles: clusterStyles};
         this.clustererObj = new MarkerClusterer(this.mapObj, this.markers, mcOptions);
     },
     initSpiderfy: function(){
-        this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj);
+        this.spiderfyObj = new OverlappingMarkerSpiderfier(this.mapObj, {markersWontMove: true, markersWontHide: true, keepSpiderfied: true, legWeight : 2});
     },
     addMarker: function(prop){
 
@@ -127,6 +266,7 @@ app.bapiModules.templates.searchPage = {
 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(prop.Latitude, prop.Longitude),
+            prop: prop,
             map: this.mapObj,
             iw: infoWindow,
             icon: {
@@ -134,14 +274,13 @@ app.bapiModules.templates.searchPage = {
                 "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
                 fillColor: this.mapEle.dataset.color,
                 fillOpacity: 1,
-                strokeColor: 'rgba(0,0,0,.25)',
-                strokeWeight: 1
+                strokeWeight: 0
             }
         });
 
         //Standard event handling
         /* Add event listeners to show info window */
-        //marker.addListener('click', this.openMarker.bind(this, marker));
+        marker.addListener('click', this.openMarker.bind(this, marker));
 
         /* Add marker to Clusterer */
         this.clustererObj.addMarker(marker);
@@ -168,13 +307,13 @@ app.bapiModules.templates.searchPage = {
 
         _.delay(function(){
             marker.iw.open(this.mapObj, marker);
-        }.bind(this), 250);
+        }.bind(this), 150);
         /* we store the open InfoWindows to keep track */
         this.openMarkers.push(marker);
     },
-    addMapProps: function(){
+    addMapProps: function(properties){
         //Render properties
-        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: this.properties, textdata: BAPI.textdata});
+        var propHTML = app.bapi.render('tmpl-propertysearch-mapview', {result: properties, textdata: BAPI.textdata});
         this.mapPropContainer.innerHTML = propHTML;
 
         //Attach event listeneers
@@ -190,8 +329,11 @@ app.bapiModules.templates.searchPage = {
         }.bind(this));
     },
     mapResetEvents: function(){
-        var ele = document.querySelector('#resetMap');
-        ele.addEventListener('click', this.centerMap.bind(this));
+        var eles = document.querySelectorAll('.resetMap');
+
+        _.map(eles, function(ele){
+            ele.addEventListener('click', this.centerMap.bind(this));
+        }.bind(this));
     },
     centerMap: function(){
 
@@ -210,6 +352,39 @@ app.bapiModules.templates.searchPage = {
             this.mapObj.fitBounds(this.bounds);
         }
     },
+    mapBoundProps: function(){
+        /* listen events for loading ui */
+        google.maps.event.addListener(this.mapObj, 'dragstart', function(){
+            this.mapPropContainer.classList.add('loading');
+        }.bind(this));
+
+        google.maps.event.addListener(this.mapObj, 'idle', function(){
+            this.mapPropContainer.classList.remove('loading');
+        }.bind(this));
+
+        /* on map move (bounds change) we check to see what markers are visible to display related props */
+        google.maps.event.addListener(this.mapObj, 'bounds_changed',
+            _.debounce(
+                function() {
+                    this.currentViewMarkers = [];
+                    this.markers.forEach(function(marker){
+                        if(this.mapObj.getBounds().contains(marker.getPosition())){
+                            this.currentViewMarkers.push(marker);
+                        }
+                    }.bind(this));
+
+                    var visibleProps = [];
+
+                    /* Grab visible marker properties */
+                    this.currentViewMarkers.forEach(function(m){
+                        visibleProps.push(m.prop);
+                    });
+                    this.addMapProps(visibleProps); //Render them
+
+                    $('.ppty-count-current').text(visibleProps.length);
+                }.bind(this), 250)
+        );
+    },
     /* View initializers */
     doMapView: function(){
         /* Update view layout */
@@ -217,7 +392,10 @@ app.bapiModules.templates.searchPage = {
         document.querySelector('.mapView').classList.remove('hidden');
         //document.querySelector('.viewToggle .v-map').classList.add('active');
 
-        if(this.mapInitted){return;}
+        if(this.mapInitted){
+            this.centerMap();
+            return;
+        }
 
         this.getProperties(function(prop, prop_i){
             //Search has returned properties
@@ -229,38 +407,42 @@ app.bapiModules.templates.searchPage = {
                 this.initMap(prop.Latitude, prop.Longitude);
                 this.initClusterer();
                 this.initSpiderfy();
+                this.mapBoundProps();
             }
 
             this.addMarker(prop);
 
             //Last marker iteration
-            if(this.properties.length == this.totalProps){
+            if( this.markers.length == this.totalProps ){ //We check markers array, as properties can exist before we're in Map view
                 this.centerMap();
-                this.addMapProps();
                 this.mapInitted = true;
+                _.map(document.querySelectorAll('.viewToggle button'), function(button){button.removeAttribute('disabled')});
             }
         }, function(){
             //Search has returned no properties (empty)
-            this.addMapProps();
+            this.addMapProps(this.properties);
         });
     },
     doListView: function(){
         /* Update view layout */
         document.querySelector('.mapView').classList.add('hidden');
         document.querySelector('.listView').classList.remove('hidden');
-        //document.querySelector('.viewToggle .v-list').classList.add('active');
 
         if(this.listInitted)return;
 
         this.getProperties(function(prop, prop_i){
-
+                //Search has returned properties
 
                 prop.Summary = prop.Summary.length <= 200
                     ? prop.Summary
                     : prop.Summary.replace(/(<([^>]+)>)/ig,"").substr(0, 200) + '... <a href="'+prop.ContextData.SEO.DetailURL+'">['+BAPI.textdata.more+']</a>';
-                //Search has returned properties
+
                 var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [prop], textdata: BAPI.textdata});
                 this.listPropContainer.innerHTML += propHTML;
+
+                if(this.properties.length == this.totalProps){
+                    _.map(document.querySelectorAll('.viewToggle button'), function(button){button.removeAttribute('disabled')});
+                }
             },
             function(){
                 //Search has returned no properties (empty)
@@ -268,7 +450,6 @@ app.bapiModules.templates.searchPage = {
                 var propHTML = app.bapi.render('tmpl-propertysearch-listview', {result: [], textdata: BAPI.textdata});
                 this.listPropContainer.innerHTML += propHTML;
             });
-
 
         this.listInitted = true;
     },

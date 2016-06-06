@@ -3,8 +3,8 @@
 use Kigo\Themes\instaparent\XBAPI;
 
 $xbapi = new XBAPI();
+$existentppf = array_keys($this->getPropertyFinders());
 $pfinders = $xbapi->getPropertyFinders($ins['property_finders']);
-//    dd($pfinders, true);
 ?>
 <?php if (!empty($ins['title'])): ?>
     <div class="widget-title">
@@ -13,7 +13,10 @@ $pfinders = $xbapi->getPropertyFinders($ins['property_finders']);
 <?php endif; ?>
 
 <div class="kigo-pfinders-items">
-    <?php foreach ($pfinders as $pfind) { ?>
+    <?php foreach ($pfinders as $pfind) {
+        if(!in_array((int)$pfind->ID, $existentppf)) 
+            continue;
+        ?>
         <div class="kigo-pfinder width<?php echo $ins['items_per_row']; ?>">
 
                 <div class="kigo-pfinder-content">

@@ -23,7 +23,8 @@ class KD_Featured extends KD_Widget2 {
             ['name' => 'General', 'fields' =>
                 [
                     'title'             => ['type' => 'text',       'label'     => 'Title'],
-                    'link'              => ['type' => 'text',        'label'    => 'Button link'],
+                    'text'              => ['type' => 'text',       'label'    => 'Button text'],
+                    'link'              => ['type' => 'text',       'label'    => 'Button link'],
                     'userandom'         => ['type' => 'checkbox',   'label'     => 'Use API properties',   'default' => false ],
                     'visible_featured'  => ['type' => 'select',     'multiple'  => true,                    'options' => $options,  'label' =>'Select the properties to show in frontend:', 'description' =>'<i class="fa fa-info-circle"></i> All properties listed below have been selected as featured ones in KD options' ]
                 ]

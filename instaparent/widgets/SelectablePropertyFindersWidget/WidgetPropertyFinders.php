@@ -11,8 +11,8 @@ class WidgetPropertyFinders extends WidgetBase{
 
          $args = [
              'base_id'      => 'kigo_sortable_property_finders',
-             'visible_name' => 'Kigo Sortable Property finders',
-             'description'  => 'Shows the selected property finders',
+             'visible_name' => 'Kigo Sortable Property Finders',
+             'description'  => 'Use this to select and sort your Property Finders that you setup in the Kigo App',
              'textdomain'   => __TEXTDOMAIN__,
          ];
 

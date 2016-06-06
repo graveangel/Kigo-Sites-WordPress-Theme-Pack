@@ -710,12 +710,11 @@ if (!function_exists('instaparent_post_meta_data')) :
 endif;
 
 /*
- *
- * Creating the widgets for the Common Widget Areas
- *
- */
-if (function_exists('childtheme_override_presetwidgets_commonareas')) {
-
+*
+* Creating the widgets for the Common Widget Areas
+*
+*/
+if ( function_exists( 'childtheme_override_presetwidgets_commonareas') )  { 
     /**
      * run the child override
      */
@@ -1093,6 +1092,7 @@ if (is_admin()) {
  *
  */
 function instaparent_preset_styles() {
+<<<<<<< HEAD
     /* we will put all the custom CSS here and output it in the <head> */
     $CustomCSSstyle = "";
     /* lets get the name of the theme folder to see which theme it is */
@@ -1128,6 +1128,51 @@ function instaparent_preset_styles() {
     $menustyles_CSS = array(
         'menustyle01' => array(
             'instatopfixed' => 'body #insta-top-fixed,body #insta-top-fixed .widget_bapi_weather_widget{background:#fff;color:#333;}body #insta-top-fixed .top-links a,body #insta-top-fixed .top-links a:hover,body #insta-top-fixed .halflings.white i:before{color:#333;}body #insta-top-fixed .navbar-inverse .brand,body #insta-top-fixed .navbar-inverse .nav > li > a{color:#333;text-shadow:none;}
+=======
+	wp_enqueue_style( 'default-styles', get_stylesheet_uri() );
+	/* we will put all the custom CSS here and output it in the <head> */
+	$CustomCSSstyle="";
+	/* lets get the name of the theme folder to see which theme it is */
+		$currentThemeName = substr(strrchr(get_stylesheet_directory(), "/"), 1);
+	
+	/* lets check if the variable has been set and it contains the word style and is 7 chars long */
+	if (isset($_GET['presetpreview']) && strpos($_GET['presetpreview'],'style') !== false && strlen($_GET['presetpreview']) <= 7) {	
+	
+	$styleName = htmlspecialchars($_GET['presetpreview']);
+	
+	}else{
+		/* we get the options from the database */
+		$OptionsSelected = get_option('instaparent_theme_options');
+		/* we get the preset selected which is in radioinput*/
+		$styleName = $OptionsSelected['presetStyle'];
+		/* we get the menu style selected */
+		$menuStyleName = @$OptionsSelected['menustyles'];
+                /* we get the menu style selected */
+		$footerStyleName = @$OptionsSelected['footerstyles'];
+		/* we get the Featured Properties Selected */
+		$FPstyle = @$OptionsSelected['FPstyles'];
+                /* we get the h1 and titles color Selected */
+		$h1styles = @$OptionsSelected['h1styles'];
+                /* we get the h2 titles color Selected */
+		$h2styles = @$OptionsSelected['h2styles'];
+                /* we get the paragraphs color Selected */
+		$paragraphs_styles = @$OptionsSelected['paragraphs_styles'];
+		/* we get the Logo Size Selected */
+		$logoSize = @$OptionsSelected['logoSize'];
+		$customlogoSize = @$OptionsSelected['logoSize_custom'];
+		/* we Custom CSS option */
+		$customCSS = @$OptionsSelected['customCSS'];
+	}
+	
+	if(isset($styleName) && $styleName!="default" && $styleName!=""){
+		/* we use the selected preset name in the PATH to the style.css for that preset, this was removed array( 'instaparent-style' ) */
+	wp_enqueue_style( $styleName . '-preset', get_template_directory_uri() . '/insta-common/themeoptions/presets/'.$styleName.'/style.css', FALSE, '1.0', 'all' );
+	}
+/* an array with the CSS for White and Gray Options */
+$menustyles_CSS = array(
+	'menustyle01' => array(
+		'instatopfixed' => 'body #insta-top-fixed,body #insta-top-fixed .widget_bapi_weather_widget{background:#fff;color:#333;}body #insta-top-fixed .top-links a,body #insta-top-fixed .top-links a:hover,body #insta-top-fixed .halflings.white i:before{color:#333;}body #insta-top-fixed .navbar-inverse .brand,body #insta-top-fixed .navbar-inverse .nav > li > a{color:#333;text-shadow:none;}
+>>>>>>> release/S2016-06-09
 body #insta-top-fixed .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 body #insta-top-fixed .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
 body #insta-top-fixed .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{background:none;color:#333;}
@@ -1301,6 +1346,7 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
         $FPTextColor = $OptionsSelected['FPTextColor'];
 
         /* we check if the var is set or empty or if it is the default option */
+<<<<<<< HEAD
         if (isset($FPBackgroundColor) && !empty($FPBackgroundColor) && $FPBackgroundColor != 'default') {
             /* check if this theme is theme05 which has a different FP */
             if ($currentThemeName == 'instatheme05') {
@@ -1389,6 +1435,198 @@ color:#333;}body #insta-footer a,body #insta-footer .widget_bapi_footer .footer-
         echo $CustomCSSstyle . "\n";
         echo '</style>' . "\n";
     }
+=======
+	if (isset($footerStyleName) && !empty($footerStyleName) && $footerStyleName != 'default') 
+	{
+		/* lets create a var for the CSS */
+		$theStyleForTheFooter='';
+		
+		/* check if they selected custom */
+		if($footerStyleName == 'customFooterStyle'){			
+			
+			/* we get the hex value for the background color selected */
+			$footerBgColor = $OptionsSelected['footerBackgroundColor'];
+			/* we get the hex value for the text color selected */
+			$footerTxtColor = $OptionsSelected['footerTextColor'];
+			/* we get the color for the Menu Hover background */
+			$footerLinkTextColor = empty($OptionsSelected['footerLinkTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkTextColor'];
+			/* we get the color for the Menu Hover text */
+			$footerLinkHoverTextColor = empty($OptionsSelected['footerLinkHoverTextColor']) ? $footerTxtColor : $OptionsSelected['footerLinkHoverTextColor'];
+
+			$theStyleForTheFooter='body #insta-footer{background:'.$footerBgColor.';color:'.$footerTxtColor.';}'
+                                . 'body #insta-footer a,'
+                                . 'body #insta-footer .widget_bapi_footer .footer-links a{color:'.$footerLinkTextColor.';}'
+                                . 'body #insta-footer a:hover,'
+                                . 'body #insta-footer .widget_bapi_footer .footer-links a:hover{color:'.$footerLinkHoverTextColor.';}'
+                                . 'body #insta-footer .halflings.white i:before{color:'.$footerTxtColor.';}'
+                                . 'body #insta-footer .top-links .caret {border-bottom-color:'.$footerTxtColor.';border-top-color:'.$footerTxtColor.';}';
+
+		}else{
+			$theStyleForTheFooter=$footerstyles_CSS[$footerStyleName];
+			
+		}
+	/* add the CSS to the Custom CSS var so it gets outputted*/
+	$CustomCSSstyle = $CustomCSSstyle . $theStyleForTheFooter;
+		
+	}
+
+	/* we check if the var is set or empty or if it is the default option,
+	TODO: a function that checks this */
+	if (isset($FPstyle) && !empty($FPstyle) && $FPstyle != 'default') 
+	{
+	/* we get the color for the Featured Properties background */
+	$FPBackgroundColor = $OptionsSelected['FPBackgroundColor'];	
+	/* we get the color for the Featured Properties text */
+	$FPTextColor = $OptionsSelected['FPTextColor'];
+	
+	/* we check if the var is set or empty or if it is the default option */
+	if (isset($FPBackgroundColor) && !empty($FPBackgroundColor) && $FPBackgroundColor != 'default') 
+	{
+		/* check if this theme is theme05 which has a different FP */
+			if($currentThemeName == 'instatheme05')
+			{
+				$CustomCSSstyle = $CustomCSSstyle . 'body .widget_bapi_featured_properties .fp-featured{border-color:'.$FPBackgroundColor.';}body .widget_bapi_featured_properties .fp-image,body .widget_bapi_featured_properties .fp-outer{background:'.$FPBackgroundColor.';}';
+			}else{
+		$CustomCSSstyle = $CustomCSSstyle . 'body .insta-bottom-left-home .widget_bapi_featured_properties .fp-outer,body .widget_bapi_featured_properties .fp-featured .fp-outer{background:'.$FPBackgroundColor.';}body.instatheme04 .insta-bottom-left-home .widget_bapi_featured_properties .property-link{color:'.$FPBackgroundColor.';} ';
+			}
+	}
+	/* we check if the var is set or empty or if it is the default option */
+	if (isset($FPTextColor) && !empty($FPTextColor) && $FPTextColor != 'default') 
+	{
+		$CustomCSSstyle = $CustomCSSstyle . 'body .insta-bottom-left-home .widget_bapi_featured_properties .fp-title a,body .insta-bottom-left-home .widget_bapi_featured_properties .fp-details,body .insta-bottom-left-home .widget_bapi_featured_properties .fp-rates,body .insta-bottom-left-home .widget_bapi_featured_properties .property-link,body .insta-bottom-left-home .widget_bapi_featured_properties .property-link span,body .widget_bapi_featured_properties .fp-title a,body .widget_bapi_featured_properties .fp-details,body .widget_bapi_featured_properties .fp-rates,body .widget_bapi_featured_properties .property-link,body .widget_bapi_featured_properties .property-link span,body.instatheme02 .widget_bapi_featured_properties .fp-details, body.instatheme02 .widget_bapi_featured_properties .fp-rates{color:'.$FPTextColor.';}body .widget_bapi_featured_properties hr{ border-bottom-color:'.$FPTextColor.';border-top-color:'.$FPTextColor.';}body .widget_bapi_featured_properties .property-link{background-color:transparent;}';
+			
+	}
+	
+	}
+        
+        /* we check if the var is set or empty or if it is the default option,
+	TODO: a function that checks this */
+	if (isset($h1styles) && !empty($h1styles) && $h1styles != 'default') 
+	{
+	/* we get the color for the h1 and titles color */
+	$h1TextColor = $OptionsSelected['h1TextColor'];
+	
+            /* we check if the var is set or empty or if it is the default option */
+            if (isset($h1TextColor) && !empty($h1TextColor) && $h1TextColor != 'default') 
+            {
+                    $CustomCSSstyle = $CustomCSSstyle . 'body h1,body h3.widget-title,body .widget_bapi_hp_search .widget-title{color:'.$h1TextColor.';}';
+            }
+	}
+        /* we check if the var is set or empty or if it is the default option,
+	TODO: a function that checks this */
+	if (isset($h2styles) && !empty($h2styles) && $h2styles != 'default') 
+	{
+	/* we get the color for the h1 and titles color */
+	$h2TextColor = $OptionsSelected['h2TextColor'];
+	
+            /* we check if the var is set or empty or if it is the default option */
+            if (isset($h2TextColor) && !empty($h2TextColor) && $h2TextColor != 'default') 
+            {
+                    $CustomCSSstyle = $CustomCSSstyle . '.marker-infowindow .prop-title a,body h2.title,body .list-view-page .property-info h2,body .development-results .portal-info h2,body .marketarea-listview-page .portal-info h2,body .list-view-page .property-info h2 a,body .development-results .portal-info h2 a,body .marketarea-listview-page .portal-info h2 a,body .gallery-view-page .property-title a,body .map-view-page .marker-infowindow .prop-title a b,body .item-result .item-info .title{color:'.$h2TextColor.';}';
+            }
+	}
+        
+        /* we check if the var is set or empty or if it is the default option,
+	TODO: a function that checks this */
+	if (isset($paragraphs_styles) && !empty($paragraphs_styles) && $paragraphs_styles != 'default') 
+	{
+	/* we get the color for the h1 and titles color */
+	$paragraphs_TextColor = $OptionsSelected['paragraphs_TextColor'];
+	
+            /* we check if the var is set or empty or if it is the default option */
+            if (isset($paragraphs_TextColor) && !empty($paragraphs_TextColor) && $paragraphs_TextColor != 'default') 
+            {
+                    $CustomCSSstyle = $CustomCSSstyle . 'body p{color:'.$paragraphs_TextColor.';}';
+            }
+	}
+        
+	
+	if (isset($logoSize) && !empty($logoSize) && $logoSize != 'default') 
+	{
+		if( $customlogoSize <= 34 )
+			$mtop = 62;
+		else
+		    $mtop = $customlogoSize + 26; 	 
+		
+		/* An array of CSS, each theme needs 2 different CSS, 1 for small and 1 for Large*/
+		$logoSizeByTheme = array(
+			'instatheme01' => array(
+				'small' => 'body .bapi-logo img{height:30px}',
+				'medium' => 'body .bapi-logo img{height:50px}',
+				'large' => 'body .bapi-logo img{height:70px}',
+				'custom' => 'body .bapi-logo img{height:'.$customlogoSize.'px}',
+				'original' => ''
+				),
+			'instatheme02' => array(
+				'small' => 'body .bapi-logo img{height:30px}',
+				'medium' => 'body .bapi-logo img{height:50px}',
+				'large' => 'body .bapi-logo img{height:70px}',
+				'custom' => 'body .bapi-logo img{height:'.$customlogoSize.'px}',
+				'original' => ''
+				),
+			'instatheme04' => array(
+				'small' => 'body #insta-top-fixed .bapi-logo img{height:16px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:62px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'medium' => 'body #insta-top-fixed .bapi-logo img{height:26px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:60px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'large' => 'body #insta-top-fixed .bapi-logo img{height:36px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:62px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'custom' => 'body #insta-top-fixed .bapi-logo img{height:'.$customlogoSize.'px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:'.$mtop.'px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'original' => ''
+				),
+			'instatheme05' => array(
+				'small' => 'body .bapi-logo img{height:30px}',
+				'medium' => 'body .bapi-logo img{height:50px}',
+				'large' => 'body .bapi-logo img{height:70px}',
+				'custom' => 'body .bapi-logo img{height:'.$customlogoSize.'px}',
+				'original' => ''
+				),
+			'instatheme07' => array(
+				'small' => 'body #insta-top-fixed .bapi-logo img{height:16px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:62px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'medium' => 'body #insta-top-fixed .bapi-logo img{height:26px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:60px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'large' => 'body #insta-top-fixed .bapi-logo img{height:36px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:62px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'custom' => 'body #insta-top-fixed .bapi-logo img{height:'.$customlogoSize.'px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:74px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'original' => ''
+
+				),
+			'instatheme08' => array(
+				'small' => 'body #insta-top-fixed .bapi-logo img{height:16px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:62px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'medium' => 'body #insta-top-fixed .bapi-logo img{height:26px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:60px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'large' => 'body #insta-top-fixed .bapi-logo img{height:36px;}body .pushdown,body .pushdown.wpadminbarvisible{margin-top:62px;}@media (max-width: 979px) {body .pushdown,body .pushdown.wpadminbarvisible{margin-top:20px;}}',
+				'custom' => 'body #insta-top-fixed .bapi-logo img{height:'.$customlogoSize.'px;}',
+				'original' => ''
+
+				)	
+		);
+		/* lets check if the theme exist on the logosizearray if not we will use instatheme01 by default*/
+		if($logoSizeByTheme[$currentThemeName][$logoSize] == '')
+		{
+			/* add the CSS to the Custom CSS var so it gets outputted*/
+			$CustomCSSstyle = $CustomCSSstyle . $logoSizeByTheme['instatheme01'][$logoSize];
+		}else{
+			/* add the CSS to the Custom CSS var so it gets outputted*/
+			$CustomCSSstyle = $CustomCSSstyle . $logoSizeByTheme[$currentThemeName][$logoSize];
+		}
+		
+		
+	}
+	
+	if (isset($customCSS) && !empty($customCSS) && $customCSS != '0')
+	{
+		/* add the CSS to the Custom CSS var so it gets outputted*/
+		$CustomCSSstyle = $CustomCSSstyle . $OptionsSelected['customInlineCSS'];
+	}
+	
+	/* if there is no custom CSS lets not output anything*/
+	if($CustomCSSstyle!="")
+	{ 
+	/* outputting the CSS in the head */
+
+
+	$clean =  wp_strip_all_tags($CustomCSSstyle);
+
+	wp_add_inline_style( 'default-styles', $clean );
+
+	}
+	
+>>>>>>> release/S2016-06-09
 }
 
 add_action('wp_enqueue_scripts', 'instaparent_preset_styles');
@@ -1451,11 +1689,18 @@ function load_custom_widgets() {
  * @package Customizer Library Demo
  */
 // Default styles
+<<<<<<< HEAD
 function demo_styles() {
     wp_enqueue_style('demo-style', get_stylesheet_uri());
 }
 
 add_action('wp_enqueue_scripts', 'demo_styles');
+=======
+function default_styles() {
+	wp_enqueue_style( 'default-styles', get_stylesheet_uri() );
+}
+//add_action( 'wp_enqueue_styles', 'default_styles' );
+>>>>>>> release/S2016-06-09
 
 
 /* only for instathemes */
@@ -1488,6 +1733,17 @@ function instaparent_styles() {
     /* Font Awesome */
     wp_enqueue_style('fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
 }
+<<<<<<< HEAD
+=======
+add_action('wp_enqueue_scripts', 'instaparent_styles');
+
+/* We first load our widget */
+add_action( 'widgets_init', 'register_my_widget' );
+/* Register our widget in WordPress so that it is available under the widgets section. */
+function register_my_widget() {  
+    register_widget( 'Insta_Latest_Blog_Posts' );  
+}
+>>>>>>> release/S2016-06-09
 
 add_action('wp_enqueue_scripts', 'instaparent_styles');
 
@@ -1502,4 +1758,8 @@ function register_my_widget() {
 }
 
 //Include new widgets
+<<<<<<< HEAD
 include 'widgets/widgets_include.php';
+=======
+include 'widgets/widgets_include.php';
+>>>>>>> release/S2016-06-09
