@@ -7964,7 +7964,8 @@ aside .advanced.kd-selective-search-box .currently-filtering.active .ptype,
 }
 aside .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter,
 .sidebar-right .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter {
-  font-size: 1.1rem;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 @media (max-width: 1199px) {
