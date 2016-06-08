@@ -13,8 +13,28 @@ class KD_SelectiveSearch extends KD_Widget2 {
         $this->filename = 'kd-selective-search';
 
         $this->controls = $this->get_controls();
-
+        add_action( 'wp_enqueue_scripts', array($this,'add_scripts') );
     }
+
+    /**
+ * Enqueue Dashicons style for frontend use when enqueuing your theme's style sheet
+ */
+function add_scripts() {
+	wp_enqueue_style( 'dashicons' );
+}
+
+    public function form( $instance ) {
+        // outputs the options form on admin
+
+        /* If we find a custom form template we display it, if not we build form from controls  */
+                $formTemplate = __DIR__ .'/'.$this->filename.'.form.php';
+            if(file_exists($formTemplate)){
+                $i = $instance;
+                include $formTemplate;
+            }else{
+                echo $this->buildForm($instance);
+                }
+            }
 
 
     /**
@@ -31,7 +51,7 @@ class KD_SelectiveSearch extends KD_Widget2 {
             'fields' =>
                 [
                     'widget_title' => ['type' => 'text', 'label' => 'Title', 'description' => 'The search widget title.'],
-                    'inherit' => ['type' => 'radio', 'label' => 'Inherit', 'description' => 'If enabled, the search criteria will inherit from the search query. If the search query does not contain any criteria it will use the criteria defined in the widget. If no criteria is defined in the widget then results will not be filtered.', 'choices' =>
+                    'inherit' => ['type' => 'radio', 'label' => 'Advanced Search', 'description' => '<p class="fa fa-info advanced-search-info"></p><p class="description">Enabling this option will let you select the filters to limit the range of the search.</p>', 'choices' =>
                                         [
                                             'disabled',
                                             'enabled',
@@ -41,7 +61,7 @@ class KD_SelectiveSearch extends KD_Widget2 {
             ],
         ];
 
-        $post_types = get_theme_mod('kd_post_types', []);
+        $post_types = get_theme_mod('kd_post_types');
 
         $post_type_controls = [];
 
@@ -59,10 +79,6 @@ class KD_SelectiveSearch extends KD_Widget2 {
 
         return $controls;
     }
-
-
-
-
 
 }
 

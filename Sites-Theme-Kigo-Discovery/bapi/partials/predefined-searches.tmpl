@@ -2,98 +2,103 @@
 Group: Predefined Searches
 */
 <script id="tmpl-searches-summary" type="text/html">
-        {{#result}}
-        <div class="pfrowfix span4">
-            <div class="col-xs-12 col-md-4">
-                <div class="item-result bucket-item">
-                    <div class="item-inner">
-                        <a class="image" href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.MediumURL}}')"></a>
-                        <div>
-                            <a href="{{&ContextData.SEO.DetailURL}}">
-                                <h3 class="title">{{Name}}</h3>
-                            </a>
-                            <div class="description bapi-dotdotdot" style="max-height:100px" data-trunclen="100">{{&Summary}}</div>
-                            <a href="{{&ContextData.SEO.DetailURL}}" class="details kd-button primary-fill-color">{{textdata.See Details}}</a>
-                        </div>
+    <header class="pagination-centered">
+
+    </header>
+    {{#result}}
+    <div class="pfrowfix span4">
+        <div class="col-xs-12 col-md-4">
+            <div class="item-result bucket-item">
+                <div class="item-inner">
+                    <a class="image" href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.MediumURL}}')"></a>
+                    <div class="">
+                        {{#ContextData.SEO.Keyword}}
+                        <a href="{{&ContextData.SEO.DetailURL}}">
+                            {{/ContextData.SEO.Keyword}}
+                            <h3 class="title">{{Name}}</h3>
+                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                        <div class="description bapi-dotdotdot" style="max-height:100px" data-trunclen="100">{{&Summary}}</div>
+                        {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="details kd-button primary-fill-color">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
                     </div>
                 </div>
             </div>
         </div>
-        {{/result}}
+    </div>
+    {{/result}}
     <div class="clearfix"></div>
-        {{> partial-more-results}}
+    {{> partial-more-results}}
 </script>
 
 <script id="tmpl-searches-detail" type="text/html">
-        {{#result}}
-        <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="searches"></div>
-        <section class="row-fluid">
-            <div class="span12 item-snapshot module shadow-border">
-                <div class="top-block">
-                    <div class="row-fluid">
-                        <div class="span12 box-sides">
-                            <h2 class="title">{{Name}}</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-slideshow">
-                    <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
-                        <ul class="slides">
-                            {{^Images}}
-                            <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
-                                {{#PrimaryImage.Caption}}
-                                    <p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
-                                {{/PrimaryImage.Caption}}
-                            {{/Images}}
-                            {{#Images}}
-                            <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
-                                {{#Caption}}
-                                    <p class="flex-caption">{{Caption}}</p></li>
-                                {{/Caption}}
-                            {{/Images}}
-                        </ul>
-                    </div>
-                    <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
-                        <ul class="slides">
-                            {{^Images}}
-                                <li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
-                            {{/Images}}
-                            {{#Images}}
-                                <li><img alt="" src="{{&ThumbnailURL}}" /></li>
-                            {{/Images}}
-                        </ul>
+    {{#result}}
+    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="searches"></div>
+    <section class="row-fluid">
+        <div class="span12 item-snapshot module shadow-border">
+            <div class="top-block">
+                <div class="row-fluid">
+                    <div class="span12 box-sides">
+                        <h2 class="title">{{Name}}</h2>
                     </div>
                 </div>
             </div>
-        </section>
-            {{#Description}}
-            <div class="row-fluid">
-                <div class="span12">
-                    {{&Description}}
+            <div class="item-slideshow">
+                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
+                            {{#PrimaryImage.Caption}}
+                            <p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+                        {{/PrimaryImage.Caption}}
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
+                            {{#Caption}}
+                            <p class="flex-caption">{{Caption}}</p></li>
+                        {{/Caption}}
+                        {{/Images}}
+                    </ul>
+                </div>
+                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                    <ul class="slides">
+                        {{^Images}}
+                        <li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                        {{/Images}}
+                        {{#Images}}
+                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                        {{/Images}}
+                    </ul>
                 </div>
             </div>
-            {{/Description}}
-        {{/result}}
+        </div>
+    </section>
+    {{#Description}}
+    <div class="row-fluid">
+        <div class="span12">
+            {{&Description}}
+        </div>
+    </div>
+    {{/Description}}
+    {{/result}}
     <span class="end"></span>
-        {{#result}}
-        <div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allpropertiespage" data-ignoresession="1" data-entity="property" data-searchoptions='{ "searchid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
-        {{/result}}
+    {{#result}}
+    <div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allpropertiespage" data-ignoresession="1" data-entity="property" data-searchoptions='{ "searchid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
+    {{/result}}
 </script>
 
 <script id="tmpl-searches-quickview" type="text/html">
-        {{#result}}
-        <div class="bucket-container col-xs-12 {{class}}">
-            <a class="bucket" href="{{&ContextData.SEO.DetailURL}}">
-                <div class="top">
-                    <div class="image" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );">
-                    </div>
-                    <h6 class="title">{{Name}}</h6>
-                    <div class="description">
-                        {{{Description}}}
-                    </div>
-                    <i class="kd-icon-right_arrow"></i>
+    {{#result}}
+    <div class="bucket-container col-xs-12 {{class}}">
+        <a class="bucket" href="{{&ContextData.SEO.DetailURL}}">
+            <div class="top">
+                <div class="image" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );">
                 </div>
-            </a>
-        </div>
-        {{/result}}
+                <h6 class="title">{{Name}}</h6>
+                <div class="description">
+                    {{{Description}}}
+                </div>
+                <i class="kd-icon-right_arrow"></i>
+            </div>
+        </a>
+    </div>
+    {{/result}}
 </script>
