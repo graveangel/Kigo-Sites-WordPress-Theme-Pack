@@ -23,7 +23,7 @@ function dd($f, $d = false) {
 
 
 // DEV..........................................................................
-define('__DEV__', true);
+define('__DEV__', false);
 
 //Theme dir
 define('__PARENT_DIR__', get_template_directory());

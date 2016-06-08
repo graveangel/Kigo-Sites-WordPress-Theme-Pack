@@ -47,7 +47,7 @@ class XBAPI extends \BAPI {
 
         foreach ($propsToRequest as $requestIds) {
             $ids = implode(',', $requestIds);
-            $propsRequested = json_decode($this->xconnect('/ws/?method=get&entity=property&seo=1&ids=' . $ids));
+            $propsRequested = json_decode($this->xconnect('/ws/?method=get&entity=property&pagesize='.$maxnum.'&seo=1&ids=' . $ids));
             $props = array_merge($props, $propsRequested->result);
         }
 
@@ -117,6 +117,7 @@ class XBAPI extends \BAPI {
      * @return string
      */
     private function xconnect($requestString) {
+
         //Method 1:
         $context =  stream_context_create(array(
 			'http' => array(
@@ -126,8 +127,7 @@ class XBAPI extends \BAPI {
 		));
                     
         $output = file_get_contents($this->base_url . $requestString . '&apikey=' . $this->api_key,false, $context );
-        
-        
+              
         
         //Method 2:
         if(empty($output))
@@ -139,7 +139,6 @@ class XBAPI extends \BAPI {
             $output = curl_exec($nconnection);
             curl_close($nconnection);
         }
-
 
         return $output;
     }
