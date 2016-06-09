@@ -18,6 +18,10 @@
     box-shadow: 0 15px 10px -10px rgba(black, .25);
   }
 
+  .kd-widget{
+    padding: 0 15px;
+  }
+
   $cust-social-size: 35px;
   .customizer{
     padding: 0 15px;
@@ -105,9 +109,8 @@
     }
 
     &.fixed {
-      padding-bottom: 52px;
       .under_header {
-        padding: 15px 30px;
+        padding: 10px 30px;
 
         .kd-widget{
           padding: 0;
