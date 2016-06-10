@@ -1,101 +1,179 @@
-<?php get_header();?>
-<div class="blog-listing page-width">
-	<!-- Blog listing sidebar -->
-	<div class="col-xs-12 page-blog-listing-sidebar">
-		<?php if (is_active_sidebar('page_search_listing')) : ?>
-							<?php dynamic_sidebar('page_search_listing'); ?>
-		<?php endif; ?>
-	</div>
+<?php
+/**
+ * Search template controller.
+ */
+define('DS', DIRECTORY_SEPARATOR );
+class SearchTemplateController
+{
+    private $template_path;
 
-	<!-- Blog listing -->
-	<div class="col-xs-12 col-lg-9">
-		<div class="results">
-		<?php
+    public function __construct($template_path)
+    {
+        $this->set_template($template_path);
+        $this->index_action();
+    }
 
-		//Getting the search query
-		$search_query = kd_get_search_query();
+    public function index_action()
+    {
+        $this->render(
+            [
+                'wp_query'=> $this->return_query_object()
+            ]
+        );
+    }
 
-		$post_types_to_filter = [];
+    private function return_query_object()
+    {
+        // Getting the search query
+        $search_query = kd_get_search_query();
 
-		$search_query_types = $search_query[0]['types'] ? : $search_query[1]['types'];
-		$s = urldecode(empty($search_query[0]['s']) ? '' : $search_query[0]['s']);
+        // Array to store the post types to filter
+        $post_types_to_filter = [];
 
-		if(!empty($search_query_types))
-		{
-			$post_types_to_filter = explode(',',urldecode($search_query_types));
-		}
+        $search_query_types = $search_query[0]['types'] ? : $search_query[1]['types'];
 
-		if(!empty($post_types_to_filter))
-			{
-				global $wp_query;
-				$args = array_merge( $wp_query->query_vars, array( 'post_type' => $post_types_to_filter,'s' => $s ) );
-				query_posts($args);
-			}
+        // The search query
+        $s = urldecode(empty($search_query[0]['s']) ? '' : $search_query[0]['s']);
 
-		if ( have_posts() ) :
-			while ( have_posts() ) :
-				the_post(); ?>
+        // The post types that come in the search query
+        if(!empty($search_query_types))
+        {
+            // The post types to filter
+            $post_types_to_filter = explode(',',urldecode($search_query_types));
+        }
 
-				<!-- Listed blog -->
-				<div class="listed-blog col-xs-12 col-md-12">
+        //Query 1 will get the s results
+        $args1 =
+        [
+            'post_type'         => $post_types_to_filter ?: null,
+            's' 			    => $s,
+            'posts_per_page'    => -1,
+        ];
 
-					<!-- thumbnail -->
-					<div class="image col-lg-2 col-xs-12 paddingless">
-
-						<?php $attachments = has_post_thumbnail(); ?>
-						<?php if($attachments): ?>
-							<a href="<?php the_permalink(); ?>">
-								<?php the_post_thumbnail('thumbnail'); ?>
-							</a>
-						<?php endif; ?>
-
-					</div>
-
-					<!-- text -->
-					<div class="text col-lg-10 col-xs-12 paddingless">
-
-						<!-- the title -->
-						<a href="<?php the_permalink(); ?>">
-							<h3><?php the_title(); ?></h3>
-						</a>
-
-						<!-- the summary -->
-						<div class="post-summary">
-							<?php the_excerpt(); ?>
-						</div>
-					</div>
-				</div>
-
-			<?php endwhile; // end while
-		endif; // end if
-		?>
-	</div>
+        $q1 = get_posts($args1); // array
 
 
-		<div class="results-info">
-			<h4>
-				<?php
-						global $wp_query;
 
-						$big = 999999999; // need an unlikely integer
+        $q2 = [];
 
-						echo paginate_links( array(
-							'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-							'format' => '?paged=%#%',
-							'current' => max( 1, get_query_var('paged') ),
-							'total' => $wp_query->max_num_pages
-						) );
-				?>
-			</h4>
-		</div>
-	</div>
+        //Query 2 will get the meta fields results
+        $meta_query = $this->get_meta_query_array($s);
 
-	<div class="col-xs-12 col-lg-3 sidebar-right">
-		<?php if (is_active_sidebar('page_search_listing_right')) : ?>
-							<?php dynamic_sidebar('page_search_listing_right'); ?>
-		<?php endif; ?>
-	</div>
+        if(in_array('page',$post_types_to_filter) || empty($post_types_to_filter))
+        {
+
+            $args2 =
+            [
+                'post_type'         => get_post_types(),
+                'posts_per_page'    => -1,
+                'meta_query'        => $meta_query,
+            ];
+
+            $q2 = get_posts($args2);// array
+
+        }
+
+        $arraymerged = array_merge($q1, $q2);
+        $ids = [];
+
+        foreach($arraymerged as $merged)
+        {
+            $ids[] = $merged->ID;
+        }
+
+        $unique = array_unique($ids);
+
+        $args =
+                [
+                    'post_type'                 => !empty($post_types_to_filter) ?$post_types_to_filter: get_post_types(),
+                    'post__in'                  => empty($unique) ? [uniqid('can i call')] : $unique,
+                    'ignore_sticky_posts'       => true,
+                ];
+
+        $wp_query = new WP_Query($args);
+
+        return $wp_query;
+    }
+
+    /**
+     * returns an array of the meta fields to include in the search
+     * @return array the meta fields array
+     */
+    function get_meta_query_array($s)
+    {
+        $mini_queries = $this->get_mini_queries($s);
+
+        $meta_query = [
+                            'relation' => 'AND',
+                    ];
+        $meta_query = array_merge($meta_query, $mini_queries);
+
+        return $meta_query;
+    }
+
+    function get_mini_queries($s)
+    {
+        $string_parts = explode(' ',$s);
+        $mini_queries = [];
+
+        global $wpdb;
+        //meta table
+        $meta_table = $wpdb->prefix . 'postmeta';
+        $custom_query_string = "SELECT meta_key FROM $meta_table ";
+        $all_metas_results =  $wpdb->get_results( $custom_query_string, ARRAY_A );
+        $all_metas = [];
+        foreach($all_metas_results as $meta)
+        {
+            if(!in_array($meta['meta_key'],$all_metas))
+                $all_metas[] = $meta['meta_key'];
+        }
 
 
-</div>
-<?php get_footer();
+
+        foreach ($string_parts as $key => $value) {
+
+            $all_metas_arrays = [];
+
+            foreach($all_metas as $meta)
+            {
+                $all_metas_arrays[] =
+                [
+                        'key'       => $meta,
+                        'value'     => "$value",
+                        'compare'   => 'LIKE'
+                ];
+            }
+
+            $mini_query =
+            [
+                'relation'  => 'OR',
+            ];
+
+            $mini_queries = array_merge($mini_query, $all_metas_arrays);
+        }
+
+        return $mini_queries;
+    }
+
+    /**
+     * defines the template for this controller.
+     * @param string $template_path the template path
+     */
+    public function set_template($template_path)
+    {
+        $this->template_path = $template_path;
+    }
+
+    /**
+     * Renders the template.
+     * @param  array $template_vars The variables to include in the template
+     * @return null                no return is defined.
+     */
+    public function render(array $template_vars=null)
+    {
+        extract($template_vars);
+        require dirname(__FILE__) . DS . $this->template_path;
+    }
+}
+
+$SearchPage = new SearchTemplateController('page-templates/blog-search-template.php');

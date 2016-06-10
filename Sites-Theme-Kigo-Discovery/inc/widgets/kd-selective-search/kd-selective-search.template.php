@@ -5,11 +5,13 @@
     $filter_post_types = [];
     $search_text = render_this('{{#site}}{{textdata.Search}}{{/site}}');
     $clear_text = render_this('{{#site}}{{textdata.Clear}}{{/site}}');
+    $filter_by_text = render_this('{{#site}}{{textdata.Filter by}}{{/site}}');
+
+      //Getting the search query
+     $search_query = kd_get_search_query();
 
      if(!empty($i['inherit']))
      {
-       //Getting the search query
-      $search_query = kd_get_search_query();
 
       $kd_post_types = [];
 
@@ -39,6 +41,9 @@
 
      }
 
+     // The search query
+     $s = urldecode(empty($search_query[0]['s']) ? '' : $search_query[0]['s']);
+
 
     $search_types = !empty($filter_post_types) ? implode(',',array_values($filter_post_types)) : '';
 
@@ -61,7 +66,7 @@
 
 
     <!-- Fields -->
-    <input type="text" name="s" id ="s" class="inline <?php echo $advanced; ?>" value="" placeholder="<?php echo $placeholder; ?>">
+    <input type="text" name="s" id ="s" class="inline <?php echo $advanced; ?>" value="<?php echo $s; ?>" placeholder="<?php echo $placeholder; ?>">
     <input type="hidden" class="inline <?php echo $advanced; ?>" id="<?php echo $this->id; ?>_search_types" name="types" value="<?php echo $search_types; ?>">
 
     <?php if (!empty($advanced)) : ?>
@@ -69,8 +74,8 @@
     <div class="inline select-types">
         <!-- Filter by -->
         <a href="#" class="filter-by">
-          <svg class="filter-icon" viewBox="0 0 24 24"><title>icon-filter</title><g fill-rule="evenodd"><path d="M23.75 19H15v-1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25V19H.25a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25H6v1.75c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V21h8.75a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25zM8 19h5v2H8v-2zm15.75-8H21V9.25a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25V11H.25a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25H12v1.75c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V13h2.75a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25zM14 11h5v2h-5v-2zm9.75-8H12V1.25a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25V3H.25a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25H3v1.75c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V5h11.75a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25zM5 3h5v2H5V3z"></path></g></svg>
-          <?php echo render_this('{{#site}}{{textdata.Filter by}}{{/site}}');?>
+          <div class="center"><svg class="filter-icon" viewBox="0 0 24 24"><title>icon-filter</title><g fill-rule="evenodd"><path d="M23.75 19H15v-1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25V19H.25a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25H6v1.75c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V21h8.75a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25zM8 19h5v2H8v-2zm15.75-8H21V9.25a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25V11H.25a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25H12v1.75c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V13h2.75a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25zM14 11h5v2h-5v-2zm9.75-8H12V1.25a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25V3H.25a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25H3v1.75c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25V5h11.75a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25zM5 3h5v2H5V3z"></path></g></svg>
+          <span><?php echo render_this('{{#site}}{{textdata.Filter by}}{{/site}}');?></span></div>
         </a>
     </div>
     <!-- Post types -->
@@ -98,7 +103,7 @@
             endforeach;
         ?>
         <div class="ptype clear">
-          <a href="#" class="clearsearch" data-types="#<?php echo $this->id; ?>_search_types"><?php echo $clear_text . ' ' . $search_text; ?></a>
+          <a href="#" class="clearsearch primary-stroke-color" data-types="#<?php echo $this->id; ?>_search_types"><?php echo $clear_text . ' ' . $filter_by_text; ?></a>
         </div>
     </div>
       <?php endif; ?>

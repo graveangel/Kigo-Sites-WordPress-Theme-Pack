@@ -31,7 +31,7 @@ app.bapiModules.widgets.selective_search = {
             $('.filter-by').on('click', function(e)
             {
                 e.preventDefault();
-
+                $(this).toggleClass('active');
                 //Preveinting to close when clicked
                 $(this).parent().on('click', function(e)
                 {
@@ -60,6 +60,7 @@ app.bapiModules.widgets.selective_search = {
             $(window).on('click', function(e)
             {
                 $('.currently-filtering').removeClass('active');
+                $('.filter-by').removeClass('active');
             });
 
 
