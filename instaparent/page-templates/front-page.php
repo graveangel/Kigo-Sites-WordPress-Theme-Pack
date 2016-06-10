@@ -8,29 +8,23 @@
 
 get_header(); ?>
 
-	<div class="span12">
+<div class="span12">
     <div class="home-slideshow">
-    <div class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "slideshow": true }'>
-  <ul class="slides">
-    <?php
-        $slideshow = bapi_get_slideshow();
-        $i = 0;
-        foreach($slideshow as $ss){
-            ?>
-            <li>
-      <img src="<?= $ss['url'] ?>" alt="<?= $ss['caption'] ?>" />
-      <?php
-	  if(!empty($ss['caption'])){
-	  echo '<p class="flex-caption">' . $ss['caption'] . '</p>';
-	  }
-      ?>  
-      </li>
-      <?php
-            $i++;
-        }
-      ?>
-  </ul>
-</div>
+        <div class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "slideshow": true }'>
+            <ul class="slides">
+                <?php
+                    $slideshow = bapi_get_slideshow();
+                    foreach($slideshow as $ss){
+                        ?>
+                <li>
+                    <img src="<?= $ss['url'] ?>" alt="<?= $ss['caption'] ?>" />
+                    <?php if(!empty($ss['caption'])){
+                    echo '<p class="flex-caption">' . $ss['caption'] . '</p>';
+                    } ?>  
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
 	</div>
     <div class="row-fluid">
         <div class="span3">
