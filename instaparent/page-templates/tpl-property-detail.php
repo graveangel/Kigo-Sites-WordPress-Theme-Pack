@@ -68,7 +68,7 @@ if($data) {
 				<div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
 				<ul class="slides">
 				<?php foreach($data->Images as $img) { ?>
-					<li><img alt="" src="/wp-content/plugins/bookt-api/img/loading.gif" data-src="<?php echo $img->ThumbnailURL; ?>" /></li>
+					<li><img alt="" src="/wp-content/plugins/bookt-api/img/loading.gif" data-src="/img.svc?src=http:<?php echo $img->OriginalURL; ?>&w=816&h=600&q=75&zc=2" /></li>
 				<?php } ?>
 				</ul>
 				</div>
