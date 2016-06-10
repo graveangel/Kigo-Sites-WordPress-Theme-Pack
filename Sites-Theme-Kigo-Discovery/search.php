@@ -15,14 +15,11 @@ class SearchTemplateController
 
     public function index_action()
     {
-        $this->render(
-            [
-                'wp_query'=> $this->return_query_object()
-            ]
-        );
+        $wp_query = $this->get_query();
+        $this->render(['wp_query' => $wp_query]);
     }
 
-    private function return_query_object()
+    private function get_query()
     {
         // Getting the search query
         $search_query = kd_get_search_query();
@@ -59,7 +56,7 @@ class SearchTemplateController
         //Query 2 will get the meta fields results
         $meta_query = $this->get_meta_query_array($s);
 
-        if(in_array('page',$post_types_to_filter) || empty($post_types_to_filter))
+        if((in_array('page',$post_types_to_filter) || empty($post_types_to_filter)) && !empty($s))
         {
 
             $args2 =
@@ -83,16 +80,24 @@ class SearchTemplateController
 
         $unique = array_unique($ids);
 
+        $page_number = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
         $args =
                 [
                     'post_type'                 => !empty($post_types_to_filter) ?$post_types_to_filter: get_post_types(),
-                    'post__in'                  => empty($unique) ? [uniqid('can i call')] : $unique,
+                    'post__in'                  => empty($unique) ? [uniqid(time())] : $unique,
                     'ignore_sticky_posts'       => true,
+                    'paged'                     => $page_number,
                 ];
 
-        $wp_query = new WP_Query($args);
 
-        return $wp_query;
+
+                $new_wp_query = new WP_Query($args);
+
+
+
+                return $new_wp_query;
+
     }
 
     /**

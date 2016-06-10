@@ -67,8 +67,8 @@
 	<div class="results-info">
 		<h4>
 			<?php
-				//	global $wp_query;
-
+					//global $wp_query;
+					// debug(count($wp_query->posts), true);
 					$big = 999999999; // need an unlikely integer
 
 					echo paginate_links( array(
