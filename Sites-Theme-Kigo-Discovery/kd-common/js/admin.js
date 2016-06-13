@@ -1,4 +1,3 @@
-/* kd-main by j~: 10-06-2016*/
 var kd_admin = {
     init: function () {
     },
