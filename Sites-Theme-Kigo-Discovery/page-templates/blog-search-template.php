@@ -18,7 +18,7 @@
 		<?php
 
 		// The Loop
-			if ( $wp_query->have_posts() ) : while ( $wp_query->have_posts() ) : $wp_query->the_post(); ?>
+			if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 					<!-- Listed blog -->
 					<div class="listed-blog col-xs-12 col-md-12">
@@ -58,7 +58,9 @@
 
 					</div>
 
-		<?php endwhile; endif; ?>
+		<?php endwhile; else: ?>
+		<h5><?php echo render_this('{{#site}}{{textdata.There are no more results}}{{/site}}'); ?></h5>
+		<?php endif; ?>
 	</div>
 
 
@@ -67,8 +69,8 @@
 	<div class="results-info">
 		<h4>
 			<?php
-					//global $wp_query;
-					// debug(count($wp_query->posts), true);
+					global $wp_query;
+
 					$big = 999999999; // need an unlikely integer
 
 					echo paginate_links( array(

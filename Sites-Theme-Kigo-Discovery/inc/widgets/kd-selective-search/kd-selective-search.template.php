@@ -66,7 +66,7 @@
 
 
     <!-- Fields -->
-    <input type="text" name="s" id ="s" class="inline <?php echo $advanced; ?>" value="<?php echo $s; ?>" placeholder="<?php echo $placeholder; ?>">
+    <input type="text" name="s" id ="s" class="inline <?php echo $advanced; ?>" value="<?php echo stripcslashes($s); ?>" placeholder="<?php echo $placeholder; ?>">
     <input type="hidden" class="inline <?php echo $advanced; ?>" id="<?php echo $this->id; ?>_search_types" name="types" value="<?php echo $search_types; ?>">
 
     <?php if (!empty($advanced)) : ?>
