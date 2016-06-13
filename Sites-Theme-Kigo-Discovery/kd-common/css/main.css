@@ -4204,7 +4204,7 @@ body.page-template-search-page .split-search.listView .mapContainer {
 
 body.page-template-search-page .map {
   position: relative;
-  display: none; }
+  height: 400px; }
   body.page-template-search-page .map > div {
     width: 100%;
     height: 100%;
