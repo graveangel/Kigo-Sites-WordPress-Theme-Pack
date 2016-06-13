@@ -34,7 +34,7 @@ class SearchTemplateController
      * @param  array $template_vars The variables to include in the template
      * @return null                no return is defined.
      */
-    public function render(array $template_vars=null)
+    public function render($template_vars=[])
     {
         extract($template_vars);
         require dirname(__FILE__) . DS . $this->template_path;
