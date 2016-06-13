@@ -4144,7 +4144,6 @@ Media Desktop
           border-left: 1px solid #eee;
           font-size: 12px; }
     .list-property .info .title, body.page-template-search-page .listProps .property .info .title {
-      white-space: nowrap;
       margin-bottom: 0; }
     .list-property .info .desc, body.page-template-search-page .listProps .property .info .desc {
       padding: 8px 10px; }

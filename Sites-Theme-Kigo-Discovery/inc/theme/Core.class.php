@@ -64,9 +64,9 @@ class Core {
 //        remove_action('init', 'urlHandler_bapidefaultpages', 1 );
 //        remove_action('init', 'bapi_setup_default_pages', 5);
 //
-          add_filter( 'query_vars', [$this,'add_query_vars_filter'] );
-          add_action('init',[$this,'kd_get_post_types'],99999);
-          add_action('pre_get_posts',[$this,'set_search_query']);
+        add_filter( 'query_vars', [$this,'add_query_vars_filter'] );
+        add_action('init',[$this,'kd_get_post_types'],99999);
+        add_action('pre_get_posts',[$this,'set_search_query']);
 
     }
 
@@ -379,6 +379,8 @@ class Core {
         /* Enqueue site assets */
         add_action('wp_enqueue_scripts', function () {
 
+            wp_deregister_script('jquery');
+
             $commonPath = get_template_directory_uri() . '/kd-common';
 
             /* Google Fonts - https://www.google.com/fonts */
@@ -516,8 +518,8 @@ class Core {
      * @param array $vars The variables in the search query.
      */
     public function add_query_vars_filter( $vars ){
-      $vars[] = "types";
-      return $vars;
+        $vars[] = "types";
+        return $vars;
     }
 
     /**
@@ -526,8 +528,8 @@ class Core {
     function kd_get_post_types()
     {
         $args = array(
-           '_builtin' => false,
-           'public'   => true,
+            '_builtin' => false,
+            'public'   => true,
         );
 
         $output = 'names'; // names or objects, note names is the default
@@ -575,11 +577,11 @@ class Core {
 
             //Query 1 will get the s results
             $args1 =
-            [
-                'post_type'         => $post_types_to_filter ?: null,
-                's' 			    => $s,
-                'posts_per_page'    => -1,
-            ];
+                [
+                    'post_type'         => $post_types_to_filter ?: null,
+                    's' 			    => $s,
+                    'posts_per_page'    => -1,
+                ];
 
             $q1 = get_posts($args1); // array
 
@@ -594,11 +596,11 @@ class Core {
             {
 
                 $args2 =
-                [
-                    'post_type'         => get_post_types(),
-                    'posts_per_page'    => -1,
-                    'meta_query'        => $meta_query,
-                ];
+                    [
+                        'post_type'         => get_post_types(),
+                        'posts_per_page'    => -1,
+                        'meta_query'        => $meta_query,
+                    ];
 
                 $q2 = get_posts($args2);// array
 
@@ -619,13 +621,13 @@ class Core {
             $page_number = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
             $args =
-                    [
-                        'post_type'                 => !empty($post_types_to_filter) ?$post_types_to_filter: get_post_types(),
-                        'post__in'                  => empty($unique) ? [uniqid(time())] : $unique,
-                        'paged'                     => $page_number,
-                    ];
+                [
+                    'post_type'                 => !empty($post_types_to_filter) ?$post_types_to_filter: get_post_types(),
+                    'post__in'                  => empty($unique) ? [uniqid(time())] : $unique,
+                    'paged'                     => $page_number,
+                ];
 
-                    $wpq->query_vars = $args;
+            $wpq->query_vars = $args;
 
 
         }
@@ -640,8 +642,8 @@ class Core {
         $mini_queries = $this->get_mini_queries($s);
 
         $meta_query = [
-                            'relation' => 'AND',
-                    ];
+            'relation' => 'AND',
+        ];
         $meta_query = array_merge($meta_query, $mini_queries);
 
         return $meta_query;
@@ -673,17 +675,17 @@ class Core {
             foreach($all_metas as $meta)
             {
                 $all_metas_arrays[] =
-                [
+                    [
                         'key'       => $meta,
                         'value'     => "$value",
                         'compare'   => 'LIKE'
-                ];
+                    ];
             }
 
             $mini_query =
-            [
-                'relation'  => 'OR',
-            ];
+                [
+                    'relation'  => 'OR',
+                ];
 
             $mini_queries = array_merge($mini_query, $all_metas_arrays);
         }
