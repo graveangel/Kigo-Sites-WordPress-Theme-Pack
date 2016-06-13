@@ -378,6 +378,8 @@ class Core {
         /* Enqueue site assets */
         add_action('wp_enqueue_scripts', function () {
 
+            wp_deregister_script('jquery');
+
             $commonPath = get_template_directory_uri() . '/kd-common';
 
             /* Google Fonts - https://www.google.com/fonts */
