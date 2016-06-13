@@ -558,10 +558,10 @@ class Core {
             // Array to store the post types to filter
             $post_types_to_filter = [];
 
-            $search_query_types = empty(urldecode($_GET['types'])) ? '' : urldecode($_GET['types']);//$search_query[0]['types'] ? : $search_query[1]['types'];
+            $search_query_types = empty(urldecode($_GET['types'])) ? '' : urldecode($_GET['types']);
 
             // The search query
-            $s = empty(urldecode($_GET['s'])) ? '' : urldecode($_GET['s']); //urldecode(empty($search_query[0]['s']) ? '' : $search_query[0]['s']);
+            $s = empty(urldecode($_GET['s'])) ? '' : urldecode($_GET['s']);
 
 
             // The post types that come in the search query
