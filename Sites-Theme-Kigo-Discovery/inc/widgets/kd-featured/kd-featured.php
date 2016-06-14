@@ -17,7 +17,7 @@ class KD_Featured extends KD_Widget2 {
 
         $options = [];
         foreach($properties as $property){
-            $options[$property['ID']] = $property['Name'];
+            $options[$property['pkid']] = $property['Name'];
         }
 
         $this->controls = [
