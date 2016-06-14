@@ -27,7 +27,7 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                     '.primary-fill-color',
                 ),
                 'declarations' => array(
-                    'background-color' => $color . " !important",
+                    'background-color' => $color,
                     'color' => 'white',
                 )
             ));
