@@ -2,8 +2,10 @@
 $bg_left = $i['color'] ? 'style="background-color: '.$i['color'].'"' : '';
 $bg_right = $i['color'] ? 'style="background-color: rgba(255,255,255,.1)"' : '';
 
+$selectedProps = $i['visible_featured'] ? : [];
+
 $searchOpts = '{"ids": [';
-foreach($i['visible_featured'] as $fid){
+foreach($selectedProps as $fid){
     $searchOpts .= "{\"id\": $fid},";
 }
 $searchOpts .= '{"id": null}]}';
