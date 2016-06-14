@@ -3375,6 +3375,7 @@ footer.footer {
   .template-property .page-width {
     position: static; }
   .template-property .title {
+    max-width: 1360px;
     padding: 15px;
     position: absolute;
     bottom: 0;
@@ -4830,6 +4831,22 @@ body.page-template-other-detail-page .other-detail-page table {
 body.page-template-other-detail-page .other-detail-page .button {
   padding: 5px 12px;
   color: white; }
+
+body.page-template-other-detail-page .other-detail-page .gmap-property, body.page-template-other-detail-page .other-detail-page .gmap-poi {
+  padding-top: 10px; }
+  body.page-template-other-detail-page .other-detail-page .gmap-property .gmap-img, body.page-template-other-detail-page .other-detail-page .gmap-poi .gmap-img {
+    width: 50%;
+    float: left; }
+    body.page-template-other-detail-page .other-detail-page .gmap-property .gmap-img img, body.page-template-other-detail-page .other-detail-page .gmap-poi .gmap-img img {
+      width: 100%;
+      height: auto; }
+  body.page-template-other-detail-page .other-detail-page .gmap-property .gmap-text, body.page-template-other-detail-page .other-detail-page .gmap-poi .gmap-text {
+    width: 50%;
+    float: left;
+    padding-left: 20px; }
+    body.page-template-other-detail-page .other-detail-page .gmap-property .gmap-text .truncate_more_link, body.page-template-other-detail-page .other-detail-page .gmap-poi .gmap-text .truncate_more_link {
+      text-transform: uppercase;
+      font-weight: bolder; }
 
 .propertyfinders-results .bucket-item {
   text-align: center;
