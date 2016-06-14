@@ -49,8 +49,6 @@ function render_this($string_mustache_template, $addedArray = [], $onlyAdded = f
 
     $data = $onlyAdded ? $addedArray : getbapisolutiondata() + $addedArray;
 
-    debug($data);
-
     $m = new Mustache_Engine();
     $string = $m->render($string_mustache_template, $data);
 
@@ -91,6 +89,7 @@ function get_marked_as_featured() {
             $featured_ids[] = $id;
         }
     }
+
 
     $bapiEntities = json_decode(get_option('bapi_keywords_array'), true);
     $featuredProperties = [];

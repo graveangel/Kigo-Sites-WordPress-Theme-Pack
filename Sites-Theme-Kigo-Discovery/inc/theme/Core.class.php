@@ -48,7 +48,8 @@ class Core {
             'div' => array(
                 'class' => true,
                 'id' => true,
-            )
+            ),
+            'br' => []
         ];
 
         /* Enable custom post thumbnails */
