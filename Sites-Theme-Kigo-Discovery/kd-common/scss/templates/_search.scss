@@ -48,7 +48,6 @@
       }
     }
     .title{
-      white-space: nowrap;
       margin-bottom: 0;
     }
     .desc{
@@ -148,7 +147,7 @@ body.page-template-search-page{
 
   .map{
     position: relative;
-    display: none;
+    height: 400px;
 
     & > div{
       width: 100%;

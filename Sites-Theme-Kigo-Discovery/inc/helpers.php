@@ -47,13 +47,11 @@ function bapiPageUrl($bapiPageId) {
  */
 function render_this($string_mustache_template, $addedArray = [], $onlyAdded = false) {
 
-    if($onlyAdded)
-        $data = $addedArray;
-    else
-        $data = getbapisolutiondata() + $addedArray;
+    $data = $onlyAdded ? $addedArray : getbapisolutiondata() + $addedArray;
 
     $m = new Mustache_Engine();
     $string = $m->render($string_mustache_template, $data);
+
     return $string;
 }
 
@@ -68,45 +66,41 @@ function get_mustache_template($templatefile) {
     return $template;
 }
 
+function get_properties(){
+    $bapiEntities = json_decode(get_option('bapi_keywords_array'), true);
+    $properties = [];
+
+    foreach($bapiEntities as $entity){
+        if($entity['entity'] == 'property'){
+            $properties[] = $entity;
+        }
+    }
+
+    return $properties;
+}
+
 function get_marked_as_featured() {
 
     $props_settings = json_decode(stripslashes(get_theme_mod('kd_properties_settings'))) ? : [];
 
-    $featured_pkids = array();
-    foreach ($props_settings as $pkid => $ps) {
-        if ($ps->forced_featured) {
-            $featured_pkids[] = $pkid;
+    $featured_ids = array();
+    foreach ($props_settings as $id => $settings) {
+        if ($settings->forced_featured) {
+            $featured_ids[] = $id;
         }
     }
 
-    $sd = json_decode(get_option('bapi_solutiondata'));//safer this way.
 
-    $apikey = $sd->apikey;
-    $baseurl = $sd->BaseURL;
+    $bapiEntities = json_decode(get_option('bapi_keywords_array'), true);
+    $featuredProperties = [];
 
-    $BAPI = new BAPI($apikey,$baseurl);
-    $props = $BAPI->get('property',$featured_pkids);
-    $featured = array('kdfeatured'=> $props['result'] ? : []);
-
-    $sd = json_decode(get_option('bapi_keywords_array')) ? : [];
-    $sd_properties = array();
-    foreach($sd as $ent){
-        if($ent->entity === "property"){
-            $sd_properties[]=$ent;
+    foreach($bapiEntities as $entity){
+        if($entity['entity'] == 'property' && in_array($entity['pkid'], $featured_ids)){
+            $featuredProperties[] = $entity;
         }
     }
 
-    foreach($featured['kdfeatured'] as $ind => $ftrd ){
-        foreach($sd_properties as $sd_prop){
-            if($ftrd['ID'] == $sd_prop->pkid){
-                $featured['kdfeatured'][$ind]['ContextData']['SEO'] = array();
-                $featured['kdfeatured'][$ind]['ContextData']['SEO']['DetailURL'] = $sd_prop->DetailURL;
-                break;
-            }
-        }
-    }
-
-    return $featured;
+    return ['kdfeatured' => $featuredProperties];
 }
 
 function doctype_opengraph($output) {
@@ -185,9 +179,9 @@ function kd_get_search_query()
         $key_val = explode('=',$query_item);
 
         $searchquery_array[$ind] =
-        [
-            $key_val[0]  => $key_val[1]
-        ];
+            [
+                $key_val[0]  => $key_val[1]
+            ];
     }
 
     return $searchquery_array;

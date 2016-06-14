@@ -1,101 +1,44 @@
-<?php get_header();?>
-<div class="blog-listing page-width">
-	<!-- Blog listing sidebar -->
-	<div class="col-xs-12 page-blog-listing-sidebar">
-		<?php if (is_active_sidebar('page_search_listing')) : ?>
-							<?php dynamic_sidebar('page_search_listing'); ?>
-		<?php endif; ?>
-	</div>
+<?php
+/**
+ * Search template controller.
+ */
+define('DS', DIRECTORY_SEPARATOR );
 
-	<!-- Blog listing -->
-	<div class="col-xs-12 col-lg-9">
-		<div class="results">
-		<?php
+class SearchTemplateController
+{
+    private $template_path;
 
-		//Getting the search query
-		$search_query = kd_get_search_query();
+    public function __construct($template_path)
+    {
+        $this->set_template($template_path);
+        $this->index_action();
+    }
 
-		$post_types_to_filter = [];
+    public function index_action()
+    {
+        //$this->get_query();
+        $this->render();
+    }
 
-		$search_query_types = $search_query[0]['types'] ? : $search_query[1]['types'];
-		$s = urldecode(empty($search_query[0]['s']) ? '' : $search_query[0]['s']);
+    /**
+     * defines the template for this controller.
+     * @param string $template_path the template path
+     */
+    public function set_template($template_path)
+    {
+        $this->template_path = $template_path;
+    }
 
-		if(!empty($search_query_types))
-		{
-			$post_types_to_filter = explode(',',urldecode($search_query_types));
-		}
+    /**
+     * Renders the template.
+     * @param  array $template_vars The variables to include in the template
+     * @return null                no return is defined.
+     */
+    public function render($template_vars=[])
+    {
+        extract($template_vars);
+        require dirname(__FILE__) . DS . $this->template_path;
+    }
+}
 
-		if(!empty($post_types_to_filter))
-			{
-				global $wp_query;
-				$args = array_merge( $wp_query->query_vars, array( 'post_type' => $post_types_to_filter,'s' => $s ) );
-				query_posts($args);
-			}
-
-		if ( have_posts() ) :
-			while ( have_posts() ) :
-				the_post(); ?>
-
-				<!-- Listed blog -->
-				<div class="listed-blog col-xs-12 col-md-12">
-
-					<!-- thumbnail -->
-					<div class="image col-lg-2 col-xs-12 paddingless">
-
-						<?php $attachments = has_post_thumbnail(); ?>
-						<?php if($attachments): ?>
-							<a href="<?php the_permalink(); ?>">
-								<?php the_post_thumbnail('thumbnail'); ?>
-							</a>
-						<?php endif; ?>
-
-					</div>
-
-					<!-- text -->
-					<div class="text col-lg-10 col-xs-12 paddingless">
-
-						<!-- the title -->
-						<a href="<?php the_permalink(); ?>">
-							<h3><?php the_title(); ?></h3>
-						</a>
-
-						<!-- the summary -->
-						<div class="post-summary">
-							<?php the_excerpt(); ?>
-						</div>
-					</div>
-				</div>
-
-			<?php endwhile; // end while
-		endif; // end if
-		?>
-	</div>
-
-
-		<div class="results-info">
-			<h4>
-				<?php
-						global $wp_query;
-
-						$big = 999999999; // need an unlikely integer
-
-						echo paginate_links( array(
-							'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-							'format' => '?paged=%#%',
-							'current' => max( 1, get_query_var('paged') ),
-							'total' => $wp_query->max_num_pages
-						) );
-				?>
-			</h4>
-		</div>
-	</div>
-
-	<div class="col-xs-12 col-lg-3 sidebar-right">
-		<?php if (is_active_sidebar('page_search_listing_right')) : ?>
-							<?php dynamic_sidebar('page_search_listing_right'); ?>
-		<?php endif; ?>
-	</div>
-
-
-</div>
-<?php get_footer();
+$SearchPage = new SearchTemplateController('page-templates' . DS . 'blog-search-template.php');

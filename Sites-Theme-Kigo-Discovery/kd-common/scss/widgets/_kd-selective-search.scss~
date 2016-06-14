@@ -75,9 +75,9 @@ aside .kd-selective-search-box,
       display: block;
       position: absolute;
       width: 50%;
-      right: 0px;
+      right: 1px;
       //bottom: calc(-100% - 29px);
-      text-align: center;
+      text-align: left;
       padding: 10px;
       background: white;
       box-sizing: border-box;
@@ -88,19 +88,17 @@ aside .kd-selective-search-box,
       .ptype
       {
         display: inline-block;;
-        padding: 15px;
+        margin: 15px;
 
         &.clear
         {
           display: block;
           padding: 0;
-          margin: 10px -10px -10px;
           a
           {
             padding: 10px;
             display: block;
-            border-top: 1px solid #aaa;
-            background-color: transparent;;
+            background-color: #aaa;
             color: white;
             text-align: center;
           }
@@ -117,10 +115,6 @@ aside .kd-selective-search-box,
         .clearsearch,.toggle-filter
         {
           font-size: 16px;
-          &:active, &:focus
-          {
-            text-decoration: none;
-          }
         }
 
         .typecheck
@@ -177,42 +171,13 @@ aside .kd-selective-search-box,
       background: #aaa;
       color: white;
       height: 50px;
-      padding: 8px 10px 10px;
+      padding: 10px;
       font-weight: normal;
       font-size: 16px;
       line-height: 35px;
       display: block;
       overflow: hidden;
       vertical-align: top;
-
-      .center
-      {
-        max-width: 200px;
-        margin: auto;  
-      }
-
-      svg,span
-      {
-        vertical-align: top;
-        display: inline-block;
-        font-size: 15px;
-      }
-
-      svg
-      {
-        width: 20%;
-        margin-top: 10px;
-      }
-
-      &:active, &:focus
-      {
-        text-decoration: none;
-      }
-
-      &:hover,&.active
-      {
-        background: #333;
-      }
     }
 
 
@@ -252,67 +217,27 @@ aside .advanced.kd-selective-search-box,
   /*input text */
   #s
   {
-    width: 100%;
+    width: 50%;
   }
 
   .select-types
   {
-    width: 50%;
+    width: 35%;
   }
   .make-search
   {
-    width: 50%;
-  }
-
-  /* Currently filtering active */
-  .currently-filtering.active
-  {
-    right: 0px;
-    text-align: left;
-    width: 100%;
-    .ptype
-    {
-      display: block;
-      .toggle-filter
-      {
-        font-size: 16px;
-        font-weight: bold;
-        color: #555;
-      }
-    }
+    width: 15%;
   }
 }
 
 @media (max-width: #{$bp-lg - 1}) {
-  //not advanced
-  .kd-selective-search-box{
-    /*input text */
-    #s
-    {
-      width: 60%;
-    }
-
-    .make-search
-    {
-      width: 40%;
-    }
+  body
+  {
+    background: red;
   }
+
   .advanced.kd-selective-search-box
   {
-    /*input text */
-    #s
-    {
-      width: 100%;
-    }
-
-    .select-types
-    {
-      width: 50%;
-    }
-    .make-search
-    {
-      width: 50%;
-    }
 
       .currently-filtering.active
       {
@@ -320,33 +245,6 @@ aside .advanced.kd-selective-search-box,
         float: right;
         display: inline-block;
         width: 100%;
-        text-align: left;
-        .ptype
-        {
-          display: block;
-        }
       }
-  }
-
-
-  // advanced aside mobile...............................................................
-  aside .advanced.kd-selective-search-box,
-  .sidebar-right .advanced.kd-selective-search-box
-  {
-
-
-    /* Currently filtering active */
-    .currently-filtering.active
-    {
-
-      .ptype
-      {
-        .toggle-filter
-        {
-          font-size: 16px;
-          font-weight: bold;
-        }
-      }
-    }
   }
 }

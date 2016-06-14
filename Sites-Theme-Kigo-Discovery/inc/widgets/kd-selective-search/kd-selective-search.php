@@ -2,8 +2,11 @@
 
 class KD_SelectiveSearch extends KD_Widget2 {
 
+    /**
+     * Selective search widget:
+     *
+     */
     public function __construct() {
-
         parent::__construct(
             'KD_SelectiveSearch', // Base ID
             __( 'KD Selective Search', 'kd' ), // Name
@@ -12,54 +15,59 @@ class KD_SelectiveSearch extends KD_Widget2 {
 
         $this->filename = 'kd-selective-search';
 
-        $this->controls = $this->get_controls();
-
+        /* Appending wordpress dashicons for the frontend */
+        add_action( 'wp_enqueue_scripts', array($this,'add_scripts') );
     }
+
+
 
 
     /**
-     * Returns the array of controls of the widget
-     * Creates the checkboxes of the post types to be
-     * included them in the search results.
-     *
-     * @return array The array of the controls
-     */
-    public function get_controls()
-    {
-        $controls =[
-            ['name' => 'Settings',
-            'fields' =>
-                [
-                    'widget_title' => ['type' => 'text', 'label' => 'Title', 'description' => 'The search widget title.'],
-                    'inherit' => ['type' => 'radio', 'label' => 'Inherit', 'description' => 'If enabled, the search criteria will inherit from the search query. If the search query does not contain any criteria it will use the criteria defined in the widget. If no criteria is defined in the widget then results will not be filtered.', 'choices' =>
-                                        [
-                                            'disabled',
-                                            'enabled',
-                                        ]
-                                ],
-                ]
-            ],
-        ];
-
-        $post_types = get_theme_mod('kd_post_types', []);
-
-        $post_type_controls = [];
-
-        foreach($post_types as $post_type_val)
-        {
-            $post_type_controls[$post_type_val] =
-            [
-                'type' => 'checkbox',
-                'label' => ucfirst($post_type_val),
-                'description' => 'Include <b>' . ucfirst($post_type_val) . 's</b> in the search results',
-            ];
-        }
-
-        $controls[0]['fields'] = array_merge($controls[0]['fields'], $post_type_controls);
-
-        return $controls;
+    * Enqueue Dashicons style for frontend
+    * use when enqueuing your theme's style sheet
+    */
+    function add_scripts() {
+        wp_enqueue_style( 'dashicons' );
     }
 
+
+
+
+    /**
+     * The widget form.
+     * @param  array $instance The instance of the widget.
+     * @return void           This function does not return a value.
+     */
+    public function form( $instance ) {
+        // outputs the options form on admin
+
+        /* If we find a custom form template we display it, if not we build form from controls  */
+        $formTemplate = __DIR__ .'/'.$this->filename.'.form.php';
+
+        if(file_exists($formTemplate))
+        {
+            $i = $instance;
+            include $formTemplate;
+        }
+        else
+        {
+            echo $this->buildForm($instance);
+        }
+    }
+
+
+
+
+    /**
+     * Add the keyword_search feature to the results
+     * @param  string $query_string the query string to define the search
+     * @return void               this function does not return anything
+     */
+    public function keyword_search($query_string)
+    {
+        //Add parameters to the search query
+        //get all posts/pages/whatever of properties that contain all keyword search parameters passed
+    }
 
 
 

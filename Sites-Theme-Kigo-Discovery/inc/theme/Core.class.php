@@ -48,7 +48,8 @@ class Core {
             'div' => array(
                 'class' => true,
                 'id' => true,
-            )
+            ),
+            'br' => []
         ];
 
         /* Enable custom post thumbnails */
@@ -64,8 +65,9 @@ class Core {
 //        remove_action('init', 'urlHandler_bapidefaultpages', 1 );
 //        remove_action('init', 'bapi_setup_default_pages', 5);
 //
-          add_filter( 'query_vars', [$this,'add_query_vars_filter'] );
-          add_action('init',[$this,'kd_get_post_types'],99999);
+        add_filter( 'query_vars', [$this,'add_query_vars_filter'] );
+        add_action('init',[$this,'kd_get_post_types'],99999);
+        add_action('pre_get_posts',[$this,'set_search_query']);
 
     }
 
@@ -517,8 +519,8 @@ class Core {
      * @param array $vars The variables in the search query.
      */
     public function add_query_vars_filter( $vars ){
-      $vars[] = "types";
-      return $vars;
+        $vars[] = "types";
+        return $vars;
     }
 
     /**
@@ -527,8 +529,8 @@ class Core {
     function kd_get_post_types()
     {
         $args = array(
-           '_builtin' => false,
-           'public'   => true,
+            '_builtin' => false,
+            'public'   => true,
         );
 
         $output = 'names'; // names or objects, note names is the default
@@ -538,6 +540,158 @@ class Core {
         $kd_post_types = get_post_types( $args, $output, $operator );
 
         set_theme_mod('kd_post_types',$kd_post_types);
+    }
+
+
+
+
+
+
+
+    /**/
+    function set_search_query($wpq)
+    {
+
+        if($wpq->is_search() && $wpq->is_main_query())
+        {
+
+            // Getting the search query
+            $search_query = kd_get_search_query();
+
+            // Array to store the post types to filter
+            $post_types_to_filter = [];
+
+            $search_query_types = empty(urldecode($_GET['types'])) ? '' : urldecode($_GET['types']);
+
+            // The search query
+            $s = empty(urldecode($_GET['s'])) ? '' : urldecode($_GET['s']);
+
+
+            // The post types that come in the search query
+            if(!empty($search_query_types))
+            {
+                // The post types to filter
+                $post_types_to_filter = explode(',',urldecode($search_query_types));
+            }
+
+
+
+            //Query 1 will get the s results
+            $args1 =
+                [
+                    'post_type'         => $post_types_to_filter ?: null,
+                    's' 			    => $s,
+                    'posts_per_page'    => -1,
+                ];
+
+            $q1 = get_posts($args1); // array
+
+
+
+            $q2 = [];
+
+            //Query 2 will get the meta fields results
+            $meta_query = $this->get_meta_query_array($s);
+
+            if((in_array('page',$post_types_to_filter) || empty($post_types_to_filter)) && !empty($s))
+            {
+
+                $args2 =
+                    [
+                        'post_type'         => get_post_types(),
+                        'posts_per_page'    => -1,
+                        'meta_query'        => $meta_query,
+                    ];
+
+                $q2 = get_posts($args2);// array
+
+            }
+
+            $arraymerged = array_merge($q1, $q2);
+            $ids = [];
+
+            foreach($arraymerged as $merged)
+            {
+                $ids[] = $merged->ID;
+            }
+
+
+
+            $unique = array_unique($ids);
+
+            $page_number = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+            $args =
+                [
+                    'post_type'                 => !empty($post_types_to_filter) ?$post_types_to_filter: get_post_types(),
+                    'post__in'                  => empty($unique) ? [uniqid(time())] : $unique,
+                    'paged'                     => $page_number,
+                ];
+
+            $wpq->query_vars = $args;
+
+
+        }
+    }
+
+    /**
+     * returns an array of the meta fields to include in the search
+     * @return array the meta fields array
+     */
+    function get_meta_query_array($s)
+    {
+        $mini_queries = $this->get_mini_queries($s);
+
+        $meta_query = [
+            'relation' => 'AND',
+        ];
+        $meta_query = array_merge($meta_query, $mini_queries);
+
+        return $meta_query;
+    }
+
+    function get_mini_queries($s)
+    {
+        $string_parts = explode(' ',$s);
+        $mini_queries = [];
+
+        global $wpdb;
+        //meta table
+        $meta_table = $wpdb->prefix . 'postmeta';
+        $custom_query_string = "SELECT meta_key FROM $meta_table ";
+        $all_metas_results =  $wpdb->get_results( $custom_query_string, ARRAY_A );
+        $all_metas = [];
+        foreach($all_metas_results as $meta)
+        {
+            if(!in_array($meta['meta_key'],$all_metas))
+                $all_metas[] = $meta['meta_key'];
+        }
+
+
+
+        foreach ($string_parts as $key => $value) {
+
+            $all_metas_arrays = [];
+
+            foreach($all_metas as $meta)
+            {
+                $all_metas_arrays[] =
+                    [
+                        'key'       => $meta,
+                        'value'     => "$value",
+                        'compare'   => 'LIKE'
+                    ];
+            }
+
+            $mini_query =
+                [
+                    'relation'  => 'OR',
+                ];
+
+            $mini_queries = array_merge($mini_query, $all_metas_arrays);
+        }
+
+        return $mini_queries;
     }
 
 }

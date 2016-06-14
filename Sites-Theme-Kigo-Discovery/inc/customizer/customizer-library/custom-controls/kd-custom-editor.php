@@ -20,7 +20,6 @@ class Kd_Wp_Edtor extends WP_Customize_Control {
         <!--              <a class="go-fullscreen"><i class="kd-icon-toggle-fscreen"></i> <strong>Go Fullscreen</strong></a>-->
 
         <?php
-debug($this->link(), false);
         wp_editor($this->value(), $this->id, ['textarea_name' => $this->id, 'textarea_rows' => 7,
             'tinymce' => [
                 'setup' => "function (ed) {

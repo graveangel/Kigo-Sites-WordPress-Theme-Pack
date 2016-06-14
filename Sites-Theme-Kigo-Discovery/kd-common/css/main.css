@@ -3254,6 +3254,9 @@ a {
   transform: translateX(-50%);
   box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.25); }
 
+.header-background .kd-widget {
+  padding: 0 15px; }
+
 .header-background .customizer {
   padding: 0 15px; }
   .header-background .customizer > div {
@@ -3312,12 +3315,10 @@ a {
 @media screen and (min-width: 768px) {
   .header-background .under_header {
     min-height: 0; }
-  .header-background.fixed {
-    padding-bottom: 52px; }
-    .header-background.fixed .under_header {
-      padding: 15px 30px; }
-      .header-background.fixed .under_header .kd-widget {
-        padding: 0; }
+  .header-background.fixed .under_header {
+    padding: 10px 30px; }
+    .header-background.fixed .under_header .kd-widget {
+      padding: 0; }
   .header-background a.logo-link {
     position: relative;
     top: auto;
@@ -4144,7 +4145,6 @@ Media Desktop
           border-left: 1px solid #eee;
           font-size: 12px; }
     .list-property .info .title, body.page-template-search-page .listProps .property .info .title {
-      white-space: nowrap;
       margin-bottom: 0; }
     .list-property .info .desc, body.page-template-search-page .listProps .property .info .desc {
       padding: 8px 10px; }
@@ -4205,7 +4205,7 @@ body.page-template-search-page .split-search.listView .mapContainer {
 
 body.page-template-search-page .map {
   position: relative;
-  display: none; }
+  height: 400px; }
   body.page-template-search-page .map > div {
     width: 100%;
     height: 100%;
@@ -4995,19 +4995,6 @@ body.page-template-other-detail-page .other-detail-page .gmap-property, body.pag
     font-size: 30px;
     font-weight: bold;
     padding: 20px 0; }
-    .blog-listing .page-blog-listing-sidebar input[type="text"] {
-      width: 100%;
-      margin-top: 15px;
-      margin-bottom: 15px; }
-    .blog-listing .page-blog-listing-sidebar input[type="submit"] {
-      display: block;
-      background: #33baaf;
-      border: none;
-      font-size: 20px;
-      color: white;
-      font-weight: normal;
-      padding: 10px 20px;
-      width: 100%; }
   .blog-listing .listed-blog {
     text-align: left;
     padding: 30px 0;
@@ -5026,8 +5013,6 @@ body.page-template-other-detail-page .other-detail-page .gmap-property, body.pag
     text-align: center; }
     .blog-listing .searchform .screen-reader-text {
       display: none; }
-    .blog-listing .searchform input[type="text"] {
-      padding: 10px; }
   .blog-listing .results-info {
     float: right; }
 
@@ -5039,9 +5024,6 @@ body.page-template-other-detail-page .other-detail-page .gmap-property, body.pag
       padding: 0 0 0 15px; }
       .blog-listing .sidebar-right h3 {
         text-align: left; }
-    .blog-listing .page-blog-listing-sidebar input[type="submit"] {
-      display: inline-block;
-      width: auto; }
     .blog-listing .listed-blog .text {
       padding-left: 15px; }
     .blog-listing .results-info {
@@ -5873,7 +5855,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       .kd-menu .sub-menu {
         display: none;
         position: absolute;
-        z-index: 5;
+        z-index: 999;
         top: 100%;
         left: 0;
         border: 1px solid #eee; }
@@ -6218,34 +6200,220 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
   font-size: 33px;
   color: white; }
 
-.kd-selective-search-box input[type="submit"] {
-  width: 100%;
-  font-size: 18px;
-  font-weight: 200; }
+.kd-selective-search-box {
+  font-size: 0;
+  /*input text */
+  /* Search button */ }
+  .kd-selective-search-box #s {
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    width: 90%; }
+  .kd-selective-search-box .make-search {
+    vertical-align: top;
+    border: none;
+    height: 100%;
+    display: inline-block;
+    width: 10%;
+    height: 50px;
+    box-sizing: border-box;
+    font-size: 25px; }
 
-.kd-selective-search-box .currently-filtering {
-  text-align: center;
-  color: #eee; }
-  .kd-selective-search-box .currently-filtering a {
-    color: #eee; }
-    .kd-selective-search-box .currently-filtering a:hover {
-      color: #ddd; }
-  .kd-selective-search-box .currently-filtering.title {
-    color: #ddd;
-    font-weight: 100;
-    margin: 15px auto; }
-  .kd-selective-search-box .currently-filtering .clearsearch {
-    color: #ddd; }
+aside .kd-selective-search-box,
+.sidebar-right .kd-selective-search-box {
+  /*input text */ }
+  aside .kd-selective-search-box #s,
+  .sidebar-right .kd-selective-search-box #s {
+    width: 60%; }
+  aside .kd-selective-search-box .make-search,
+  .sidebar-right .kd-selective-search-box .make-search {
+    width: 40%; }
 
-@media (min-width: 1200px) {
-  aside .kd-selective-search-box .currently-filtering,
-  .sidebar-right .kd-selective-search-box .currently-filtering {
-    text-align: initial;
-    color: #eee; }
-    aside .kd-selective-search-box .currently-filtering.title,
-    .sidebar-right .kd-selective-search-box .currently-filtering.title {
-      color: #ddd;
-      font-weight: 100; } }
+.advanced.kd-selective-search-box {
+  font-size: 0;
+  /*input text */
+  /* types box */
+  /* Currently filtering active */
+  /* Select post types to filter */
+  /* Search button */ }
+  .advanced.kd-selective-search-box .searchform {
+    position: relative; }
+  .advanced.kd-selective-search-box #s {
+    height: 50px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    width: 80%; }
+  .advanced.kd-selective-search-box .currently-filtering {
+    display: none;
+    font-size: 1.5rem; }
+  .advanced.kd-selective-search-box .currently-filtering.active {
+    display: block;
+    position: absolute;
+    width: 50%;
+    right: 0px;
+    text-align: center;
+    padding: 10px;
+    background: white;
+    box-sizing: border-box;
+    z-index: 200;
+    border: 1px solid #aaa;
+    border-top: none; }
+    .advanced.kd-selective-search-box .currently-filtering.active .ptype {
+      display: inline-block;
+      padding: 15px; }
+      .advanced.kd-selective-search-box .currently-filtering.active .ptype.clear {
+        display: block;
+        padding: 0;
+        margin: 10px -10px -10px; }
+        .advanced.kd-selective-search-box .currently-filtering.active .ptype.clear a {
+          padding: 10px;
+          display: block;
+          border-top: 1px solid #aaa;
+          background-color: transparent;
+          color: white;
+          text-align: center; }
+      .advanced.kd-selective-search-box .currently-filtering.active .ptype input[type="checkbox"] {
+        margin-right: 0.5em; }
+    .advanced.kd-selective-search-box .currently-filtering.active .ptype .clearsearch, .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter {
+      font-size: 16px; }
+      .advanced.kd-selective-search-box .currently-filtering.active .ptype .clearsearch:active, .advanced.kd-selective-search-box .currently-filtering.active .ptype .clearsearch:focus, .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter:active, .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter:focus {
+        text-decoration: none; }
+    .advanced.kd-selective-search-box .currently-filtering.active .ptype .typecheck {
+      border: 1px solid #b4b9be;
+      background: #fff;
+      color: #555;
+      clear: none;
+      cursor: pointer;
+      display: inline-block;
+      line-height: 0;
+      height: 16px;
+      margin: -4px 4px 0 0;
+      outline: 0;
+      padding: 0 !important;
+      text-align: center;
+      vertical-align: middle;
+      width: 16px;
+      min-width: 16px;
+      -webkit-appearance: none;
+      -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      -webkit-transition: .05s border-color ease-in-out;
+      transition: .05s border-color ease-in-out; }
+      .advanced.kd-selective-search-box .currently-filtering.active .ptype .typecheck:checked::before {
+        content: "\f147";
+        margin: -3px 0 0 -4px;
+        color: #333;
+        float: left;
+        display: inline-block;
+        vertical-align: middle;
+        width: 16px;
+        font: 400 21px/1 dashicons;
+        speak: none;
+        -webkit-font-smoothing: antialiased; }
+  .advanced.kd-selective-search-box .select-types {
+    width: 10%;
+    display: inline-block;
+    vertical-align: top;
+    /*Filter by button */
+    /* Filter Icon svg */ }
+    .advanced.kd-selective-search-box .select-types .filter-by {
+      box-sizing: border-box;
+      background: #aaa;
+      color: white;
+      height: 50px;
+      padding: 8px 10px 10px;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 35px;
+      display: block;
+      overflow: hidden;
+      vertical-align: top; }
+      .advanced.kd-selective-search-box .select-types .filter-by .center {
+        max-width: 200px;
+        margin: auto; }
+      .advanced.kd-selective-search-box .select-types .filter-by svg, .advanced.kd-selective-search-box .select-types .filter-by span {
+        vertical-align: top;
+        display: inline-block;
+        font-size: 15px; }
+      .advanced.kd-selective-search-box .select-types .filter-by svg {
+        width: 20%;
+        margin-top: 10px; }
+      .advanced.kd-selective-search-box .select-types .filter-by:active, .advanced.kd-selective-search-box .select-types .filter-by:focus {
+        text-decoration: none; }
+      .advanced.kd-selective-search-box .select-types .filter-by:hover, .advanced.kd-selective-search-box .select-types .filter-by.active {
+        background: #333; }
+    .advanced.kd-selective-search-box .select-types .filter-icon {
+      height: 1em;
+      fill: white; }
+  .advanced.kd-selective-search-box .make-search {
+    vertical-align: top;
+    border: none;
+    height: 100%;
+    display: inline-block;
+    width: 10%;
+    height: 50px;
+    box-sizing: border-box;
+    font-size: 25px; }
+
+aside .advanced.kd-selective-search-box,
+.sidebar-right .advanced.kd-selective-search-box {
+  /*input text */
+  /* Currently filtering active */ }
+  aside .advanced.kd-selective-search-box #s,
+  .sidebar-right .advanced.kd-selective-search-box #s {
+    width: 100%; }
+  aside .advanced.kd-selective-search-box .select-types,
+  .sidebar-right .advanced.kd-selective-search-box .select-types {
+    width: 50%; }
+  aside .advanced.kd-selective-search-box .make-search,
+  .sidebar-right .advanced.kd-selective-search-box .make-search {
+    width: 50%; }
+  aside .advanced.kd-selective-search-box .currently-filtering.active,
+  .sidebar-right .advanced.kd-selective-search-box .currently-filtering.active {
+    right: 0px;
+    text-align: left;
+    width: 100%; }
+    aside .advanced.kd-selective-search-box .currently-filtering.active .ptype,
+    .sidebar-right .advanced.kd-selective-search-box .currently-filtering.active .ptype {
+      display: block; }
+      aside .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter,
+      .sidebar-right .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter {
+        font-size: 16px;
+        font-weight: bold;
+        color: #555; }
+
+@media (max-width: 1199px) {
+  .kd-selective-search-box {
+    /*input text */ }
+    .kd-selective-search-box #s {
+      width: 60%; }
+    .kd-selective-search-box .make-search {
+      width: 40%; }
+  .advanced.kd-selective-search-box {
+    /*input text */ }
+    .advanced.kd-selective-search-box #s {
+      width: 100%; }
+    .advanced.kd-selective-search-box .select-types {
+      width: 50%; }
+    .advanced.kd-selective-search-box .make-search {
+      width: 50%; }
+    .advanced.kd-selective-search-box .currently-filtering.active {
+      position: static;
+      float: right;
+      display: inline-block;
+      width: 100%;
+      text-align: left; }
+      .advanced.kd-selective-search-box .currently-filtering.active .ptype {
+        display: block; }
+  aside .advanced.kd-selective-search-box,
+  .sidebar-right .advanced.kd-selective-search-box {
+    /* Currently filtering active */ }
+    aside .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter,
+    .sidebar-right .advanced.kd-selective-search-box .currently-filtering.active .ptype .toggle-filter {
+      font-size: 16px;
+      font-weight: bold; } }
 
 .searchform {
   margin-bottom: 15px; }
@@ -6259,8 +6427,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
     padding: 10px;
     font-size: 16px;
     line-height: 1em;
-    margin: 15px auto;
-    width: 100%; }
+    margin: 15px auto; }
   .searchform input[type="submit"] {
     padding: 10px 20px;
     border: none;

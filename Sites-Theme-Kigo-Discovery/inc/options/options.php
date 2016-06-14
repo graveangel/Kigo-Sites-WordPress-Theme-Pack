@@ -49,7 +49,7 @@ function kd_settings_page_custom_css() {
 
     $use_css = get_theme_mod('kd-use-css');
     $custom_css = get_theme_mod('kd-custom-css');
-    
+
     /* Get total css (min) size */
     $custom_css_min = get_theme_mod('kd-custom-css-min');
     $custom_css_size = mb_strlen($custom_css_min, '8bit');
