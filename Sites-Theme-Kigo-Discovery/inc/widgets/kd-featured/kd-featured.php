@@ -12,11 +12,12 @@ class KD_Featured extends KD_Widget2 {
 
         $this->filename = 'kd-featured';
 
-        $maf = get_marked_as_featured() ? : ['kdfeatured' => []];
-        $options = [];
+        /* Get all saved properties (bapi_keywords_array) to create select options */
+        $properties = get_properties();
 
-        foreach($maf['kdfeatured'] as $pmaf){
-            $options[$pmaf['ID']] = $pmaf['InternalName'];
+        $options = [];
+        foreach($properties as $property){
+            $options[$property['ID']] = $property['Name'];
         }
 
         $this->controls = [

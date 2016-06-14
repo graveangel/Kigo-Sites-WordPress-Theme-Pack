@@ -13,9 +13,9 @@
         <?php endforeach; ?>
     </ul>
     <div class="inline-block setup-prop-form">
-        <h1 id="property-name"></h1><br><label><input type="checkbox" id="set_as_featured"><strong>Mark as featured property</strong></label>
-        
-        <hr>
+<!--        <h1 id="property-name"></h1><br><label><input type="checkbox" id="set_as_featured"><strong>Mark as featured property</strong></label>-->
+<!--        -->
+<!--        <hr>-->
          <h2>Custom script</h2>
         <label><input type="checkbox" id="prop-custom-script"><strong>Enable custom script for this property page.</strong></label>
         <p>This script will load in the body.</p>
