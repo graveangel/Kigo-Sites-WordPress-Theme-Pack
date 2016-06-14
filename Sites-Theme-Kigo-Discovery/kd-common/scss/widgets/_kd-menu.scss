@@ -194,7 +194,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
     .sub-menu{
       display: none;
       position: absolute;
-      z-index: 5;
+      z-index: 999;
       top: 100%;
       left: 0;
       border: 1px solid #eee;
