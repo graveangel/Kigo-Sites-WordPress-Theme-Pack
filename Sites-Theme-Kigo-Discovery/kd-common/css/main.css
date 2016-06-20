@@ -3431,7 +3431,8 @@ footer.footer {
     max-width: 500px;
     border: none;
     font-size: 16px;
-    color: white; }
+    color: white;
+    vertical-align: top; }
   .template-property .ppt-images,
   .template-property .ppt-desc {
     box-sizing: border-box;
@@ -3683,9 +3684,9 @@ Media Tablets horizontal
     .template-property .book-now-button,
     .template-property .inquire-button {
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: top;
       margin-left: 10px;
-      font-size: 16px; }
+      font-size: 12px; }
     .template-property .property-description {
       padding: 15px 0; }
     .template-property .ppt-images {

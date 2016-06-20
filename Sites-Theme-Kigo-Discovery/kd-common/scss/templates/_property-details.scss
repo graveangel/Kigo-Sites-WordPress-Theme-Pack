@@ -114,6 +114,7 @@
     border                        : none;
     font-size: 16px;
     color: white;
+    vertical-align: top;
   }
 
   /* Property descriptions-----------------------------------------------------*/
@@ -472,9 +473,9 @@ Media Tablets horizontal
     .book-now-button,
     .inquire-button {
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: top;
       margin-left: 10px;
-      font-size: 16px;
+      font-size: 12px;
     }
 
     .property-description {

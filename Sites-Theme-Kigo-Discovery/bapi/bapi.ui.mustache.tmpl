@@ -2010,6 +2010,7 @@ Group: Properties
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
                 <div class="alert alert-error"><a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</a></div>
+                <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
             {{/ContextData.Quote.IsValid}}
         </span>
 
@@ -2069,6 +2070,7 @@ Group: Properties
             {{#ContextData.Quote.IsValid}}
                 {{#IsBookable}}
                     <button class="kd-button filled book-now-button primary-fill-color bapi-booknow" type="button">{{textdata.Book Now}}</button>
+                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
                 {{/IsBookable}}
 
                 {{^IsBookable}}
