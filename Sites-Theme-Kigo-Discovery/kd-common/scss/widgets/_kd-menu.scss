@@ -3,24 +3,53 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
 */
 
 .kd-menu{
+  position: relative;
+  display: block;
+  width: auto;
+  z-index: initial;
+  top: auto;
+  left: auto;
+  float: none;
+  text-align: center;
+
+  &.kd-widget{
+    padding: 0;
+  }
+
+  ul{
+    float: none;
+    font-size: 14px;
+    text-transform: uppercase;
+
+    a{
+      display: inline-block;
+      padding: 5px;
+    }
+  }
+
+  .toggle-wrapper{
+    display: none;
+  }
+}
+
+header .kd-menu {
   display: none;
-  position: fixed;
   width: 100%;
-  z-index: 500;
   top: 0;
   left: 0;
   float: right;
   vertical-align: middle;
 
-  &.main-menu{
+  &.main-menu {
     display: inline-block;
   }
 
-  .menu{
+  .menu {
     display: none;
     position: absolute;
+    z-index: 9999;
     left: 0;
-    top: 100%;
+    top: calc(100% + 10px);
     width: 100%;
   }
 
@@ -49,40 +78,43 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       }
     }
 
-
-    .sub-menu{
-      a{
+    .sub-menu {
+      a {
         display: block;
         background-color: $tertiary-color;
       }
     }
   }
 
-  & > .sub-menu{
+  & > .sub-menu {
     display: block;
     position: relative;
 
     li {
-      a{
+      a {
         background-color: darken($secondary-color, 15);
       }
     }
   }
 
-  &.active{
-    ul{
+  &.active {
+    ul {
       display: block;
+      max-height: calc(100vh - 70px);
+      overflow-y: auto;
     }
-    li{
+    li {
       opacity: 1;
     }
   }
 
-  .toggle-wrapper{
+  .toggle-wrapper {
+    display: block;
     float: right;
     width: 100%;
   }
-  .toggle{
+
+  .toggle {
     float: right;
     width: $kd-menu-toggle-size;
     height: $kd-menu-toggle-size;
@@ -93,15 +125,25 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
     color: white;
     cursor: pointer;
 
-    &:active{
+    &:active {
       background-color: rgba($secondary-color, .5);
     }
   }
 
+  @media screen and (min-width: $bp-tablet) {
+    .menu {
+      display: inline-block;
+    }
+    .toggle-wrapper {
+      display: none;
+    }
+  }
+}
 
+.kd-menu, header .kd-menu{
   @media screen and (min-width: $bp-tablet){
     position: relative;
-    display: block;
+    display: inline-block;
     width: auto;
     z-index: initial;
     top: auto;
@@ -204,6 +246,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
         display: block;
 
         a{
+          display: block;
           background-color: rgba(black, .05);
         }
       }
@@ -225,6 +268,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
 
         a{
           display: block;
+          width: 100%;
           padding: 10px 25px;
           background-color: transparent;
         }
@@ -232,6 +276,7 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
     }
   }
 }
+
 
 footer.footer .kd-menu{
   @media screen and (min-width: $bp-tablet) {
