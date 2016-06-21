@@ -4,10 +4,6 @@
     padding                       : 0;
   }
 
-  .sl-wrapper .sl-navigation button{
-    background-color: rgba(white, .2);
-  }
-
   /* Hero ---------------------------------------------------------------------*/
   .hero {
     position                      : relative;
@@ -922,6 +918,13 @@ Media Desktop
   display: block;
 }
 
+.sl-wrapper{
+  color: white;
+  font-size: 22px;
+  .sl-navigation button{
+    font-size: 32px;
+  }
+}
 
 .template-property{
   #book-block {

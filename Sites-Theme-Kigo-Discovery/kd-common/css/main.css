@@ -3361,8 +3361,6 @@ footer.footer {
   /*Property features---------------------------------------------*/ }
   .template-property .page-width {
     padding: 0; }
-  .template-property .sl-wrapper .sl-navigation button {
-    background-color: rgba(255, 255, 255, 0.2); }
   .template-property .hero {
     position: relative;
     height: 300px;
@@ -4002,6 +4000,12 @@ Media Desktop
 
 .pop-up-booking-form.active {
   display: block; }
+
+.sl-wrapper {
+  color: white;
+  font-size: 22px; }
+  .sl-wrapper .sl-navigation button {
+    font-size: 32px; }
 
 .template-property #book-block {
   display: inline-block; }
