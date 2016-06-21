@@ -9,8 +9,6 @@ app.bapiModules.templates.propertyDetails = {
                 .lightBoxAndCarousel()
                 .checkPropSettings()
                 .checkUseMap();
-
-            BAPI.UI.inithel
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {
