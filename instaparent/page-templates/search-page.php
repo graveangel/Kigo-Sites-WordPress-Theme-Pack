@@ -159,7 +159,7 @@ if($using_new_stuff) {
   <?php if($results) { ?>
   <nav>
     <ul class="pager">
-      <?php if($page > 0) { ?><li><a href="?<?php echo get_pager('prev'); ?>"><?php _e('Previous'); ?></a></li><? } ?>
+      <?php if($page > 0) { ?><li><a href="?<?php echo get_pager('prev'); ?>"><?php _e('Previous'); ?></a></li><?php } ?>
       <?php echo ($page*$perpage)+1; ?> &mdash; <?php echo ($page*$perpage)+$perpage; ?>
       <?php if(($page+1) * $perpage < count($all) ) { ?><li><a href="?<?php echo get_pager('next'); ?>"><?php _e('Next'); ?></a></li> <?php } ?>
     </ul>
