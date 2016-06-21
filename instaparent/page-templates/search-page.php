@@ -58,7 +58,113 @@ if($using_new_stuff) {
   ?>
 
 
-  
+  <header class="row-fluid search-result-controls">
+    <div class="span7 form-horizontal">&nbsp;</div>
+    <div class="span5 form-horizontal">
+    <div class="control-group pull-right">
+      <label class="control-label"></label>
+      <div class="controls">
+        <div class="btn-group" data-toggle="buttons-radio">
+
+          <?php if($config['searchmode-listview'] == 'on') { ?><button name="view" value="list" class="btn changeview <?php echo $view == 'list' ? 'active' : ''; ?>" data-template="tmpl-propertysearch-listview" data-rowfixselector="" data-rowfixcount"1"><i class="icon-list"></i>&nbsp;<?php echo $textdata['List']; ?></button><?php } ?>
+          <?php if($config['searchmode-photo'] == 'on') { ?><button name="view" value="gallery" class="btn changeview <?php echo $view == 'gallery' ? 'active' : ''; ?>" data-template="tmpl-propertysearch-galleryview" data-rowfixselector=".gallery-view-page%20%3E%20.span6" data-rowfixcount="2"><i class="icon-th-large"></i>&nbsp;<?php echo $textdata['Photo']; ?></button><?php } ?>
+          <?php if($config['searchmode-mapview'] == 'on') { ?><button name="view" value="map" class="btn changeview <?php echo $view == 'map' ? 'active' : ''; ?>" data-template="tmpl-propertysearch-mapview" data-showallresults="1"><i class="icon-map-marker"></i>&nbsp;<?php echo $textdata['Map']; ?></button><?php } ?>
+        
+        </div>        
+      </div>
+    </div>
+    </div>  
+  </header>
+
+  <div id="results" class="list-view-page">
+
+  <?php foreach($results as $result) { 
+    $id = $result['ID'];
+    $context = $result['ContextData'];
+    $seodata = $seo[$id];
+
+    ?>
+    <div class="portal-result">
+      <div class="portal-inner row-fluid shadow">
+        <div class="portal-images span4">
+          <div id="slider-deprecate">
+          <?php if($keyword = $seodata[$id]['Keyword']) { ?><a href="<?php echo $seodata[$id]['DetailURL']; ?>"><?php } ?><img alt="<?php echo $result['PrimaryImage']['Caption']; ?>" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=<?php _e('Loading'); ?>...&w=400&h=300" data-src="<?php echo $result['PrimaryImage']['ThumbnailURL']; ?>" /><?php if($keyword) { ?></a><?php } ?>
+          </div>
+        </div>
+        <div class="portal-info span8">
+        <div class="property-info"> 
+          <h2 class="property-title">
+            <?php if($seo[$id]['Keyword']) { ?><a href="<?php echo $seo[$id]['DetailURL']; ?>"><?php } ?>
+              <?php echo $result['Headline']; ?>
+            <?php if($seo[$id]['Keyword']) { ?></a><?php } ?>
+          </h2>
+            <?php if($config['hidestarsreviews'] != 'on') { ?>    
+              <?php if($result['NumReviews']) { ?>
+                  <div class="starsreviews"><div id="propstar-<?php echo $result['AvgReview']; ?>"><span class="stars"></span><i class="starsvalue"></i></div></div>  
+              <?php } ?>     
+            <?php } ?>
+          <div class="location">
+            <span><b><?php echo $textdata['City']; ?>:</b> <?php echo $result['City']; ?></span>  
+            <?php if($beds = $result['Bedrooms']) { ?>
+              <span class="hidden-phone">| </span><b><?php echo $textdata['Beds']; ?></b>: <?php echo $beds; ?> | 
+            <?php } 
+            if($baths = $result['Bathrooms']) { ?>
+              <b><?php echo $textdata['Baths']; ?></b>: <?php echo $baths; ?> | 
+            <?php } 
+            if($sleeps = $result['Sleeps']) { ?>
+              <b><?php echo $textdata['Sleeps']; ?></b>: <?php echo $sleeps; ?>
+            <?php } ?>
+          </div>
+          <div class="brick-wrap">
+            <div class="description bapi-truncate" data-trunclen="100"><?php echo $result['Summary']; ?></div>
+          </div>
+          
+          <?php if(!$context['Quote']['IsValid']) { ?>
+            <?php if(!$_SESSION['scheckin'] || !$_SESSION['scheckout']) { ?><div class="alert alert-info no-rate"><?php echo $context['Quote']['ValidationMessage']; ?></div><?php } ?>
+          <?php } ?>
+          
+          <div class="row-fluid">
+          <div class="span7 portal-rates">
+          <?php if(['HidePrice']) { 
+            $display = ['Quote']['QuoteDisplay'];
+            if($display['value']) {
+              if($display['prefix']) { ?><span class="prefix"><?php echo $display['prefix']; ?>:</span><?php } ?>
+              <?php echo $display['value']; ?>
+              <?php if($display['suffix']) { ?><span class="suffix">/<?php echo $display['suffix']; ?></span><?php } ?>
+            <?php } ?>
+          <?php } ?>
+          </div>
+          <div class="span5 right-side-actions">
+            <button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="<?php echo $id; ?>" type="button" data-toggle="button">
+            <span class="halflings heart-empty">
+              <i></i>
+              <?php 
+              if(in_array($bapikey[1], $_SESSION['mylist'])) {
+                echo $textdata['WishListed']; 
+              } else {
+                echo $textdata['WishList']; 
+              } ?>
+            </span></button>
+            <?php if($seo[$id]['Keyword']) { ?>&nbsp;|&nbsp;<a class="property-link" href="<?php echo $seo[$id]['DetailURL']; ?>"><?php echo $textdata['Details']; ?> <span>&rarr;</span></a><?php } ?>
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  <?php } ?>
+  </div>
+  <div class="clearfix"></div>
+
+  <?php if($results) { ?>
+  <nav>
+    <ul class="pager">
+      <?php if($page > 0) { ?><li><a href="?<?php echo get_pager('prev'); ?>"><?php _e('Previous'); ?></a></li><? } ?>
+      <?php echo ($page*$perpage)+1; ?> &mdash; <?php echo ($page*$perpage)+$perpage; ?>
+      <?php if(($page+1) * $perpage < count($all) ) { ?><li><a href="?<?php echo get_pager('next'); ?>"><?php _e('Next'); ?></a></li> <?php } ?>
+    </ul>
+  </nav>
+  <?php } else { _e('No results.'); }
 
   $output = ob_get_clean(); 
 } else {
@@ -117,8 +223,11 @@ if($using_new_stuff) {
 
 </article>
 
+<?php if($using_new_stuff) : ?>
 <script>
   var data = '<?php echo json_encode($results); ?>',
       seo = '<?php echo json_encode($seo); ?>';
 </script>
+<?php endif; ?>
+
 <?php get_footer(); ?>
