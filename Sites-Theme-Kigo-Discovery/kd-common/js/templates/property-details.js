@@ -4,10 +4,13 @@ app.bapiModules.templates.propertyDetails = {
     init: function () {
         if (this.cond())
         {
-            this.openCloseAmenitiesList()
-                .lightBoxAndCarousel()
-                .checkPropSettings()
-                .checkUseMap();
+            this
+            //          .fixHeroImage()
+                      .openCloseAmenitiesList()
+                      .lightBoxAndCarousel()
+                      .checkPropSettings()
+            //          .checkThumbs()
+                      .checkUseMap();
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {
