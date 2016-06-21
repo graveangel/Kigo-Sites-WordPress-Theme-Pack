@@ -2583,7 +2583,9 @@ h1, h2, h3, h4, h5 {
   transition: outline .2s;
   border: none; }
   .kd-button:hover {
-    opacity: .9; }
+    color: inherit;
+    opacity: .9;
+    outline: 5px solid; }
   .kd-button:active {
     opacity: .8; }
   .kd-button.filled {

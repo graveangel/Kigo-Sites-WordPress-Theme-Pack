@@ -188,7 +188,9 @@ header h1{
   border: none;
 
   &:hover{
+    color: inherit;
     opacity: .9;
+    outline: 5px solid;
   }
   &:active{
     opacity: .8;
@@ -198,7 +200,6 @@ header h1{
     color: #fff;
   }
 }
-
 
 .inline-b{
   display: inline-block;

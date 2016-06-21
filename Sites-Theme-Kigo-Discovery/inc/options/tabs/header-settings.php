@@ -12,12 +12,20 @@
         <div data-id="uhcols" data-value="<?php echo get_theme_mod('uhcols') ?>" class="nouislider"></div>
     </div>
     <br/>
-    <input type="submit" value="Save" class="kd-button filled">
+    <span>
+
+    <input type="submit" value="Save" class="button button-primary button-large">
+    </span>
+    <span>
+
+    <input id="resetButton" type="button" value="Reset" class="button button-secondary button-large" >
+    </span>
 </form>
 
 <script>
     window.addEventListener('DOMContentLoaded', function(){
         var sliders = document.querySelectorAll('.nouislider');
+        var noUiSliders = [];
 
         for (var i = 0; i < sliders.length; i++) {
 
@@ -28,7 +36,7 @@
             }
 
             /* Create slider */
-            noUiSlider.create(slider, {
+            var nslider = noUiSlider.create(slider, {
                 start: slider.dataset.value, // Handle start position
                 step: 1, // Slider moves in increments of '10'
                 connect: 'lower', // Display a colored bar between the handles
@@ -48,8 +56,23 @@
             slider.noUiSlider.on('change', function (e) {
                 var input = document.getElementById(this.dataset.id);
                 input.value = this.noUiSlider.get();
-                $(input).change(); //Fire change event on input to refresh customizer preview
             }.bind(slider));
+            slider.noUiSlider.on('set', function (e) {
+                var input = document.getElementById(this.dataset.id);
+                input.value = this.noUiSlider.get();
+            }.bind(slider));
+
+            noUiSliders.push(nslider)
         }
+
+        /* Reset */
+
+        var rB = document.querySelector('#resetButton');
+        rB.addEventListener('click', function(){
+            for (var i = 0; i < sliders.length; i++) {
+                var slider = sliders.item(i);
+                slider.noUiSlider.set(6);
+            }
+        });
     });
 </script>
