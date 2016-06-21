@@ -4,8 +4,7 @@ app.bapiModules.templates.propertyDetails = {
     init: function () {
         if (this.cond())
         {
-            this
-                .openCloseAmenitiesList()
+            this.openCloseAmenitiesList()
                 .lightBoxAndCarousel()
                 .checkPropSettings()
                 .checkUseMap();
