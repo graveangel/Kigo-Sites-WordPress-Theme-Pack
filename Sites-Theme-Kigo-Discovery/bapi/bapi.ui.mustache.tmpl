@@ -1731,25 +1731,6 @@ Group: Properties
 
 <script id="tmpl-properties-detail" type="text/html">
         {{#result}}
-
-        <div id="inquire-now" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
-            <div class="booking-form">
-                <h3>{{textdata.Inquire Now}}</h3>
-                <div id="bapi-inquiryform-prop" class="bapi-inquiryform bapi-summary"
-                     data-templatename="tmpl-leadrequestform-propertyinquiry"
-                     data-log="0"
-                     data-showphonefield="1"
-                     data-phonefieldrequired="1"
-                     data-showdatefields="1"
-                     data-shownumberguestsfields="1"
-                     data-showleadsourcedropdown="1"
-                     data-leadsourcedropdownrequired="0"
-                     data-showcommentsfield="1">
-                </div>
-            </div>
-        </div>
-
-
         <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="property" data-lat="{{Latitude}}" data-long="{{Longitude}}" data-bg="{{&PrimaryImage.OriginalURL}}" ></div>
         <div class="hero">
             <div id="pano"></div>
@@ -2016,13 +1997,28 @@ Group: Properties
                 {{/config.hasreviews}}
             </ul>
         </div>
+        <div id="inquire-now" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
+            <div class="booking-form">
+                <h3>{{textdata.Inquire Now}}</h3>
+                <div id="bapi-inquiryform-prop" class="bapi-inquiryform"
+                     data-templatename="tmpl-leadrequestform-propertyinquiry"
+                     data-log="0"
+                     data-showphonefield="1"
+                     data-phonefieldrequired="1"
+                     data-showdatefields="1"
+                     data-shownumberguestsfields="1"
+                     data-showleadsourcedropdown="1"
+                     data-leadsourcedropdownrequired="0"
+                     data-showcommentsfield="1">
+                </div>
+            </div>
+        </div>
         {{/result}}
 </script>
 
 
 <script id="tmpl-search-rateblock" type="text/html">
         {{#result}}
-
         <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
         <span class="amenity-name your-dates">YOUR DATES:</span>
         <span class="amenity-value">
