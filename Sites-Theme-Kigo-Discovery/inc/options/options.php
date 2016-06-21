@@ -27,6 +27,15 @@ function kd_options_panel(){
         set_theme_mod('kd_properties_settings',$_POST['property-detail-settings']);
     }
 
+
+    if(!empty($_POST['hcols']) && is_numeric($_POST['hcols']) && $_POST['hcols'] > 0){
+        set_theme_mod('hcols', floor($_POST['hcols']));
+    }
+
+    if(!empty($_POST['uhcols']) && is_numeric($_POST['uhcols']) && $_POST['uhcols'] > 0){
+        set_theme_mod('uhcols', floor($_POST['uhcols']));
+    }
+
     include "options-panel.php";
 }
 

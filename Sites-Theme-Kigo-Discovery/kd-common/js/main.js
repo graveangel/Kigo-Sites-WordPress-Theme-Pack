@@ -43,7 +43,6 @@ var app = {
 
         var scrollMax = header.clientHeight - underHeader.clientHeight;
 
-
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
         window.addEventListener('scroll', checkHeader); //ms
 
@@ -54,11 +53,11 @@ var app = {
             
             if(currentScroll >= scrollMax){
                 header.classList.add('fixed');
-                body.style.paddingTop = underHeader.clientHeight + 'px';
+                //body.style.paddingTop = underHeader.clientHeight + 'px';
             }
             else{
                 header.classList.remove('fixed');
-                body.style.paddingTop = 0;
+                //body.style.paddingTop = 0;
             }
         }
     },
@@ -774,12 +773,12 @@ app.bapiModules.templates.propertyDetails = {
         if (this.cond())
         {
             this
-            //          .fixHeroImage()
-                      .openCloseAmenitiesList()
-                      .lightBoxAndCarousel()
-                      .checkPropSettings()
-            //          .checkThumbs()
-                      .checkUseMap();
+                .openCloseAmenitiesList()
+                .lightBoxAndCarousel()
+                .checkPropSettings()
+                .checkUseMap();
+
+            BAPI.UI.inithel
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {

@@ -1,5 +1,11 @@
 $kd-hero-desktop-height: 570px;
 
+/* Target if first widget */
+
+.row > .widget:first-of-type .kd-hero{
+  margin-top: 0;
+}
+
 .kd-hero{
   position: relative;
   display: block;

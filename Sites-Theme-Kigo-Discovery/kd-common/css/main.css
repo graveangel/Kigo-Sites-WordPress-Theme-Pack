@@ -2485,9 +2485,6 @@ select {
   width: 100%;
   margin: 0 auto; }
 
-.global-wrapper {
-  padding-top: 50px; }
-
 .page-width {
   max-width: 1360px;
   width: 100%;
@@ -2583,11 +2580,14 @@ h1, h2, h3, h4, h5 {
   font-size: 18px;
   text-decoration: none;
   will-change: outline;
-  transition: outline .2s; }
-  .kd-button:hover, .kd-button:focus {
-    text-decoration: none;
+  transition: outline .2s;
+  border: none; }
+  .kd-button:hover {
     color: inherit;
-    outline: 4px solid; }
+    opacity: .9;
+    outline: 5px solid; }
+  .kd-button:active {
+    opacity: .8; }
   .kd-button.filled {
     color: #fff; }
 
@@ -2704,6 +2704,10 @@ h1, h2, h3, h4, h5 {
 
 .pad-y-30 {
   padding: 30px 0; }
+
+@media (max-width: 768px) {
+  .xs-nopad {
+    padding: 0; } }
 
 /* Margins */
 .m-r-10 {
@@ -3243,16 +3247,18 @@ a {
   margin: auto;
   padding: 15px 15px 0; }
 
-.header-background.fixed .under_header {
-  position: fixed;
-  z-index: 995;
-  top: 0;
-  left: 50%;
-  padding: 10px 70px 10px 15px;
-  border: none;
-  background-color: white;
-  transform: translateX(-50%);
-  box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.25); }
+.header-background.fixed {
+  padding-bottom: 77px; }
+  .header-background.fixed .under_header {
+    position: fixed;
+    z-index: 995;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 15px;
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.45);
+    transition: box-shadow .5s; }
 
 .header-background .kd-widget {
   padding: 0 15px; }
@@ -3293,13 +3299,8 @@ a {
   font-size: 14px; }
 
 .header-background a.logo-link {
-  position: fixed;
-  z-index: 10;
-  top: 15px;
-  left: 0;
   display: inline-block;
-  height: 50px;
-  padding-left: 20px; }
+  height: 50px; }
   .header-background a.logo-link img {
     max-height: 100%;
     max-width: 100%;
@@ -3309,16 +3310,23 @@ a {
 .header-background .under_header {
   padding: 10px 0;
   border-bottom: 1px solid #eee;
-  transition: box-shadow .5s;
-  min-height: 83px; }
+  transition: box-shadow 0s; }
+  .header-background .under_header .mobile-only {
+    position: absolute;
+    bottom: 0;
+    left: 0; }
+  .header-background .under_header .kd-widget {
+    padding: 0 15px; }
 
 @media screen and (min-width: 768px) {
   .header-background .under_header {
     min-height: 0; }
-  .header-background.fixed .under_header {
-    padding: 10px 30px; }
-    .header-background.fixed .under_header .kd-widget {
-      padding: 0; }
+  .header-background.fixed {
+    padding-bottom: 54px; }
+    .header-background.fixed .under_header {
+      padding: 10px 30px; }
+      .header-background.fixed .under_header .kd-widget {
+        padding: 0; }
   .header-background a.logo-link {
     position: relative;
     top: auto;
@@ -3346,7 +3354,6 @@ footer.footer {
 .development-holder {
   text-align: center; }
 
-/* Sticky footer ---------------------------------*/
 .template-property {
   /* Hero ---------------------------------------------------------------------*/
   /* Amenities and buttons box -------------------------------------------------*/
@@ -3356,8 +3363,6 @@ footer.footer {
   /*Property features---------------------------------------------*/ }
   .template-property .page-width {
     padding: 0; }
-  .template-property .sl-wrapper .sl-navigation button {
-    background-color: rgba(255, 255, 255, 0.2); }
   .template-property .hero {
     position: relative;
     height: 300px;
@@ -3394,8 +3399,19 @@ footer.footer {
     padding: 15px; }
     .template-property .amenities .alert {
       white-space: normal; }
+    .template-property .amenities #bapi-rateblock .amenity-value {
+      margin-top: 10px;
+      display: block; }
+      .template-property .amenities #bapi-rateblock .amenity-value button {
+        display: block;
+        max-width: none;
+        width: 100%;
+        font-size: 12px;
+        outline: 0;
+        margin-bottom: 5px; }
     .template-property .amenities ul li {
-      width: 100%; }
+      width: 100%;
+      margin-bottom: 10px; }
       .template-property .amenities ul li .alert {
         margin-bottom: 0; }
       .template-property .amenities ul li span {
@@ -3414,7 +3430,7 @@ footer.footer {
       .template-property .amenities ul li #book-block {
         margin-top: 0; }
   .template-property .buttons-box {
-    display: inline-block;
+    display: block;
     vertical-align: middle;
     margin-top: 15px; }
   .template-property .book-enq {
@@ -3427,11 +3443,13 @@ footer.footer {
       color: #999; }
   .template-property .book-now-button,
   .template-property .inquire-button {
+    width: 100%;
+    display: block;
     margin: auto;
-    max-width: 500px;
     border: none;
     font-size: 16px;
-    color: white; }
+    color: white;
+    vertical-align: top; }
   .template-property .ppt-images,
   .template-property .ppt-desc {
     box-sizing: border-box;
@@ -3654,8 +3672,18 @@ Media Tablets horizontal
       padding: 15px;
       display: inline-block;
       float: left; }
-      .template-property .amenities .alert {
+      .template-property .amenities #bapi-rateblock .alert {
+        width: auto;
         white-space: nowrap; }
+      .template-property .amenities #bapi-rateblock .amenity-value {
+        margin-top: auto;
+        display: inline-block; }
+        .template-property .amenities #bapi-rateblock .amenity-value button {
+          display: inline-block;
+          width: auto;
+          margin-bottom: 0; }
+      .template-property .amenities #bapi-rateblock .buttons-box {
+        margin-top: 0; }
       .template-property .amenities ul li {
         display: inline-block;
         vertical-align: middle;
@@ -3683,9 +3711,9 @@ Media Tablets horizontal
     .template-property .book-now-button,
     .template-property .inquire-button {
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: top;
       margin-left: 10px;
-      font-size: 16px; }
+      font-size: 12px; }
     .template-property .property-description {
       padding: 15px 0; }
     .template-property .ppt-images {
@@ -3840,9 +3868,7 @@ Media Tablets horizontal
 
 @media (min-width: 480px) {
   .rates-availability .ui-datepicker-group {
-    display: inline-block; }
-  #bapi-rateblock .buttons-box {
-    margin-top: 0; } }
+    display: inline-block; } }
 
 /*=============================================================================
 Media Desktop
@@ -3917,11 +3943,13 @@ Media Desktop
   .pop-up-booking-form .booking-form {
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 40px;
+    padding: 10px;
     height: auto;
     max-width: 400px;
-    margin: 15% auto;
+    margin: 10% auto auto;
     background: #fff; }
+    .pop-up-booking-form .booking-form .leadrequest .span6 {
+      margin: 0; }
     .pop-up-booking-form .booking-form .glyphicons-list-alt {
       font-size: 30px;
       color: #999;
@@ -3937,6 +3965,8 @@ Media Desktop
         font-weight: bold;
         color: #999;
         font-size: 35px; }
+    .pop-up-booking-form .booking-form .span6 {
+      margin-top: 10px; }
     .pop-up-booking-form .booking-form .update-info-label {
       font-size: 15px;
       color: #999;
@@ -3945,7 +3975,7 @@ Media Desktop
       line-height: 30px;
       margin-left: 10px; }
     .pop-up-booking-form .booking-form .bapi-getquote {
-      margin: auto;
+      margin: 15px auto auto;
       float: none;
       text-align: center;
       position: static;
@@ -3956,9 +3986,8 @@ Media Desktop
       width: 150px; }
     .pop-up-booking-form .booking-form .picker__input, .pop-up-booking-form .booking-form .quicksearch {
       cursor: default;
-      padding: 10px;
+      padding: 5px 10px;
       width: 100%;
-      margin-bottom: 10px;
       border: 1px solid #bbb;
       border-radius: 5px; }
     .pop-up-booking-form .booking-form label {
@@ -3967,14 +3996,18 @@ Media Desktop
 
 .bapi-rateblock {
   display: inline-block; }
-  .bapi-rateblock .alert {
-    max-width: 360px; }
 
 .sl-overlay {
   background: rgba(0, 0, 0, 0.8); }
 
 .pop-up-booking-form.active {
   display: block; }
+
+.sl-wrapper {
+  color: white;
+  font-size: 22px; }
+  .sl-wrapper .sl-navigation button {
+    font-size: 32px; }
 
 .template-property #book-block {
   display: inline-block; }
@@ -3989,12 +4022,19 @@ Media Desktop
   vertical-align: middle;
   float: none; }
   .template-property #bapi-rateblock .alert {
+    width: 100%;
     padding: 0;
     display: inline-block; }
 
 @media screen and (min-width: 768px) {
   .similar-prop {
-    text-align: left; } }
+    text-align: left; }
+  .pop-up-booking-form .booking-form {
+    padding: 30px; }
+  .template-property .buttons-box {
+    display: inline-block; }
+  .template-property .book-now-button, .template-property .inquire-button {
+    width: auto; } }
 
 .about-us-template {
   /* HERO BLOCK --------------------------------------------------------------*/
@@ -5078,6 +5118,10 @@ body.error404 .message {
   text-transform: none; }
 
 /* Widgets */
+/* Target if first widget */
+.row > .widget:first-of-type .kd-hero {
+  margin-top: 0; }
+
 .kd-hero {
   position: relative;
   display: block;
@@ -5735,29 +5779,49 @@ body.error404 .message {
 $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile version
 */
 .kd-menu {
+  position: relative;
+  display: block;
+  width: auto;
+  z-index: initial;
+  top: auto;
+  left: auto;
+  float: none;
+  text-align: center; }
+  .kd-menu.kd-widget {
+    padding: 0; }
+  .kd-menu ul {
+    float: none;
+    font-size: 14px;
+    text-transform: uppercase; }
+    .kd-menu ul a {
+      display: inline-block;
+      padding: 5px; }
+  .kd-menu .toggle-wrapper {
+    display: none; }
+
+header .kd-menu {
   display: none;
-  position: fixed;
   width: 100%;
-  z-index: 500;
   top: 0;
   left: 0;
   float: right;
   vertical-align: middle; }
-  .kd-menu.main-menu {
+  header .kd-menu.main-menu {
     display: inline-block; }
-  .kd-menu .menu {
+  header .kd-menu .menu {
     display: none;
     position: absolute;
+    z-index: 9999;
     left: 0;
-    top: 100%;
+    top: calc(100% + 10px);
     width: 100%; }
-  .kd-menu li {
+  header .kd-menu li {
     display: block;
     text-align: center;
     margin: 0; }
-    .kd-menu li:last-of-type {
+    header .kd-menu li:last-of-type {
       border-bottom: none; }
-    .kd-menu li a {
+    header .kd-menu li a {
       display: block;
       padding: 12px;
       font-size: 18px;
@@ -5767,24 +5831,27 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
       border-bottom: 1px solid white;
       text-decoration: none;
       white-space: nowrap; }
-      .kd-menu li a:hover, .kd-menu li a:active {
+      header .kd-menu li a:hover, header .kd-menu li a:active {
         text-decoration: none; }
-    .kd-menu li .sub-menu a {
+    header .kd-menu li .sub-menu a {
       display: block;
       background-color: #999; }
-  .kd-menu > .sub-menu {
+  header .kd-menu > .sub-menu {
     display: block;
     position: relative; }
-    .kd-menu > .sub-menu li a {
+    header .kd-menu > .sub-menu li a {
       background-color: #d38a09; }
-  .kd-menu.active ul {
-    display: block; }
-  .kd-menu.active li {
+  header .kd-menu.active ul {
+    display: block;
+    max-height: calc(100vh - 70px);
+    overflow-y: auto; }
+  header .kd-menu.active li {
     opacity: 1; }
-  .kd-menu .toggle-wrapper {
+  header .kd-menu .toggle-wrapper {
+    display: block;
     float: right;
     width: 100%; }
-  .kd-menu .toggle {
+  header .kd-menu .toggle {
     float: right;
     width: 50px;
     height: 50px;
@@ -5794,90 +5861,98 @@ $kd-menu-toggle-size is declared in _global.scss, to push down page in mobile ve
     line-height: 50px;
     color: white;
     cursor: pointer; }
-    .kd-menu .toggle:active {
+    header .kd-menu .toggle:active {
       background-color: rgba(246, 175, 51, 0.5); }
   @media screen and (min-width: 768px) {
-    .kd-menu {
+    header .kd-menu .menu {
+      display: inline-block; }
+    header .kd-menu .toggle-wrapper {
+      display: none; } }
+
+@media screen and (min-width: 768px) {
+  .kd-menu, header .kd-menu {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    z-index: initial;
+    top: auto;
+    left: auto;
+    float: none; }
+    .kd-menu .menu, header .kd-menu .menu {
+      display: inline-block;
       position: relative;
-      display: block;
       width: auto;
-      z-index: initial;
-      top: auto;
-      left: auto;
-      float: none; }
-      .kd-menu .menu {
+      right: auto;
+      top: auto; }
+      .kd-menu .menu .current-menu-item > a, header .kd-menu .menu .current-menu-item > a {
+        color: #33baaf !important; }
+      .kd-menu .menu.align_right li, header .kd-menu .menu.align_right li {
+        margin-right: 0;
+        margin-left: 24px; }
+      .kd-menu .menu.filled li a, header .kd-menu .menu.filled li a {
+        padding: 6px 10px;
+        border: none;
+        font-size: 14px;
+        color: white; }
+    .kd-menu .toggle-wrapper, header .kd-menu .toggle-wrapper {
+      display: none; }
+    .kd-menu .menu > li, header .kd-menu .menu > li {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 24px;
+      border-bottom: none; }
+      .kd-menu .menu > li a, header .kd-menu .menu > li a {
+        background-color: transparent;
+        padding: 6px 0;
+        font-size: 14px;
+        color: #555; }
+      .kd-menu .menu > li.menu-item-has-children a, .kd-menu .menu > li.menu-item-has-children div, header .kd-menu .menu > li.menu-item-has-children a, header .kd-menu .menu > li.menu-item-has-children div {
         display: inline-block;
-        position: relative;
-        width: auto;
-        right: auto;
-        top: auto; }
-        .kd-menu .menu .current-menu-item > a {
-          color: #33baaf !important; }
-        .kd-menu .menu.align_right li {
-          margin-right: 0;
-          margin-left: 24px; }
-        .kd-menu .menu.filled li a {
-          padding: 6px 10px;
-          border: none;
-          font-size: 14px;
-          color: white; }
-      .kd-menu .toggle-wrapper {
-        display: none; }
-      .kd-menu .menu > li {
-        position: relative;
+        vertical-align: middle; }
+      .kd-menu .menu > li.menu-item-has-children::after, header .kd-menu .menu > li.menu-item-has-children::after {
         display: inline-block;
         vertical-align: middle;
-        margin-right: 24px;
-        border-bottom: none; }
-        .kd-menu .menu > li a {
-          background-color: transparent;
-          padding: 6px 0;
-          font-size: 14px;
-          color: #555; }
-        .kd-menu .menu > li.menu-item-has-children a, .kd-menu .menu > li.menu-item-has-children div {
-          display: inline-block;
-          vertical-align: middle; }
-        .kd-menu .menu > li.menu-item-has-children::after {
-          display: inline-block;
-          vertical-align: middle;
-          content: '';
-          width: 10px;
-          height: 10px;
-          margin-left: 8px;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmklEQVQ4T62S0Q2CMBRFTyeATWQERpAJxA3chBHQCWSEsoGjwAbmJrYh0Cq2vM+m9+TkvWvIHJOZ5xDACzglmlgZTECRCJgFqACbAJmB2u3gDDz/tGiAYbnEFuh3Qq7AXX/XV7gB3Q+ID4cAehP5EoE8AJn6ifUgBNmEYwaOvuzHqI2HrL41sfycVzmF1ZfNHFLlnZcLf8s2eAMP6xPwcVtx3QAAAABJRU5ErkJggg=="); }
-        .kd-menu .menu > li.menu-item-has-children:hover > .sub-menu {
-          display: block; }
-        .kd-menu .menu > li.menu-item-has-children:hover::after {
-          opacity: .5; }
-      .kd-menu .sub-menu {
-        display: none;
-        position: absolute;
-        z-index: 999;
-        top: 100%;
-        left: 0;
-        border: 1px solid #eee; }
-        .kd-menu .sub-menu .sub-menu {
-          position: relative;
-          display: block; }
-          .kd-menu .sub-menu .sub-menu a {
-            background-color: rgba(0, 0, 0, 0.05); }
-        .kd-menu .sub-menu li {
+        content: '';
+        width: 10px;
+        height: 10px;
+        margin-left: 8px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmklEQVQ4T62S0Q2CMBRFTyeATWQERpAJxA3chBHQCWSEsoGjwAbmJrYh0Cq2vM+m9+TkvWvIHJOZ5xDACzglmlgZTECRCJgFqACbAJmB2u3gDDz/tGiAYbnEFuh3Qq7AXX/XV7gB3Q+ID4cAehP5EoE8AJn6ifUgBNmEYwaOvuzHqI2HrL41sfycVzmF1ZfNHFLlnZcLf8s2eAMP6xPwcVtx3QAAAABJRU5ErkJggg=="); }
+      .kd-menu .menu > li.menu-item-has-children:hover > .sub-menu, header .kd-menu .menu > li.menu-item-has-children:hover > .sub-menu {
+        display: block; }
+      .kd-menu .menu > li.menu-item-has-children:hover::after, header .kd-menu .menu > li.menu-item-has-children:hover::after {
+        opacity: .5; }
+    .kd-menu .sub-menu, header .kd-menu .sub-menu {
+      display: none;
+      position: absolute;
+      z-index: 999;
+      top: 100%;
+      left: 0;
+      border: 1px solid #eee; }
+      .kd-menu .sub-menu .sub-menu, header .kd-menu .sub-menu .sub-menu {
+        position: relative;
+        display: block; }
+        .kd-menu .sub-menu .sub-menu a, header .kd-menu .sub-menu .sub-menu a {
           display: block;
-          margin: 0 !important;
-          border-bottom: 1px solid #eee;
-          background-color: white;
-          text-align: left; }
-          .kd-menu .sub-menu li:hover {
-            text-decoration: underline; }
-          .kd-menu .sub-menu li:last-of-type {
-            border: none; }
-          .kd-menu .sub-menu li a {
-            display: block;
-            padding: 10px 25px;
-            background-color: transparent; } }
+          background-color: rgba(0, 0, 0, 0.05); }
+      .kd-menu .sub-menu li, header .kd-menu .sub-menu li {
+        display: block;
+        margin: 0 !important;
+        border-bottom: 1px solid #eee;
+        background-color: white;
+        text-align: left; }
+        .kd-menu .sub-menu li:hover, header .kd-menu .sub-menu li:hover {
+          text-decoration: underline; }
+        .kd-menu .sub-menu li:last-of-type, header .kd-menu .sub-menu li:last-of-type {
+          border: none; }
+        .kd-menu .sub-menu li a, header .kd-menu .sub-menu li a {
+          display: block;
+          width: 100%;
+          padding: 10px 25px;
+          background-color: transparent; } }
 
 @media screen and (min-width: 768px) {
   footer.footer .kd-menu .menu-item-has-children::after {
@@ -6461,7 +6536,7 @@ aside .advanced.kd-selective-search-box,
         font-size: 12px; }
         .bapi-inquiryform li.row-fluid .span6:last-of-type {
           margin-right: 0;
-          margin-left: 5px; }
+          margin-left: 10px; }
   .bapi-inquiryform input, .bapi-inquiryform select, .bapi-inquiryform textarea {
     padding: 5px 15px;
     width: 100%;

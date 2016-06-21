@@ -1,3 +1,14 @@
+<?php
+
+//Custom header columns
+
+$hcols_left = get_theme_mod('hcols', 6);
+$hcols_right = 12 - $hcols_left;
+
+$uhcols_left = get_theme_mod('uhcols', 6);
+$uhcols_right = 12 - $uhcols_left;
+
+?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -15,8 +26,8 @@
     <div class="header-background">
         <header>
             <div class="header row row-nopadding page-width">
-                <div class="col-sm-6 col-xs-12 "><?php  if (is_active_sidebar('header_left')) { dynamic_sidebar('header_left'); }  ?></div>
-                <div class="col-sm-6 col-xs-12  align-r">
+                <div class="col-sm-<?php echo $hcols_left ?> col-xs-12 hidden-xs"><?php  if (is_active_sidebar('header_left')) { dynamic_sidebar('header_left'); }  ?></div>
+                <div class="col-sm-<?php echo $hcols_right ?> col-xs-12  align-r">
                     <div class="customizer row">
                         <div class="col-xs-12 items">
                             <ul>
@@ -73,11 +84,14 @@
             </div>
 
             <div class="under_header page-width row row-nopadding header-background">
-                <div class="col-sm-6 col-xs-12">
+                <div class="col-sm-<?php echo $uhcols_left ?> col-xs-12">
                     <div class="row row-nopadding"><?php  if (is_active_sidebar('under_header_left')) { dynamic_sidebar('under_header_left'); }  ?></div>
                 </div>
-                <div class="col-sm-6 col-xs-12 align-r">
+                <div class="col-sm-<?php echo $uhcols_right ?> col-xs-12 align-r">
                     <div class="row row-nopadding">
+                        <div class="hidden visible-xs mobile-only">
+                            <?php  if (is_active_sidebar('header_left')) { dynamic_sidebar('header_left'); }  ?>
+                        </div>
                         <?php  if (is_active_sidebar('under_header_right')) { dynamic_sidebar('under_header_right'); }  ?>
                     </div>
                 </div>
