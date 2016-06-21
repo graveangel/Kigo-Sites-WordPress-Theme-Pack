@@ -26,7 +26,7 @@ $uhcols_right = 12 - $uhcols_left;
     <div class="header-background">
         <header>
             <div class="header row row-nopadding page-width">
-                <div class="col-sm-<?php echo $hcols_left ?> col-xs-12 "><?php  if (is_active_sidebar('header_left')) { dynamic_sidebar('header_left'); }  ?></div>
+                <div class="col-sm-<?php echo $hcols_left ?> col-xs-12 hidden-xs"><?php  if (is_active_sidebar('header_left')) { dynamic_sidebar('header_left'); }  ?></div>
                 <div class="col-sm-<?php echo $hcols_right ?> col-xs-12  align-r">
                     <div class="customizer row">
                         <div class="col-xs-12 items">
@@ -89,6 +89,9 @@ $uhcols_right = 12 - $uhcols_left;
                 </div>
                 <div class="col-sm-<?php echo $uhcols_right ?> col-xs-12 align-r">
                     <div class="row row-nopadding">
+                        <div class="hidden visible-xs mobile-only">
+                            <?php  if (is_active_sidebar('header_left')) { dynamic_sidebar('header_left'); }  ?>
+                        </div>
                         <?php  if (is_active_sidebar('under_header_right')) { dynamic_sidebar('under_header_right'); }  ?>
                     </div>
                 </div>

@@ -81,9 +81,6 @@
   }
 
   a.logo-link{
-    z-index: 10;
-    top: 15px;
-    left: 0;
     display: inline-block;
     height: 50px;
     padding-left: 20px;
@@ -100,6 +97,12 @@
     padding: 10px 0;
     border-bottom: 1px solid #eee;
     transition: box-shadow 0s;
+
+    .mobile-only{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
 
     .kd-widget{
       padding: 0 15px;
