@@ -185,11 +185,13 @@ header h1{
   text-decoration: none;
   will-change: outline;
   transition: outline .2s;
+  border: none;
 
-  &:hover, &:focus{
-    text-decoration: none;
-    color: inherit;
-    outline: 4px solid;
+  &:hover{
+    opacity: .9;
+  }
+  &:active{
+    opacity: .8;
   }
 
   &.filled {

@@ -2580,11 +2580,12 @@ h1, h2, h3, h4, h5 {
   font-size: 18px;
   text-decoration: none;
   will-change: outline;
-  transition: outline .2s; }
-  .kd-button:hover, .kd-button:focus {
-    text-decoration: none;
-    color: inherit;
-    outline: 4px solid; }
+  transition: outline .2s;
+  border: none; }
+  .kd-button:hover {
+    opacity: .9; }
+  .kd-button:active {
+    opacity: .8; }
   .kd-button.filled {
     color: #fff; }
 
@@ -3297,8 +3298,7 @@ a {
 
 .header-background a.logo-link {
   display: inline-block;
-  height: 50px;
-  padding-left: 20px; }
+  height: 50px; }
   .header-background a.logo-link img {
     max-height: 100%;
     max-width: 100%;
@@ -3399,8 +3399,19 @@ footer.footer {
     padding: 15px; }
     .template-property .amenities .alert {
       white-space: normal; }
+    .template-property .amenities #bapi-rateblock .amenity-value {
+      margin-top: 10px;
+      display: block; }
+      .template-property .amenities #bapi-rateblock .amenity-value button {
+        display: block;
+        max-width: none;
+        width: 100%;
+        font-size: 12px;
+        outline: 0;
+        margin-bottom: 5px; }
     .template-property .amenities ul li {
-      width: 100%; }
+      width: 100%;
+      margin-bottom: 10px; }
       .template-property .amenities ul li .alert {
         margin-bottom: 0; }
       .template-property .amenities ul li span {
@@ -3660,8 +3671,16 @@ Media Tablets horizontal
       padding: 15px;
       display: inline-block;
       float: left; }
-      .template-property .amenities .alert {
+      .template-property .amenities #bapi-rateblock .alert {
+        width: auto;
         white-space: nowrap; }
+      .template-property .amenities #bapi-rateblock .amenity-value {
+        margin-top: auto;
+        display: inline-block; }
+        .template-property .amenities #bapi-rateblock .amenity-value button {
+          display: inline-block;
+          width: auto;
+          margin-bottom: 0; }
       .template-property .amenities ul li {
         display: inline-block;
         vertical-align: middle;
@@ -3926,7 +3945,7 @@ Media Desktop
     padding: 40px;
     height: auto;
     max-width: 400px;
-    margin: 15% auto;
+    margin: 10% auto;
     background: #fff; }
     .pop-up-booking-form .booking-form .glyphicons-list-alt {
       font-size: 30px;
@@ -3973,8 +3992,6 @@ Media Desktop
 
 .bapi-rateblock {
   display: inline-block; }
-  .bapi-rateblock .alert {
-    max-width: 360px; }
 
 .sl-overlay {
   background: rgba(0, 0, 0, 0.8); }
@@ -3995,6 +4012,7 @@ Media Desktop
   vertical-align: middle;
   float: none; }
   .template-property #bapi-rateblock .alert {
+    width: 100%;
     padding: 0;
     display: inline-block; }
 

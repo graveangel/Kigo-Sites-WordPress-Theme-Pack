@@ -57,10 +57,26 @@
       white-space: normal;
     }
 
+    #bapi-rateblock{
+      .amenity-value{
+        margin-top: 10px;
+        display: block;
+
+        button{
+          display: block;
+          max-width: none;
+          width: 100%;
+          font-size: 12px;
+          outline: 0;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
     ul {
       li {
         width: 100%;
-        //        margin-bottom         : 15px;
+        margin-bottom         : 10px;
 
         .alert{
           margin-bottom: 0;
@@ -424,15 +440,33 @@ Media Tablets horizontal
       padding                   : 15px;
       display                   :inline-block;
       float                     : left;
-      .alert{
-        white-space: nowrap;
+
+
+      #bapi-rateblock{
+        .alert{
+          width: auto;
+          white-space: nowrap;
+        }
+        .amenity-value{
+          margin-top: auto;
+          display: inline-block;
+
+          button{
+            display: inline-block;
+            width: auto;
+            margin-bottom: 0;
+          }
+        }
       }
+
       ul {
         li {
           display: inline-block;
           vertical-align: middle;
           width: auto;
           margin-right      : 20px;
+
+
 
           span {
             display: inline-block;
@@ -811,7 +845,7 @@ Media Desktop
     padding: 40px;
     height: auto;
     max-width: 400px;
-    margin: 15% auto;
+    margin: 10% auto;
     background: #fff;
     .glyphicons-list-alt{
       font-size: 30px;
@@ -872,9 +906,6 @@ Media Desktop
 
 .bapi-rateblock {
   display: inline-block;
-  .alert{
-    max-width: 360px;
-  }
 }
 .sl-overlay {
   background: rgba(0,0,0,0.8);
@@ -900,6 +931,7 @@ Media Desktop
     vertical-align: middle;
     float: none;
     .alert {
+      width: 100%;
       padding: 0;
       display: inline-block;
     }

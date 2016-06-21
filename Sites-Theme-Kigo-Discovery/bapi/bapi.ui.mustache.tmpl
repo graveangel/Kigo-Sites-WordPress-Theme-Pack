@@ -1997,6 +1997,25 @@ Group: Properties
                 {{/config.hasreviews}}
             </ul>
         </div>
+
+
+
+        <div id="inquire-now" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
+            <div class="booking-form">
+                <h3>{{textdata.Inquire Now}}</h3>
+                <div id="bapi-inquiryform-prop" class="bapi-inquiryform bapi-summary"
+                     data-templatename="tmpl-leadrequestform-propertyinquiry"
+                     data-log="0"
+                     data-showphonefield="1"
+                     data-phonefieldrequired="1"
+                     data-showdatefields="1"
+                     data-shownumberguestsfields="1"
+                     data-showleadsourcedropdown="1"
+                     data-leadsourcedropdownrequired="0"
+                     data-showcommentsfield="1">
+                </div>
+            </div>
+        </div>
         {{/result}}
 </script>
 
@@ -2004,13 +2023,11 @@ Group: Properties
 <script id="tmpl-search-rateblock" type="text/html">
         {{#result}}
         <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
-        <span class="amenity-name your-dates">
-                    YOUR DATES:
-                </span>
+        <span class="amenity-name your-dates">YOUR DATES:</span>
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
-                <div class="alert alert-error"><a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</a></div>
-                <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
+                <div class="alert alert-error"><button data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</button></div>
+                <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" data-toggle="modal" data-target="#inquire-now" type="button" >{{textdata.Inquire Now}}</button>
             {{/ContextData.Quote.IsValid}}
         </span>
 
@@ -2060,7 +2077,7 @@ Group: Properties
 
                         </div>
 
-                        <button class="btn btn-mini bapi-getquote"data-dismiss="modal"  type="button">{{textdata.Submit}}</button>
+                        <button class="btn btn-mini bapi-getquote" data-dismiss="modal"  type="button">{{textdata.Submit}}</button>
 
                     </div>
                 </div>

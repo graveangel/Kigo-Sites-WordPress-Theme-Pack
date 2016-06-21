@@ -5,12 +5,12 @@ app.bapiModules.templates.propertyDetails = {
         if (this.cond())
         {
             this
-            //          .fixHeroImage()
-                      .openCloseAmenitiesList()
-                      .lightBoxAndCarousel()
-                      .checkPropSettings()
-            //          .checkThumbs()
-                      .checkUseMap();
+                .openCloseAmenitiesList()
+                .lightBoxAndCarousel()
+                .checkPropSettings()
+                .checkUseMap();
+
+            BAPI.UI.inithel
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {
