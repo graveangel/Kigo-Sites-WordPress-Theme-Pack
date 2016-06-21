@@ -2087,11 +2087,11 @@ Group: Properties
             {{#ContextData.Quote.IsValid}}
                 {{#IsBookable}}
                     <button class="kd-button filled book-now-button primary-fill-color bapi-booknow" type="button">{{textdata.Book Now}}</button>
-                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
+                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" data-toggle="modal" data-target="#inquire-now" type="button" >{{textdata.Inquire Now}}</button>
                 {{/IsBookable}}
 
                 {{^IsBookable}}
-                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
+                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" data-toggle="modal" data-target="#inquire-now" type="button" >{{textdata.Inquire Now}}</button>
                 {{/IsBookable}}
             {{/ContextData.Quote.IsValid}}
         </div>

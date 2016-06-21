@@ -109,7 +109,7 @@
   }
   /* Book and inquire buttons---------------------------------------------------*/
   .buttons-box{
-    display: inline-block;
+    display: block;
     vertical-align: middle;
     margin-top: 15px;
   }
@@ -125,8 +125,9 @@
   }
   .book-now-button,
   .inquire-button{
+    width: 100%;
+    display: block;
     margin                        : auto;
-    max-width                     : 500px;
     border                        : none;
     font-size: 16px;
     color: white;
@@ -442,6 +443,8 @@ Media Tablets horizontal
       float                     : left;
 
 
+
+
       #bapi-rateblock{
         .alert{
           width: auto;
@@ -456,6 +459,9 @@ Media Tablets horizontal
             width: auto;
             margin-bottom: 0;
           }
+        }
+        .buttons-box{
+          margin-top: 0;
         }
       }
 
@@ -692,10 +698,7 @@ Media Tablets horizontal
     box-sizing                    : border-box;
   }
 }
-
-
-.rates-availability .ui-datepicker-group
-{
+.rates-availability .ui-datepicker-group {
   margin: auto;
   display: block;
   float: none;
@@ -712,7 +715,6 @@ Media Tablets horizontal
     }
   }
 }
-
 .rates-availability {
   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
     background: $primary-color;
@@ -731,14 +733,11 @@ Media Tablets horizontal
     }
   }
 }
+
 @media (min-width                     : 480px){
   .rates-availability .ui-datepicker-group
   {
     display: inline-block;
-  }
-
-  #bapi-rateblock .buttons-box{
-    margin-top: 0;
   }
 }
 /*=============================================================================
@@ -830,6 +829,7 @@ Media Desktop
     text-decoration: underline;
   }
 }
+
 .pop-up-booking-form {
   position:   fixed;
   height:     100%;
@@ -842,11 +842,18 @@ Media Desktop
   .booking-form {
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 40px;
+    padding: 10px;
     height: auto;
     max-width: 400px;
-    margin: 10% auto;
+    margin: 10% auto auto;
     background: #fff;
+
+    .leadrequest{
+      .span6{
+        margin: 0;
+      }
+    }
+
     .glyphicons-list-alt{
       font-size: 30px;
       color: #999;
@@ -864,8 +871,9 @@ Media Desktop
         color:       #999;
         font-size:   35px;
       }
-
-
+    }
+    .span6{
+      margin-top: 10px;
     }
     .update-info-label {
       font-size: 15px;
@@ -877,7 +885,7 @@ Media Desktop
     }
 
     .bapi-getquote {
-      margin: auto;
+      margin: 15px auto auto;
       float: none;
       text-align: center;
       position: static;
@@ -890,9 +898,8 @@ Media Desktop
 
     .picker__input,.quicksearch  {
       cursor:        default;
-      padding:       10px;
+      padding:       5px 10px;
       width:         100%;
-      margin-bottom: 10px;
       border: 1px solid #bbb;
       border-radius: 5px;
     }
@@ -941,5 +948,18 @@ Media Desktop
 @media screen and (min-width: $bp-sm){
   .similar-prop{
     text-align: left;
+  }
+
+  .pop-up-booking-form .booking-form{
+    padding: 30px;
+  }
+
+  .template-property{
+    .buttons-box{
+      display: inline-block;
+    }
+    .book-now-button, .inquire-button{
+      width: auto;
+    }
   }
 }

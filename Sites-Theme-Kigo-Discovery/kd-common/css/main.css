@@ -3430,7 +3430,7 @@ footer.footer {
       .template-property .amenities ul li #book-block {
         margin-top: 0; }
   .template-property .buttons-box {
-    display: inline-block;
+    display: block;
     vertical-align: middle;
     margin-top: 15px; }
   .template-property .book-enq {
@@ -3443,8 +3443,9 @@ footer.footer {
       color: #999; }
   .template-property .book-now-button,
   .template-property .inquire-button {
+    width: 100%;
+    display: block;
     margin: auto;
-    max-width: 500px;
     border: none;
     font-size: 16px;
     color: white;
@@ -3681,6 +3682,8 @@ Media Tablets horizontal
           display: inline-block;
           width: auto;
           margin-bottom: 0; }
+      .template-property .amenities #bapi-rateblock .buttons-box {
+        margin-top: 0; }
       .template-property .amenities ul li {
         display: inline-block;
         vertical-align: middle;
@@ -3865,9 +3868,7 @@ Media Tablets horizontal
 
 @media (min-width: 480px) {
   .rates-availability .ui-datepicker-group {
-    display: inline-block; }
-  #bapi-rateblock .buttons-box {
-    margin-top: 0; } }
+    display: inline-block; } }
 
 /*=============================================================================
 Media Desktop
@@ -3942,11 +3943,13 @@ Media Desktop
   .pop-up-booking-form .booking-form {
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 40px;
+    padding: 10px;
     height: auto;
     max-width: 400px;
-    margin: 10% auto;
+    margin: 10% auto auto;
     background: #fff; }
+    .pop-up-booking-form .booking-form .leadrequest .span6 {
+      margin: 0; }
     .pop-up-booking-form .booking-form .glyphicons-list-alt {
       font-size: 30px;
       color: #999;
@@ -3962,6 +3965,8 @@ Media Desktop
         font-weight: bold;
         color: #999;
         font-size: 35px; }
+    .pop-up-booking-form .booking-form .span6 {
+      margin-top: 10px; }
     .pop-up-booking-form .booking-form .update-info-label {
       font-size: 15px;
       color: #999;
@@ -3970,7 +3975,7 @@ Media Desktop
       line-height: 30px;
       margin-left: 10px; }
     .pop-up-booking-form .booking-form .bapi-getquote {
-      margin: auto;
+      margin: 15px auto auto;
       float: none;
       text-align: center;
       position: static;
@@ -3981,9 +3986,8 @@ Media Desktop
       width: 150px; }
     .pop-up-booking-form .booking-form .picker__input, .pop-up-booking-form .booking-form .quicksearch {
       cursor: default;
-      padding: 10px;
+      padding: 5px 10px;
       width: 100%;
-      margin-bottom: 10px;
       border: 1px solid #bbb;
       border-radius: 5px; }
     .pop-up-booking-form .booking-form label {
@@ -4018,7 +4022,13 @@ Media Desktop
 
 @media screen and (min-width: 768px) {
   .similar-prop {
-    text-align: left; } }
+    text-align: left; }
+  .pop-up-booking-form .booking-form {
+    padding: 30px; }
+  .template-property .buttons-box {
+    display: inline-block; }
+  .template-property .book-now-button, .template-property .inquire-button {
+    width: auto; } }
 
 .about-us-template {
   /* HERO BLOCK --------------------------------------------------------------*/
@@ -6520,7 +6530,7 @@ aside .advanced.kd-selective-search-box,
         font-size: 12px; }
         .bapi-inquiryform li.row-fluid .span6:last-of-type {
           margin-right: 0;
-          margin-left: 5px; }
+          margin-left: 10px; }
   .bapi-inquiryform input, .bapi-inquiryform select, .bapi-inquiryform textarea {
     padding: 5px 15px;
     width: 100%;
