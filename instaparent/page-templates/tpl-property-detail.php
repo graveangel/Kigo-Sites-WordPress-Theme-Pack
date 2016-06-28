@@ -181,7 +181,25 @@ if($data) {
 						<h3><?php echo $translations['Rates']; ?></h3>
 					<?php } ?>
 					<?php if($settings['propdetailratestable'] != 'on') { ?>
-					<div id="ratetable" class="bapi-ratetable" data-pkid="<?php echo $data->ID; ?>"></div>
+
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<?php foreach($context->Rates->Keys as $key) {
+									echo "<th>".$key."</th>";
+								} ?>
+							</tr>
+						</thead>
+						<tbody>
+							<?php foreach($context->Rates->Values as $value) { ?>
+							<tr>
+								<?php foreach($value as $v) { echo "<td>".$v."</td>"; } ?>		
+							</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+
+					<?php /* <div id="ratetable" class="bapi-ratetable" data-pkid="<?php echo $data->ID; ?>"></div> */ ?>
 					<?php } ?>
 					</div>
 					</div>
