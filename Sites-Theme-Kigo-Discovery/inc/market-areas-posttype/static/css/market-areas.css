@@ -1,0 +1,148 @@
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+ol
+{
+  margin: 0;
+}
+
+ol ol
+{
+  margin-left: 20px;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+.sortable li
+{
+  background: #fff;
+}
+
+ol.example li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.example li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+.button.button-marketarea
+{
+  background: #008899;
+  color: #fff;
+  border: none;
+}
+.button.button-marketarea:hover
+{
+  background: #0088ff;
+  color: #fff;
+}
+.market-areas-sorting
+{
+  font-size: 0;
+}
+.locations-list,
+.properties-list
+{
+  display: block;
+  font-size: 14px;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+.locations-list .list,
+.properties-list .list{
+  max-height: 300px;
+  overflow: auto;
+}
+.ma-item
+{
+  font-size: 0;
+}
+.prop-item .button,
+.ma-item .button
+{
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sources
+{
+  width: 50%;
+  float: left;
+}
+.user-list
+{
+  display:  block;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 50%;
+  float: right;
+  font-size: 14px;
+}
+.locations-list li,
+.properties-list li
+{
+  display: inline-block;
+}
+#market_area_props_n_areas::after
+{
+  content: '';
+  display: block;
+  clear: both;
+}
+.drop-here
+{
+  padding: 10px;
+  background: #dfdfdf;
+  height: 100%;
+  color: #999;
+  margin-top: 10px;
+}
+.to-save li
+{
+  display: block!important;
+}
+
+.button.button-marketarea.Country
+{
+  background: tomato;
+}
+.button.button-marketarea.City
+{
+  background: CornflowerBlue;
+}
+.button.button-marketarea.County
+{
+  background: orange;
+}
+.button.button-marketarea.State
+{
+  background: MidnightBlue;
+}
+.button.button-marketarea.Region
+{
+  background: SteelBlue;
+}
+.button.button-marketarea.Neighborhood
+{
+  background: LightSeaGreen;
+}
+
+.button.button-marketarea,.edit-name,.button-property
+{
+  display: block;
+  width:100%;
+  font-size: 12px!important;
+}
+.edit-name
+{
+  border: none;
+  border-radius: 3px;
+  margin: 2px auto;
+  width: 100%;
+}

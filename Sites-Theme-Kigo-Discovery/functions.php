@@ -17,6 +17,9 @@ include_once 'inc/theme/Activation.class.php';
 //Theme BAPI helper
 include_once 'inc/theme/BAPIHelper.class.php';
 
+//Market areas landings
+include_once 'inc/market-areas-posttype/MarketAreasLandings.class.php';
+
 
 
 /* Inititalize core theme functionalities */
@@ -30,4 +33,3 @@ add_action('after_switch_theme', array($activation, 'init'));
 /* Initialize theme compatibility */
 $compatibility = new Compatibility();
 add_action('init', array($compatibility, 'overwriteIfSynced'));
-
