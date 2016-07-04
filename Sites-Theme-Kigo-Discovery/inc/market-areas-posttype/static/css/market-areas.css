@@ -84,10 +84,14 @@ ol.example li.placeholder:before {
 .prop-item .button,
 .ma-item .button
 {
-  max-width: calc(100% - 20px);
+  max-width: 100%;
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.prop-list-parent .prop-item .button
+{
+  max-width: calc(100% - 20px);
 }
 .prop-item input[type="checkbox"]
 {

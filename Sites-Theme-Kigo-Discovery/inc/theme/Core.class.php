@@ -53,7 +53,7 @@ class Core {
         ];
 
         /* Enable custom post thumbnails */
-        add_theme_support('post-thumbnails', array('item', 'team', 'page', 'post','market_areas'));
+        add_theme_support('post-thumbnails', array('item', 'team', 'page', 'post','market-areas'));
 
         /* Default theme fallback */
 //        @define('KIGO_SELF_HOSTED', FALSE);
