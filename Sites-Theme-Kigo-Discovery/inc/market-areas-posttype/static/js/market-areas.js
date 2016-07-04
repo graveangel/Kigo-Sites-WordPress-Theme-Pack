@@ -111,7 +111,7 @@ function encodeHtmlEntity(str) {
        var data_name             = root[li].name;
        var type                  = root[li].originalName.split('::')[1].trim();
        var innerListItems        = setup_tree(root[li].contents);
-       content                   += '<li class="ma-item active" data-name=\''+data_name+'\' data-original-name="'+data_original_name+'"><a data-name=\''+data_name+'\' data-original-name="'+data_original_name+'" class="button button-marketarea '+type+'">'+data_name+'</a><ol class="ma-list">'+innerListItems+'</ol></li>';
+       content                   += '<li class="ma-item active" data-name=\''+data_name+'\' data-type="'+type+'" data-original-name="'+data_original_name+'"><a data-name=\''+data_name+'\' data-original-name="'+data_original_name+'" class="button button-marketarea '+type+'">'+data_name+'</a><ol class="ma-list">'+innerListItems+'</ol></li>';
      }
    }
 
@@ -408,7 +408,6 @@ $(function()
     {
         $('.ma-list-parent .ma-item').show();
     }
-
   });
 
   /**
