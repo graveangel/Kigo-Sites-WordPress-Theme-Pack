@@ -41,6 +41,8 @@ ol.example li.placeholder:before {
   background: #0088ff;
   color: #fff;
 }
+
+/* Market areas locations and properties */
 .market-areas-sorting
 {
   font-size: 0;
@@ -55,8 +57,25 @@ ol.example li.placeholder:before {
 }
 .locations-list .list,
 .properties-list .list{
-  max-height: 300px;
   overflow: auto;
+}
+.locations-list h3
+{
+  padding-right:15px;
+}
+.locations-list h3 input#search-locations
+{
+  width: 100%;
+  margin-top: 10px;
+}
+.properties-list h3
+{
+  padding-right:15px;
+}
+.properties-list h3 #search-properties
+{
+  width: 100%;
+  margin-top: 10px;
 }
 .ma-item
 {
@@ -65,79 +84,140 @@ ol.example li.placeholder:before {
 .prop-item .button,
 .ma-item .button
 {
-  max-width: 100%;
+  max-width: calc(100% - 20px);
+  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.prop-item input[type="checkbox"]
+{
+  width: auto;
+  display: inline-block;
+}
 .sources
 {
-  width: 50%;
+  width: calc(100%/3 * 2);
   float: left;
 }
+.locations-list
+{
+  display: inline-block;
+  width: 30%;
+}
+.properties-list
+{
+  display: inline-block;
+  width: 70%;
+}
+.locations-list li,
+.properties-list li
+{
+  display: block;
+  border: none!important;
+  padding: 0!important;
+}
+.search-locations-select
+{
+  width: 100%;
+  display: block;
+  margin: 5px auto;
+}
+/* To save */
 .user-list
 {
   display:  block;
   border: 1px solid #ddd;
   padding: 10px;
   box-sizing: border-box;
-  width: 50%;
+  width: calc(100%/3);
   float: right;
   font-size: 14px;
 }
-.locations-list li,
-.properties-list li
-{
-  display: inline-block;
-}
+
 #market_area_props_n_areas::after
 {
   content: '';
   display: block;
   clear: both;
 }
-.drop-here
+/* Market areas tree list */
+.drop-here .market-areas-tree
 {
   padding: 10px;
   background: #dfdfdf;
-  height: 100%;
+  min-height: 20em;
   color: #999;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 .to-save li
 {
   display: block!important;
 }
+.to-save li input[type="checkbox"]
+{
+  display: none;
+}
 
-.button.button-marketarea.Country
+/* Button colors by location */
+.button.button-marketarea.Country,
+span.Country
 {
-  background: tomato;
+  background: #ed1c24;
 }
-.button.button-marketarea.City
+.button.button-marketarea.City,
+span.City
 {
-  background: CornflowerBlue;
+  background: #2e3192;
 }
-.button.button-marketarea.County
+.button.button-marketarea.County,
+span.County
 {
   background: orange;
 }
-.button.button-marketarea.State
+.button.button-marketarea.State,
+span.State
 {
-  background: MidnightBlue;
+  background: #00a651;
 }
-.button.button-marketarea.Region
+.button.button-marketarea.Region,
+span.Region
 {
-  background: SteelBlue;
+  background: #10b661;
 }
-.button.button-marketarea.Neighborhood
+.button.button-marketarea.Neighborhood,
+span.Neighborhood
 {
-  background: LightSeaGreen;
+  background: #f26522;
 }
-
+/* Color legend */
+.legend li
+{
+  margin-bottom: 5px;
+  display: block;
+}
+.legend span
+{
+  padding: 5px;
+  display: inline-block;
+  margin-right: 5px;
+}
 .button.button-marketarea,.edit-name,.button-property
 {
   display: block;
   width:100%;
   font-size: 12px!important;
+}
+.to-save a.active-container::before
+{
+  font: normal normal normal 14px/1 FontAwesome;
+  content: "\f0a4";
+  margin-right: 10px;
+}
+.add-selected
+{
+  float: right;
+  margin-right: 15px!important;
 }
 .edit-name
 {
@@ -145,4 +225,13 @@ ol.example li.placeholder:before {
   border-radius: 3px;
   margin: 2px auto;
   width: 100%;
+}
+
+/*===============
+SAVE BUTTON
+===============*/
+.button-save
+{
+  background: green!important;
+  float: right;
 }

@@ -16,7 +16,16 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
     <div class="sources">
       <!-- location tags -->
       <div class="locations-list">
-        <h3>Locations <input type="text" id="search-locations" placeholder="Filter Locations" value=""></h3>
+        <h3>Select Location(s):
+            <input type="search" id="search-locations" placeholder="Filter Locations" value="">
+            <select class="search-locations-select">
+                <option value=""> - Filter - </option>
+                <?php foreach($MktAPropsNAreas->ma_types as $type):?>
+                    <option value="<?php echo $type; ?>"><?php echo $type; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </h3>
+
         <div class="list">
           <ol class="market-areas-tree ma-list-parent sortable sortable-group">
               <?php
@@ -24,11 +33,17 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
               ?>
           </ol>
         </div>
+        <ul class="legend">
+            <?php foreach($MktAPropsNAreas->ma_types as $type):?>
+                <li><span class="<?php echo $type; ?>"></span><?php echo $type; ?></li>
+            <?php endforeach; ?>
+        </ul>
       </div>
 
       <div class="properties-list">
         <!-- property tags -->
-        <h3>Properties <input type="text" id="search-properties" placeholder="Filter Properties" value=""></h3>
+        <h3>Properties: <input type="search" id="search-properties" placeholder="Search Properties" value=""></h3>
+        <p><label><input type="checkbox" class="select-visible"> Select all visible.</label> <a class="button button-primary add-selected">Add selected</a></p>
         <div class="list">
           <ol class="market-areas-tree prop-list-parent sortable sortable-group">
               <?php
@@ -41,22 +56,19 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
 
     <div class="user-list">
       <!-- User tree -->
-      <h3>Build your areas</h3>
-      <p class="description">
-          Here you can build your market area's tree. To rename an area you can doubleclick on the location button in the tree.
-      </p>
+      <h3>Market Area:</h3>
+      <div class="drop-here">
+        <ol class="market-areas-tree to-save sortable sortable-group">
+        </ol>
+      </div>
       <!-- Clear button -->
       <a class="clear-areas button button-primary" title="Clears the tree">Clear</a>
       <!-- Reset areas -->
       <a class="reset-areas button button-primary" title="Resets the tree to the saved value">Reset</a>
 
-      <div class="drop-here">
-         - DROP HERE -
-        <ol class="market-areas-tree to-save sortable sortable-group">
-        </ol>
-      </div>
+      <!-- Save -->
+      <input name="save" type="submit" class="button button-primary button-save" id="publish" value="Save">
     </div>
-
 </div>
 
 <input class="widefat" type="hidden" name="<?php echo $this->id; ?>" id="<?php echo $this->id; ?>" value='<?php echo $value; ?>' size="30" />

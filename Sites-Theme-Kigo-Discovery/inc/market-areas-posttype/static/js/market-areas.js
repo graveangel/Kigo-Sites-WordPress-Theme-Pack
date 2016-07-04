@@ -103,7 +103,7 @@ function encodeHtmlEntity(str) {
         var data_prop     =  encodeURIComponent(JSON.stringify(root[li]));//!!!
         var property_name = root[li].Name;
         var property_id   = root[li].id;
-        content           += '<li class="prop-item active" data-prop="'+data_prop+'" data-prop-id="'+property_id+'"><a class="button button-property" data-prop="'+data_prop+'" data-prop-id="'+property_id+'">'+decodeURIComponent(property_name)+'</a></li>';
+        content           += '<li class="prop-item active" data-prop="'+data_prop+'" data-prop-id="'+property_id+'"><input type="checkbox"><a class="button button-property" data-prop="'+data_prop+'" data-prop-id="'+property_id+'">'+decodeURIComponent(property_name)+'</a></li>';
      }
      // if it's a location
      else if(root[li].originalName){
@@ -146,8 +146,8 @@ function encodeHtmlEntity(str) {
        $('.ma-list-parent').append($(v));
    });
 
-
-
+   remove_active_container();
+   enable_quicksearches();
 
 
    update_ma_json();
@@ -192,6 +192,29 @@ function encodeHtmlEntity(str) {
     update_ma_json();
  }
 
+ function enable_quicksearches()
+ {
+   /**
+    * Quicksearch:
+    * Search/filter properties while typing on the field
+    */
+   var locSearchString = ".ma-list-parent li";
+     $('#search-locations').quicksearch(locSearchString);
+   $('#search-locations-hidden').quicksearch(locSearchString);
+
+   var propSearchString = ".prop-list-parent li";
+   $('#search-properties').quicksearch(propSearchString);
+
+   $('#search-locations,#search-properties').on('search',function(e)
+   {
+     $(this).keyup();
+   });
+ }
+
+function remove_active_container()
+{
+    $('.active-container').removeClass('active-container');
+}
 
 /**
  * On load
@@ -237,9 +260,12 @@ $(function()
        {
          $item.removeClass('active');
        }
+       enable_quicksearches();
        //Update value
        update_ma_json();
      }
+
+
   });
 
   /**
@@ -297,6 +323,15 @@ $(function()
   $(document).on('click','.button-marketarea', function(e)
   {
     e.preventDefault();
+    e.stopPropagation();
+    //Add class active-container
+    if($(this).is('.to-save a'))
+    {
+      remove_active_container();
+     $(this).parent().find('>ol').addClass('active-container');
+     $(this).addClass('active-container');
+    }
+
     var text = $(this).attr('data-original-name').split('::')[0].trim();
     // console.log(text);
     $('#search-properties').val(text).keyup();
@@ -304,15 +339,77 @@ $(function()
 
 
   /**
-   * Quicksearch:
-   * Search/filter properties while typing on the field
+   * Use main tree as active container
    */
-  var locSearchString = ".ma-list-parent li";
-  $('#search-locations').quicksearch(locSearchString);
+  $('.market-areas-tree').click(function(e)
+  {
+    remove_active_container();
+  });
 
-  var propSearchString = ".prop-list-parent li";
-  $('#search-properties').quicksearch(propSearchString);
 
+  /**
+   * Add selected
+   */
+  $('.add-selected').on('click', function(e)
+  {
+    $('.select-visible').attr('checked',false);
+    //Agregar los seleccionados a ol.active-container
+    //selected
+    var $selected = $('.prop-list-parent li input[type="checkbox"]:checked');
+    if($('ol.active-container').length)
+    $.each($selected, function(i,v)
+    {
+      $(this).parent().appendTo('ol.active-container');
+      $(this).attr('checked', false);
+    });
+    else
+    $.each($selected, function(i,v)
+    {
+      $(this).parent().appendTo('ol.to-save');
+      $(this).attr('checked', false);
+    });
+
+    //update input
+    update_ma_json();
+  });
+
+
+  enable_quicksearches();
+
+  /**
+   * Checkbox
+   */
+  $('.button-property').on('click',function(e)
+  {
+    $(this).prev().click();
+  });
+
+  /**
+   * Select visible
+   */
+  $('.select-visible').on('change', function(e)
+  {
+    var checked =  $(this).attr('checked') ? true : false;
+    $('.prop-list-parent li:visible input[type="checkbox"]').attr('checked',checked);
+  });
+
+
+  /**
+   * Location select filter:
+   */
+  $('.search-locations-select').on('change',function(e)
+  {
+    if($(this).val() !== '')
+    {
+      $('.ma-list-parent .ma-item').hide();
+      $('.ma-list-parent [data-type="' + $(this).val() + '"]').show();
+    }
+    else
+    {
+        $('.ma-list-parent .ma-item').show();
+    }
+
+  });
 
   /**
    * clear areas tree

@@ -33,7 +33,7 @@ class MktAPropsNAreas
                             'State',
                             'Region',
                             'City',
-                            'County',
+                            // 'County',
                             'Neighborhood',
                         ];
     private $api_key,
@@ -190,21 +190,28 @@ class MktAPropsNAreas
         if(empty($ma_prop_tree))
         $ma_prop_tree = $this->ma_tree;
 
-        foreach($ma_prop_tree as $name => $branch)
+        foreach($this->ma_types as $mtype)
         {
-            //echo a li
-            $lname = empty($name) ? '-NNN-' : trim(explode('::',$name)[0]);
-            $type = trim(explode('::',$name)[1]);
-            $items .= "<li class=\"ma-item\" data-name=\"$lname\"  data-original-name=\"$name\" data-type=\"$type\"><a class=\"button button-marketarea $type\" data-name=\"$lname\" data-type=\"$type\" data-original-name=\"$name\">$lname</a>";
-            $items .= "<ol class=\"ma-list\">";
-            if(is_array($branch) && empty($branch['id']))
+            foreach($ma_prop_tree as $name => $branch) // Sorting locations (Country, State, City, Neighborhood)
             {
 
-                $items .= $this->get_ma_items($branch);
+                //echo a li
+                $lname = empty($name) ? '-NNN-' : trim(explode('::',$name)[0]);
+                $type = trim(explode('::',$name)[1]);
+                if($type === $mtype)
+                {
+                    $items .= "<li class=\"ma-item\" data-name=\"$lname\"  data-original-name=\"$name\" data-type=\"$type\"><a class=\"button button-marketarea $type\" data-name=\"$lname\" data-type=\"$type\" data-original-name=\"$name\">$lname</a>";
+                    $items .= "<ol class=\"ma-list\">";
+                    if(is_array($branch) && empty($branch['id']))
+                    {
 
+                        $items .= $this->get_ma_items($branch);
+
+                    }
+                    $items .= "</ol>";
+                    $items .= "</li>";
+                }
             }
-            $items .= "</ol>";
-            $items .= "</li>";
         }
 
         return $items;
@@ -223,7 +230,7 @@ class MktAPropsNAreas
             $json_prop = rawurlencode(json_encode($prop)); //instead of urlencode so the whitespaces are encoded %20 and not +
             $name       = $prop['Name'];
             $propid     = $prop['id'];
-            $items  .= "<li class=\"prop-item\" data-prop=\"$json_prop\" data-prop-id=\"$propid\"><a class=\"button button-property\" data-prop-id=\"$propid\" data-prop=\"$json_prop\">$name <span style=\"display: none;\"> $json_prop</span></a>";
+            $items  .= "<li class=\"prop-item\" data-prop=\"$json_prop\" data-prop-id=\"$propid\"><input type=\"checkbox\" /><a class=\"button button-property\" data-prop-id=\"$propid\" data-prop=\"$json_prop\">$name <span style=\"display: none;\"> $json_prop</span></a>";
         }
 
         return $items;

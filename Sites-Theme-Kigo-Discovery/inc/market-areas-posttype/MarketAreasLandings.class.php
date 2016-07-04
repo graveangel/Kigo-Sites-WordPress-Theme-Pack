@@ -44,7 +44,7 @@ class MarketAreasLandings
     {
         //Market areas post type
         $post_types = array(
-            'market_areas'          => array(
+            'market-areas'          => array(
                 'label'             => 'Market Areas',
                 'labels'            => array(
                     'name'          => __('Market Areas', 'kd'),
@@ -79,7 +79,7 @@ class MarketAreasLandings
                 array(
                     'id'            => 'market_area_description',
                     'title'         => '<h4>Description</h4>',
-                    'screen'        => 'market_areas',
+                    'screen'        => 'market-areas',
                     'context'       => 'advanced',
                     'priority'      => 'default',
                     'template'      => 'market_area_description.php',
@@ -90,7 +90,7 @@ class MarketAreasLandings
                 array(
                     'id'            => 'market_area_photos',
                     'title'         => '<h4>Photos</h4>',
-                    'screen'        => 'market_areas',
+                    'screen'        => 'market-areas',
                     'context'       => 'advanced',
                     'priority'      => 'default',
                     'template'      => 'market_area_photos.php',
@@ -101,7 +101,7 @@ class MarketAreasLandings
                 array(
                     'id'            => 'market_area_generate_landing_pages',
                     'title'         => '<h4>Landing</h4>',
-                    'screen'        => 'market_areas',
+                    'screen'        => 'market-areas',
                     'context'       => 'advanced',
                     'priority'      => 'default',
                     'template'      => 'market_area_landing.php',
@@ -111,13 +111,13 @@ class MarketAreasLandings
                 // Market areas tree
                 array(
                     'id'            => 'market_area_props_n_areas',
-                    'title'         => '<h4>Properties and subareas</h4>',
-                    'screen'        => 'market_areas',
+                    'title'         => '<h4>Define Location, Sub-areas (optional) and Properties.</h4>',
+                    'screen'        => 'market-areas',
                     'context'       => 'advanced',
                     'priority'      => 'default',
                     'template'      => 'market_area_props_n_areas.php',
                     'need_sanitize' => false,
-                    'description'   => '',
+                    'description'   => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie luctus lorem, sed sollicitudin eros suscipit vitae. Suspendisse potenti. Nunc fermentum purus in mi porttitor, non congue erat rhoncus. Duis ut turpis a ex bibendum sollicitudin. Vivamus condimentum rutrum mi, ultrices commodo ex egestas in. Vestibulum sapien justo, suscipit in commodo et, sodales vitae libero. Nulla id luctus nisi, ac porttitor neque. Integer laoreet, augue nec sollicitudin vestibulum, arcu ligula suscipit elit, vel ornare arcu ipsum et ligula. Maecenas porta sapien quis facilisis porta. Maecenas placerat et dolor nec facilisis. Quisque molestie cursus urna, ut tincidunt ante malesuada vitae. Fusce odio ante, lacinia at tortor ut, egestas vehicula velit.',
                     'rules'         =>
                     [
                             '/`/',// No backticks
@@ -130,7 +130,7 @@ class MarketAreasLandings
                 array(
                     'id'            => 'market_area_generate_landing',
                     'title'         => '<h4>Generate Landings</h4>',
-                    'screen'        => 'market_areas',
+                    'screen'        => 'market-areas',
                     'context'       => 'side',
                     'priority'      => 'default',
                     'template'      => 'market_area_landing_generate.php',
@@ -217,7 +217,7 @@ class MarketAreasLandings
         /*===============================
         - Only in market areas page -
         ==================================*/
-        if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='market_areas')
+        if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='market-areas')
         {
             wp_enqueue_script('sortable-jquery', get_stylesheet_directory_uri() . "/kd-common/js/vendor/jquery-sortable.js",[], '0.9.13', true); //Loaded in the footer to overwrite the one by default.
             wp_enqueue_script('market-areas-script',get_stylesheet_directory_uri() . "/inc/market-areas-posttype/static/js/market-areas.js",[],'28.06.2016',true); //Market area script
