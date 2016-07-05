@@ -424,7 +424,7 @@ class Core {
             //TODO: Load only for search pages
 
             /* Google Maps */
-            wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ', array(), '', false);
+            wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ&libraries=places', array(), '', false);
             /* Google Maps Marker Clusterer - */
             wp_enqueue_script('gmaps-clusterer',  $commonPath . '/lib/js-marker-clusterer/src/markerclusterer_compiled.js', array(), '', false);
             /* Google Maps Spiderfy - */
@@ -439,6 +439,9 @@ class Core {
             /* Custom */
             wp_enqueue_style('kd-style', $commonPath . '/css/main.css');
             wp_enqueue_script('kd-scripts', $commonPath . '/js/main.js', array(), '1.0.0', true);
+
+            /* We add js variables for front-end access */
+            wp_localize_script( 'kd-scripts', 'kd', ['theme_path' => get_stylesheet_directory_uri()] );
         });
 
         /* Enqueue admin assets */

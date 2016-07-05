@@ -12,6 +12,7 @@
             <div class="mapView hidden col-xs-12">
 
                 <div class="map mapContainer col-xs-12 col-md-6">
+                    <input id="pac-input" class="controls" type="text" style="opacity: 0;" placeholder="Search nearby...">
                     <div>
                         <div class="loader"><div class="bar primary-fill-color"></div></div>
                         <div id="mapContainer" class="loading" data-color="<?php echo get_theme_mod('primary-color') ?>"></div>

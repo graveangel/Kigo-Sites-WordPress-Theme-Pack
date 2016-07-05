@@ -1202,39 +1202,97 @@ app.bapiModules.templates.searchPage = {
             }
         ];
 
-        this.mapObj = new google.maps.Map(this.mapEle, {
+        window.map = this.mapObj = new google.maps.Map(this.mapEle, {
             center: {lat: latitude, lng: longitude},
             zoom: 8,
             styles: mapStyles,
             mapTypeId: google.maps.MapTypeId[defaultMapView]
         });
+
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                var icon = {
+                    url: place.icon,
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(25, 25)
+                };
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    icon: icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+
+        window.setTimeout(function(){input.style.opacity = 1;}, 350);
     },
 
     initClusterer: function(){
         var size = [53, 56, 66, 78, 90];
         var clusterStyles = [
             {
-                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m1.png',
+                url: kd.theme_path + '/kd-common/img/markers/m1.png',
                 height: size[0],
                 width: size[0]
             },
             {
-                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m2.png',
+                url: kd.theme_path + '/kd-common/img/markers/m2.png',
                 height: size[1],
                 width: size[1]
             },
             {
-                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m3.png',
+                url: kd.theme_path + '/kd-common/img/markers/m3.png',
                 height: size[2],
                 width: size[2]
             },
             {
-                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m4.png',
+                url: kd.theme_path + '/kd-common/img/markers/m4.png',
                 height: size[3],
                 width: size[3]
             },
             {
-                url: '/wp-content/themes/Sites-Theme-Kigo-Discovery/kd-common/img/markers/m5.png',
+                url: kd.theme_path + '/kd-common/img/markers/m5.png',
                 height: size[4],
                 width: size[4]
             }
