@@ -34,9 +34,10 @@
 					<div class="text col-lg-10 col-xs-12 paddingless">
 
 						<!-- the title -->
-						<a href="<?php the_permalink(); ?>">
-							<h3><?php the_title(); ?></h3>
-						</a>
+						<h3>
+							<?php the_title(); ?>
+							<?php the_date('Y-m-d', '<p class="post-date">', '</p>'); ?>
+						</h3>
 
 						<!-- the summary -->
 						<div class="post-summary">
