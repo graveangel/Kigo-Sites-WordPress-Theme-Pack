@@ -186,7 +186,9 @@ function encodeHtmlEntity(str) {
    {
        var data_prop_id = $(v).attr('data-prop-id');
        //remove from locations
-       $('.prop-list-parent li.prop-item[data-prop-id="'+data_prop_id+'"]').remove();
+       $('.to-save li.prop-item[data-prop-id="'+data_prop_id+'"]').addClass('old-value');
+       $('.prop-list-parent li.prop-item[data-prop-id="'+data_prop_id+'"]').insertAfter($('.to-save li.prop-item[data-prop-id="'+data_prop_id+'"]')); //put in tree
+       $('.to-save li.prop-item.old-value[data-prop-id="'+data_prop_id+'"]').remove(); //remove old: This is necessary so the Rates can be updated when saving the market area.
    });
 
     update_ma_json();

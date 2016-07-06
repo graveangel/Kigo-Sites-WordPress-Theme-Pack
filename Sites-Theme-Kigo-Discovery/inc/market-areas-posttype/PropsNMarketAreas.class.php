@@ -31,7 +31,7 @@ class MktAPropsNAreas
     public $ma_types  = [
                             'Country',
                             'State',
-                            'Region',
+                            // 'Region',
                             'City',
                             // 'County',
                             'Neighborhood',
@@ -62,6 +62,7 @@ class MktAPropsNAreas
 
         foreach($props as $property)
         {
+
             $prop =
             [
                 'id'            => $property->ID,
@@ -75,6 +76,14 @@ class MktAPropsNAreas
                 'County'        => $property->County,
                 'City'          => $property->City,
                 'Neighborhood'  => $property->Neighborhood,
+                'Summary'       => htmlentities($property->Summary),
+                'Sleeps'        => $propertu->Sleeps,
+                'Floor'         => $property->Floor,
+                'Bathrooms'     => $propety->Bathrooms,
+                'Bedrooms'      => $property->Bedrooms,
+                'Amenities'     => addSlashes(json_encode($property->Amenities)),
+                'MinRate'       => addSlashes(json_encode((array) $property->MinRate)),
+                'MaxRate'       => addSlashes(json_encode((array) $property->MaxRate)),
             ];
 
             $this->all_props[] = $prop;
@@ -161,7 +170,6 @@ class MktAPropsNAreas
 		));
 
         $output = file_get_contents($this->base_url . $requestString . '&apikey=' . $this->api_key,false, $context );
-
 
 
         //Method 2:

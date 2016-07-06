@@ -99,7 +99,7 @@ class MarketAreasLandings
                 ),
                 // Use landing : select template
                 array(
-                    'id'            => 'market_area_generate_landing_pages',
+                    'id'            => 'market_area_use_landing_page',
                     'title'         => '<h4>Landing</h4>',
                     'screen'        => 'market-areas',
                     'context'       => 'normal',

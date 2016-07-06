@@ -1,5 +1,4 @@
 <?php
-
 namespace Discovery\MarketAreas;
 
 class MetaBox {
@@ -91,10 +90,10 @@ class MetaBox {
      * @return int
      */
     function saveMetaBox($post_id, $post) {
-        // if($this->id === "market_area_generate_landing")
-        // {
-        //     debug($_POST, true);
-        // }
+        if($this->id === "market_area_props_n_areas")
+        {
+            //debug($_POST, true);
+        }
 
         /* Verify the nonce before proceeding. */
         if (!isset($_POST[$this->id . '_nonce']) || !wp_verify_nonce($_POST[$this->id . '_nonce'], basename($this->templates_path . DIRECTORY_SEPARATOR . $this->template)))
@@ -148,8 +147,11 @@ class MetaBox {
 
         foreach($this->rules as $rule)
         {
-            if(preg_match($rule,$string))
-                return false;
+            $matched = preg_match($rule,$string);
+            if($matched)
+                {
+                    return false;
+                }
         }
 
         return true;
