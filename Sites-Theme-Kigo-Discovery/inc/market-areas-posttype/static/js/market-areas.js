@@ -313,6 +313,51 @@ function tree_remove_alerts() {
         .removeAttr('data-original-title')
         .removeAttr('title');
 }
+function check_saved_settings()
+{
+    var saved_setts = saved_settings();
+
+    for(var i in saved_setts)
+    {
+        $setting_button = $('[data-subarea="'+i+'"]');
+        var settings_count = 0;
+
+        if(saved_setts[i].name!='')
+        settings_count++;
+
+        if(saved_setts[i].images!='[]')
+        settings_count++;
+
+        if(saved_setts[i].template!='')
+        settings_count++;
+
+        if(saved_setts[i].content!='')
+        settings_count++;
+
+        if($setting_button.length)
+        {
+
+                switch(settings_count)
+                {
+                    case 4:
+                    $setting_button.removeClass('settings-partial');
+                    $setting_button.addClass('settings-filled');
+                    break;
+
+                    case 0:
+                    $setting_button.removeClass('settings-partial');
+                    $setting_button.removeClass('settings-filled');
+                    break;
+
+                    default:
+                    $setting_button.removeClass('settings-filled');
+                    $setting_button.addClass('settings-partial');
+                    break;
+                }
+
+        }
+    }
+}
 /**
  * validates the tree if the generate landing checkbox is checked
  * @return {boolean}     true id ok false if it's not
@@ -425,51 +470,7 @@ function saved_settings()
     return JSON.parse(input_areas_val);
 }
 
-function check_saved_settings()
-{
-    var saved_setts = saved_settings();
 
-    for(var i in saved_setts)
-    {
-        $setting_button = $('[data-subarea="'+i+'"]');
-        var settings_count = 0;
-
-        if(saved_setts[i].name!='')
-        settings_count++;
-
-        if(saved_setts[i].images!='[]')
-        settings_count++;
-
-        if(saved_setts[i].template!='')
-        settings_count++;
-
-        if(saved_setts[i].content!='')
-        settings_count++;
-
-        if($setting_button.length)
-        {
-
-                switch(settings_count)
-                {
-                    case 4:
-                    $setting_button.removeClass('settings-partial');
-                    $setting_button.addClass('settings-filled');
-                    break;
-
-                    case 0:
-                    $setting_button.removeClass('settings-partial');
-                    $setting_button.removeClass('settings-filled');
-                    break;
-
-                    default:
-                    $setting_button.removeClass('settings-filled');
-                    $setting_button.addClass('settings-partial');
-                    break;
-                }
-
-        }
-    }
-}
 
 function modal_form(subarea_name)
 {
@@ -712,6 +713,8 @@ $(function() {
             enable_quicksearches();
             //Update value
             update_ma_json();
+            //check
+            check_saved_settings();
         }
 
 
