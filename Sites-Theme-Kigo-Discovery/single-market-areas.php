@@ -7,11 +7,14 @@ if(!defined(DS))
 
 class MarketAreasController
 {
-    private $template_path;
-    private $template_vars;
-    private $currency_from;
-    private $currency_to;
-
+    private $template_path,
+            $template_vars,
+            $currency_from,
+            $currency,
+            $properties_ids,
+            $page,
+            $location,
+            $current_page;
 
     public function __construct()
     {
@@ -20,15 +23,14 @@ class MarketAreasController
 
         $this->set_template(); //Select the landing template
 
-        $this->set_vars_and_metas();
+        $this->page             = ((filter_var($_GET['pag'],     FILTER_VALIDATE_INT) - 1 ) >= 1) ? (filter_var($_GET['pag'],     FILTER_VALIDATE_INT) - 1 ) : 0;
+        $this->location         = filter_var($_GET['subarea'], FILTER_SANITIZE_STRING);
 
-        //$this->currency_from = $this->get_currency(); // The currency of the properties
-        $this->currency_to = $this->get_currency_selected(); // The currency selected from the bapicurrency selector
+        $this->set_vars_and_metas(); // Set template vars
 
-        //debug($this->currency_from, true);
+        $this->currency = $this->get_currency_selected(); // The currency selected from the bapicurrency selector
 
         $this->index_action();
-
 
     }
 
@@ -36,9 +38,22 @@ class MarketAreasController
      * prepares the elements to render
      * @return void this function does not return a value
      */
-    public function index_action()
+    public function index_action($ajax=false)
     {
-        $this->render($this->template_vars);
+        if($ajax)
+            $this->ajax($this->template_vars);
+        else
+            $this->render($this->template_vars);
+    }
+
+    /**
+     * Returns the pagination data
+     * @return void this function does not return a value
+     * @todo ...!!!
+     */
+    public function ajax()
+    {
+
     }
 
     /**
@@ -53,6 +68,7 @@ class MarketAreasController
 
         //title
         $this->template_vars['title'] = apply_filters('the_title', $post->post_title);
+
         //excerpt
         $this->template_vars['excerpt'] = apply_filters('the_excerpt',$post->post_excerpt);
 
@@ -63,11 +79,18 @@ class MarketAreasController
         $this->template_vars['pics'] = json_decode($metas['market_area_photos'][0], true);
 
         //description
-        $this->template_vars['description'] = array_key_exists('market_area_description',$metas) ? apply_filters('the_content', $metas['market_area_description'][0]) : '';
+        $this->template_vars['description'] = apply_filters('the_content',$post->post_content);
+
         //json_use_landing
         $this->template_vars['json_use_landing'] = array_key_exists('market_area_use_landing_page',$metas) ? $metas['market_area_use_landing_page'][0] : '[]';
+
         //json_tree
         $this->template_vars['tree'] = array_key_exists('market_area_props_n_areas',$metas) ? $metas['market_area_props_n_areas'][0] : '[]';
+
+        //properties ids
+        $this->properties_ids =  $this->get_properties_ids();
+
+        $props = $this->fetch_properties();
     }
 
     /**
@@ -147,7 +170,7 @@ class MarketAreasController
 
                     //landing if exists for it.
                     $post = get_page_by_title( html_entity_decode($branch['name']) , 'OBJECT', 'market-areas' );
-                    
+
                     //if a landing has been published then add the url and thumbnail.
                     if($post && $post->post_status === 'publish')
                     {
@@ -161,6 +184,77 @@ class MarketAreasController
             }
 
         return $locs;
+    }
+
+
+    /**
+     * Gets the properties from the app
+     * @return array The array of properties requested
+     */
+    private function fetch_properties()
+    {
+        //BAPI
+        $api_key = get_option('api_key');
+        $base_url = json_decode(get_option('bapi_solutiondata'))->BaseURL;
+        $BAPI = new BAPI($api_key, $base_url);
+
+
+        if(!empty($this->location))
+        {
+            $ids = $this->get_properties_ids_in_node($this->location);
+            setcookie('subarea',1,time()+3600); //Seting cookie to activate tab in the page
+        }
+        else
+        {
+            $ids = $this->properties_ids;
+            setcookie('subarea',0,time()+3600);
+        }
+
+        $ppp = get_option('posts_per_page');
+
+        $options =
+        [
+            'seo' => true,
+            'currency' => $this->currency,
+        ];
+
+        $options[$this->location_type] = $this->location; //Find a way to filter locations
+
+        // The maximum number of results per page: this takes wordpress configuration until the maximum the app permits
+        $maxrequest = 20;
+        $size = ($ppp > $maxrequest) ? $maxrequest : $ppp;
+
+        $ids_chunk = array_chunk($ids,$size); //chunk the ids to make the request.
+        $this->max_num_pages =  count($ids_chunk);
+        $props = [];
+
+        switch(true)
+        {
+            case ($this->page <= 0): //The number passed is negative
+            $page = 0;
+            break;
+
+            case ($this->page > $this->max_num_pages ): // The number passed is higher than the available
+            $page = count($ids_chunk)-1;
+            break;
+
+            default:
+                $page = $this->page;
+
+        }
+
+        $this->current_page = $page;
+
+
+        $ids = $ids_chunk[$page]; //page to request
+
+        // debug($options, true);
+
+        $response = $BAPI->get('property',$ids, $options);
+        $properties_from_app = !empty($response['result']) ? $response['result'] : [];
+        $props = array_merge($props,$properties_from_app);
+
+        return $props;
     }
 
     /**
@@ -186,12 +280,66 @@ class MarketAreasController
     }
 
 
+    /**
+     * returns an array of ids of all the properties in the given tree: if not especified then it uses the main tree
+     * @param  array $tree the tree to get the ids from
+     * @return array       the array of ids
+     */
+    function get_properties_ids($tree=false)
+    {
+        $tree = $tree ? : json_decode($this->template_vars['tree'], true);
+        $properties = $this->get_properties($tree);
+        $ids=[];
+        foreach($properties as $property)
+        {
+            $ids[] = $property['id'];
+        }
+        return $ids;
+    }
+
+    /**
+     * Get all the propeties in a subnode.
+     * @param  string $nodename the name of the node
+     * @return array           the array if ids
+     */
+    function get_properties_ids_in_node($nodename)
+    {
+        $maintree = json_decode($this->template_vars['tree'], true);
+        $tree = $this->get_node($nodename, $maintree);
+        $ids  = $this->get_properties_ids($tree);
+        return $ids;
+    }
+
+
+    function get_node($nodename, $branch)
+    {
+        $node_found = [];
+        foreach($branch as $node)
+        {
+            if(!empty($node['name']))
+                {
+                    // echo $node['name'] . '::' .  $nodename . "<br>";
+                    if($nodename === $node['name'])
+                        {
+                            // debug($node['contents'], true);
+                            return $node['contents'];
+                        }
+                    else
+                        {
+                            if($node_found = $this->get_node($nodename, $node['contents']))
+                                return $node_found;
+                        }
+                }
+
+        }
+
+        return false;
+    }
+
+
 
     private function get_currency_selected()
     {
-        // Yahoo finance currency quotes WS
-        $contents = file_get_contents('http://download.finance.yahoo.com/d/quotes.csv?s=EURUSD=X&f=sl1d1t1ba&e=.csv');
-        //debug($contents, true);
 
         if(!empty($_COOKIE['BAPI2']))
             return json_decode(urldecode(urldecode($_COOKIE['BAPI2'])), true)['currency'];
@@ -199,16 +347,6 @@ class MarketAreasController
         return false;
     }
 
-    private function get_currency()
-    {
-        try {
-            $tree = $this->template_vars['tree'];
-            array_walk_recursive();
-            throw new \Exception('EUR');
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
 
-    }
 }
 $MAInit = new MarketAreasController();

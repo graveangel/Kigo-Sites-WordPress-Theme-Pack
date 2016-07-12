@@ -98,11 +98,11 @@
 
                         <div class="location-box" <?php if(!empty($location['thumbnail_url'])):?> style="background-image: url(<?php echo $location['thumbnail_url']; ?>); "<?php endif; ?>>
                             <!-- Name -->
-                            <a href="#<?php echo $location['originalName']; ?>" class="title"><h3><?php echo $location['name']; ?></h3></a>
+                            <a href="?subarea=<?php echo $location['name']; ?>" class="title"><h3><?php echo $location['name']; ?></h3></a>
                             <!-- If landing -->
                             <?php if(!empty($location['landing_url'])):?>
                                 <a href="<?php echo $location['landing_url']; ?>" class="btn primary-fill-color">
-                                    Go to landing
+                                    Visit
                                 </a>
                             <?php endif; ?>
                         </div>
@@ -123,16 +123,16 @@
             ?>
             <!-- Properties content -->
             <li class="property-list">
-                <?php foreach($this->get_properties(json_decode($tree, true)) as $property):
-                        $amenities = json_decode(stripcslashes($property['Amenities']),true);
-                        $min_rate = json_decode(stripcslashes($property['MinRate']),true);
+                <?php foreach($this->fetch_properties() as $property):
+                        $amenities = $property['Amenities'];
+                        $min_rate = $property['MinRate'];
                     ?>
                     <div class="property-box">
-                        <a href="<?php echo $property['url']; ?>">
-                            <img class="ppt-thumbnail" src="<?php echo $property['ThumbnailURL']; ?>" alt="<?php echo $property['Name']; ?>">
+                        <a href="<?php echo $property['ContextData']['SEO']['DetailURL']; ?>">
+                            <img class="ppt-thumbnail" src="<?php echo $property['PrimaryImage']['ThumbnailURL']; ?>" alt="<?php echo  $property['ContextData']['SEO']['PageTitle']; ?>">
                         </a>
-                        <a href="<?php echo $property['url']; ?>">
-                            <span class="ppt-name"><?php echo $property['Name']; ?></span>
+                        <a href="<?php echo $property['ContextData']['SEO']['DetailURL']; ?>">
+                            <span class="ppt-name"><?php echo $property['Headline']; ?></span>
                             <br> |
                             <?php foreach($amenities as $amenity): ?>
                                 <span><?php echo $amenity['Values'][0]['Data']?></span> |
@@ -142,20 +142,32 @@
                             <h4>From</h4>
                             <span class="price">
                                 <span class="symbol">
-                                    <?php echo $min_rate['CurrencySymbol']; ?>
+                                    <?php echo $min_rate['LocalCurrencySymbol']; ?>
                                 </span>
-                                <?php echo $min_rate['LocalSValue']; ?>
+                                <?php echo $min_rate['LocalSValue2']; ?>
                             </span>
                         </div>
                         <?php //debug($min_rate); ?>
                     </div>
                 <?php endforeach; ?>
+
+                <?php
+
+						$big = 999999999; // need an unlikely integer
+
+						echo paginate_links( array(
+							'base' => str_replace( $big, '%#%', esc_url( "?pag=$big" ) ),
+							'format' => '?pag=%#%',
+							'current' => max( 1, $this->current_page + 1 ),
+							'total' => $this->max_num_pages
+						) );
+				?>
             </li>
             <?php
             endif;
             /**---------------------------------**/?>
         </ul>
-        <div class="currencyselector"></div>
+
     </div>
 
     <!-- Market Areas Tab 1 -->
