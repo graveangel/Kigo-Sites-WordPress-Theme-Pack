@@ -194,8 +194,8 @@ class GemerateLandingMetaBox extends MetaBox{
                 }
 
                 //Add the featured image: the first one of the list:
-                $attach_id = $this->get_attachment_id_from_url($attachment_urls[0]);
-                add_post_meta($new_post_id, '_thumbnail_id', $attach_id);
+                //$attach_id = $this->get_attachment_id_from_url($attachment_urls[0]);
+                //add_post_meta($new_post_id, '_thumbnail_id', $attach_id);
             }
 
         }

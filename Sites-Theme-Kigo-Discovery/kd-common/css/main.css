@@ -5211,6 +5211,7 @@ body.error404 .message {
         display: inline-block;
         vertical-align: top;
         width: calc(100% / 3 - 40px);
+        min-height: 130px;
         margin-right: 20px;
         margin-bottom: 20px;
         padding: 20px;

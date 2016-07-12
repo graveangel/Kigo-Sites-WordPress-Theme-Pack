@@ -178,12 +178,12 @@ ol.example li.placeholder:before {
 .button.button-marketarea.Country,
 .Country
 {
-  background:              #ed1c24;
+  background:              #000; /* black */
 }
 .button.button-marketarea.City,
 .City
 {
-  background:              #2e3192;
+  background:              #5bc2f4; /* light blue */
 }
 .button.button-marketarea.County,
 .County
@@ -193,17 +193,17 @@ ol.example li.placeholder:before {
 .button.button-marketarea.State,
 .State
 {
-  background:              #00a651;
+  background:              #0073aa; /* dark blue */
 }
 .button.button-marketarea.Region,
 .Region
 {
-  background:              #10b661;
+  background:              #10b661; /* dark blue */
 }
 .button.button-marketarea.Neighborhood,
 .Neighborhood
 {
-  background:              #f26522;
+  background:              #c1c1c1; /* Gray */
 }
 /* Color legend */
 .legend li
@@ -360,14 +360,14 @@ tooltips
 {
     content: "\f058";
     font: normal normal normal 14px/1 FontAwesome;
-    color: yellow;
+    color: #00ff00;
     margin: 5px;
 }
 .settings-partial::after
 {
-  content: "\f055";
+  content: "\f06a";
   font: normal normal normal 14px/1 FontAwesome;
-  color: orange;
+  color: #ffff00;
   margin: 5px;
 }
 /*=====================================

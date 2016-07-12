@@ -179,7 +179,7 @@ class MarketAreasController
                     }
 
                     $locs[] = $branch;
-                    $locs = array_merge($locs,$this->get_locations($contents));
+                    //$locs = array_merge($locs,$this->get_locations($contents));
                 }
             }
 
