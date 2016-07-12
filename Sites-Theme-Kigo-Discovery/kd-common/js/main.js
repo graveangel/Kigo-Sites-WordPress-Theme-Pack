@@ -1449,6 +1449,36 @@ window.addEventListener('DOMContentLoaded', app.initBapi.bind(app));
 
 void function(c,h,a){function define(c,a,b){return typeof a==='function'&&(b=a,a=nameOf(b).replace(/_$/,'')),e(c,a,{configurable:!0,writable:!0,value:b})}function nameOf(a){return typeof a!=='function'?'':'name'in a?a.name:i.call(a).match(j)[1]}function createStorage(b){function storage(e,d){return d||arguments.length===2?c.set(e,d):(d=c.get(e),d===a&&(d=b(e),c.set(e,d))),d}var c=new WeakMap;return b||(b=k),storage}var l=Object.getOwnPropertyNames,e=Object.defineProperty,i=Function.prototype.toString,f=Object.create,g=Object.prototype.hasOwnProperty,j=/^\n?function\s?(\w*)?_?\(/;var b=function(){function b(){var a=d(),c={};this.unlock=function(h){var b=k(h);if(g.call(b,a))return b[a](c);var d=f(null,i);return e(b,a,{value:new Function('s','l',j)(c,d)}),d}}var i={value:{writable:!0,value:a}},j='return function(k){if(k===s)return l}',h=f(null),d=function(){var a=Math.random().toString(36).slice(2);return a in h?d():h[a]=a},c=d(),k=function(a){if(g.call(a,c))return a[c];if(!Object.isExtensible(a))throw new TypeError('Object must be extensible');var b=f(null);return e(a,c,{value:b}),b};return define(Object,function getOwnPropertyNames(b){var a=l(b);return g.call(b,c)&&a.splice(a.indexOf(c),1),a}),define(b.prototype,function get(a){return this.unlock(a).value}),define(b.prototype,function set(a,b){this.unlock(a).value=b}),b}();var d=function(i){function WeakMap(a){if(this===c||this==null||this===WeakMap.prototype)return new WeakMap(a);l(this,new b),m(this,a)}function get(b){e(b);var c=d(this).get(b);return c===h?a:c}function set(b,c){e(b),d(this).set(b,c===a?h:c)}function has(b){return e(b),d(this).get(b)!==a}function delete_(b){e(b);var c=d(this),f=c.get(b)!==a;return c.set(b,a),f}function toString(){return d(this),'[object WeakMap]'}var e=function(a){if(a==null||typeof a!=='object'&&typeof a!=='function')throw new TypeError('Invalid WeakMap key')};var l=function(b,c){var a=i.unlock(b);if(a.value)throw new TypeError('Object is already a WeakMap');a.value=c};var d=function(b){var a=i.unlock(b).value;if(!a)throw new TypeError('WeakMap is not generic');return a};var m=function(b,a){a!==null&&typeof a==='object'&&typeof a.forEach==='function'&&a.forEach(function(c,d){c instanceof Array&&c.length===2&&set.call(b,a[d][0],a[d][1])})};try{var f=('return '+delete_).replace('e_','\\u0065'),j=new Function('unwrap','validate',f)(d,e)}catch(a){var j=delete_}var f=(''+Object).split('Object');var g=function toString(){return f[0]+nameOf(this)+f[1]};define(g,g);var k={__proto__:[]}instanceof Array?function(a){a.__proto__=g}:function(a){define(a,g)};return k(WeakMap),[toString,get,set,has,j].forEach(function(a){define(WeakMap.prototype,a),k(a)}),WeakMap}(new b);var k=Object.create?function(){return Object.create(null)}:function(){return{}};typeof module!=='undefined'?module.exports=d:typeof exports!=='undefined'?exports.WeakMap=d:!('WeakMap'in c)&&(c.WeakMap=d),d.createStorage=createStorage,c.WeakMap&&(c.WeakMap.createStorage=createStorage)}((0,eval)('this'))
 
+/**
+ * Sets a cookie
+ * @param {[string]} cname  [cookie name]
+ * @param {[string]} cvalue [the cookie value]
+ * @param {[integer]} exdays [number of days to expire]
+ */
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+/**
+ * gets a cookie
+ * @param  {[string]} cname [the cookie name]
+ * @return {[string]}       [the cookie value]
+ */
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ')
+            c = c.substring(1);
+        if (c.indexOf(name) == 0)
+            return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
 /* 
  * Array List of the 47 status code of the Yahoo weather
  */
@@ -1499,7 +1529,23 @@ app.bapiModules.templates.marketAreasDefaultTemplate =
                     //Activate target;
                     $($(this).attr('data-target')).addClass('active');
 
+                    setCookie('active-tab', $(this).attr('data-target'), 9999);
+
             });
+
+            //ActivateTab
+            var subarea = getCookie('subarea');
+            var active_tab = getCookie('active-tab');
+
+            if(subarea == 1)
+            {
+                $('[data-target=".property-list"]').click();
+            }
+            else
+            {
+                $('[data-target="'+active_tab+'"]').click();
+            }
+
         }
     },
     cond: function cond() {

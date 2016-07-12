@@ -37,7 +37,23 @@ app.bapiModules.templates.marketAreasDefaultTemplate =
                     //Activate target;
                     $($(this).attr('data-target')).addClass('active');
 
+                    setCookie('active-tab', $(this).attr('data-target'), 9999);
+
             });
+
+            //ActivateTab
+            var subarea = getCookie('subarea');
+            var active_tab = getCookie('active-tab');
+
+            if(subarea == 1)
+            {
+                $('[data-target=".property-list"]').click();
+            }
+            else
+            {
+                $('[data-target="'+active_tab+'"]').click();
+            }
+
         }
     },
     cond: function cond() {
