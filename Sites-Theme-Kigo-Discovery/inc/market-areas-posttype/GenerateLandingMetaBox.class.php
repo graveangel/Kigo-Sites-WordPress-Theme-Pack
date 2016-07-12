@@ -79,24 +79,65 @@ class GemerateLandingMetaBox extends MetaBox{
 
        $title           = wp_strip_all_tags( $branch['name'] );
        $fallback_title  = wp_strip_all_tags( $branch['originalName'] );
+       $content  = '';
+       $images   = '';
+       $template = '';
 
-        $post_array =
-        [
-               'post_title'    => $title,
-               'post_content'  => '',
-               'post_name'     => sanitize_title( $title, $fallback_title ),
-               'post_status'   => 'draft', // Created as a draft because the information in it needs to be completed
-               'post_type'     => 'market-areas',
-               'post_parent'   => $post_id,
-        ];
+
+
+       $post_array =
+       [
+              'post_title'    => $title,
+              'post_content'  => $content,
+              'post_name'     => sanitize_title( $title, $fallback_title ),
+              'post_status'   => 'draft', // Created as a draft because the information in it needs to be completed
+              'post_type'     => 'market-areas',
+              'post_parent'   => $post_id,
+       ];
+
+
+       //Try to get the parameters for this landing
+       $alter_params = $this->get_subarea_params($title);
+
+       $total = count($alter_params);
+       $filled = 0;
+
+
+       if(!empty($alter_params['name']))
+       {
+           $filled++;
+           $post_array['post_title'] = $alter_params['name'];
+       }
+       if(!empty($alter_params['content']))
+       {
+          $filled++;
+          $post_array['post_content'] = $alter_params['content'];
+       }
+
+       if(!empty($alter_params['images']))
+       {
+          $filled++;
+       }
+       if(!empty($alter_params['template']))
+       {
+          $filled++;
+       }
+
+        if($filled === $total)
+               //publish
+               $status = 'publish';
+        else
+            $status = 'draft';
+
+        $post_array['post_status'] = $status;
+
 
         if(post_exists($post_array['post_title']))// Need to check if a landing with the same name already exists.
             return;
 
             try {
-                 $new_post_id = wp_insert_post($post_array, true); //this saves all meta boxes and will take the $_POST information. Need a control to prevent it
+                $new_post_id = wp_insert_post($post_array, true); //this saves all meta boxes and will take the $_POST information. Need a control to prevent it
                  // while the parent posts remain as drafts their children will not show a parent assigned until their parents are published.
-
             } catch (\Exception $e) {
                 throw new \Exception($e->getMessage(), 1);
             }
@@ -110,6 +151,8 @@ class GemerateLandingMetaBox extends MetaBox{
         {
            update_post_meta( $new_post_id, $meta_key, $new_tree );
         }
+
+
 
 
         $metas = get_post_meta($post_id); // Need to clear child meta boxes
@@ -134,6 +177,41 @@ class GemerateLandingMetaBox extends MetaBox{
         // debug($meta_key);
         // debug($new_tree, true);
 
+
+
+        //save images :: saved
+        if(!empty($alter_params['images']))
+        {
+            $images_string = html_entity_decode($alter_params['images']);
+            $attachment_urls = json_decode($images_string, true);
+
+            if(is_array($attachment_urls) && count($attachment_urls))
+            {
+
+                if ( !add_post_meta($new_post_id, 'market_area_photos', $images_string, true) )
+                {
+                   update_post_meta( $new_post_id, 'market_area_photos', $images_string );
+                }
+
+                //Add the featured image: the first one of the list:
+                $attach_id = $this->get_attachment_id_from_url($attachment_urls[0]);
+                add_post_meta($new_post_id, '_thumbnail_id', $attach_id);
+            }
+
+        }
+
+
+        //save template
+
+        if(!empty($alter_params['template']))
+        {
+            if ( !add_post_meta($new_post_id, 'market_area_use_landing_page', $alter_params['template'], true) )
+            {
+               update_post_meta( $new_post_id, 'market_area_use_landing_page', $alter_params['template'] );
+            }
+
+        }
+
         //If the branch contains an element with a 'contents' key then I need to create the post for it
         foreach($branch['contents'] as $tree_branch)
         {
@@ -144,6 +222,32 @@ class GemerateLandingMetaBox extends MetaBox{
             }
         }
 
+    }
+
+    function get_subarea_params($name)
+    {
+        //The post parameter
+        $subareas_settings = json_decode(filter_input( INPUT_POST, 'subareas-conf'), true);
+        $subarea = $subareas_settings[html_entity_decode($name)];
+
+
+        //title
+        $subarea['name'] = apply_filters('the_title', $subarea['name']);
+        //templateº
+        $subarea['template'] = filter_var($subarea['template'] , FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH);
+        $subarea['template'] = '{\\"landing\\": \\"yes",\\"template\\":\\"' . $subarea['template'] . '\\" }';
+        //images
+        $subarea['images'] = filter_var($subarea['images'] , FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH);
+        //the content
+        $subarea['content'] = apply_filters('the_content',$subarea['content']);
+
+        return $subarea;
+    }
+
+    function get_attachment_id_from_url($image_url) {
+    	global $wpdb;
+    	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+            return $attachment[0];
     }
 
 }

@@ -21,7 +21,7 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
             <select class="search-locations-select">
                 <option value=""> - Filter - </option>
                 <?php foreach($MktAPropsNAreas->ma_types as $type):?>
-                    <option value="<?php echo $type; ?>"><?php echo $type; ?></option>
+                    <option value="<?php echo $type; ?>" class="<?php echo $type; ?>"><?php echo $type; ?></option>
                 <?php endforeach; ?>
             </select>
         </h3>
@@ -33,11 +33,6 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
               ?>
           </ol>
         </div>
-        <ul class="legend">
-            <?php foreach($MktAPropsNAreas->ma_types as $type):?>
-                <li><span class="<?php echo $type; ?>"></span><?php echo $type; ?></li>
-            <?php endforeach; ?>
-        </ul>
       </div>
 
       <div class="properties-list">
@@ -61,13 +56,15 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
         <ol class="market-areas-tree to-save sortable sortable-group">
         </ol>
       </div>
+
       <!-- Clear button -->
       <a class="clear-areas button button-primary" title="Clears the tree">Clear</a>
       <!-- Reset areas -->
       <a class="reset-areas button button-primary" title="Resets the tree to the saved value">Reset</a>
-
       <!-- Save -->
-      <input name="save" type="submit" class="button button-primary button-save" id="publish" value="Save">
+      <input name="save" type="submit" class="button button-primary button-save" id="publish-post" value="Save">
+      <!-- Generate landings -->
+      <label class="generate-landings-label"> <p data-animation="true" data-toggle="tooltip" data-placement="top" title="Check this to generate landing pages out of the locations in the tree."><strong><i class="fa fa-info-circle" aria-hidden="true"></i> Generate landings.</strong> <input type="checkbox" class="generate-landings"></p></label>
     </div>
 </div>
 
@@ -82,3 +79,21 @@ var field_value = '<?php echo addslashes($fvalue); ?>';
 
 var hidden_selector = 'input#<?php echo $this->id; ?>';
 </script>
+<input type="hidden" name="subareas-conf" id="subareas-conf">
+<!-- Modal -->
+<div class="modal fade" id="page-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

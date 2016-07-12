@@ -62,7 +62,7 @@ class MarketAreasLandings
                 'show_in_admin_bar' => true,
                 'taxonomies'        => array('category'),
                 'menu_position'     => 10,
-                'supports' => array('title', 'excerpt','thumbnail', 'page-attributes'),
+                'supports' => array('title', 'editor','thumbnail', 'page-attributes'),
                 'description'       => 'Market Areas custom posts',
             ),
         );
@@ -76,16 +76,16 @@ class MarketAreasLandings
     {
           $args_array = array(
                 // Market area description
-                array(
-                    'id'            => 'market_area_description',
-                    'title'         => '<h4>Description</h4>',
-                    'screen'        => 'market-areas',
-                    'context'       => 'normal',
-                    'priority'      => 'default',
-                    'template'      => 'market_area_description.php',
-                    'need_sanitize' => false,
-                    'description'   => 'A description of the market area.',
-                ),
+                // array(
+                //     'id'            => 'market_area_description',
+                //     'title'         => '<h4>Description</h4>',
+                //     'screen'        => 'market-areas',
+                //     'context'       => 'normal',
+                //     'priority'      => 'default',
+                //     'template'      => 'market_area_description.php',
+                //     'need_sanitize' => false,
+                //     'description'   => 'A description of the market area.',
+                // ),
                 // Images
                 array(
                     'id'            => 'market_area_photos',
@@ -121,7 +121,7 @@ class MarketAreasLandings
                     'rules'         =>
                     [
                             '/`/',// No backticks
-                            '/\'/',// No simplequotes
+                            // '/\'/',// No simplequotes
                             '/[<>]+/', // No tags
                     ]
                 ),
@@ -220,8 +220,8 @@ class MarketAreasLandings
         if (is_admin() && $pagenow=='post-new.php' OR $pagenow=='post.php' && $typenow=='market-areas')
         {
             wp_enqueue_script('sortable-jquery', get_stylesheet_directory_uri() . "/kd-common/js/vendor/jquery-sortable.js",[], '0.9.13', true); //Loaded in the footer to overwrite the one by default.
-            wp_enqueue_script('market-areas-script',get_stylesheet_directory_uri() . "/inc/market-areas-posttype/static/js/market-areas.js",[],'28.06.2016',true); //Market area script
-            wp_enqueue_style('market-areas-css', get_stylesheet_directory_uri(). "/inc/market-areas-posttype/static/css/market-areas.css", [],'28.06.2016'); //Market area style
+            wp_enqueue_script('market-areas-script',get_stylesheet_directory_uri() . "/inc/market-areas-posttype/static/js/market-areas.min.js",[],'28.06.2016',true); //Market area script
+            wp_enqueue_style('market-areas-css', get_stylesheet_directory_uri(). "/inc/market-areas-posttype/static/css/market-areas.min.css", [],'28.06.2016'); //Market area style
         }
     }
 }

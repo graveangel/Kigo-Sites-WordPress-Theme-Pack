@@ -62,28 +62,30 @@ class MktAPropsNAreas
 
         foreach($props as $property)
         {
-
             $prop =
             [
+
+                //REQUIRED
                 'id'            => $property->ID,
                 'ThumbnailURL'  => $property->PrimaryImage->ThumbnailURL,
                 'url'           => $property->ContextData->SEO->DetailURL,
-                'Name'          => $property->ContextData->SEO->PageTitle,
+                'Name'          => htmlentities($property->Headline),
                 'BookingURL'    => $property->ContextData->SEO->BookingURL,
-                'Country'       => $property->Country,
-                'State'         => $property->State,
-                'Region'        => $property->Region,
-                'County'        => $property->County,
-                'City'          => $property->City,
-                'Neighborhood'  => $property->Neighborhood,
-                'Summary'       => htmlentities($property->Summary),
-                'Sleeps'        => $propertu->Sleeps,
-                'Floor'         => $property->Floor,
-                'Bathrooms'     => $propety->Bathrooms,
-                'Bedrooms'      => $property->Bedrooms,
-                'Amenities'     => addSlashes(json_encode($property->Amenities)),
-                'MinRate'       => addSlashes(json_encode((array) $property->MinRate)),
-                'MaxRate'       => addSlashes(json_encode((array) $property->MaxRate)),
+                'Country'       => htmlentities($property->Country),
+                'State'         => htmlentities($property->State),
+                // 'Region'        => $property->Region,
+                'County'        => htmlentities($property->County),
+                'City'          => htmlentities($property->City),
+                'Neighborhood'  => htmlentities($property->Neighborhood),
+                // OPTIONAL
+                // 'Summary'       => htmlentities($property->Summary),
+                // 'Sleeps'        => $propertu->Sleeps,
+                // 'Floor'         => $property->Floor,
+                // 'Bathrooms'     => $propety->Bathrooms,
+                // 'Bedrooms'      => $property->Bedrooms,
+                // 'Amenities'     => addSlashes(json_encode($property->Amenities)),
+                // 'MinRate'       => addSlashes(json_encode((array) $property->MinRate)),
+                // 'MaxRate'       => addSlashes(json_encode((array) $property->MaxRate)),
             ];
 
             $this->all_props[] = $prop;
@@ -140,7 +142,7 @@ class MktAPropsNAreas
         if (empty($propsToRequest)) {
             $propIdStr = $this->xconnect('/ws/?method=search&entity=property');
             $propId = json_decode($propIdStr);
-            $maxnum = 50;
+            $maxnum = 20;
 
             $props = array();
             $propsToRequest = array_chunk($propId->result, $maxnum); //request max elements.
@@ -235,10 +237,10 @@ class MktAPropsNAreas
         $items = '';
         foreach($props as $prop)
         {
-            $json_prop = rawurlencode(json_encode($prop)); //instead of urlencode so the whitespaces are encoded %20 and not +
+            $json_prop = json_encode($prop); //instead of urlencode so the whitespaces are encoded %20 and not +
             $name       = $prop['Name'];
             $propid     = $prop['id'];
-            $items  .= "<li class=\"prop-item\" data-prop=\"$json_prop\" data-prop-id=\"$propid\"><input type=\"checkbox\" /><a class=\"button button-property\" data-prop-id=\"$propid\" data-prop=\"$json_prop\">$name <span style=\"display: none;\"> $json_prop</span></a>";
+            $items  .= "<li class=\"prop-item\" data-prop-id=\"$propid\"><input type=\"checkbox\" /><a class=\"button button-property\" data-prop-id=\"$propid\">$name <span style=\"display: none;\"> $json_prop</span></a>";
         }
 
         return $items;

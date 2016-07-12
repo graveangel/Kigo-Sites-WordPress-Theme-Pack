@@ -1,8 +1,8 @@
 <?php wp_nonce_field(basename(__FILE__), $this->id . '_nonce'); ?>
     <label for="<?php echo $this->id; ?>"><p><?php _e($this->description, 'kd'); ?></p></label>
     <ul class="photo-list"></ul>
-    <input class="widefat photos-array" type="hidden" name="<?php echo $this->id; ?>" id="market_area_photos" value="<?php echo esc_attr(get_post_meta($object->ID, $this->id, true)); ?>" size="30" />
-    <a class="ma_upload_image_button button button-primary">Pick images</a>
+    <input class="widefat photos-array" type="hidden" name="<?php echo $this->id; ?>" id="market_area_photos" value="<?php echo esc_attr(get_post_meta($object->ID, $this->id, true)); ?>" />
+    <a data-hidden=".photos-array" class="ma_upload_image_button button button-primary">Pick images</a>
 
     <script type="text/javascript">
 
@@ -33,6 +33,8 @@
         jQuery(document).on("click", ".ma_upload_image_button", function (e) {
             e.preventDefault();
 
+            data_hidden_selector = $(this).attr('data-hidden');
+
             // If the media frame already exists, reopen it.
             if ( typeof myframe != 'undefined' ) {
                 myframe.open();
@@ -54,21 +56,24 @@
                 // Get media attachment details from the frame state
                 var attachment = myframe.state().get('selection').toJSON();
                 var urls = new Array();
+
                 $.each(attachment, function(i,v)
                 {
                     urls.push(this.url);
                 });
 
                 try{
-                    this.previousElementSibling.value = JSON.stringify(urls);
+            
+                    $(data_hidden_selector).val(JSON.stringify(urls));
                 }catch(e)
                 {
-                    this.previousElementSibling.value = '[]';
+                    $(data_hidden_selector).val(JSON.stringify('[]'));
                 }
 
 
+
                 //Force change
-                $('.photos-array').change();
+                $(data_hidden_selector).change();
 
             }.bind(this));
 
