@@ -40,7 +40,7 @@ class GemerateLandingMetaBox extends MetaBox{
         $meta_value = get_post_meta($post_id, $meta_key, true);
 
 
-        if(!empty($new_meta_value))
+        if(!empty($new_meta_value) && $this->is_not_a_preview($post_id))
         {
             $this->generate_landings($post_id, $post);
         }
@@ -248,6 +248,16 @@ class GemerateLandingMetaBox extends MetaBox{
     	global $wpdb;
     	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
             return $attachment[0];
+    }
+
+    /**
+     * Tells if the page is being saved as a preview.
+     * @return boolean true if preview false otherwise
+     */
+    function is_not_a_preview($post_id)
+    {
+        $is_not_a_preview = ! (bool) wp_is_post_autosave( $post_id );
+        return $is_not_a_preview;
     }
 
 }
