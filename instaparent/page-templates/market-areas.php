@@ -29,6 +29,22 @@ foreach( $pages as $page ) {
 	$title = get_post_meta($page->ID, 'bapi_last_update', true) == 0 ? ucwords(str_replace('-',' ', $page->post_title)) : $page->post_title;
 
 	if($children || ($props && count($children) == 0)) {
+
+		$pa = array();
+		foreach($children as $prop){
+			if($bapikey = get_post_meta($prop->ID,'bapikey')){
+				$bk = explode(':',$bapikey[0]);
+				if($bk[0]=='property'){
+					$pa[] = $prop;
+				}
+			}
+		}
+
+		//test($pa);
+
+		if($count = count($pa)) {
+			$title .= " ($count)";
+		}
 ?>
 	<h2><a href="<?php echo $link = get_page_link( $page->ID ); ?>"><?php echo $title; ?></a></h2>
 	<a href="<?php echo $link; ?>"><img src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" /></a>
