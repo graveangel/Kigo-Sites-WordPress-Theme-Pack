@@ -128,7 +128,12 @@ class MarketAreasController
 
 
         //Get the saved param:
-        $landing_value          = json_decode(stripcslashes(get_post_meta( $this->id,'market_area_generate_landing', true)), true);
+        $landing_value          = json_decode(stripcslashes(get_post_meta( $this->id,'market_area_use_landing_page', true)), true);
+
+        if(is_preview())
+        {
+            $landing_value =  json_decode(json_encode($_SESSION['market_area_preview_metas']['market_area_use_landing_page']),true);
+        }
 
         $use_landing = $landing_value['landing'];
         $template_selected = $landing_value['template'];
