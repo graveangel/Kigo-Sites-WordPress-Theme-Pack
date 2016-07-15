@@ -154,18 +154,21 @@ Template Name: Market Area Page
 						$pm = json_decode($pm['bapi_property_data'][0],true);
 						?>
 					<div class="row-fluid">
-							<div class="" style="background:url('<?php echo $pm['PrimaryImage']['MediumURL'] ?>') no-repeat;background-size:100%;background-position:center;height:250px;padding:8px;margin-bottom:12px;position:relative;">
-								<h3 style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px;position:absolute;top:0;left:0;margin:0;padding:8px;"><?php echo $p->post_title ?></h3>
+						<div style="margin-bottom: 2em; box-shadow: 0px 3px 5px #ddd;">
+							<div class="" style="background:url('<?php echo $pm['PrimaryImage']['MediumURL'] ?>') no-repeat;background-size:cover; background-position:center;height:250px;padding:8px;position:relative;">
+								<h3 style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px;margin:0 0 8px 0;padding:8px;"><?php echo $p->post_title ?></h3>
 								<div class="clear"></div>
-								<p style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px;position:absolute;top:60px;left:0;"><?php echo $pm['ContextData']['Quote']['PublicNotes'] ?></p>
-								<div class="clear"></div>
-								<p style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px;position:absolute;bottom:0;left:0;margin:0;padding:8px;"><?php echo $pm['Bedrooms'].' Bedrooms | '.$pm['Bathrooms'].' Baths | Sleeps '.$pm['Sleeps'] ?></p>
-								<div class="clear"></div>
-								<div class="" style="position:absolute;bottom:8px;right:8px">
-									<a class="btn btn-primary" href="<?php echo $pm['ContextData']['SEO']['DetailURL'] ?>">More Info</a> | <a class="btn btn-primary" href="<?php echo $pm['ContextData']['SEO']['BookingURL'] ?>">Book Now</a>
-								</div>
+								<p style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px; font-weight: bold;"><?php echo $pm['ContextData']['Quote']['PublicNotes'] ?></p>
 								<div class="clear"></div>	
 							</div>
+							<div style="margin-bottom:12px; background: #ddd; display: flex; justify-content: center; align-items: center;">
+								<p style="float: left; padding:4px;margin:0; font-weight:bold;"><?php echo $pm['Bedrooms'].' Bedrooms | '.$pm['Bathrooms'].' Baths | Sleeps '.$pm['Sleeps'] ?></p>
+								<div class="" style="margin-left: auto; margin-right:4px; padding: 4px;">
+									<a class="btn btn-default" href="<?php echo $pm['ContextData']['SEO']['DetailURL'] ?>">More Info</a> | <a class="btn btn-primary" href="<?php echo $pm['ContextData']['SEO']['BookingURL'] ?>">Book Now</a>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
 					</div>
 						<?php
 						}
