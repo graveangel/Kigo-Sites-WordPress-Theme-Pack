@@ -101,7 +101,7 @@ Template Name: Market Area Page
 						
 
 						if( count($pa)>0 && wp_get_post_parent_id($page->ID)==get_the_ID() ) {
-							echo '<h2><a href="'.$page->guid.'">'.$page->post_title.'</a> ';asdf
+							echo '<h2><a href="'.$page->guid.'">'.$page->post_title.'</a> ';
 							echo sprintf( _n('(%d) Property', '(%d) Properties', count($pa)), count($pa) );
 							echo "</h2>";
 							?>
