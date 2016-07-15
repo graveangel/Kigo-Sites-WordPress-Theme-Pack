@@ -19,7 +19,7 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
         <h3>Select Location(s):
             <input type="search" id="search-locations" placeholder="Filter Locations" value="">
             <select class="search-locations-select">
-                <option value=""> - Filter - </option>
+                <option value="">- Filter - </option>
                 <?php foreach($MktAPropsNAreas->ma_types as $type):?>
                     <option value="<?php echo $type; ?>" class="<?php echo $type; ?>"><?php echo $type; ?></option>
                 <?php endforeach; ?>
@@ -64,7 +64,7 @@ $value = get_post_meta($object->ID, $this->id, true); //Field value
       <!-- Save -->
       <input name="save" type="submit" class="button button-primary button-save" id="publish-post" value="Save">
       <!-- Generate landings -->
-      <label class="generate-landings-label"> <p data-animation="true" data-toggle="tooltip" data-placement="top" title="Check this to generate landing pages out of the locations in the tree."><strong><i class="fa fa-info-circle" aria-hidden="true"></i> Generate landings.</strong> <input type="checkbox" class="generate-landings"></p></label>
+      <label class="generate-landings-label"> <p data-animation="true" data-toggle="tooltip" data-placement="top" title="Check this to generate landing pages out of the subareas in the tree."><strong><i class="fa fa-info-circle" aria-hidden="true"></i> Generate landings.</strong> <input type="checkbox" class="generate-landings"></p></label>
     </div>
 </div>
 

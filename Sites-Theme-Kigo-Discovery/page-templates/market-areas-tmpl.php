@@ -98,11 +98,12 @@
 
                         <div class="location-box" <?php if(!empty($location['thumbnail_url'])):?> style="background-image: url(<?php echo $location['thumbnail_url']; ?>); "<?php endif;
                             $parsed_url = parse_url($_SERVER["REQUEST_URI"]);
-                            $path = $parsed_url['query'];
-                            $subarea_url = empty($path) ? '?' : '?' . $path . '&';
+                            $path = $_GET;
+                            $path['subarea'] = $location['name'];
+                            $subarea_url = '?'.http_build_query($path);
                         ?>>
                             <!-- Name -->
-                            <a href="<?php echo $subarea_url . 'subarea=' . $location['name']; ?>" class="title"><h3><?php echo $location['name']; ?></h3></a>
+                            <a href="<?php echo $subarea_url; ?>" class="title"><h3><?php echo $location['name']; ?></h3></a>
                             <!-- If landing -->
                             <?php if(!empty($location['landing_url'])):?>
                                 <a href="<?php echo $location['landing_url']; ?>" class="btn primary-fill-color">

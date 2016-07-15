@@ -14,12 +14,16 @@ class MarketAreasController
             $properties_ids,
             $page,
             $location,
-            $current_page;
+            $current_page,
+            $post;
 
     public function __construct()
     {
+        global $post;
 
-        $this->id = get_the_ID(); //The post id
+        $this->post = $post;
+
+        $this->id = $post->ID; //The post id
 
         $this->set_template(); //Select the landing template
 
@@ -62,30 +66,51 @@ class MarketAreasController
      */
     private function set_vars_and_metas()
     {
-        $metas = get_post_meta($this->id);
-
-        $post = get_post($this->id);
 
         //title
-        $this->template_vars['title'] = apply_filters('the_title', $post->post_title);
+        $this->template_vars['title'] = apply_filters('the_title', $this->post->post_title);
 
         //excerpt
-        $this->template_vars['excerpt'] = apply_filters('the_excerpt',$post->post_excerpt);
+        $this->template_vars['excerpt'] = apply_filters('the_excerpt',$this->post->post_excerpt);
 
         //featured image:
-        $this->template_vars['featured_image'] = wp_get_attachment_url( get_post_thumbnail_id($this->ID) );
-
-        //pics
-        $this->template_vars['pics'] = json_decode($metas['market_area_photos'][0], true);
+        $this->template_vars['featured_image'] = wp_get_attachment_url( get_post_thumbnail_id($this->id) );
 
         //description
-        $this->template_vars['description'] = apply_filters('the_content',$post->post_content);
+        $this->template_vars['description'] = apply_filters('the_content',$this->post->post_content);
 
-        //json_use_landing
-        $this->template_vars['json_use_landing'] = array_key_exists('market_area_use_landing_page',$metas) ? $metas['market_area_use_landing_page'][0] : '[]';
 
-        //json_tree
-        $this->template_vars['tree'] = array_key_exists('market_area_props_n_areas',$metas) ? $metas['market_area_props_n_areas'][0] : '[]';
+        if(!is_preview())
+        {
+            $metas = get_post_meta($this->id);
+
+            //json_use_landing
+            $this->template_vars['json_use_landing'] = array_key_exists('market_area_use_landing_page',$metas) ? $metas['market_area_use_landing_page'][0] : '[]';
+
+            //json_tree
+            $this->template_vars['tree'] = array_key_exists('market_area_props_n_areas',$metas) ? $metas['market_area_props_n_areas'][0] : '[]';
+
+            //pics
+            $this->template_vars['pics'] = json_decode($metas['market_area_photos'][0], true);
+        }
+        else
+        {
+            //get from session
+            $metas = $_SESSION['market_area_preview_metas'];
+
+            //json_use_landing
+            $this->template_vars['json_use_landing'] = array_key_exists('market_area_use_landing_page',$metas) ? json_encode($metas['market_area_use_landing_page']) : '[]';
+
+            //json_tree
+            $this->template_vars['tree'] = array_key_exists('market_area_props_n_areas',$metas) ? json_encode($metas['market_area_props_n_areas']) : '[]';
+
+            //pics
+            $this->template_vars['pics'] = $metas['market_area_photos'];
+
+        }
+
+
+
 
         //properties ids
         $this->properties_ids =  $this->get_properties_ids();

@@ -40,7 +40,7 @@ class GemerateLandingMetaBox extends MetaBox{
         $meta_value = get_post_meta($post_id, $meta_key, true);
 
 
-        if(!empty($new_meta_value) && $this->is_not_a_preview($post_id))
+        if(!empty($new_meta_value))
         {
             $this->generate_landings($post_id, $post);
         }
@@ -63,7 +63,8 @@ class GemerateLandingMetaBox extends MetaBox{
         {
             if(array_key_exists('contents',$branch))
             {
-                $this->create_landing_for($branch,$meta_key,$post_id);
+                if($this->is_not_a_preview($post_id))
+                    $this->create_landing_for($branch,$meta_key,$post_id);
             }
         }
     }
@@ -77,13 +78,11 @@ class GemerateLandingMetaBox extends MetaBox{
             slug: the sanitized title
         */
 
-       $title           = wp_strip_all_tags( $branch['name'] );
-       $fallback_title  = wp_strip_all_tags( $branch['originalName'] );
-       $content  = '';
-       $images   = '';
-       $template = '';
-
-
+       $title               = wp_strip_all_tags( $branch['name'] );
+       $fallback_title      = wp_strip_all_tags( $branch['originalName'] );
+       $content             = '';
+       $images              = '';
+       $template            = '';
 
        $post_array =
        [
@@ -95,13 +94,11 @@ class GemerateLandingMetaBox extends MetaBox{
               'post_parent'   => $post_id,
        ];
 
-
        //Try to get the parameters for this landing
        $alter_params = $this->get_subarea_params($title);
 
        $total = count($alter_params);
        $filled = 0;
-
 
        if(!empty($alter_params['name']))
        {
@@ -135,12 +132,13 @@ class GemerateLandingMetaBox extends MetaBox{
         if(post_exists($post_array['post_title']))// Need to check if a landing with the same name already exists.
             return;
 
-            try {
-                $new_post_id = wp_insert_post($post_array, true); //this saves all meta boxes and will take the $_POST information. Need a control to prevent it
-                 // while the parent posts remain as drafts their children will not show a parent assigned until their parents are published.
-            } catch (\Exception $e) {
-                throw new \Exception($e->getMessage(), 1);
-            }
+        try
+        {
+            $new_post_id = wp_insert_post($post_array, true); //this saves all meta boxes and will take the $_POST information. Need a control to prevent it
+             // while the parent posts remain as drafts their children will not show a parent assigned until their parents are published.
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage(), 1);
+        }
 
         //Now, the tree under this branch is inside the contents
 
@@ -152,34 +150,20 @@ class GemerateLandingMetaBox extends MetaBox{
            update_post_meta( $new_post_id, $meta_key, $new_tree );
         }
 
-
-
-
         $metas = get_post_meta($post_id); // Need to clear child meta boxes
-        /**
-         * @todo add an option to choose if inherit or not
-         * for now I'll leave it with the $inherit variable set to false.
-         * @var $inherit bool Tells if the new post is to inherit the parent's meta boxes values.
-         */
-        $inherit = false;
-        if(!$inherit)
-            foreach($metas as $key => $meta)
+
+        foreach($metas as $key => $meta)
+        {
+            if($key === $meta_key)
+                continue;
+            if(preg_match('/market_area/',$key))
             {
-                if($key === $meta_key)
-                    continue;
-                if(preg_match('/market_area/',$key))
-                {
-                    update_post_meta( $new_post_id, $key, '' );
-                }
+                update_post_meta( $new_post_id, $key, '' );
             }
-
-        // debug($new_post_id);
-        // debug($meta_key);
-        // debug($new_tree, true);
+        }
 
 
-
-        //save images :: saved
+        //save images
         if(!empty($alter_params['images']))
         {
             $images_string = html_entity_decode($alter_params['images']);
@@ -193,9 +177,7 @@ class GemerateLandingMetaBox extends MetaBox{
                    update_post_meta( $new_post_id, 'market_area_photos', $images_string );
                 }
 
-                //Add the featured image: the first one of the list:
-                //$attach_id = $this->get_attachment_id_from_url($attachment_urls[0]);
-                //add_post_meta($new_post_id, '_thumbnail_id', $attach_id);
+                $this->set_featured_image(false, $new_post_id, $attachment_urls); // for now do not set the featured image
             }
 
         }
@@ -224,30 +206,44 @@ class GemerateLandingMetaBox extends MetaBox{
 
     }
 
+    /**
+     * Gets the parameters defined for the subareas in the tree to create the landing pages
+     * @param  string $name the name of the subarea
+     * @return array       the array of paramters for the requested subarea
+     */
     function get_subarea_params($name)
     {
         //The post parameter
         $subareas_settings = json_decode(filter_input( INPUT_POST, 'subareas-conf'), true);
         $subarea = $subareas_settings[html_entity_decode($name)];
 
-
         //title
         $subarea['name'] = apply_filters('the_title', $subarea['name']);
-        //templateº
+
+        //template
         $subarea['template'] = filter_var($subarea['template'] , FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH);
         $subarea['template'] = '{\\"landing\\": \\"yes",\\"template\\":\\"' . $subarea['template'] . '\\" }';
+
         //images
         $subarea['images'] = filter_var($subarea['images'] , FILTER_SANITIZE_STRING, FILTER_FLAG_ENCODE_HIGH);
+
         //the content
         $subarea['content'] = apply_filters('the_content',$subarea['content']);
 
         return $subarea;
     }
 
+    /**
+     * gets the attachment id from the url if the resource
+     * @param  string $image_url the url of the resource
+     * @return mixed            the id of the image or false id none is found
+     */
     function get_attachment_id_from_url($image_url) {
     	global $wpdb;
     	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE guid='%s';", $image_url ));
+        if(count($attachment))
             return $attachment[0];
+        return false;
     }
 
     /**
@@ -258,6 +254,22 @@ class GemerateLandingMetaBox extends MetaBox{
     {
         $is_not_a_preview = ! (bool) wp_is_post_autosave( $post_id );
         return $is_not_a_preview;
+    }
+
+    /**
+     * if $pleasedo is true it sets the first image in the array as a featured image for the post with the given id
+     * @param boolean $pleasedo        set or not
+     * @param int $new_post_id     the id of the post
+     * @param array $attachment_urls the array of the available images
+     */
+    function set_featured_image($pleasedo, $new_post_id, $attachment_urls)
+    {
+        if(!$pleasedo || !count($attachment_urls))
+            return;
+
+        //Add the featured image: the first one of the list:
+        $attach_id = $this->get_attachment_id_from_url($attachment_urls[0]);
+        add_post_meta($new_post_id, '_thumbnail_id', $attach_id);
     }
 
 }

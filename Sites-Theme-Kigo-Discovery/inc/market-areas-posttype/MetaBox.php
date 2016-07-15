@@ -90,10 +90,6 @@ class MetaBox {
      * @return int
      */
     function saveMetaBox($post_id, $post) {
-        // if($this->id === "market_area_use_landing_page")
-        // {
-        //     debug($_POST, true);
-        // }
 
         /* Verify the nonce before proceeding. */
         if (!isset($_POST[$this->id . '_nonce']) || !wp_verify_nonce($_POST[$this->id . '_nonce'], basename($this->templates_path . DIRECTORY_SEPARATOR . $this->template)))
