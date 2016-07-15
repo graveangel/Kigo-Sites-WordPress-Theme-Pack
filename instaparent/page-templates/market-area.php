@@ -61,6 +61,7 @@ Template Name: Market Area Page
 			);
 			$pages = get_pages($args);
 			$c=0;
+
 			foreach($pages as $page){
 				
 				if($bapikey = get_post_meta($page->ID,'bapikey')){
@@ -87,7 +88,6 @@ Template Name: Market Area Page
 							'post_status' => 'publish'
 						);
 						$props = get_pages($args);
-						shuffle($props);
 						$pa = array();
 						foreach($props as $prop){
 							if($bapikey = get_post_meta($prop->ID,'bapikey')){
@@ -97,17 +97,20 @@ Template Name: Market Area Page
 								}
 							}
 						}
-						if($count = count($pa)>0 && wp_get_post_parent_id($page->ID)==get_the_ID()){
-							$title = $page->post_title;
-							if($count) { $title .= " (".$count.")"; }
-							echo '<h2><a href="'.$page->guid.'">'.$title.'</a></h2>';
+
+						
+
+						if( count($pa)>0 && wp_get_post_parent_id($page->ID)==get_the_ID() ) {
+							echo '<h2><a href="'.$page->guid.'">'.$page->post_title.' ('.count($pa).' properties)</a></h2>';
 							?>
-							<div class="row">
+							<div class="row-fluid">
 								<?php
 								$pa_count = 1;
+								shuffle($pa);
+								$pa = array_slice($pa,0,3); //show 3 random
 								foreach($pa as $p){
 								?>
-									<div class="span3">
+									<div class="span4">
 										<?php
 										$pm = get_post_meta($p->ID);
 										$pm = json_decode($pm['bapi_property_data'][0],true);
@@ -115,15 +118,16 @@ Template Name: Market Area Page
 										<img src="<?php echo $pm['PrimaryImage']['ThumbnailURL'] ?>">
 										<h4><?php echo $p->post_title ?></h4>	
 									</div>
-									<?php if($pa_count % 4 == 0) { echo '</div><br /><br /><div class="row">'; }
-									$pa_count ++; ?>
 								<?php
+									if($pa_count % 3 == 0) { echo '</div><br /><br /><div class="row-fluid">'; }
+									$pa_count++;
 								}
 								?>
 							</div>
 							<p><br></p>
 							<div class="clear"></div>	
 							<?php
+							
 						}
 					}
 				}
@@ -146,24 +150,26 @@ Template Name: Market Area Page
 					?>
 						<?php
 						foreach($pa as $p){
+						$pm = get_post_meta($p->ID);
+						$pm = json_decode($pm['bapi_property_data'][0],true);
 						?>
-					<div class="row">
-							<div class="span8">
-								<h4><?php echo $p->post_title ?></h4>
-								<?php
-								$pm = get_post_meta($p->ID);
-								$pm = json_decode($pm['bapi_property_data'][0],true);
-								?>
-								<p><?php echo $pm['ContextData']['Quote']['PublicNotes'] ?></p>
-								<img src="<?php echo $pm['PrimaryImage']['MediumURL'] ?>" alt="">
+					<div class="row-fluid">
+							<div class="" style="background:url('<?php echo $pm['PrimaryImage']['MediumURL'] ?>') no-repeat;background-size:100%;background-position:center;height:250px;padding:8px;margin-bottom:12px;position:relative;">
+								<h3 style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px;position:absolute;top:0;left:0;margin:0;padding:8px;"><?php echo $p->post_title ?></h3>
+								<div class="clear"></div>
+								<p style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px;position:absolute;top:60px;left:0;"><?php echo $pm['ContextData']['Quote']['PublicNotes'] ?></p>
+								<div class="clear"></div>
+								<p style="background:rgba(250,250,250,0.7);display:inline-block;padding:4px;position:absolute;bottom:0;left:0;margin:0;padding:8px;"><?php echo $pm['Bedrooms'].' Bedrooms | '.$pm['Bathrooms'].' Baths | Sleeps '.$pm['Sleeps'] ?></p>
+								<div class="clear"></div>
+								<div class="" style="position:absolute;bottom:8px;right:8px">
+									<a class="btn btn-primary" href="<?php echo $pm['ContextData']['SEO']['DetailURL'] ?>">More Info</a> | <a class="btn btn-primary" href="<?php echo $pm['ContextData']['SEO']['BookingURL'] ?>">Book Now</a>
+								</div>
 								<div class="clear"></div>	
 							</div>
 					</div>
 						<?php
 						}
 						?>
-					<p><br></p>
-					<div class="clear"></div>	
 					<?php
 				}
 			}
