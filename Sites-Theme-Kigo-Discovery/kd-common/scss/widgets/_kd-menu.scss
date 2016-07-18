@@ -157,7 +157,7 @@ header .kd-menu {
       right: auto;
       top: auto;
 
-      .current-menu-item > a{
+      .current-menu-item > a, .current-menu-ancestor > a{
         color: $primary-color!important;
       }
 
