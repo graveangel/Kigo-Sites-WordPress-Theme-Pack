@@ -105,7 +105,9 @@ Template Name: Market Area Page
 							echo sprintf( _n('%d Property', '%d Properties', count($pa)), count($pa) );
 							echo "</i></h2>";
 							if(count($pa) > 3) {
-								echo '<h4 style="margin:0 0 1em 0">Showing 3 out of <a href="'.$page->guid.'">'.count($pa)."</a></h4>";
+								echo '<h4 style="margin:0 0 1em 0">';
+								echo sprintf('Showing %d out of %s', 3, '<a href="'.$page->guid.'">'.count($pa));
+								echo "</a></h4>";
 							}
 							echo "</h3>";
 							?>
