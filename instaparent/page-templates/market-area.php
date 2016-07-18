@@ -101,9 +101,13 @@ Template Name: Market Area Page
 						
 
 						if( count($pa)>0 && wp_get_post_parent_id($page->ID)==get_the_ID() ) {
-							echo '<h2><a href="'.$page->guid.'">'.$page->post_title.'</a> ';
-							echo sprintf( _n('(%d) Property', '(%d) Properties', count($pa)), count($pa) );
-							echo "</h2>";
+							echo '<h2 style="margin:0"><a href="'.$page->guid.'">'.$page->post_title.'</a>  <i>';
+							echo sprintf( _n('%d Property', '%d Properties', count($pa)), count($pa) );
+							echo "</i></h2>";
+							if(count($pa) > 3) {
+								echo '<h4 style="margin:0 0 1em 0">Showing 3 out of <a href="'.$page->guid.'">'.count($pa)."</a></h4>";
+							}
+							echo "</h3>";
 							?>
 							<div class="row-fluid">
 								<?php
@@ -117,8 +121,10 @@ Template Name: Market Area Page
 										$pm = get_post_meta($p->ID);
 										$pm = json_decode($pm['bapi_property_data'][0],true);
 										?>
-										<img src="<?php echo $pm['PrimaryImage']['ThumbnailURL'] ?>">
-										<h4><?php echo $p->post_title ?></h4>	
+										<a href="<?php echo $pa->guid;?>">
+											<img src="<?php echo $pm['PrimaryImage']['ThumbnailURL'] ?>">
+											<h4><?php echo $p->post_title ?></h4>	
+										</a>
 									</div>
 								<?php
 									if($pa_count % 3 == 0) { echo '</div><br /><br /><div class="row-fluid">'; }
