@@ -10,19 +10,6 @@ ob_start();
 
 <h1><?php echo __('Rentals in').' '.$post->post_title; ?></h1>
 <?php
-	// $urls = array();  
-	// $xml= wp_remote_get(get_site_url().'/sitemap.xml');
-	// $xml= $xml['body'];
-	// $DomDocument = new DOMDocument();
-	// $DomDocument->preserveWhiteSpace = false;
-	// $DomDocument->loadXML("$xml"); // $DOMDocument->load('filename.xml');
-	// $DomNodeList = $DomDocument->getElementsByTagName('loc');
-	
-	// //print_r($DomNodeList);exit();			
-	// foreach($DomNodeList as $url) {
-		// wp_remote_get( $url->nodeValue );
-	// }
-
 	$pages = get_pages(
 		array(
 			'sort_order' => 'asc',
