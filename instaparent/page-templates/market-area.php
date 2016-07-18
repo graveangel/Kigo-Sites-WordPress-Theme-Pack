@@ -6,14 +6,16 @@ Template Name: Market Area Page
 */
 
 ob_start();
+
+$ma = json_decode(get_post_meta($post->ID,'bapi_property_data',true));
 ?>
 
-<h1><?php echo __('Rentals in').' '.$post->post_title; ?></h1>
+<h1><?php echo __('Rentals in').' '.$ma->Name; ?></h1>
 <?php
-$pt = get_the_title($post->post_parent);
-if(!empty($pt) && $post->post_parent!=0){
+$pt = json_decode(get_post_meta($post->post_parent,'bapi_property_data',true));
+if(!empty($pt->Name) && $post->post_parent!=0){
 ?>
-<p class=""><a href="<?php echo get_permalink($post->post_parent) ?>"><< Back to <?php echo $pt; ?></a></p>
+<p class=""><a href="<?php echo get_permalink($post->post_parent) ?>"><< Back to <?php echo $pt->Name; ?></a></p>
 <div class="row">
 	<div class="span4">
 		<?php echo get_the_post_thumbnail(); ?>
@@ -89,9 +91,10 @@ if(!empty($pt) && $post->post_parent!=0){
 				
 
 				if( count($pa)>0 && wp_get_post_parent_id($page->ID)==get_the_ID() ) {
-					echo '<h2 style="margin:0"><a href="'.$page->guid.'">'.$page->post_title.'</a>  <i>';
+					$pmeta = json_decode(get_post_meta($page->ID,'bapi_property_data',true));
+					echo '<h2 style="margin:0"><a href="'.$page->guid.'">'.$pmeta->Name.'</a> &nbsp;<em style="font-size:.8em;">';
 					echo sprintf( _n('%d Property', '%d Properties', count($pa)), count($pa) );
-					echo "</i></h2>";
+					echo "</em></h2>";
 					if(count($pa) > 3) {
 						echo '<h4 style="margin:0 0 1em 0">';
 						echo sprintf(__('Showing %d out of %s'), 3, '<a href="'.$page->guid.'">'.count($pa));
@@ -145,7 +148,7 @@ if(!empty($pt) && $post->post_parent!=0){
 		}
 		if(count($pa)>0 && wp_get_post_parent_id($page->ID)==get_the_ID()){
 			echo '<h2>';
-			echo sprintf( _n('%d Property in the %s area', '%d Properties in the %s area', count($pa)), count($pa), $post->post_title );
+			echo sprintf( _n('%d Property in the %s area', '%d Properties in the %s area', count($pa)), count($pa), $ma->Name );
 			echo '</h2>';
 			?>
 				<?php
