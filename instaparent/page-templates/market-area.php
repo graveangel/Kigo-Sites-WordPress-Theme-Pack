@@ -8,7 +8,7 @@ Template Name: Market Area Page
 ob_start();
 ?>
 
-<h1>Rentals in <?php echo $post->post_title; ?></h1>
+<h1><?php echo __('Rentals in').' '.$post->post_title; ?></h1>
 <?php
 	// $urls = array();  
 	// $xml= wp_remote_get(get_site_url().'/sitemap.xml');
@@ -90,7 +90,7 @@ ob_start();
 					echo "</i></h2>";
 					if(count($pa) > 3) {
 						echo '<h4 style="margin:0 0 1em 0">';
-						echo sprintf('Showing %d out of %s', 3, '<a href="'.$page->guid.'">'.count($pa));
+						echo sprintf(__('Showing %d out of %s'), 3, '<a href="'.$page->guid.'">'.count($pa));
 						echo "</a></h4>";
 					}
 					echo "</h3>";
