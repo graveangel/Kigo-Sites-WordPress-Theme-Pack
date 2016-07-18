@@ -2468,17 +2468,11 @@ i {
 select {
   -webkit-appearance: none; }
 
-.primary-fill-color {
-  background-color: #33baaf; }
+.primary-fill-hover-color:hover, .secondary-fill-hover-color:hover {
+  color: white; }
 
-.primary-stroke-color {
-  color: #33baaf; }
-
-.secondary-fill-color {
-  background-color: #f6af33; }
-
-.secondary-stroke-color {
-  color: #f6af33; }
+.primary-fill-hover-color, .secondary-fill-hover-color {
+  background: white; }
 
 .container {
   max-width: 1360px;
@@ -3188,9 +3182,6 @@ a {
   a:hover {
     text-decoration: none;
     color: inherit; }
-
-.primary-fill-color a:hover, .secondary-fill-color a:hover {
-  color: inherit !important; }
 
 /* Import global styles for reusable elements */
 .flexslider#slider li[style] {
@@ -4040,14 +4031,14 @@ Media Desktop
   /* HERO BLOCK --------------------------------------------------------------*/
   /* PAGE DESC ---------------------------------------------------------------*/ }
   .about-us-template .kd-custom-hero {
-    min-height: 400px;
-    display: block;
-    text-align: center;
     position: relative;
+    display: block;
+    display: flex;
+    min-height: 400px;
+    text-align: center;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
     flex-direction: column;
     justify-content: center; }
     .about-us-template .kd-custom-hero .page-width {
@@ -4074,8 +4065,7 @@ Media Desktop
     width: 100%;
     text-align: center;
     font-weight: 600;
-    font-family: "Montserrat", serif;
-    color: #f6af33; }
+    font-family: "Montserrat", serif; }
   .about-us-template .page-desc .picture {
     text-align: center;
     background-size: cover;
@@ -4097,7 +4087,6 @@ Media Desktop
   .about-us-template .page-block {
     margin-bottom: 30px; }
     .about-us-template .page-block div.page-width > .title {
-      color: #f6af33;
       text-transform: uppercase;
       text-align: center;
       font-size: 20px;
@@ -4121,9 +4110,9 @@ Media Desktop
       color: #fff; }
     .about-us-template .page-desc .description .title,
     .about-us-template .page-desc .description .static-page h1 {
+      color: white;
       font-size: 30px;
       font-weight: 600;
-      color: #f6af33;
       text-align: left;
       margin-bottom: 20px; }
   .about-us-template .page-desc .picture {
@@ -4322,12 +4311,12 @@ body.page-template-search-page .mapProps {
       left: 15px;
       width: 50px;
       height: 50px;
-      background-color: #33baaf;
       background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACC0lEQVRYR81X7TEEURDsjgARcBEgAkSACLgInAgQASJABIgAGVwG7iJABKOat1Xr3Zv3cUuV+bvz0W9memaWaBAzWwWwD+AAwAaArWA+BTAD8ADgkeR7rVvWKprZMYBLAAKREwWfkLyr8V0EEF59E15d47PTUTbGpWzUAFB6N1si93SnJLdztlkAZnYL4GjJ4J3ZLcmx58MFYGa7AJ4cQ9VXjp/1PeiqRzywe51u7C8HQM53EgAOSaq+CxIaVf0Si5gh5ixIEkBovLeE/inJq1xJzGwS2BKrraUa0gOgdMYvmZMU94tiZpoJ65GiGKGe+iEegHMAZ5HuHUkBK4rTvBck5XdpAEkHKTRmlnrAYADXJFXfovxGBtSx91GkGclRMfo3LVM9kKTi/2SBXmlm4ro2Xyy5OZDKnOzb5kAAkKJiB0Z0Uk9oTwis1vIJAI8lSQrKtrQLUrWsaYO+TnZ+lAB4U60FRHZ6lgDo+FAWVloi9nQ/dDnlboKaeyA1VGrxFIdXDYBlszDXzTj4IqpghJcNt/P7BsUMdMrOdPOCV2/OFgDekEmBcIdVrFwNIJTCu5L6fl9I6pyrklYAOkheC55HJEXdKmkCELKQo2WRdoNKEACIltoB8clVRbvBAAKI1Mnunt65WjSXoEfL/rp2122pEYYA6CakYmTn/Z9kIJTi62fD+1EpvV7fPwE2COAht9GKbwAAAABJRU5ErkJggg==");
       background-position: center;
       background-repeat: no-repeat;
       opacity: 0;
-      transition: opacity .33s; }
+      transition: opacity .33s;
+      cursor: pointer; }
       body.page-template-search-page .mapProps .property .viewInMap:hover {
         box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15) inset; }
       body.page-template-search-page .mapProps .property .viewInMap:active {
@@ -4348,7 +4337,6 @@ body.page-template-search-page .mapProps {
         position: absolute;
         bottom: 20px;
         right: 0;
-        background-color: #f6af33;
         color: white;
         padding: 8px 10px; }
         body.page-template-search-page .mapProps .property .image .from .tag {
@@ -4952,11 +4940,7 @@ body.page-template-other-detail-page .other-detail-page .gmap-property, body.pag
       width: 2em;
       height: 2em;
       line-height: 2em;
-      font-size: 1.2em;
-      background: #fff; }
-      .page-attractions-summary .item-result .item-images .poi-map-item:hover {
-        background: #33baaf;
-        color: #fff; }
+      font-size: 1.2em; }
   .page-attractions-summary .item-result .item-info {
     padding: 20px 15px; }
     .page-attractions-summary .item-result .item-info h2.title {
@@ -5285,7 +5269,6 @@ body.error404 .message {
     padding: 20px; }
   .kd-search .search {
     padding: 15px;
-    background-color: #33baaf;
     border: none;
     color: white;
     cursor: pointer;
@@ -5433,11 +5416,10 @@ body.error404 .message {
     position: relative;
     width: 100%;
     height: 200px;
-    background-color: #33baaf;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    test-align: left;
+    text-align: left;
     cursor: pointer;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.5);
     margin-bottom: 130px; }
@@ -5473,7 +5455,6 @@ body.error404 .message {
     .kd-featured .prop .prop-details {
       display: block;
       padding: 10px 20px;
-      background-color: #f6af33;
       text-transform: uppercase;
       color: white;
       font-size: 15px;
@@ -5518,8 +5499,6 @@ body.error404 .message {
         border-radius: 0;
         transition: background-color .3s;
         opacity: 1; }
-      .kd-featured .controls .swiper-pagination .swiper-pagination-bullet-active {
-        background-color: #f6af33; }
   @media screen and (min-width: 768px) {
     .kd-featured {
       padding-left: 30%;
@@ -5547,7 +5526,6 @@ body.error404 .message {
               width: 150px;
               padding: 10px 20px;
               margin: 0;
-              background-color: #f6af33;
               text-transform: uppercase;
               color: white;
               font-size: 15px;
@@ -5701,8 +5679,7 @@ body.error404 .message {
   .kd-page_block .wrapper {
     position: relative;
     padding: 15px;
-    font-size: 0;
-    background-color: #33baaf; }
+    font-size: 0; }
   .kd-page_block .image {
     display: inline-block;
     vertical-align: top;
@@ -5828,7 +5805,6 @@ header .kd-menu {
       display: block;
       padding: 12px;
       font-size: 18px;
-      color: white;
       text-transform: uppercase;
       background-color: #f6af33;
       border-bottom: 1px solid white;
@@ -5887,8 +5863,6 @@ header .kd-menu {
       width: auto;
       right: auto;
       top: auto; }
-      .kd-menu .menu .current-menu-item > a, .kd-menu .menu .current-menu-ancestor > a, header .kd-menu .menu .current-menu-item > a, header .kd-menu .menu .current-menu-ancestor > a {
-        color: #33baaf !important; }
       .kd-menu .menu.align_right li, header .kd-menu .menu.align_right li {
         margin-right: 0;
         margin-left: 24px; }
@@ -5908,8 +5882,7 @@ header .kd-menu {
       .kd-menu .menu > li a, header .kd-menu .menu > li a {
         background-color: transparent;
         padding: 6px 0;
-        font-size: 14px;
-        color: #555; }
+        font-size: 14px; }
       .kd-menu .menu > li.menu-item-has-children a, .kd-menu .menu > li.menu-item-has-children div, header .kd-menu .menu > li.menu-item-has-children a, header .kd-menu .menu > li.menu-item-has-children div {
         display: inline-block;
         vertical-align: middle; }

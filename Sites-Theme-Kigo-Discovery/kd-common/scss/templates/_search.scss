@@ -261,12 +261,12 @@ body.page-template-search-page{
         left: 15px;
         width: 50px;
         height: 50px;
-        background-color: $primary-color;
         background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACC0lEQVRYR81X7TEEURDsjgARcBEgAkSACLgInAgQASJABIgAGVwG7iJABKOat1Xr3Zv3cUuV+bvz0W9memaWaBAzWwWwD+AAwAaArWA+BTAD8ADgkeR7rVvWKprZMYBLAAKREwWfkLyr8V0EEF59E15d47PTUTbGpWzUAFB6N1si93SnJLdztlkAZnYL4GjJ4J3ZLcmx58MFYGa7AJ4cQ9VXjp/1PeiqRzywe51u7C8HQM53EgAOSaq+CxIaVf0Si5gh5ixIEkBovLeE/inJq1xJzGwS2BKrraUa0gOgdMYvmZMU94tiZpoJ65GiGKGe+iEegHMAZ5HuHUkBK4rTvBck5XdpAEkHKTRmlnrAYADXJFXfovxGBtSx91GkGclRMfo3LVM9kKTi/2SBXmlm4ro2Xyy5OZDKnOzb5kAAkKJiB0Z0Uk9oTwis1vIJAI8lSQrKtrQLUrWsaYO+TnZ+lAB4U60FRHZ6lgDo+FAWVloi9nQ/dDnlboKaeyA1VGrxFIdXDYBlszDXzTj4IqpghJcNt/P7BsUMdMrOdPOCV2/OFgDekEmBcIdVrFwNIJTCu5L6fl9I6pyrklYAOkheC55HJEXdKmkCELKQo2WRdoNKEACIltoB8clVRbvBAAKI1Mnunt65WjSXoEfL/rp2122pEYYA6CakYmTn/Z9kIJTi62fD+1EpvV7fPwE2COAht9GKbwAAAABJRU5ErkJggg==');
         background-position: center;
         background-repeat: no-repeat;
         opacity: 0;
         transition: opacity .33s;
+        cursor: pointer;
 
         &:hover{
           box-shadow: 0 0 5px 0 rgba(black, .15) inset;
@@ -295,7 +295,6 @@ body.page-template-search-page{
           position: absolute;
           bottom: 20px;
           right: 0;
-          background-color: $secondary-color;
           color: $light-text;
           padding: 8px 10px;
 

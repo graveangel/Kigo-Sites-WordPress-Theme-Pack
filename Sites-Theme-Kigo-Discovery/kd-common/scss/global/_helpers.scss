@@ -25,20 +25,14 @@ select{
 }
 
 
-//Primary & Secondary colors defaults
+//Primary & Secondary colors
 
-.primary-fill-color{
-  background-color: $primary-color;
-}
-.primary-stroke-color{
-  color: $primary-color;
+.primary-fill-hover-color:hover, .secondary-fill-hover-color:hover{
+  color: white;
 }
 
-.secondary-fill-color{
-  background-color: $secondary-color;
-}
-.secondary-stroke-color{
-  color: $secondary-color;
+.primary-fill-hover-color, .secondary-fill-hover-color{
+  background: white;
 }
 
 //Page layout classes
