@@ -10,6 +10,15 @@ ob_start();
 
 <h1><?php echo __('Rentals in').' '.$post->post_title; ?></h1>
 <?php
+$pt = get_the_title($post->post_parent);
+if(!empty($pt) && $post->post_parent!=0){
+?>
+<p class=""><a href="<?php echo get_permalink($post->post_parent) ?>"><< Back to <?php echo $pt; ?></a></p>
+<?php
+}
+?>
+<br>
+<?php
 	$pages = get_pages(
 		array(
 			'sort_order' => 'asc',
