@@ -14,6 +14,14 @@ $pt = get_the_title($post->post_parent);
 if(!empty($pt) && $post->post_parent!=0){
 ?>
 <p class=""><a href="<?php echo get_permalink($post->post_parent) ?>"><< Back to <?php echo $pt; ?></a></p>
+<div class="row">
+	<div class="span4">
+		<?php echo get_the_post_thumbnail(); ?>
+	</div>
+	<div class="span8" style="max-height:150px;overflow-y:scroll;">
+		<?php echo $post->post_content; ?>
+	</div>
+</div>
 <?php
 }
 ?>
