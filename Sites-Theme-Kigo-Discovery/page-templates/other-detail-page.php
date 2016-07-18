@@ -19,9 +19,11 @@ get_header();
 
             <aside class="col-md-3 col-xs-12">
                 <div class="detail-overview-target"></div>
-                <?php if ( is_active_sidebar( 'sidebar_detail' ) ) : ?>
-                    <?php dynamic_sidebar( 'sidebar_detail' ); ?>
-                <?php endif; ?>
+                <div class="row">
+                    <?php if ( is_active_sidebar( 'sidebar_detail' ) ) : ?>
+                        <?php dynamic_sidebar( 'sidebar_detail' ); ?>
+                    <?php endif; ?>
+                </div>
             </aside>
         </div>
 

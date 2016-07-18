@@ -5887,7 +5887,7 @@ header .kd-menu {
       width: auto;
       right: auto;
       top: auto; }
-      .kd-menu .menu .current-menu-item > a, header .kd-menu .menu .current-menu-item > a {
+      .kd-menu .menu .current-menu-item > a, .kd-menu .menu .current-menu-ancestor > a, header .kd-menu .menu .current-menu-item > a, header .kd-menu .menu .current-menu-ancestor > a {
         color: #33baaf !important; }
       .kd-menu .menu.align_right li, header .kd-menu .menu.align_right li {
         margin-right: 0;
@@ -6539,7 +6539,7 @@ aside .advanced.kd-selective-search-box,
         font-size: 12px; }
         .bapi-inquiryform li.row-fluid .span6:last-of-type {
           margin-right: 0;
-          margin-left: 10px; }
+          margin-left: 5px; }
   .bapi-inquiryform input, .bapi-inquiryform select, .bapi-inquiryform textarea {
     padding: 5px 15px;
     width: 100%;
