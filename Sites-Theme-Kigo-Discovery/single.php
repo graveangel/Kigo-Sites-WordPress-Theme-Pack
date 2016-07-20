@@ -12,7 +12,8 @@
 
                         <div class="col-md-12 col-xs-12">
                             <?php } ?>
-                            <h1 class="title"><?php the_title() ?></h1>
+                            <h1 class="title"><?php the_title() ?><?php the_date('Y-m-d', '<p class="post-date">', '</p>'); ?></h1>
+
                             <div class="body"><?php the_content() ?></div>
                         </div>
                     </div>

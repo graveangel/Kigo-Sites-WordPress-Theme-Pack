@@ -1,16 +1,17 @@
 .about-us-template {
   /* HERO BLOCK --------------------------------------------------------------*/
   .kd-custom-hero {
-    min-height: 400px;
-    display: block;
-    text-align: center;
     position: relative;
+    display: block;
+    display: flex;
+    min-height: 400px;
+    text-align: center;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
     flex-direction: column;
     justify-content: center;
+
     .page-width {
       margin: auto;
       vertical-align: middle;
@@ -22,11 +23,13 @@
       height: 200px;
       overflow: visible;
     }
+
     h1.page-title {
       margin-top: 0;
       font-size: 40px;
       text-shadow: 0px 0px 1px rgba(0, 0, 0, .8);
     }
+
     .subtitle{
       font-size: 20px;
       width: 100%;
@@ -35,14 +38,15 @@
       text-shadow: 0px 0px 1px rgba(0, 0, 0, .8);
     }
   }
+
   /* PAGE DESC ---------------------------------------------------------------*/
+
   .page-desc {
     .title{
       width: 100%;
       text-align: center;
       font-weight: 600;
       font-family: "Montserrat", serif;
-      color: $secondary-color;
     }
 
     .picture {
@@ -64,6 +68,7 @@
       .title {
         display: none;
       }
+
       p.paragraph, .static-page p  {
         color: #707070;
         font-family: $secondary-font;
@@ -75,7 +80,6 @@
   .page-block {
     margin-bottom: 30px;
     div.page-width > .title {
-      color: $secondary-color;
       text-transform: uppercase;
       text-align: center;
       font-size: 20px;
@@ -83,8 +87,6 @@
       margin-bottom: 20px;
     }
   }
-
-
 
 }
 
@@ -97,9 +99,11 @@
       overflow: auto;
       padding:42px 42px;
       float: right;
+
       p.paragraph, .static-page p {
         color: #fff;
       }
+
       .subtitle,
       .title {
         display: block;
@@ -110,9 +114,9 @@
 
       .title,
       .static-page h1  {
+        color: white;
         font-size: 30px;
         font-weight: 600;
-        color: $secondary-color;
         text-align: left;
         margin-bottom: 20px;
       }
@@ -123,6 +127,7 @@
       float: left;
       overflow: hidden;
       height: 554px;
+
       img{
         width: auto;
         height: 200%;

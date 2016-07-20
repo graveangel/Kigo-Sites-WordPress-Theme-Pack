@@ -230,11 +230,11 @@ if(class_exists('BAPI_Inquiry_Form'))
             if(isset( $instance[ 'showCommentsField' ])){$bShowCommentsField =  $instance['showCommentsField'];}
             else{ $bShowCommentsField = true;}
 
-            echo '<div class="widget col-xs-12"><div class="inquiry-form">';
+            echo '<div class="inquiry-form">';
             if ( ! empty( $title ) )
                 echo  '<h1 class="title">'.$title .'</h1>' ;
             if ( ! empty( $inquiryModeTitle ) )
-                echo '<div class="widget col-xs-12"><div class="inquirymodetitle"><h1>'. $inquiryModeTitle . '</h1></div>';
+                echo '<div class="inquirymodetitle"><h1>'. $inquiryModeTitle . '</h1></div>';
             ?>
             <div id="bapi-inquiryform" class="bapi-inquiryform" data-templatename="tmpl-leadrequestform-propertyinquiry" data-log="0" data-showphonefield="<?= $bShowPhoneField ? 1 : 0; ?>" data-phonefieldrequired="<?= $bPhoneFieldRequired ? 1 : 0; ?>" data-showdatefields="<?= $bShowDateFields ? 1 : 0; ?>" data-shownumberguestsfields="<?= $bShowNumberGuestsFields ? 1 : 0; ?>" data-showleadsourcedropdown="<?= $bShowLeadSourceDropdown ? 1 : 0; ?>" data-leadsourcedropdownrequired="<?= $bLeadSourceDropdownRequired ? 1 : 0; ?>" data-showcommentsfield="<?= $bShowCommentsField ? 1 : 0; ?>" ></div>
             <?php

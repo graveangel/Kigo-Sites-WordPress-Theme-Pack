@@ -18,94 +18,85 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
 
         // Primary Button Color
         $setting = 'primary-color';
-        $mod = get_theme_mod($setting, customizer_library_get_default($setting));
+        $mod = get_theme_mod($setting, false) ? : customizer_library_get_default($setting);
 
-            $color = sanitize_hex_color($mod);
+        $color = sanitize_hex_color($mod);
 
-            Customizer_Library_Styles()->add(array(
-                'selectors' => array(
-                    '.primary-fill-color',
-                ),
-                'declarations' => array(
-                    'background-color' => $color,
-                    'color' => 'white',
-                )
-            ));
-            Customizer_Library_Styles()->add(array(
-                'selectors' => array(
-                    '.primary-fill-color:hover',
-                ),
-                'declarations' => array(
-                    'color' => "white !important"
-                )
-            ));
-
-            Customizer_Library_Styles()->add(array(
-                'selectors' => array(
-                    '.primary-stroke-color',
-                    '.menu-item:hover > a'
-                ),
-                'declarations' => array(
-                    'color' => $color . " !important"
-                )
-            ));
+        Customizer_Library_Styles()->add(array(
+            'selectors' => array(
+                '.primary-fill-color',
+                '.primary-fill-hover-color:hover',
+            ),
+            'declarations' => array(
+                'background-color' => $color,
+            )
+        ));
+        Customizer_Library_Styles()->add(array(
+            'selectors' => array(
+                '.primary-stroke-color',
+                '.primary-stroke-hover-color:hover',
+                '.current-menu-item > a, .current-menu-ancestor > a'
+            ),
+            'declarations' => array(
+                'color' => $color
+            )
+        ));
 
         // Secondary Button Color
         $setting = 'secondary-color';
-        $mod = get_theme_mod($setting, customizer_library_get_default($setting));
+        $mod = get_theme_mod($setting, false) ? : customizer_library_get_default($setting);
 
 
-            $color = sanitize_hex_color($mod);
+        $color = sanitize_hex_color($mod);
 
-            Customizer_Library_Styles()->add(array(
-                'selectors' => array(
-                    '.secondary-fill-color',
-                ),
-                'declarations' => array(
-                    'background-color' => $color . " !important"
-                )
-            ));
-            Customizer_Library_Styles()->add(array(
-                'selectors' => array(
-                    '.secondary-stroke-color',
-                ),
-                'declarations' => array(
-                    'color' => $color . " !important"
-                )
-            ));
+        Customizer_Library_Styles()->add(array(
+            'selectors' => array(
+                '.secondary-fill-color',
+                '.secondary-fill-hover-color:hover',
+            ),
+            'declarations' => array(
+                'background-color' => $color
+            )
+        ));
+        Customizer_Library_Styles()->add(array(
+            'selectors' => array(
+                '.secondary-stroke-color',
+                '.secondary-stroke-hover-color:hover',
+            ),
+            'declarations' => array(
+                'color' => $color
+            )
+        ));
 
         // Links Color
         $setting = 'tertiary-color';
-        $mod = get_theme_mod($setting, customizer_library_get_default($setting));
+        $mod = get_theme_mod($setting, false) ? : customizer_library_get_default($setting);
 
+        $color = sanitize_hex_color($mod);
 
+        Customizer_Library_Styles()->add(array(
+            'selectors' => array(
+                'a', '.tertiary-stroke-color'
+            ),
+            'declarations' => array(
+                'color' => $color
+            )
+        ));
 
-            $color = sanitize_hex_color($mod);
-
-            Customizer_Library_Styles()->add(array(
-                'selectors' => array(
-                    'a',
-                ),
-                'declarations' => array(
-                    'color' => $color
-                )
-            ));
         // Links Hover Color
         $setting = 'tertiary-color-hover';
-        $mod = get_theme_mod($setting, customizer_library_get_default($setting));
+        $mod = get_theme_mod($setting, false) ? : customizer_library_get_default($setting);
 
+        $color = sanitize_hex_color($mod);
 
-
-            $color = sanitize_hex_color($mod);
-
-            Customizer_Library_Styles()->add(array(
-                'selectors' => array(
-                    'a:hover'
-                ),
-                'declarations' => array(
-                    'color' => $color,
-                )
-            ));
+        Customizer_Library_Styles()->add(array(
+            'selectors' => array(
+                'a:hover', '.tertiary-stroke-color:hover'
+            ),
+            'declarations' => array(
+                'color' => $color,
+            )
+        ));
 
         // Main background Color
         $setting = 'bg-main';
@@ -120,10 +111,11 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                     '.main-background',
                 ),
                 'declarations' => array(
-                    'background-color' => $color . "!important"
+                    'background-color' => $color
                 )
             ));
         }
+
         // Header background Color
         $setting = 'bg-header';
         $mod = get_theme_mod($setting, customizer_library_get_default($setting));
@@ -137,7 +129,7 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                     '.header-background',
                 ),
                 'declarations' => array(
-                    'background-color' => $color . "!important"
+                    'background-color' => $color
                 )
             ));
         }
@@ -154,11 +146,11 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                     '.footer-background',
                 ),
                 'declarations' => array(
-                    'background-color' => $color . "!important"
+                    'background-color' => $color
                 )
             ));
         }
-        
+
         // Body font
         $setting = 'body-font';
         $mod = get_theme_mod($setting, customizer_library_get_default($setting));
@@ -180,9 +172,9 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                 )
             ));
         }
-        
-        
-        
+
+
+
         // Headings font
         $setting = 'title-font';
         $mod = get_theme_mod($setting, customizer_library_get_default($setting));
@@ -206,7 +198,7 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
                 )
             ));
         }
-        
+
 
 
         //About color:
@@ -229,7 +221,7 @@ if (!function_exists('customizer_library_demo_build_styles') && class_exists('Cu
         }
 
 
-}
+    }
 endif;
 
 add_action('customizer_library_styles', 'customizer_library_demo_build_styles');

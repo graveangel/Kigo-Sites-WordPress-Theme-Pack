@@ -1,5 +1,10 @@
 <?php
 
+
+$primary_color = '#33baaf';
+$secondary_color = '#f6af33';
+$tertiary_color = '#999';
+
 $panel = 'style_options';
 
 $panels[] = array(
@@ -37,7 +42,7 @@ $color_schemes = array(
 
 $options['primary-color'] = array(
     'id' => 'primary-color',
-    'label' => __('Main buttons color', 'kigodiscovery'),
+    'label' => __('Primary color', 'kigodiscovery'),
     'section' => $section,
     'type' => 'color',
     'default' => $primary_color,
@@ -45,7 +50,7 @@ $options['primary-color'] = array(
 );
 $options['secondary-color'] = array(
     'id' => 'secondary-color',
-    'label' => __('Secondary buttons color', 'kigodiscovery'),
+    'label' => __('Secondary color', 'kigodiscovery'),
     'section' => $section,
     'type' => 'color',
     'default' => $secondary_color,
@@ -53,7 +58,7 @@ $options['secondary-color'] = array(
 );
 $options['tertiary-color'] = array(
     'id' => 'tertiary-color',
-    'label' => __('Links color', 'kigodiscovery'),
+    'label' => __('Tertiary color', 'kigodiscovery'),
     'section' => $section,
     'type' => 'color',
     'default' => $tertiary_color,

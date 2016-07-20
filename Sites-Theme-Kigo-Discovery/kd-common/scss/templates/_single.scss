@@ -13,6 +13,10 @@ body.single
     padding: 0!important;
   }
 }
+.post-date
+{
+  font-size: 0.5em;
+}
 
 @media (min-width: $bp-lg) {
   .single

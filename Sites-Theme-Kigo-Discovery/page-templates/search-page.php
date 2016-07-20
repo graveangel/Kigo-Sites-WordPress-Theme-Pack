@@ -14,7 +14,7 @@
                 <div class="map mapContainer col-xs-12 col-md-6">
                     <div>
                         <div class="loader"><div class="bar primary-fill-color"></div></div>
-                        <div id="mapContainer" class="loading" data-color="<?php echo get_theme_mod('primary-color') ?>"></div>
+                        <div id="mapContainer" class="loading" data-color="<?php echo get_theme_mod('primary-color', false) ? : customizer_library_get_default('primary-color') ?>"></div>
                         <div id="resetMap" class="resetMap"><i class="kd-icon-toggle-fscreen"></i></div>
                     </div>
                 </div>
