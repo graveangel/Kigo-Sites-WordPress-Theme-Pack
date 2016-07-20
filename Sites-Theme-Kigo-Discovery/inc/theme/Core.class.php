@@ -78,7 +78,7 @@ class Core {
 
         /* Customize "Read more" link */
         add_filter('the_content_more_link', function($link) {
-            return '<div><a class="primary-stroke-color" href="' . get_the_permalink(get_the_ID()) . '">Learn more ></a></div>';
+            return '<div><a href="' . get_the_permalink(get_the_ID()) . '">Learn more ></a></div>';
         });
 
         /* Clean up unwanted front-end markup */
