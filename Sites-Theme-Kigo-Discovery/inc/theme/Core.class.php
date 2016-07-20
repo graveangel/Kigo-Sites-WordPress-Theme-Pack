@@ -466,6 +466,7 @@ class Core {
 
             /* WP ColorPicker */
             wp_enqueue_style('wp-color-picker');
+            wp_enqueue_script('wp-color-picker');
 
             /* Lou multi select - http://loudev.com/ */
             wp_enqueue_style('kd-loumultiselect', $commonPath . '/lib/lou-multi-select/css/multi-select.css');
@@ -477,7 +478,7 @@ class Core {
 
             /* Custom */
             wp_enqueue_style('admin-style', $commonPath . '/css/admin.css');
-            wp_enqueue_script('admin-script', $commonPath . '/js/admin.js', array('wp-color-picker', 'cked-jq'), '1.0.0', false);
+            wp_enqueue_script('admin-script', $commonPath . '/js/admin.js', array('cked-jq'), '1.0.0', false);
         });
 
     }
