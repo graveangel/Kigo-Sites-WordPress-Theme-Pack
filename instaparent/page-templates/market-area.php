@@ -97,8 +97,8 @@ if(!empty($pt->Name) && $post->post_parent!=0){
 					echo "</em></h2>";
 					if(count($pa) > 3) {
 						echo '<h4 style="margin:0 0 1em 0">';
-						echo sprintf(__('Showing %d out of %s'), 3, '<a href="'.$page->guid.'">'.count($pa));
-						echo "</a></h4>";
+						echo sprintf(__('Showing %d out of %s'), 3, count($pa));
+						echo '&nbsp; <em><a href="'.$page->guid.'">See More...</a></em></h4>';
 					}
 					echo "</h3>";
 					?>
@@ -114,7 +114,7 @@ if(!empty($pt->Name) && $post->post_parent!=0){
 								$pm = get_post_meta($p->ID);
 								$pm = json_decode($pm['bapi_property_data'][0],true);
 								?>
-								<a href="<?php echo $pa->guid;?>">
+								<a href="<?php echo $p->guid;?>">
 									<img src="<?php echo $pm['PrimaryImage']['ThumbnailURL'] ?>">
 									<h4><?php echo $p->post_title ?></h4>	
 								</a>
