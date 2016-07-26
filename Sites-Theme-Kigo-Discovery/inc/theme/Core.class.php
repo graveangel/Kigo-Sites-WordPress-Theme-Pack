@@ -424,7 +424,7 @@ class Core {
             //TODO: Load only for search pages
 
             /* Google Maps */
-            wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ', array(), '', false);
+            wp_enqueue_script('gmaps-api', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE', array(), '', false);
             /* Google Maps Marker Clusterer - */
             wp_enqueue_script('gmaps-clusterer',  $commonPath . '/lib/js-marker-clusterer/src/markerclusterer_compiled.js', array(), '', false);
             /* Google Maps Spiderfy - */
