@@ -17,7 +17,7 @@ $col = $displayContent ? 'col-xs-12 col-md-6' : 'col-xs-12';
                 height="500"
                 frameborder="0"
                 style="border:0"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ&q=<?php echo !empty($i['map']) ? $i['map'] : 'Barcelona' ?><?php echo $i['zoom'] ? '&zoom='.$i['zoom'] : '' ?>" allowfullscreen>
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE&q=<?php echo !empty($i['map']) ? $i['map'] : 'Barcelona' ?><?php echo $i['zoom'] ? '&zoom='.$i['zoom'] : '' ?>" allowfullscreen>
             </iframe>
 
     </div>
