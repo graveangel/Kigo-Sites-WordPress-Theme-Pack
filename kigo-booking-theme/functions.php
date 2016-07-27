@@ -99,7 +99,7 @@ function childtheme_override_presetwidgets_hpareas() {
 /*
 *
 * Setting the widgets for the Home Page Widget Areas
-* 
+*
 */
 function childtheme_override_setwidgets_hpareas($arrayOfSidebars) {
     $arrayOfSidebars['insta-left-home'][0] = 'bapi_hp_search-2';
@@ -117,3 +117,9 @@ function hide_home_elements(){
 }
 
 add_action( 'wp_enqueue_scripts', 'hide_home_elements' );
+
+function add_theme_js()
+{
+    wp_enqueue_script('kigo-booking-theme-scripts', get_stylesheet_directory_uri() . '/inc/js/main.js');
+}
+add_action('wp_enqueue_scripts', 'add_theme_js');

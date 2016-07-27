@@ -584,3 +584,121 @@ border-radius: 5px;
 
 }
 
+
+/**********************************
+ * Booking widget Main Menu styles
+ *********************************/
+/*=======================
+Desktop
+========================*/
+#navigation .menu
+{
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: block;
+    font-size: 0;
+    width: 100%;
+    position: relative;
+}
+#navigation .menu > li
+{
+    display: inline-block;
+    font-size: 1rem;
+}
+#navigation .menu > li > a
+{
+    padding: 5px;
+    display: block;
+}
+/* submenus */
+#navigation .menu > li.dropdown
+{
+    position: static;
+}
+#navigation .menu > li.dropdown > a::after
+{
+    content:'\25BC';
+    font-size: 10px;
+    margin-left: 5px;
+}
+#navigation .menu > li.dropdown > a::after
+{
+    transform: rotate(-90deg);
+    display: inline-block;
+}
+#navigation .menu > li.dropdown > a.opened.trans::after
+{
+    transform: rotate(0deg);
+    display: inline-block;
+}
+#navigation .menu > li .sub-menu
+{
+    background: #fff;
+    position: absolute;
+    list-style: none;
+    margin: 0 auto;
+    padding: 5px;
+    box-sizing: border-box;
+    display: none;
+    width: auto;
+}
+#navigation .menu > li:last-child .sub-menu
+{
+    right: 0;
+}
+#navigation .menu > li .sub-menu > li
+{
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+#navigation .menu > li .sub-menu > li > a
+{
+    padding: 5px;
+}
+#navigation .menu > li .sub-menu.opened
+{
+    display: inline-block;
+}
+
+.trans::after
+{
+-moz-transition: all 0.3s ease;
+-webkit-transition: all 0.3s ease;
+-o-transition: all 0.3s ease;
+transition: all 0.3s ease;
+}
+/*=======================
+Mobile
+========================*/
+@media (max-width: 979px )
+{
+    /* Menu */
+    .search-page aside .widget_bapi__search, .property-detail-page aside .widget_bapi_detailoverview
+    {
+        min-width: 100px;
+        max-width: 100%;
+    }
+    #insta-top-fixed .span9
+    {
+        display: block;
+        width: 100%;
+        float: none;
+        clear: both
+    }
+    #navigation .menu > li
+    {
+        display: block;
+    }
+    /* submenus */
+    #navigation .menu > li.dropdown
+    {
+        position: static;
+    }
+    #navigation .menu > li .sub-menu.opened
+    {
+        position: static;
+        padding-left: 20px;
+    }
+}
