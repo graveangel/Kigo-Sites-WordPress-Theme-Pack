@@ -642,6 +642,7 @@ Desktop
     box-sizing: border-box;
     display: none;
     width: auto;
+    z-index: 300;
 }
 #navigation .menu > li:last-child .sub-menu
 {
