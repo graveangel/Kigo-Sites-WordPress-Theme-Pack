@@ -36,21 +36,23 @@ var kd_admin = {
         customSidebarsEvents();
     },
     initColorPickers: function () {
-        var aux = $("#widgets-right .colorPicker:not('.init')").wpColorPicker({
-            border: 'none',
-            width: '100%',
-            palettes: false,
-            mode: 'hsl',
-            change: debounce(function () { //Debounce color change event
-                $(this).trigger('change');
-            }, 250)
+        if($.fn.wpColorPicker){
+            var aux = $("#widgets-right .colorPicker:not('.init')").wpColorPicker({
+                border: 'none',
+                width: '100%',
+                palettes: false,
+                mode: 'hsl',
+                change: debounce(function () { //Debounce color change event
+                    $(this).trigger('change');
+                }, 250)
 
-        });
-        aux.addClass('init');
+            });
+            aux.addClass('init');
+        }
     },
     initCKEditors: function () {
         $('#widgets-right .kd_editor').ckeditor(debounce(function(){
-            this.on('change', function(){ 
+            this.on('change', function(){
                 var changeEvent = new Event('change', {'bubbles': true});
                 this.updateElement();
                 this.element.$.dispatchEvent(changeEvent);
@@ -346,6 +348,45 @@ var kd_admin = {
         });
         $('.multiselectjs').multiSelect('refresh');
 
+    },
+    maps: function(){
+        if($('#widgets-right .map-canvas.init').length){
+            if(typeof google == 'undefined'){
+                var maps_script = document.createElement('script');
+                maps_script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE';
+                maps_script.onload = function() {
+                    geocoder = new google.maps.Geocoder();
+                    initMap();
+                };
+                document.body.appendChild(maps_script);
+            }else{
+                initMap();
+            }
+
+            function initMap(){
+                $('#widgets-right .map-canvas.init').each(function(index, ele){
+                    if (geocoder) {
+                        geocoder.geocode( {'address': ele.dataset.location}, function(result, status) {
+                            var location = result[0].geometry.location;
+
+                            var map = new google.maps.Map(ele, {
+                                center: location,
+                                zoom: ele.dataset.zoom * 1 || 10
+                            });
+
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: location
+                            });
+
+                            console.log(map, location);
+
+                            ele.classList.remove('init');
+                        });
+                    }
+                });
+            }
+        }
     }
 };
 
@@ -702,8 +743,7 @@ function debounce(func, wait, immediate) {
         if (callNow)
             func.apply(context, args);
     };
-}
-;
+};
 
 function setFont(e) {
     if (!e.target.value)
