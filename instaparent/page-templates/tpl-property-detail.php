@@ -53,22 +53,22 @@ if($data) {
 			<div class="item-slideshow">
 				<div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
 				<ul class="slides">
-				<?php foreach($data->Images as $img) { ?>
+				<?php $imgCount = 1; foreach($data->Images as $img) { ?>
 					<li>
 						<div>
-							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" src="/wp-content/plugins/bookt-api/img/loading-816x600.gif" data-src="/img.svc?src=http:<?php echo $img->OriginalURL; ?>&w=816&h=600&q=75&zc=2" />
+							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="/wp-content/plugins/bookt-api/img/loading-816x600.gif" data-'; } ?>src="/img.svc?src=http:<?php echo $img->OriginalURL; ?>&w=816&h=600&q=75&zc=2" />
 							<?php if($img->Caption) { ?>
 							<p class="flex-caption">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $img->Caption; ?></p>
 							<?php } ?>
 						</div>
 					</li>
-				<?php } ?>
+				<?php $imgCount++; } ?>
 				</ul>
 				</div>
 				<div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
 				<ul class="slides">
 				<?php foreach($data->Images as $img) { ?>
-					<li><img alt="" src="/wp-content/plugins/bookt-api/img/loading.gif" data-src="/img.svc?src=http:<?php echo $img->OriginalURL; ?>&w=816&h=600&q=75&zc=2" /></li>
+					<li><img alt="" src="/img.svc?src=http:<?php echo $img->OriginalURL; ?>&w=50&h=37&q=75&zc=2" /></li>
 				<?php } ?>
 				</ul>
 				</div>
