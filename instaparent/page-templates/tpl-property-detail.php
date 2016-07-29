@@ -68,7 +68,7 @@ if($data) {
 				<div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
 				<ul class="slides">
 				<?php foreach($data->Images as $img) { ?>
-					<li><img alt="" src="/img.svc?src=http:<?php echo $img->OriginalURL; ?>&w=50&h=37&q=75&zc=2" /></li>
+					<li><img alt="" src="<?php echo $img->ThumbnailURL; ?>" height="50" /></li>
 				<?php } ?>
 				</ul>
 				</div>
