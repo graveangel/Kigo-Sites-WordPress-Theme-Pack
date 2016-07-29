@@ -56,7 +56,7 @@ if($data) {
 				<?php $imgCount = 1; foreach($data->Images as $img) { ?>
 					<li>
 						<div>
-							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="/wp-content/plugins/bookt-api/img/loading-816x600.gif" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" style="width:100%; max-height:600px;" />
+							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="/wp-content/plugins/bookt-api/img/loading-816x600.gif" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" style="margin:0 auto; width: auto; max-height:600px;" />
 							<?php if($img->Caption) { ?>
 							<p class="flex-caption">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $img->Caption; ?></p>
 							<?php } ?>
