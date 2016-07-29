@@ -37,7 +37,7 @@ if($data) {
 			<div class="row-fluid">
 				<div class="span7 left-side">
 				<h2 class="title"><?php echo $data->Headline; ?></h2>
-				<p class="location"><span><b><?php echo $translations['City']; ?>:</b> <?php echo $data->City; ?></span> <?php if($data->Bedrooms) { ?><b><?php echo $translations['Beds']; ?></b>: <?php echo $data->Bedrooms; ?> | <?php } ?><?php if($data->Bathrooms) { ?><b><?php echo $translations['Bathrooms']; ?></b>: <?php echo $data->Bathrooms; ?> | <?php } ?><b><?php if($data->Sleeps) { ?><?php echo $translations['Sleeps']; ?></b>: <?php echo $data->Sleeps; ?><?php } ?>		
+				<p class="location"><span><b><?php echo $translations['City']; ?>:</b> <?php echo $data->City; ?></span> <?php if($data->Bedrooms) { ?><b><?php echo $translations['Beds']; ?></b>: <?php echo $data->Bedrooms; ?> | <?php } ?><?php if($data->Bathrooms) { ?><b><?php echo $translations['Baths']; ?></b>: <?php echo $data->Bathrooms; ?> | <?php } ?><b><?php if($data->Sleeps) { ?><?php echo $translations['Sleeps']; ?></b>: <?php echo $data->Sleeps; ?><?php } ?>		
 				<?php if($settings['averagestarsreviews'] == 'on') { ?>		
 						<?php if($data->NumReviews > 0) { ?>
 						 		<div class="starsreviews"><div id="propstar-<?php echo $data->AvgReview; ?>"><span class="stars"></span><i class="starsvalue"></i></div></div>	
