@@ -6242,7 +6242,7 @@ header .kd-menu {
       .kd-specials .special .description .title {
         text-transform: uppercase; }
 
-.kd-map iframe {
+.kd-map .map-canvas {
   height: 500px; }
 
 .kd-map .side-content {
