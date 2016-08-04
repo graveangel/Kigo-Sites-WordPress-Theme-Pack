@@ -13,7 +13,7 @@ if($i['primary_font'] || $i['secondary_font']){
     </style>
 <?php endif; ?>
 
-<div class="kd-widget">
+<div class="kd-widget xs-nopad">
     <div class="kd-hero"  style="color: <?php echo $i['color'] ?>">
         <div class="slider">
             <div class="swiper-container"

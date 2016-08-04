@@ -1,4 +1,3 @@
-/* Edited - Tue Mar 08 2016 17:58:56 GMT+0100 (Romance Standard Time) */
 var kd_admin = {
     init: function () {
     },
@@ -37,20 +36,28 @@ var kd_admin = {
         customSidebarsEvents();
     },
     initColorPickers: function () {
-        var aux = $("#widgets-right .colorPicker:not('.init')").wpColorPicker({
-            border: 'none',
-            width: '100%',
-            palettes: false,
-            mode: 'hsl',
-            change: debounce(function () { //Debounce color change event
-                $(this).trigger('change');
-            }, 250)
+        if($.fn.wpColorPicker){
+            var aux = $("#widgets-right .colorPicker:not('.init')").wpColorPicker({
+                border: 'none',
+                width: '100%',
+                palettes: false,
+                mode: 'hsl',
+                change: debounce(function () { //Debounce color change event
+                    $(this).trigger('change');
+                }, 250)
 
-        });
-        aux.addClass('init');
+            });
+            aux.addClass('init');
+        }
     },
     initCKEditors: function () {
-        $('#widgets-right .kd_editor').ckeditor({});
+        $('#widgets-right .kd_editor').ckeditor(debounce(function(){
+            this.on('change', function(){
+                var changeEvent = new Event('change', {'bubbles': true});
+                this.updateElement();
+                this.element.$.dispatchEvent(changeEvent);
+            });
+        }, 1000));
     },
     initAceEditor: function () {
         if (!document.querySelectorAll('#custom_css').length)
@@ -98,9 +105,6 @@ var kd_admin = {
                 {
                     var editor = ace.edit(htmleditors[e].id);
                     var editor_id = htmleditors[e].id;
-
-
-
 
                     editor.setTheme("ace/theme/monokai");
                     editor.getSession().setMode("ace/mode/html");
@@ -294,9 +298,6 @@ var kd_admin = {
             selectionHeader: "<div class='custom-header'><a href='#' class='kd-button filled multiselect-js-deselectall'>Deselect All</a></div><br><input type='text' class='search-input' autocomplete='on' placeholder='Search within selected'><br><br>",
             afterInit: function (ms) {
 
-
-
-
                 var that = this,
                     $selectableSearch = that.$selectableUl.prev().prev().prev(),
                     $selectionSearch = that.$selectionUl.prev().prev().prev(),
@@ -307,7 +308,6 @@ var kd_admin = {
                     e.preventDefault();
                     that.select_all();
                 });
-
 
                 $('.multiselect-js-deselectall').click(function (e) {
                     e.preventDefault();
@@ -323,7 +323,6 @@ var kd_admin = {
                         }
                     });
 
-
                 that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
                     .on('keydown', function (e) {
                         if (e.which == 40) {
@@ -333,11 +332,8 @@ var kd_admin = {
                         }
                     });
 
-
             }
         });
-
-
 
         $(document).on('click', '*[id*="kd_featured"] input[id*="userandom"]', function (e) {
             if ($(this).attr('checked')) {
@@ -349,10 +345,48 @@ var kd_admin = {
                 $(this).parent().find('.multiselectjs').prev().show();
                 $(this).parent().find('.multiselectjs').prev().prev().show();
             }
-
         });
         $('.multiselectjs').multiSelect('refresh');
 
+    },
+    maps: function(){
+        if($('#widgets-right .map-canvas.init').length){
+            if(typeof google == 'undefined'){
+                var maps_script = document.createElement('script');
+                maps_script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE';
+                maps_script.onload = function() {
+                    geocoder = new google.maps.Geocoder();
+                    initMap();
+                };
+                document.body.appendChild(maps_script);
+            }else{
+                initMap();
+            }
+
+            function initMap(){
+                $('#widgets-right .map-canvas.init').each(function(index, ele){
+                    if (geocoder) {
+                        geocoder.geocode( {'address': ele.dataset.location}, function(result, status) {
+                            var location = result[0].geometry.location;
+
+                            var map = new google.maps.Map(ele, {
+                                center: location,
+                                zoom: ele.dataset.zoom * 1 || 10
+                            });
+
+                            var marker = new google.maps.Marker({
+                                map: map,
+                                position: location
+                            });
+
+                            console.log(map, location);
+
+                            ele.classList.remove('init');
+                        });
+                    }
+                });
+            }
+        }
     }
 };
 
@@ -709,8 +743,7 @@ function debounce(func, wait, immediate) {
         if (callNow)
             func.apply(context, args);
     };
-}
-;
+};
 
 function setFont(e) {
     if (!e.target.value)

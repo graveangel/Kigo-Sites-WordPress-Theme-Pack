@@ -6,16 +6,24 @@
     padding: 15px 15px 0;
   }
 
-  &.fixed .under_header{
-    position: fixed;
-    z-index: 995;
-    top: 0;
-    left: 50%;
-    padding: 10px 70px 10px 15px;
-    border: none;
-    background-color: white;
-    transform: translateX(-50%);
-    box-shadow: 0 15px 10px -10px rgba(black, .25);
+  &.fixed {
+    padding-bottom: 77px;
+
+    .under_header{
+      position: fixed;
+      z-index: 995;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 15px;
+      background-color: white;
+      box-shadow: 0 0 10px 0 rgba(black, .45);
+      transition: box-shadow .5s;
+    }
+  }
+
+  .kd-widget{
+    padding: 0 15px;
   }
 
   $cust-social-size: 35px;
@@ -73,13 +81,9 @@
   }
 
   a.logo-link{
-    position: fixed;
-    z-index: 999;
-    top: 15px;
-    left: 0;
     display: inline-block;
     height: 50px;
-    padding-left: 20px;
+//    padding-left: 20px;
 
     img{
       max-height: 100%;
@@ -92,8 +96,17 @@
   .under_header{
     padding: 10px 0;
     border-bottom: 1px solid #eee;
-    transition: box-shadow .5s;
-    min-height: 83px;
+    transition: box-shadow 0s;
+
+    .mobile-only{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .kd-widget{
+      padding: 0 15px;
+    }
   }
 }
 
@@ -105,9 +118,10 @@
     }
 
     &.fixed {
-      padding-bottom: 52px;
+        padding-bottom: 54px;
+
       .under_header {
-        padding: 15px 30px;
+        padding: 10px 30px;
 
         .kd-widget{
           padding: 0;

@@ -1,0 +1,30 @@
+.searchform
+{
+
+  margin-bottom: 15px;
+  label
+  {
+    display: block;
+    font-size: 20px;
+    line-height: 1em;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  input[type="text"]
+  {
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1em;
+    margin: 15px auto;
+  }
+
+  input[type="submit"]
+  {
+    padding: 10px 20px;
+    border: none;
+    background: $primary-color;
+    color: white;
+    text-transform: uppercase;
+  }
+}

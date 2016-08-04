@@ -7,12 +7,13 @@
                     <div class="col-md-4 col-xs-12">
                         <div class="image"><?php the_post_thumbnail('original') ?></div>
                     </div>
-                    <div class="col-md-5 col-xs-12">
+                    <div class="col-md-8 col-xs-12">
                         <?php }else{ ?>
 
                         <div class="col-md-12 col-xs-12">
                             <?php } ?>
-                            <h1 class="title"><?php the_title() ?></h1>
+                            <h1 class="title"><?php the_title() ?><?php the_date('Y-m-d', '<p class="post-date">', '</p>'); ?></h1>
+
                             <div class="body"><?php the_content() ?></div>
                         </div>
                     </div>

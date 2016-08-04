@@ -50,11 +50,10 @@ $kd-featured-dark-bg: #293033;
     position: relative;
     width: 100%;
     height: 200px;
-    background-color: $primary-color;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    test-align: left;
+    text-align: left;
     cursor: pointer;
     box-shadow: 0 0 3px 0 rgba(black, .5);
 
@@ -106,7 +105,6 @@ $kd-featured-dark-bg: #293033;
     .prop-details{
       display: block;
       padding: 10px 20px;
-      background-color: $secondary-color;
       text-transform: uppercase;
       color: $light-text;
       font-size: 15px;
@@ -166,9 +164,6 @@ $kd-featured-dark-bg: #293033;
         transition: background-color .3s;
         opacity: 1;
       }
-      .swiper-pagination-bullet-active {
-        background-color: $secondary-color;
-      }
     }
   }
 
@@ -214,7 +209,6 @@ $kd-featured-dark-bg: #293033;
             width: 150px;
             padding: 10px 20px;
             margin: 0;
-            background-color: $secondary-color;
             text-transform: uppercase;
             color: $light-text;
             font-size: 15px;

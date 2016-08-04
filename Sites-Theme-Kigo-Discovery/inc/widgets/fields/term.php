@@ -2,7 +2,7 @@
 
 $aux = sprintf('<select name="%s" id="%s">{options}</select>', $fi['name'], $fi['id']);
 
-$terms = get_terms('type');
+$terms = get_terms( 'type' );
 
 $termOptions = '';
 

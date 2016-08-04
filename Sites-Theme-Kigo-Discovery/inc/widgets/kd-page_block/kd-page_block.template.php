@@ -1,8 +1,10 @@
 <?php
-/* Get page object */
-$page = get_post($i['page']);
+global $post;
 
-setup_postdata($page);
+/* Get page object */
+$post = get_post($i['page']);
+
+setup_postdata($post);
 
 //If using featured image...
 if($i['useFeatured'] == 'on'){
@@ -37,13 +39,13 @@ $buttons = [
             <div class="info">
                 <div class="inner">
                     <?php if($i['displayTitle'] == 'on' && empty($i['customTitle'])){ ?>
-                        <h4 class="title"><?php echo $page->post_title ?></h4> <!-- TODO: fix global page title -->
+                        <h4 class="title"><?php the_title(); ?></h4>
                     <?php } ?>
                     <?php if(!empty($i['customTitle'])){ ?>
                         <h4 class="title"><?php echo $i['customTitle'] ?></h4>
                     <?php } ?>
                     <div class="body">
-                        <?php the_content() ?>
+                        <?php the_content(); ?>
                     </div>
                     <div class="buttons">
                         <?php foreach($buttons as $button){ if($button['url']){ ?>

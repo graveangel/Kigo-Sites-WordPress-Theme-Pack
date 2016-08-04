@@ -16,14 +16,16 @@ class KD_Items extends KD_Widget2 {
             ['name' => 'Settings', 'fields' =>
                 [
                     'title' => ['type' => 'text', 'label' => 'Title'],
-                    'type' => ['type' => 'term', 'label' => 'Item type', 'description' => 'Choose what <a href="/wp-admin/edit-tags.php?taxonomy=type&post_type=item" target="_blank">item type</a> to display.']
+                    'type'  => ['type' => 'term', 'label' => 'Item type', 'description' => 'Choose what <a href="/wp-admin/edit-tags.php?taxonomy=type&post_type=item" target="_blank">item type</a> to display.']
                 ]
             ],
             ['name' => 'Layout', 'fields' =>
                 [
                     'display' => ['type' => 'radio', 'label' => 'Display items as:', 'choices' => ['list' => 'List', 'slider' => 'Slider'], 'description' => 'Choose how to display items.'],
                     'columns' => ['type' => 'noUISlider', 'label' => 'Columns', 'attrs' => ['data-min' => 1, 'data-max' => 4], 'description' => 'Choose how many items to display per row.'],
-                    'limit' => ['type' => 'text', 'label' => 'Limit items to display', 'description' => 'Limit items.']
+                    'limit' => ['type' => 'text', 'label' => 'Limit items to display', 'description' => 'Limit items.'],
+                    'no_desc' => ['type' => 'checkbox', 'label' => 'Hide item descriptions'],
+                    'no_link' => ['type' => 'checkbox', 'label' => 'Disable item links'],
                 ]
             ],
         ];

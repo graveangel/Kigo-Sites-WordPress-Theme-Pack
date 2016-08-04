@@ -43,7 +43,6 @@ class Activation {
 
         if (!count($this->activeWidgets['header_right'])) {
 
-            //TODO: Add initial widgets if any
         }
 
         if (!count($this->activeWidgets['under_header_left'])) {
@@ -68,7 +67,7 @@ class Activation {
         if (!count($this->activeWidgets['under_header_right'])) {
 
             /* Create logins menu */
-            $loginMenuId = $this->createCustomMenu('Logins', ['Owner Login' => '#']);
+            $loginMenuId = $this->createCustomMenu('Logins', ['Owner Login' => 'https://newapp.kigo.net/']);
 
             $kd_login_menu_content = [
                 'menu' => $loginMenuId,
@@ -98,14 +97,14 @@ class Activation {
             $themeBAPI = new BAPIHelper();
 
             /* KD Hero */
-            //TODO: Find and host proper default images for hero slider
+
             $themePath = get_template_directory_uri();
             $kd_hero_content = array(
                 'color' => '#ffffff',
                 'primary_text' => 'FIND A PLACE TO STAY',
                 'secondary_text' => 'A NEW WAY TO DISCOVER AND ENJOY ADVENTURES',
                 'button_value' => 'SEARCH RENTALS',
-                'button_link' => '#',
+                'button_link' => '/rentals/rentalsearch',
                 'slides' => [
                     $themePath.'/kd-common/img/hero/barcelona.jpg',
                     $themePath.'/kd-common/img/hero/florence.jpg',
@@ -134,7 +133,7 @@ class Activation {
 
             $kd_pblock_content = [
                 'page' => $aboutUsPage->ID,
-                'image' => 'http://i.imgsafe.org/e32b879.png', //TODO: Possibly replace image if not on proper host
+                'image' => 'http://i.imgsafe.org/e32b879.png', //TODO: Replace with local image
                 'align' => 'left',
             ];
             $this->setWidget('page_home', 'kd_page_block', $kd_pblock_content);
@@ -259,7 +258,7 @@ class Activation {
             /* We add each page object into the new menu */
             $itemId = wp_update_nav_menu_item($menu_id, 0, array(
                     'menu-item-title' => $page->post_title,
-                    'menu-item-url' => get_the_permalink($page->ID),
+                    'menu-item-url' => $multilevel ? '#' : get_the_permalink($page->ID),
                     'menu-item-object' => 'page',
                     'menu-item-object-id' => $page->ID,
                     'menu-item-status' => 'publish',
@@ -274,8 +273,6 @@ class Activation {
 
         return $menu_id; //We return the menu id
     }
-
-    //TODO: Clean up both 'createBapiMenu' and 'createCustomMenu' to reuse code.
 
     private function createCustomMenu($name, $items){
         // Check if the menu exists
@@ -343,7 +340,7 @@ class Activation {
 
             //Contact us
             'contact-subtitle' => 'Drop us a line!',
-            'contact-left' => 'Left side content',
+            'contact-left' => '',
             'contact-under' => 'Find us on the map',
 
         );

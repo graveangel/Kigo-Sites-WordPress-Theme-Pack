@@ -4,10 +4,6 @@
     padding                       : 0;
   }
 
-  .sl-wrapper .sl-navigation button{
-    background-color: rgba(white, .2);
-  }
-
   /* Hero ---------------------------------------------------------------------*/
   .hero {
     position                      : relative;
@@ -31,6 +27,7 @@
   }
 
   .title {
+    max-width: $container-max-width;
     padding: 15px;
     position: absolute;
     bottom: 0;
@@ -56,10 +53,26 @@
       white-space: normal;
     }
 
+    #bapi-rateblock{
+      .amenity-value{
+        margin-top: 10px;
+        display: block;
+
+        button{
+          display: block;
+          max-width: none;
+          width: 100%;
+          font-size: 12px;
+          outline: 0;
+          margin-bottom: 5px;
+        }
+      }
+    }
+
     ul {
       li {
         width: 100%;
-        //        margin-bottom         : 15px;
+        margin-bottom         : 10px;
 
         .alert{
           margin-bottom: 0;
@@ -92,7 +105,7 @@
   }
   /* Book and inquire buttons---------------------------------------------------*/
   .buttons-box{
-    display: inline-block;
+    display: block;
     vertical-align: middle;
     margin-top: 15px;
   }
@@ -108,11 +121,13 @@
   }
   .book-now-button,
   .inquire-button{
+    width: 100%;
+    display: block;
     margin                        : auto;
-    max-width                     : 500px;
     border                        : none;
     font-size: 16px;
     color: white;
+    vertical-align: top;
   }
 
   /* Property descriptions-----------------------------------------------------*/
@@ -422,15 +437,38 @@ Media Tablets horizontal
       padding                   : 15px;
       display                   :inline-block;
       float                     : left;
-      .alert{
-        white-space: nowrap;
+
+
+
+
+      #bapi-rateblock{
+        .alert{
+          width: auto;
+          white-space: nowrap;
+        }
+        .amenity-value{
+          margin-top: auto;
+          display: inline-block;
+
+          button{
+            display: inline-block;
+            width: auto;
+            margin-bottom: 0;
+          }
+        }
+        .buttons-box{
+          margin-top: 0;
+        }
       }
+
       ul {
         li {
           display: inline-block;
           vertical-align: middle;
           width: auto;
           margin-right      : 20px;
+
+
 
           span {
             display: inline-block;
@@ -471,9 +509,9 @@ Media Tablets horizontal
     .book-now-button,
     .inquire-button {
       display: inline-block;
-      vertical-align: middle;
+      vertical-align: top;
       margin-left: 10px;
-      font-size: 16px;
+      font-size: 12px;
     }
 
     .property-description {
@@ -568,10 +606,6 @@ Media Tablets horizontal
       font-size                 : 14px;
     }
 
-    .property-features {
-      padding                   : 0;
-    }
-
     .amenities-list {
       margin-top                : 12px;
       .amenity-detail-list {
@@ -660,10 +694,7 @@ Media Tablets horizontal
     box-sizing                    : border-box;
   }
 }
-
-
-.rates-availability .ui-datepicker-group
-{
+.rates-availability .ui-datepicker-group {
   margin: auto;
   display: block;
   float: none;
@@ -680,7 +711,6 @@ Media Tablets horizontal
     }
   }
 }
-
 .rates-availability {
   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
     background: $primary-color;
@@ -699,14 +729,11 @@ Media Tablets horizontal
     }
   }
 }
+
 @media (min-width                     : 480px){
   .rates-availability .ui-datepicker-group
   {
     display: inline-block;
-  }
-
-  #bapi-rateblock .buttons-box{
-    margin-top: 0;
   }
 }
 /*=============================================================================
@@ -789,10 +816,16 @@ Media Desktop
 
 .pop-up-form-link {
   font-size: 12px;
-  color: $primary-color;
-  text-decoration:underline;
-  text-decoration-style: dotted;
+  padding: 12px;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &.update{
+    margin: 0 15px;
+    text-decoration: underline;
+  }
 }
+
 .pop-up-booking-form {
   position:   fixed;
   height:     100%;
@@ -805,11 +838,18 @@ Media Desktop
   .booking-form {
     box-sizing: border-box;
     border-radius: 5px;
-    padding: 40px;
+    padding: 10px;
     height: auto;
     max-width: 400px;
-    margin: 15% auto;
+    margin: 10% auto auto;
     background: #fff;
+
+    .leadrequest{
+      .span6{
+        margin: 0;
+      }
+    }
+
     .glyphicons-list-alt{
       font-size: 30px;
       color: #999;
@@ -827,8 +867,9 @@ Media Desktop
         color:       #999;
         font-size:   35px;
       }
-
-
+    }
+    .span6{
+      margin-top: 10px;
     }
     .update-info-label {
       font-size: 15px;
@@ -840,7 +881,7 @@ Media Desktop
     }
 
     .bapi-getquote {
-      margin: auto;
+      margin: 15px auto auto;
       float: none;
       text-align: center;
       position: static;
@@ -853,9 +894,8 @@ Media Desktop
 
     .picker__input,.quicksearch  {
       cursor:        default;
-      padding:       10px;
+      padding:       5px 10px;
       width:         100%;
-      margin-bottom: 10px;
       border: 1px solid #bbb;
       border-radius: 5px;
     }
@@ -869,9 +909,6 @@ Media Desktop
 
 .bapi-rateblock {
   display: inline-block;
-  .alert{
-    max-width: 360px;
-  }
 }
 .sl-overlay {
   background: rgba(0,0,0,0.8);
@@ -881,6 +918,13 @@ Media Desktop
   display: block;
 }
 
+.sl-wrapper{
+  color: white;
+  font-size: 22px;
+  .sl-navigation button{
+    font-size: 32px;
+  }
+}
 
 .template-property{
   #book-block {
@@ -897,6 +941,7 @@ Media Desktop
     vertical-align: middle;
     float: none;
     .alert {
+      width: 100%;
       padding: 0;
       display: inline-block;
     }
@@ -906,5 +951,18 @@ Media Desktop
 @media screen and (min-width: $bp-sm){
   .similar-prop{
     text-align: left;
+  }
+
+  .pop-up-booking-form .booking-form{
+    padding: 30px;
+  }
+
+  .template-property{
+    .buttons-box{
+      display: inline-block;
+    }
+    .book-now-button, .inquire-button{
+      width: auto;
+    }
   }
 }

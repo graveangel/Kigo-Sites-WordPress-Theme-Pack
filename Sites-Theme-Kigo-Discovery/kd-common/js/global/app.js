@@ -37,23 +37,27 @@ var app = {
     },
     fixedHeader: function(){
 
-        checkHeader(); //Check in case page has loaded with scroll
+        var body = document.querySelector('body'),
+            header = document.querySelector('.header-background'),
+            underHeader = document.querySelector('.header-background .under_header');
+
+        var scrollMax = header.clientHeight - underHeader.clientHeight;
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
-        window.addEventListener('scroll', debounce(checkHeader, 10)); //ms
+        window.addEventListener('scroll', checkHeader); //ms
+
+        checkHeader(); //Check in case page has loaded with scroll
 
         function checkHeader(){
-
-            var currentScroll = window.scrollY,
-                header = document.querySelector('.header-background'),
-                overHeader = document.querySelector('.header-background .header');
-
-            var scrollMax = overHeader.clientHeight;
-
-            if(currentScroll >= 121){
+            var currentScroll = window.scrollY;
+            
+            if(currentScroll >= scrollMax){
                 header.classList.add('fixed');
-            }else{
+                //body.style.paddingTop = underHeader.clientHeight + 'px';
+            }
+            else{
                 header.classList.remove('fixed');
+                //body.style.paddingTop = 0;
             }
         }
     },
@@ -106,24 +110,24 @@ var app = {
             });
         },
         recursiveGet: function(entity, callback, auxOptions){
-            var options = auxOptions || {};
+            var options = auxOptions || {pagesize: 20, waitForAll: false};
             BAPI.search(entity, options, function (sdata) {
-                var propPages = _.chunk(sdata.result, options.pagesize);
+                var pages = _.chunk(sdata.result, options.pagesize);
 
-                if(auxOptions.waitForAll == 1){
+                if(options.waitForAll == 1){
                     var all = [], iterations = 0;
-                    propPages.forEach(function(page, i){
+                    pages.forEach(function(page, i){
                         BAPI.get(page, entity, options, function (gdata) {
                             iterations++;
                             all = _.concat(all, gdata.result);
 
-                            if(iterations == (propPages.length)){ //Last iteration
+                            if(iterations == (pages.length)){ //Last iteration
                                 callback({result: all, textdata: BAPI.textdata});
                             }
                         });
                     });
                 }else{
-                    propPages.forEach(function(page, i){
+                    pages.forEach(function(page, i){
                         BAPI.get(page, entity, options, function (gdata) {
                             callback(gdata);
                         });

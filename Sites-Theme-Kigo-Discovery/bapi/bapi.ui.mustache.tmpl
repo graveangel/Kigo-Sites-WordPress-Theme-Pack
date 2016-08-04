@@ -48,28 +48,19 @@
 
 <script id="tmpl-allproperties" type="text/html">
     <table class="">
-        <!--<table class="table table-bordered table-striped">-->
         <thead>
         <tr>
-            <!--<th></th>-->
             <th>{{textdata.Property Name}}</th>
             <th>{{textdata.Category}}</th>
             <th>{{textdata.Beds}}</th>
             <th>{{textdata.Baths}}</th>
             <th>{{textdata.Sleeps}}</th>
-            <!--<th>{{textdata.Amenities}}</th>-->
             <th>{{textdata.Rates}}</th>
-            <th></th>
         </tr>
         </thead>
         <tbody>
         {{#result}}
             <tr>
-                <!--<td>-->
-                <!--<button class="btn btn-mini add-wishlist bapi-wishlisttracker{{#inmylist}} active{{/inmylist}}" data-pkid="{{ID}}" type="button" data-toggle="button">-->
-                <!--<span class="halflings heart-empty"><i></i>{{^inmylist}}{{textdata.WishList}}{{/inmylist}}{{#inmylist}}{{textdata.WishListed}}{{/inmylist}}</span>-->
-                <!--</button>		-->
-                <!--</td>-->
                 <td>
                     {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
                     {{Headline}}
@@ -79,7 +70,6 @@
                 <td>{{Bedrooms}}</td>
                 <td>{{Bathrooms}}</td>
                 <td>{{Sleeps}}</td>
-                <!--<td><span>{{TopAmenities}}</span></td>   -->
                 <td>{{ContextData.Quote.PublicNotes}}</td>
                 <td>
                     {{^IsBookable}}
@@ -94,7 +84,9 @@
         </tbody>
     </table>
     <div class="clearfix"></div>
-        {{> partial-more-results}}
+        {{^islastpage}}<div class="showmore"><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</span></div>{{/islastpage}}
+        {{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
+
 </script>
 
 <script id="tmpl-properties-ratetable" type="text/html">
@@ -111,30 +103,30 @@
     {{#ContextData.Rates.Values}}
         <tr>
         {{#0}}<td>{{0}}</td>{{/0}}
-{{#1}}<td>{{1}}</td>{{/1}}
-{{#2}}<td>{{2}}</td>{{/2}}
-{{#3}}<td>{{3}}</td>{{/3}}
-{{#4}}<td>{{4}}</td>{{/4}}
-{{#5}}<td>{{5}}</td>{{/5}}
-{{#6}}<td>{{6}}</td>{{/6}}
-{{#7}}<td>{{7}}</td>{{/7}}
-{{#8}}<td>{{8}}</td>{{/8}}
-{{#9}}<td>{{9}}</td>{{/9}}
-{{#10}}<td>{{10}}</td>{{/10}}
-{{#11}}<td>{{11}}</td>{{/11}}
-{{#12}}<td>{{12}}</td>{{/12}}
-{{#13}}<td>{{13}}</td>{{/13}}
-{{#14}}<td>{{14}}</td>{{/14}}
-{{#15}}<td>{{15}}</td>{{/15}}
-{{#16}}<td>{{16}}</td>{{/16}}
-{{#17}}<td>{{17}}</td>{{/17}}
-{{#18}}<td>{{18}}</td>{{/18}}
-{{#19}}<td>{{19}}</td>{{/19}}
-{{#20}}<td>{{20}}</td>{{/20}}
-</tr>
-{{/ContextData.Rates.Values}}
-</tbody>
-</table>
+        {{#1}}<td>{{1}}</td>{{/1}}
+        {{#2}}<td>{{2}}</td>{{/2}}
+        {{#3}}<td>{{3}}</td>{{/3}}
+        {{#4}}<td>{{4}}</td>{{/4}}
+        {{#5}}<td>{{5}}</td>{{/5}}
+        {{#6}}<td>{{6}}</td>{{/6}}
+        {{#7}}<td>{{7}}</td>{{/7}}
+        {{#8}}<td>{{8}}</td>{{/8}}
+        {{#9}}<td>{{9}}</td>{{/9}}
+        {{#10}}<td>{{10}}</td>{{/10}}
+        {{#11}}<td>{{11}}</td>{{/11}}
+        {{#12}}<td>{{12}}</td>{{/12}}
+        {{#13}}<td>{{13}}</td>{{/13}}
+        {{#14}}<td>{{14}}</td>{{/14}}
+        {{#15}}<td>{{15}}</td>{{/15}}
+        {{#16}}<td>{{16}}</td>{{/16}}
+        {{#17}}<td>{{17}}</td>{{/17}}
+        {{#18}}<td>{{18}}</td>{{/18}}
+        {{#19}}<td>{{19}}</td>{{/19}}
+        {{#20}}<td>{{20}}</td>{{/20}}
+        </tr>
+    {{/ContextData.Rates.Values}}
+    </tbody>
+    </table>
 {{/result}}
 </script>
 /*
@@ -148,15 +140,15 @@ Group: Attractions
             <div class="span6 form-horizontal">
                 <div class="control-group control-group-attraction">
                     {{#config.haspoitypefilter.enabled}}
-                    <label class="control-label" for="poitypefilter-dpd">{{textdata.Filter by}}:</label>
-                    <div class="controls">
-                        <select id="poitypefilter-dpd">
-                            <option value="">- {{textdata.Select}} -</option>
-                            {{#config.haspoitypefilter.values}}
-                            <option value="{{ID}}">{{Name}}</option>
-                            {{/config.haspoitypefilter.values}}
-                        </select>
-                    </div>
+                        <label class="control-label" for="poitypefilter-dpd">{{textdata.Filter by}}:</label>
+                        <div class="controls">
+                            <select id="poitypefilter-dpd">
+                                <option value="">- {{textdata.Select}} -</option>
+                                {{#config.haspoitypefilter.values}}
+                                    <option value="{{ID}}">{{Name}}</option>
+                                {{/config.haspoitypefilter.values}}
+                            </select>
+                        </div>
                     {{/config.haspoitypefilter.enabled}}
                 </div>
             </div>
@@ -166,15 +158,15 @@ Group: Attractions
         </section>
         <div id="map-locations">
             {{#result}}
-            <div class="col-xs-12 col-sm-4">
-                <div class="item-result">
-                    <div class="item-inner">
-                        <div class="item-images" style="background-image: url({{&PrimaryImage.ThumbnailURL}});">
-                            <div class="poi-map-location" data-id="{{ContextData.ItemIndex}}" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
-                                <a href="#" class="poi-map-item"><div class="number-tag">{{&ContextData.ItemIndex}}</div></a>
-                                <div class="info-html">
-                                    <div class="marker-infowindow">
-                                        <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="item-result">
+                        <div class="item-inner">
+                            <div class="item-images" style="background-image: url({{&PrimaryImage.ThumbnailURL}});">
+                                <div class="poi-map-location" data-id="{{ContextData.ItemIndex}}" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
+                                    <a href="#" class="poi-map-item primary-fill-hover-color"><div class="number-tag">{{&ContextData.ItemIndex}}</div></a>
+                                    <div class="info-html">
+                                        <div class="marker-infowindow">
+                                            <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
                                         <span class="prop-location pull-left">
                                             <span>
                                                 {{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
@@ -184,27 +176,27 @@ Group: Attractions
                                                 <b>{{textdata.Address}}: </b>{{&Location}}
                                             </span>
                                         </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item-info shadow">
-                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
-                            <h2 class="title">{{Name}}</h2>
-                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
-                            <div class="description bapi-truncate" data-trunclen="100">{{&Summary}}</div>
-                            {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="btn kd-button primary-fill-color attraction-detail-link">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+                            <div class="item-info shadow">
+                                {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
+                                <h2 class="title">{{Name}}</h2>
+                                {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
+                                <div class="description bapi-truncate" data-trunclen="100">{{&Summary}}</div>
+                                {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="btn kd-button primary-fill-color attraction-detail-link">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             {{/result}}
             {{#site.office.ShowOnMap}}
-            <div class="poi-map-location hide" data-id="{{site.solutionid}}" data-jmapping='{ "id": {{site.solutionid}}, "point": { "lng": {{site.office.Longitude}}, "lat": {{site.office.Latitude}} }, "category": "pinOffice}"}'>
-                <a href="#" class="poi-map-item">{{site.solutionnameinformal}}</a>
-                <div class="info-html">
-                    <div class="marker-infowindow">
-                        <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&site.logo}}" alt="{{site.tagline}}"></span>
+                <div class="poi-map-location hide" data-id="{{site.solutionid}}" data-jmapping='{ "id": {{site.solutionid}}, "point": { "lng": {{site.office.Longitude}}, "lat": {{site.office.Latitude}} }, "category": "pinOffice}"}'>
+                    <a href="#" class="poi-map-item">{{site.solutionnameinformal}}</a>
+                    <div class="info-html">
+                        <div class="marker-infowindow">
+                            <span class="prop-image pull-left"><img style="max-height:175px; max-width:175px" src="{{&site.logo}}" alt="{{site.tagline}}"></span>
                         <span class="prop-location pull-left">
                             <span>
                                 <a target="_blank" href="mailto:{{&site.email}}">
@@ -212,57 +204,57 @@ Group: Attractions
                                 <b>{{textdata.Address}}: </b>{{&site.office.Address1}}
                             </span>
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
             {{/site.office.ShowOnMap}}
         </div>
     </div>
     <div class="clearfix"></div>
-    {{> partial-more-results}}
+        {{> partial-more-results}}
 </script>
 
 <script id="tmpl-attractions-detail" type="text/html">
-    {{#result}}
-    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="poi"></div>
-    <section class="row-fluid">
-        <div class="span12 item-snapshot module shadow-border">
-            <div class="top-block">
-                <div class="row-fluid">
-                    <div class="span12 box-sides">
-                        <h2 class="title">{{Name}}</h2>
+        {{#result}}
+        <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="poi"></div>
+        <section class="row-fluid">
+            <div class="span12 item-snapshot module shadow-border">
+                <div class="top-block">
+                    <div class="row-fluid">
+                        <div class="span12 box-sides">
+                            <h2 class="title">{{Name}}</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-slideshow">
+                    <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                        <ul class="slides">
+                            {{^Images}}
+                            <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
+                                {{#PrimaryImage.Caption}}<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>{{/PrimaryImage.Caption}}
+                            {{/Images}}
+                            {{#Images}}
+                            <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
+                                {{#Caption}}<p class="flex-caption">{{Caption}}</p></li>{{/Caption}}
+                            {{/Images}}
+                        </ul>
+                    </div>
+                    <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                        <ul class="slides">
+                            {{^Images}}
+                                <li class="primary"><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                            {{/Images}}
+                            {{#Images}}
+                                <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                            {{/Images}}
+                        </ul>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="item-slideshow">
-                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
-                    <ul class="slides">
-                        {{^Images}}
-                        <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
-                            {{#PrimaryImage.Caption}}<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>{{/PrimaryImage.Caption}}
-                        {{/Images}}
-                        {{#Images}}
-                        <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
-                            {{#Caption}}<p class="flex-caption">{{Caption}}</p></li>{{/Caption}}
-                        {{/Images}}
-                    </ul>
-                </div>
-                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
-                    <ul class="slides">
-                        {{^Images}}
-                        <li class="primary"><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
-                        {{/Images}}
-                        {{#Images}}
-                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
-                        {{/Images}}
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="row-fluid item-info module shadow-border">
+        <section class="row-fluid item-info module shadow-border">
             <div class="tabbable">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab1" data-toggle="tab">{{textdata.Location}}</a></li>
@@ -274,15 +266,15 @@ Group: Attractions
                             <div class="span6 box-left">
                                 <h3>{{textdata.Nearby Rentals}}</h3>
                                 <div id="map-locations">
-                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}}}, "category": "mainPoi"}'>
-                                        - &nbsp;<a href="#" class="poi-map-item">{{Name}}</a>
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "mainPoi"}'>
+                                        &nbsp;<a href="#" class="poi-map-item">{{Name}}</a>
                                         <div class="info-html">
                                             <div class="gmap-poi">
                                                 <div class="gmap-img">
                                                     <img src='{{&PrimaryImage.ThumbnailURL}}' alt='{{PrimaryImage.Caption}}' title='{{PrimaryImage.Caption}}' width="195"/>
                                                 </div>
                                                 <div class="gmap-text">
-                                                    <p><b>{{Name}}</b></p>
+                                                    <p><b><a href="{{ContextData.SEO.DetailURL}}">{{Name}}</a></b></p>
                                                     <div class="summary bapi-truncate" data-trunclen="100">{{&Summary}}</div>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -290,28 +282,27 @@ Group: Attractions
                                         </div>
                                     </div>
                                     {{#ContextData.NearbyProperties}}
-                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}}}, "category": "poi-{{ContextData.ItemIndex}}"}'>
-                                        {{ContextData.ItemIndex}}&nbsp;-&nbsp;<a href="#" class="poi-map-item">{{Headline}}</a> - {{ContextData.Distance}}
-                                        <div class="info-html">
-                                            <div class="gmap-property">
-                                                <div class="gmap-img">
-                                                    {{#ContextData.SEO.DetailURL}}
-                                                    <a href="{{ContextData.SEO.DetailURL}}">
-                                                        {{/ContextData.SEO.DetailURL}}
-                                                        <img src='{{&PrimaryImage.ThumbnailURL}}' alt='{{PrimaryImage.Caption}}' title='{{PrimaryImage.Caption}}' />
-                                                        {{#ContextData.SEO.DetailURL}}
-                                                    </a>
-                                                    {{/ContextData.SEO.DetailURL}}
+                                        <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category": "poi-{{ContextData.ItemIndex}}"}'>
+                                            {{ContextData.ItemIndex}}&nbsp;-&nbsp;<a href="#" class="poi-map-item">{{Headline}}</a>{{#ContextData.Distance}} - {{ContextData.Distance}}{{/ContextData.Distance}}
+                                            <div class="info-html">
+                                                <div class="gmap-property">
+                                                    <div class="gmap-img">
+                                                        <a href="{{ContextData.SEO.DetailURL}}">
+                                                            <img src='{{&PrimaryImage.ThumbnailURL}}' alt='{{PrimaryImage.Caption}}' title='{{PrimaryImage.Caption}}' />
+                                                        </a>
+                                                    </div>
+                                                    <div class="gmap-text">
+                                                        <p>
+                                                            <a href="{{ContextData.SEO.DetailURL}}">
+                                                                <b>{{Headline}}</b>
+                                                            </a>
+                                                        </p>
+                                                        <div>{{&Summary}}</div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
                                                 </div>
-                                                <div class="gmap-text">
-                                                    <p>{{#ContextData.SEO.DetailURL}}<a href="{{ContextData.SEO.DetailURL}}">{{/ContextData.SEO.DetailURL}}<b>{{Headline}}</b>{{#ContextData.SEO.DetailURL}}</a>{{/ContextData.SEO.DetailURL}}</p>
-
-                                                    <div class="summary bapi-truncate" data-trunclen="100">{{&Summary}}</div>
-                                                </div>
-                                                <div class="clearfix"></div>
                                             </div>
                                         </div>
-                                    </div>
                                     {{/ContextData.NearbyProperties}}
                                 </div>
                             </div>
@@ -330,39 +321,37 @@ Group: Attractions
                     </div>
                 </div>
             </div>
-    </section>
+        </section>
 
-    <div data-move=".detail-overview-target" class="poi-contact-details module shadow">
-        <div class="pd">
-            <h3><span class="glyphicons glyphicons-notes-2"></span>{{textdata.Details}}</h3>
-            <hr/>
-            <div class="details-list">
-                {{#Type}}
-                <div><span>{{textdata.Category}}:</span><span>{{Type}}</span></div>
-                {{/Type}}
-                {{#Location}}
-                <div><span>{{textdata.Address}}:</span><span>{{&Location}}</span></div>
-                {{/Location}}
-                {{#Phone1}}
-                <div><span>{{textdata.Phone}}:</span><span>{{Phone1}}</span></div>
-                {{/Phone1}}
-                {{#Email}}
-                <div><span>{{textdata.Email}}:</span><span>{{Email}}</span></div>
-                {{/Email}}
-                {{#Website}}
-                <div><span>{{textdata.Web Address}}:</span><span><a href="{{&Website}}" target="_blank">{{Website}}</a></span></div>
-                {{/Website}}
+        <div data-move=".detail-overview-target" class="poi-contact-details module shadow">
+            <div class="pd">
+                <h3><span class="glyphicons glyphicons-notes-2"></span>{{textdata.Details}}</h3>
+                <hr/>
+                <div class="details-list">
+                    {{#Type}}
+                        <div><span>{{textdata.Category}}:</span><span>{{Type}}</span></div>
+                    {{/Type}}
+                    {{#Location}}
+                        <div><span>{{textdata.Address}}:</span><span>{{&Location}}</span></div>
+                    {{/Location}}
+                    {{#Phone1}}
+                        <div><span>{{textdata.Phone}}:</span><span>{{Phone1}}</span></div>
+                    {{/Phone1}}
+                    {{#Email}}
+                        <div><span>{{textdata.Email}}:</span><span>{{Email}}</span></div>
+                    {{/Email}}
+                    {{#Website}}
+                        <div><span>{{textdata.Web Address}}:</span><span><a href="{{&Website}}" target="_blank">{{Website}}</a></span></div>
+                    {{/Website}}
+                </div>
+                <hr>
             </div>
-            <hr>
         </div>
-    </div>
 
-    {{/result}}
+        {{/result}}
     <span class="end"></span>
 </script> 
-/*
-Group: Booking
-*/
+
 <script id="tmpl-booking-makebooking-masterlayout" type="text/html">
         {{#result}}
         <div class="module shadow-border">
@@ -398,7 +387,7 @@ Group: Booking
                                 <div id="stayinfo"></div>
                                 <div id="statement"></div>
                                 <div id="question-support" class="item row-fluid">
-                                    <h5 class="module"><i clas="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
+                                    <h5 class="module"><i class="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
                                     <p>{{textdata.Phone}}: <span class="pull-right">{{site.phone}}</span></p>
                                     <p>{{textdata.Email}}: <span class="pull-right">{{site.email}}</span></p>
                                 </div>
@@ -418,7 +407,7 @@ Group: Booking
             {{^ContextData.Quote.IsValid}}
             <div class="alert alert-error">{{ContextData.Quote.ValidationMessage}}</div>
             {{/ContextData.Quote.IsValid}}
-        <span class="glyphicons module notes_2 hide"><i></i>{{textdata.Booking Details}}</span>
+        <span class="module notes_2 hide">{{textdata.Booking Details}}</span>
         <div id="details" class="item row-fluid">
             <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-In}}</span> <span class="pull-right">{{session.searchparams.scheckin}}</span></p>
             <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-Out}}</span> <span class="pull-right">{{session.searchparams.scheckout}}</span></p>
@@ -427,722 +416,57 @@ Group: Booking
             <p><div data-target="#revisedates" data-toggle="modal" class="bapi-showrevise kd-button secondary-fill-color filled">{{textdata.Change Info}}</div></p>
         </div>
 
-        <div id="revisedates" class="modal pop-up-booking-form" tabindex="-1" role="dialog">
-            <div class="booking-form">
-                <div class="close"></div>
-                <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
+        <div  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-body">
                 <div class="row-fluid">
-                    <div class="span6">
-                        <label fore="rateblockcheckin">{{textdata.Check-In}}</label>
-                        <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
-                    </div>
-                    <div class="span6">
-                        <label for="rateblockcheckout">{{textdata.Check-Out}}</label>
-                        <input id="rateblockcheckout" class="span12 quicksearch datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
-                        <input style="display:none" class="quicksearch" type="text" value="" data-field="los">
-                    </div>
+
                 </div>
                 <div class="row-fluid">
                     <div class="span6">
-                        <label for="rateblockadults">{{textdata.Adults}}</label>
-                        <input id="rateblockadults" class="span12 quicksearch adultsfield" type="text" placeholder="{{textdata.Adults}}" value={{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}} data-field="adults[min]" required>
+                        <label>{{textdata.Adults}}</label>
+                        <input class="span12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}}" data-field="adults[min]" required>
                     </div>
                     <div class="span6">
-                        <label for="rateblockchildren">{{textdata.Children}}</label>
-                        <input id="rateblockchildren" class="span12 quicksearch childrenfield" type="text" placeholder="{{textdata.Children}}" value={{#session.searchparams.children.min}}
-                            {{session.searchparams.children.min}}
-                        {{/session.searchparams.children.min}}
-                            {{^session.searchparams.children.min}}0
-                            {{/session.searchparams.children.min}} data-field="children[min]" required>
+                        <label>{{textdata.Children}}</label>
+                        <input class="span12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{#session.searchparams.children.min}}{{session.searchparams.children.min}}{{/session.searchparams.children.min}}{{^session.searchparams.children.min}}0{{/session.searchparams.children.min}}" data-field="children[min]" required>
                     </div>
                 </div>
-                <button class="btn btn-mini bapi-getquote" type="button">{{textdata.Submit}}</button>
             </div>
         </div>
 
-        {{/result}}
-</script>
+        <div id="revisedates" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
 
-<script id="tmpl-booking-makebooking-statement" type="text/html">
-    <hr />
-        {{#result}}
-            {{#ContextData.Quote.IsValid}}
-                {{#ContextData.Quote.Statement}}
-                <div id="charges" class="item row-fluid">
-                    <h5>{{textdata.Charges}} <small class="charges-detail"><a href="#statement-details" data-target="#statement-details" data-toggle="modal">({{textdata.Details}})</a></small></h5>
-                    <p>
-                        {{textdata.Rent}}<span class="pull-right">{{ServicesTotal.LocalCurrencySymbol}}{{ServicesTotal.LocalSValue2}}</span>
-                        <span class="glyphicons circle_question_mark" ><a><i></i></a></span>
-                    </p>
-                    <p>
-                        {{textdata.Taxes & Fees}}<span class="pull-right">{{TaxesAndFeesTotal.LocalCurrencySymbol}}{{TaxesAndFeesTotal.LocalSValue2}}</span>
-                        <span class="glyphicons circle_question_mark" ><a><i></i></a></span>
-                    </p>
-                    {{#DepositsTotal.Value}}
-                        <p>
-                            {{textdata.Refundable Security Deposit}}<span class="pull-right">{{DepositsTotal.LocalCurrencySymbol}}{{DepositsTotal.LocalSValue2}}</span>
-                            <span class="glyphicons circle_question_mark" ><a><i></i></a></span>
-                        </p>
-                    {{/DepositsTotal.Value}}
-                    {{#OptionalFees.length}}
-                        <hr />
-                    <div id="ofees" class="item row-fluid">
-                        <h5>{{textdata.Optional Fees & Services}}</h5>
-                    {{/OptionalFees.length}}
-                    {{#OptionalFees}}
-                        <p>
-                            {{#BoolField}}<input type="checkbox" class="bapi-optionalfee" {{#Quantity}}checked{{/Quantity}} data-rid="{{RelatedToID}}" data-reid="{{RelatedToEntityID}}" />{{/BoolField}}
-                            {{^BoolField}}<input type="number" class="col-xs-2 bapi-optionalfee" {{#MinQty}}min="{{MinQty}}"{{/MinQty}}{{^MinQty}}min="0"{{/MinQty}} max="{{MaxQty}}" value="{{Quantity}}" data-rid="{{RelatedToID}}" data-reid="{{RelatedToEntityID}}" />{{/BoolField}}
-                            <span>{{{Notes}}}</span>
-                            <span class="pull-right">{{#SubTotal}}{{OptionalFeesTotal.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span>
-                        </p>
-                    {{/OptionalFees}}
-                    {{#OptionalFees.length}}
+            <form class="revisedates">
+                <div class="booking-form">
+                    <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
+                    <div class="row-fluid">
+                        <div class="span6">
+                            <label>{{textdata.Check-In}}</label>
+                            <input id="makebookingcheckin" class="span12 revisedates datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
+                        </div>
+                        <div class="span6">
+                            <label>{{textdata.Check-Out}}</label>
+                            <input id="makebookingcheckout" class="span12 revisedates datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
+                        </div>
                     </div>
-                    {{/OptionalFees.length}}
 
-                    <hr />
-                    <div id="discount" class="item row-fluid">
-                        <h5>{{textdata.Discounts}}</h5>
-                        {{#Discounts}}
-                            <p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{DiscountsTotal.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
-                        {{/Discounts}}
-                        <label>
-                            <input type="text" placeholder="{{textdata.Coupon Code}}" class="col-xs-6 revisedates" value="{{session.searchparams.coupon}}" data-field="Coupon" />
-                            <small><a href="javascript:void(0)" class="bapi-applyspecial">{{textdata.Apply}}</a></small>
-                            <span class="pull-right">----</span>
-                        </label>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label>Adults</label>
+                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{session.searchparams.adults.min}}" data-field="adults[min]" required="">
+                        </div>
+                        <div class="col-xs-6">
+                            <label>Children</label>
+                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{session.searchparams.children.min}}" data-field="children[min]" required="">
+                        </div>
                     </div>
-                </div>
-                <div id="msgs" class="item row-fluid">
-                    <div class="primary-fill-color total-block">
-                        <p><strong>{{textdata.Total}}<span class="pull-right">{{TotalDue.LocalCurrencySymbol}} {{TotalDue.LocalSValue2}}</span></strong></p>
-                        <p><strong>{{textdata.Amount Due Now}}<span class="pull-right">{{TotalDueNow.LocalCurrencySymbol}} {{TotalDueNow.LocalSValue2}}</span></strong></p>
-                        {{#HasLocalCurrency}}
-                            <hr />
-                            <p>{{textdata.You will pay in}} {{Currency}}</p>
-                            <p><strong>{{textdata.Total}}<span class="pull-right">{{TotalDueNow.CurrencySymbol}} {{Total}}</span></strong></p>
-                            <p><strong>{{textdata.Amount Due Now}}<span class="pull-right">{{TotalDueNow.CurrencySymbol}} {{TotalDueNow.SValue2}}</span></strong></p>
-                        {{/HasLocalCurrency}}
-                    </div>
-                    {{#ContextData.Quote.PaymentTerms}}
-                        <div class="msg-gray msg-center"><p class="text-center">{{&ContextData.Quote.PaymentTerms}}</p></div>
-                    {{/ContextData.Quote.PaymentTerms}}
-                </div>
-                {{/ContextData.Quote.Statement}}
-            {{/ContextData.Quote.IsValid}}
-        {{/result}}
 
-        {{#result}}
-            {{#ContextData.Quote.Statement}}
-            <div id="statement-details" class="modal fade" role="dialog" aria-hidden="true">
-            <div class="row">
-                <div class="col-md-6 col-xs-12 m-auto">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3>{{textdata.Charges}}</h3>
-                    </div>
-                    <div class="modal-body">
-                        {{#Services.length}}
-                        <div id="charges-modal" class="item row-fluid">
-                            <h5>{{textdata.Rent}}</h5>
-                        {{/Services.length}}
-                        {{#Services}}
-                            {{#config.statementsettings.lumpfees}}
-                                {{#config.statementsettings.lumptaxes}}
-                                    <p>{{{Notes}}} <small>Incl. Fees & Taxes</small><span class="pull-right">{{#TaxesFeesAndServicesTotal}}{{TaxesFeesAndServicesTotal.LocalCurrencySymbol}}{{TaxesFeesAndServicesTotal.LocalSValue2}}{{/TaxesFeesAndServicesTotal}}{{^TaxesFeesAndServicesTotal}}--{{/TaxesFeesAndServicesTotal}}</span></p>
-                                {{/config.statementsettings.lumptaxes}}
-                                {{^config.statementsettings.lumptaxes}}
-                                    <p>{{{Notes}}} <small>Incl. Fees</small><span class="pull-right">{{#FeesAndServicesTotal}}{{FeesAndServicesTotal.LocalCurrencySymbol}}{{FeesAndServicesTotal.LocalSValue2}}{{/FeesAndServicesTotal}}{{^FeesAndServicesTotal}}--{{/FeesAndServicesTotal}}</span></p>
-                                {{/config.statementsettings.lumptaxes}}
-                            {{/config.statementsettings.lumpfees}}
-                            {{^config.statementsettings.lumpfees}}
-                                {{#config.statementsettings.lumptaxes}}
-                                    <p>{{{Notes}}} <small>Incl. Taxes</small><span class="pull-right">{{#TaxesAndServicesTotal}}{{TaxesAndServicesTotal.LocalCurrencySymbol}}{{TaxesAndServicesTotal.LocalSValue2}}{{/TaxesAndServicesTotal}}{{^TaxesAndServicesTotal}}--{{/TaxesAndServicesTotal}}</span></p>
-                                {{/config.statementsettings.lumptaxes}}
-                            {{/config.statementsettings.lumpfees}}
-                            {{^config.statementsettings.lumpfees}}
-                                {{^config.statementsettings.lumptaxes}}
-                                    <p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
-                                {{/config.statementsettings.lumptaxes}}
-                            {{/config.statementsettings.lumpfees}}
-                        {{/Services}}
-                        {{#Services.length}}
-                        </div>
-                            <hr />
-                        {{/Services.length}}
-                        {{^config.statementsettings.lumpfees}}
-                            {{#Fees.length}}
-                            <div id="fees-modal" class="item row-fluid">
-                                <h5>{{textdata.Fees}}</h5>
-                            {{/Fees.length}}
-                            {{#Fees}}
-                                <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="fee" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
-                            {{/Fees}}
-                            {{#Fees.length}}
-                            </div>
-                                <hr />
-                            {{/Fees.length}}
-                        {{/config.statementsettings.lumpfees}}
-                        {{^config.statementsettings.lumptaxes}}
-                            {{#Taxes.length}}
-                            <div id="taxes-modal" class="item row-fluid">
-                                <h5>{{textdata.Taxes}}</h5>
-                            {{/Taxes.length}}
-                            {{#Taxes}}
-                                <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="tax" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
-                            {{/Taxes}}
-                            {{#Taxes.length}}
-                            </div>
-                                <hr />
-                            {{/Taxes.length}}
-                        {{/config.statementsettings.lumptaxes}}
-                        {{#OptionalFees.length}}
-                        <div id="ofees-modal" class="item row-fluid">
-                            <h5>{{textdata.Optional Fees & Services}}</h5>
-                        {{/OptionalFees.length}}
-                        {{#OptionalFees}}
-                            <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="fee" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
-                        {{/OptionalFees}}
-                        {{#OptionalFees.length}}
-                        </div>
-                            <hr />
-                        {{/OptionalFees.length}}
-                        {{#Discounts.length}}
-                        <div id="discounts-modal" class="item row-fluid">
-                            <h5>{{textdata.Discounts}}</h5>
-                        {{/Discounts.length}}
-                        {{#Discounts}}
-                            <p>{{{Notes}}}<span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p>
-                        {{/Discounts}}
-                        {{#Discounts.length}}
-                        </div>
-                            <hr />
-                        {{/Discounts.length}}
-                        {{#Deposits.length}}
-                        <div id="deposits-modal" class="item row-fluid">
-                            <h5>{{textdata.Deposits}}</h5>
-                        {{/Deposits.length}}
-                        {{#Deposits}}
-                            <p>{{{Notes}}} <span class="glyphicons circle_question_mark"><a data-toggle="collapse" data-target="#description{{RelatedToID}}" class="load_desc" data-entity="fee" data-related-id="{{RelatedToID}}"><i></i></a></span><span class="pull-right">{{#SubTotal}}{{SubTotal2.LocalCurrencySymbol}}{{SubTotal2.LocalSValue2}}{{/SubTotal}}{{^SubTotal}}--{{/SubTotal}}</span></p><div id="description{{RelatedToID}}" class="collapse charges-description">{{{Description}}}</div>
-                        {{/Deposits}}
-                        {{#Deposits.length}}
-                        </div>
-                        {{/Deposits.length}}
-                    </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">{{textdata.Close}}</button>
+                        <button data-dismiss="modal" class="btn btn-primary bapi-revisedates">{{textdata.Update}}</button>
                     </div>
                 </div>
-            {{/ContextData.Quote.Statement}}
-        {{/result}}
-    </div>
-    </div>
-</script>
-
-<script id="tmpl-booking-makebooking-statementdetail" type="text/html">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="sta">Taxes</h3>
-    </div>
-    <div class="modal-body">
-        <h5>Tax Lorem Ipsum</h5>
-        <p>One fine body…</p>
-    </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">{{textdata.Close}}</button>
-    </div>
-</script>
-
-<script id="tmpl-booking-makebooking-renter" type="text/html">
-    <legend>1. {{textdata.Guest Information}}</legend>
-    <div class="row">
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="renterfirstname">{{textdata.First Name}}:*</label>
-            <div class="controls">
-                <input type="text" id="renterfirstname" class="bookingfield col-xs-12 required" data-field="Renter[FirstName]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="renterlastname">{{textdata.Last Name}}:*</label>
-            <div class="controls">
-                <input type="text" id="renterlastname" class="bookingfield col-xs-12 required" data-field="Renter[LastName]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="renteremail">{{textdata.Email}}:*</label>
-            <div class="controls">
-                <input type="text" id="renteremail" class="bookingfield col-xs-12 required" data-validity="email" data-field="Renter[PrimaryEmail]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="renterphone">{{textdata.Phone}}:*</label>
-            <div class="controls">
-                <input type="text" id="renterphone" class="bookingfield col-xs-12 required" data-field="Renter[HomePhone]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="renterls">{{config.leadsources.prompt}}:</label>
-            <div class="controls">
-                <!--<div class="btn-group">-->
-                <select id="renterls" class="bookingfield col-xs-12" data-field="Renter[LeadSourceID]">
-                    <option value="0">-{{config.leadsources.prompt}}-</option>
-                    {{#config.leadsources.values}}<option value="{{Data}}">{{Label}}</option>{{/config.leadsources.values}}
-                </select>
-                <!--</div>-->
-            </div>
-        </div>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="publicnotes">{{textdata.Special Requests}}:</label>
-            <div class="controls">
-                <input type="text" id="publicnotes" rows="3" class="bookingfield col-xs-12" data-field="PublicNotes" />
-            </div>
-        </div>
-    </div>
-</script>
-
-<script id="tmpl-booking-makebooking-creditcard" type="text/html">
-    <legend>
-        <div class="control row">
-            <span class="col-xs-8">2. {{textdata.Credit Card Information}}</span>
-            <div class="credit-icon col-xs-4">
-                {{#config.ccconfig.visa}}
-                    <span class="creditcard-visa"></span>
-                {{/config.ccconfig.visa}}
-                {{#config.ccconfig.mastercard}}
-                    <span class="creditcard-mastercard"></span>
-                {{/config.ccconfig.mastercard}}
-                {{#config.ccconfig.discover}}
-                    <span class="creditcard-discover"></span>
-                {{/config.ccconfig.discover}}
-                {{#config.ccconfig.amex}}
-                    <span class="creditcard-amex"></span>
-                {{/config.ccconfig.amex}}
-                {{#config.ccconfig.dinersclub}}
-                    <span class="creditcard-dinersclub"></span>
-                {{/config.ccconfig.dinersclub}}
-            </div>
-        </div>
-    </legend>
-    <div class="row">
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="noc">{{textdata.Name on Card}}:</label>
-            <div class="controls">
-                <input type="text" id="noc" class="bookingfield col-xs-12 required autofullname" data-field="CreditCard[NameOnCard]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="ccnum">{{textdata.Card Number}}:</label>
-            <div class="controls">
-                <input type="text" id="ccnum" class="bookingfield col-xs-12 required ccverify" data-isvalid="0" data-field="CreditCard[CardNumber]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label inline" for="ccexpr">{{textdata.Expiration}}:</label>
-            <div class="controls row">
-
-                <div class="col-xs-6">
-                    <select id="ccmonth" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryMonth]" required>
-                        <option value="">-{{textdata.Month}}-</option>
-                        {{#config.ccmonths.values}}
-                            <option value="{{Data}}">{{Label}}</option>
-                        {{/config.ccmonths.values}}
-                    </select>
-                </div>
-
-                <div class="col-xs-6">
-                    <select id="ccyear" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryYear]" required>
-                        <option value="">-{{textdata.Year}}-</option>
-                        {{#config.ccyears.values}}
-                            <option value="{{Data}}">{{Label}}</option>
-                        {{/config.ccyears.values}}
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="cccvv">{{textdata.Security Code}}:</label>
-            <div class="controls">
-                <input type="text" id="cccvv" class="bookingfield col-xs-12 required" data-field="CreditCard[SecurityCode]" required />
-            </div>
-        </div>
-        <hr />
-        <legend class="col-xs-12">3. {{textdata.Billing Address}}</legend>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="cccvv">{{textdata.Country}}:</label>
-            <div class="controls">
-                <input type="text" id="billingcountry" class="bookingfield col-xs-12 required bapi-country" data-field="CreditCard[Country]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="billingaddress">{{textdata.Street Line 1}}:</label>
-            <div class="controls">
-                <input type="text" id="billingaddress" class="bookingfield col-xs-12 required" data-field="CreditCard[Address]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="billingaddress2">{{textdata.Street Line 2}}:</label>
-            <div class="controls">
-                <input type="text" id="billingaddress2" class="bookingfield col-xs-12" data-field="CreditCard[Address2]" />
-            </div>
-        </div>
-        <div class="control-group col-xs-6 ">
-            <label class="control-label" for="billingcity">{{textdata.City}}/{{textdata.Town}}:</label>
-            <div class="controls">
-                <input type="text" id="billingcity" class="bookingfield col-xs-12 required bapi-city" data-field="CreditCard[City]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <div class="row">
-                <div class="col-xs-6">
-                    <label class="control-label inline" for="billingstate">{{textdata.State}}/{{textdata.Province}}:</label>
-                    <div class="controls">
-                        <input type="text" id="billingstate" class="col-xs-12 bookingfieldrequired bapi-state" data-field="CreditCard[State]" required />
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <label class="control-label inline">{{textdata.Postal Code}}:</label>
-                    <div class="controls">
-                        <input type="text" id="billingpostalcode" class="col-xs-12 row-fluid required bookingfield" data-field="CreditCard[PostalCode]" required />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-
-<script id="tmpl-booking-makebooking-accept" type="text/html">
-        {{#result}}
-            {{#ContextData.Quote.IsValid}}
-            <legend class="accept">4. {{textdata.Accept Terms and Conditions}}</legend>
-            <div class="control-group accept">
-                <p style="display:none">{{config.rentalpolicysummary}}</p>
-                <div class="row">
-                    <label class="checkbox col-xs-12">
-                        <small>
-                            <em>
-                                <input id="accepptermscbx" type="checkbox" class="required pad-x-30">{{textdata.I have read and accept the terms and conditions}}:</input>&nbsp;
-                                <a target="_blank" href="/rentalpolicy">{{textdata.Rental Policy}}</a>&nbsp;
-                                <a target="_blank" href="/termsofuse">{{textdata.Terms of Service}}</a>
-                            </em>
-                        </small>
-                    </label>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="row">
-                    <div class="btn-book-header col-xs-6">
-                        <div class="row">
-			<span class="line1 col-xs-12">
-				<a href="javascript:void(0);" class="inline-b kd-button filled secondary-fill-color makebooking col-xs-12" data-field-selector="bookingfield">{{textdata.Reserve Now}}</a>
-			</span>
-			<span class="line2 col-xs-12">
-				{{#result}}{{#ContextData.Quote.Statement.ValidUntil}}{{textdata.Quote is valid for}} <span id="quote_ValidUntil_M"></span> {{textdata.minute(s)}} <span id="quote_ValidUntil_S"></span> {{textdata.second(s)}}<br />{{/ContextData.Quote.Statement.ValidUntil}}{{/result}}
-                {{textdata.This page is secure}} - <a href="#SSL" data-toggle="collapse" data-target="#SSL">{{textdata.check here}}</a>
-			</span>
-                        </div>
-                        <div id="SSL" class="collapse"></div>
-                    </div>
-                    {{#result}}
-                        <div class="amount-bk col-xs-6">
-                            {{textdata.Amount to be charged now}}:
-                            {{#ContextData.Quote.Statement}}
-                                <span class="bold">{{TotalDueNow.CurrencySymbol}}&nbsp;{{TotalDueNow.SValue2}}</span>
-                            {{/ContextData.Quote.Statement}}
-                        </div>
-                    {{/result}}
-                </div>
-            </div>
-            {{/ContextData.Quote.IsValid}}
-            {{^ContextData.Quote.IsValid}}
-            <div class="alert alert-error">{{ContextData.Quote.ValidationMessage}}</div>
-            {{/ContextData.Quote.IsValid}}
-        {{/result}}
-</script>
-
-<script id="tmpl-booking-makepayment-verify-user" type="text/html">
-    <div class="module shadow-border">
-        <div class="row-fluid">
-            <div class="verify-user text-center">
-                <div class="col-xs-12">
-                    <h3>{{textdata.Make a Payment}}</h3>
-                    <p>{{textdata.Please verify this booking belongs to you}}</p>
-                    <div class="greybox">
-                        <div id="verifybookingid-block" class="control-group hide">
-                            <div class="controls">
-                                <input type="text" id="verifyBookingId" class="col-xs-12 required" placeholder="Booking ID" required />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <input type="text" id="verifyLastName" class="col-xs-12 required" placeholder="{{textdata.Last Name}}" required />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <input type="text" id="verifyEmail" class="col-xs-12 required" data-validity="email" placeholder="{{textdata.Email}}" required />
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <button id="submitVerifyUser" class="btn btn-large btn-primary col-xs-12">{{textdata.Submit}}</button>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-    </div>
-</script>
-
-<script id="tmpl-booking-makepayment-masterlayout" type="text/html">
-        {{#result}}
-        <div class="module shadow-border">
-            <div class="row-fluid">
-                <div class="booking-page bordersolid">
-                    <article class="col-xs-8 booking-form">
-                        <div class="form-horizontal pd">
-                            <div id="creditcard"></div>
-                            <hr />
-                            <div id="accept"></div>
-                        </div>
-                    </article>
-
-                    <aside class="property-info col-xs-4 pd">
-                        <div class="row">
-                            <div class="pd">
-                                <div id="stayinfo"></div>
-                                <div id="statement"></div>
-                                <div id="question-support" class="item row-fluid">
-                                    <h5 class="module"><i clas="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
-                                    <p>{{textdata.Phone}}: <span class="pull-right">{{site.phone}}</span></p>
-                                    <p>{{textdata.Email}}: <span class="pull-right">{{site.email}}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-        </div>
-        {{/result}}
-</script>
-
-<script id="tmpl-booking-makepayment-creditcard" type="text/html">
-    <legend>
-        <div class="control row">
-            <span class="col-xs-8">1. {{textdata.Credit Card Information}}</span>
-            <div class="credit-icon col-xs-4">
-                {{#config.ccconfig.visa}}
-                    <span class="creditcard-visa"></span>
-                {{/config.ccconfig.visa}}
-                {{#config.ccconfig.mastercard}}
-                    <span class="creditcard-mastercard"></span>
-                {{/config.ccconfig.mastercard}}
-                {{#config.ccconfig.discover}}
-                    <span class="creditcard-discover"></span>
-                {{/config.ccconfig.discover}}
-                {{#config.ccconfig.amex}}
-                    <span class="creditcard-amex"></span>
-                {{/config.ccconfig.amex}}
-                {{#config.ccconfig.dinersclub}}
-                    <span class="creditcard-dinersclub"></span>
-                {{/config.ccconfig.dinersclub}}
-            </div>
-        </div>
-    </legend>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label" for="noc">{{textdata.Name on Card}}:</label>
-        <div class="controls">
-            <input type="text" id="noc" class="bookingfield col-xs-12 required autofullname" data-field="CreditCard[NameOnCard]" required />
-        </div>
-    </div>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label" for="ccnum">{{textdata.Card Number}}:</label>
-        <div class="controls">
-            <input type="text" id="ccnum" class=" col-xs-6 bookingfield col-xs-12 required ccverify" data-isvalid="0" data-field="CreditCard[CardNumber]" required />
-        </div>
-    </div>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label inline" for="ccexpr">{{textdata.Expiration}}:</label>
-        <div class="controls row">
-
-            <div class="col-xs-6">
-                <select id="ccmonth" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryMonth]" required>
-                    <option value="">-{{textdata.Month}}-</option>
-                    {{#config.ccmonths.values}}
-                        <option value="{{Data}}">{{Label}}</option>
-                    {{/config.ccmonths.values}}
-                </select>
-            </div>
-
-            <div class="col-xs-6">
-                <select id="ccyear" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryYear]" required>
-                    <option value="">-{{textdata.Year}}-</option>
-                    {{#config.ccyears.values}}
-                        <option value="{{Data}}">{{Label}}</option>
-                    {{/config.ccyears.values}}
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label" for="cccvv">{{textdata.Security Code}}:</label>
-        <div class="controls">
-            <input type="text" id="cccvv" class="bookingfield col-xs-12 required" data-field="CreditCard[SecurityCode]" required />
-        </div>
-    </div>
-    <hr />
-    <legend class="col-xs-12">2. {{textdata.Billing Address}}</legend>
-    <div class="row">
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="cccvv">{{textdata.Country}}:</label>
-            <div class="controls">
-                <input type="text" id="billingcountry" class="bookingfield col-xs-12 required bapi-country" data-field="CreditCard[Country]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="billingaddress">{{textdata.Street Line 1}}:</label>
-            <div class="controls">
-                <input type="text" id="billingaddress" class="bookingfield col-xs-12 required" data-field="CreditCard[Address]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="billingaddress2">{{textdata.Street Line 2}}:</label>
-            <div class="controls">
-                <input type="text" id="billingaddress2" class="bookingfield col-xs-12" data-field="CreditCard[Address2]" />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <label class="control-label" for="billingcity">{{textdata.City}}/{{textdata.Town}}:</label>
-            <div class="controls">
-                <input type="text" id="billingcity" class="bookingfield col-xs-12 required bapi-city" data-field="CreditCard[City]" required />
-            </div>
-        </div>
-        <div class="control-group col-xs-6">
-            <div class="row">
-                <div class="col-xs-6">
-                    <label class="control-label inline" for="billingstate">{{textdata.State}}/{{textdata.Province}}:</label>
-                    <div class="controls">
-                        <input type="text" id="billingstate" class="col-xs-12 bookingfieldrequired bapi-state" data-field="CreditCard[State]" required />
-                    </div>
-                </div>
-
-                <div class="col-xs-6">
-                    <label class="control-label inline">{{textdata.Postal Code}}:</label>
-                    <div class="controls">
-                        <input type="text" id="billingpostalcode" class="col-xs-12 row-fluid required bookingfield" data-field="CreditCard[PostalCode]" required />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</script>
-
-<script id="tmpl-booking-rentalpolicy" type="text/html">
-    <div style="padding:10px;">
-        {{{config.rentalpolicy}}}
-    </div>
-</script>/*
-Group: Booking
-*/
-<script id="tmpl-booking-makebooking-masterlayout" type="text/html">
-        {{#result}}
-        <div class="module shadow-border">
-            <div class="row-fluid">
-                <header class="pagination-centered pd">
-                    <h1 class="widget_title">{{textdata.Fast Secure Online Booking}}</h1>
-                    <p class="booked_prop">
-                        <a href="{{&ContextData.SEO.DetailURL}}"><strong>{{Headline}}</strong></a><span class="hidden-phone">&nbsp;-&nbsp;{{Type}}
-                        {{#Bedrooms}}&nbsp;/&nbsp;{{textdata.Beds}}&nbsp;{{Bedrooms}}{{/Bedrooms}}
-                        {{#Bathrooms}}&nbsp;/&nbsp;{{textdata.Baths}}&nbsp;{{Bathrooms}}{{/Bathrooms}}
-                        {{#Sleeps}}&nbsp;/&nbsp;{{textdata.Sleeps}}&nbsp;{{Sleeps}}{{/Sleeps}}</span>
-                    </p>
-                    <div class="booking-prop-img col-xs-12">
-                        <a href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.OriginalURL}}')">
-                            <!--<img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=1074&h=400&q=60&zc=2" caption="{{PrimaryImage.Captions}}" title="Back to the Property Detail Page" />-->
-                        </a>
-                    </div>
-                </header>
-                <div class="booking-page bordersolid">
-                    <article class="col-xs-8 booking-form">
-                        <div class="form-horizontal pd">
-                            <div id="renter"></div>
-                            <hr />
-                            <div id="creditcard"></div>
-                            <hr />
-                            <div id="accept"></div>
-                        </div>
-                    </article>
-
-                    <aside class="property-info col-xs-4 pd">
-                        <div class="row">
-                            <div class="col-xs-12 pd">
-                                <div id="stayinfo"></div>
-                                <div id="statement"></div>
-                                <div id="question-support" class="item row-fluid">
-                                    <h5 class="module"><i clas="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
-                                    <p>{{textdata.Phone}}: <span class="pull-right">{{site.phone}}</span></p>
-                                    <p>{{textdata.Email}}: <span class="pull-right">{{site.email}}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-        </div>
-        {{/result}}
-</script>
-
-<script id="tmpl-booking-makebooking-stayinfo" type="text/html">
-        {{#result}}
-            {{^ContextData.Quote.IsValid}}
-            <div class="alert alert-error">{{ContextData.Quote.ValidationMessage}}</div>
-            {{/ContextData.Quote.IsValid}}
-        <span class="glyphicons module notes_2 hide"><i></i>{{textdata.Booking Details}}</span>
-        <div id="details" class="item row-fluid">
-            <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-In}}</span> <span class="pull-right">{{session.searchparams.scheckin}}</span></p>
-            <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-Out}}</span> <span class="pull-right">{{session.searchparams.scheckout}}</span></p>
-            <p><span class="glyphicons glyphicons-group m-r-15"></span><span>{{textdata.Adults}}</span><span class="pull-right">{{session.searchparams.adults.min}}</span></p>
-            <p><span class="glyphicons glyphicons-group m-r-15"></span><span>{{textdata.Children}}</span><span class="pull-right">{{session.searchparams.children.min}}</span></p>
-            <p><div data-target="#revisedates" data-toggle="modal" class="bapi-showrevise kd-button secondary-fill-color filled">{{textdata.Change Info}}</div></p>
-        </div>
-
-        <div id="revisedates" class="modal pop-up-booking-form" tabindex="-1" role="dialog">
-            <div class="booking-form">
-                <div class="close"></div>
-                <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
-                <div class="row-fluid">
-                    <div class="span6">
-                        <label fore="rateblockcheckin">{{textdata.Check-In}}</label>
-                        <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
-                    </div>
-                    <div class="span6">
-                        <label for="rateblockcheckout">{{textdata.Check-Out}}</label>
-                        <input id="rateblockcheckout" class="span12 quicksearch datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
-                        <input style="display:none" class="quicksearch" type="text" value="" data-field="los">
-                    </div>
-                </div>
-                <div class="row-fluid">
-                    <div class="span6">
-                        <label for="rateblockadults">{{textdata.Adults}}</label>
-                        <input id="rateblockadults" class="span12 quicksearch adultsfield" type="text" placeholder="{{textdata.Adults}}" value={{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}} data-field="adults[min]" required>
-                    </div>
-                    <div class="span6">
-                        <label for="rateblockchildren">{{textdata.Children}}</label>
-                        <input id="rateblockchildren" class="span12 quicksearch childrenfield" type="text" placeholder="{{textdata.Children}}" value={{#session.searchparams.children.min}}
-                            {{session.searchparams.children.min}}
-                        {{/session.searchparams.children.min}}
-                            {{^session.searchparams.children.min}}0
-                            {{/session.searchparams.children.min}} data-field="children[min]" required>
-                    </div>
-                </div>
-                <button class="btn btn-mini bapi-getquote" type="button">{{textdata.Submit}}</button>
-            </div>
+            </form>
         </div>
 
         {{/result}}
@@ -1546,6 +870,10 @@ Group: Booking
         {{/result}}
 </script>
 
+
+
+
+
 <script id="tmpl-booking-makepayment-verify-user" type="text/html">
     <div class="module shadow-border">
         <div class="row-fluid">
@@ -1596,11 +924,11 @@ Group: Booking
 
                     <aside class="property-info col-xs-4 pd">
                         <div class="row">
-                            <div class="pd">
+                            <div class="col-xs-12 pd">
                                 <div id="stayinfo"></div>
                                 <div id="statement"></div>
                                 <div id="question-support" class="item row-fluid">
-                                    <h5 class="module"><i clas="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
+                                    <h5 class="module"><i class="glyphicons headset"></i>{{textdata.Have a Question?}}</h5>
                                     <p>{{textdata.Phone}}: <span class="pull-right">{{site.phone}}</span></p>
                                     <p>{{textdata.Email}}: <span class="pull-right">{{site.email}}</span></p>
                                 </div>
@@ -1638,69 +966,69 @@ Group: Booking
             </div>
         </div>
     </legend>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label" for="noc">{{textdata.Name on Card}}:</label>
-        <div class="controls">
-            <input type="text" id="noc" class="bookingfield col-xs-12 required autofullname" data-field="CreditCard[NameOnCard]" required />
-        </div>
-    </div>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label" for="ccnum">{{textdata.Card Number}}:</label>
-        <div class="controls">
-            <input type="text" id="ccnum" class=" col-xs-6 bookingfield col-xs-12 required ccverify" data-isvalid="0" data-field="CreditCard[CardNumber]" required />
-        </div>
-    </div>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label inline" for="ccexpr">{{textdata.Expiration}}:</label>
-        <div class="controls row">
-
-            <div class="col-xs-6">
-                <select id="ccmonth" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryMonth]" required>
-                    <option value="">-{{textdata.Month}}-</option>
-                    {{#config.ccmonths.values}}
-                        <option value="{{Data}}">{{Label}}</option>
-                    {{/config.ccmonths.values}}
-                </select>
-            </div>
-
-            <div class="col-xs-6">
-                <select id="ccyear" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryYear]" required>
-                    <option value="">-{{textdata.Year}}-</option>
-                    {{#config.ccyears.values}}
-                        <option value="{{Data}}">{{Label}}</option>
-                    {{/config.ccyears.values}}
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="control-group col-xs-6 ">
-        <label class="control-label" for="cccvv">{{textdata.Security Code}}:</label>
-        <div class="controls">
-            <input type="text" id="cccvv" class="bookingfield col-xs-12 required" data-field="CreditCard[SecurityCode]" required />
-        </div>
-    </div>
-    <hr />
-    <legend class="col-xs-12">2. {{textdata.Billing Address}}</legend>
     <div class="row">
-        <div class="control-group col-xs-6">
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="noc">{{textdata.Name on Card}}:</label>
+            <div class="controls">
+                <input type="text" id="noc" class="bookingfield col-xs-12 required autofullname" data-field="CreditCard[NameOnCard]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="ccnum">{{textdata.Card Number}}:</label>
+            <div class="controls">
+                <input type="text" id="ccnum" class="bookingfield col-xs-12 required ccverify" data-isvalid="0" data-field="CreditCard[CardNumber]" required />
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label inline" for="ccexpr">{{textdata.Expiration}}:</label>
+            <div class="controls row">
+
+                <div class="col-xs-6">
+                    <select id="ccmonth" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryMonth]" required>
+                        <option value="">-{{textdata.Month}}-</option>
+                        {{#config.ccmonths.values}}
+                            <option value="{{Data}}">{{Label}}</option>
+                        {{/config.ccmonths.values}}
+                    </select>
+                </div>
+
+                <div class="col-xs-6">
+                    <select id="ccyear" class="bookingfield required col-xs-12" data-field="CreditCard[ExpiryYear]" required>
+                        <option value="">-{{textdata.Year}}-</option>
+                        {{#config.ccyears.values}}
+                            <option value="{{Data}}">{{Label}}</option>
+                        {{/config.ccyears.values}}
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="control-group col-xs-6 ">
+            <label class="control-label" for="cccvv">{{textdata.Security Code}}:</label>
+            <div class="controls">
+                <input type="text" id="cccvv" class="bookingfield col-xs-12 required" data-field="CreditCard[SecurityCode]" required />
+            </div>
+        </div>
+        <hr />
+        <legend class="col-xs-12">2. {{textdata.Billing Address}}</legend>
+        <div class="control-group col-xs-6 ">
             <label class="control-label" for="cccvv">{{textdata.Country}}:</label>
             <div class="controls">
                 <input type="text" id="billingcountry" class="bookingfield col-xs-12 required bapi-country" data-field="CreditCard[Country]" required />
             </div>
         </div>
-        <div class="control-group col-xs-6">
+        <div class="control-group col-xs-6 ">
             <label class="control-label" for="billingaddress">{{textdata.Street Line 1}}:</label>
             <div class="controls">
                 <input type="text" id="billingaddress" class="bookingfield col-xs-12 required" data-field="CreditCard[Address]" required />
             </div>
         </div>
-        <div class="control-group col-xs-6">
+        <div class="control-group col-xs-6 ">
             <label class="control-label" for="billingaddress2">{{textdata.Street Line 2}}:</label>
             <div class="controls">
                 <input type="text" id="billingaddress2" class="bookingfield col-xs-12" data-field="CreditCard[Address2]" />
             </div>
         </div>
-        <div class="control-group col-xs-6">
+        <div class="control-group col-xs-6 ">
             <label class="control-label" for="billingcity">{{textdata.City}}/{{textdata.Town}}:</label>
             <div class="controls">
                 <input type="text" id="billingcity" class="bookingfield col-xs-12 required bapi-city" data-field="CreditCard[City]" required />
@@ -1731,6 +1059,63 @@ Group: Booking
         {{{config.rentalpolicy}}}
     </div>
 </script>
+
+<script id="tmpl-booking-makepayment-pay" type="text/html">
+        {{#result}}
+        <legend class="accept">3. {{textdata.Accept Terms and Conditions}}</legend>
+        <div class="control-group accept">
+            <p style="display:none">{{config.rentalpolicysummary}}</p>
+            <div class="row">
+                <label class="checkbox col-xs-12">
+                    <small>
+                        <em>
+                            <input id="accepptermscbx" type="checkbox" class="required pad-x-30">{{textdata.I have read and accept the terms and conditions}}:</input>&nbsp;
+                            <a target="_blank" href="/rentalpolicy">{{textdata.Rental Policy}}</a>&nbsp;
+                            <a target="_blank" href="/termsofuse">{{textdata.Terms of Service}}</a>
+                        </em>
+                    </small>
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="row">
+                <div class="btn-book-header col-xs-6">
+
+			<span class="line1">
+				<a href="javascript:void(0);" class="inline-b kd-button filled secondary-fill-color makepayment col-xs-12" data-field-selector="bookingfield">{{textdata.Pay Now}}</a>
+			</span>
+                </div>
+
+                {{#result}}
+                    <div class="amount-bk col-xs-6">
+                        {{textdata.Amount to Pay Now}}
+                        {{#Statement}}
+                            <span class="bold">{{Statement.AmountPaid.CurrencySymbol}}&nbsp;{{sTotalDueNow.Integer}}.{{sTotalDueNow.Decimal}}</span>
+                            <input id="txtAmountToCharge1" type="hidden" class="row-fluid bookingfield span4" value="{{sTotalDueNow.Integer}}"/>
+                            <input id="txtAmountToCharge2" type="hidden" class="row-fluid bookingfield span3" value="{{sTotalDueNow.Decimal}}"/>
+                        {{/Statement}}
+                    </div>
+                {{/result}}
+
+                <div id="SSL" class="collapse"></div>
+
+            </div>
+        </div>
+        {{/result}}
+</script>
+
+<script id="tmpl-booking-makepayment-stayinfo" type="text/html">
+        {{#result}}
+        <span class="module notes_2 hide">{{textdata.Booking Details}}</span>
+        <div id="details" class="item row-fluid">
+            <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-In}}</span> <span class="pull-right">{{session.searchparams.scheckin}}</span></p>
+            <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-Out}}</span> <span class="pull-right">{{session.searchparams.scheckout}}</span></p>
+            <p><span class="glyphicons glyphicons-group m-r-15"></span><span>{{textdata.Adults}}</span><span class="pull-right">{{session.searchparams.adults.min}}</span></p>
+            <p><span class="glyphicons glyphicons-group m-r-15"></span><span>{{textdata.Children}}</span><span class="pull-right">{{session.searchparams.children.min}}</span></p>
+        </div>
+        {{/result}}
+</script>
+
 /*
 	Group: Developments
 */
@@ -1870,7 +1255,7 @@ Featured Properties - QuickView
 */
 <script id="tmpl-featuredproperties-quickview" type="text/html">
     {{#result}}
-    <a class="swiper-slide prop" href="{{ContextData.SEO.DetailURL}}" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );">
+    <a class="swiper-slide prop" href="{{ContextData.SEO.DetailURL}}" style="background-image: url( '{{&PrimaryImage.MediumURL}}' );">
         <div class="info">
             <div class="text">
                 <div class="left">
@@ -2136,125 +1521,120 @@ Featured Properties - QuickView
 Group: Predefined Searches
 */
 <script id="tmpl-searches-summary" type="text/html">
-    <header class="pagination-centered">
-
-    </header>
-    {{#result}}
-    <div class="pfrowfix span4">
-        <div class="col-xs-12 col-md-4">
-            <div class="item-result bucket-item">
-                <div class="item-inner">
-                    <a class="image" href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')"></a>
-                    <div class="">
-                        {{#ContextData.SEO.Keyword}}
-                        <a href="{{&ContextData.SEO.DetailURL}}">
-                            {{/ContextData.SEO.Keyword}}
-                            <h3 class="title">{{Name}}</h3>
-                            {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}
-                        <div class="description bapi-dotdotdot" style="max-height:100px" data-trunclen="100">{{&Summary}}</div>
-                        {{#ContextData.SEO.Keyword}}<a href="{{&ContextData.SEO.DetailURL}}" class="details kd-button primary-fill-color">{{textdata.See Details}}</a>{{/ContextData.SEO.Keyword}}
+        {{#result}}
+        <div class="pfrowfix span4">
+            <div class="col-xs-12 col-md-4">
+                <div class="item-result bucket-item">
+                    <div class="item-inner">
+                        <a class="image" href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.MediumURL}}')"></a>
+                        <div>
+                            <a href="{{&ContextData.SEO.DetailURL}}">
+                                <h3 class="title">{{Name}}</h3>
+                            </a>
+                            <div class="description bapi-dotdotdot" style="max-height:100px" data-trunclen="100">{{&Summary}}</div>
+                            <a href="{{&ContextData.SEO.DetailURL}}" class="details kd-button primary-fill-color">{{textdata.See Details}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    {{/result}}
+        {{/result}}
     <div class="clearfix"></div>
-    {{> partial-more-results}}
+        {{> partial-more-results}}
 </script>
 
 <script id="tmpl-searches-detail" type="text/html">
-    {{#result}}
-    <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="searches"></div>
-    <section class="row-fluid">
-        <div class="span12 item-snapshot module shadow-border">
-            <div class="top-block">
-                <div class="row-fluid">
-                    <div class="span12 box-sides">
-                        <h2 class="title">{{Name}}</h2>
+        {{#result}}
+        <div class="bapi-entityadvisor" data-pkid="{{ID}}" data-entity="searches"></div>
+        <section class="row-fluid">
+            <div class="span12 item-snapshot module shadow-border">
+                <div class="top-block">
+                    <div class="row-fluid">
+                        <div class="span12 box-sides">
+                            <h2 class="title">{{Name}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-slideshow">
+                    <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+                        <ul class="slides">
+                            {{^Images}}
+                            <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
+                                {{#PrimaryImage.Caption}}
+                                    <p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
+                                {{/PrimaryImage.Caption}}
+                            {{/Images}}
+                            {{#Images}}
+                            <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
+                                {{#Caption}}
+                                    <p class="flex-caption">{{Caption}}</p></li>
+                                {{/Caption}}
+                            {{/Images}}
+                        </ul>
+                    </div>
+                    <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
+                        <ul class="slides">
+                            {{^Images}}
+                                <li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
+                            {{/Images}}
+                            {{#Images}}
+                                <li><img alt="" src="{{&ThumbnailURL}}" /></li>
+                            {{/Images}}
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="item-slideshow">
-                <div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
-                    <ul class="slides">
-                        {{^Images}}
-                        <li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
-                            {{#PrimaryImage.Caption}}
-                            <p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
-                        {{/PrimaryImage.Caption}}
-                        {{/Images}}
-                        {{#Images}}
-                        <li><img alt="{{Caption}}" src="{{&OriginalURL}}" />
-                            {{#Caption}}
-                            <p class="flex-caption">{{Caption}}</p></li>
-                        {{/Caption}}
-                        {{/Images}}
-                    </ul>
-                </div>
-                <div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
-                    <ul class="slides">
-                        {{^Images}}
-                        <li><img alt="" src="{{&PrimaryImage.ThumbnailURL}}" /></li>
-                        {{/Images}}
-                        {{#Images}}
-                        <li><img alt="" src="{{&ThumbnailURL}}" /></li>
-                        {{/Images}}
-                    </ul>
+        </section>
+            {{#Description}}
+            <div class="row-fluid">
+                <div class="span12">
+                    {{&Description}}
                 </div>
             </div>
-        </div>
-    </section>
-    {{#Description}}
-    <div class="row-fluid">
-        <div class="span12">
-            {{&Description}}
-        </div>
-    </div>
-    {{/Description}}
-    {{/result}}
+            {{/Description}}
+        {{/result}}
     <span class="end"></span>
-    {{#result}}
-    <div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allpropertiespage" data-ignoresession="1" data-entity="property" data-searchoptions='{ "searchid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
-    {{/result}}
+        {{#result}}
+        <div id="propresults" class="bapi-summary" data-log="0" data-templatename="tmpl-allpropertiespage" data-ignoresession="1" data-entity="property" data-searchoptions='{ "searchid": {{ID}}, "seo": 1, "pagesize": 10 }'></div>
+        {{/result}}
 </script>
 
 <script id="tmpl-searches-quickview" type="text/html">
-    {{#result}}
-    <div class="bucket-container col-xs-12 {{class}}">
-        <a class="bucket" href="{{&ContextData.SEO.DetailURL}}">
-            <div class="top">
-                <div class="image" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );">
+        {{#result}}
+        <div class="bucket-container col-xs-12 {{class}}">
+            <a class="bucket" href="{{&ContextData.SEO.DetailURL}}">
+                <div class="top">
+                    <div class="image" style="background-image: url( '{{&PrimaryImage.ThumbnailURL}}' );">
+                    </div>
+                    <h6 class="title">{{Name}}</h6>
+                    <div class="description">
+                        {{{Description}}}
+                    </div>
+                    <i class="kd-icon-right_arrow"></i>
                 </div>
-                <h6 class="title">{{Name}}</h6>
-                <div class="description">
-                    {{{Description}}}
-                </div>
-                <i class="kd-icon-right_arrow"></i>
-            </div>
-        </a>
-    </div>
-    {{/result}}
+            </a>
+        </div>
+        {{/result}}
 </script>
 /* Consumer Site: Property Detail - Attractions */
 <script id="tmpl-propertyattractionsgrid" type="text/html">
-<table class="rate-table">
-<thead>
-	<tr class="rate-table-trhead">
-		<th scope="col" class="rate-table-th"></th>
-		<th scope="col" class="rate-table-th">Attraction</th>
-		<th scope="col" class="rate-table-th">Category</th>
-		<th scope="col" class="rate-table-th">Distance</th>
-	</tr>
-</thead>
-<tbody>
-	<tr class="rate-table-tr">
+    <table class="rate-table">
+        <thead>
+        <tr class="rate-table-trhead">
+            <th scope="col" class="rate-table-th"></th>
+            <th scope="col" class="rate-table-th">Attraction</th>
+            <th scope="col" class="rate-table-th">Category</th>
+            <th scope="col" class="rate-table-th">Distance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="rate-table-tr">
             <td><a onclick="alert('clicked->needs to open infowindow');" class="rate-table-td">1</a></td>
-		<td class="rate-table-td">The Awesome Corner</td>
-		<td class="rate-table-td">null</td><td class="rate-table-td">0 Feet</td>
-	</tr>
-</tbody>
-</table>
+            <td class="rate-table-td">The Awesome Corner</td>
+            <td class="rate-table-td">null</td><td class="rate-table-td">0 Feet</td>
+        </tr>
+        </tbody>
+    </table>
 </script>
 /*
 Group: Properties
@@ -2310,7 +1690,7 @@ Group: Properties
 <script id="tmpl-propertysearch-mapview" type="text/html">
         {{#result}}
         <div class="property col-md-6" data-altid='{{AltID}}'>
-            <div class="viewInMap"></div>
+            <div class="viewInMap primary-fill-color"></div>
             <a href="{{&ContextData.SEO.DetailURL}}" class="image" style="background-image: url('{{&PrimaryImage.ThumbnailURL}}')">
                 <div class="from secondary-fill-color">
                     {{#ContextData.Quote.PublicNotes}}
@@ -2345,7 +1725,7 @@ Group: Properties
         </div>
         {{/result}}
         {{^result}}
-        <div class="nomore"><a href='javascript:void(0)'><span class="col-xs-12 alert alert-warn">{{textdata.There are no more results}}</span></a></div>
+        <div class="nomore"><a href='javascript:void(0)'><span class="col-xs-12 alert alert-warn">There are no properties in selected area.</span></a></div>
         {{/result}}
 </script>
 
@@ -2544,23 +1924,24 @@ Group: Properties
                         {{/HideAvailability}}
                     {{/config.displayavailcalendar}}
                 </li>
-
-            <li class="active">
-
-                <div class="ppt-feature-title">{{textdata.Attractions}}</div>
-            <div class="map-and-locations">
-                <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-refresh-selector='#tabs4' data-refresh-selector-event='shown' data-link-selector='.poi-map-item'></div>
-                <div id="map-side-bar">
-                    <table class="table poi-map-locations">
-                        <tbody id="map-locations">
-                        {{#ContextData.Attractions}}
-                            <tr>
-                                <td>
-                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category":"poi-{{ContextData.ItemIndex}}" }'>
-                                        <a class="poi-map-item mapmarker-{{ContextData.ItemIndex}}" href="#">{{ContextData.ItemIndex}}</a>
-                                        <div class="info-html">
-                                            <div class="marker-infowindow">
-                                                <span class="prop-image pull-left"><img src="{{&PrimaryImage.ThumbnailURL}}" width="100" data-src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
+                <li class="active">
+                    <div class="ppt-feature-title">{{textdata.Attractions}}</div>
+                    <div class="map-and-locations">
+                        <div id="poi-map-prop" class="bapi-map" data-loc-selector='.poi-map-location' data-refresh-selector='#tabs4' data-refresh-selector-event='shown' data-link-selector='.poi-map-item'></div>
+                        <div id="map-side-bar">
+                            <table class="table poi-map-locations">
+                                <tbody id="map-locations">
+                                <tr class="hidden"><td>
+                                    <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category" : "property"}'></div>
+                                </td></tr>
+                                {{#ContextData.Attractions}}
+                                    <tr>
+                                        <td>
+                                            <div class="poi-map-location" data-jmapping='{ "id": {{ID}}, "point": { "lng": {{Longitude}}, "lat": {{Latitude}} }, "category":"poi-{{ContextData.ItemIndex}}" }'>
+                                                <a class="poi-map-item mapmarker-{{ContextData.ItemIndex}}" href="#">{{ContextData.ItemIndex}}</a>
+                                                <div class="info-html">
+                                                    <div class="marker-infowindow">
+                                                        <span class="prop-image pull-left"><img src="{{&PrimaryImage.ThumbnailURL}}" width="100" data-src="{{&PrimaryImage.ThumbnailURL}}" caption="{{PrimaryImage.Caption}}" alt="{{PrimaryImage.Caption}}"></span>
                                                     <span class="prop-location pull-left">
                                                         <span>
                                                             {{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}
@@ -2568,51 +1949,69 @@ Group: Properties
                                                             {{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}<br/>
                                                             {{#Type}}<b>{{textdata.Category}}:</b>{{Type}}<br/>{{/Type}}
                                                             {{#Location}}<b>{{textdata.Address}}: </b>{{&Location}}{{/Location}}
-                                                            </span>
                                                         </span>
-                                            </div>
-                                        </div>
-                                </td>
-                                <td>{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
-                                <td>{{ContextData.Distance}}</td>
-                            </tr>
-                        {{/ContextData.Attractions}}
-                        </tbody>
-                    </table>
-                </div>
-                {{#config.hasreviews}}
-                </li><li class="active">
-                    <div class="ppt-feature-title">{{textdata.Reviews}}</div>
-                    <div class="row-fluid">
-                        <div class="span12 box-sides">
-
-                            {{#ContextData.Reviews}}
-                                <div class="row-fluid review clearfix">
-                                    <div class="col-xs-12">
-                                        <div class="comment col-md-10 col-xs-12 col-md-offset-1">
-                                            <div class="reviewrating-{{Rating}} ratingstars"></div>
-                                            {{&Comment}}
-                                        </div>
-                                        <div class="rating r-n-stars col-md-10 col-xs-12 col-md-offset-1"><strong class="username">{{ReviewedBy.FirstName}}&nbsp;{{ReviewedBy.LastName}}</strong> <span class="review-posted-on">{{SubmittedOn.ShortDate}}</span></div>
-                                    </div>
-                                </div>
-                                <hr/>
-                            {{/ContextData.Reviews}}
-                            {{^ ContextData.Reviews}}
-                                <div class="row-fluid review">
-                                    <div class="col-xs-12">
-                                        <div class="comment col-md-10 col-xs-12 col-md-offset-1">
-                                            No reviews yet.
-                                        </div>
-                                    </div>
-                                </div>
-                            {{/ContextData.Reviews}}
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                        </td>
+                                        <td>{{#ContextData.SEO.Keyword}}<a target="_blank" href="{{&ContextData.SEO.DetailURL}}">{{/ContextData.SEO.Keyword}}{{Name}}{{#ContextData.SEO.Keyword}}</a>{{/ContextData.SEO.Keyword}}</td>
+                                        <td>{{ContextData.Distance}}</td>
+                                    </tr>
+                                {{/ContextData.Attractions}}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
                 </li>
+                {{#config.hasreviews}}
+                    <li class="active">
+                        <div class="ppt-feature-title">{{textdata.Reviews}}</div>
+                        <div class="row-fluid">
+                            <div class="span12 box-sides">
+
+                                {{#ContextData.Reviews}}
+                                    <div class="row-fluid review clearfix">
+                                        <div class="col-xs-12">
+                                            <div class="comment col-md-10 col-xs-12 col-md-offset-1">
+                                                <div class="reviewrating-{{Rating}} ratingstars"></div>
+                                                {{&Comment}}
+                                            </div>
+                                            <div class="rating r-n-stars col-md-10 col-xs-12 col-md-offset-1"><strong class="username">{{ReviewedBy.FirstName}}&nbsp;{{ReviewedBy.LastName}}</strong> <span class="review-posted-on">{{SubmittedOn.ShortDate}}</span></div>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                {{/ContextData.Reviews}}
+                                {{^ ContextData.Reviews}}
+                                    <div class="row-fluid review">
+                                        <div class="col-xs-12">
+                                            <div class="comment col-md-10 col-xs-12 col-md-offset-1">
+                                                No reviews yet.
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/ContextData.Reviews}}
+                            </div>
+                        </div>
+
+                    </li>
                 {{/config.hasreviews}}
             </ul>
+        </div>
+        <div id="inquire-now" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
+            <div class="booking-form">
+                <h3>{{textdata.Inquire Now}}</h3>
+                <div id="bapi-inquiryform-prop" class="bapi-inquiryform"
+                     data-templatename="tmpl-leadrequestform-propertyinquiry"
+                     data-log="0"
+                     data-showphonefield="1"
+                     data-phonefieldrequired="1"
+                     data-showdatefields="1"
+                     data-shownumberguestsfields="1"
+                     data-showleadsourcedropdown="1"
+                     data-leadsourcedropdownrequired="0"
+                     data-showcommentsfield="1">
+                </div>
+            </div>
         </div>
         {{/result}}
 </script>
@@ -2621,12 +2020,11 @@ Group: Properties
 <script id="tmpl-search-rateblock" type="text/html">
         {{#result}}
         <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
-        <span class="amenity-name your-dates">
-                    YOUR DATES:
-                </span>
+        <span class="amenity-name your-dates">YOUR DATES:</span>
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
-                <div class="alert alert-error"><a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link">{{ContextData.Quote.ValidationMessage}}</a></div>
+                <div class="alert alert-error"><button data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</button></div>
+                <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" data-toggle="modal" data-target="#inquire-now" type="button" >{{textdata.Inquire Now}}</button>
             {{/ContextData.Quote.IsValid}}
         </span>
 
@@ -2635,7 +2033,7 @@ Group: Properties
 
                 {{#ContextData.Quote.IsValid}}
                     <span class="amenity-value">
-                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link">{{textdata.Update}}</a>
+                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link update">{{textdata.Update}}</a>
                     </span>
                 {{/ContextData.Quote.IsValid}}
 
@@ -2676,7 +2074,7 @@ Group: Properties
 
                         </div>
 
-                        <button class="btn btn-mini bapi-getquote"data-dismiss="modal"  type="button">{{textdata.Submit}}</button>
+                        <button class="btn btn-mini bapi-getquote" data-dismiss="modal"  type="button">{{textdata.Submit}}</button>
 
                     </div>
                 </div>
@@ -2686,16 +2084,16 @@ Group: Properties
             {{#ContextData.Quote.IsValid}}
                 {{#IsBookable}}
                     <button class="kd-button filled book-now-button primary-fill-color bapi-booknow" type="button">{{textdata.Book Now}}</button>
+                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" data-toggle="modal" data-target="#inquire-now" type="button" >{{textdata.Inquire Now}}</button>
                 {{/IsBookable}}
 
                 {{^IsBookable}}
-                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" type="button">{{textdata.Inquire Now}}</button>
+                    <button class="kd-button inquire-button secondary-fill-color bapi-inquirynow" data-toggle="modal" data-target="#inquire-now" type="button" >{{textdata.Inquire Now}}</button>
                 {{/IsBookable}}
             {{/ContextData.Quote.IsValid}}
         </div>
         {{/result}}
 </script>
-
 /*
 Group: Searching
 */
@@ -3224,56 +2622,3 @@ TEST - QuickView
 {{/result}}
 </script>
 
-<script id="tmpl-booking-makepayment-stayinfo" type="text/html">
-{{#result}}
-<span class="glyphicons module notes_2"><i></i>{{textdata.Booking Details}}</span>
-<div id="details" class="item row-fluid">  
-		<span style='display:none'>
-			<input class="span12" type="text"  value="{{SCheckIn}}" data-field="scheckin">
-			<input class="span12" type="text" value="{{SCheckOut}}" data-field="scheckout">	  
-		</span>
-		</div>            
-	<p><span class="glyphicons calendar"><i></i>{{textdata.Check-In}}</span> <span class="pull-right">{{SCheckIn}}</span></p>
-	<p><span class="glyphicons calendar"><i></i>{{textdata.Check-Out}}</span> <span class="pull-right">{{SCheckOut}}</span></p>
-	<p><span class="glyphicons group"><i></i>{{textdata.Adults}}</span><span class="pull-right">{{NumAdults}}</span></p>
-	<p><span class="glyphicons group"><i></i>{{textdata.Children}}</span><span class="pull-right">{{NumChildren}}</span></p>
-</div>
-{{/result}}
-</script>
-
-<script id="tmpl-booking-makepayment-pay" type="text/html">
-{{#result}}
-<legend>3. {{textdata.Accept Terms and Conditions}}</legend>
-<div class="control-group">
-	<p style="display:none">{{config.rentalpolicysummary}}</p>
-	<div class="controls-rows">
-		<label class="checkbox span6">	
-			<small>
-			<em>
-				<input type="checkbox" class="required checkbox">{{textdata.I have read and accept the terms and conditions}}:</input>&nbsp;
-				<a target="_blank" href="/rentalpolicy">{{textdata.Rental Policy}}</a>&nbsp;
-				<a target="_blank" href="/termsofuse">{{textdata.Terms of Service}}</a>
-			</em>
-			</small>		
-		</label>
-	</div>
-</div>
-<div class="control-group">
-	<div class="controls-rows">
-		<div class="btn-book-header span6">
-			<span class="line1">
-				<a href="javascript:void(0);" class="btn btn-large btn-primary span12 makepayment" data-field-selector="bookingfield">{{textdata.Pay Now}}</a>
-			</span>
-		</div>
-		{{#result}}
-		<div class="amount-bk span4">
-			<h5>{{textdata.Amount to Pay Now}}:</h5>
-			{{#Statement}}
-			<h3 style='white-space:nowrap' >{{Statement.AmountPaid.CurrencySymbol}}&nbsp;<input id="txtAmountToCharge1" type="text" class="row-fluid bookingfield span4" value="{{sTotalDueNow.Integer}}"/>.<input id="txtAmountToCharge2" type="text" class="row-fluid bookingfield span3" value="{{sTotalDueNow.Decimal}}"/></h3>
-			{{/Statement}}
-		</div>
-		{{/result}}
-	</div>
-</div>
-{{/result}}
-</script>
