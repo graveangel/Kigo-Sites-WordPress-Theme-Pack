@@ -582,7 +582,8 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 .widget_bapi_hp_search .widget-title{color:#000;font-size:33px;line-height:100%;}
 .widget_bapi_hp_search .widget-title .glyphicons i:before{font-size:29px;}
 .widget_bapi__search .widget-title{margin-top:0;line-height:normal;}
-span.cal-icon-trigger{color:#888;cursor:pointer;height:14px;margin:-9px 0 0 -25px;vertical-align:middle;}
+.picker__input + .picker + input + .cal-icon-trigger { display: inline-block; }  
+span.cal-icon-trigger{ display: none; position: relative; left: 8px; color:#888;cursor:pointer;height:14px;margin:-9px 0 0 -25px;vertical-align:middle;}
 .widget_bapi_hp_search .search-button-block a,.widget_bapi__search .search-button-block a{font-size:10px;color:#999;}
 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch,.widget_bapi__search .search-button-block .quicksearch-dosearch{float:right;font-size:14px;color:#333;}
 	
