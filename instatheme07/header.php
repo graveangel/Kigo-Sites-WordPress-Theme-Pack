@@ -99,7 +99,7 @@ if(!empty($bapi_meta_title) && !empty($custom_page_title_option)){
             foreach($slideshow as $ss){
                 ?>
                 <li>
-          <img src="<?= $ss['url'] ?>" alt="<?= $ss['caption'] ?>" />
+          <img src="<?php echo $ss['url'] ?>" alt="<?php echo $ss['caption'] ?>" />
           <?php
 	  if(!empty($ss['caption'])){
 	  echo '<p class="flex-caption">' . $ss['caption'] . '</p>';
