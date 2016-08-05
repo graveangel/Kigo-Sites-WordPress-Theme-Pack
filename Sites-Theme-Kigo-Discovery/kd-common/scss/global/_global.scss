@@ -54,3 +54,18 @@ a{
 
 @import 'inc/flexslider';
 
+
+/* UDF */
+label.udf-filter {
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+@media (max-width: #{ $bp-sm +1})
+{
+    label.udf-filter {
+    width: 100%;
+    margin: 0;
+  }
+}
+

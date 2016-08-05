@@ -70,10 +70,6 @@ class KD_SelectiveSearch extends KD_Widget2 {
     }
 
 
-    function is_advanced($i)
-    {
-        return !empty($i['inherit']);
-    }
 
 
 }

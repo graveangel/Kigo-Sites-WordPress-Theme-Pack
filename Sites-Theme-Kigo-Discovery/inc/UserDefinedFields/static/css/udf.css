@@ -1,0 +1,52 @@
+.udpa-wrapper,
+.udpa-wrapper *
+{
+    box-sizing: border-box;
+}
+
+.udpa-wrapper
+{
+    padding: 15px;
+    padding-right:100px;
+    display: block;
+}
+
+.button-save
+{
+    color: #fff;
+}
+
+.button-save:hover
+{
+    background: #009900!important;
+    color: #fff;
+}
+
+.udf-content
+{
+    padding: 10px;
+    margin: 30px auto 0;
+    display: block;
+    clear: both;
+    min-height: 200px;
+    outline: 1px solid #ddd;
+}
+
+.udf-content label
+{
+    margin: 0 20px 20px 0;
+    display: inline-block;
+    background: #ddd;
+    padding: 5px;
+}
+
+.udf-name
+{
+    font-weight: 100;
+}
+
+.button-default
+{
+    background: #dfdfdf;
+}
+

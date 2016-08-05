@@ -5,7 +5,7 @@ $aux = '<iframe
           height="300"
           frameborder="0"
           style="border:0"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDKR5k7Mbz9uUkO-TE2JuYeAwZfnMxfMaQ&q='.$address.'" allowfullscreen>
+          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE&q='.$address.'" allowfullscreen>
         </iframe>';
 
 $aux .= sprintf('<label for="%s">%s</label>', $fi['id'], __('Location'));
