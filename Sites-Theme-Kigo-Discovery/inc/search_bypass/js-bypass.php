@@ -1,11 +1,31 @@
 function add_udf(udf)
-{
-var options = '<option value>Select '+udf.name+'</option>';
-for(var e in udf.options)
-{
-    options += '<option value="'+udf.options[e]+'">'+udf.options[e]+'</option>'
-}
-$('#bapi-search .kd-search').append('<label class="udf-filter"><select class="udf-filter-select" name="udf['+udf.slug+']" data-udf="'+udf.slug+'">'+options+'</select></label>');
+{   var options = '';
+    switch(parseInt(udf.type))
+    {
+        case 0:
+        $('#bapi-search .kd-search').append('<label class="udf-filter"><strong>Select '+udf.name+'</strong><input type="checkbox" style="-webkit-appearance: checkbox" class="udf-filter-checkbox"  name="udf['+udf.slug+']" data-udf="'+udf.slug+'"></label>');
+        break;
+        case 3:
+        options += '<option value="">Select option</option>';
+        case 4:
+            var multiple = '';
+            if(udf.type == 4) 
+                multiple = 'multiple';
+
+            
+            
+            for(var e in udf.options)
+            {
+                options += '<option value="'+udf.options[e]+'">'+udf.options[e]+'</option>'
+            }
+            
+            $('#bapi-search .kd-search').append('<label class="udf-filter"><strong>Select '+udf.name+'</strong><select class="udf-filter-select" '+multiple+' name="udf['+udf.slug+']" data-udf="'+udf.slug+'">'+options+'</select></label>');
+        break;
+        
+        default:
+        //pass
+        break;
+    }
 
 }
 
@@ -21,6 +41,18 @@ function add_udfs()
     $('.udf-filter-select').on('change', function(e)
     {
         add_to_cookies('udf_search',$(this).attr('data-udf'), $(this).val());
+    });
+    
+    $('.udf-filter-checkbox').on('change', function(e)
+    {
+        if($(this).attr('checked'))
+        {
+        add_to_cookies('udf_search',$(this).attr('data-udf'), 'on');
+        }
+        else
+        {
+        add_to_cookies('udf_search',$(this).attr('data-udf'), null);
+        }
     });
 }
 
@@ -45,7 +77,7 @@ function clear_udf($cookiename)
 {
         var udf_search = {};
         var udf_search_cookie = encodeURIComponent(JSON.stringify(udf_search));
-         $.cookie($cookiename, udf_search_cookie);
+         $.cookie($cookiename, udf_search_cookie,{ expires: 7, path: '/' });
 }
 
 var UDFS = {};

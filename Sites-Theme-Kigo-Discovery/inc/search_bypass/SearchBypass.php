@@ -19,11 +19,11 @@ class SearchBypass {
         # Get search params
         $this->setSearchParams();
         $this->udf_search = json_decode(urldecode($_COOKIE['udf_search']));
-//        debug($_COOKIE['udf_search'], true);
         
+//        debug($_COOKIE['udf_search'], true);
         if ($_GET['ver'] && preg_match('#combined#', $_SERVER['REQUEST_URI'])) { # This will be rendered inside the bapi.combined.js
             # show udfs
-            $udfs = get_option('udfs');
+            $udfs = $this->get_the_udfs();
 
             $this->udfs = $udfs;
             $udfs_search = unserialize($_SESSION['udf_search']);
@@ -44,7 +44,23 @@ class SearchBypass {
         else
         {
             $_SESSION['udf_search'] = serialize($this->udf_search);
+//            debug(unserialize($_SESSION['udf_search']), true);
         }
+    }
+    
+    function get_the_udfs()
+    {
+        $to_filter = [0,3,4]; //Only using checkbox, single select and multiple select as added fields to property search.
+        $to_return = [];
+        $udfs = get_option('udfs');
+        foreach($udfs as $udf)
+        {
+            if(in_array($udf->type, $to_filter))
+            {
+                $to_return[] = $udf;
+            }
+        }
+        return $to_return;
     }
 
     function to_array($obj) {
@@ -57,8 +73,20 @@ class SearchBypass {
 
     function get_options_for($udfs) {
         foreach ($udfs as $idx=>$udf) {
-            $options = $this->get_meta_values($udf['slug'],'page');
-            $udfs[$idx]['options'] = array_unique($options);
+            switch($udf['type'])
+            {
+                case 0:
+                    $udfs[$idx]['options'] = ['on','off'];
+                break;
+            
+                case 1:
+                    $udfs[$idx]['options'] = false;
+                break;
+            
+                case 2:
+                    $udfs[$idx]['options'] = false;
+                break;
+            }
         }
         $udfs = $this->to_obj($udfs);
         return $udfs;
@@ -150,6 +178,7 @@ class SearchBypass {
     {
         $ids_array = [];
         
+        
         if(!count($udfs))
         {
             $ids_array = $idsarr;
@@ -169,20 +198,26 @@ class SearchBypass {
             {
                  // Get all properties with the given ids that match the user defined field
                 if(empty($udf->value)) continue;
+                $value = $udf->value;
+                if(is_array($value))
+                {
+                     $value = serialize(serialize($value));
+                }
                 
                                 $args['meta_query'][] = 
                                 [
                                     'key' => $udf->udf_slug,
-                                    'value' => $udf->value,
+                                    'value' => $value,
                                     'compare' => '=',
                                 ];
                        
                  
             }
-                //debug($args, true);
+//               debug($args, true);
+                
                  $search_pages = get_posts($args);
-           
-             
+//           debug($search_pages, true);
+                 
      
             // for each of the pages see if they are in the results
            foreach($search_pages as $search_page)
@@ -198,7 +233,7 @@ class SearchBypass {
             
         }
         
-       
+//       debug($ids_array, true);
         return $ids_array;
     }
     

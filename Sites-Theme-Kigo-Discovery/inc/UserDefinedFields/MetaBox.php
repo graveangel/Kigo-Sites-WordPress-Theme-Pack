@@ -38,13 +38,15 @@ class MetaBox {
 
         $this->id = $args['id'];
 
-        $this->title = $args['title'];
-        $this->screen = $args['screen'];
-        $this->context = $args['context'];
-        $this->priority = $args['priority'];
-        $this->template = $args['template'];
-        $this->description = $args['description'];
+        $this->title         = $args['title'];
+        $this->screen        = $args['screen'];
+        $this->context       = $args['context'];
+        $this->priority      = $args['priority'];
+        $this->template      = $args['template'];
+        $this->description   = $args['description'];
+        $this->options       = $args['options'] ?: false;
         $this->callback_args = $args['callback_args'];
+        $this->with_template = $args['with_template'] ?:null;
         $this->need_sanitize = empty($args['need_sanitize']) ? false : $args['need_sanitize'];
 
 
@@ -70,7 +72,19 @@ class MetaBox {
      * @return void this function does not return anything
      */
     function addMetaBox() {
-        add_meta_box($this->id, $this->title, array($this, 'buildField'), $this->screen, $this->context, $this->priority, $this->callback_args);
+        
+        global $post;
+  
+        if($this->with_template)
+        {
+            if ( $this->with_template === get_post_meta( $post->ID, '_wp_page_template', true ) ) {
+                add_meta_box($this->id, $this->title, array($this, 'buildField'), $this->screen, $this->context, $this->priority, $this->callback_args);
+            }
+        }
+        else
+        {
+            add_meta_box($this->id, $this->title, array($this, 'buildField'), $this->screen, $this->context, $this->priority, $this->callback_args);
+        }
     }
 
     /**
@@ -109,6 +123,12 @@ class MetaBox {
             $new_meta_value = ( isset($_POST[$this->id]) ? sanitize_html_class($_POST[$this->id]) : '' );
         else
             $new_meta_value = ( isset($_POST[$this->id]) ? $_POST[$this->id] : '' );
+        
+        if(is_array($new_meta_value))
+        {
+            $new_meta_value = serialize($new_meta_value);
+            //debug($new_meta_value, true);
+        }
 
         /* Get the meta key. */
         $meta_key = $this->id;

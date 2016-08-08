@@ -3236,7 +3236,11 @@ a {
 /* UDF */
 label.udf-filter {
   margin-right: 15px;
-  margin-top: 15px; }
+  margin-top: 15px;
+  vertical-align: top;
+  text-align: left; }
+  label.udf-filter input[type="checkbox"] {
+    width: auto; }
 
 @media (max-width: 769px) {
   label.udf-filter {

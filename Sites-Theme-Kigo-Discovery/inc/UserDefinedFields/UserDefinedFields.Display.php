@@ -23,7 +23,7 @@ class UserDefinedFieldsDisplay
   		'User Defined Fields',
   		'UDF',
   		'manage_options',
-  		'user-defied-fields',
+  		'user-defined-fields',
   		[ $this, 'theme_settings_page' ],
                 'dashicons-admin-multisite',
                 280
@@ -46,11 +46,17 @@ class UserDefinedFieldsDisplay
     
   function add_admin_scripts()
   {
-      # the scripts if needed
-      wp_enqueue_script('stacks-vars-and-funcs-script',get_stylesheet_directory_uri() . "/inc/stacks-posttype/static/js/stacks-vars-and-functions.js",[],'13.07.2016',true); //Stack
-      wp_enqueue_script('udf-scripts',get_stylesheet_directory_uri() . "/inc/UserDefinedFields/static/js/udf.js",[],'13.07.2016',true); //UDF scripts
-      wp_enqueue_style('stacks-css', get_stylesheet_directory_uri(). "/inc/stacks-posttype/static/css/stacks.min.css", [],'13.07.2016'); //Stack area style
-      wp_enqueue_style('udf-css', get_stylesheet_directory_uri(). "/inc/UserDefinedFields/static/css/udf.css", [],'13.07.2016'); //UDF styles
+      $screen = $_GET['page'];
+
+      if($screen && $screen == 'user-defined-fields')
+      {
+          # the scripts if needed
+            wp_enqueue_script('stacks-vars-and-funcs-script',get_stylesheet_directory_uri() . "/inc/stacks-posttype/static/js/stacks-vars-and-functions.js",[],'13.07.2016',true); //Stack
+            wp_enqueue_script('udf-scripts',get_stylesheet_directory_uri() . "/inc/UserDefinedFields/static/js/udf.js",[],'13.07.2016',true); //UDF scripts
+            wp_enqueue_style('stacks-css', get_stylesheet_directory_uri(). "/inc/stacks-posttype/static/css/stacks.min.css", [],'13.07.2016'); //Stack area style
+            wp_enqueue_style('udf-css', get_stylesheet_directory_uri(). "/inc/UserDefinedFields/static/css/udf.css", [],'13.07.2016'); //UDF styles
+      }
+      
   }
     
     /** Singleton instance */
@@ -71,22 +77,27 @@ function add_udpas_to_ppt_pages()
 
 	include_once "inc/MetaBox.php";
         $args_array = [];
+        
+        
 	
         $udfs = json_decode(json_encode(get_option('udfs')), true);
-        
+        $udf_types = ['checkbox','single_line','multiple_line', 'single_choice', 'multiple_choice']; //0,1,2,3
         foreach($udfs as $udf)
         {
+            $template = "udf_{$udf_types[$udf['type']]}_template.php";
             $args_array[] = array(
-               'id'            => $udf['slug'],
-               'title'         => $udf['name'],
-               'screen'        => 'page',
-               'context'       => 'side',
-               'priority'      => 'default',
-               'template'      => 'udpa_template.php',
-               'need_sanitize' => false,
-               'description'   => 'Enter the value of this User Defined Field.',
-               'with_template'   => 'page-templates/property-detail.php'
-           );
+                        'id'            => $udf['slug'],
+                        'title'         => $udf['name'],
+                        'screen'        => 'page',
+                        'context'       => 'side',
+                        'priority'      => 'default',
+                        'template'      => $template,
+                        'need_sanitize' => false,
+                        'description'   => $udf['description'],
+                        'with_template' => 'page-templates/property-detail.php',
+                        'options'       => $udf['options']
+                    );
+            
         }
 
    foreach ($args_array as $args) {

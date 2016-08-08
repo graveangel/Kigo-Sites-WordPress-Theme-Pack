@@ -39,12 +39,20 @@ function remove_selected()
         $('.udf-create').on('click', function (e)
         {
             e.preventDefault();
-
+            var udf_types = ['Checkbox','Single Line','Multiple line', 'Single Choice', 'Multiple Choice']; //0,1,2,3
+            var udf_type_options = '';
+            for(var i in udf_types)
+            {
+                udf_type_options+='<option value="'+i+'">'+udf_types[i]+'</option>';
+            }
+            
             modal(
                     {
                         title: '<h3><i class="dashicons-before dashicons-admin-multisite" aria-hidden="true"></i> Add New User Defined Field:</h3>',
                         body: '<p class="description">Write the name of the user defined field. If the UDF is empty or only has blank spaces, it will not be created.\n\
-                   <h3>UDF: <input type="text" class="udf-name"></h3></p>',
+                                <h3>UDF Name <small>(Required) </small>: <input type="text" class="udf-name widefat"></h3></p>\n\
+                                <h3>Description: </h3><textarea name="description" id="" class="widefat udf-description"></textarea>\n\
+                                <h3>(Required) Select UDF type: <select class="udf-type widefat">'+udf_type_options+'</select></h3>',
                         footer: '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn btn-primary btn-ok-udf">Ok</button>'
                     });
 
@@ -57,6 +65,27 @@ function remove_selected()
 
                 //get the value of the field
                 var udf_name = $('.udf-name').val().trim();
+                
+                 //get the type of the field
+                var udf_type = $('.udf-type').val();
+                
+                var options = false;
+                
+                if(udf_type == 3 || udf_type == 4)
+                {
+                    options = $('.udf-options').val().split(';');
+                    for(var ind in options)
+                    {
+                        options[ind] = options[ind].trim();
+                        if(options[ind] == '')
+                        {
+                            options.splice(ind,1);
+                        }
+                    }
+                }
+                
+                //get the description of the field
+                var udf_description = $('.udf-description').val();
 
                 // If the value is empty don't do anything
                 if (udf_name != '')
@@ -65,7 +94,10 @@ function remove_selected()
                     var udf =
                             {
                                 name: udf_name,
-                                slug: udf_name_sanitized
+                                slug: udf_name_sanitized,
+                                type: udf_type,
+                                description: udf_description,
+                                options: options
                             };
 
                     UDFS[udf.slug] = udf;
@@ -76,6 +108,22 @@ function remove_selected()
 
             });
 
+        });
+        
+        $(document).on('change','.udf-type',function(e)
+        {
+            if(($(this).val() == 3 || $(this).val() == 4) )
+            {
+                if($('.udf-options').length  == 0)
+                {
+                    $('.udf-options, .udf-options-lbl').remove();
+                    $('<h3 class="udf-options-lbl">UDF options:</h3><p class="udf-options-lbl">Enter the difrerent option values separated by ;</p><input class="udf-options widefat" type="text">').insertAfter($(this));
+                }
+            }
+            else
+            {
+                $('.udf-options, .udf-options-lbl').remove();
+            }
         });
 
         $('.udf-delete').on('click', function (e)
