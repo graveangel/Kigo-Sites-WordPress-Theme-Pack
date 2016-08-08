@@ -30,8 +30,9 @@ body{background:#fff;}
 
 .top-header-home{position:relative;}
 .property-search-block {
-	width:90%; 
+	width:100%; 
 	margin: 0 auto; 
+	left: 0;
 	position: absolute;
 	top: 15%;
 	z-index: 1;
