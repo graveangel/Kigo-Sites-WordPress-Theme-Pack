@@ -18,7 +18,6 @@ include_once 'inc/theme/Activation.class.php';
 include_once 'inc/theme/BAPIHelper.class.php';
 
 
-
 /* Inititalize core theme functionalities */
 $site = new Core();
 $site->init();
@@ -30,4 +29,17 @@ add_action('after_switch_theme', array($activation, 'init'));
 /* Initialize theme compatibility */
 $compatibility = new Compatibility();
 add_action('init', array($compatibility, 'overwriteIfSynced'));
+
+
+/* Load CMB2 */
+
+if (file_exists(dirname(__FILE__) . '/inc/cmb2/init.php')) {
+    require dirname(__FILE__) . '/inc/cmb2/init.php';
+} elseif (file_exists(dirname(__FILE__) . '/inc/CMB2/init.php')) {
+    require dirname(__FILE__) . '/inc/CMB2/init.php';
+}
+
+/* Landing pages backend */
+require 'inc/landings/init.php';
+
 

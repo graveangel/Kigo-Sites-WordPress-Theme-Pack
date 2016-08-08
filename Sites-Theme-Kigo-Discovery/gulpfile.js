@@ -14,11 +14,11 @@ var kdCommonPath = 'kd-common/';
 /* Styles */
 
 var stylesOrigin = kdCommonPath+'scss/**/*.scss',
-    mainStyle = [kdCommonPath+'scss/main.scss', kdCommonPath+'scss/admin.scss'],
+    mainStyle = [kdCommonPath+'scss/**/main.scss', kdCommonPath+'scss/admin.scss'],
     stylesDestination = kdCommonPath+'css';
 
 gulp.task('styles', function () {
-    gulp.src(mainStyle)
+    gulp.src(stylesOrigin)
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest(stylesDestination))
         .pipe(cssmin())

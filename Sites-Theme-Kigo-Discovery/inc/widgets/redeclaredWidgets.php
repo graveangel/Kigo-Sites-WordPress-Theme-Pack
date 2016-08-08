@@ -187,82 +187,9 @@
 // */
 if(class_exists('BAPI_Inquiry_Form'))
 {
-    class KD_BAPI_Inquiry_Form extends BAPI_Inquiry_Form {
-
-        public function __construct() {
-            WP_Widget::__construct(
-                'bapi_inquiry_form', // Base ID
-                'KIGO Inquiry Form', // Name
-                array('description' => __('Inquiry Form', 'text_domain'),) // Args
-            );
-        }
-
-        public function widget( $args, $instance ) {
-            extract( $args );
-            $title = apply_filters( 'widget_title', $instance['title'] );
-
-            if(isset( $instance[ 'inquiryModeTitle' ])){$inquiryModeTitle =  $instance['inquiryModeTitle'];}
-            else{ $inquiryModeTitle = "Inquire for Booking Details";}
-
-            /* Do we show the phone field ? */
-            if(isset( $instance[ 'showPhoneField' ])){$bShowPhoneField =  $instance['showPhoneField'];}
-            else{ $bShowPhoneField = true;}
-            /* Its the Phone Field Required ? */
-            if(isset( $instance[ 'phoneFieldRequired' ])){$bPhoneFieldRequired =  $instance['phoneFieldRequired'];}
-            else{ $bPhoneFieldRequired = true;}
-
-            /* Do we show the date fields ? */
-            if(isset( $instance[ 'showDateFields' ])){$bShowDateFields =  $instance['showDateFields'];}
-            else{ $bShowDateFields = true;}
-
-            /* Do we show the number of guests fields ? */
-            if(isset( $instance[ 'showNumberGuestsFields' ])){$bShowNumberGuestsFields =  $instance['showNumberGuestsFields'];}
-            else{ $bShowNumberGuestsFields = true;}
-
-            /* Do we show the how did you hear about us dropdown ? */
-            if(isset( $instance[ 'showLeadSourceDropdown' ])){$bShowLeadSourceDropdown =  $instance['showLeadSourceDropdown'];}
-            else{ $bShowLeadSourceDropdown = true;}
-            /* Its the Lead Source Dropdown Required ? */
-            if(isset( $instance[ 'leadSourceDropdownRequired' ])){$bLeadSourceDropdownRequired =  $instance['leadSourceDropdownRequired'];}
-            else{ $bLeadSourceDropdownRequired = false;}
-
-            /* Do we show the comments field ? */
-            if(isset( $instance[ 'showCommentsField' ])){$bShowCommentsField =  $instance['showCommentsField'];}
-            else{ $bShowCommentsField = true;}
-
-            echo '<div class="inquiry-form">';
-            if ( ! empty( $title ) )
-                echo  '<h1 class="title">'.$title .'</h1>' ;
-            if ( ! empty( $inquiryModeTitle ) )
-                echo '<div class="inquirymodetitle"><h1>'. $inquiryModeTitle . '</h1></div>';
-            ?>
-            <div id="bapi-inquiryform" class="bapi-inquiryform" data-templatename="tmpl-leadrequestform-propertyinquiry" data-log="0" data-showphonefield="<?= $bShowPhoneField ? 1 : 0; ?>" data-phonefieldrequired="<?= $bPhoneFieldRequired ? 1 : 0; ?>" data-showdatefields="<?= $bShowDateFields ? 1 : 0; ?>" data-shownumberguestsfields="<?= $bShowNumberGuestsFields ? 1 : 0; ?>" data-showleadsourcedropdown="<?= $bShowLeadSourceDropdown ? 1 : 0; ?>" data-leadsourcedropdownrequired="<?= $bLeadSourceDropdownRequired ? 1 : 0; ?>" data-showcommentsfield="<?= $bShowCommentsField ? 1 : 0; ?>" ></div>
-            <?php
-
-            $googleConversionkey = get_option( 'bapi_google_conversion_key');
-            $googleConversionlabel = get_option( 'bapi_google_conversion_label');
-            $googleConversionCode = '';
-            if($googleConversionkey != '' && $googleConversionlabel != ''){
-                $googleConversionCode = '<!-- Google Code Conversion -->
-<script type="text/javascript">
-function googleConversionTrack(){
-	var image = new Image(1,1);
-	image.src = "//www.googleadservices.com/pagead/conversion/'.$googleConversionkey.'/?value=0&amp;label='.$googleConversionlabel.'&amp;guid=ON&amp;script=0";
-}
-</script>';
-            }
-
-            echo $googleConversionCode;
-            echo '</div></div>';
-        }
-
-    }
-
     add_action('widgets_init', function() {
-//        unregister_widget('BAPI_Inquiry_Form');
-        register_widget('KD_BAPI_Inquiry_Form');
+        register_widget('BAPI_Inquiry_Form');
     });
-
 }
 //
 ///**

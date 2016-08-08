@@ -1577,6 +1577,7 @@ function demo_customizer_library_notice_instaparent() {
 function instaparent_styles() {
     /* Font Awesome */
     wp_enqueue_style('fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css');
+    wp_enqueue_script('instaparent', get_template_directory_uri().'/js/instaparent.js');
 }
 add_action('wp_enqueue_scripts', 'instaparent_styles');
 
@@ -1593,3 +1594,15 @@ add_action('wp_enqueue_scripts', 'instaparent_styles');
 
 //Include new widgets
 include 'widgets/widgets_include.php';
+
+
+/* Load CMB2 */
+
+if (file_exists(dirname(__FILE__) . '/inc/cmb2/init.php')) {
+    require dirname(__FILE__) . '/inc/cmb2/init.php';
+} elseif (file_exists(dirname(__FILE__) . '/inc/CMB2/init.php')) {
+    require dirname(__FILE__) . '/inc/CMB2/init.php';
+}
+
+/* Landing pages backend */
+require 'inc/landings/init.php';

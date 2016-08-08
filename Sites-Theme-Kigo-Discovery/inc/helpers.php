@@ -186,3 +186,9 @@ function kd_get_search_query()
 
     return $searchquery_array;
 }
+
+/* Post meta helper */
+
+function pmeta($key, $single = true, $id = false){
+    return get_post_meta($id ? : get_the_ID(), $key, $single);
+}

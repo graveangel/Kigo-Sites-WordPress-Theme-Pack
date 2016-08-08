@@ -55,10 +55,15 @@ This file is used to organize imports, it shouldn't contain any styles.
 @import 'widgets/kd-map';
 @import 'widgets/kd-selective-search';
 
-
-
 @import 'widgets/wp/wordpress-search-widget';
 
 /* Legacy widgets */
 
 @import 'widgets/legacy/inquiry';
+
+/* Landing pages */
+
+@import 'landings/common';
+@import 'landings/landing_one';
+@import 'landings/landing_two';
+@import 'landings/confirmation';

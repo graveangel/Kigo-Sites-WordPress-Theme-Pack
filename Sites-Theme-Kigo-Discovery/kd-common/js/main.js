@@ -19,6 +19,7 @@ var app = {
     },
     initBapi: function(){
         this.initModules(this.bapiModules);
+        this.landingForm();
     },
     initModules: function(modules){
         for(var module in modules){
@@ -41,6 +42,9 @@ var app = {
             header = document.querySelector('.header-background'),
             underHeader = document.querySelector('.header-background .under_header');
 
+        if(header === null)
+            return;
+
         var scrollMax = header.clientHeight - underHeader.clientHeight;
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
@@ -50,7 +54,7 @@ var app = {
 
         function checkHeader(){
             var currentScroll = window.scrollY;
-            
+
             if(currentScroll >= scrollMax){
                 header.classList.add('fixed');
                 //body.style.paddingTop = underHeader.clientHeight + 'px';
@@ -148,7 +152,30 @@ var app = {
             target.appendChild(moveEles[i]);
             ele.classList.add('hasMoved');
         }
+    },
+    landingForm: function(){
+        var fields = document.querySelectorAll('[data-meta]');
+        var form = document.querySelector('#landing_form');
+
+        if(!form)return;
+
+        fields.forEach(function(field){
+            field.contentEditable = true;
+            field.addEventListener('input', function(e){
+                e.preventDefault();
+
+                var input = document.querySelector('[name="'+this.dataset.meta+'"]');
+
+                input.value = this.innerHTML;
+            });
+        });
+
+        var saveButton = document.querySelector('#wp-admin-bar-save-landing-content');
+        saveButton.addEventListener('click', function(e){
+            form.submit();
+        });
     }
+
 };
 
 /* Debounce util */

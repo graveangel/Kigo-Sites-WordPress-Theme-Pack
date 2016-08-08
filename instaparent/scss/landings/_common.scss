@@ -1,0 +1,382 @@
+$lightgray: #eeeff1;
+$gray: #7f7f7f;
+
+body.landing-page {
+  color: #929292;
+
+  .span12{width: 100%; box-sizing: border-box;}
+  #questions-block input, textarea, select{padding: 15px;}
+
+  /* Toolbar button */
+
+  #wp-admin-bar-save-landing-content a{
+    cursor: pointer;
+  }
+
+  /* Helpers */
+
+  .bgimg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .maxw, section {
+    max-width: 1305px;
+    margin: 0 auto;
+  }
+
+  .ta-center {
+    text-align: center;
+  }
+
+  .lh2, .lh2 *{
+    line-height: 2em;
+  }
+
+  .upper {
+    text-transform: uppercase;
+  }
+
+  .ib-container {
+    position: relative;
+    font-size: 0;
+  }
+
+  .pad-h {
+    padding: 0 30px;
+  }
+
+  .margin-v{
+    margin: 50px auto;
+  }
+
+  .vhidden{
+    visibility: hidden;
+  }
+
+  [contenteditable]{
+    //    background-color: rgba(lightgreen, .15) !important;
+  }
+
+  /* Generics */
+
+  h1, h2, h3, h4, h5, h6{
+    font-weight: bold;
+    margin: 15px 0;
+    color: initial;
+  }
+
+  .font-large, .title{
+    font-size: 36px;
+  }
+  .font-medium{
+    font-size: 24px;
+  }
+  .font-small{
+    font-size: 16px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .has-error .control-label {
+    color: red;
+    font-weight: bold;
+  }
+
+  .phone {
+    color: $gray;
+    font-weight: bolder;
+    @extend .font-medium;
+  }
+
+  /* Components */
+
+  .logo{
+    height: 100px;
+    margin: 10px 0;
+  }
+
+  /* Sections */
+
+  section{
+    padding: 20px;
+  }
+
+  header{
+    position: relative;
+    height: auto;
+    padding: 0 10px;
+    .logo{
+      width: 100%;
+      background-size: contain;
+      background-position: center;
+    }
+    .phone{
+      text-align: center;
+    }
+  }
+
+  .hero-block {
+    position: relative;
+    min-height: 600px;
+    background-color: lightgray;
+
+    &:after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+
+    .form{
+      height: 100%;
+      padding: 20px 20px;
+      background-color: rgba(black, .65);
+      color: white;
+      font-weight: normal;
+
+      h1, h2, h3, h4{
+        color: inherit;
+        font-size: 30px;
+      }
+
+      .content{
+        margin-bottom: 15px;
+      }
+
+      .form-group{
+        margin-bottom: 5px;
+
+        .has-error{
+          .control-label{
+            color: red;
+          }
+        }
+      }
+
+      input, textarea{
+        border: none;
+      }
+
+      h2{color: white;}
+
+      a.submit_inquiry, .doleadrequest{
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border-radius: 0;
+        text-transform: uppercase;
+        margin-top: 30px;
+
+        &:hover{
+          opacity: .9;
+        }
+      }
+    }
+  }
+
+  .call-to-action{
+    padding: 50px 20px;
+
+    h1{
+      font-size: 30px;
+      font-weight: bolder;
+      margin: 0;
+      color: white;
+    }
+
+    h4{
+      font-weight: normal;
+      margin: 0;
+      color: white;
+    }
+
+    .action-button{
+      display: block;
+      padding: 7px 10px;
+      font-size: 20px;
+      border: 1px solid white;
+      border-radius: 3px;
+      color: white;
+      transition: background-color .15s, border .15s, color .15s, font-weight .15s;
+      cursor: pointer;
+      margin-top: 15px;
+
+      &:hover{
+        border: 1px solid white;
+        background-color: rgba(white, .9);
+        text-decoration: none;
+        font-weight: bold;
+      }
+    }
+  }
+
+  footer{
+    text-align: center;
+    .nav ul{
+      a{
+        display: block;
+        padding: 5px;
+        font-size: 16px;
+      }
+    }
+
+    .bottom{
+      padding-top: 10px;
+      margin-top: 10px;
+      border-top: 1px solid rgba(gray, .25);
+      .logo, .phone, .logo{
+        background-size: contain;
+      }
+    }
+  }
+
+  .image-text{
+    .image{
+      min-height: 200px;
+    }
+    .text{
+      padding: 20px;
+      background-color: $lightgray;
+      color: $gray;
+    }
+  }
+
+  @media (min-width: 960px){
+
+    .pad-h {
+      padding: 0 100px;
+    }
+
+    header{
+      position: relative;
+      height: 120px;
+      font-size: 0;
+
+      .logo, .phone{
+        height: 100%;
+        display: inline-block;
+        font-size: initial;
+      }
+
+      .logo{
+        width: 300px;
+        height: 100px;
+        margin: 10px 0;
+      }
+
+      .phone{
+        float: right;
+        text-align: right;
+        line-height: 120px;
+      }
+    }
+
+    .image-text{
+      position: relative;
+      font-size: 0;
+
+      .image, .text{
+        min-height: 260px;
+        width: 50%;
+        font-size: initial;
+      }
+
+      &.right{
+        .text{
+          margin-left: 50%;
+        }
+        .image{
+          position: absolute;
+          width: 50%;
+          top: 0;
+          left: 0;
+          bottom: 0;
+        }
+      }
+      &.left{
+        .text{
+          margin-right: 50%;
+        }
+        .image{
+          position: absolute;
+          width: 50%;
+          top: 0;
+          right: 0;
+          bottom: 0;
+        }
+      }
+    }
+
+    .call-to-action{
+      margin-top: 30px;
+      text-align: center;
+      .left, .right{
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .left{
+        text-align: right;
+      }
+
+      .right{
+        padding-left: 50px;
+
+        .action-button{
+          min-width: 300px;
+        }
+      }
+    }
+
+    footer{
+      padding: 10px 0;
+      .nav ul{
+        padding: 20px 0;
+        li{
+          display: inline-block;
+
+          .sub-menu{
+            display: none;
+          }
+        }
+      }
+
+      .bottom{
+        .logo, .phone, .pwlogo{
+          display: inline-block;
+          vertical-align: middle;
+          height: 100px;
+          line-height: 100px;
+          background-size: auto;
+          width: 33%;
+        }
+
+        .logo{
+          max-width: 300px;
+          background-size: contain;
+          background-position: center left;
+        }
+        .pwlogo{
+          background-size: auto;
+          background-position: center right;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1200px){
+
+    .hero{
+      //      padding:
+    }
+
+    .form-control{
+      max-width: 100%;
+    }
+  }
+}

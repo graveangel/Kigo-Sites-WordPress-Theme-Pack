@@ -1,0 +1,71 @@
+body.landing-page.two{
+
+  .hero-block{
+    overflow: hidden;
+    padding: 15px;
+
+    .hero-content{
+      color: white;
+
+      h1, h2, h3, h4{
+        color: inherit;
+      }
+
+      ul{
+        width: auto;
+        max-width: none;
+        margin: 15px 0;
+        padding: 20px 20px 20px 40px;
+        background-color: white;
+        border-radius: 3px;
+        box-shadow: 0 0 2px 0 rgba(black, .33);
+        color: black;
+        font-size: 18px;
+        line-height: 2em;
+        list-style-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMxMS41MzkgMzExLjUzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzExLjUzOSAzMTEuNTM5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBvbHlnb24gcG9pbnRzPSIyMTQuNjk2LDk4LjAxOSAxMzIuNzYxLDE3OS45NTUgOTUuNzE2LDE0Mi45MDggNjcuNDMsMTcxLjE5MyAxMzIuNzYxLDIzNi41MjMgMjQyLjk4MSwxMjYuMzA1ICAiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0xNTUuNzcsMEM2OS43NCwwLDAsNjkuNzQsMCwxNTUuNzdzNjkuNzQsMTU1Ljc3LDE1NS43NywxNTUuNzdzMTU1Ljc3LTY5Ljc0LDE1NS43Ny0xNTUuNzdTMjQxLjc5OSwwLDE1NS43NywweiAgICBNMTU1Ljc3LDI3MS41MzlDOTEuNzg0LDI3MS41MzksNDAsMjE5Ljc2MSw0MCwxNTUuNzdDNDAsOTEuNzg0LDkxLjc3OCw0MCwxNTUuNzcsNDBjNjMuOTg2LDAsMTE1Ljc3LDUxLjc3OCwxMTUuNzcsMTE1Ljc3ICAgQzI3MS41MzksMjE5Ljc1NSwyMTkuNzYxLDI3MS41MzksMTU1Ljc3LDI3MS41Mzl6IiBmaWxsPSIjMDAwMDAwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+      }
+    }
+
+    .form{
+      padding: 0;
+      box-shadow: 0 0 10px 0 rgba(black, .65);
+      background-color: $lightgray;
+      .content{
+        margin: 0;
+        text-align: center;
+        padding: 15px 30px;
+      }
+      .bapi-inquiryform{
+        padding: 20px;
+        color: black;
+      }
+    }
+  }
+
+  @media screen and (min-width: 960px){
+    .hero-block{
+      overflow: hidden;
+
+      .hero-content{
+        width: calc(100% - 450px);
+        float: left;
+        padding-right: 100px;
+        margin-top: 50px;
+
+        ul {
+          width: auto;
+          max-width: 50%;
+          margin: 30px;
+        }
+      }
+
+      .form{
+        margin: 50px 0;
+        float: right;
+        width: 420px;
+      }
+    }
+
+
+  }
+}

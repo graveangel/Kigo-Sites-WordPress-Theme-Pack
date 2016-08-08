@@ -1,0 +1,92 @@
+
+body.landing-page.one{
+
+  .items{
+    li{
+      margin-bottom: 20px;
+      .image{
+        width:200px;
+        height: 200px;
+        margin: 0 auto;
+        border: 7px solid $lightgray;
+
+        border-radius: 50%;
+        background-color: lightgray;
+      }
+
+      h4{
+        font-size: 24px;
+        margin: 20px 0 15px;
+      }
+
+      p{
+        margin: 5px 0;
+        font-size: 16px;
+      }
+    }
+  }
+
+  .landing-list{
+    ul{
+      font-size: 16px;
+
+      li:before{
+        content: '-';
+        display: inline-block;
+        margin-right: 10px;
+      }
+    }
+  }
+
+
+  @media screen and (min-width: 960px){
+    header{
+      position: relative;
+      font-size: 0;
+      .logo, .phone{
+        display: inline-block;
+        font-size: initial;
+      }
+
+      .phone{
+        text-align: right;
+        line-height: 120px;
+      }
+    }
+
+    .hero-block{
+      overflow: hidden;
+      .form{
+        float: right;
+        width: 420px;
+        box-shadow: 0 0 10px 0 rgba(black, .65);
+      }
+    }
+
+    .items {
+      position: relative;
+      font-size:0;
+      li{
+        display: inline-block;
+        vertical-align: top;
+        width: 33%;
+        padding: 0 10px;
+        font-size: initial;
+
+        p{
+          max-width: 250px;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .landing-list{
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+      font-size: initial;
+      padding: 0 10px;
+    }
+  }
+}
+
