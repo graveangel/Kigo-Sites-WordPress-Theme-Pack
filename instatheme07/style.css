@@ -29,7 +29,7 @@ body{background:#fff;}
 .home .pushdown,.home .pushdown.wpadminbarvisible{margin-top:0;}
 
 .top-header-home{position:relative;}
-.property-search-block {
+.home .property-search-block {
 	width:100%; 
 	margin: 0 auto; 
 	left: 0;
