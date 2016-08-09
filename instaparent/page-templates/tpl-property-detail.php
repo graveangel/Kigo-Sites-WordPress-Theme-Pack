@@ -152,6 +152,7 @@ if($data) {
 							</div>
 						</div>
 						<div class="span8">
+							<?php echo "<pre>"; print_r($data); echo "</pre>"; ?>asdf
 							<?php echo $data->Description; ?>
 						</div>
 					</div>
