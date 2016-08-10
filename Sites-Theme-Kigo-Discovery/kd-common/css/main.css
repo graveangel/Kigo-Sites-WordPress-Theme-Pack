@@ -5242,7 +5242,7 @@ body.error404 .message {
     margin-bottom: 0; }
   .kd-search .container {
     padding: 0; }
-  .kd-search input, .kd-search select {
+  .kd-search input[type="text"], .kd-search select {
     display: block;
     width: 100%;
     margin-bottom: 10px;

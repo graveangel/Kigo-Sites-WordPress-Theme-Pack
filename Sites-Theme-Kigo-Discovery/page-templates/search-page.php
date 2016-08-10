@@ -30,8 +30,8 @@
                             </div>
 
                             <div class="btn-group viewToggle">
-                                <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;List</button>
-                                <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                                <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;<?php echo __('List') ?></button>
+                                <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;<?php echo __('Map') ?></button>
                             </div>
                         </div>
                     </div>
