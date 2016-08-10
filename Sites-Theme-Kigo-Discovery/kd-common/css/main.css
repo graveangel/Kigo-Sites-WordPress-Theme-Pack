@@ -5717,7 +5717,6 @@ body.error404 .message {
   @media screen and (min-width: 768px) {
     .kd-page_block .wrapper {
       position: relative;
-      min-height: 420px;
       padding: 30px;
       margin-bottom: 20px; }
       .kd-page_block .wrapper.has_image.right .info {
