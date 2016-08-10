@@ -123,7 +123,8 @@ if($data) {
 				<?php if($settings['propdetail-reviewtab']) { ?>	
 				<li><a href="#tab5" data-toggle="tab"><?php echo $translations['Reviews']; ?></a></li>
 				<?php } ?>
-			</ul>			
+			</ul>		
+
 			<div class="tab-content">
 				<div class="tab-pane active" id="tab1">
 				<div class="row-fluid">
@@ -152,7 +153,7 @@ if($data) {
 							</div>
 						</div>
 						<div class="span8">
-							<?php echo $data->Description; ?>
+							<?php echo preg_replace("/\brn\b/", "", $data->Description); ?>	
 						</div>
 					</div>
 				
