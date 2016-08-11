@@ -5245,7 +5245,6 @@ body.error404 .message {
   .kd-search input[type="text"], .kd-search select {
     display: block;
     width: 100%;
-    margin-bottom: 10px;
     padding: 15px 45px 15px 15px;
     font-size: 12px;
     color: #999;
@@ -5266,7 +5265,12 @@ body.error404 .message {
       margin-left: 5px; }
   .kd-search .dropdown-checkbox-content {
     width: 100%;
-    padding: 20px; }
+    padding: 5px; }
+    .kd-search .dropdown-checkbox-content label {
+      color: #999;
+      text-shadow: none; }
+      .kd-search .dropdown-checkbox-content label:hover {
+        color: white; }
   .kd-search .search {
     padding: 15px;
     border: none;
@@ -5340,6 +5344,7 @@ body.error404 .message {
         top: 15px;
         padding: 0; }
         .kd-search > div:nth-of-type(n+7).search-button-block .more {
+          text-transform: capitalize;
           float: left;
           display: inline-block;
           width: calc(30% - 15px);
