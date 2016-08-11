@@ -1263,7 +1263,7 @@ Featured Properties - QuickView
                     <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
                     <div class="prop-price">From {{MinRate.Value}}{{MinRate.Currency}}/Night</div>
                 </div>
-                <div class="prop-details secondary-fill-color">See details</div>
+                <div class="prop-details secondary-fill-color">{{textdata.See Details}}</div>
             </div>
         </div>
     </a>
@@ -1676,7 +1676,7 @@ Group: Properties
                                     <div class="rate-warning">{{ContextData.Quote.ValidationMessage}}</div>
                                 {{/ContextData.Quote.QuoteDisplay.value}}
                             {{/ContextData.Quote.PublicNotes}}
-                            <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">See Details</a>
+                            <a href="{{&ContextData.SEO.DetailURL}}" class="seeDetails">{{textdata.See Details}}</a>
                         </div>
                     </div>
                 </div>
@@ -2271,11 +2271,8 @@ Group: Searching
             {{/config.altid.enabled}}
 
             <div class="property-search-button-block search-button-block col-xs-12 col-sm-12 col-md-2">
-                <div class="more">More</div>
+                <div class="more">{{textdata.more}}</div>
                 <a class="search quicksearch-dosearch btn primary-fill-color" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Search}}</a>&nbsp;
-                <!--<a class="quicksearch-doclear"  data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Clear}}</a>&nbsp;-->
-                <!--<button type="reset">{{textdata.Clear}}</button>&nbsp;-->
-                <!--<a class="quicksearch-doadvanced" style="display:none" data-field-selector="quicksearch" href="javascript:void(0)">{{textdata.Advanced}}</a>&nbsp;-->
             </div>
         </div>
 </script>

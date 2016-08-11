@@ -60,10 +60,9 @@
     padding: 0;
   }
 
-  input, select{
+  input[type="text"], select{
     display: block;
     width: 100%;
-    margin-bottom: 10px;
     padding: 15px 45px 15px 15px;
     font-size: 12px;
     color: $tertiary-color;
@@ -89,9 +88,19 @@
       margin-left: 5px;
     }
   }
+
   .dropdown-checkbox-content{
     width: 100%;
-    padding: 20px;
+    padding: 5px;
+
+    label{
+      color: $tertiary-color;
+      text-shadow: none;
+
+      &:hover{
+        color: white;
+      }
+    }
   }
 
   .search{
@@ -197,6 +206,7 @@
         top: 15px;
         padding: 0;
         .more{
+          text-transform: capitalize;
           float: left;
           display: inline-block;
           width: calc(30% - 15px);
