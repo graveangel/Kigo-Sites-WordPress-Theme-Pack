@@ -17,7 +17,14 @@ This is the header code.
 if(!empty($bapi_meta_title) && !empty($custom_page_title_option)){ 
   echo $bapi_meta_title;
 }else{
-  wp_title('');
+  if(is_home())
+  {
+    $page_for_posts = get_option( 'page_for_posts' );
+    $blog_page = get_post($page_for_posts);
+    echo apply_filters('the_title', $blog_page->post_title);
+  }
+  else
+    wp_title();
 }
 ?>
 </title>
