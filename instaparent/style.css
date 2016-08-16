@@ -525,7 +525,49 @@ body{background-color:#ededed;word-wrap:break-word;}
 .fp-icons.white .fp-featured .icon.sleeps{background-position:-5px -297px}
 .fp-icons.white .fp-featured .icon.beds{background-position:-165px -297px;}
 .widget_bapi_similar_properties .fp-featured,.widget_bapi_featured_properties .fp-featured,.widget_bapi_developments_widget .development-holder{background:#fff;margin-bottom:25px;}
-.widget_bapi_featured_properties .fp-image,.widget_bapi_similar_properties .fp-image,.widget_bapi_developments_widget .development-image{max-height:200px;overflow:hidden;}
+.widget_bapi_featured_properties .fp-image,.widget_bapi_similar_properties .fp-image,.widget_bapi_developments_widget .development-image{
+	min-height: 200px; 
+	max-height: 200px;
+	overflow:hidden;
+	background: url('./img/comingsoon.gif') center center;
+  	background-size: cover;
+}
+
+.widget_bapi_featured_properties .fp-image img,
+.widget_bapi_similar_properties .fp-image img,
+.widget_bapi_developments_widget .development-image img {
+	min-height: 200px; 
+	max-height: 200px;
+}
+
+img {  
+  font-family: 'Helvetica';
+  font-weight: 300;
+  line-height: 2;  
+  text-align: center;
+
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+}
+
+img:after {  
+  content: "Missing image: " attr(alt);
+  
+  font-size: 16px;
+  color: rgb(100, 100, 100);
+
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f3f3f3;
+}
+
 .widget_bapi_featured_properties .fp-image img,.widget_bapi_similar_properties .fp-image img,.widget_bapi_developments_widget .development-image img{width:100%;}
 .widget_bapi_featured_properties .fp-outer,.widget_bapi_similar_properties .fp-outer,.widget_bapi_developments_widget .development-description{margin:0;padding:10px 13px;min-height:123px;}
 .widget_bapi_featured_properties .fp-title,.widget_bapi_similar_properties .fp-title,.widget_bapi_developments_widget .developments-title{font-size:20px;line-height:140%;margin:0;}
