@@ -545,9 +545,6 @@ img {
   font-weight: 300;
   line-height: 2;  
   text-align: center;
-
-  width: 100%;
-  height: auto;
   display: block;
   position: relative;
 }
