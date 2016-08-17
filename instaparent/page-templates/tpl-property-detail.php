@@ -114,9 +114,6 @@ if($data) {
 							<li><a href="#tab2" data-toggle="tab"><?php echo $translations['Rates']; ?></a></li>
 						<?php } ?>
 					<?php } ?>
-					<?php if($settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
-						<li><a href="#tab2" data-toggle="tab"><?php echo $translations['Rates']; ?></a></li>
-					<?php } ?>
 				<?php } ?>
 				<li><a href="#tab3" data-toggle="tab"><?php echo $translations['Amenities']; ?></a></li>
 				<li><a href="#tab4" id="tabs4" data-toggle="tab"><?php echo $translations['Attractions']; ?></a></li>
@@ -166,13 +163,13 @@ if($data) {
 					<div class="span12 box-sides">
 					<?php if($settings['propdetail-availcal'] != 'Hide Availability Calendars') { ?>
 						<?php if($settings['propdetailratestable'] != 'on') { ?>
-						<h3><?php echo $translations['Rates & Availability']; ?></h3>
-						<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
-						<hr/>
+							<h3><?php echo $translations['Rates & Availability']; ?></h3>
+							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+							<hr/>
 						<?php } ?>
 						<?php if($settings['propdetailratestable'] == 'on') { ?>
-						<h3><?php echo $translations['Availability']; ?></h3>
-						<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+							<h3><?php echo $translations['Availability']; ?></h3>
+							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
 						<?php } ?>
 						<?php if($settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
 							<h3><?php echo $translations['Rates']; ?></h3>
