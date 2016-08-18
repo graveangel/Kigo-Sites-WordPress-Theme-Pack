@@ -98,23 +98,31 @@ if($data) {
 		<section class="row-fluid item-info module shadow-border">
 		<div class="span12">
 			<div class="tabbable">
+
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#tab1" data-toggle="tab"><?php echo $translations['General']; ?></a></li>
-				<?php if($settings['propdetailrateavailtab'] != 'on') { ?>
-					<?php if($settings['propdetail-availcal'] != 'Hide Availability Calendars') { ?>
-							<?php if($settings['propdetailratestable'] != 'on') { ?>
-								<li><a href="#tab2" data-toggle="tab"><?php echo $translations['Rates & Availability']; ?></a></li>
-							<?php } ?>
-							<?php if($settings['propdetailratestable'] == 'on') { ?>
-								<li><a href="#tab2" data-toggle="tab"><?php echo $translations['Availability']; ?></a></li>
-							<?php } ?>
-					<?php } ?>
-					<?php if($settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
-						<?php if($settings['propdetailratestable'] == 'on') { ?>
-							<li><a href="#tab2" data-toggle="tab"><?php echo $translations['Rates']; ?></a></li>
-						<?php } ?>
-					<?php } ?>
-				<?php } ?>
+
+				<?php 
+				if($settings['propdetailrateavailtab'] != 'on') {
+					if($settings['propdetailratestable'] != 'on') {
+						$tab2 = $translations['Rates & Availability'];
+					} else {
+						$tab2 = $translations['Availability'];
+					} 
+				} else {
+					if($settings['propdetailratestable'] != 'on') {
+						$tab2 = $translations['Rates'];
+					}
+				}
+
+				if($tab2) {
+					echo "<li><a href='#tab2' data-toggle='tab'>$tab2</a></li>";
+				}
+
+				?>
+
+				
+
 				<li><a href="#tab3" data-toggle="tab"><?php echo $translations['Amenities']; ?></a></li>
 				<li><a href="#tab4" id="tabs4" data-toggle="tab"><?php echo $translations['Attractions']; ?></a></li>
 				<?php if($settings['propdetail-reviewtab']) { ?>	
@@ -157,52 +165,46 @@ if($data) {
 				</div>
 				</div>
 				</div>
-				<?php if($settings['propdetailrateavailtab'] != 'on') { ?>
 					<div class="tab-pane" id="tab2">
 					<div class="row-fluid">
 					<div class="span12 box-sides">
-					<?php if($settings['propdetail-availcal'] != 'Hide Availability Calendars') { ?>
-						<?php if($settings['propdetailratestable'] != 'on') { ?>
+
+					<?php
+					if($settings['propdetailrateavailtab'] != 'on') {
+						if($settings['propdetailratestable'] != 'on') { ?>
 							<h3><?php echo $translations['Rates & Availability']; ?></h3>
 							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
 							<hr/>
-						<?php } ?>
-						<?php if($settings['propdetailratestable'] == 'on') { ?>
+						<?php } else { ?>
 							<h3><?php echo $translations['Availability']; ?></h3>
 							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
-						<?php } ?>
-						<?php if($settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
-							<h3><?php echo $translations['Rates']; ?></h3>
-						<?php } ?>
-					<?php } ?>
-					<?php if($settings['propdetail-availcal'] == 'Hide Availability Calendars') { ?>
+						<?php } 
+					} 
+
+					if($settings['propdetailratestable'] != 'on') { ?>
 						<h3><?php echo $translations['Rates']; ?></h3>
-					<?php } ?>
-					<?php if($settings['propdetailratestable'] != 'on') { ?>
+						<table class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<?php foreach($context->Rates->Keys as $key) {
+										echo "<th>".$key."</th>";
+									} ?>
+								</tr>
+							</thead>
+							<tbody>
+								<?php foreach($context->Rates->Values as $value) { ?>
+								<tr>
+									<?php foreach($value as $v) { echo "<td>".$v."</td>"; } ?>		
+								</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+					<?php }
+					?>
 
-					<table class="table table-bordered table-striped">
-						<thead>
-							<tr>
-								<?php foreach($context->Rates->Keys as $key) {
-									echo "<th>".$key."</th>";
-								} ?>
-							</tr>
-						</thead>
-						<tbody>
-							<?php foreach($context->Rates->Values as $value) { ?>
-							<tr>
-								<?php foreach($value as $v) { echo "<td>".$v."</td>"; } ?>		
-							</tr>
-							<?php } ?>
-						</tbody>
-					</table>
-
-					<?php /* <div id="ratetable" class="bapi-ratetable" data-pkid="<?php echo $data->ID; ?>"></div> */ ?>
-					<?php } ?>
 					</div>
 					</div>
 					</div>
-				<?php } ?>
 				<div class="tab-pane" id="tab3">
 				<div class="row-fluid">
 				<div class="span12 box-sides">
