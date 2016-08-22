@@ -458,7 +458,7 @@ dd{margin-bottom:20px;}
 html,body{margin:0;padding:0;height:100%;}
 #container{min-height:100%;position:relative;}
 .pushdown{margin-top:20px;padding-bottom:50px;}
-#insta-footer{position:absolute;bottom:0;width:100%;min-height:40px;}
+#insta-footer{position:relative;bottom:0;width:100%;min-height:40px;}
 
 body{background-color:#ededed;word-wrap:break-word;}
 
@@ -1047,7 +1047,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 .shadow-border2{border:1px solid #eee;}
 .flexslider{-moz-border-radius:0;border-radius:0;margin:0;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none;border-color:#E6E6E6;border-bottom:none;}
 .align-right{text-align:right;}
-.box-sides{padding:0 34px;}
+.box-sides{padding:0 1em;}
 input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[disabled], input.no-disabled[readonly], select.no-disabled[readonly], textarea.no-disabled[readonly]{background-color:#fff;cursor:text;}
 
 /*home page slideshow */

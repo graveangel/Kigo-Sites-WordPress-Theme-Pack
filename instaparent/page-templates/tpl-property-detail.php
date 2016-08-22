@@ -172,17 +172,19 @@ if($data) {
 					<?php
 					if($settings['propdetailrateavailtab'] != 'on') {
 						if($settings['propdetailratestable'] != 'on') { ?>
-							<h3><?php echo $translations['Rates & Availability']; ?></h3>
-							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+							<h3><?php echo $translations['Availability']; ?></h3>
+							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
 							<hr/>
 						<?php } else { ?>
 							<h3><?php echo $translations['Availability']; ?></h3>
-							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['availcalendarmonths']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
 						<?php } 
 					} 
 
 					if($settings['propdetailratestable'] != 'on') { ?>
 						<h3><?php echo $translations['Rates']; ?></h3>
+
+						<?php if($context->Rates->Values) { ?>
 						<table class="table table-bordered table-striped">
 							<thead>
 								<tr>
@@ -199,6 +201,9 @@ if($data) {
 								<?php } ?>
 							</tbody>
 						</table>
+						<?php } else {
+							echo $translations['No rates available'];
+						} ?>
 					<?php }
 					?>
 
