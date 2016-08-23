@@ -1593,3 +1593,58 @@ add_action('wp_enqueue_scripts', 'instaparent_styles');
 
 //Include new widgets
 include 'widgets/widgets_include.php';
+
+/**
+ * Renders a given Mustache template, with or without extra data
+ *
+ * @param $string_mustache_template Mustache template name
+ * @param array $addedArray Added array of data to be used by template
+ * @param bool $onlyAdded Use added array exclusively
+ * @return string HTML rendered markup
+ */
+function render_this($string_mustache_template, $addedArray = [], $onlyAdded = false) {
+
+    $data = $onlyAdded ? $addedArray : getbapisolutiondata() + $addedArray;
+
+    $m = new Mustache_Engine();
+    $string = $m->render($string_mustache_template, $data);
+
+    return $string;
+}
+
+/* Include Market Area Scripts */
+add_action('wp_enqueue_scripts', 'market_areas_scripts_and_styles');
+function market_areas_scripts_and_styles()
+{
+    /* swiper library */
+    wp_enqueue_script('swiper-min',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.min.js');
+    wp_enqueue_script('swiper-jquery',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.jquery.min.js');
+    wp_enqueue_script('swiper-jquery-umd',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.jquery.umd.min.js');
+    wp_enqueue_style('swiper-styles',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/css/swiper.min.css');
+    wp_enqueue_style('market-area-styles',get_template_directory_uri() . '/insta-common/css/market-areas-styles.css');
+    
+    /* Google Maps */
+    
+    wp_enqueue_script('google-maps-api', "https://maps.googleapis.com/maps/api/js?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE");
+    /* google maps marker with label */
+    wp_enqueue_script('google-maps-marker-label', get_template_directory_uri() . "/insta-common/js/js-marker-with-label/markerwithlabel.js");
+    
+    /* Market Area Landing page */
+    wp_enqueue_script('market-area-landing',get_template_directory_uri() . '/insta-common/js/market-area-page.js');
+    
+    /* Market Area Main Landing page */
+    wp_enqueue_script('market-area-main-landing',get_template_directory_uri() . '/insta-common/js/market-areas-main-landing.js');
+    
+    /* Market Area scripts initialize */
+    wp_enqueue_script('market-area-scripts',get_template_directory_uri() . '/insta-common/js/market-area-scripts.js');
+}
+
+/* Market Areas admin */
+// Market Areas Table.................................................................................................................
+if(! class_exists('WP_Posts_List_Table'))
+  {
+		require_once ABSPATH . 'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'class-wp-list-table.php';
+		require_once ABSPATH . 'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'class-wp-posts-list-table.php';
+  }
+require_once 'inc' . DIRECTORY_SEPARATOR . 'MarketAreasTable.php';
+require_once 'inc' . DIRECTORY_SEPARATOR . 'MarketAreasDisplay.php';
