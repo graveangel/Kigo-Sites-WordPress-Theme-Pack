@@ -49,7 +49,7 @@
                 <div id="slider" class="flexslider bapi-flexslider" data-options='{	"animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
                   <ul class="slides">
 				  {{^Images}}
-				  	<li><img alt="{{PrimaryImage.Caption}}" src="/wp-content/plugins/WP-InstaSites/thumbs/timthumb.php?src=http:{{&PrimaryImage.OriginalURL}}&w=816&h=600&q=75&zc=2" />
+				  	<li><img alt="{{PrimaryImage.Caption}}" src="{{&PrimaryImage.OriginalURL}}" />
 					{{#PrimaryImage.Caption}}
 					<p class="flex-caption">{{PrimaryImage.Caption}}</p></li>
 					{{/PrimaryImage.Caption}}
