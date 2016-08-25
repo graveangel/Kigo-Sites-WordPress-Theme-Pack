@@ -25,38 +25,53 @@
             </div>
 
             <!-- Map PopUp --> 
-            <div class="map-popup">
-                <span>
-                    <?php echo $this->r('Map') . ' ' . $this->r('Search'); ?>
-                    <span class="popup-icon">
-                        <b class="fa"></b>
-                        <b class="fa"></b>
-                    </span>
-                </span>
-                <div class="mini-map">
+            <?php
+            /*
+              <div class="map-popup">
+              <span>
+              <?php echo $this->r('Map') . ' ' . $this->r('Search'); ?>
+              <span class="popup-icon">
+              <b class="fa"></b>
+              <b class="fa"></b>
+              </span>
+              </span>
+              <div class="mini-map">
 
-                </div>
-            </div>
+              </div>
+              </div>
+             */
+            ?>
         </div>
 
         <!-- Listing -->
         <div class="market-areas-listing">
-            <?php foreach ($market_areas as $market_area): $bgcolor = "#333"; ?>
-                <!--Root Market Area-->
-                <div class="zp-mkta">
-                    <?php if (count($market_area->children)): ?>
+
+            <?php
+            foreach ($market_areas as $market_area): $bgcolor = "#333";
+                if (!$market_area->props)
+                    continue;
+                if ($market_area->children):
+                    ?>
+                    <!--Root Market Area-->
+                    <div class="zp-mkta">
+
 
                         <!--Title-->
-                        <a href="<?php echo $market_area->guid; ?>" class="ma-link">
-                            <h2><?php echo apply_filters('the_title', $market_area->post_title); ?></h2>
-                        </a>
+
+                        <h2><?php echo apply_filters('the_title', $market_area->post_title); ?> <a href="<?php echo $market_area->guid; ?>" class="ma-link">(<?php echo $market_area->props; ?>)</a></h2>
+
 
                         <div class="subareas">
-                            <?php foreach ($market_area->children as $mkta_child): ?>
+                            <?php
+                            $children = $this->flatten_if_one_child($market_area->children);
+//                             $children = $market_area->children;
+                            ?>
+                            <?php foreach ($children as $mkta_child): ?>
 
 
                                 <?php
-                                /* No sub areas */
+                                if (!$mkta_child->props)
+                                    continue;
 
                                 $location = $mkta_child->location;
                                 $props = $mkta_child->props;
@@ -72,30 +87,34 @@
                                 </a>
 
 
-                            <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </div>
-                    <?php
-                    else:
-                        /* No sub areas */
+                    <?php else: ?>
+                         <div class="zp-mkta">
 
-                        $location = $market_area->location;
-                        $props = $market_area->props;
-                        ?>
+
+                        <!--Title-->
+
+                        
+                        
                         <a href="<?php echo $market_area->guid; ?>" class="ma-link">
-                            <div class="market-area-box" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<?php echo wp_get_attachment_url(get_post_thumbnail_id($market_area->ID)); ?>); background-color: <?php echo $bgcolor; ?>;">
-                                <div class="titles-box">
-                                    <h4><?php echo apply_filters('the_title', $market_area->post_title); ?></h4>
-                                    <h5><?php echo $location; ?></h5>
-                                    <p><?php echo $props . ' ' . $this->r('Properties'); ?></p>
-                                </div>
-                            </div>
-                        </a>
+                                    <div class="market-area-box" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<?php echo wp_get_attachment_url(get_post_thumbnail_id($market_area->ID)); ?>); background-color: <?php echo $bgcolor; ?>;">
+                                        <div class="titles-box">
+                                            <h4><?php echo apply_filters('the_title', $market_area->post_title); ?></h4>
+                                            <h5><?php echo $location; ?></h5>
+                                            <p><?php echo $props . ' ' . $this->r('Properties'); ?></p>
+                                        </div>
+                                    </div>
+                                </a>
+
+                        
                     <?php endif; ?>
 
 
 
+
                 </div>
-            <?php endforeach; ?>
+<?php endforeach; ?>
         </div>
 
         <script type="text/javascript">

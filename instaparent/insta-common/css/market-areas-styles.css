@@ -23,6 +23,7 @@
       text-align: justify;
       color: #333;
       width: 50%;
+      width: 100%;
       display: inline-block; }
     .market-areas-main-landing > .page-width .map-popup {
       width: calc( 100% - 5% - 50%);
@@ -334,6 +335,7 @@
     border-bottom: 1px solid #dfdfdf; }
     .market-area-page .title-description .title {
       font-size: 50px;
+      line-height: 1.2;
       color: #000; }
     .market-area-page .title-description .description {
       text-align: justify; }
@@ -372,6 +374,10 @@
     margin-left: 10px; }
     .market-area-page .photo-list-view .view-select > * a.active {
       background: #dfdfdf; }
+    .market-area-page .photo-list-view .view-select > li:fitsr-child a
+    {
+        margin-left: 0;
+    }
   .market-area-page .property-list.photo {
     box-sizing: border-box;
     padding: 20px 36px;
@@ -422,7 +428,8 @@
           font-size: 14px; }
   .market-area-page .property-list.list {
     box-sizing: border-box;
-    padding: 20px 10px;
+    /*padding: 20px 10px;*/
+    padding: 20px 36px;
     font-size: 0; }
     .market-area-page .property-list.list .ppt-box {
       font-size: 14px;
@@ -475,7 +482,10 @@
     margin: 20px 0;
     color: #000;
     box-sizing: border-box;
-    padding: 0 20px; }
+    /*padding: 0 20px;*/ 
+    padding: 0 36px; 
+    line-height: 1.2;
+  }
   .market-area-page .sub-areas .swiper-slide {
     height: 150px;
     background-size: cover;
@@ -492,7 +502,8 @@
       width: 95%;
       left: 0;
       right: 0;
-      font-size: 25px;
+      /*font-size: 25px;*/
+      font-size: 18px;
       text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); }
   .market-area-page .market-area-map {
     font-size: 14px;
@@ -550,19 +561,23 @@
       float: none;
       display: block;
       clear: both;
-      margin-top: 2em; }
+      margin: 2em 0 0; }
+    .market-area-page .photo-list-view .view-select li:first-child a
+    {
+        margin-left: 0;
+    }
     .market-area-page .property-list.photo .ppt-box {
       width: 100%;
       display: block; }
     .market-area-page .property-list.list .ppt-box {
       position: relative; }
       .market-area-page .property-list.list .ppt-box .title-n-desc {
-        width: 40%; }
+        width: 50%; }
       .market-area-page .property-list.list .ppt-box .from {
         position: absolute;
         top: 0; }
     .market-area-page .sub-areas .title {
       box-sizing: border-box;
-      padding: 0 20px;
+      padding: 0 36px;
       font-size: 20px;
       /*                font-weight: bold;*/ } }

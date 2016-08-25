@@ -19,23 +19,54 @@ Class MA_Page
 		add_action( 'admin_menu', [ $this, 'page_menu' ] );
                 add_action('admin_enqueue_scripts', [$this,'add_admin_scripts']);
 		add_action('wp_enqueue_scripts',[$this,'front_scripts']);
+               
 
 
 	}
+        
+
 
   public static function set_screen( $status, $option, $value ) {
 	   return $value;
   }
 
-	function front_scripts()
-	{
-		// wp_register_script( 'theme-location-script', '/theme_location' );
-		// wp_enqueue_script( 'theme-location-script' );
-		// $translation_array = array( 'template_url' => get_stylesheet_directory_uri() );
-		// //after wp_enqueue_script
-		// wp_localize_script( 'theme-location-script', 'theme_info', $translation_array );
-		wp_enqueue_script('google-maps-marker-label', get_stylesheet_directory_uri() . "/kd-common/lib/js-marker-with-label/markerwithlabel.js");
-	}
+function front_scripts()
+{
+        // wp_register_script( 'theme-location-script', '/theme_location' );
+        // wp_enqueue_script( 'theme-location-script' );
+        // $translation_array = array( 'template_url' => get_stylesheet_directory_uri() );
+        // //after wp_enqueue_script
+        // wp_localize_script( 'theme-location-script', 'theme_info', $translation_array );
+        wp_enqueue_script('google-maps-marker-label', get_stylesheet_directory_uri() . "/kd-common/lib/js-marker-with-label/markerwithlabel.js");
+}
+
+function remove_suffixes()
+{
+    
+    
+    # Get all market area pages
+    $args = 
+        [
+            'post_type' => 'page',
+            'posts_per_page' => -1,
+            'meta_key' => '_wp_page_template',
+            'meta_value' => 'page-templates/market-area.php'
+        ];
+    $pages = get_posts($args);
+    
+    foreach($pages as $page)
+    {
+        $new_title = preg_replace('#((in) .+)?(Vacation Rentals)#i', '', $page->post_title);
+        $post = 
+        [
+            'ID' => $page->ID,
+            'post_title' => $new_title
+        ];
+        wp_update_post( $post );
+    }
+    
+    return $response = ['status'=>'ok','message'=> 'Done'];
+}
 
 function market_areas_main_page()
 {
@@ -77,7 +108,7 @@ function market_areas_main_page()
   # Now that I have the market areas page ID I can set the template
   $the_template = 'page-templates/market-areas-controller.php';
   update_post_meta( $maid, '_wp_page_template', $the_template );
-  return ['status' => 1, 'message' => "$market_areas_title created successfully."];
+  return ['status' => 1, 'message' => "$market_areas_title landing page created successfully."];
   }catch(\Exception $err)
   {
       return ['status' => 0, 'message' => $err->getMessage()];
@@ -107,7 +138,14 @@ public function page_menu() {
         {
             $response = $this->market_areas_main_page();
             header('Content-type: application/json');
-            echo "{ status: {$response['status']} , message: {$response['message']}}";
+            echo "{ \"status\": \"{$response['status']}\" , \"message\": \"{$response['message']}\"}";
+            die;
+        }
+        elseif(!empty($_POST['remove_suffix']))
+        {
+            $response = $this->remove_suffixes();
+            header('Content-type: application/json');
+            echo "{ \"status\": \"{$response['status']}\" , \"message\": \"{$response['message']}\"}";
             die;
         }
         else
@@ -145,6 +183,7 @@ public function screen_option() {
 
   	$this->marketareas_obj = new MarketAreasTable();
   }
+  
 
   /**
 * Plugin settings page
@@ -157,6 +196,7 @@ public function theme_settings_page() {
   		<h2>Market Areas Table</h2>
 
                 <div style="margin-top:-5px;">
+                        <input class="button-primary create-main" type ="button" value="Create Main Market Areas Landing Page"> 
                         <input class="button-primary crawlpages" type ="button" value="Sync Market Areas">
                 </div>
   		<div id="poststuff">
@@ -177,7 +217,45 @@ public function theme_settings_page() {
 
                 <script type="text/javascript">
 
-
+                $('.create-main').on('click', function(e)
+                {
+                    
+                     modal(
+                    {
+                        title: '<i class="fa fa-exclamation-triangle fa-3x" aria-hidden="true"></i> <h2>Heads up!</h2>',
+                        body: '<p> This action will create a page called <b>Market Areas</b> if it does not exist yet. If it does it will assign the Main market area landing page template to it.',
+                        footer: '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <button type="button" class="btn primary-button mkta-main-btn-ok">Ok</button>'
+                    });
+                    
+                     $('.mkta-main-btn-ok').on('click', function(e)
+                    {
+                      
+                                                $.ajax(
+                                                {
+                                                    url: '',
+                                                    type: 'post',
+                                                    dataType : 'json',
+                                                    data: {cmkta: 1},
+                                                    complete: function(data)
+                                                    {
+                                                        var json_data = JSON.parse(data.responseText);
+//                                                        console.log(JSON.parse(data.responseText));
+                                                        
+                                                         modal(
+                                                            {
+                                                                title: '<i class="fa fa-exclamation-triangle fa-3x" aria-hidden="true"></i> <h2>Done!</h2>',
+                                                                body: json_data.message,
+                                                                footer: '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'
+                                                            });
+                                                            
+                                                            
+                                                    }
+                                                });
+                                                
+                                                modal_close();
+                    });
+                    
+                });
 
 
                 $(".crawlpages").on('click', function(e)
@@ -204,20 +282,19 @@ public function theme_settings_page() {
 				jQuery.post(url, {}, function(res) {
                                         txtresult.css('background-image','none')
                                         txtresult.html('<h5>Completed</h5>');
-                                       
-                                        jQuery.ajax(
+                                        
+                                        txtresult.append(res);
+                                        $.ajax(
                                                 {
                                                     url: '',
                                                     type: 'post',
                                                     dataType : 'json',
-                                                    data: {cmkta: 1},
-                                                    success: function(data)
+                                                    data: {remove_suffix: 1},
+                                                    complete: function(data)
                                                     {
-                                                        console.log(data);
                                                         location.reload();
                                                     }
                                                 });
-                                         txtresult.append(res);
 					
 				});
                              $('.mkta-btn-ok').remove();

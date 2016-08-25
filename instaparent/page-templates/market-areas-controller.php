@@ -78,24 +78,24 @@ class MarketAreasPageController {
      */
     function get_market_areas($parentId = 0) {
         $args = [
-            'post_type' => 'page',
-            'meta_key' => '_wp_page_template',
-            'meta_value' => 'page-templates/market-area.php',
-            'post_parent' => $parentId,
-            'posts_per_page' => -1,
+            'post_type'         => 'page',
+            'meta_key'          => '_wp_page_template',
+            'meta_value'        => 'page-templates/market-area.php',
+            'post_parent'       => $parentId,
+            'posts_per_page'    => -1,
         ];
 
         $market_areas = get_posts($args);
 
-        if (!$parentId) { // If no parent ID provided or equal to Zero
+        //if (!$parentId) { // If no parent ID provided or equal to Zero
             foreach ($market_areas as $idx => $market_area) {
 
-                $pid = $market_area->ID; // Int. The ID of the market area page
-                $children = $this->get_market_areas($pid);
+                $pid        = $market_area->ID; // Int. The ID of the market area page
+                $children   = $this->get_market_areas($pid);
 
                 $market_areas[$idx]->children = $children;
             }
-        }
+        //}
 
         $containers = ['Neighborhood', 'County', 'City', 'Region', 'State', 'Country']; // in order of size
 
@@ -123,6 +123,32 @@ class MarketAreasPageController {
         }
 
         return $market_areas;
+    }
+    
+    function flatten_if_one_child($multilevel_array, $inDeep = false)
+    {
+        $flattened = [];
+        if(count($multilevel_array)==1 || $inDeep)        
+            foreach($multilevel_array as $multi_level_array_item)
+            {
+                $flattened[] = $multi_level_array_item;
+
+    //            var_dump(count($multi_level_array_item->{'children'})); die;
+                if(count($multi_level_array_item->{'children'}))
+                {
+
+                    $children = $multi_level_array_item->{'children'};
+                    $children = $this->flatten_if_one_child($children, true);
+                    //var_dump($children); die;
+                    $flattened = array_merge($flattened,$children);
+
+
+                }
+            }
+         else
+             $flattened = $multilevel_array;
+        
+        return $flattened;
     }
 
     function get_all_market_area_objs() {

@@ -229,7 +229,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
     public function get_bulk_actions() {
         $actions = [
             'bulk-trash' => 'Send to Trash',
-            'bulk-whipe' => 'Whipe them out!',
+            'bulk-whipe' => 'Delete permanently',
         ];
 
         return $actions;
@@ -631,12 +631,12 @@ class MarketAreasTable extends \WP_Posts_List_Table {
                     '<a href="%s" aria-label="%s">%s</a>', get_edit_post_link($post->ID),
                     /* translators: %s: post title */ esc_attr(sprintf(__('Edit &#8220;%s&#8221;'), $title)), __('Edit')
             );
-            // $actions['inline hide-if-no-js'] = sprintf(
-            // 	'<a href="#" class="editinline" aria-label="%s">%s</a>',
-            // 	/* translators: %s: post title */
-            // 	esc_attr( sprintf( __( 'Quick edit &#8220;%s&#8221; inline' ), $title ) ),
-            // 	__( 'Quick&nbsp;Edit' )
-            // );
+             $actions['inline hide-if-no-js'] = sprintf(
+             	'<a href="#" class="editinline" aria-label="%s">%s</a>',
+             	/* translators: %s: post title */
+             	esc_attr( sprintf( __( 'Quick edit &#8220;%s&#8221; inline' ), $title ) ),
+             	__( 'Quick&nbsp;Edit' )
+             );
         }
 
         if (current_user_can('delete_post', $post->ID)) {

@@ -96,9 +96,9 @@ class MarketAreaController
         
         $post_title = apply_filters('the_title',$post->post_title);
         
-        $ma_name = empty($ma->Name) ? $post_title : $ma->Name;
+        $ma_name = $post_title;//empty($ma->Name) ? $post_title : $ma->Name;
         
-        $title = __('Rentals in') . ' ' . $ma_name;
+        $title = $ma_name;
         $this->set('title', $title);
         
         # Pics
@@ -114,7 +114,9 @@ class MarketAreaController
         $this->set('pics', $pics);
         
         # Set Subareas & properties
-        $this->set_subareas_n_properties();
+        $this->set_subareas();
+        # Set properties
+        $this->set_properties();
         
         # all props json
         $all_props = [];
@@ -154,7 +156,7 @@ class MarketAreaController
         return $r;
     }
     
-    function set_subareas_n_properties()
+    function set_subareas()
     {
         global $post;
         $sub_areas = [];
@@ -166,15 +168,22 @@ class MarketAreaController
 			'hierarchical'      => 1,
 			'exclude'           => '',
 			'include'           => '',
-			'meta_key'          => '',
-			'meta_value'        => '',
 			'authors'           => '',
 			'exclude_tree'      => '',
 			'number'            => '',
 			'offset'            => 0,
                         'child_of'          => $post->ID,
 			'post_type'         => 'page',
-			'post_status'       => 'publish'
+			'post_status'       => 'publish',
+                        'meta_query' => 
+                                    [
+                                        'relation' => 'AND',
+                                        [
+                                            'key'          => 'bapikey',
+                                            'value'        => 'marketarea',
+                                            'compare'      => 'like'
+                                        ]
+                                    ]
 		)
 	);
         
@@ -191,12 +200,6 @@ class MarketAreaController
                             $page->bpd     = json_decode(get_post_meta($page->ID,'bapi_property_data', true), true);
                             $sub_areas[]   = $page;
                         }
-                        if( $bk[0] == 'property' )
-                        {
-                            $page->bpd = json_decode(get_post_meta($page->ID,'bapi_property_data', true), true);
-
-                            $pa[$page->bpd['ID']] = $page;
-                        }
                 }
         }
         
@@ -205,8 +208,8 @@ class MarketAreaController
         # Set properties
         //$this->set('properties' , $pa);
         $this->set('ptotal'     , count($pa));
-        $this->set_properties($pa);
-        $this->set('pvisible'   ,$this->get('properties'));
+        
+        $this->set('pvisible'   ,count($this->get('properties')));
     }
     
     /**
@@ -216,18 +219,14 @@ class MarketAreaController
      * @param array $pa
      * @return void 
      */
-    function set_properties($pa)
+    function set_properties()
     {
-        if( empty($pa) )
-            return [];
+       
         
         $ppp = get_option('posts_per_page');
    
 //        $maxrequest = 20;
         $size       = $ppp; //($ppp > $maxrequest) ? $maxrequest : $ppp;
-        
-        $this->max_num_pages = ceil(count($pa)/$size);
-        
         switch(true)
         {
             case ($this->paged <= 0): //The number passed is negative
@@ -239,12 +238,44 @@ class MarketAreaController
 
         }
         
-        $this->current_page =  $paged - 1;
+        global $post;
+        
+        $this->current_page =  $paged;
+//        echo $this->current_page; die;
+        $args = [
+                        'sort_order'        => 'asc',
+			'sort_column'       => 'post_title',
+                        'posts_per_page'    => $size,
+			'include_children'  => true,
+                        'paged'             => $this->current_page,
+                        'post_parent '      => $post->ID,
+			'post_type'         => ['page'],
+			'post_status'       => ['publish'],
+                        'meta_key'          => '_wp_page_template',
+                        'meta_value'        => 'page-templates/property-detail.php'
+                                    
+        ];
+        $Query = new WP_Query($args);
+
+        
+        
+        $this->max_num_pages = $Query->max_num_pages;//ceil(count($pa)/$size);
+        
+        
         
         $offset =  $size * $this->current_page;
         
-        $visible_props = array_slice($pa, $offset, $size);
+        $visible_props = $Query->posts;//array_slice($pa, $offset, $size);
         
+        foreach($visible_props as $ind => $page)
+        {
+         
+            $visible_props[$ind]->bpd    = json_decode(get_post_meta($page->ID,'bapi_property_data', true), true);
+          
+        }
+        
+        $this->set('pvisible', count($visible_props));
+        $this->set('ptotal', $Query->found_posts);
         
         $this->set('properties', $visible_props);
     }

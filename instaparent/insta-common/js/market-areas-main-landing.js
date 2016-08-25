@@ -10,7 +10,7 @@ marketAreasMainLanding =
 
                     /* Client Current location as center */
                     /* The initialLocation would be the location of the first property by default */
-
+                    
                     this.setMap('.map-popup .mini-map',
                             {
                                 zoom: 5,
@@ -135,7 +135,7 @@ marketAreasMainLanding =
                 });
             },
             cond: function cond() {
-                return document.querySelector('.market-areas-main-landing');
+                return document.querySelector('.market-areas-main-landing') && $('.map-popup').length;
             },
             mapStyles: [
                 {

@@ -13,7 +13,7 @@
 
         <!--The title-->
         <div class="title-description">
-            <h1 class="title"><?php echo $title; ?></h1>
+            <h1 class="title"><?php echo __('Rentals in') . ' ' . $title; ?></h1>
             <div class="description">
                 <?php echo apply_filters('the_content', $description); ?>
             </div>
@@ -38,7 +38,7 @@
                         ?>
                         <div class="swiper-slide" style="background-image: url('<?php echo $featured_image; ?>'); background-color: #333;">
                             <a href="<?php echo $subarea->guid; ?>" class="permalink">
-                            <h4><?php echo $subarea->bpd['Name']; ?></h4>
+                            <h4><?php echo $subarea->post_title; ?></h4>
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -101,7 +101,7 @@
                             <span><?php echo $this->r('From'); ?></span>
                             
                             
-                            <?php if(strlen($ppd['MinRate']['LocalCurrencySymbol']) == 1): ?>
+                            <?php if(strlen($ppd['MinRate']['LocalCurrencySymbol']) < 3): ?>
                             <p><?php printf("%s %s", $ppd['MinRate']['LocalCurrencySymbol'], $ppd['MinRate']['LocalSValue2']); ?></p>
                             <?php else: ?>
                             <p><?php printf("%s %s", '&#x' . substr($ppd['MinRate']['LocalCurrencySymbol'],1) . ';', $ppd['MinRate']['LocalSValue2']); ?></p>
