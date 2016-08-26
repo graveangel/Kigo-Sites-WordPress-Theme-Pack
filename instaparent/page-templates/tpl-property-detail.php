@@ -308,7 +308,6 @@ if($data) {
 							<?php if(!$settings['hasreviews']) { ?>
 							<h5><?php _e('There are no reviews at this time.'); ?>
 							<?php } else { ?>
-							<a class="flipkeyPowered" rel="nofollow" target="_blank" href="//www.flipkey.com"><span></span></a>
 								<div class="clearfix"></div>
 								<?php foreach($data->ContextData->Reviews as $review) { ?>
 									<div class="row-fluid review">
@@ -331,6 +330,9 @@ if($data) {
 											<?php foreach($review->ExternalLink as $link) { ?>				
 											<a class="full-rev-link" href="<?php echo $link; ?>" target="_blank"><?php echo $translations['See full review on']; ?> Flipkey</a>
 											<?php } ?>
+											<?php if($review->Source == 'FlipKey') {
+												echo '<a class="flipkeyPowered" rel="nofollow" target="_blank" href="//www.flipkey.com"><span></span></a>';
+											} ?>
 										</div>
 									</div>
 								<hr/>
