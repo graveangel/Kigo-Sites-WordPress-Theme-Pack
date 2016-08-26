@@ -18,7 +18,7 @@ Class MA_Page
 		add_filter( 'set-screen-option', [ __CLASS__, 'set_screen' ], 10, 3 );
 		add_action( 'admin_menu', [ $this, 'page_menu' ] );
                 add_action('admin_enqueue_scripts', [$this,'add_admin_scripts']);
-		add_action('wp_enqueue_scripts',[$this,'front_scripts']);
+		//add_action('wp_enqueue_scripts',[$this,'front_scripts']);
                
 
 
@@ -37,7 +37,7 @@ function front_scripts()
         // $translation_array = array( 'template_url' => get_stylesheet_directory_uri() );
         // //after wp_enqueue_script
         // wp_localize_script( 'theme-location-script', 'theme_info', $translation_array );
-        wp_enqueue_script('google-maps-marker-label', get_stylesheet_directory_uri() . "/kd-common/lib/js-marker-with-label/markerwithlabel.js");
+        //wp_enqueue_script('google-maps-marker-label', get_stylesheet_directory_uri() . "/kd-common/lib/js-marker-with-label/markerwithlabel.js");
 }
 
 function remove_suffixes()
@@ -193,10 +193,10 @@ public function theme_settings_page() {
         $preloader_url = get_template_directory_uri() . explode($themefoldername, dirname(__FILE__))[1] . '/static/img/Preloader_5.gif';
   	?>
   	<div class="wrap">
-  		<h2>Market Areas Table</h2>
+  		<h2>Market Area's</h2>
 
                 <div style="margin-top:-5px;">
-                        <input class="button-primary create-main" type ="button" value="Create Main Market Areas Landing Page"> 
+                        <input class="button-primary create-main" type ="button" value="Create Market Area Landing Page"> 
                         <input class="button-primary crawlpages" type ="button" value="Sync Market Areas">
                 </div>
   		<div id="poststuff">
