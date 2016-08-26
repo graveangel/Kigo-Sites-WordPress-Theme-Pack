@@ -119,7 +119,7 @@
 						echo paginate_links( array(
 							'base' => str_replace( $big, '%#%', esc_url( "?paged=$big" ) ),
 							'format' => '?paged=%#%',
-							'current' => max( 1, $this->current_page + 1 ),
+							'current' => max( 1, $this->current_page ),
 							'total' => $this->max_num_pages
 						) );
 				?>
