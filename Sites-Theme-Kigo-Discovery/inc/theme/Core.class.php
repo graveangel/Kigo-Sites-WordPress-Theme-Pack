@@ -53,7 +53,7 @@ class Core {
         ];
 
         /* Enable custom post thumbnails */
-        add_theme_support('post-thumbnails', array('item', 'team', 'page', 'post'));
+        add_theme_support('post-thumbnails', array('item', 'team', 'page', 'post','stacks'));
 
         /* Default theme fallback */
 //        @define('KIGO_SELF_HOSTED', FALSE);
@@ -68,6 +68,12 @@ class Core {
         add_filter( 'query_vars', [$this,'add_query_vars_filter'] );
         add_action('init',[$this,'kd_get_post_types'],99999);
         add_action('pre_get_posts',[$this,'set_search_query']);
+
+        if( class_exists('Discovery\StackAreas\StackAreasLandings') )
+        {
+          //Stack areas landings:
+          $StackAreasLandings = new StackAreas\StackAreasLandings(dirname(__FILE__) . '/../../page-templates');
+        }
 
     }
 

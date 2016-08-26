@@ -47,16 +47,20 @@ var app = {
         window.addEventListener('scroll', checkHeader); //ms
 
         checkHeader(); //Check in case page has loaded with scroll
-
+        
+        
+        
         function checkHeader(){
             var currentScroll = window.scrollY;
             
             if(currentScroll >= scrollMax){
                 header.classList.add('fixed');
+                header.dispatchEvent(app.events.headerFixed);
                 //body.style.paddingTop = underHeader.clientHeight + 'px';
             }
             else{
                 header.classList.remove('fixed');
+                header.dispatchEvent(app.events.headerUnfixed);
                 //body.style.paddingTop = 0;
             }
         }

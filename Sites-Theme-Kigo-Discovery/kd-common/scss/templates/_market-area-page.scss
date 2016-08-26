@@ -1,0 +1,931 @@
+.global-wrapper::after
+{
+    clear: both;
+    content: '';
+    display: table;
+}
+/* Swiper arrows */
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%2036.2%20105.9%22%20enable-background%3D%22new%200%200%2036.2%20105.9%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%226%22%20stroke-miterlimit%3D%2210%22%20points%3D%2211.2%2C0%2025%2C52.9%2011.2%2C105.9%20%22%2F%3E%0A%3C%2Fsvg%3E");
+                    
+  right: 10px;
+  left: auto;
+}
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%2036.2%20105.9%22%20enable-background%3D%22new%200%200%2036.2%20105.9%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%226%22%20stroke-miterlimit%3D%2210%22%20points%3D%2225%2C105.9%2011.2%2C52.9%2025%2C0%20%22%2F%3E%0A%3C%2Fsvg%3E%0A");
+                    
+  left: 10px;
+  right: auto;
+}
+.market-area-page
+{
+    font-size: 0;
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    /*The content*/
+    $market-area-content-width: 60%;
+    .market-area-content
+    {
+        background: #fff;
+        width: 60%;
+
+        z-index: 10;
+        font-size: 14px;
+        overflow: auto;
+        position: relative;
+        left: 0;
+        vertical-align: top;
+        display: inline-block;
+
+        box-shadow: 5px 0px 3px rgba(0,0,0,0.4);
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            background-color: rgba(0,0,0,0.1);
+            -webkit-border-radius: 80px;
+        }
+        &::-webkit-scrollbar:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        &::-webkit-scrollbar-thumb:vertical {
+            background: rgba(0,0,0,0.3);
+            -webkit-border-radius: 80px;
+        }
+        &::-webkit-scrollbar-thumb:vertical:active {
+            background: rgba(0,0,0,0.61);
+            transition: all 0.5s ease;
+            -webkit-border-radius: 0px;
+        }
+
+
+
+
+    }
+
+    .title-description
+    {
+        box-sizing: border-box;
+        padding: 20px 36px;
+        border-bottom: 1px solid #dfdfdf;
+        .title
+        {
+            font-size: 50px;
+            color: #000;
+        }
+        .description
+        {
+            text-align: justify;
+
+        }
+    }
+    /*InfoWindow*/
+    .prop-infowindow
+    {
+        max-width: 200px;
+
+        .image
+        {
+            height:100px;
+            display: block;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .title
+        {
+            color:#000;
+        }
+
+        p
+        {
+            color: #999;
+        }
+    }
+
+    /*Property Listing*/
+    .photo-list-view
+    {
+        padding: 20px 36px;
+        line-height: 20px;
+        border-bottom: 1px solid #dfdfdf;
+
+        > b
+        {
+            font-size: 25px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        ul
+        {
+            vertical-align: top;
+            float: right;
+            display: inline-block;
+            li
+            {
+                display: inline-block;
+                vertical-align: top;
+            }
+        }
+
+        &::after
+        {
+            content: '';
+            display: table;
+            clear:both;
+        }
+    }
+
+    /*Select view*/
+    .photo-list-view
+    {
+        .view-select
+        {
+            > * 
+            {
+                a
+                {
+                    padding: 10px 20px;
+                    margin-left: 10px;
+                    &.active
+                    {
+                        background: #dfdfdf;
+                    }
+                }
+                
+                &:first-child
+                {
+                    a
+                    {
+                        margin-left: 0px;
+                    }
+                }
+                
+            }
+        }
+    }
+    /* Page numbers */
+    .pagination-links
+    {
+        padding: 0 36px;
+    }
+
+    /*Propery list*/
+    .property-list.photo
+    {
+        box-sizing: border-box;
+        padding: 20px 36px;
+        font-size: 0;
+        .ppt-box
+        {
+            $gap: 30px;
+            $thumb-height: 200px;
+            width: calc((100% - #{$gap})/2);
+            margin-right: $gap;
+            margin-bottom: $gap;
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            font-size: 14px;
+
+            .ppt-thumb
+            {
+                display: block;
+                width: 100%;
+                background-size: cover;
+                background-position: center;
+                background-color: #dfdfdf;
+                height: $thumb-height;
+            }
+
+            .ppt-title
+            {
+                font-size: 16px;
+                max-width: 70%;
+                height: 20px;
+                overflow:hidden; 
+                white-space: nowrap;
+                text-overflow:ellipsis;
+            }
+
+            &:nth-child(2n+2)
+                {
+                margin-right: 0;
+            }
+
+            .from
+            {
+                $side: 77px;
+                position: absolute;
+                top: #{$thumb-height - $side/2};
+                right: 10px;
+                width: $side;
+                height: $side;
+                box-sizing: border-box;
+                padding-top: #{$side/5};
+                color: #fff;
+                border-radius: 100%;
+                text-align: center;
+                a
+                {
+                    color: #fff;
+                }
+                span
+                {
+                    font-family:  sans-serif;
+                    font-size: 12px;
+                    font-weight: 100;
+                }
+                p
+                {
+
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    /*Propery list*/
+    .property-list.list
+    {
+        box-sizing: border-box;
+        padding: 20px 36px;
+        font-size: 0;
+        .ppt-box
+        {
+
+            font-size: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid #dfdfdf;
+            position: relative;
+            > *
+            {
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            .ppt-thumb
+            {
+                $side: 75px;
+                $gap: 30px;
+                width: $side;
+                height: $side;
+                margin-right: $gap;
+                background-size: cover;
+                background-position: center;
+                background-color: #dfdfdf;
+                display: inline-block;
+
+            }
+
+            .title-n-desc
+            {
+                width: 70%;
+            }
+            .ppt-title
+            {
+                margin: 0;
+                font-size: 16px;
+                height: 20px;
+                white-space: nowrap;
+                overflow:hidden; 
+                text-overflow:ellipsis;
+            }
+
+
+            .from
+            {
+                $side: 77px;
+                right: 10px;
+                width: $side;
+                height: $side;
+                box-sizing: border-box;
+                padding-top: #{$side/5};
+                color: #fff;
+                border-radius: 100%;
+                text-align: center;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                a
+                {
+                    color: #fff;
+                }
+                span
+                {
+                    font-family:  sans-serif;
+                    font-size: 12px;
+                    font-weight: 100;
+                }
+                p
+                {
+
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    /*Sub Areas*/
+    .sub-areas
+    {
+        .title
+        {
+            font-size: 35px;
+            margin: 20px 0px;
+            color: #000;
+            box-sizing: border-box;
+            padding: 0 36px;
+        }
+        .swiper-slide
+        {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            margin-right: 10px;
+            h4
+            {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                height: 30%;
+                color:#fff;
+                text-align: center;
+                margin: auto;
+                width: 95%;
+                left:0;
+                right:0;
+                font-size: 25px; 
+                text-shadow: 2px 2px 2px rgba(0,0,0,0.5)
+            }
+        }
+    }
+
+    /*The map*/
+    .market-area-map
+    {
+        font-size: 14px;
+        vertical-align: top;
+        display: inline-block;
+        width: 40%;
+        position: relative;
+        right: 40%;
+        //right: 0;
+        trasition: right 0.5s ease;
+        z-index: 9;
+        height: 100vh;
+        background: #dfdfdf;
+        overflow: hidden;
+
+        .featured-image
+        {
+            min-height: 400px;
+            background-position: center;
+            background-size: cover;
+        }
+
+        &.ready
+        {
+            right: 0;
+            transition: right 0.5s ease;
+        }
+
+
+
+        .mpbx
+        {
+            height: 100vh;
+            display: block;
+        }
+
+    }
+
+}
+
+/* Tablets */
+@media (max-width: $bp-lg)
+{
+    .global-wrapper::after
+    {
+
+    }
+    .market-area-page
+    {
+
+
+
+        /*The content*/
+
+        .market-area-content
+        {
+
+
+            width: 100%;
+
+            &::-webkit-scrollbar {
+
+            }
+            &::-webkit-scrollbar:hover {
+
+            }
+
+            &::-webkit-scrollbar-thumb:vertical {
+
+            }
+            &::-webkit-scrollbar-thumb:vertical:active {
+
+            }
+
+
+
+
+        }
+
+        .title-description
+        {
+
+            .title
+            {
+
+            }
+            .description
+            {
+
+
+            }
+        }
+        /*InfoWindow*/
+        .prop-infowindow
+        {
+
+
+            .image
+            {
+
+            }
+
+            .title
+            {
+
+            }
+
+            p
+            {
+
+            }
+        }
+
+        /*Property Listing*/
+        .photo-list-view
+        {
+
+
+            > b
+            {
+
+            }
+
+            ul
+            {
+
+                li
+                {
+
+                }
+            }
+
+            &::after
+            {
+
+            }
+        }
+
+        /*Select view*/
+        .photo-list-view
+        {
+            .view-select
+            {
+                > * 
+                {
+                    a
+                    {
+
+                        &.active
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        /*Propery list*/
+        .property-list.photo
+        {
+
+            .ppt-box
+            {
+
+
+                .ppt-thumb
+                {
+
+                }
+
+                .ppt-title
+                {
+
+                }
+
+                &:nth-child(2n+2)
+                    {
+
+                }
+
+                .from
+                {
+
+                    a
+                    {
+
+                    }
+                    span
+                    {
+
+                    }
+                    p
+                    {
+
+
+                    }
+                }
+            }
+        }
+
+        /*Propery list*/
+        .property-list.list
+        {
+
+            .ppt-box
+            {
+
+
+                > *
+                {
+
+                }
+
+                .ppt-thumb
+                {
+
+
+                }
+
+                .title-n-desc
+                {
+
+                }
+                .ppt-title
+                {
+
+                }
+
+
+                .from
+                {
+
+                    a
+                    {
+
+                    }
+                    span
+                    {
+
+                    }
+                    p
+                    {
+
+
+                    }
+                }
+            }
+        }
+
+        /*Sub Areas*/
+        .sub-areas
+        {
+            .title
+            {
+
+            }
+            .swiper-slide
+            {
+
+                h4
+                {
+
+                }
+            }
+        }
+
+        /*The map*/
+        .market-area-map
+        {
+
+            display: none;
+            .featured-image
+            {
+
+            }
+
+            &.ready
+            {
+
+            }
+
+
+
+            .mpbx
+            {
+
+            }
+
+        }
+
+    }
+}
+
+/* Smartphones */
+@media (max-width: $bp-md)
+{
+    .global-wrapper::after
+    {
+
+    }
+    .market-area-page
+    {
+
+
+
+        /*The content*/
+
+        .market-area-content
+        {
+
+
+
+
+            &::-webkit-scrollbar {
+
+            }
+            &::-webkit-scrollbar:hover {
+
+            }
+
+            &::-webkit-scrollbar-thumb:vertical {
+
+            }
+            &::-webkit-scrollbar-thumb:vertical:active {
+
+            }
+
+
+
+
+        }
+
+        .title-description
+        {
+
+            .title
+            {
+
+            }
+            .description
+            {
+
+
+            }
+        }
+        /*InfoWindow*/
+        .prop-infowindow
+        {
+
+
+            .image
+            {
+
+            }
+
+            .title
+            {
+
+            }
+
+            p
+            {
+
+            }
+        }
+
+        /*Property Listing*/
+        .photo-list-view
+        {
+
+
+            > b
+            {
+
+            }
+
+            ul
+            {
+
+                li
+                {
+
+                }
+            }
+
+            &::after
+            {
+
+            }
+        }
+
+        /*Select view*/
+        .photo-list-view
+        {
+            b
+            {
+                font-size: 15px;
+            }
+            .view-select
+            {
+                float: none;
+                display: block;
+                clear: both;
+                margin-top: 2em;
+
+                > * 
+                {
+                    a
+                    {
+
+                        &.active
+                        {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        /*Propery list*/
+        .property-list.photo
+        {
+
+            .ppt-box
+            {
+                width: 100%;
+                display: block;
+
+                .ppt-thumb
+                {
+
+                }
+
+                .ppt-title
+                {
+
+                }
+
+                &:nth-child(2n+2)
+                    {
+
+                }
+
+                .from
+                {
+
+                    a
+                    {
+
+                    }
+                    span
+                    {
+
+                    }
+                    p
+                    {
+
+
+                    }
+                }
+            }
+        }
+
+        /*Propery list*/
+        .property-list.list
+        {
+
+            .ppt-box
+            {
+                position: relative;
+
+                > *
+                {
+
+                }
+
+                .ppt-thumb
+                {
+
+
+                }
+
+                .title-n-desc
+                {
+                    width: 50%;
+                }
+                .ppt-title
+                {
+
+                }
+
+
+                .from
+                {
+                    position: absolute;
+                    top: 0;
+
+                    a
+                    {
+
+                    }
+                    span
+                    {
+
+                    }
+                    p
+                    {
+
+
+                    }
+                }
+            }
+        }
+
+        /*Sub Areas*/
+        .sub-areas
+        {
+            .title
+            {
+                box-sizing: border-box;
+                padding: 0 36px;
+                font-size: 20px;
+                /*                font-weight: bold;*/
+            }
+            .swiper-slide
+            {
+
+                h4
+                {
+
+                }
+            }
+        }
+
+        /*The map*/
+        .market-area-map
+        {
+
+
+            .featured-image
+            {
+
+            }
+
+            &.ready
+            {
+
+            }
+
+
+
+            .mpbx
+            {
+
+            }
+
+        }
+
+    }
+}

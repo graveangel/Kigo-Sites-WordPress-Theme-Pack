@@ -49,3 +49,24 @@ a{
 
 @import 'inc/flexslider';
 
+
+/* UDF */
+label.udf-filter {
+  margin-right: 15px;
+  margin-top: 15px;
+  vertical-align: top;
+  text-align: left;
+  input[type="checkbox"]
+  {
+      width: auto;
+  }
+}
+
+@media (max-width: #{ $bp-sm +1})
+{
+    label.udf-filter {
+    width: 100%;
+    margin: 0;
+  }
+}
+

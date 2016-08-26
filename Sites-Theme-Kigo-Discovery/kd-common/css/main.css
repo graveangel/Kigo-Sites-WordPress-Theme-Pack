@@ -3224,6 +3224,20 @@ a {
     color: white;
     opacity: 1; }
 
+/* UDF */
+label.udf-filter {
+  margin-right: 15px;
+  margin-top: 15px;
+  vertical-align: top;
+  text-align: left; }
+  label.udf-filter input[type="checkbox"] {
+    width: auto; }
+
+@media (max-width: 769px) {
+  label.udf-filter {
+    width: 100%;
+    margin: 0; } }
+
 .virtual-sidebars-box::after {
   content: '';
   display: table;
@@ -5103,6 +5117,686 @@ body.error404 .error {
 
 body.error404 .message {
   text-transform: none; }
+
+/**
+ * Syack areas default tempalte
+ */
+.stacks-default-template {
+  /* hero */
+  /* properties and locations */ }
+  .stacks-default-template .hero {
+    width: 100%;
+    position: relative;
+    min-height: 200px;
+    /* Description */
+    /* Slides */ }
+    .stacks-default-template .hero .center {
+      position: absolute;
+      z-index: 200;
+      width: 95%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 90%;
+      /* The title */ }
+      .stacks-default-template .hero .center h1 {
+        text-align: center;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1em;
+        margin: auto;
+        max-width: 100%;
+        color: rgba(255, 255, 255, 0.8); }
+    .stacks-default-template .hero .description {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      box-sizing: border-box;
+      max-height: 200px;
+      overflow-y: auto; }
+    .stacks-default-template .hero .swiper-slide {
+      width: 100%;
+      height: 600px;
+      background-position: center;
+      background-size: cover; }
+    .stacks-default-template .hero .swiper-pagination,
+    .stacks-default-template .hero .swiper-button-prev,
+    .stacks-default-template .hero .swiper-button-next {
+      z-index: 201; }
+  .stacks-default-template .widget-area-for-ppt-search {
+    margin-top: 30px;
+    /* TABS */ }
+    .stacks-default-template .widget-area-for-ppt-search .pointer {
+      cursor: pointer; }
+    .stacks-default-template .widget-area-for-ppt-search .tab-selector li {
+      display: inline-block; }
+      .stacks-default-template .widget-area-for-ppt-search .tab-selector li a {
+        display: block;
+        padding: 10px 20px; }
+    .stacks-default-template .widget-area-for-ppt-search .location-list,
+    .stacks-default-template .widget-area-for-ppt-search .property-list {
+      margin-top: 30px;
+      display: none; }
+      .stacks-default-template .widget-area-for-ppt-search .location-list.active,
+      .stacks-default-template .widget-area-for-ppt-search .property-list.active {
+        display: block; }
+      .stacks-default-template .widget-area-for-ppt-search .location-list .property-box,
+      .stacks-default-template .widget-area-for-ppt-search .property-list .property-box {
+        border-bottom: 1px solid #999;
+        padding: 10px 0; }
+        .stacks-default-template .widget-area-for-ppt-search .location-list .property-box img.ppt-thumbnail,
+        .stacks-default-template .widget-area-for-ppt-search .property-list .property-box img.ppt-thumbnail {
+          max-width: 150px;
+          margin-right: 20px; }
+        .stacks-default-template .widget-area-for-ppt-search .location-list .property-box .ppt-name,
+        .stacks-default-template .widget-area-for-ppt-search .property-list .property-box .ppt-name {
+          font-size: 16px; }
+        .stacks-default-template .widget-area-for-ppt-search .location-list .property-box > *,
+        .stacks-default-template .widget-area-for-ppt-search .property-list .property-box > * {
+          display: inline-block;
+          vertical-align: middle; }
+        .stacks-default-template .widget-area-for-ppt-search .location-list .property-box .min-rate,
+        .stacks-default-template .widget-area-for-ppt-search .property-list .property-box .min-rate {
+          float: right; }
+      .stacks-default-template .widget-area-for-ppt-search .location-list .location-box,
+      .stacks-default-template .widget-area-for-ppt-search .property-list .location-box {
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% / 3 - 40px);
+        min-height: 130px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #008899; }
+        .stacks-default-template .widget-area-for-ppt-search .location-list .location-box .title,
+        .stacks-default-template .widget-area-for-ppt-search .property-list .location-box .title {
+          color: #fff; }
+        .stacks-default-template .widget-area-for-ppt-search .location-list .location-box:nth-child(3n+3),
+        .stacks-default-template .widget-area-for-ppt-search .property-list .location-box:nth-child(3n+3) {
+          margin-right: 0; }
+
+.market-areas-main-landing {
+  /* zero parent market area */ }
+  .market-areas-main-landing * {
+    box-sizing: border-box;
+    vertical-align: top; }
+  .market-areas-main-landing > .page-width {
+    /* Page title */ }
+    .market-areas-main-landing > .page-width .title {
+      font-weight: normal;
+      font-size: 50px;
+      margin: .5em 0; }
+    .market-areas-main-landing > .page-width .desc-and-map {
+      display: block;
+      padding: 0 0 1em 0;
+      border-bottom: 1px solid #dfdfdf;
+      font-size: 0; }
+    .market-areas-main-landing > .page-width .market-areas-listing {
+      margin-top: 4em; }
+    .market-areas-main-landing > .page-width .pcontent {
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: justify;
+      color: #333;
+      width: 100%;
+      display: inline-block; }
+    .market-areas-main-landing > .page-width .map-popup {
+      width: calc( 100% - 5% - 100%);
+      display: inline-block;
+      background: #008899;
+      font-size: 25px;
+      margin-left: 5%;
+      position: relative;
+      height: 3em; }
+      .market-areas-main-landing > .page-width .map-popup span {
+        position: absolute;
+        z-index: 3;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        padding: 1em 0px 1em 20%;
+        font-size: 25px;
+        line-height: 1em;
+        background-color: rgba(255, 255, 255, 0.5); }
+        .market-areas-main-landing > .page-width .map-popup span .popup-icon {
+          background: #fff;
+          height: 50px;
+          width: 50px;
+          border-radius: 100%;
+          padding: 0;
+          display: block;
+          position: absolute;
+          margin: auto;
+          top: 0;
+          right: 20%;
+          bottom: 0;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+          transition: box-shadow 0.5s ease; }
+          .market-areas-main-landing > .page-width .map-popup span .popup-icon b {
+            color: #0088ff;
+            font-size: 15px;
+            font-weight: normal;
+            position: absolute; }
+            .market-areas-main-landing > .page-width .map-popup span .popup-icon b::after {
+              content: "\f062"; }
+            .market-areas-main-landing > .page-width .map-popup span .popup-icon b:first-child {
+              top: 10px;
+              right: 10px;
+              transform: rotate(45deg); }
+            .market-areas-main-landing > .page-width .map-popup span .popup-icon b:nth-child(2) {
+              bottom: 10px;
+              left: 10px;
+              transform: rotate(-135deg); }
+        .market-areas-main-landing > .page-width .map-popup span:hover .popup-icon {
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+          transition: box-shadow 0.5s ease; }
+      .market-areas-main-landing > .page-width .map-popup .mini-map {
+        display: block;
+        position: absolute;
+        z-index: 2;
+        text-align: center;
+        width: 100%;
+        height: 100%; }
+  .market-areas-main-landing .market-areas-map {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.8);
+    display: block;
+    z-index: 99999;
+    height: 0;
+    opacity: 0; }
+    .market-areas-main-landing .market-areas-map .map-box {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      bottom: 0;
+      height: 80%;
+      width: 80%;
+      display: block;
+      background: #fff;
+      opacity: 0;
+      transition: opacity, height, width 0.2s ease;
+      overflow: hidden;
+      border-radius: 5px; }
+      .market-areas-main-landing .market-areas-map .map-box .close-map {
+        background: #0088ff;
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+        padding: 0;
+        display: block;
+        position: absolute;
+        margin: auto;
+        top: 10px;
+        right: 10px;
+        z-index: 200;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.5s ease; }
+        .market-areas-main-landing .market-areas-map .map-box .close-map:hover {
+          box-shadow: 2px 2px 5px black;
+          transition: box-shadow 0.5s ease; }
+        .market-areas-main-landing .market-areas-map .map-box .close-map b {
+          color: #fff;
+          font-size: 15px;
+          font-weight: normal;
+          position: absolute; }
+          .market-areas-main-landing .market-areas-map .map-box .close-map b::after {
+            content: "\f062"; }
+          .market-areas-main-landing .market-areas-map .map-box .close-map b:first-child {
+            top: 10px;
+            right: 10px;
+            transform: rotate(-135deg); }
+          .market-areas-main-landing .market-areas-map .map-box .close-map b:nth-child(2) {
+            bottom: 10px;
+            left: 10px;
+            transform: rotate(45deg); }
+      .market-areas-main-landing .market-areas-map .map-box .map {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 5px; }
+    .market-areas-main-landing .market-areas-map.active {
+      display: block;
+      height: 100vh;
+      opacity: 1;
+      transition: opacity 0.5s ease; }
+      .market-areas-main-landing .market-areas-map.active .map-box {
+        opacity: 1;
+        transition: opacity, height, width 0.5s ease 0.5s; }
+  .market-areas-main-landing .zp-mkta {
+    padding-bottom: 50px;
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 50px; }
+    .market-areas-main-landing .zp-mkta .ma-link h2 {
+      font-weight: normal;
+      color: #000; }
+    .market-areas-main-landing .zp-mkta .subareas {
+      font-size: 0; }
+      .market-areas-main-landing .zp-mkta .subareas .ma-link {
+        margin: 0 25px 25px 0;
+        display: inline-block;
+        /* row 1 */
+        /* row 2 */ }
+        .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+1) {
+          width: calc(70% - 25px/2); }
+        .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+2) {
+          width: calc(100% - 70% - 25px/2);
+          margin-right: 0; }
+        .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+3), .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+4), .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+5), .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+6) {
+          width: calc((100% - 25px * 3)/4); }
+        .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+6) {
+          margin-right: 0; }
+    .market-areas-main-landing .zp-mkta .market-area-box {
+      position: relative;
+      height: 400px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover; }
+      .market-areas-main-landing .zp-mkta .market-area-box .titles-box {
+        max-height: 50%;
+        width: 90%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        margin: auto;
+        /*background: white;*/
+        text-align: center; }
+        .market-areas-main-landing .zp-mkta .market-area-box .titles-box h4 {
+          color: #fff;
+          font-size: 35px; }
+        .market-areas-main-landing .zp-mkta .market-area-box .titles-box h5 {
+          font-size: 30px;
+          color: #fff;
+          font-weight: normal; }
+        .market-areas-main-landing .zp-mkta .market-area-box .titles-box p {
+          font-size: 18px;
+          color: #fff; }
+
+/* Map labels */
+.map-labels {
+  padding: 10px;
+  border-radius: 100%;
+  box-sizing: border-box;
+  color: #fff;
+  width: 50px;
+  font-weight: bold;
+  left: -50%;
+  top: -50%;
+  vertical-align: top;
+  text-align: center; }
+  .map-labels::after {
+    content: '';
+    display: block;
+    padding-top: calc( 100% - 20px); }
+
+/* Tablets */
+@media (max-width: 1200px) {
+  .market-areas-main-landing {
+    box-sizing: border-box;
+    padding: 15px; } }
+
+/* Mobile */
+@media (max-width: 992px) {
+  .market-areas-main-landing {
+    box-sizing: border-box;
+    padding: 15px;
+    /* zero parent market area */ }
+    .market-areas-main-landing > .page-width {
+      /* Page title */ }
+      .market-areas-main-landing > .page-width .title {
+        text-align: center; }
+      .market-areas-main-landing > .page-width .pcontent {
+        display: block;
+        width: 100%; }
+      .market-areas-main-landing > .page-width .map-popup {
+        display: block;
+        width: 100%;
+        margin-left: 0; }
+    .market-areas-main-landing .zp-mkta .ma-link h2 {
+      text-align: center; }
+    .market-areas-main-landing .zp-mkta .subareas .ma-link {
+      display: block;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+      /* row 1 */
+      /* row 2 */ }
+      .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+1) {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0; }
+      .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+2) {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0; }
+      .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+3), .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+4), .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+5), .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+6) {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0; }
+      .market-areas-main-landing .zp-mkta .subareas .ma-link:nth-child(6n+6) {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0; }
+    .market-areas-main-landing .zp-mkta .market-area-box .titles-box {
+      /*background: white;*/ }
+  /* Map labels */ }
+
+.global-wrapper::after {
+  clear: both;
+  content: '';
+  display: table; }
+
+/* Swiper arrows */
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%2036.2%20105.9%22%20enable-background%3D%22new%200%200%2036.2%20105.9%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%226%22%20stroke-miterlimit%3D%2210%22%20points%3D%2211.2%2C0%2025%2C52.9%2011.2%2C105.9%20%22%2F%3E%0A%3C%2Fsvg%3E");
+  right: 10px;
+  left: auto; }
+
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%0A%09%20viewBox%3D%220%200%2036.2%20105.9%22%20enable-background%3D%22new%200%200%2036.2%20105.9%22%20xml%3Aspace%3D%22preserve%22%3E%0A%3Cpolyline%20fill%3D%22none%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%226%22%20stroke-miterlimit%3D%2210%22%20points%3D%2225%2C105.9%2011.2%2C52.9%2025%2C0%20%22%2F%3E%0A%3C%2Fsvg%3E%0A");
+  left: 10px;
+  right: auto; }
+
+.market-area-page {
+  font-size: 0;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /*The content*/
+  /*InfoWindow*/
+  /*Property Listing*/
+  /*Select view*/
+  /* Page numbers */
+  /*Propery list*/
+  /*Propery list*/
+  /*Sub Areas*/
+  /*The map*/ }
+  .market-area-page .market-area-content {
+    background: #fff;
+    width: 60%;
+    z-index: 10;
+    font-size: 14px;
+    overflow: auto;
+    position: relative;
+    left: 0;
+    vertical-align: top;
+    display: inline-block;
+    box-shadow: 5px 0px 3px rgba(0, 0, 0, 0.4); }
+    .market-area-page .market-area-content::-webkit-scrollbar {
+      width: 5px;
+      background-color: rgba(0, 0, 0, 0.1);
+      -webkit-border-radius: 80px; }
+    .market-area-page .market-area-content::-webkit-scrollbar:hover {
+      background-color: rgba(0, 0, 0, 0.5); }
+    .market-area-page .market-area-content::-webkit-scrollbar-thumb:vertical {
+      background: rgba(0, 0, 0, 0.3);
+      -webkit-border-radius: 80px; }
+    .market-area-page .market-area-content::-webkit-scrollbar-thumb:vertical:active {
+      background: rgba(0, 0, 0, 0.61);
+      transition: all 0.5s ease;
+      -webkit-border-radius: 0px; }
+  .market-area-page .title-description {
+    box-sizing: border-box;
+    padding: 20px 36px;
+    border-bottom: 1px solid #dfdfdf; }
+    .market-area-page .title-description .title {
+      font-size: 50px;
+      color: #000; }
+    .market-area-page .title-description .description {
+      text-align: justify; }
+  .market-area-page .prop-infowindow {
+    max-width: 200px; }
+    .market-area-page .prop-infowindow .image {
+      height: 100px;
+      display: block;
+      background-size: cover;
+      background-position: center; }
+    .market-area-page .prop-infowindow .title {
+      color: #000; }
+    .market-area-page .prop-infowindow p {
+      color: #999; }
+  .market-area-page .photo-list-view {
+    padding: 20px 36px;
+    line-height: 20px;
+    border-bottom: 1px solid #dfdfdf; }
+    .market-area-page .photo-list-view > b {
+      font-size: 25px;
+      display: inline-block;
+      vertical-align: top; }
+    .market-area-page .photo-list-view ul {
+      vertical-align: top;
+      float: right;
+      display: inline-block; }
+      .market-area-page .photo-list-view ul li {
+        display: inline-block;
+        vertical-align: top; }
+    .market-area-page .photo-list-view::after {
+      content: '';
+      display: table;
+      clear: both; }
+  .market-area-page .photo-list-view .view-select > * a {
+    padding: 10px 20px;
+    margin-left: 10px; }
+    .market-area-page .photo-list-view .view-select > * a.active {
+      background: #dfdfdf; }
+  .market-area-page .photo-list-view .view-select > *:first-child a {
+    margin-left: 0px; }
+  .market-area-page .pagination-links {
+    padding: 0 36px; }
+  .market-area-page .property-list.photo {
+    box-sizing: border-box;
+    padding: 20px 36px;
+    font-size: 0; }
+    .market-area-page .property-list.photo .ppt-box {
+      width: calc((100% - 30px)/2);
+      margin-right: 30px;
+      margin-bottom: 30px;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      font-size: 14px; }
+      .market-area-page .property-list.photo .ppt-box .ppt-thumb {
+        display: block;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        background-color: #dfdfdf;
+        height: 200px; }
+      .market-area-page .property-list.photo .ppt-box .ppt-title {
+        font-size: 16px;
+        max-width: 70%;
+        height: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis; }
+      .market-area-page .property-list.photo .ppt-box:nth-child(2n+2) {
+        margin-right: 0; }
+      .market-area-page .property-list.photo .ppt-box .from {
+        position: absolute;
+        top: 161.5px;
+        right: 10px;
+        width: 77px;
+        height: 77px;
+        box-sizing: border-box;
+        padding-top: 15.4px;
+        color: #fff;
+        border-radius: 100%;
+        text-align: center; }
+        .market-area-page .property-list.photo .ppt-box .from a {
+          color: #fff; }
+        .market-area-page .property-list.photo .ppt-box .from span {
+          font-family: sans-serif;
+          font-size: 12px;
+          font-weight: 100; }
+        .market-area-page .property-list.photo .ppt-box .from p {
+          font-weight: bold;
+          font-size: 14px; }
+  .market-area-page .property-list.list {
+    box-sizing: border-box;
+    padding: 20px 36px;
+    font-size: 0; }
+    .market-area-page .property-list.list .ppt-box {
+      font-size: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid #dfdfdf;
+      position: relative; }
+      .market-area-page .property-list.list .ppt-box > * {
+        display: inline-block;
+        vertical-align: top; }
+      .market-area-page .property-list.list .ppt-box .ppt-thumb {
+        width: 75px;
+        height: 75px;
+        margin-right: 30px;
+        background-size: cover;
+        background-position: center;
+        background-color: #dfdfdf;
+        display: inline-block; }
+      .market-area-page .property-list.list .ppt-box .title-n-desc {
+        width: 70%; }
+      .market-area-page .property-list.list .ppt-box .ppt-title {
+        margin: 0;
+        font-size: 16px;
+        height: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .market-area-page .property-list.list .ppt-box .from {
+        right: 10px;
+        width: 77px;
+        height: 77px;
+        box-sizing: border-box;
+        padding-top: 15.4px;
+        color: #fff;
+        border-radius: 100%;
+        text-align: center;
+        position: absolute;
+        top: 10px;
+        right: 10px; }
+        .market-area-page .property-list.list .ppt-box .from a {
+          color: #fff; }
+        .market-area-page .property-list.list .ppt-box .from span {
+          font-family: sans-serif;
+          font-size: 12px;
+          font-weight: 100; }
+        .market-area-page .property-list.list .ppt-box .from p {
+          font-weight: bold;
+          font-size: 14px; }
+  .market-area-page .sub-areas .title {
+    font-size: 35px;
+    margin: 20px 0px;
+    color: #000;
+    box-sizing: border-box;
+    padding: 0 36px; }
+  .market-area-page .sub-areas .swiper-slide {
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+    margin-right: 10px; }
+    .market-area-page .sub-areas .swiper-slide h4 {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      height: 30%;
+      color: #fff;
+      text-align: center;
+      margin: auto;
+      width: 95%;
+      left: 0;
+      right: 0;
+      font-size: 25px;
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); }
+  .market-area-page .market-area-map {
+    font-size: 14px;
+    vertical-align: top;
+    display: inline-block;
+    width: 40%;
+    position: relative;
+    right: 40%;
+    trasition: right 0.5s ease;
+    z-index: 9;
+    height: 100vh;
+    background: #dfdfdf;
+    overflow: hidden; }
+    .market-area-page .market-area-map .featured-image {
+      min-height: 400px;
+      background-position: center;
+      background-size: cover; }
+    .market-area-page .market-area-map.ready {
+      right: 0;
+      transition: right 0.5s ease; }
+    .market-area-page .market-area-map .mpbx {
+      height: 100vh;
+      display: block; }
+
+/* Tablets */
+@media (max-width: 1200px) {
+  .market-area-page {
+    /*The content*/
+    /*InfoWindow*/
+    /*Property Listing*/
+    /*Select view*/
+    /*Propery list*/
+    /*Propery list*/
+    /*Sub Areas*/
+    /*The map*/ }
+    .market-area-page .market-area-content {
+      width: 100%; }
+    .market-area-page .market-area-map {
+      display: none; } }
+
+/* Smartphones */
+@media (max-width: 992px) {
+  .market-area-page {
+    /*The content*/
+    /*InfoWindow*/
+    /*Property Listing*/
+    /*Select view*/
+    /*Propery list*/
+    /*Propery list*/
+    /*Sub Areas*/
+    /*The map*/ }
+    .market-area-page .photo-list-view b {
+      font-size: 15px; }
+    .market-area-page .photo-list-view .view-select {
+      float: none;
+      display: block;
+      clear: both;
+      margin-top: 2em; }
+    .market-area-page .property-list.photo .ppt-box {
+      width: 100%;
+      display: block; }
+    .market-area-page .property-list.list .ppt-box {
+      position: relative; }
+      .market-area-page .property-list.list .ppt-box .title-n-desc {
+        width: 50%; }
+      .market-area-page .property-list.list .ppt-box .from {
+        position: absolute;
+        top: 0; }
+    .market-area-page .sub-areas .title {
+      box-sizing: border-box;
+      padding: 0 36px;
+      font-size: 20px;
+      /*                font-weight: bold;*/ } }
 
 /* Widgets */
 /* Target if first widget */

@@ -47,16 +47,20 @@ var app = {
         window.addEventListener('scroll', checkHeader); //ms
 
         checkHeader(); //Check in case page has loaded with scroll
-
+        
+        
+        
         function checkHeader(){
             var currentScroll = window.scrollY;
             
             if(currentScroll >= scrollMax){
                 header.classList.add('fixed');
+                header.dispatchEvent(app.events.headerFixed);
                 //body.style.paddingTop = underHeader.clientHeight + 'px';
             }
             else{
                 header.classList.remove('fixed');
+                header.dispatchEvent(app.events.headerUnfixed);
                 //body.style.paddingTop = 0;
             }
         }
@@ -173,6 +177,700 @@ window.addEventListener('load', app.init.bind(app));
 
 /* Bapi modules init on DOM load */
 window.addEventListener('DOMContentLoaded', app.initBapi.bind(app));
+/* ===================================================
+ *  jquery-sortable.js v0.9.13
+ *  http://johnny.github.com/jquery-sortable/
+ * ===================================================
+ *  Copyright (c) 2012 Jonas von Andrian
+ *  All rights reserved.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions are met:
+ *  * Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *  * Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *  * The name of the author may not be used to endorse or promote products
+ *    derived from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ *  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ *  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ *  DISCLAIMED. IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY
+ *  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ *  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ *  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ *  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ *  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * ========================================================== */
+
+
+!function ( $, window, pluginName, undefined){
+  var containerDefaults = {
+    // If true, items can be dragged from this container
+    drag: true,
+    // If true, items can be droped onto this container
+    drop: true,
+    // Exclude items from being draggable, if the
+    // selector matches the item
+    exclude: "",
+    // If true, search for nested containers within an item.If you nest containers,
+    // either the original selector with which you call the plugin must only match the top containers,
+    // or you need to specify a group (see the bootstrap nav example)
+    nested: true,
+    // If true, the items are assumed to be arranged vertically
+    vertical: true
+  }, // end container defaults
+  groupDefaults = {
+    // This is executed after the placeholder has been moved.
+    // $closestItemOrContainer contains the closest item, the placeholder
+    // has been put at or the closest empty Container, the placeholder has
+    // been appended to.
+    afterMove: function ($placeholder, container, $closestItemOrContainer) {
+    },
+    // The exact css path between the container and its items, e.g. "> tbody"
+    containerPath: "",
+    // The css selector of the containers
+    containerSelector: "ol, ul",
+    // Distance the mouse has to travel to start dragging
+    distance: 0,
+    // Time in milliseconds after mousedown until dragging should start.
+    // This option can be used to prevent unwanted drags when clicking on an element.
+    delay: 0,
+    // The css selector of the drag handle
+    handle: "",
+    // The exact css path between the item and its subcontainers.
+    // It should only match the immediate items of a container.
+    // No item of a subcontainer should be matched. E.g. for ol>div>li the itemPath is "> div"
+    itemPath: "",
+    // The css selector of the items
+    itemSelector: "li",
+    // The class given to "body" while an item is being dragged
+    bodyClass: "dragging",
+    // The class giving to an item while being dragged
+    draggedClass: "dragged",
+    // Check if the dragged item may be inside the container.
+    // Use with care, since the search for a valid container entails a depth first search
+    // and may be quite expensive.
+    isValidTarget: function ($item, container) {
+      return true
+    },
+    // Executed before onDrop if placeholder is detached.
+    // This happens if pullPlaceholder is set to false and the drop occurs outside a container.
+    onCancel: function ($item, container, _super, event) {
+    },
+    // Executed at the beginning of a mouse move event.
+    // The Placeholder has not been moved yet.
+    onDrag: function ($item, position, _super, event) {
+      $item.css(position)
+    },
+    // Called after the drag has been started,
+    // that is the mouse button is being held down and
+    // the mouse is moving.
+    // The container is the closest initialized container.
+    // Therefore it might not be the container, that actually contains the item.
+    onDragStart: function ($item, container, _super, event) {
+      $item.css({
+        height: $item.outerHeight(),
+        width: $item.outerWidth()
+      })
+      $item.addClass(container.group.options.draggedClass)
+      $("body").addClass(container.group.options.bodyClass)
+    },
+    // Called when the mouse button is being released
+    onDrop: function ($item, container, _super, event) {
+      $item.removeClass(container.group.options.draggedClass).removeAttr("style")
+      $("body").removeClass(container.group.options.bodyClass)
+    },
+    // Called on mousedown. If falsy value is returned, the dragging will not start.
+    // Ignore if element clicked is input, select or textarea
+    onMousedown: function ($item, _super, event) {
+      if (!event.target.nodeName.match(/^(input|select|textarea)$/i)) {
+        event.preventDefault()
+        return true
+      }
+    },
+    // The class of the placeholder (must match placeholder option markup)
+    placeholderClass: "placeholder",
+    // Template for the placeholder. Can be any valid jQuery input
+    // e.g. a string, a DOM element.
+    // The placeholder must have the class "placeholder"
+    placeholder: '<li class="placeholder"></li>',
+    // If true, the position of the placeholder is calculated on every mousemove.
+    // If false, it is only calculated when the mouse is above a container.
+    pullPlaceholder: true,
+    // Specifies serialization of the container group.
+    // The pair $parent/$children is either container/items or item/subcontainers.
+    serialize: function ($parent, $children, parentIsContainer) {
+      var result = $.extend({}, $parent.data())
+
+      if(parentIsContainer)
+        return [$children]
+      else if ($children[0]){
+        result.children = $children
+      }
+
+      delete result.subContainers
+      delete result.sortable
+
+      return result
+    },
+    // Set tolerance while dragging. Positive values decrease sensitivity,
+    // negative values increase it.
+    tolerance: 0
+  }, // end group defaults
+  containerGroups = {},
+  groupCounter = 0,
+  emptyBox = {
+    left: 0,
+    top: 0,
+    bottom: 0,
+    right:0
+  },
+  eventNames = {
+    start: "touchstart.sortable mousedown.sortable",
+    drop: "touchend.sortable touchcancel.sortable mouseup.sortable",
+    drag: "touchmove.sortable mousemove.sortable",
+    scroll: "scroll.sortable"
+  },
+  subContainerKey = "subContainers"
+
+  /*
+   * a is Array [left, right, top, bottom]
+   * b is array [left, top]
+   */
+  function d(a,b) {
+    var x = Math.max(0, a[0] - b[0], b[0] - a[1]),
+    y = Math.max(0, a[2] - b[1], b[1] - a[3])
+    return x+y;
+  }
+
+  function setDimensions(array, dimensions, tolerance, useOffset) {
+    var i = array.length,
+    offsetMethod = useOffset ? "offset" : "position"
+    tolerance = tolerance || 0
+
+    while(i--){
+      var el = array[i].el ? array[i].el : $(array[i]),
+      // use fitting method
+      pos = el[offsetMethod]()
+      pos.left += parseInt(el.css('margin-left'), 10)
+      pos.top += parseInt(el.css('margin-top'),10)
+      dimensions[i] = [
+        pos.left - tolerance,
+        pos.left + el.outerWidth() + tolerance,
+        pos.top - tolerance,
+        pos.top + el.outerHeight() + tolerance
+      ]
+    }
+  }
+
+  function getRelativePosition(pointer, element) {
+    var offset = element.offset()
+    return {
+      left: pointer.left - offset.left,
+      top: pointer.top - offset.top
+    }
+  }
+
+  function sortByDistanceDesc(dimensions, pointer, lastPointer) {
+    pointer = [pointer.left, pointer.top]
+    lastPointer = lastPointer && [lastPointer.left, lastPointer.top]
+
+    var dim,
+    i = dimensions.length,
+    distances = []
+
+    while(i--){
+      dim = dimensions[i]
+      distances[i] = [i,d(dim,pointer), lastPointer && d(dim, lastPointer)]
+    }
+    distances = distances.sort(function  (a,b) {
+      return b[1] - a[1] || b[2] - a[2] || b[0] - a[0]
+    })
+
+    // last entry is the closest
+    return distances
+  }
+
+  function ContainerGroup(options) {
+    this.options = $.extend({}, groupDefaults, options)
+    this.containers = []
+
+    if(!this.options.rootGroup){
+      this.scrollProxy = $.proxy(this.scroll, this)
+      this.dragProxy = $.proxy(this.drag, this)
+      this.dropProxy = $.proxy(this.drop, this)
+      this.placeholder = $(this.options.placeholder)
+
+      if(!options.isValidTarget)
+        this.options.isValidTarget = undefined
+    }
+  }
+
+  ContainerGroup.get = function  (options) {
+    if(!containerGroups[options.group]) {
+      if(options.group === undefined)
+        options.group = groupCounter ++
+
+      containerGroups[options.group] = new ContainerGroup(options)
+    }
+
+    return containerGroups[options.group]
+  }
+
+  ContainerGroup.prototype = {
+    dragInit: function  (e, itemContainer) {
+      this.$document = $(itemContainer.el[0].ownerDocument)
+
+      // get item to drag
+      var closestItem = $(e.target).closest(this.options.itemSelector);
+      // using the length of this item, prevents the plugin from being started if there is no handle being clicked on.
+      // this may also be helpful in instantiating multidrag.
+      if (closestItem.length) {
+        this.item = closestItem;
+        this.itemContainer = itemContainer;
+        if (this.item.is(this.options.exclude) || !this.options.onMousedown(this.item, groupDefaults.onMousedown, e)) {
+            return;
+        }
+        this.setPointer(e);
+        this.toggleListeners('on');
+        this.setupDelayTimer();
+        this.dragInitDone = true;
+      }
+    },
+    drag: function  (e) {
+      if(!this.dragging){
+        if(!this.distanceMet(e) || !this.delayMet)
+          return
+
+        this.options.onDragStart(this.item, this.itemContainer, groupDefaults.onDragStart, e)
+        this.item.before(this.placeholder)
+        this.dragging = true
+      }
+
+      this.setPointer(e)
+      // place item under the cursor
+      this.options.onDrag(this.item,
+                          getRelativePosition(this.pointer, this.item.offsetParent()),
+                          groupDefaults.onDrag,
+                          e)
+
+      var p = this.getPointer(e),
+      box = this.sameResultBox,
+      t = this.options.tolerance
+
+      if(!box || box.top - t > p.top || box.bottom + t < p.top || box.left - t > p.left || box.right + t < p.left)
+        if(!this.searchValidTarget()){
+          this.placeholder.detach()
+          this.lastAppendedItem = undefined
+        }
+    },
+    drop: function  (e) {
+      this.toggleListeners('off')
+
+      this.dragInitDone = false
+
+      if(this.dragging){
+        // processing Drop, check if placeholder is detached
+        if(this.placeholder.closest("html")[0]){
+          this.placeholder.before(this.item).detach()
+        } else {
+          this.options.onCancel(this.item, this.itemContainer, groupDefaults.onCancel, e)
+        }
+        this.options.onDrop(this.item, this.getContainer(this.item), groupDefaults.onDrop, e)
+
+        // cleanup
+        this.clearDimensions()
+        this.clearOffsetParent()
+        this.lastAppendedItem = this.sameResultBox = undefined
+        this.dragging = false
+      }
+    },
+    searchValidTarget: function  (pointer, lastPointer) {
+      if(!pointer){
+        pointer = this.relativePointer || this.pointer
+        lastPointer = this.lastRelativePointer || this.lastPointer
+      }
+
+      var distances = sortByDistanceDesc(this.getContainerDimensions(),
+                                         pointer,
+                                         lastPointer),
+      i = distances.length
+
+      while(i--){
+        var index = distances[i][0],
+        distance = distances[i][1]
+
+        if(!distance || this.options.pullPlaceholder){
+          var container = this.containers[index]
+          if(!container.disabled){
+            if(!this.$getOffsetParent()){
+              var offsetParent = container.getItemOffsetParent()
+              pointer = getRelativePosition(pointer, offsetParent)
+              lastPointer = getRelativePosition(lastPointer, offsetParent)
+            }
+            if(container.searchValidTarget(pointer, lastPointer))
+              return true
+          }
+        }
+      }
+      if(this.sameResultBox)
+        this.sameResultBox = undefined
+    },
+    movePlaceholder: function  (container, item, method, sameResultBox) {
+      var lastAppendedItem = this.lastAppendedItem
+      if(!sameResultBox && lastAppendedItem && lastAppendedItem[0] === item[0])
+        return;
+
+      item[method](this.placeholder)
+      this.lastAppendedItem = item
+      this.sameResultBox = sameResultBox
+      this.options.afterMove(this.placeholder, container, item)
+    },
+    getContainerDimensions: function  () {
+      if(!this.containerDimensions)
+        setDimensions(this.containers, this.containerDimensions = [], this.options.tolerance, !this.$getOffsetParent())
+      return this.containerDimensions
+    },
+    getContainer: function  (element) {
+      return element.closest(this.options.containerSelector).data(pluginName)
+    },
+    $getOffsetParent: function  () {
+      if(this.offsetParent === undefined){
+        var i = this.containers.length - 1,
+        offsetParent = this.containers[i].getItemOffsetParent()
+
+        if(!this.options.rootGroup){
+          while(i--){
+            if(offsetParent[0] != this.containers[i].getItemOffsetParent()[0]){
+              // If every container has the same offset parent,
+              // use position() which is relative to this parent,
+              // otherwise use offset()
+              // compare #setDimensions
+              offsetParent = false
+              break;
+            }
+          }
+        }
+
+        this.offsetParent = offsetParent
+      }
+      return this.offsetParent
+    },
+    setPointer: function (e) {
+      var pointer = this.getPointer(e)
+
+      if(this.$getOffsetParent()){
+        var relativePointer = getRelativePosition(pointer, this.$getOffsetParent())
+        this.lastRelativePointer = this.relativePointer
+        this.relativePointer = relativePointer
+      }
+
+      this.lastPointer = this.pointer
+      this.pointer = pointer
+    },
+    distanceMet: function (e) {
+      var currentPointer = this.getPointer(e)
+      return (Math.max(
+        Math.abs(this.pointer.left - currentPointer.left),
+        Math.abs(this.pointer.top - currentPointer.top)
+      ) >= this.options.distance)
+    },
+    getPointer: function(e) {
+      var o = e.originalEvent || e.originalEvent.touches && e.originalEvent.touches[0]
+      return {
+        left: e.pageX || o.pageX,
+        top: e.pageY || o.pageY
+      }
+    },
+    setupDelayTimer: function () {
+      var that = this
+      this.delayMet = !this.options.delay
+
+      // init delay timer if needed
+      if (!this.delayMet) {
+        clearTimeout(this._mouseDelayTimer);
+        this._mouseDelayTimer = setTimeout(function() {
+          that.delayMet = true
+        }, this.options.delay)
+      }
+    },
+    scroll: function  (e) {
+      this.clearDimensions()
+      this.clearOffsetParent() // TODO is this needed?
+    },
+    toggleListeners: function (method) {
+      var that = this,
+      events = ['drag','drop','scroll']
+
+      $.each(events,function  (i,event) {
+        that.$document[method](eventNames[event], that[event + 'Proxy'])
+      })
+    },
+    clearOffsetParent: function () {
+      this.offsetParent = undefined
+    },
+    // Recursively clear container and item dimensions
+    clearDimensions: function  () {
+      this.traverse(function(object){
+        object._clearDimensions()
+      })
+    },
+    traverse: function(callback) {
+      callback(this)
+      var i = this.containers.length
+      while(i--){
+        this.containers[i].traverse(callback)
+      }
+    },
+    _clearDimensions: function(){
+      this.containerDimensions = undefined
+    },
+    _destroy: function () {
+      containerGroups[this.options.group] = undefined
+    }
+  }
+
+  function Container(element, options) {
+    this.el = element
+    this.options = $.extend( {}, containerDefaults, options)
+
+    this.group = ContainerGroup.get(this.options)
+    this.rootGroup = this.options.rootGroup || this.group
+    this.handle = this.rootGroup.options.handle || this.rootGroup.options.itemSelector
+
+    var itemPath = this.rootGroup.options.itemPath
+    this.target = itemPath ? this.el.find(itemPath) : this.el
+
+    this.target.on(eventNames.start, this.handle, $.proxy(this.dragInit, this))
+
+    if(this.options.drop)
+      this.group.containers.push(this)
+  }
+
+  Container.prototype = {
+    dragInit: function  (e) {
+      var rootGroup = this.rootGroup
+
+      if( !this.disabled &&
+          !rootGroup.dragInitDone &&
+          this.options.drag &&
+          this.isValidDrag(e)) {
+        rootGroup.dragInit(e, this)
+      }
+    },
+    isValidDrag: function(e) {
+      return e.which == 1 ||
+        e.type == "touchstart" && e.originalEvent.touches.length == 1
+    },
+    searchValidTarget: function  (pointer, lastPointer) {
+      var distances = sortByDistanceDesc(this.getItemDimensions(),
+                                         pointer,
+                                         lastPointer),
+      i = distances.length,
+      rootGroup = this.rootGroup,
+      validTarget = !rootGroup.options.isValidTarget ||
+        rootGroup.options.isValidTarget(rootGroup.item, this)
+
+      if(!i && validTarget){
+        rootGroup.movePlaceholder(this, this.target, "append")
+        return true
+      } else
+        while(i--){
+          var index = distances[i][0],
+          distance = distances[i][1]
+          if(!distance && this.hasChildGroup(index)){
+            var found = this.getContainerGroup(index).searchValidTarget(pointer, lastPointer)
+            if(found)
+              return true
+          }
+          else if(validTarget){
+            this.movePlaceholder(index, pointer)
+            return true
+          }
+        }
+    },
+    movePlaceholder: function  (index, pointer) {
+      var item = $(this.items[index]),
+      dim = this.itemDimensions[index],
+      method = "after",
+      width = item.outerWidth(),
+      height = item.outerHeight(),
+      offset = item.offset(),
+      sameResultBox = {
+        left: offset.left,
+        right: offset.left + width,
+        top: offset.top,
+        bottom: offset.top + height
+      }
+      if(this.options.vertical){
+        var yCenter = (dim[2] + dim[3]) / 2,
+        inUpperHalf = pointer.top <= yCenter
+        if(inUpperHalf){
+          method = "before"
+          sameResultBox.bottom -= height / 2
+        } else
+          sameResultBox.top += height / 2
+      } else {
+        var xCenter = (dim[0] + dim[1]) / 2,
+        inLeftHalf = pointer.left <= xCenter
+        if(inLeftHalf){
+          method = "before"
+          sameResultBox.right -= width / 2
+        } else
+          sameResultBox.left += width / 2
+      }
+      if(this.hasChildGroup(index))
+        sameResultBox = emptyBox
+      this.rootGroup.movePlaceholder(this, item, method, sameResultBox)
+    },
+    getItemDimensions: function  () {
+      if(!this.itemDimensions){
+        this.items = this.$getChildren(this.el, "item").filter(
+          ":not(." + this.group.options.placeholderClass + ", ." + this.group.options.draggedClass + ")"
+        ).get()
+        setDimensions(this.items, this.itemDimensions = [], this.options.tolerance)
+      }
+      return this.itemDimensions
+    },
+    getItemOffsetParent: function  () {
+      var offsetParent,
+      el = this.el
+      // Since el might be empty we have to check el itself and
+      // can not do something like el.children().first().offsetParent()
+      if(el.css("position") === "relative" || el.css("position") === "absolute"  || el.css("position") === "fixed")
+        offsetParent = el
+      else
+        offsetParent = el.offsetParent()
+      return offsetParent
+    },
+    hasChildGroup: function (index) {
+      return this.options.nested && this.getContainerGroup(index)
+    },
+    getContainerGroup: function  (index) {
+      var childGroup = $.data(this.items[index], subContainerKey)
+      if( childGroup === undefined){
+        var childContainers = this.$getChildren(this.items[index], "container")
+        childGroup = false
+
+        if(childContainers[0]){
+          var options = $.extend({}, this.options, {
+            rootGroup: this.rootGroup,
+            group: groupCounter ++
+          })
+          childGroup = childContainers[pluginName](options).data(pluginName).group
+        }
+        $.data(this.items[index], subContainerKey, childGroup)
+      }
+      return childGroup
+    },
+    $getChildren: function (parent, type) {
+      var options = this.rootGroup.options,
+      path = options[type + "Path"],
+      selector = options[type + "Selector"]
+
+      parent = $(parent)
+      if(path)
+        parent = parent.find(path)
+
+      return parent.children(selector)
+    },
+    _serialize: function (parent, isContainer) {
+      var that = this,
+      childType = isContainer ? "item" : "container",
+
+      children = this.$getChildren(parent, childType).not(this.options.exclude).map(function () {
+        return that._serialize($(this), !isContainer)
+      }).get()
+
+      return this.rootGroup.options.serialize(parent, children, isContainer)
+    },
+    traverse: function(callback) {
+      $.each(this.items || [], function(item){
+        var group = $.data(this, subContainerKey)
+        if(group)
+          group.traverse(callback)
+      });
+
+      callback(this)
+    },
+    _clearDimensions: function  () {
+      this.itemDimensions = undefined
+    },
+    _destroy: function() {
+      var that = this;
+
+      this.target.off(eventNames.start, this.handle);
+      this.el.removeData(pluginName)
+
+      if(this.options.drop)
+        this.group.containers = $.grep(this.group.containers, function(val){
+          return val != that
+        })
+
+      $.each(this.items || [], function(){
+        $.removeData(this, subContainerKey)
+      })
+    }
+  }
+
+  var API = {
+    enable: function() {
+      this.traverse(function(object){
+        object.disabled = false
+      })
+    },
+    disable: function (){
+      this.traverse(function(object){
+        object.disabled = true
+      })
+    },
+    serialize: function () {
+      return this._serialize(this.el, true)
+    },
+    refresh: function() {
+      this.traverse(function(object){
+        object._clearDimensions()
+      })
+    },
+    destroy: function () {
+      this.traverse(function(object){
+        object._destroy();
+      })
+    }
+  }
+
+  $.extend(Container.prototype, API)
+
+  /**
+   * jQuery API
+   *
+   * Parameters are
+   *   either options on init
+   *   or a method name followed by arguments to pass to the method
+   */
+  $.fn[pluginName] = function(methodOrOptions) {
+    var args = Array.prototype.slice.call(arguments, 1)
+
+    return this.map(function(){
+      var $t = $(this),
+      object = $t.data(pluginName)
+
+      if(object && API[methodOrOptions])
+        return API[methodOrOptions].apply(object, args) || this
+      else if(!object && (methodOrOptions === undefined ||
+                          typeof methodOrOptions === "object"))
+        $t.data(pluginName, new Container($t, methodOrOptions))
+
+      return this
+    });
+  };
+
+}(jQuery, window, 'sortable');
+
 /**
  * @license
  * Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -755,6 +1453,49 @@ window.addEventListener('DOMContentLoaded', app.initBapi.bind(app));
 
 void function(c,h,a){function define(c,a,b){return typeof a==='function'&&(b=a,a=nameOf(b).replace(/_$/,'')),e(c,a,{configurable:!0,writable:!0,value:b})}function nameOf(a){return typeof a!=='function'?'':'name'in a?a.name:i.call(a).match(j)[1]}function createStorage(b){function storage(e,d){return d||arguments.length===2?c.set(e,d):(d=c.get(e),d===a&&(d=b(e),c.set(e,d))),d}var c=new WeakMap;return b||(b=k),storage}var l=Object.getOwnPropertyNames,e=Object.defineProperty,i=Function.prototype.toString,f=Object.create,g=Object.prototype.hasOwnProperty,j=/^\n?function\s?(\w*)?_?\(/;var b=function(){function b(){var a=d(),c={};this.unlock=function(h){var b=k(h);if(g.call(b,a))return b[a](c);var d=f(null,i);return e(b,a,{value:new Function('s','l',j)(c,d)}),d}}var i={value:{writable:!0,value:a}},j='return function(k){if(k===s)return l}',h=f(null),d=function(){var a=Math.random().toString(36).slice(2);return a in h?d():h[a]=a},c=d(),k=function(a){if(g.call(a,c))return a[c];if(!Object.isExtensible(a))throw new TypeError('Object must be extensible');var b=f(null);return e(a,c,{value:b}),b};return define(Object,function getOwnPropertyNames(b){var a=l(b);return g.call(b,c)&&a.splice(a.indexOf(c),1),a}),define(b.prototype,function get(a){return this.unlock(a).value}),define(b.prototype,function set(a,b){this.unlock(a).value=b}),b}();var d=function(i){function WeakMap(a){if(this===c||this==null||this===WeakMap.prototype)return new WeakMap(a);l(this,new b),m(this,a)}function get(b){e(b);var c=d(this).get(b);return c===h?a:c}function set(b,c){e(b),d(this).set(b,c===a?h:c)}function has(b){return e(b),d(this).get(b)!==a}function delete_(b){e(b);var c=d(this),f=c.get(b)!==a;return c.set(b,a),f}function toString(){return d(this),'[object WeakMap]'}var e=function(a){if(a==null||typeof a!=='object'&&typeof a!=='function')throw new TypeError('Invalid WeakMap key')};var l=function(b,c){var a=i.unlock(b);if(a.value)throw new TypeError('Object is already a WeakMap');a.value=c};var d=function(b){var a=i.unlock(b).value;if(!a)throw new TypeError('WeakMap is not generic');return a};var m=function(b,a){a!==null&&typeof a==='object'&&typeof a.forEach==='function'&&a.forEach(function(c,d){c instanceof Array&&c.length===2&&set.call(b,a[d][0],a[d][1])})};try{var f=('return '+delete_).replace('e_','\\u0065'),j=new Function('unwrap','validate',f)(d,e)}catch(a){var j=delete_}var f=(''+Object).split('Object');var g=function toString(){return f[0]+nameOf(this)+f[1]};define(g,g);var k={__proto__:[]}instanceof Array?function(a){a.__proto__=g}:function(a){define(a,g)};return k(WeakMap),[toString,get,set,has,j].forEach(function(a){define(WeakMap.prototype,a),k(a)}),WeakMap}(new b);var k=Object.create?function(){return Object.create(null)}:function(){return{}};typeof module!=='undefined'?module.exports=d:typeof exports!=='undefined'?exports.WeakMap=d:!('WeakMap'in c)&&(c.WeakMap=d),d.createStorage=createStorage,c.WeakMap&&(c.WeakMap.createStorage=createStorage)}((0,eval)('this'))
 
+app.events = 
+        {
+            /**
+             * To be triggered when the header is set with class fixed
+             * @type CustomEvent
+             */
+            headerFixed: new CustomEvent('headerFixed', {bubbles: true, cancelable: false}),
+            /**
+             * To be triggered when the fixed header class is removed from it
+             * @type CustomEvent
+             */
+            headerUnfixed: new CustomEvent('headerunFixed', {bubbles: true, cancelable: false}),
+        }
+/**
+ * Sets a cookie
+ * @param {[string]} cname  [cookie name]
+ * @param {[string]} cvalue [the cookie value]
+ * @param {[integer]} exdays [number of days to expire]
+ */
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+/**
+ * gets a cookie
+ * @param  {[string]} cname [the cookie name]
+ * @return {[string]}       [the cookie value]
+ */
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ')
+            c = c.substring(1);
+        if (c.indexOf(name) == 0)
+            return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
 /* 
  * Array List of the 47 status code of the Yahoo weather
  */
@@ -765,6 +1506,465 @@ function getClassnameForCode(code){
     }
     return codeToClassname[code];
 }
+
+app.modules.templates.marketAreaPage =
+        {
+            init: function ()
+            {
+                if (this.cond())
+                {
+                    // Initialize Google map in .market-area-map
+                    var center = map_center;
+                    marker_array = [];
+
+                    var ob = this;
+                    $(window).resize(function (e)
+                    {
+                        ob.setMapContainer('.mpbx');
+
+                    });
+                    
+                    $(document).on('headerFixed', function (e)
+                    {
+                       ob.setMapContainer('.mpbx');
+                    });
+
+                    $(document).on('headerunFixed', function (e)
+                    {
+                       $(window).resize();
+                    });
+                    
+                    this.setMapContainer('.mpbx');
+
+                    var map = this.put_map_in('.mpbx', center);
+                    // put properties in map
+                    this.put_properties_in_(map, '.mpbx');
+
+
+                    // Toggle View
+                    $('.vs-button').on('click', function (e)
+                    {
+                        e.preventDefault();
+                        
+                        $('.vs-button.active').removeClass('active');
+                        
+                        $(this).addClass('active');
+                        
+                        var attrClass = $(this).attr('data-list');
+                        $('.property-list')
+                                .removeClass('photo')
+                                .removeClass('list')
+                                .addClass(attrClass);
+                        ob.setMapContainer('.mpbx');
+                    });
+
+
+
+                    // Swiper
+                    //initialize swiper when document ready  
+                    var mySwiper = new Swiper('.swiper-container', {
+                        // Optional parameters
+                        loop: true,
+                        slidesPerView   : 3,
+                        nextButton      : '.swiper-button-next',
+                        prevButton      : '.swiper-button-prev',
+                        autoplay        : 3000,
+                        speed           : 300,
+                        breakpoints: 
+                                {
+                                    768: 
+                                    {
+                                        slidesPerView: 1
+                                    }
+                                }
+                    });
+
+                    $.each($('.ppt-box'), function (i, v)
+                    {
+
+                        $(v).hover(function (e)
+                        {
+                            new google.maps.event.trigger(marker_array[i], 'click');
+                        });
+                    });
+                }
+            },
+            put_properties_in_: function (map, selector)
+            {
+                var props = all_props;
+
+                for (var idx in props)
+                {
+                    var prp = props[idx];
+
+                    /* Create info window */
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: '<div class="info-html prop-infowindow">' +
+                                '<a href="' + prp.url + '" class="image" style="background-image: url(' + prp.thumbnail + ')">' +
+                                '</a><div class="info">' +
+                                '<h5 class="title">' + prp.title + '</h5>' +
+                                '<p>' + prp.summary + '</p>'
+                                + "</div></div>"
+                    });
+
+                    var marker_settings =
+                            {
+                                position    : prp.location,
+                                map         : map,
+                                title       : prp.title,
+                                iw          : infoWindow,
+                                icon        : {
+                                    path        : "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3" +
+                                                  "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
+                                    fillColor   : $(selector).css('color'),
+                                    fillOpacity : 1,
+                                    strokeWeight: 0
+                                }
+                            };
+                    var marker = new google.maps.Marker(marker_settings);
+                    
+                    marker_array.push(marker);
+                    last_iw_opened = infoWindow;
+                    
+                    marker.addListener('click', function () {
+                        last_iw_opened.close();
+                        last_iw_opened = this.iw;
+                        this.iw.open(map, this);
+                    });
+                }
+
+            },
+            put_map_in: function (selector, center)
+            {
+                var map_container   = document.querySelector(selector);
+
+                var settings        =
+                        {
+                            center  : center,
+                            zoom    : 10
+                        };
+
+                var map = new google.maps.Map(map_container, settings);
+                return map;
+            },
+            scrTop: function (selector)
+            {
+                var scrollTop       = $(window).scrollTop(),
+                    elementOffset   = $(selector).offset().top,
+                    distance        = (elementOffset - scrollTop);
+                
+                return distance;
+            },
+            bottomReached: function (ob)
+            {
+                var WINDOW_HEIGHT   = $(window).height();
+                var OBJECT_TOP      = $(ob).offset().top;
+                var OBJECT_HEIGHT   = $(ob).height();
+                var scrolled_height = $(window).scrollTop();
+                var bottom_distance = -1 * (((OBJECT_HEIGHT + OBJECT_TOP) - WINDOW_HEIGHT) - scrolled_height);
+                    
+                return bottom_distance;
+            },
+            setMapContainer: function (map_container)
+            {
+                
+                var header_top = $('.global-wrapper > .header-background .under_header.header-background');
+                var headheight = ($(window).height()) + 'px';
+                var bottom_distance = this.bottomReached('.property-list');
+                var width = $(map_container).parent().width();
+                var left = $('.market-area-content').offset().left + $('.market-area-content').width();
+                var bottom_offset = $('header .under_header').height();
+                var top = 0;
+
+
+                if (header_top.css('position') == 'fixed')
+                {
+                    top = ($('.header + .under_header').height() + parseFloat($('.header + .under_header').css('padding-top')) * 2) + 'px';
+                }
+                else
+                {
+                    top = this.scrTop('.market-area-content') + 'px';
+                }
+
+                
+                if (bottom_distance >= bottom_offset)
+                {
+                    $(map_container)
+                            .css('height','calc(100vh - '+ $('.featured-image').height() +'px )')
+                            .parent()
+                            .addClass('ready')
+                            .css('height', headheight)
+                            .css('right', '0px')
+                            .css('left', 'auto')
+                            .css('width', width + 'px')
+                            .css('top', 'auto')
+                            .css('bottom', '0px')
+                            .css('position', 'absolute');
+                } else
+                {
+                   
+                    $(map_container)
+                            .css('height','calc(100vh - '+ $('.featured-image').height() +'px )')
+                            .parent()
+                            .addClass('ready')
+                            .css('height', headheight)
+                            .css('left', left + 'px')
+                            .css('right', 'auto')
+                            .css('width', width + 'px')
+                            .css('top', top)
+                            .css('bottom', 'auto')
+                            .css('position', 'fixed');
+                }
+            },
+            cond: function ()
+            {
+                return app.exists('.market-area-page');
+            }
+        }
+app.bapiModules.templates.marketAreasMainLanding =
+        {
+            init: function ()
+            {
+                if (this.cond())
+                {
+                    // console.log(all_market_areas);
+
+                    /* Initialize google map */
+
+                    /* Client Current location as center */
+                    /* The initialLocation would be the location of the first property by default */
+
+//                    this.setMap('.map-popup .mini-map',
+//                            {
+//                                zoom: 5,
+//                                disableDefaultUI: true,
+//                                zoomControl: false,
+//                                mapTypeControl: false,
+//                                scaleControl: false,
+//                                streetViewControl: false,
+//                                rotateControl: false,
+//                                fullscreenControl: false,
+//                                draggable: false,
+//                                scalable: false,
+//                                scrollwheel: false
+//                            });
+//
+//                    var ob = this;
+//
+//                    $('.map-popup').on('click', function (e)
+//                    {
+//                        console.log('hit');
+//                        $('.market-areas-map').addClass('active'); // show the map container
+//                        //put the map inside:
+//                        ob.setMap('.market-areas-map .map-box .map', {zoom: 5});
+//                    });
+//
+//                    // Catch esc pressed
+//                    $(document).on('keyup', function (e)
+//                    {
+//                        if (e.keyCode == 27)
+//                        {
+//                            //Esc from map
+//
+//                            $('.market-areas-map').removeClass('active');
+//
+//                        }
+//                    });
+//
+//                    // Click outside the map box to close
+//                    $('.market-areas-map').on('click', function (e)
+//                    {
+//                        e.preventDefault();
+//                        //Esc from map
+//
+//                        $(this).removeClass('active');
+//
+//                    });
+//
+//                    $('.close-map').on('click', function (e)
+//                    {
+//                        e.preventDefault();
+//                        //Esc from map
+//
+//                        $('.market-areas-map').removeClass('active');
+//
+//                    });
+//
+//                    // Prevent from closing the map when click in map box
+//                    $('.market-areas-map .map-box').on('click', function (e)
+//                    {
+//                        e.preventDefault();
+//                        e.stopPropagation();
+//                    });
+                }
+            },
+            setMap: function (selector, settings)
+            {
+                var defaultMapView = BAPI.config().mapviewType;
+                settings = settings || {};
+
+                var geocoder = new google.maps.Geocoder();
+                var address = all_market_areas[0].name;
+                geocoder.geocode({'address': address}, function (results, status)
+                {
+
+                    var options = {
+                        center: results[0].geometry.location,
+                        zoom: 4,
+                        styles: this.mapStyles,
+                        mapTypeId: google.maps.MapTypeId[defaultMapView]
+                    };
+
+                    jQuery.extend(options, settings);
+
+
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        var gmap = new google.maps.Map(document.querySelector(selector), options);
+
+                        // console.log(gmap);
+
+                        var markers = []; // Create the markers you want to add and collect them into a array.
+
+
+                        for (var indx in all_market_areas)
+                        {
+                            //console.log(all_market_areas[indx].lat);
+
+                            var marker = new MarkerWithLabel({
+                                position: new google.maps.LatLng(all_market_areas[indx].lat, all_market_areas[indx].lng),
+                                map: gmap,
+                                labelClass: "map-labels",
+                                labelAnchor: new google.maps.Point(25, 42),
+                                labelContent: all_market_areas[indx].props_inside,
+                                width: '100px',
+                                url: all_market_areas[indx].guid,
+                                icon:
+                                        {
+                                            url: all_market_areas[indx].icon_url
+                                        }
+                            });
+
+                            /* Add event listeners to show info window */
+                            marker.addListener('click', function ()
+                            {
+                                //  console.log(this);
+                                document.location.href = this.url;
+                            });
+                        }
+                    }
+                    else {
+                        console.log("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            },
+            cond: function cond() {
+                return app.exists('.market-areas-main-landing');
+            },
+            mapStyles: [
+                {
+                    "featureType": "landscape",
+                    "stylers": [
+                        {
+                            "hue": "#FFBB00"
+                        },
+                        {
+                            "saturation": 43.400000000000006
+                        },
+                        {
+                            "lightness": 37.599999999999994
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "stylers": [
+                        {
+                            "hue": "#FFC200"
+                        },
+                        {
+                            "saturation": -61.8
+                        },
+                        {
+                            "lightness": 45.599999999999994
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "stylers": [
+                        {
+                            "hue": "#FF0300"
+                        },
+                        {
+                            "saturation": -100
+                        },
+                        {
+                            "lightness": 51.19999999999999
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "stylers": [
+                        {
+                            "hue": "#FF0300"
+                        },
+                        {
+                            "saturation": -100
+                        },
+                        {
+                            "lightness": 52
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "water",
+                    "stylers": [
+                        {
+                            "hue": "#0078FF"
+                        },
+                        {
+                            "saturation": -13.200000000000003
+                        },
+                        {
+                            "lightness": 2.4000000000000057
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "stylers": [
+                        {
+                            "hue": "#00FF6A"
+                        },
+                        {
+                            "saturation": -1.0989010989011234
+                        },
+                        {
+                            "lightness": 11.200000000000017
+                        },
+                        {
+                            "gamma": 1
+                        }
+                    ]
+                }
+            ],
+        };
 
 app.bapiModules.templates.propertyDetails = {
     forceusemap: false,
@@ -1456,6 +2656,75 @@ app.bapiModules.templates.searchPage = {
     }
 
 };
+
+app.bapiModules.templates.stackAreasDefaultTemplate =
+{
+    init: function()
+    {
+        if(this.cond()) // If Default template
+        {
+            // Hero slider swiper
+            var mySwiper = new Swiper ('.hero .swiper-container', {
+                             // Optional parameters
+                             direction: 'horizontal',
+                             loop: true,
+                             autoplay: 3000,
+                             speed: 1000,
+                             effect: 'fade',
+
+                            // If we need pagination
+                            pagination: '.swiper-pagination',
+
+                            // Navigation arrows
+                            nextButton: '.swiper-button-next',
+                            prevButton: '.swiper-button-prev',
+
+                            // And if we need scrollbar
+                            scrollbar: '.swiper-scrollbar',
+                        });
+
+            //Tab Selector
+            $('.tab-selector a').on('click', function(e)
+            {
+                    $('.tab-selector a').removeClass('primary-fill-color');
+
+                    $(this).addClass('primary-fill-color');
+
+                    //Dissable all tab contents
+                    $('.tabs-contents li').removeClass('active');
+
+                    //Activate target;
+                    $($(this).attr('data-target')).addClass('active');
+
+                    setCookie('active-tab', $(this).attr('data-target'), 9999);
+
+            });
+            
+            $('.activate-tab').on('click', function(e)
+            {
+               setCookie('active-tab', $(this).attr('data-target'), 9999); 
+            });
+
+            //ActivateTab
+            var subarea = getCookie('subarea');
+            var active_tab = getCookie('active-tab');
+
+            if(subarea == 1)
+            {
+                $('[data-target=".property-list"]').click();
+            }
+            else
+            {
+                $('[data-target="'+active_tab+'"]').click();
+            }
+
+        }
+    },
+    cond: function cond() {
+        return app.exists('.stacks-default-template');
+    }
+};
+
 app.bapiModules.widgets.buckets = {
     selector: '.kd-buckets',
     init: function(){

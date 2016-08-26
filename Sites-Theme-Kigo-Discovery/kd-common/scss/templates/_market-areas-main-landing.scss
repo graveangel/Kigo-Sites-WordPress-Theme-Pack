@@ -1,0 +1,563 @@
+.market-areas-main-landing
+{
+    *
+    {
+        box-sizing      : border-box;
+        vertical-align  : top;
+    }
+
+    > .page-width
+    {
+        /* Page title */
+        .title
+        {
+            font-weight : normal;
+            font-size   : 50px;
+            margin      : .5em 0;
+        }
+
+        .desc-and-map
+        {
+            display         : block;
+            padding         : 0 0 1em 0;
+            border-bottom   : 1px solid #dfdfdf;
+            font-size       : 0;
+        }
+
+        .market-areas-listing
+        {
+            margin-top: 4em;
+        }
+
+        $content_w: 100%;
+        .pcontent
+        {
+            font-size   : 16px;
+            line-height : 1.5;
+            text-align  : justify;
+            color       : #333;
+            width       : $content_w;
+            display     : inline-block;
+        }
+
+        $gap: 5%;
+        .map-popup
+        {
+            width           : calc( 100% - #{$gap} - #{$content_w} );
+            display         : inline-block;
+            background      : #008899;
+            font-size       : 25px;
+            margin-left     : $gap;
+            position        : relative;
+            height          : 3em;
+            span
+            {
+                position        : absolute;
+                z-index         : 3;
+                width           : 100%;
+                height          : 100%;
+                cursor          : pointer;
+                padding         : 1em 0px 1em 20%;
+                font-size       : 25px;
+                line-height     : 1em;
+                background-color: rgba(#fff, 0.5);
+                .popup-icon
+                {
+                    background      : #fff;
+                    height          : 50px;
+                    width           : 50px;
+                    border-radius   : 100%;
+                    padding         : 0;
+                    display         : block;
+                    position        : absolute;
+                    margin          : auto;
+                    top             : 0;
+                    right           : 20%;
+                    bottom          : 0;
+                    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+                    transition: box-shadow 0.5s ease;
+                    b
+                    {
+                        color: #0088ff;
+                        font-size: 15px;
+                        font-weight: normal;
+                        position: absolute;
+                        &::after
+                        {
+                            content: "\f062";
+                        }
+
+                        &:first-child
+                            {
+                            top: 10px;
+                            right: 10px;
+                            transform: rotate(45deg);
+                        }
+
+                        &:nth-child(2)
+                            {
+                            bottom: 10px;
+                            left: 10px;
+                            transform: rotate(-135deg);
+                        }
+                    }
+                }
+
+                &:hover
+                    {
+                    .popup-icon
+                    {
+                        box-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+                        transition: box-shadow 0.5s ease;
+                    }
+                }
+            }
+
+            .mini-map
+            {
+                display     : block;
+                position    : absolute;
+                z-index     : 2;
+                text-align  : center;
+                width       : 100%;
+                height      : 100%;
+            }
+        }
+    }
+
+    .market-areas-map
+    {
+        position    : fixed;
+        top         : 0;
+        bottom      : 0;
+        left        : 0;
+        right       : 0;
+        margin      : auto;
+        background  : rgba(0,0,0,0.8);
+        display     : block;
+        z-index     : 99999;
+        height      : 0;
+        opacity     : 0;
+        .map-box
+        {
+            position        : absolute;
+            left            : 0;
+            right           : 0;
+            top             : 0;
+            margin          : auto;
+            bottom          : 0;
+            height          : 80%;
+            width           : 80%;
+            display         : block;
+            background      : #fff;
+            opacity         : 0;
+            transition      : opacity, height, width 0.2s ease;
+            overflow        : hidden;
+            border-radius   : 5px;
+            .close-map
+            {
+                background      : #0088ff;
+                height          : 50px;
+                width           : 50px;
+                border-radius   : 100%;
+                padding         : 0;
+                display         : block;
+                position        : absolute;
+                margin          : auto;
+                top             : 10px;
+                right           : 10px;
+                z-index         : 200;
+                cursor          : pointer;
+                box-shadow      : 2px 2px 5px rgba(0,0,0,0.2);
+                transition      : box-shadow 0.5s ease;
+                &:hover
+                    {
+                    box-shadow: 2px 2px 5px rgba(0,0,0,1);
+                    transition: box-shadow 0.5s ease;
+                }
+                b
+                {
+                    color: #fff;
+                    font-size: 15px;
+                    font-weight: normal;
+                    position: absolute;
+
+                    &::after
+                    {
+                        content: "\f062";
+                    }
+
+                    &:first-child
+                        {
+                        top: 10px;
+                        right: 10px;
+                        transform: rotate(-135deg);
+                    }
+
+                    &:nth-child(2)
+                        {
+                        bottom: 10px;
+                        left: 10px;
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+            .map
+            {
+                height      : 100%;
+                width       : 100%;
+                overflow        : hidden;
+                border-radius   : 5px;
+            }
+        }
+        &.active
+        {
+
+            display     : block;
+            height      : 100vh;
+            opacity     : 1;
+            transition  : opacity 0.5s ease;
+            .map-box
+            {
+                opacity     : 1;
+                transition  : opacity, height, width 0.5s ease 0.5s;
+            }
+        }
+    }
+
+    /* zero parent market area */
+    .zp-mkta
+    {
+        padding-bottom: 50px;
+        border-bottom   : 1px solid #dfdfdf;
+        margin-bottom: 50px;
+
+        .ma-link
+        {
+            h2
+            {
+                font-weight: normal;
+                color: #000;
+            }
+        }
+
+        .subareas
+        {   
+            font-size:0;
+            .ma-link
+            {
+                $gap: 25px;
+                margin: 0 #{$gap} #{$gap} 0;
+                display: inline-block;
+
+                /* row 1 */
+                $width: 70%;
+                &:nth-child(6n+1)
+                    {
+                    width: calc(#{$width} - #{$gap}/2);
+                }
+                &:nth-child(6n+2)
+                    {
+                    width: calc(100% - #{$width} - #{$gap}/2);
+                    margin-right: 0;
+                }
+                /* row 2 */
+                $per-row: 4;
+                &:nth-child(6n+3),&:nth-child(6n+4),&:nth-child(6n+5),&:nth-child(6n+6)
+                    {
+                    width: calc((100% - #{$gap} * #{$per-row - 1})/#{$per-row});
+                }
+
+                &:nth-child(6n+6)
+                    {
+                    margin-right: 0;
+                }
+
+            }
+        }
+
+
+        .market-area-box
+        {
+            position: relative;
+            height: 400px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            .titles-box
+            {
+                max-height:50%;
+                width: 90%;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                position: absolute;
+                margin: auto;
+                /*background: white;*/
+                text-align: center;
+                h4
+                {
+                    color: #fff;
+                    font-size: 35px;
+                }
+                h5
+                {
+                    font-size: 30px;
+                    color: #fff;
+                    font-weight: normal;
+                }
+                p
+                {
+                    font-size: 18px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
+
+/* Map labels */
+.map-labels {
+    padding: 10px;
+    border-radius: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    width: 50px;
+    font-weight: bold;
+    left: -50%;
+    top: -50%;
+    vertical-align: top;
+    text-align: center;
+    &::after
+    {
+        content: '';
+        display: block;
+        padding-top: calc( 100% - 20px);
+    }
+}
+
+/* Tablets */
+@media(max-width: $bp-lg)
+{
+
+    .market-areas-main-landing
+    {
+        box-sizing: border-box;
+        padding: 15px;
+    }
+}
+/* Mobile */
+@media(max-width: $bp-md)
+{
+    .market-areas-main-landing
+    {
+        box-sizing: border-box;
+        padding: 15px;
+        *
+        {
+
+        }
+
+        > .page-width
+        {
+            /* Page title */
+            .title
+            {
+                text-align: center;
+            }
+
+            .desc-and-map
+            {
+
+            }
+
+            .market-areas-listing
+            {
+
+            }
+
+            .pcontent
+            {
+                display: block;
+                width: 100%;
+            }
+
+            .map-popup
+            {
+                display: block;
+                width: 100%;
+                margin-left: 0;
+
+                span
+                {
+                    .popup-icon
+                    {
+                        b
+                        {
+                            &::after
+                            {
+
+                            }
+
+                            &:first-child
+                                {
+
+                            }
+
+                            &:nth-child(2)
+                                {
+
+                            }
+                        }
+                    }
+
+                    &:hover
+                        {
+                        .popup-icon
+                        {
+
+                        }
+                    }
+                }
+
+                .mini-map
+                {
+
+                }
+            }
+        }
+
+        .market-areas-map
+        {
+            .map-box
+            {
+                .close-map
+                {
+                    &:hover
+                        {
+
+                    }
+                    b
+                    {
+
+                        &::after
+                        {
+
+                        }
+
+                        &:first-child
+                            {
+
+                        }
+
+                        &:nth-child(2)
+                            {
+
+                        }
+                    }
+                }
+                .map
+                {
+
+                }
+            }
+            &.active
+            {
+                .map-box
+                {
+
+                }
+            }
+        }
+
+        /* zero parent market area */
+        .zp-mkta
+        {
+
+            .ma-link
+            {
+                h2
+                {
+                    text-align: center;
+                }
+            }
+
+            .subareas
+            {   
+
+                .ma-link
+                {
+                    display: block;
+                    width: 100%;
+                    margin-right: 0;
+                    margin-left: 0;
+
+                    /* row 1 */
+
+                    &:nth-child(6n+1)
+                        {
+                        width: 100%;
+                        margin-right: 0;
+                        margin-left: 0;
+                    }
+                    &:nth-child(6n+2)
+                        {
+                        width: 100%;
+                        margin-right: 0;
+                        margin-left: 0;
+                    }
+                    /* row 2 */
+
+                    &:nth-child(6n+3),&:nth-child(6n+4),&:nth-child(6n+5),&:nth-child(6n+6)
+                        {
+                        width: 100%;
+                        margin-right: 0;
+                        margin-left: 0;
+                    }
+
+                    &:nth-child(6n+6)
+                        {
+                        width: 100%;
+                        margin-right: 0;
+                        margin-left: 0;
+                    }
+
+                }
+            }
+
+
+            .market-area-box
+            {
+
+                .titles-box
+                {
+
+                    /*background: white;*/
+
+                    h4
+                    {
+
+                    }
+                    h5
+                    {
+
+                    }
+                    p
+                    {
+                    }
+                }
+            }
+        }
+    }
+
+    /* Map labels */
+    .map-labels {
+
+        &::after
+        {
+
+        }
+    }   
+}

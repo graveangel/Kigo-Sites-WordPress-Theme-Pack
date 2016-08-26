@@ -2,8 +2,8 @@
 /**
  * Search template controller.
  */
-define('DS', DIRECTORY_SEPARATOR );
-
+ if(!defined(DS))
+     define('DS', DIRECTORY_SEPARATOR);
 class SearchTemplateController
 {
     private $template_path;
