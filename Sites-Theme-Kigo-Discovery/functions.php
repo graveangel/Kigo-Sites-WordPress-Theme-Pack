@@ -17,15 +17,6 @@ include_once 'inc/theme/Activation.class.php';
 //Theme BAPI helper
 include_once 'inc/theme/BAPIHelper.class.php';
 
-//Stack areas landings
-//include_once 'inc/stacks-posttype/StackAreasLandings.class.php';
-
-// Bypass
-//include "inc/search_bypass/init.php";
-
-// User Defined Fields Admin page
-//include "inc/UserDefinedFields/UserDefinedFields.Display.php";
-
 // Market Areas Table.................................................................................................................
 if(! class_exists('WP_Posts_List_Table'))
   {
