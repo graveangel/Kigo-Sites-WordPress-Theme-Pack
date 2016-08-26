@@ -192,10 +192,10 @@ public function theme_settings_page() {
         $preloader_url = get_template_directory_uri() . explode($themefoldername, dirname(__FILE__))[1] . '/inc/market-areas/static/img/Preloader_5.gif';
   	?>
   	<div class="wrap">
-  		<h2>Market Areas Table</h2>
+  		<h2>Market Area's</h2>
 
                 <div style="margin-top:-5px;">
-                        <input class="button-primary create-main" type ="button" value="Create Main Market Areas Landing Page"> 
+                        <input class="button-primary create-main" type ="button" value="Create Market Area Landing Page"> 
                         <input class="button-primary crawlpages" type ="button" value="Sync Market Areas">
                 </div>
   		<div id="poststuff">
