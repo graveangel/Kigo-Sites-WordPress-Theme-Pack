@@ -170,15 +170,13 @@ if($data) {
 					<div class="span12 box-sides">
 
 					<?php
-					if($settings['propdetailrateavailtab'] != 'on') {
-						if($settings['propdetailratestable'] != 'on') { ?>
-							<h3><?php echo $translations['Availability']; ?></h3>
-							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
-							<hr/>
-						<?php } else { ?>
-							<h3><?php echo $translations['Availability']; ?></h3>
-							<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo $settings['propdetail-availcal']; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
-						<?php } 
+					if($settings['propdetailrateavailtab'] != 'on') { ?>
+
+						<h3><?php echo $translations['Availability']; ?></h3>
+						<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo isset($settings['propdetail-availcal']) ? $settings['propdetail-availcal'] : 3; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+							
+						<?php 
+						if($settings['propdetailratestable'] != 'on') { echo '<hr />'; }					
 					} 
 
 					if($settings['propdetailratestable'] != 'on') { ?>
