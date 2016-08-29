@@ -151,7 +151,7 @@ class MarketAreaController
     
     function r($term)
     {
-        $r = \render_this("{{#site}}{{textdata.$term}}{{/site}}");
+        $r = \render_this_str("{{#site}}{{textdata.$term}}{{/site}}");
         if(empty($r)) return $term;
         return $r;
     }

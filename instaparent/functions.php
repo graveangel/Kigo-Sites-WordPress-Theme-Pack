@@ -1602,7 +1602,7 @@ include 'widgets/widgets_include.php';
  * @param bool $onlyAdded Use added array exclusively
  * @return string HTML rendered markup
  */
-function render_this($string_mustache_template, $addedArray = [], $onlyAdded = false) {
+function render_this_str($string_mustache_template, $addedArray = [], $onlyAdded = false) {
 
     $data = $onlyAdded ? $addedArray : getbapisolutiondata() + $addedArray;
 

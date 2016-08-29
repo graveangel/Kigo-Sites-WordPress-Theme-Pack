@@ -61,9 +61,9 @@ class MarketAreasPageController {
      */
     function r($term, $textdata = true) {
         if ($textdata)
-            $r = \render_this("{{#site}}{{textdata.$term}}{{/site}}");
+            $r = \render_this_str("{{#site}}{{textdata.$term}}{{/site}}");
         else
-            $r = \render_this($term);
+            $r = \render_this_str($term);
 
         if (empty($r))
             return $term;
