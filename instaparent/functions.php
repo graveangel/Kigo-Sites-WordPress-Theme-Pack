@@ -1648,3 +1648,4 @@ if(! class_exists('WP_Posts_List_Table'))
   }
 require_once 'inc' . DIRECTORY_SEPARATOR . 'MarketAreasTable.php';
 require_once 'inc' . DIRECTORY_SEPARATOR . 'MarketAreasDisplay.php';
+require_once 'inc' . DIRECTORY_SEPARATOR . 'MarketAreasSidebars.php';

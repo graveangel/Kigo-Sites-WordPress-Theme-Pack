@@ -527,7 +527,35 @@
     .market-area-page .market-area-map .mpbx {
       height: 100vh;
       display: block; }
-
+    /* Modal */
+    .market-area-page .modal
+    {
+        display: none;
+    }
+    .market-area-page .modal-body .close 
+    {
+        margin: 10px;
+    }
+    .market-area-page .modal-body
+    {
+        max-height: 100%;
+    }
+    .market-area-page .search-and-enquire
+    {
+        float: right;
+    }
+    .market-area-page .trigger-modal
+    {
+        background: #dfdfdf;
+        border-radius: 0px;
+        border: none;
+        color: #0099CC;
+    }
+/* Page numbers in market areas detail page*/
+    .pagination-links
+    {
+        padding: 0 36px;
+    }
 /* Tablets */
 @media (max-width: 1200px) {
   .market-area-page {

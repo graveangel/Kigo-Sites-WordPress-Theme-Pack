@@ -22,12 +22,6 @@ marketAreaPage =
                     var primary_fill_color = $('.vs-button').css('color');
                     $('.primary-fill-color').css('background-color', primary_fill_color);
                     
-                    // Set the container as fixed when the header is also
-                    $(document).on('headerFixed', function (e)
-                    {
-                        ob.setMapContainer('.mpbx');
-                    });
-                    
                     this.setMapContainer('.mpbx');
 
                     var map = this.put_map_in('.mpbx', center);
@@ -81,6 +75,10 @@ marketAreaPage =
                             new google.maps.event.trigger(marker_array[i], 'click');
                         });
                     });
+                    
+                    
+                    // Market Area Modal
+                    this.enable_modals();
                 }
             },
             put_properties_in_: function (map, selector)
@@ -184,9 +182,8 @@ marketAreaPage =
                 if (bottom_distance >= bottom_offset)
                 {
                     $(map_container)
-                            .css('height', headheight)
-                            .parent()
                             .css('height','calc(100vh - '+ $('.featured-image').height() +'px )')
+                            .parent()
                             .addClass('ready')
                             .css('height', headheight)
                             .css('right', '0px')
@@ -199,7 +196,6 @@ marketAreaPage =
                 {
                    
                     $(map_container)
-                            .css('height', headheight)
                             .css('height','calc(100vh - '+ $('.featured-image').height() +'px )')
                             .parent()
                             .addClass('ready')
@@ -211,6 +207,15 @@ marketAreaPage =
                             .css('bottom', 'auto')
                             .css('position', 'fixed');
                 }
+            },
+            enable_modals: function()
+            {
+                $('.trigger-modal').on('click', function(e)
+                {
+                    e.preventDefault();
+                    var target = $(this).attr('data-modal');
+                    $(target).modal();
+                });
             },
             cond: function ()
             {

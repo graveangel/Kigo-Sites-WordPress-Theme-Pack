@@ -8,13 +8,14 @@ Template Name: Market Area Page
 class MarketAreaController
 {
     private $template,
-            $template_vars = [];
+            $template_vars = [],
+            $use_sidebars = false;
     /**
      *Sets the tempalte vars and executes the index action
      */
     function __construct()
     {
-         # Page number
+        # Page number
         $this->paged             = (get_query_var('paged')) ? get_query_var('paged') : 1;//((filter_var($_GET['pag'],     FILTER_VALIDATE_INT) - 1 ) >= 1) ? (filter_var($_GET['pag'],     FILTER_VALIDATE_INT) - 1 ) : 0;
         
         # Set the template
@@ -22,6 +23,7 @@ class MarketAreaController
         
         # Execute the index action
         $this->index();
+        
     }
     
     /**

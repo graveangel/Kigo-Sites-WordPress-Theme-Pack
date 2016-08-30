@@ -13,6 +13,16 @@
 
         <!--The title-->
         <div class="title-description">
+            <!-- Search and Enquire buttons: for now this is just the widget, in the future the sidebars will be needed -->
+
+            <div class="search-and-enquire">
+                <!-- Search Button -->
+                <a href="#" class="trigger-modal btn" data-modal="#search"><?php echo $this->r("Search"); ?></a>
+
+                <!-- Enquire Button -->
+                <a href="#" class="trigger-modal btn" data-modal="#enquire"><?php echo $this->r("Enquire"); ?></a>
+            </div>            
+
             <h1 class="title"><?php echo __('Rentals in') . ' ' . $title; ?></h1>
             <div class="description">
                 <?php echo apply_filters('the_content', $description); ?>
@@ -22,8 +32,8 @@
         <!--Subareas-->
         <div class="sub-areas">
             <div class="title">
-                <?php if(count($sub_areas)): ?>
-                Areas in <?php echo $title; ?>
+                <?php if (count($sub_areas)): ?>
+                    Areas in <?php echo $title; ?>
                 <?php endif; ?>
             </div>
             <!-- Slider main container -->
@@ -38,7 +48,7 @@
                         ?>
                         <div class="swiper-slide" style="background-image: url('<?php echo $featured_image; ?>'); background-color: #333;">
                             <a href="<?php echo $subarea->guid; ?>" class="permalink">
-                            <h4><?php echo $subarea->post_title; ?></h4>
+                                <h4><?php echo $subarea->post_title; ?></h4>
                             </a>
                         </div>
                     <?php endforeach; ?>
@@ -89,40 +99,43 @@
                                 </h3>
                             </a>
                             <p>
-                                <?php 
+                                <?php
                                 $location = $ppd['Neighborhood'] or $ppd['City'] or $ppd['State'] or $ppd['Country'] or '-';
-                                echo str_replace('<br/>', ', ', sprintf("%s, %s", $ppd['Type'], $location)); ?>
+                                echo str_replace('<br/>', ', ', sprintf("%s, %s", $ppd['Type'], $location));
+                                ?>
                                 <br>
                                 <?php printf("%d %s / %d %s", $ppd['Bedrooms'], $this->r("Beds"), $ppd['Bathrooms'], $this->r("Baths")); ?>
                             </p>
                         </div>
                         <div class="from primary-fill-color">
-                             <a href="<?php echo $property->guid; ?>" class="ppermalink">
-                            <span><?php echo $this->r('From'); ?></span>
-                            
-                            
-                            <?php if(strlen($ppd['MinRate']['LocalCurrencySymbol']) < 3): ?>
-                            <p><?php printf("%s %s", $ppd['MinRate']['LocalCurrencySymbol'], $ppd['MinRate']['LocalSValue2']); ?></p>
-                            <?php else: ?>
-                            <p><?php printf("%s %s", '&#x' . substr($ppd['MinRate']['LocalCurrencySymbol'],1) . ';', $ppd['MinRate']['LocalSValue2']); ?></p>
-                            <?php endif; ?>
-                            
-                             </a>
+                            <a href="<?php echo $property->guid; ?>" class="ppermalink">
+                                <span><?php echo $this->r('From'); ?></span>
+
+
+                                <?php if (strlen($ppd['MinRate']['LocalCurrencySymbol']) < 3): ?>
+                                    <p><?php printf("%s %s", $ppd['MinRate']['LocalCurrencySymbol'], $ppd['MinRate']['LocalSValue2']); ?></p>
+                                <?php else: ?>
+                                    <p><?php printf("%s %s", '&#x' . substr($ppd['MinRate']['LocalCurrencySymbol'], 1) . ';', $ppd['MinRate']['LocalSValue2']); ?></p>
+                                <?php endif; ?>
+
+                            </a>
                         </div>
                     </div>
 
                 <?php endforeach; ?>
             </div>
-            <?php
-						$big = 999999999; // need an unlikely integer
+            <div class="pagination-links">
+                <?php
+                $big = 999999999; // need an unlikely integer
 
-						echo paginate_links( array(
-							'base' => str_replace( $big, '%#%', esc_url( "?paged=$big" ) ),
-							'format' => '?paged=%#%',
-							'current' => max( 1, $this->current_page ),
-							'total' => $this->max_num_pages
-						) );
-				?>
+                echo paginate_links(array(
+                    'base' => str_replace($big, '%#%', esc_url("?paged=$big")),
+                    'format' => '?paged=%#%',
+                    'current' => max(1, $this->current_page),
+                    'total' => $this->max_num_pages
+                ));
+                ?>
+            </div>
         </div>
     </div>
 
@@ -133,9 +146,39 @@
         </div>
         <div class="mpbx"></div>
     </div>
+
+
+    <div class="modal fade" id="search" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php the_widget('BAPI_Search', ['title' => 'Revise Search']); ?>
+                </div> 
+               
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <div class="modal fade" id="enquire" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php the_widget('BAPI_Inquiry_Form', ['title' => 'Have a Question?']); ?>
+                </div>
+                
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
 <script type="text/javascript">
     var map_center = {lat: <?php echo $latitude; ?>, lng: <?php echo $longitude; ?>};
     var all_props = <?php echo $all_props; ?>;
 </script>
+
+
 <?php get_footer(); ?>
