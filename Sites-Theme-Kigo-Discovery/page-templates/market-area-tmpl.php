@@ -13,6 +13,15 @@
 
         <!--The title-->
         <div class="title-description">
+            <!-- Search and Enquire buttons: for now this is just the widget, in the future the sidebars will be needed -->
+
+            <div class="search-and-enquire">
+                <!-- Search Button -->
+                <a href="#" class="trigger-modal primary-stroke-color btn" data-modal="#search"><?php echo $this->r("Search"); ?></a>
+
+                <!-- Enquire Button -->
+                <a href="#" class="trigger-modal primary-stroke-color btn" data-modal="#enquire"><?php echo $this->r("Enquire"); ?></a>
+            </div>    
             <h1 class="title"><?php echo __('Rentals in') . ' ' . $title; ?></h1>
             <div class="description">
                 <?php echo apply_filters('the_content', $description); ?>
@@ -135,6 +144,34 @@
         </div>
         <div class="mpbx"></div>
     </div>
+    
+    
+    <div class="modal fade" id="search" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php the_widget('KD_Search', ['title' => 'Revise Search']); ?>
+                </div> 
+               
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <div class="modal fade" id="enquire" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php the_widget('KD_BAPI_Inquiry_Form', ['title' => 'Have a Question?']); ?>
+                </div>
+                
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
 <script type="text/javascript">
     var map_center = {lat: <?php echo $latitude; ?>, lng: <?php echo $longitude; ?>};

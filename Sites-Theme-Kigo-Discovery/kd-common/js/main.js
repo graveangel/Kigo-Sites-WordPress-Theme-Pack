@@ -1587,6 +1587,8 @@ app.modules.templates.marketAreaPage =
                             new google.maps.event.trigger(marker_array[i], 'click');
                         });
                     });
+                    // Market Area Modal
+                    this.enable_modals();
                 }
             },
             put_properties_in_: function (map, selector)
@@ -1715,6 +1717,15 @@ app.modules.templates.marketAreaPage =
                             .css('bottom', 'auto')
                             .css('position', 'fixed');
                 }
+            },
+             enable_modals: function()
+            {
+                $('.trigger-modal').on('click', function(e)
+                {
+                    e.preventDefault();
+                    var target = $(this).attr('data-modal');
+                    $(target).modal();
+                });
             },
             cond: function ()
             {

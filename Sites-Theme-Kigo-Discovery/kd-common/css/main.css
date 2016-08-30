@@ -5530,7 +5530,9 @@ body.error404 .message {
   /*Propery list*/
   /*Propery list*/
   /*Sub Areas*/
-  /*The map*/ }
+  /*The map*/
+  /* Search and Enquire modals */
+  /* Modal */ }
   .market-area-page .market-area-content {
     background: #fff;
     width: 60%;
@@ -5747,6 +5749,43 @@ body.error404 .message {
     .market-area-page .market-area-map .mpbx {
       height: 100vh;
       display: block; }
+  .market-area-page #search {
+    max-width: 1000px; }
+    .market-area-page #search .modal-body, .market-area-page #search .modal-dialog {
+      width: 100%;
+      overflow: visible; }
+  .market-area-page .modal {
+    display: none;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto; }
+    .market-area-page .modal .picker__frame, .market-area-page .modal .picker__holder {
+      overflow: visible; }
+  .market-area-page .modal-body .close {
+    margin: 10px; }
+  .market-area-page .modal-body {
+    overflow: hidden;
+    /* Enquire */ }
+    .market-area-page .modal-body::after {
+      content: '';
+      clear: both;
+      display: table; }
+    .market-area-page .modal-body .bapi-inquiryform input, .market-area-page .modal-body .bapi-inquiryform select, .market-area-page .modal-body .bapi-inquiryform textarea {
+      padding: 10px;
+      line-height: 25px;
+      font-size: 14px; }
+    .market-area-page .modal-body .picker {
+      opacity: 0; }
+      .market-area-page .modal-body .picker.picker--opened {
+        opacity: 1; }
+  .market-area-page .search-and-enquire {
+    float: right; }
+  .market-area-page .trigger-modal {
+    background: #dfdfdf;
+    border-radius: 0px;
+    border: none; }
 
 /* Tablets */
 @media (max-width: 1200px) {
