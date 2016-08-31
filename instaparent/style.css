@@ -793,7 +793,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 .item-slideshow .flex-direction-nav .flex-prev{left:21px !important;}
 
 .item-slideshow #carousel li {background:#eee;float:left;margin-right:5px;width:50px;}
-.item-slideshow #carousel img {display: block; opacity: .5; cursor: pointer;}
+.item-slideshow #carousel img {display: block; opacity: .5; cursor: pointer; transition: opacity .4s; }
 .item-slideshow #carousel img:hover {opacity: 1;}
 .item-slideshow #carousel .flex-active-slide img {opacity: 1; cursor: default;}
 .item-slideshow #carousel{border-color:#fff;padding:28px 66px;}
@@ -1307,4 +1307,8 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 .home-qsearch.qsFixed {
 	display: block;
 	opacity: 1;
+}
+.home-qsearch .category-block {
+    display: inline-block;
+    margin-bottom: 5px;
 }
