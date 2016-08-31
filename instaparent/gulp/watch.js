@@ -16,7 +16,7 @@ gulp.task('watch', ['build'], function() {
 
   gulp.watch('./insta-common/bootstrap/css/vendor/**/*', ['styles:vendor']);
 
-  //gulp.watch('./js/src/**/*.js', ['scripts']);
+  gulp.watch('./insta-common/bootstrap/js/src/**/*.js', ['scripts:bootstrap']);
 
   //gulp.watch('./papi/**/*.tmpl', ['templates']);
 
