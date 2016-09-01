@@ -36,7 +36,7 @@ body{background:#fff;}
 .home-qsearch .widget_bapi_hp_search{background:none;box-shadow:none;}
 .home-qsearch #bapi-search{background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 89px 0 5px;margin:0 auto;position:relative;}
 .home-qsearch #bapi-search .category-block{display:inline-block;padding:0 0 5px;}
-.home-qsearch .property-search-button-block{width:80px;height:52px;position:absolute;bottom:5px;right:4px;}
+.home-qsearch .property-search-button-block{ }
 .home-qsearch #bapi-search .category-block input[type=text],.home-qsearch #bapi-search .category-block select{border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;}
 .home-qsearch span.cal-icon-trigger{color:#0099CC;}
 .home-qsearch .halflings.calendar i:before{font-size:20px;}
