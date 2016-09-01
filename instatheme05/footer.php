@@ -26,6 +26,9 @@ if(!$no_widgets){ $column_width = 12/$num_columns;}
 <!-- End pushdown section -->
 <!-- Start Insta Footer Widget Area -->
 
+<!-- End Insta Bottom Fixed Widget Area -->
+</article>
+
 <footer id="insta-footer">
     <div class="container-fluid">
         <div class="row-fluid maintainer kigo-footer-columns">
@@ -92,8 +95,7 @@ if(!$no_widgets){ $column_width = 12/$num_columns;}
     </div>
 </div>
 <?php endif; ?>
-<!-- End Insta Bottom Fixed Widget Area -->
-</article>
+
 <!-- End Main Content Wrapper -->
 <?php wp_footer(); ?>
 <script type="text/javascript" src="<?php echo wp_make_link_relative(get_template_directory_uri()); ?>/insta-common/bootstrap/js/insta-common.js"></script>

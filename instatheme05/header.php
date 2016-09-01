@@ -150,7 +150,11 @@ function slideshowUpdate()
 	var theWidth = $('.top-header-home').width();
   if(theWidth > 1100)
   {
-	  var theHeight = $('.top-header-home').height();
+	var theHeight = $('.flexslider .slides').height();
+  theHeight = 0;
+  $('.left-opacity,.right-opacity,.first-slide img,.last-slide img').each(function() {
+    if($(this).height() > theHeight) { theHeight = $(this).height(); }
+  });
   $('.left-opacity,.right-opacity,.first-slide img,.last-slide img').css('height',theHeight);
   $('.left-opacity,.right-opacity').css('width',(theWidth - 1100) /2 );
   $('.first-slide').css('left',((theWidth - 1100) /2)*-1 );
