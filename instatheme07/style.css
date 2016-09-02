@@ -29,7 +29,7 @@ body{background:#fff;}
 .home .pushdown,.home .pushdown.wpadminbarvisible{margin-top:0;}
 
 .top-header-home{position:relative;}
-.home .property-search-block {
+.home .property-search-block-old {
 	width:100%; 
 	margin: 0 auto; 
 	left: 0;
@@ -44,6 +44,7 @@ body{background:#fff;}
 	display: inline-block;
 	margin-bottom: 5px;
 }
+.home-qsearch { width: 80%; margin: 0 auto; }
 .home-qsearch h3{text-shadow:0px 0px 10px #fff;}
 .home-qsearch h3 .glyphicons{padding:0;}
 .home-qsearch h3 .glyphicons.search i:before{content:none;}

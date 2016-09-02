@@ -96,7 +96,8 @@ a{color:#40b7ff}
 .navbar-inverse .nav li.dropdown > a:hover .caret,.navbar-inverse .nav li.dropdown > a:focus .caret{border-top-color:#666;border-bottom-color:#666}
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,.navbar-inverse .nav li.dropdown.active > .dropdown-toggle,.navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle{background-color:#40b7ff;color:#fff}
 .dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus,.dropdown-submenu:hover > a,.dropdown-submenu:focus > a{background:#40b7ff}
-.navbar-inverse .nav li.current-page-parent li.current_page_item a,.navbar-inverse .nav li.current-page-parent li.current_page_item a:hover{background:#40b7ff;border:none;color:#fff;font-weight:600;padding:10px 10px 5px}
+.navbar-inverse .nav li.current-page-parent li.current_page_item a{background:#40b7ff;border:none;color:#fff;font-weight:600;padding:10px 10px 5px}
+.navbar-inverse .nav li.current-page-parent li:not(.current_page_item) a:hover{background: rgba(64, 185, 255, .7); }
 .home .pushdown,.home .pushdown.wpadminbarvisible{margin-top:0}
 .top-header-home{position:relative}
 .home-qsearch{position:absolute;left:1.75%;visibility:hidden;z-index:1}
@@ -108,7 +109,7 @@ a{color:#40b7ff}
 .home-qsearch #bapi-search .category-block{display:inline-block;padding:0 0 5px}
 .home-qsearch .property-search-button-block{display:inline-block}
 .home-qsearch #bapi-search .category-block input[type=text],.home-qsearch #bapi-search .category-block select{border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;height:40px;margin-bottom:0;padding:5px}
-.home-qsearch span.cal-icon-trigger{color:#40b7ff;margin-top:0}
+.home-qsearch span.cal-icon-trigger{color:#40b7ff;}
 .home-qsearch .halflings.calendar i:before{font-size:16px}
 .home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{background:#0da4ff;background:-moz-linear-gradient(top,#0da4ff 0%,#40b7ff 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#0da4ff),color-stop(100%,#40b7ff));background:-webkit-linear-gradient(top,#0da4ff 0%,#40b7ff 100%);background:-o-linear-gradient(top,#0da4ff 0%,#40b7ff 100%);background:-ms-linear-gradient(top,#0da4ff 0%,#40b7ff 100%);background:linear-gradient(to bottom,#0da4ff 0%,#40b7ff 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0da4ff',endColorstr='#40b7ff',GradientType=0);float:none;border:1px solid #40b7ff;border-radius:0;color:#fff;box-shadow:none;padding:9px 25px;text-transform:uppercase;text-shadow:none;font-weight:800}
 .home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch:hover{background:#40b7ff;background:-moz-linear-gradient(top,#40b7ff 0%,#0da4ff 100%);background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#40b7ff),color-stop(100%,#0da4ff));background:-webkit-linear-gradient(top,#40b7ff 0%,#0da4ff 100%);background:-o-linear-gradient(top,#40b7ff 0%,#0da4ff 100%);background:-ms-linear-gradient(top,#40b7ff 0%,#0da4ff 100%);background:linear-gradient(to bottom,#40b7ff 0%,#0da4ff 100%);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#40b7ff',endColorstr='#0da4ff',GradientType=0)}
@@ -223,7 +224,7 @@ table.table a.btn-primary{background:#d41b22;background:-moz-linear-gradient(top
 #insta-top-fixed .navbar .btn-navbar{float:left;margin-bottom:10px}
 .navbar-inverse .btn-navbar{background:#40b9ff}
 .navbar-inverse .nav-collapse .nav > li > a,.navbar-inverse .nav-collapse .dropdown-menu a{color:#40b9ff;font-weight:400}
-.navbar-inverse .nav-collapse .nav > li > a:hover,.navbar-inverse .nav-collapse .nav > li > a:focus,.navbar-inverse .nav-collapse .dropdown-menu a:hover,.navbar-inverse .nav-collapse .dropdown-menu a:focus{background:#40b9ff;color:#fff}
+.navbar-inverse .nav-collapse .nav > li > a:hover,.navbar-inverse .nav-collapse .nav > li > a:focus,.navbar-inverse .nav-collapse .dropdown-menu a:hover,.navbar-inverse .nav-collapse .dropdown-menu a:focus{background:rgba(64, 185, 255, .8);color:#fff}
 .home-slideshow{background:none}
 .home .flexslider .flex-caption{display:none}
 #insta-top-fixed .bapi-logo{float:none;text-align:center}

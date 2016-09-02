@@ -1309,6 +1309,6 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 	opacity: 1;
 }
 .home-qsearch .category-block {
-    display: inline-block;
-    margin-bottom: 5px;
+    float: left;
+    margin: 0 0 5px 5px;
 }
