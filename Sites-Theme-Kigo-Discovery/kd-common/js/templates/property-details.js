@@ -5,17 +5,19 @@ app.bapiModules.templates.propertyDetails = {
         if (this.cond())
         {
             this
-            //          .fixHeroImage()
-                      .openCloseAmenitiesList()
-                      .lightBoxAndCarousel()
-                      .checkPropSettings()
-            //          .checkThumbs()
-                      .checkUseMap();
+                //          .fixHeroImage()
+                .openCloseAmenitiesList()
+                .lightBoxAndCarousel()
+                .checkPropSettings()
+                //          .checkThumbs()
+                .checkUseMap();
         }
     },
     lightBoxAndCarousel: function lightBoxAndCarousel() {
 
-        var gallery = jQuery('.ppt-slides a').simpleLightbox();
+        var gallery = jQuery('.ppt-slides a').simpleLightbox({
+            captionSelector: 'self'
+        });
 
         jQuery(document).on('click', '.more,.open-lightbox, .ppt-slides a', function (e) {
             e.preventDefault();
@@ -77,7 +79,7 @@ app.bapiModules.templates.propertyDetails = {
         var pid = parseInt(jQuery('.bapi-entityadvisor').attr('data-pkid'));
         var lat = jQuery('.bapi-entityadvisor').attr('data-lat');
         var long = jQuery('.bapi-entityadvisor').attr('data-long');
-       
+
         var selected = selected_usemap;
 
         var usemap = false;
@@ -86,18 +88,18 @@ app.bapiModules.templates.propertyDetails = {
                 usemap = true;
             }
         });
-   
-        
+
+
         if(/comingsoon\.gif/.test(jQuery('.bapi-entityadvisor').attr('data-bg'))){
             usemap = true;
         }
- 
+
         if(this.forceusemap) usemap = true;
-        
+
         var mapbox = document.querySelector('.hero-image');
-        
+
         if (usemap) {
-            
+
             var map = new google.maps.Map(mapbox, {
                 center: {lat: parseFloat(lat), lng: parseFloat(long)},
                 scrollwheel: false,
@@ -105,56 +107,56 @@ app.bapiModules.templates.propertyDetails = {
             });
 
             var marker_color = document.querySelector('.template-property[data-markercolor]').dataset.markercolor;
-            
-            function setMarker(){
-                 var icon = {
-                path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3" +
-                        "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
-                fillColor: marker_color,
-                fillOpacity: 1,
-                strokeColor: 'rgba(0,0,0,.25)',
-                strokeWeight: 1
-            };
 
-            /* Create marker + store info window inside for later use (also in property ele) */
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(lat, long),
-                map: map,
-                iw: false,
-                icon: icon
-            });
+            function setMarker(){
+                var icon = {
+                    path: "M-0.5-41C-7.9-41-14-34.9-14-27.5c0,3,1.9,7.9,5.9,15c2.8,5,5.5,9.2,5.6,9.3l2,3l2-3c0.1-0.2,2.9-4.3,5.6-9.3" +
+                    "c3.9-7.1,5.9-12,5.9-15C13-34.9,7-41-0.5-41z M-0.5-20.6c-3.9,0-7-3.1-7-7s3.1-7,7-7s7,3.1,7,7S3.4-20.6-0.5-20.6z",
+                    fillColor: marker_color,
+                    fillOpacity: 1,
+                    strokeColor: 'rgba(0,0,0,.25)',
+                    strokeWeight: 1
+                };
+
+                /* Create marker + store info window inside for later use (also in property ele) */
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(lat, long),
+                    map: map,
+                    iw: false,
+                    icon: icon
+                });
 
             }
-            
+
             function setStreetView(){
                 var panorama = new google.maps.StreetViewPanorama(
                     document.getElementById('pano'), {
-                position: {lat: parseFloat(lat), lng: parseFloat(long)},
-                pov: {
-                    heading: 34,
-                    pitch: 10
-                }
-            });
-            
-            map.setStreetView(panorama);
+                        position: {lat: parseFloat(lat), lng: parseFloat(long)},
+                        pov: {
+                            heading: 34,
+                            pitch: 10
+                        }
+                    });
+
+                map.setStreetView(panorama);
             }
-            
+
             function setMapStreetview(){
                 jQuery(mapbox).css('width','50%');
-                
+
                 var center = map.getCenter();
                 google.maps.event.trigger(map, "resize");
-                map.setCenter(center); 
-                
-                 jQuery('#pano').css('width','50%').css('left','50%');
+                map.setCenter(center);
+
+                jQuery('#pano').css('width','50%').css('left','50%');
             }
-            
-            
+
+
             switch(selected_usemap_layout) {
                 case 0:
                     setMarker();
                     jQuery(mapbox).css('width','100%');
-                     jQuery('#pano').hide();
+                    jQuery('#pano').hide();
                     break;
                 case 1:
                     setMarker();
@@ -165,7 +167,7 @@ app.bapiModules.templates.propertyDetails = {
                     setStreetView();
                     jQuery(mapbox).hide;
                     break;
-                    
+
                 default:
                     setMarker();
                     setStreetView();
@@ -203,21 +205,21 @@ app.bapiModules.templates.propertyDetails = {
                 $('.ppt-slides li:first-child').css('width','100%');
             }
         }
-      return this;  
+        return this;
     },
     checkPropSettings: function(){
         if(force_usemap){
             this.forceusemap = true;
         }
-        
+
         if(forced_featured){
             this.forcedfeatured = true;
         }
-        
+
         if(usemap_layout>=0 && force_usemap){
             selected_usemap_layout = usemap_layout;
         }
-        
+
         return this;
     },
     cond: function cond() {
