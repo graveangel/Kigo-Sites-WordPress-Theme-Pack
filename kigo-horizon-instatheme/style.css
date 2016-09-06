@@ -100,7 +100,12 @@ a{color:#40b7ff}
 .navbar-inverse .nav li.current-page-parent li:not(.current_page_item) a:hover{background: rgba(64, 185, 255, .7); }
 .home .pushdown,.home .pushdown.wpadminbarvisible{margin-top:0}
 .top-header-home{position:relative}
-.home-qsearch{position:absolute;left:1.75%;z-index:1}
+.home-qsearch{
+    max-width: 80%;
+    position: relative;
+    margin: -3em auto 0;
+    z-index:9;
+}
 .home-qsearch h3{text-shadow:0 0 10px #fff}
 .home-qsearch h3 .glyphicons{padding:0}
 .home-qsearch h3 .glyphicons.search i:before{content:none}
@@ -116,7 +121,7 @@ a{color:#40b7ff}
 .home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-doclear{display:none}
 .home-qsearch .pickadate__holder{display:none}
 .home-qsearch .pickadate__holder.pickadate__holder--opened{display:block}
-.home-slideshow{background:#fff;box-shadow:0 0 5px rgba(0,0,0,0.5);-moz-box-shadow:0 0 5px rgba(0,0,0,0.5);-webkit-box-shadow:0 0 5px rgba(0,0,0,0.5);margin-bottom:0;padding-bottom:10px}
+.home-slideshow{background:#fff;box-shadow:0 0 5px rgba(0,0,0,0.5);-moz-box-shadow:0 0 5px rgba(0,0,0,0.5);-webkit-box-shadow:0 0 5px rgba(0,0,0,0.5);margin-bottom:0;}
 .home .flexslider{-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}
 .home .flexslider .flex-caption{background:none;font-size:48px;font-weight:700;font-style:normal;padding:0;position:absolute;text-align:center;text-transform:uppercase;text-shadow:0 0 7px rgba(0,0,1,0.7);-moz-text-shadow:0 0 7px rgba(0,0,1,0.7);-webkit-text-shadow:0 0 7px rgba(0,0,1,0.7);width:100%;}
 .home .flexslider .flex-caption span{display:block;font-size:36px;font-weight:400}
