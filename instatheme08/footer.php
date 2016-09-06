@@ -15,6 +15,7 @@ $no_widgets = ($num_columns == 0) ? TRUE : FALSE;
 
 $column_width = 12;
 if(!$no_widgets){ $column_width = 12/$num_columns;}
+
 ?>
 </div>
 <!-- End main section -->
@@ -23,7 +24,7 @@ if(!$no_widgets){ $column_width = 12/$num_columns;}
 </section>
 <!-- End pushdown section -->
 <!-- Start Insta Footer Widget Area -->
-
+</article>
 
 <footer id="insta-footer">
     <div class="container-fluid">
@@ -89,8 +90,7 @@ if(!$no_widgets){ $column_width = 12/$num_columns;}
   </div>
 </div>
 <?php endif; ?>
-<!-- End Insta Bottom Fixed Widget Area -->
-</article>
+
 <!-- End Main Content Wrapper -->
 <?php wp_footer(); ?>
 <script type="text/javascript" src="<?php echo wp_make_link_relative(get_template_directory_uri()); ?>/insta-common/bootstrap/js/insta-common.js"></script>

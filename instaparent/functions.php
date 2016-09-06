@@ -78,32 +78,32 @@ add_action('after_setup_theme', 'instaparent_setup');
  *
  */
 function instaparent_scripts_styles() {
-    global $wp_styles;
+	global $wp_styles;
 
-    /*
-     * Adds JavaScript to pages with the comment form to support
-     * sites with threaded comments (when in use).
-     */
-    if (is_singular() && comments_open() && get_option('thread_comments'))
-        wp_enqueue_script('comment-reply');
-
-    /*
-     * This Removed the jquery and jquery migrate scripts
-     * from the instathemes
-     */
-    if (!is_admin()) {
-        wp_deregister_script('jquery');
-    }
-    /* This register the PickADate Translate script in instasite
-     */
-    wp_register_script('pickadate', wp_make_link_relative(get_template_directory_uri()) . '/insta-common/js/bapi.ui.pickadate.translate.js', '', '', true);
-    wp_enqueue_script('pickadate');
-
-    /*
-     * Loads our main stylesheet.
-     */
-    //$relUrl = wp_make_link_relative(get_stylesheet_uri());
-    //wp_enqueue_style( 'instaparent-style', $relUrl );	
+	/*
+	 * Adds JavaScript to pages with the comment form to support
+	 * sites with threaded comments (when in use).
+	 */
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+		wp_enqueue_script( 'comment-reply' );	
+		
+	/*
+	 * This Removed the jquery and jquery migrate scripts
+	 * from the instathemes
+	*/
+	if ( !is_admin() ) {
+		wp_deregister_script('jquery');
+	}
+	/* This register the PickADate Translate script in instasite
+	*/
+	wp_register_script( 'pickadate', wp_make_link_relative(get_template_directory_uri()).'/insta-common/js/bapi.ui.pickadate.translate.js', array('bapi-combined'), '', true );
+    wp_enqueue_script( 'pickadate' );
+	
+	/*
+	 * Loads our main stylesheet.
+	 */
+	//$relUrl = wp_make_link_relative(get_stylesheet_uri());
+	//wp_enqueue_style( 'instaparent-style', $relUrl );	
 }
 
 add_action('wp_enqueue_scripts', 'instaparent_scripts_styles');

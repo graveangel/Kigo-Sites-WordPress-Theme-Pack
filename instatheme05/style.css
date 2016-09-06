@@ -67,6 +67,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=7,Color=#a600000
 .halflings.calendar i:before{color:#000;}
 .home-qsearch .search-button-block .quicksearch-dosearch{background:#000;border:1px solid #000;color:#fff;}
 .home-qsearch .search-button-block{height:30px;}
+.home-qsearch .category-block { float: none; display: block; }
 
 /* Featured Property - Property Finders */
 .widget_bapi_featured_properties h3,.widget_bapi_property_finders h3{font-size:15px;text-align:center;text-transform:uppercase;}

@@ -5,9 +5,10 @@ var gulp = require('gulp');
 var conf = require('./conf');
 var sourcemaps = require('gulp-sourcemaps');
 var $ = require('gulp-load-plugins')();
-var jsSrc = path.join(conf.paths.src, './insta-common/bootstrap/js/src/');
 
-gulp.task('scripts:common', function () {
+gulp.task('scripts:bootstrap', function () {
+
+	var jsSrc = path.join(conf.paths.src, './insta-common/bootstrap/js/src/');
 
   	return gulp.src([
   			path.join(jsSrc, 'bootstrap.js'),
@@ -17,9 +18,9 @@ gulp.task('scripts:common', function () {
   		])
 	  	.pipe(sourcemaps.init())
 	    .pipe($.jshint())
-	    .pipe($.jshint.reporter('jshint-stylish'))
+	    //.pipe($.jshint.reporter('jshint-stylish'))
 	    .pipe($.concat('insta-common.js'))
-	    //.pipe($.uglify())
+	    .pipe($.uglify())
 	    .pipe($.size())
 	    .pipe(sourcemaps.write('../sourcemaps'))
 	    .pipe(gulp.dest('./insta-common/bootstrap/js'))
@@ -27,4 +28,4 @@ gulp.task('scripts:common', function () {
 });
 
 
-gulp.task('scripts', ['scripts:common']);
+gulp.task('scripts', ['scripts:bootstrap']);

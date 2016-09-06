@@ -12,6 +12,8 @@ This is the footer code.
 <!-- End page section -->
 </section>
 <!-- End pushdown section -->
+</article>
+<!-- End Main Content Wrapper -->
 <!-- Start Insta Footer Widget Area -->
 <footer id="insta-footer">
   <div class="footermenu">
@@ -59,8 +61,7 @@ This is the footer code.
 </div>
 <?php endif; ?>
 <!-- End Insta Bottom Fixed Widget Area -->
-</article>
-<!-- End Main Content Wrapper -->
+
 <?php wp_footer(); ?>
 <script type="text/javascript" src="<?php echo wp_make_link_relative(get_template_directory_uri()); ?>/insta-common/bootstrap/js/insta-common.js"></script> 
 <script type="text/javascript" src="/wp-content/themes/kigo-horizon-instatheme/js/script.js"></script>
