@@ -100,7 +100,7 @@ a{color:#40b7ff}
 .navbar-inverse .nav li.current-page-parent li:not(.current_page_item) a:hover{background: rgba(64, 185, 255, .7); }
 .home .pushdown,.home .pushdown.wpadminbarvisible{margin-top:0}
 .top-header-home{position:relative}
-.home-qsearch{position:absolute;left:1.75%;visibility:hidden;z-index:1}
+.home-qsearch{position:absolute;left:1.75%;z-index:1}
 .home-qsearch h3{text-shadow:0 0 10px #fff}
 .home-qsearch h3 .glyphicons{padding:0}
 .home-qsearch h3 .glyphicons.search i:before{content:none}
@@ -154,7 +154,7 @@ a{color:#40b7ff}
 .widget_bapi_specials_widget h3.widget-title .glyphicons{padding-left:0}
 .widget_bapi_specials_widget h3.widget-title .glyphicons.tags i::before{content:''}
 #insta-footer{background:#40b7ff;height:auto}
-#insta-footer .footermenu{background:#fff;border:1px solid #ececec}
+
 #insta-footer .footermenu ul{margin:0;padding:15px 0}
 #insta-footer .footermenu ul li{display:inline-block;list-style-type:none;margin-right:15px}
 #insta-footer .footermenu li a{color:#40b9ff;font-size:12px;position:relative;text-decoration:none}
