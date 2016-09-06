@@ -7,16 +7,17 @@ namespace MarketAreasTable;
  */
 class MarketAreasTable extends \WP_Posts_List_Table {
 
+    private $posts_found;
     /**
      * Initializing the table
      */
     function __construct() {
 
         $this->_args = [
-            'singular' => __('Market Area', TEXTDOMAIN),
-            'plural' => __('Market Areas', TEXTDOMAIN),
-            'ajax' => false,
-            'screen' => 'page'
+            'singular'  => __('Market Area', TEXTDOMAIN),
+            'plural'    => __('Market Areas', TEXTDOMAIN),
+            'ajax'      => false,
+            'screen'    => 'page'
         ];
 
         \WP_List_Table::__construct($this->_args); # May seem redudant but it is not.
@@ -30,37 +31,51 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      * @return mixed the result can be false or array or an object
      */
     static function get_market_areas($per_page = 5, $page_number = 1) {
-        global $wpdb;
-
-        # Sort hierarchical
-
-        $sql = "SELECT p.* FROM {$wpdb->prefix}posts p ";
 
 
-        # Condition
-        $sql .= " INNER JOIN {$wpdb->prefix}postmeta pm on p.ID = pm.post_id WHERE pm.meta_key = '_wp_page_template' AND pm.meta_value LIKE '%page-templates/market-area.php%' AND p.post_status <> 'trash'";
+        /**
+         * Get all pages with template "page-templates/market-area.php" that do not have status "trash"
+         * With date like [The one passed if so]
+         * ordered by [the order param if so]
+         * limited by [the limit]
+         * with the offset [offset]
+         */
 
-        if (!empty($_REQUEST['m'])) {
-            $year = substr(esc_sql($_REQUEST['m']), 0, 4);
-            $month = substr(esc_sql($_REQUEST['m']), 4, 2);
-            $sql .= ' AND  p.post_date_gmt LIKE "%' . $year . '-' . $month . '%" ';
+
+        $args =
+            [
+                'post_type'         => 'page',
+                'posts_per_page'    => $per_page,
+                'paged'             => $page_number,
+                'meta_key'          => '_wp_page_template',
+                'meta_value'        => 'page-templates/market-area.php',
+                'meta_compare'      => '='
+            ];
+
+        if (!empty($_REQUEST['m']))
+        {
+            $args['date_query'] =
+                [
+                    'year' => $year,
+                    'month' => $month
+                ];
         }
 
-        if (!empty($_REQUEST['orderby'])) {
-
-
-            $sql .= ' ORDER BY p.' . esc_sql($_REQUEST['orderby']);
-            $sql .= !empty($_REQUEST['order']) ? ' ' . esc_sql($_REQUEST['order']) : ' ASC';
-
+        $args['order']      = 'ASC';
+        if (!empty($_REQUEST['orderby']))
+        {
+            $args['orderby']    = $_REQUEST['orderby'];
+            $args['order']      = !empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'ASC';
         }
 
-        $sql .= " LIMIT $per_page";
-        $sql .= " OFFSET " . ( $page_number - 1 ) * $per_page;
 
-        #   var_dump($sql);die;
-        $result = $wpdb->get_results($sql, 'ARRAY_A');
+        $The_Query = new \WP_Query($args);
 
+        $The_Query->posts;
 
+        $posts = json_decode(json_encode($The_Query->posts), true);
+
+        $result = $posts;
 
         return $result;
     }
@@ -75,7 +90,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
             if(array_key_exists($children_key, $branch))
             {
                 $children = $branch[$children_key];
-                 unset($branch[$children_key]);
+                unset($branch[$children_key]);
             }
 
             # Add this to the flat branch
@@ -133,12 +148,8 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      * @return integer The number of records
      */
     static function record_count() {
-        global $wpdb;
-
-        $sql = "SELECT COUNT(*) FROM {$wpdb->prefix}posts p";
-        $sql .= " INNER JOIN {$wpdb->prefix}postmeta pm on p.ID = pm.post_id WHERE pm.meta_key = '_wp_page_template' AND pm.meta_value LIKE '%page-templates/market-area.php%' AND p.post_status <> 'trash'";
-
-        return $wpdb->get_var($sql);
+        $posts = self::get_market_areas();
+        return count($posts);
     }
 
     /**
@@ -184,7 +195,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      */
     function column_cb($item) {
         return sprintf(
-                '<input type="checkbox" name="bulk-trash[]" value="%s" />', $item->ID
+            '<input type="checkbox" name="bulk-trash[]" value="%s" />', $item->ID
         );
     }
 
@@ -199,7 +210,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
             // 'ID' => __('ID', TEXTDOMAIN),
             'post_title' => __('Title', TEXTDOMAIN),
             'post_status' => __('Status', TEXTDOMAIN),
-                // 'post_parent'    => __( 'Parent ID', TEXTDOMAIN ),
+            // 'post_parent'    => __( 'Parent ID', TEXTDOMAIN ),
         ];
 
         return $columns;
@@ -313,9 +324,9 @@ class MarketAreasTable extends \WP_Posts_List_Table {
         ?>
         <table class="wp-list-table <?php echo implode(' ', $this->get_table_classes()); ?>">
             <thead>
-                <tr>
-                    <?php $this->print_column_headers(); ?>
-                </tr>
+            <tr>
+                <?php $this->print_column_headers(); ?>
+            </tr>
             </thead>
 
             <tbody id="the-list"<?php
@@ -323,13 +334,13 @@ class MarketAreasTable extends \WP_Posts_List_Table {
                 echo " data-wp-lists='list:$singular'";
             }
             ?>>
-                       <?php $this->display_rows_or_placeholder(); ?>
+            <?php $this->display_rows_or_placeholder(); ?>
             </tbody>
 
             <tfoot>
-                <tr>
-                    <?php $this->print_column_headers(false); ?>
-                </tr>
+            <tr>
+                <?php $this->print_column_headers(false); ?>
+            </tr>
             </tfoot>
 
         </table>
@@ -401,9 +412,9 @@ class MarketAreasTable extends \WP_Posts_List_Table {
 //        if ($this->hierarchical_display) {
 //            $this->_display_rows_hierarchical($posts, $this->get_pagenum(), $per_page);
 //        } else {
-            foreach ($this->items as $item) {
-                $this->single_row($item);
-            }
+        foreach ($this->items as $item) {
+            $this->single_row($item);
+        }
 //        }
     }
 
@@ -589,7 +600,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
                 echo '</th>';
             } elseif (method_exists($this, '_column_' . $column_name)) {
                 echo call_user_func(
-                        array($this, '_column_' . $column_name), $item, $classes, $data, $primary
+                    array($this, '_column_' . $column_name), $item, $classes, $data, $primary
                 );
             } elseif (method_exists($this, 'column_' . $column_name)) {
                 echo "<td $attributes>";
@@ -628,33 +639,33 @@ class MarketAreasTable extends \WP_Posts_List_Table {
 
         if ($can_edit_post && 'trash' != $post->post_status) {
             $actions['edit'] = sprintf(
-                    '<a href="%s" aria-label="%s">%s</a>', get_edit_post_link($post->ID),
-                    /* translators: %s: post title */ esc_attr(sprintf(__('Edit &#8220;%s&#8221;'), $title)), __('Edit')
+                '<a href="%s" aria-label="%s">%s</a>', get_edit_post_link($post->ID),
+                /* translators: %s: post title */ esc_attr(sprintf(__('Edit &#8220;%s&#8221;'), $title)), __('Edit')
             );
-             $actions['inline hide-if-no-js'] = sprintf(
-             	'<a href="#" class="editinline" aria-label="%s">%s</a>',
-             	/* translators: %s: post title */
-             	esc_attr( sprintf( __( 'Quick edit &#8220;%s&#8221; inline' ), $title ) ),
-             	__( 'Quick&nbsp;Edit' )
-             );
+            $actions['inline hide-if-no-js'] = sprintf(
+                '<a href="#" class="editinline" aria-label="%s">%s</a>',
+                /* translators: %s: post title */
+                esc_attr( sprintf( __( 'Quick edit &#8220;%s&#8221; inline' ), $title ) ),
+                __( 'Quick&nbsp;Edit' )
+            );
         }
 
         if (current_user_can('delete_post', $post->ID)) {
             if ('trash' === $post->post_status) {
                 $actions['untrash'] = sprintf(
-                        '<a href="%s" aria-label="%s">%s</a>', wp_nonce_url(admin_url(sprintf($post_type_object->_edit_link . '&amp;action=untrash', $post->ID)), 'untrash-post_' . $post->ID),
-                        /* translators: %s: post title */ esc_attr(sprintf(__('Restore &#8220;%s&#8221; from the Trash'), $title)), __('Restore')
+                    '<a href="%s" aria-label="%s">%s</a>', wp_nonce_url(admin_url(sprintf($post_type_object->_edit_link . '&amp;action=untrash', $post->ID)), 'untrash-post_' . $post->ID),
+                    /* translators: %s: post title */ esc_attr(sprintf(__('Restore &#8220;%s&#8221; from the Trash'), $title)), __('Restore')
                 );
             } elseif (EMPTY_TRASH_DAYS) {
                 $actions['trash'] = sprintf(
-                        '<a href="%s" class="submitdelete" aria-label="%s">%s</a>', get_delete_post_link($post->ID),
-                        /* translators: %s: post title */ esc_attr(sprintf(__('Move &#8220;%s&#8221; to the Trash'), $title)), _x('Trash', 'verb')
+                    '<a href="%s" class="submitdelete" aria-label="%s">%s</a>', get_delete_post_link($post->ID),
+                    /* translators: %s: post title */ esc_attr(sprintf(__('Move &#8220;%s&#8221; to the Trash'), $title)), _x('Trash', 'verb')
                 );
             }
             if ('trash' === $post->post_status || !EMPTY_TRASH_DAYS) {
                 $actions['delete'] = sprintf(
-                        '<a href="%s" class="submitdelete" aria-label="%s">%s</a>', get_delete_post_link($post->ID, '', true),
-                        /* translators: %s: post title */ esc_attr(sprintf(__('Delete &#8220;%s&#8221; permanently'), $title)), __('Delete Permanently')
+                    '<a href="%s" class="submitdelete" aria-label="%s">%s</a>', get_delete_post_link($post->ID, '', true),
+                    /* translators: %s: post title */ esc_attr(sprintf(__('Delete &#8220;%s&#8221; permanently'), $title)), __('Delete Permanently')
                 );
             }
         }
@@ -664,14 +675,14 @@ class MarketAreasTable extends \WP_Posts_List_Table {
                 if ($can_edit_post) {
                     $preview_link = get_preview_post_link($post);
                     $actions['view'] = sprintf(
-                            '<a href="%s" rel="permalink" aria-label="%s">%s</a>', esc_url($preview_link),
-                            /* translators: %s: post title */ esc_attr(sprintf(__('Preview &#8220;%s&#8221;'), $title)), __('Preview')
+                        '<a href="%s" rel="permalink" aria-label="%s">%s</a>', esc_url($preview_link),
+                        /* translators: %s: post title */ esc_attr(sprintf(__('Preview &#8220;%s&#8221;'), $title)), __('Preview')
                     );
                 }
             } elseif ('trash' != $post->post_status) {
                 $actions['view'] = sprintf(
-                        '<a href="%s" rel="permalink" aria-label="%s">%s</a>', get_permalink($post->ID),
-                        /* translators: %s: post title */ esc_attr(sprintf(__('View &#8220;%s&#8221;'), $title)), __('View')
+                    '<a href="%s" rel="permalink" aria-label="%s">%s</a>', get_permalink($post->ID),
+                    /* translators: %s: post title */ esc_attr(sprintf(__('View &#8220;%s&#8221;'), $title)), __('View')
                 );
             }
         }
