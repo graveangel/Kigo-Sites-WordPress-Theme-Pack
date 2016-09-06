@@ -7,16 +7,17 @@ namespace MarketAreasTable;
  */
 class MarketAreasTable extends \WP_Posts_List_Table {
 
+    private $posts_found;
     /**
      * Initializing the table
      */
     function __construct() {
 
         $this->_args = [
-            'singular' => __('Market Area', TEXTDOMAIN),
-            'plural' => __('Market Areas', TEXTDOMAIN),
-            'ajax' => false,
-            'screen' => 'page'
+            'singular'  => __('Market Area', TEXTDOMAIN),
+            'plural'    => __('Market Areas', TEXTDOMAIN),
+            'ajax'      => false,
+            'screen'    => 'page'
         ];
 
         \WP_List_Table::__construct($this->_args); # May seem redudant but it is not.
@@ -30,37 +31,51 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      * @return mixed the result can be false or array or an object
      */
     static function get_market_areas($per_page = 5, $page_number = 1) {
-        global $wpdb;
-
-        # Sort hierarchical
-
-        $sql = "SELECT p.* FROM {$wpdb->prefix}posts p ";
 
 
-        # Condition
-        $sql .= " INNER JOIN {$wpdb->prefix}postmeta pm on p.ID = pm.post_id WHERE pm.meta_key = '_wp_page_template' AND pm.meta_value LIKE '%page-templates/market-area.php%' AND p.post_status <> 'trash'";
+       /**
+        * Get all pages with template "page-templates/market-area.php" that do not have status "trash"
+        * With date like [The one passed if so]
+        * ordered by [the order param if so]
+        * limited by [the limit]
+        * with the offset [offset]
+        */
 
-        if (!empty($_REQUEST['m'])) {
-            $year = substr(esc_sql($_REQUEST['m']), 0, 4);
-            $month = substr(esc_sql($_REQUEST['m']), 4, 2);
-            $sql .= ' AND  p.post_date_gmt LIKE "%' . $year . '-' . $month . '%" ';
+
+        $args =
+            [
+                'post_type'         => 'page',
+                'posts_per_page'    => $per_page,
+                'paged'             => $page_number,
+                'meta_key'          => '_wp_page_template',
+                'meta_value'        => 'page-templates/market-area.php',
+                'meta_compare'      => '='
+            ];
+
+        if (!empty($_REQUEST['m']))
+        {
+            $args['date_query'] =
+                [
+                    'year' => $year,
+                    'month' => $month
+                ];
         }
 
-        if (!empty($_REQUEST['orderby'])) {
-
-
-            $sql .= ' ORDER BY p.' . esc_sql($_REQUEST['orderby']);
-            $sql .= !empty($_REQUEST['order']) ? ' ' . esc_sql($_REQUEST['order']) : ' ASC';
-
+        $args['order']      = 'ASC';
+        if (!empty($_REQUEST['orderby']))
+        {
+            $args['orderby']    = $_REQUEST['orderby'];
+            $args['order']      = !empty($_REQUEST['order']) ? esc_sql($_REQUEST['order']) : 'ASC';
         }
 
-        $sql .= " LIMIT $per_page";
-        $sql .= " OFFSET " . ( $page_number - 1 ) * $per_page;
 
-        #   var_dump($sql);die;
-        $result = $wpdb->get_results($sql, 'ARRAY_A');
+        $The_Query = new \WP_Query($args);
 
+        $The_Query->posts;
 
+        $posts = json_decode(json_encode($The_Query->posts), true);
+
+        $result = $posts;
 
         return $result;
     }
@@ -133,12 +148,8 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      * @return integer The number of records
      */
     static function record_count() {
-        global $wpdb;
-
-        $sql = "SELECT COUNT(*) FROM {$wpdb->prefix}posts p";
-        $sql .= " INNER JOIN {$wpdb->prefix}postmeta pm on p.ID = pm.post_id WHERE pm.meta_key = '_wp_page_template' AND pm.meta_value LIKE '%page-templates/market-area.php%' AND p.post_status <> 'trash'";
-
-        return $wpdb->get_var($sql);
+       $posts = self::get_market_areas();
+        return count($posts);
     }
 
     /**

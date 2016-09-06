@@ -1616,27 +1616,34 @@ function render_this_str($string_mustache_template, $addedArray = [], $onlyAdded
 add_action('wp_enqueue_scripts', 'market_areas_scripts_and_styles');
 function market_areas_scripts_and_styles()
 {
-    /* swiper library */
-    wp_enqueue_script('swiper-min',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.min.js');
-    wp_enqueue_script('swiper-jquery',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.jquery.min.js');
-    wp_enqueue_script('swiper-jquery-umd',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.jquery.umd.min.js');
-    wp_enqueue_style('swiper-styles',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/css/swiper.min.css');
-    wp_enqueue_style('market-area-styles',get_template_directory_uri() . '/insta-common/css/market-areas-styles.css');
-    
-    /* Google Maps */
-    
-    wp_enqueue_script('google-maps-api', "https://maps.googleapis.com/maps/api/js?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE");
-    /* google maps marker with label */
-    wp_enqueue_script('google-maps-marker-label', get_template_directory_uri() . "/insta-common/js/js-marker-with-label/markerwithlabel.js");
-    
-    /* Market Area Landing page */
-    wp_enqueue_script('market-area-landing',get_template_directory_uri() . '/insta-common/js/market-area-page.js');
-    
-    /* Market Area Main Landing page */
-    wp_enqueue_script('market-area-main-landing',get_template_directory_uri() . '/insta-common/js/market-areas-main-landing.js');
-    
-    /* Market Area scripts initialize */
-    wp_enqueue_script('market-area-scripts',get_template_directory_uri() . '/insta-common/js/market-area-scripts.js');
+    global $post;
+    $template_slug = get_page_template_slug( $post->ID );
+
+    if('page-templates/market-area.php' === $template_slug || 'page-templates/market-areas-controller.php' === $template_slug)
+    {
+        /* swiper library */
+        wp_enqueue_script('swiper-min',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.min.js');
+        wp_enqueue_script('swiper-jquery',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.jquery.min.js');
+        wp_enqueue_script('swiper-jquery-umd',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/js/swiper.jquery.umd.min.js');
+        wp_enqueue_style('swiper-styles',get_template_directory_uri() . '/insta-common/js/Swiper-3.3.1/css/swiper.min.css');
+        wp_enqueue_style('market-area-styles',get_template_directory_uri() . '/insta-common/css/market-areas-styles.css');
+
+        /* Google Maps */
+
+        wp_enqueue_script('google-maps-api', "https://maps.googleapis.com/maps/api/js?key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE");
+        /* google maps marker with label */
+        wp_enqueue_script('google-maps-marker-label', get_template_directory_uri() . "/insta-common/js/js-marker-with-label/markerwithlabel.js");
+
+        /* Market Area Landing page */
+        wp_enqueue_script('market-area-landing',get_template_directory_uri() . '/insta-common/js/market-area-page.js');
+
+        /* Market Area Main Landing page */
+        wp_enqueue_script('market-area-main-landing',get_template_directory_uri() . '/insta-common/js/market-areas-main-landing.js');
+
+        /* Market Area scripts initialize */
+        wp_enqueue_script('market-area-scripts',get_template_directory_uri() . '/insta-common/js/market-area-scripts.js');
+    }
+
 }
 
 /* Market Areas admin */
