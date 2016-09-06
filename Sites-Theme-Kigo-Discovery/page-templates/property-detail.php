@@ -45,7 +45,6 @@ if($fblikeshare === 1 || $fblikeshare === FALSE ){
 ?>
 <!-- PROPERTY CONTENT -->
 <div class="template-property" data-markercolor="<?php echo get_theme_mod('primary-color') ?  : '#33baaf' ?>">
-
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
             <?php the_content(); ?>
         <?php

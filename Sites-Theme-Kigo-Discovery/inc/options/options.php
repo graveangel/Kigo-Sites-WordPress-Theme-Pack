@@ -42,6 +42,9 @@ function kd_options_panel(){
 function kd_settings_page_custom_css() {
     if(!empty($_POST)){
         $css = wp_strip_all_tags($_POST['kd-custom-css']);
+        $css = stripslashes($css);
+
+
         $use = isset($_POST['use_css']);
 
         /* Minimize custom CSS & store both versions */
@@ -57,7 +60,7 @@ function kd_settings_page_custom_css() {
     }
 
     $use_css = get_theme_mod('kd-use-css');
-    $custom_css = get_theme_mod('kd-custom-css');
+    $custom_css = html_entity_decode(get_theme_mod('kd-custom-css'));
 
     /* Get total css (min) size */
     $custom_css_min = get_theme_mod('kd-custom-css-min');
@@ -77,7 +80,7 @@ function kd_settings_page_custom_css() {
             </p>
 
             <div id="custom_css" class="aceEditor" data-mode="css" data-input="custom_css_input"><?php echo $custom_css; ?></div>
-            <input type="hidden" id="custom_css_input" name="kd-custom-css" value="<?php echo $custom_css; ?>"/>
+            <textarea class="" id="custom_css_input" name="kd-custom-css" ><?php echo $custom_css; ?></textarea>
             <button type="submit" class="btn btn-primary" name="button">SAVE CSS</button>
         </form>
     </div>

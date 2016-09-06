@@ -23,15 +23,15 @@
                     <div class="col-xs-12 top">
                         <div class="available">
                             <div>
-                                <span>Showing&nbsp;</span>
+                                <span><?php _e('Showing') ?>&nbsp;</span>
                                 <span class="ppty-count-current">0</span>
-                                <span>&nbsp;properties on map</span>
-                                <span class="resetMap"><a href="#">[reset]</a></span>
+                                <span>&nbsp;<?php _e('properties on map') ?></span>
+                                <span class="resetMap"><a href="#">[<?php _e('reset') ?>]</a></span>
                             </div>
 
                             <div class="btn-group viewToggle">
-                                <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;List</button>
-                                <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                                <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;<?php  _e('List') ?></button>
+                                <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;<?php  _e('Map') ?></button>
                             </div>
                         </div>
                     </div>
@@ -49,14 +49,14 @@
                         <div class="available">
                             <div>
                                 <span class="ppty-count-current">0</span>
-                                <span>&nbsp;out of&nbsp;</span>
+                                <span>&nbsp;<?php _e('out of') ?>&nbsp;</span>
                                 <span class="ppty-count-total">0</span>
-                                <span>&nbsp;properties loaded.</span>
+                                <span>&nbsp;<?php _e('properties loaded.') ?></span>
                             </div>
 
                             <div class="btn-group viewToggle">
-                                <button disabled class="btn active"><i class="fa fa-list"></i>&nbsp;List</button>
-                                <button disabled class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;Map</button>
+                                <button disabled class="btn active"><i class="fa fa-list"></i>&nbsp;<?php  _e('List') ?></button>
+                                <button disabled class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;<?php  _e('Map') ?></button>
                             </div>
                         </div>
                     </div>
