@@ -30,23 +30,29 @@ Class MA_Page {
     function remove_suffixes() {
 
 
-        # Get all market area pages
-        $args = [
-            'post_type' => 'page',
-            'posts_per_page' => -1,
-            'meta_key' => '_wp_page_template',
-            'meta_value' => 'page-templates/market-area.php'
-        ];
-        $pages = get_posts($args);
+       try
+       {
+           # Get all market area pages
+           $args = [
+               'post_type' => 'page',
+               'posts_per_page' => -1,
+               'meta_key' => '_wp_page_template',
+               'meta_value' => 'page-templates/market-area.php'
+           ];
+           $pages = get_posts($args);
 
-        foreach ($pages as $page) {
-            $new_title = preg_replace('#((in) .+)?(Vacation Rentals)#i', '', $page->post_title);
-            $post = [
-                'ID' => $page->ID,
-                'post_title' => $new_title
-            ];
-            wp_update_post($post);
-        }
+           foreach ($pages as $page) {
+               $new_title = preg_replace('#((in) .+)?(Vacation Rentals)#i', '', $page->post_title);
+               $post = [
+                   'ID' => $page->ID,
+                   'post_title' => $new_title
+               ];
+               wp_update_post($post);
+           }
+       }catch(\Exception $err)
+       {
+           return $response = ['status' => 'error', 'message' => $err->getMessage()];
+       }
 
         return $response = ['status' => 'ok', 'message' => 'Done'];
     }
