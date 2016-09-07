@@ -43,7 +43,7 @@
 
                 <p class="submit inline-edit-save">
                     <button type="button" class="button-secondary cancel alignleft">Cancel</button>
-                    [%nonce%]				
+                    [%nonce%]
                     <button type="button" class="button-primary save alignright">Update</button>
                     <span class="spinner"></span>
                     <input type="hidden" name="post_view" value="list">

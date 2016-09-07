@@ -133,25 +133,15 @@ class MarketAreasTable extends \WP_Posts_List_Table {
     }
 
     /**
-     * Trash an item
-     * @param  int $id The id of the entity to delte
-     * @return void     no return
+     * Send an item to the Trash or deletes it permanently if $force_delete = true
+     * @param $id The post id to delete
+     * @param bool $force_delete If true the post is deleted permanently
+     * @return void no return
      */
-    static function trash_market_area($id) {
-        global $wpdb;
-        wp_trash_post($id);
-        // $wpdb->delete("{$wpdb->prefix}posts", [ 'ID' => $id], ['%d']);
+    static function trash_market_area($id, $force_delete=false) {
+        wp_delete_post($id, $force_delete);
     }
 
-    /**
-     * Trash an item
-     * @param  int $id The id of the entity to delte
-     * @return void     no return
-     */
-    static function delete_market_area($id) {
-        global $wpdb;
-        $wpdb->delete("{$wpdb->prefix}posts", [ 'ID' => $id], ['%d']);
-    }
 
     /**
      * Get the number of elements
@@ -249,8 +239,8 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      */
     public function get_bulk_actions() {
         $actions = [
-            'bulk-trash' => 'Send to Trash',
-            'bulk-delete' => 'Delete permanently',
+            'bulk-trash'  => __('Send to Trash', TEXTDOMAIN),
+            'bulk-delete' => __('Delete permanently', TEXTDOMAIN),
         ];
 
         return $actions;
@@ -312,7 +302,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
                 $delete_ids = esc_sql($_POST['bulk-trash']);
                 // loop over the array of record IDs and trash them
                 foreach ($delete_ids as $id) {
-                    self::delete_market_area($id);
+                    self::trash_market_area($id, true);
                 }
             }
         }
