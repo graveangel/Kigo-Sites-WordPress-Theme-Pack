@@ -45,6 +45,17 @@ class MarketAreasTable extends \WP_Posts_List_Table {
         $args =
             [
                 'post_type'         => 'page',
+                'post_status'       =>
+                    [
+                        'publish',                      // - a published post or page.
+                        'pending',                      // - post is pending review.
+                        'draft',                        // - a post in draft status.
+                        'auto-draft',                   // - a newly created post, with no content.
+                        'future',                       // - a post to publish in the future.
+                        'private',                      // - not visible to users who are not logged in.
+                        'inherit',                      // - a revision. see get_children.
+                        #'trash'                         // - post is in trashbin (available with Version 2.9).
+                    ],
                 'posts_per_page'    => $per_page,
                 'paged'             => $page_number,
                 'meta_key'          => '_wp_page_template',
@@ -54,6 +65,9 @@ class MarketAreasTable extends \WP_Posts_List_Table {
 
         if (!empty($_REQUEST['m']))
         {
+            $year  = substr($_REQUEST['m'], 0,4);
+            $month = substr($_REQUEST['m'], -2,2);
+
             $args['date_query'] =
                 [
                     'year' => $year,
@@ -69,11 +83,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
         }
 
 
-        $The_Query = new \WP_Query($args);
-
-        $The_Query->posts;
-
-        $posts = json_decode(json_encode($The_Query->posts), true);
+        $posts = json_decode(json_encode(get_posts($args)), true);
 
         $result = $posts;
 
@@ -138,7 +148,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      * @param  int $id The id of the entity to delte
      * @return void     no return
      */
-    static function whipe_market_area($id) {
+    static function delete_market_area($id) {
         global $wpdb;
         $wpdb->delete("{$wpdb->prefix}posts", [ 'ID' => $id], ['%d']);
     }
@@ -302,7 +312,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
                 $whipe_ids = esc_sql($_POST['bulk-trash']);
                 // loop over the array of record IDs and trash them
                 foreach ($whipe_ids as $id) {
-                    self::whipe_market_area($id);
+                    self::delete_market_area($id);
                 }
             }
         }
