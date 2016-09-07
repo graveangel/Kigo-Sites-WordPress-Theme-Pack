@@ -250,7 +250,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
     public function get_bulk_actions() {
         $actions = [
             'bulk-trash' => 'Send to Trash',
-            'bulk-whipe' => 'Delete permanently',
+            'bulk-delete' => 'Delete permanently',
         ];
 
         return $actions;
@@ -302,16 +302,16 @@ class MarketAreasTable extends \WP_Posts_List_Table {
                     self::trash_market_area($id);
                 }
             }
-        } elseif ('bulk-whipe' === $this->current_action()) {
+        } elseif ('bulk-delete' === $this->current_action()) {
             // In our file that handles the request, verify the nonce.
             $nonce = esc_attr($_REQUEST['_wpnonce']);
 
             if (!wp_verify_nonce($nonce, 'bulk-' . $this->_args['plural'])) {
                 die('No script kiddies');
             } else {
-                $whipe_ids = esc_sql($_POST['bulk-trash']);
+                $delete_ids = esc_sql($_POST['bulk-trash']);
                 // loop over the array of record IDs and trash them
-                foreach ($whipe_ids as $id) {
+                foreach ($delete_ids as $id) {
                     self::delete_market_area($id);
                 }
             }
