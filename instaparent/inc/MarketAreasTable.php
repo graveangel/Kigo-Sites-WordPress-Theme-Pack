@@ -54,7 +54,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
 
         if (!empty($_REQUEST['m']))
         {
-            $year  = substr($_REQUEST['m'], 0,4);  
+            $year  = substr($_REQUEST['m'], 0,4);
             $month = substr($_REQUEST['m'], -2,2);
 
             $args['date_query'] =
@@ -72,11 +72,7 @@ class MarketAreasTable extends \WP_Posts_List_Table {
         }
 
 
-        $The_Query = new \WP_Query($args);
-
-        $The_Query->posts;
-
-        $posts = json_decode(json_encode($The_Query->posts), true);
+        $posts = json_decode(json_encode(get_posts($args)), true);
 
         $result = $posts;
 
