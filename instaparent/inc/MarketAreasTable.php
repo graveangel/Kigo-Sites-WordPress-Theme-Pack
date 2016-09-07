@@ -54,6 +54,9 @@ class MarketAreasTable extends \WP_Posts_List_Table {
 
         if (!empty($_REQUEST['m']))
         {
+            $year  = substr($_REQUEST['m'], 0,4);  
+            $month = substr($_REQUEST['m'], -2,2);
+
             $args['date_query'] =
                 [
                     'year' => $year,
