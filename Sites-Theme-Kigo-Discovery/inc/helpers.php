@@ -70,9 +70,11 @@ function get_properties(){
     $bapiEntities = json_decode(get_option('bapi_keywords_array'), true);
     $properties = [];
 
-    foreach($bapiEntities as $entity){
-        if($entity['entity'] == 'property'){
-            $properties[] = $entity;
+    if(!empty($bapiEntities)){
+        foreach($bapiEntities as $entity){
+            if($entity['entity'] == 'property'){
+                $properties[] = $entity;
+            }
         }
     }
 
