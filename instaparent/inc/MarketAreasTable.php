@@ -239,8 +239,8 @@ class MarketAreasTable extends \WP_Posts_List_Table {
      */
     public function get_bulk_actions() {
         $actions = [
-            'bulk-trash' => 'Send to Trash',
-            'bulk-delete' => 'Delete permanently',
+            'bulk-trash'  => __('Send to Trash', TEXTDOMAIN),
+            'bulk-delete' => __('Delete permanently', TEXTDOMAIN),
         ];
 
         return $actions;
