@@ -45,6 +45,17 @@ class MarketAreasTable extends \WP_Posts_List_Table {
         $args =
             [
                 'post_type'         => 'page',
+                'post_status'       =>
+                    [
+                        'publish',                      // - a published post or page.
+                        'pending',                      // - post is pending review.
+                        'draft',                        // - a post in draft status.
+                        'auto-draft',                   // - a newly created post, with no content.
+                        'future',                       // - a post to publish in the future.
+                        'private',                      // - not visible to users who are not logged in.
+                        'inherit',                      // - a revision. see get_children.
+                        #'trash'                         // - post is in trashbin (available with Version 2.9).
+                    ],
                 'posts_per_page'    => $per_page,
                 'paged'             => $page_number,
                 'meta_key'          => '_wp_page_template',
