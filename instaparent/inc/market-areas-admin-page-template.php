@@ -46,14 +46,21 @@
                                     complete: function (data)
                                     {
                                         var json_data = JSON.parse(data.responseText);
-                                        //                                                        console.log(JSON.parse(data.responseText));
+//                                                                                                console.log(json_data.message);
 
-                                        modal(
-                                                {
+                                        if(json_data.message)
+                                        {
+                                            setTimeout(function()
+                                            {
+                                                modal({
                                                     title: '<i class="fa fa-exclamation-triangle fa-3x" aria-hidden="true"></i> <h2>Done!</h2>',
                                                     body: json_data.message,
                                                     footer: '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>'
                                                 });
+                                            }, 400); // Give some time for the previous modal to completely close.
+                                                     // Default duration is 400ms http://api.jquery.com/fadeout/
+
+                                        }
 
 
                                     }
