@@ -106,9 +106,9 @@ Class MA_Page {
 
         if (is_admin() && $pagenow == 'admin.php' && $typenow == 'market-areas') {
             wp_enqueue_script('inline-edit-post'); //Stack
-            wp_enqueue_script('bootstrap-script', get_template_directory_uri() . "/inc/static/js/bootstrap.min.js", [], '13.07.2016', true); //Stack
-            wp_enqueue_script('stacks-vars-and-funcs-script', get_template_directory_uri() . "/inc/static/js/mkta-admin-vars-and-functions.js", [], '13.07.2016', true); //Stack
-            wp_enqueue_style('stacks-css', get_template_directory_uri() . "/inc/static/css/mka-admin.min.css", [], '13.07.2016'); //Stack area style
+
+            wp_enqueue_script('stacks-vars-and-funcs-script', get_template_directory_uri() . "/inc/market-areas/static/js/vars-and-functions.js", [], '13.07.2016', true); //Stack
+            wp_enqueue_style('stacks-css', get_template_directory_uri() . "/inc/market-areas/static/css/mkta.css", [], '13.07.2016'); //Stack area style
         }
     }
 
