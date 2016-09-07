@@ -13,14 +13,14 @@
 
         <!--The title-->
         <div class="title-description">
-            <!-- Search and Enquire buttons: for now this is just the widget, in the future the sidebars will be needed -->
+            <!-- Search and Inquire buttons: for now this is just the widget, in the future the sidebars will be needed -->
 
-            <div class="search-and-enquire">
+            <div class="search-and-inquire">
                 <!-- Search Button -->
                 <a href="#" class="trigger-modal btn" data-modal="#search"><?php echo $this->r("Search"); ?></a>
 
-                <!-- Enquire Button -->
-                <a href="#" class="trigger-modal btn" data-modal="#enquire"><?php echo $this->r("Enquire"); ?></a>
+                <!-- Inquire Button -->
+                <a href="#" class="trigger-modal btn" data-modal="#inquire"><?php echo $this->r("Inquire"); ?></a>
             </div>            
 
             <h1 class="title"><?php echo __('Rentals in') . ' ' . $title; ?></h1>
@@ -162,7 +162,7 @@
     </div><!-- /.modal -->
 
 
-    <div class="modal fade" id="enquire" tabindex="-1" role="dialog">
+    <div class="modal fade" id="inquire" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                

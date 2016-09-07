@@ -13,9 +13,9 @@ function market_area_sidebars()
                                 'before_title'  => '<h2 class="widgettitle">',
                                 'after_title'   => '</h2>',
                             ],
-            'market-area-enquire' => [
-                                'name'          => 'Detail Market Areas Enquire Sidebar',
-                                'id'            => 'market-area-enquire',
+            'market-area-inquire' => [
+                                'name'          => 'Detail Market Areas Inquire Sidebar',
+                                'id'            => 'market-area-inquire',
                                 'description'   => 'Widgets in this area will be shown on all market area detail pages.',
                                 'before_widget' => '<div id="%1$s" class="widget %2$s">',
                                 'after_widget'  => '</div>',

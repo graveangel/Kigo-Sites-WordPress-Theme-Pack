@@ -23,6 +23,10 @@ Class MA_Page {
         return $value;
     }
 
+    /**
+     * Removes the "in .. Vacation Rentals" text from market areas page titles.
+     * @return array
+     */
     function remove_suffixes() {
 
 
@@ -47,6 +51,11 @@ Class MA_Page {
         return $response = ['status' => 'ok', 'message' => 'Done'];
     }
 
+    /**
+     * Creates the maret-area page and/or sets the "page-templates/market-areas-controller.php"
+     * to it so there is a market areas lansing page active.
+     * @return array
+     */
     function market_areas_main_page() {
         try {
             # Check if exists
@@ -103,15 +112,19 @@ Class MA_Page {
         $create_mkta = $_POST['cmkta'];
 
         if (!empty($create_mkta)) {
-            $response = $this->market_areas_main_page();
+
+            $response = $this->market_areas_main_page(); # Create the market areas main landing page
             header('Content-type: application/json');
             echo "{ \"status\": \"{$response['status']}\" , \"message\": \"{$response['message']}\"}";
             die;
+
         } elseif (!empty($_POST['remove_suffix'])) {
-            $response = $this->remove_suffixes();
+
+            $response = $this->remove_suffixes(); # remove market areas page title suffix
             header('Content-type: application/json');
             echo "{ \"status\": \"{$response['status']}\" , \"message\": \"{$response['message']}\"}";
             die;
+
         } elseif ($_POST['post']) {
             $this->update_post();
         } else {
@@ -166,7 +179,7 @@ Class MA_Page {
      * Plugin settings page
      */
     public function theme_settings_page() {
-        $themefoldername = 'instaparent';
+        $themefoldername = get_template_directory();
         $preloader_url = get_template_directory_uri() . explode($themefoldername, dirname(__FILE__))[1] . '/static/img/Preloader_5.gif';
         include "market-areas-admin-page-template.php";
     }
