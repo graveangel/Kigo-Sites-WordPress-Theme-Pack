@@ -526,9 +526,11 @@ body{background-color:#ededed;word-wrap:break-word;}
 .fp-icons.white .fp-featured .icon.sleeps{background-position:-5px -297px}
 .fp-icons.white .fp-featured .icon.beds{background-position:-165px -297px;}
 .widget_bapi_similar_properties .fp-featured,.widget_bapi_featured_properties .fp-featured,.widget_bapi_developments_widget .development-holder{background:#fff;margin-bottom:25px;}
-.widget_bapi_featured_properties .fp-image,.widget_bapi_similar_properties .fp-image,.widget_bapi_developments_widget .development-image{
-	min-height: 200px; 
-	max-height: 200px;
+.widget_bapi_featured_properties .fp-image,
+.widget_bapi_similar_properties .fp-image,
+.widget_bapi_developments_widget .development-image {
+	/*min-height: 200px;*/
+	/*max-height: 200px;*/
 	overflow:hidden;
 	background: url('./img/comingsoon.gif') center center;
   	background-size: cover;
@@ -537,8 +539,8 @@ body{background-color:#ededed;word-wrap:break-word;}
 .widget_bapi_featured_properties .fp-image img,
 .widget_bapi_similar_properties .fp-image img,
 .widget_bapi_developments_widget .development-image img {
-	min-height: 200px; 
-	max-height: 200px;
+	/*min-height: 200px;*/ 
+	/*max-height: 200px;*/
 }
 
 img {  
