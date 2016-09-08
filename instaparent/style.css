@@ -1310,6 +1310,7 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 .home-qsearch.qsFixed {
 	display: block;
 	opacity: 1;
+	position: absolute;
 }
 .home-qsearch .category-block {
     float: left;
