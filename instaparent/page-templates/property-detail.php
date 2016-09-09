@@ -351,13 +351,19 @@ if($data) {
 </article>
 
 <aside class="span3">
-  
+
 	<?php if ( is_active_sidebar( 'insta-right-sidebar-prop-detail' ) ) : ?>		
 	    <?php dynamic_sidebar( 'insta-right-sidebar-prop-detail' ); ?>		
 	<?php endif; ?>
+
+	<? /*
+	<span class="end"></span>
+	<div id="bapi-rateblock" class="bapi-rateblock" data-templatename="tmpl-search-rateblock" data-log="1"></div>
+	<div class="bapi-moveme" data-from="#bapi-rateblock" data-to=".detail-overview-target" data-method="append"></div>
+  	*/ ?>
         
 </aside>
-		<span class="end"></span>
+		
 
 <?php /*
 	<div id="primary" class="content-area">
