@@ -102,8 +102,8 @@ a{color:#40b7ff}
 .top-header-home{position:relative}
 .home-qsearch{
     max-width: 80%;
-    position: relative;
-    margin: -3em auto 0;
+    position: absolute;
+    margin: 0 auto;
     z-index:9;
 }
 .home-qsearch h3{text-shadow:0 0 10px #fff}

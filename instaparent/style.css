@@ -512,8 +512,8 @@ body{background-color:#ededed;word-wrap:break-word;}
 /*specials widget*/
 .widget_bapi_specials_widget .special-title{color:#000;font-size:18px;font-weight:normal;}
 .widget_bapi_specials_widget .special-sum{color:#666;}
-.widget_bapi_specials_widget .special-holder{padding-top:16px;}
-.widget_bapi_specials_widget .special-holder:first-child{border-bottom:1px solid #ccc;padding-bottom:16px;}
+.widget_bapi_specials_widget .special-holder{ margin-bottom: 2em; }
+.widget_bapi_specials_widget .special-holder:first-child{}
 
 /*featured properties widget and similar propertis widget since they use the same mustache template*/
 .widget_bapi_featured_properties{}
@@ -526,9 +526,11 @@ body{background-color:#ededed;word-wrap:break-word;}
 .fp-icons.white .fp-featured .icon.sleeps{background-position:-5px -297px}
 .fp-icons.white .fp-featured .icon.beds{background-position:-165px -297px;}
 .widget_bapi_similar_properties .fp-featured,.widget_bapi_featured_properties .fp-featured,.widget_bapi_developments_widget .development-holder{background:#fff;margin-bottom:25px;}
-.widget_bapi_featured_properties .fp-image,.widget_bapi_similar_properties .fp-image,.widget_bapi_developments_widget .development-image{
-	min-height: 200px; 
-	max-height: 200px;
+.widget_bapi_featured_properties .fp-image,
+.widget_bapi_similar_properties .fp-image,
+.widget_bapi_developments_widget .development-image {
+	/*min-height: 200px;*/
+	/*max-height: 200px;*/
 	overflow:hidden;
 	background: url('./img/comingsoon.gif') center center;
   	background-size: cover;
@@ -537,8 +539,8 @@ body{background-color:#ededed;word-wrap:break-word;}
 .widget_bapi_featured_properties .fp-image img,
 .widget_bapi_similar_properties .fp-image img,
 .widget_bapi_developments_widget .development-image img {
-	min-height: 200px; 
-	max-height: 200px;
+	/*min-height: 200px;*/ 
+	/*max-height: 200px;*/
 }
 
 img {  
@@ -1304,9 +1306,11 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
   	opacity: 0;
   	transition: opacity .2s;
 }
+.home-qsearch form { margin: 0 auto; }
 .home-qsearch.qsFixed {
 	display: block;
 	opacity: 1;
+	position: absolute;
 }
 .home-qsearch .category-block {
     float: left;
