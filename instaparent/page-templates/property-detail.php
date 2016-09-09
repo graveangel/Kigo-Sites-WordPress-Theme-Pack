@@ -14,7 +14,7 @@ get_header();
 
 $data = get_post_meta(get_the_ID(), 'bapi_property_data', true);
 
-if(isset($_GET['debug'])) { echo "Raw data:<pre>"; print_r($data); echo "</pre>"; }
+if(isset($_GET['debug']) && $_GET['debug'] == 'raw') { echo "Raw data:<pre>"; print_r($data); echo "</pre>"; }
 
 $data = json_decode($data);
 $context = $data->ContextData;
@@ -30,11 +30,15 @@ $settings = get_option('bapi_sitesettings_raw');
 if(isset($_GET['debug'])) { echo "<pre>"; print_r($settings); echo "</pre>"; }
 
 if($_GET['debug'] == 'session') { echo "<pre>"; print_r($_SESSION); echo "</pre>"; }
-
-if($data) {
 ?>
 
 <article class="span9">
+
+<?php
+if($data) {
+?>
+
+
 	<div class="bapi-entityadvisor" data-pkid="<?php echo $data->ID; ?>" data-entity="property"></div>
 		<section class="row-fluid">
 		<div class="span12 item-snapshot module shadow-border">        
@@ -348,10 +352,11 @@ if($data) {
 
 			</div>
 		</div>
-		</section>
-</article>
+	</section>
+
 <?php } ?>
 
+</article>
 
 <aside class="span3">
 
