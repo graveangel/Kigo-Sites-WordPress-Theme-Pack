@@ -358,8 +358,6 @@ if($data) {
         
 </aside>
 		<span class="end"></span>
-		<div id="bapi-rateblock" class="bapi-rateblock" data-templatename="tmpl-search-rateblock" data-log="1"></div>
-		<div class="bapi-moveme" data-from="#bapi-rateblock" data-to=".detail-overview-target" data-method="append"></div>
 
 <?php /*
 	<div id="primary" class="content-area">
