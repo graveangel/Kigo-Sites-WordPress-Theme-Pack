@@ -14,10 +14,12 @@ get_header();
 
 $data = get_post_meta(get_the_ID(), 'bapi_property_data', true);
 
+if(isset($_GET['debug'])) { echo "Raw data:<pre>"; print_r($data); echo "</pre>"; }
+
 $data = json_decode($data);
 $context = $data->ContextData;
 
-if(isset($_GET['debug'])) { echo "<pre>"; print_r($data); echo "</pre>"; }
+if(isset($_GET['debug'])) { echo "Decoded data:<pre>"; print_r($data); echo "</pre>"; }
 
 $translations = getbapitextdata();
 
@@ -347,8 +349,9 @@ if($data) {
 			</div>
 		</div>
 		</section>
-<?php } ?>
 </article>
+<?php } ?>
+
 
 <aside class="span3">
 
