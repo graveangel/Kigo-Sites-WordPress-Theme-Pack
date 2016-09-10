@@ -4,14 +4,15 @@
   "description": "Discovery parent theme for Kigo powered WordPress sites.",
   "main": "index.php",
   "devDependencies": {
-    "gulp":             "",
-    "gulp-cssmin":      "",
-    "gulp-concat":      "",
-    "gulp-header":      "",
-    "gulp-livereload":  "",
-    "gulp-rename":      "",
-    "gulp-sass":        "",
-    "gulp-uglify":      ""
+    "gulp": "",
+    "gulp-concat": "",
+    "gulp-cssmin": "",
+    "gulp-header": "",
+    "gulp-livereload": "",
+    "gulp-rename": "",
+    "gulp-sass": "",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": ""
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
