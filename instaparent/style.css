@@ -625,7 +625,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 .widget_bapi_hp_search .widget-title .glyphicons i:before{font-size:29px;}
 .widget_bapi__search .widget-title{margin-top:0;line-height:normal;}
 
-.inner-addon .halflings.calendar { font-size: 11px; }
+.inner-addon .halflings.calendar { font-size: 11px; margin-top: -8px; }
 
 .widget_bapi_hp_search .search-button-block a,.widget_bapi__search .search-button-block a{font-size:10px;color:#999;}
 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch,.widget_bapi__search .search-button-block .quicksearch-dosearch{float:right;font-size:14px;color:#333;}
