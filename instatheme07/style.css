@@ -53,7 +53,10 @@ body{background:#fff;}
 .home-qsearch #bapi-search .category-block{display:inline-block;padding:0 0 5px;}
 .home-qsearch .property-search-button-block{ }
 .home-qsearch .category-block input[type="text"],
-.home-qsearch .category-block select{border-radius:2px;height:52px;margin-bottom:0 !important;padding:10px 5px;}
+.home-qsearch .category-block select,
+.home-qsearch .category-block button {
+	border-radius:2px;height:52px;margin-bottom:0 !important;padding:10px 5px;
+}
 .home-qsearch span.cal-icon-trigger{color:#FF6600;}
 .home-qsearch .halflings.calendar i:before{font-size:20px;}
 .home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{float:none;background:#FF6600 url(images/icon-magnifyingglass.png) no-repeat center center;border:none;box-shadow:none;height:52px;padding:0;text-indent:-9999px;width:80px;}
