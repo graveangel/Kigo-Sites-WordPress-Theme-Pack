@@ -553,7 +553,7 @@ img {
 }
 
 img:after {  
-  content: "Missing image: " attr(alt);
+  /* content: "Missing image: " attr(alt); */
   
   font-size: 16px;
   color: rgb(100, 100, 100);
