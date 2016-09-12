@@ -6532,3 +6532,21 @@ aside .advanced.kd-selective-search-box,
     padding: 5px 12px;
     margin: 0 auto;
     border-radius: 0; }
+	.buttons-box.fixed  {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+	padding:0;
+	margin:0 !important;
+ 
+	}
+.buttons-box.fixed.smallsc
+{
+	width:90%;
+	left:0;
+}
+.buttons-box.fixed.bigsc
+{
+	width:45%;
+	right:0px;
+}

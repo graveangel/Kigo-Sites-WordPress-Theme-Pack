@@ -40,13 +40,16 @@ var app = {
         var body = document.querySelector('body'),
             header = document.querySelector('.header-background'),
             underHeader = document.querySelector('.header-background .under_header');
-
+			//adde fix for KWEB-284 
+            ButtonsSelector= document.querySelector('.buttons-box');
         var scrollMax = header.clientHeight - underHeader.clientHeight;
 
         //Listen page scroll to set / unset fixed header. Debounce scroll event.
         window.addEventListener('scroll', checkHeader); //ms
+		window.addEventListener('scroll', checkbookbuttons); 
 
         checkHeader(); //Check in case page has loaded with scroll
+		checkbookbuttons();
 
         function checkHeader(){
             var currentScroll = window.scrollY;
@@ -60,6 +63,24 @@ var app = {
                 //body.style.paddingTop = 0;
             }
         }
+		 //adde fix for KWEB-284 
+		 function checkbookbuttons() {
+		     var currentScroll = window.scrollY;
+		     if (currentScroll >= 500) {
+		         ButtonsSelector.classList.add('fixed');
+		        if (screen.width > 762) {
+		             ButtonsSelector.classList.add('bigsc');
+		         } else {
+		             ButtonsSelector.classList.add('smallsc');
+		         }
+		         //body.style.paddingTop = underHeader.clientHeight + 'px';
+		     } else {
+		         ButtonsSelector.classList.remove('fixed');
+		         ButtonsSelector.classList.remove('bigsc');
+		         ButtonsSelector.classList.remove('smallsc');
+
+		     }
+		 }
     },
 
     /* Utilities */
