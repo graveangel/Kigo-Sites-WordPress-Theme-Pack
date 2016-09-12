@@ -76,7 +76,7 @@ body{background-color:#fff;}
 .home-qsearch #bapi-search{background:rgba(255,255,255,0.5);-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;float:left;margin:0 auto;padding:15px;position:relative;width:100%;}
 .home-qsearch #bapi-search .category-block{display:inline-block;padding:0;}
 .home-qsearch .property-search-button-block{height:30px;}
-.home-qsearch #bapi-search .category-block{float:left;margin-right:1%;width:25%;} 
+.home-qsearch #bapi-search .category-block{float:left;} 
 .home-qsearch #bapi-search .category-block input[type=text],.home-qsearch #bapi-search .category-block select{border:1px solid #bbb;margin-bottom:0;}
 .home-qsearch span.cal-icon-trigger{color:#666;}
 .home-qsearch .halflings.calendar i:before{font-size:12px;}

@@ -34,7 +34,7 @@ body{background:#fff;}
 .home-qsearch h3.title .glyphicons{padding:0;}
 .home-qsearch h3 .glyphicons.search i:before{content:none;}
 .home-qsearch .widget_bapi_hp_search{background:none;box-shadow:none;}
-.home-qsearch #bapi-search{background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 89px 0 5px;margin:0 auto;position:relative;}
+.home-qsearch #bapi-search{background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:10px 0 0 5px;margin:0 auto;position:relative;}
 .home-qsearch #bapi-search .category-block{display:inline-block;padding:0 0 5px;}
 .home-qsearch .property-search-button-block{ }
 .home-qsearch #bapi-search .category-block input[type=text],.home-qsearch #bapi-search .category-block select{border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;}
