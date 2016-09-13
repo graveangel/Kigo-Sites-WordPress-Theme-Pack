@@ -712,6 +712,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 /* gallery view */
 .gallery-view-page .portal-images{overflow:hidden;max-height:264px;}
 .gallery-view-page .flexslider{border:none;}
+.gallery-view-page #slider .flex-viewport{min-height: 265px;}
 .gallery-view-page .portal-info{margin:0;padding:10px 13px;}
 .gallery-view-page .new-property-tag{margin-bottom:-47px;}
 .gallery-view-page .save-property-tag{right:-3px;top:-3px;}
@@ -817,7 +818,8 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 /* = Property Detail Page 
 **********************************/
 .detail-overview-target .bapi-rateblock{min-height:421px;}
-.property-detail-page #slider{cursor:pointer;}
+.page-template-property-detail #slider .flex-viewport{cursor:pointer; max-height: 650px; min-height: 500px;}
+.page-template-property-detail #slider .flex-viewport img{margin-top: 50%; transform: translateY(-50%);}
 .property-detail ul li span{color:gray;}
 
 /* flexslider */
