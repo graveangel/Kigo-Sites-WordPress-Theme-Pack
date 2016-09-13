@@ -818,8 +818,8 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 /* = Property Detail Page 
 **********************************/
 .detail-overview-target .bapi-rateblock{min-height:421px;}
-.page-template-property-detail #slider .flex-viewport{cursor:pointer; max-height: 650px; min-height: 500px;}
-.page-template-property-detail #slider .flex-viewport img{margin-top: 50%; transform: translateY(-50%);}
+.page-template-property-detail #slider { position: relative; cursor:pointer; max-height: 650px; width: 100%; padding-bottom: 66.5%; }
+.page-template-property-detail #slider .flex-viewport { position: absolute !important; top: 0; left: 0; width: 100%; }
 .property-detail ul li span{color:gray;}
 
 /* flexslider */
