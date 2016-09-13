@@ -825,6 +825,8 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 /* flexslider */
 .property-detail-page .item-slideshow .flex-caption{bottom:0;position:absolute;width:100%;z-index:9;}
 .property-detail-page .flex-viewport,.property-detail-page .flexslider .slides > li{max-height:700px;}
+.slideholder { opacity: 0; }
+.flexslider.active + .slideholder { display: none; }
 
 /* Attractions tab */
 .property-detail-page #map-side-bar{margin-top:20px;}
