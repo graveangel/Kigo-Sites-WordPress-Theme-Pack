@@ -27,9 +27,9 @@ global $bapi_all_options;
 //$settings = json_decode($bapi_all_options['bapi_sitesettings']);
 $settings = get_option('bapi_sitesettings_raw');
 
-if(isset($_GET['debug'])) { echo "<pre>"; print_r($settings); echo "</pre>"; }
+if(isset($_GET['debug'])) { echo "Debug data ...<pre>"; print_r($settings); echo "</pre>"; }
 
-if($_GET['debug'] == 'session') { echo "<pre>"; print_r($_SESSION); echo "</pre>"; }
+if($_GET['debug'] == 'session') { echo "Session stuff ...<pre>"; print_r($_SESSION); echo "</pre>"; }
 ?>
 
 <article class="span9">
