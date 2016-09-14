@@ -27,7 +27,8 @@ if($using_new_stuff) {
 
 
   //Get SEO data
-  if( empty($seo = get_transient('kigo_seo_data') ) || KIGO_DEBUG ) {
+  $seo = get_transient('kigo_seo_data');
+  if( empty($seo) || KIGO_DEBUG ) {
     $seo = $bapi->getseodata()['result']; 
 
     set_transient('kigo_seo_data', $seo, HOUR_IN_SECONDS);
@@ -125,8 +126,8 @@ if($using_new_stuff) {
           
           <div class="row-fluid">
           <div class="span7 portal-rates">
-          <?php if(['HidePrice']) { 
-            $display = ['Quote']['QuoteDisplay'];
+          <?php if($context['HidePrice']) { 
+            $display = $context['Quote']['QuoteDisplay'];
             if($display['value']) {
               if($display['prefix']) { ?><span class="prefix"><?php echo $display['prefix']; ?>:</span><?php } ?>
               <?php echo $display['value']; ?>
