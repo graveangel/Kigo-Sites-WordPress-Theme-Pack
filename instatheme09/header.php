@@ -97,7 +97,7 @@ if(!empty($bapi_meta_title) && !empty($custom_page_title_option)){
     </div>
     <?php if ( is_active_sidebar('insta-home-qsearch' ) ) : ?>
        <div class="row-fluid">		
-        <div class="home-qsearch qsFixed">
+        <div class="home-qsearch">
             <?php dynamic_sidebar( 'insta-home-qsearch' ); ?>		
         </div>
       </div>

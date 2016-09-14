@@ -29,7 +29,7 @@ app.modules.widgets.hero = {
 
         return config;
     },
-    initSlider: function (key, ele){
+    initSlider: function (key, ele){ alert('hi');
         var config = this.getSliderConfig(ele);
         app.initSwiper(ele.querySelector(this.sliderSelector), config);
     }
