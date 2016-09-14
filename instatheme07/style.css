@@ -50,7 +50,7 @@ body{background:#fff;}
 .home-qsearch h3 .glyphicons.search i:before{content:none;}
 .home-qsearch .widget_bapi_hp_search{background:none;box-shadow:none;}
 .home-qsearch #bapi-search{background:#000;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:13px 13px 5px;margin:0 auto;position:relative;}
-.home-qsearch #bapi-search .category-block{display:inline-block;padding:0 0 5px;}
+.home-qsearch #bapi-search .category-block{display:inline-block; padding: 0; }
 .home-qsearch .property-search-button-block{ }
 .home-qsearch .category-block input[type="text"],
 .home-qsearch .category-block select,

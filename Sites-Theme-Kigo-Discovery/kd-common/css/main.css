@@ -3380,7 +3380,8 @@ footer.footer {
     font-size: 20px;
     color: #999;
     display: inline-block;
-    background: #fff; }
+    background: #fff;
+    z-index: 9; }
   .template-property .amenities-n-buttons {
     background-color: white;
     display: block;
