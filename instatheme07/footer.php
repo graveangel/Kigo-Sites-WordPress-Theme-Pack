@@ -110,13 +110,26 @@ $(window).load(function () {
 });
 function doAtInit() {
 	try {
+            /* fixed height images first */
+            var heightholder = 0;
+            $(".bapi-flexslider li img").each(function( index, element ) {
+                // element == this
+                var heightCurrent = $( element ).height();
+                if(heightholder == 0){heightholder = heightCurrent; }
+                if(heightCurrent < heightholder){
+                    heightholder = heightCurrent;
+                }
+              });
+              $(".home-slideshow").height(heightholder);
 	updateTopAndBottom();
 	positionQuickSearch();
 	
 	/* desktop */
 	if (window.matchMedia("(min-width: 980px)").matches) {	  
 	  addHouseIcon();
-	} 
+	}
+        
+        
 	} catch(err){}
 }
 function addHouseIcon () {	
