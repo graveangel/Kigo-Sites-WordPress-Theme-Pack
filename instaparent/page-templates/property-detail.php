@@ -308,11 +308,11 @@ if($data) {
 				</div>
 				</div>
 
+				<?php if($settings['propdetail-reviewtab']) { ?>
 				<div class="tab-pane" id="tab5">
 					<div class="row-fluid">
 						<div class="span12 box-sides">
-
-							<?php if(!$settings['hasreviews']) { ?>
+							<?php if(!$data->ContextData->Reviews) { ?>
 							<h5><?php _e('There are no reviews at this time.'); ?>
 							<?php } else { ?>
 								<div class="clearfix"></div>
@@ -349,7 +349,8 @@ if($data) {
 						</div>					
 					</div>
 				</div>
-
+				<?php } ?>
+				
 			</div>
 		</div>
 	</section>
