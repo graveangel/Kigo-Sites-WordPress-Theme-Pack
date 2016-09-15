@@ -1544,11 +1544,11 @@ app.modules.widgets.hero = {
 
         return config;
     },
-    initSlider: function (key, ele){ alert('hi');
+    initSlider: function (key, ele){
         var config = this.getSliderConfig(ele);
         app.initSwiper(ele.querySelector(this.sliderSelector), config);
     }
-};
+}; 
 app.modules.widgets.items = {
     selector: '.kd-items',
     init: function(){

@@ -1592,4 +1592,4 @@ add_action('wp_enqueue_scripts', 'instaparent_styles');
 
 
 //Include new widgets
-add_action( 'after_setup_theme', function() { include dirname(__FILE__).'/widgets/widgets_include.php'; } );
+//add_action( 'after_setup_theme', function() { include dirname(__FILE__).'/widgets/widgets_include.php'; } );

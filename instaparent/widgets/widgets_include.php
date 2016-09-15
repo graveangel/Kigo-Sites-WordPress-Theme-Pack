@@ -54,13 +54,6 @@ function getDirUrl($dirnameFullPath){
 
 
 /**
- * If class exists inclide the XBAPI interface.
- */
-if (class_exists('BAPI')) {
-    require_once('XBAPI.php');
-}
-
-/**
  * Widget Base
  */
 require_once('WidgetBase.php');
@@ -71,7 +64,12 @@ require_once('WidgetBase.php');
 
 
 //....Bapi extension.......
-require_once('XBAPI.php');
+add_action('plugins_loaded','load_xbapi');
+function load_xbapi(){
+	if (class_exists('BAPI')) {
+		require_once('XBAPI.php');
+	}
+}
 //Widgets base.............
 require_once('WidgetBase.php');
 //Property finders widget.......
