@@ -144,7 +144,7 @@ body{background:#fff;}
 .home-qsearch #bapi-search {
 	display: inline-block;
 }
-.home-qsearch #bapi-search .category-block button
+.home-qsearch #bapi-search .category-block button.quicksearch
 {
 	display: inline-block;
 }
@@ -154,6 +154,10 @@ body{background:#fff;}
 	{
 		margin: 0 0 10px;
 		width: 100%;
+	}
+	.home-qsearch
+	{
+		position: static;
 	}
 	.home-qsearch #bapi-search {
 		padding: 10px;
