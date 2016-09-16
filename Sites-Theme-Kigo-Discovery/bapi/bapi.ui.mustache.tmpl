@@ -451,11 +451,11 @@ Group: Attractions
                     <div class="row">
                         <div class="col-xs-6">
                             <label>Adults</label>
-                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{session.searchparams.adults.min}}" data-field="adults[min]" required="">
+                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{#session.searchparams.adults}}{{session.searchparams.adults}}{{/session.searchparams.adults}}{{^session.searchparams.adults}}2{{/session.searchparams.adults}}" data-field="adults[min]" required="">
                         </div>
                         <div class="col-xs-6">
                             <label>Children</label>
-                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{session.searchparams.children.min}}" data-field="children[min]" required="">
+                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{#session.searchparams.children}}{{session.searchparams.children}}{{/session.searchparams.children}}{{^session.searchparams.children}}0{{/session.searchparams.children}}" data-field="children[min]" required="">
                         </div>
                     </div>
 
