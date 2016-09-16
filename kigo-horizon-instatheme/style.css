@@ -321,15 +321,10 @@ aside.widget_bapi__search h3.widget-title .glyphicons i:before{content:'';}
     position: absolute;
     top: 0;
 }
-.home-qsearch .widget_bapi_hp_search {
-
-    z-index: 10;
-    padding: 10px 10px 0;
-    position: static;
-    margin: auto;
-    bottom: 158px;
-    display: inline-block;
-    background-color: white!important
+.home-qsearch .widget_bapi_hp_search {z-index: 10;padding: 10px 10px 0;position: static;margin: auto;bottom: 158px;display: inline-block;background-color: white!important;max-width: 100%;width: auto;}
+.property-search-block .category-block
+{
+    max-width: 195px;
 }
 @media (max-width: 1305px)
 {
@@ -341,6 +336,7 @@ aside.widget_bapi__search h3.widget-title .glyphicons i:before{content:'';}
     .home-qsearch #bapi-search .category-block
     {
         width: 100%;
+        max-width: 100%;
     }
     .home-qsearch #bapi-search .category-block input[type=text],
     .home-qsearch #bapi-search .category-block select,
