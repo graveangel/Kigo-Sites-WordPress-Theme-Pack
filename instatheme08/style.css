@@ -135,3 +135,27 @@ body{background:#fff;}
 }
 @media (min-width: 980px) {
 }
+
+/* Fix for homepage search box */
+.home-qsearch form {
+	display: inline-block;
+}
+
+.home-qsearch #bapi-search {
+	display: inline-block;
+}
+.home-qsearch #bapi-search .category-block button
+{
+	display: inline-block;
+}
+@media (max-width: 1300px)
+{
+	.home-qsearch #bapi-search .category-block
+	{
+		margin: 0 0 10px;
+		width: 100%;
+	}
+	.home-qsearch #bapi-search {
+		padding: 10px;
+	}
+}
