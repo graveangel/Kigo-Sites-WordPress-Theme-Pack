@@ -324,7 +324,7 @@ if($data) {
 										</div>
 										<div class="span10">
 											<h5 class="title"><?php echo $review->Title; ?></h5>
-											<div class="rating"><span class="reviewrating-{{Rating}}"></span> <span><?php echo $translations['Posted on']; ?>: <?php echo $review->SubmittedOn->ShortDate; ?></span></div>
+											<div class="rating"><span class="reviewrating-<?php echo $review->Rating; ?>"></span> <span><?php echo $translations['Posted on']; ?>: <?php echo $review->SubmittedOn->ShortDate; ?></span></div>
 											<div class="comment">
 											<?php echo $review->Comment; ?>
 											</div>
