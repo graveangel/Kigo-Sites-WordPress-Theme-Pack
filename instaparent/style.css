@@ -22,6 +22,158 @@ http://snook.ca/archives/html_and_css/font-size-with-rem
 http://blog.typekit.com/2011/11/09/type-study-sizing-the-legible-letter/
 */
 
+/* START GENERIC STYLES - Brought over from plugin */
+
+/* slideshow on property pages */
+ul.slides > li, ul.slides > li > div {
+	position: relative;
+}
+ul.slides > li > div > p.flex-caption {
+	padding: 17px 0;
+}
+#wpadminbar .dashicons-kigo{
+	position: relative;
+	font: 400 20px/1 dashicons;
+	padding: 4px 0;
+	margin-right: 6px;
+	position:relative;
+	top:6px
+}
+.ab-icon-kigo{top:2px}
+.ab-icon-kigo img{
+	vertical-align:baseline;
+	margin-bottom: 2px !important;
+}
+
+.green {
+	color:green;
+}
+.red {
+	color:orangered;
+}
+
+/* Market Area drop down */
+select.property-search-input option.level1 {
+	background-color:#e5e5e5;
+	padding:2px 0;
+}
+
+select.property-search-input option.level2 {
+	background-color:#f5f5f5;
+}
+
+/* Translation edition page */
+.overwritten-translation {
+	width: 70%;
+	margin-right: 5px;
+}
+a.i18n-save {
+	margin-left: 10px !important;
+	float: right;
+}
+
+img[data-src] {
+	transition: all .4s;
+}
+
+.loading {
+	position: relative;
+	min-width: 96px;
+	min-height: 96px;
+}
+.loading::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top:0;
+	width: 100%;
+	height: 100%;
+	background: url('../img/loading.gif') rgba(255, 255, 255, 0.7) center center no-repeat;
+}
+
+/* Date Picker */
+input.datepicker {
+	background: #fff !important;
+	cursor: pointer !important;
+}
+.picker__input[readonly] {
+	background-color: #fff;
+	cursor: pointer;
+}
+
+/* Use with PayPal Express Checkout */
+.paypal-button-hidden {
+	visibility: visible;
+}
+
+/* Input icons */
+/* enable absolute positioning */
+.inner-addon {
+	position: relative;
+	margin-bottom: 10px;
+}
+.inner-addon input {
+	margin: 0 !important;
+}
+
+/* style icon */
+.inner-addon .halflings {
+	position: absolute;
+	padding: 0;
+	pointer-events: none;
+	margin-top: .3em;
+}
+
+.inner-addon .halflings i:before {
+	font-size: 1.5em !important;
+}
+
+/* align icon */
+.left-addon .halflings,
+.right-addon .halflings {
+	position: absolute;
+	top: 50%;
+	margin-top: -1.1em;
+}
+.left-addon .halflings  { left:  2.25em; }
+.right-addon .halflings { right: 2.25em; }
+
+/* add padding  */
+.left-addon input[value=""],
+.right-addon input[value=""] {
+	padding-right: 18px !important;
+	text-overflow: ellipsis;
+}
+
+input.has-error { border: 1px solid #f00 !important; }
+
+.ui-datepicker-inline { max-width: 100%; width: auto !important; }
+
+.review-source .source { display: none; }
+.review-source[data-source="FlipKey"]  .source.flipkeyPowered { display: block; }
+
+/* jquery ui multi select */
+span.multiselect-native-select{position:relative}span.multiselect-native-select select{border:0!important;clip:rect(0 0 0 0)!important;height:1px!important;margin:-1px -1px -1px -3px!important;overflow:hidden!important;padding:0!important;position:absolute!important;width:1px!important;left:50%;top:30px}.multiselect-container{position:absolute;list-style-type:none;margin:0;padding:0}.multiselect-container .input-group{margin:5px}.multiselect-container>li{padding:0}.multiselect-container>li>a.multiselect-all label{font-weight:700}.multiselect-container>li.multiselect-group label{margin:0;padding:3px 20px 3px 20px;height:100%;font-weight:700}.multiselect-container>li.multiselect-group-clickable label{cursor:pointer}.multiselect-container>li>a{padding:0}.multiselect-container>li>a>label{margin:0;height:100%;cursor:pointer;font-weight:400;padding:3px 20px 3px 40px}.multiselect-container>li>a>label.radio,.multiselect-container>li>a>label.checkbox{margin:0}.multiselect-container>li>a>label>input[type=checkbox]{margin-bottom:5px}.btn-group>.btn-group:nth-child(2)>.multiselect.btn{border-top-left-radius:4px;border-bottom-left-radius:4px}.form-inline .multiselect-container label.checkbox,.form-inline .multiselect-container label.radio{padding:3px 20px 3px 40px}.form-inline .multiselect-container li a label.checkbox input[type=checkbox],.form-inline .multiselect-container li a label.radio input[type=radio]{margin-left:-20px;margin-right:0}
+button.btn-white,
+button.btn-white:hover {
+	background: #fff;
+	border: 1px solid rgb(204, 204, 204);
+	color: #555 !important;
+	text-decoration: none !important;
+	padding: 0 3px 0 8px;
+	min-height: 2.2em;
+	min-width: 150px;
+}
+.dropdown-toggle .caret { float: right; margin-left: 8px !important; }
+.multiselect-container > li > a { padding: 3px 0 !important; color: #555; }
+button.align-left { text-align: left; }
+
+form.loading .quote-display,
+form.loading .book-btn { opacity: 0; transition:opacity .4s;}
+
+
+/* END Generic Plugin Styles */
+
 /* Responsive images */
 img[class*="align"],
 img[class*="wp-image-"],
