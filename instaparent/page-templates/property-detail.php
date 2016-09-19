@@ -35,9 +35,8 @@ if($_GET['debug'] == 'session') { echo "Session stuff ...<pre>"; print_r($_SESSI
 <article class="span9">
 
 <?php
-if($data) {
+if($data) {  
 ?>
-
 
 	<div class="bapi-entityadvisor" data-pkid="<?php echo $data->ID; ?>" data-entity="property"></div>
 		<section class="row-fluid">
@@ -65,7 +64,7 @@ if($data) {
 				<?php $imgCount = 1; foreach($data->Images as $img) { ?>
 					<li>
 						<div>
-							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="/wp-content/plugins/bookt-api/img/loading-816x600.gif" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" />
+							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="'.apply_filters('kigo_img', 'img/loading-816x600.gif').'" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" />
 							<?php if($img->Caption) { ?>
 							<p class="flex-caption">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $img->Caption; ?></p>
 							<?php } ?>
@@ -254,7 +253,9 @@ if($data) {
 							<a class="poi-map-item mapmarker-prop" href="#"><?php echo $translations['Property']; ?></a>
 							<div class="info-html">
 								<div class="marker-infowindow">
-									<span class="prop-image pull-left"><img src="/wp-content/themes/instaparent/insta-common/images/loading.gif" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></span>
+
+									<span class="prop-image pull-left"><img src="<?php echo apply_filters('kigo_img', 'img/loading.gif'); ?>" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></span>
+
 									<span class="prop-location pull-left">
 										<span>
 										<?php if($data->SEO->Keyword) { ?><a target="_blank" href="<?php echo $data->DetailURL; ?>"><?php } ?>
@@ -282,7 +283,9 @@ if($data) {
 							<a class="poi-map-item mapmarker-<?php echo $attraction->ContextData->ItemIndex; ?>" href="#"><?php echo $attraction->ContextData->ItemIndex; ?></a>
 							<div class="info-html">
 								<div class="marker-infowindow"> 
-									<span class="prop-image pull-left"><img src="/wp-content/themes/instaparent/insta-common/images/loading.gif" data-src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></span>
+
+									<span class="prop-image pull-left"><img src="<?php echo apply_filters('kigo_img', 'img/loading.gif'); ?>" data-src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></span>
+
 									<span class="prop-location pull-left">
 										<span>
 										<?php if($attraction->ContextData->SEO->Keyword) { ?><a target="_blank" href="<?php echo $attraction->ContextData->SEO->DetailURL; ?>"><?php } ?>
