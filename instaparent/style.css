@@ -1478,3 +1478,7 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 .property-search-block .category-block > select {
 	margin: 0;
 }
+
+.hide {
+	display: none !important;
+}
