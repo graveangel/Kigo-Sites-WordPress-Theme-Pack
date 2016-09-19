@@ -19,10 +19,12 @@ class XBAPI extends \BAPI {
 
         //if(empty($this->api_key)) throw new Exception('API KEY is empty');
         //Solution data
-        $solution_data = json_decode(get_option('bapi_solutiondata'));
+        $solution_data = getbapisolutiondata();
+
 
         //BaseURL
-        $this->base_url = $solution_data->BaseURL;
+        $this->base_url = $solution_data['site']['BaseURL'];
+
         parent::__construct($this->api_key, $this->base_url);
     }
 
@@ -63,21 +65,29 @@ class XBAPI extends \BAPI {
     function getPropertyFinders($findIds=[]){
 
         if(empty($findIds))
-            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=searches&seo=1'))->result ? : [];
+        {
+            $findIds = $this->search('searches',null, true)['result'] ? : [];
+        }
         else
             $findIds = array_values($findIds);
+
+
 
         $maxnum = 10;
         $pfToRequest = array_chunk($findIds, $maxnum);
 
 
 
+
+
         $pfinders = [];
 
         foreach ($pfToRequest as $pfToRequestids) {
-            $ids = implode(',', $pfToRequestids);
-
-            $pfinders_ = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids='.$ids.'&seo=1'))->result ? : [];
+            $get_options =
+                [
+                    'seo'=> '1'
+                ];
+            $pfinders_ = $this->get('searches',$pfToRequestids,$get_options)['result'] ?:[];
             $pfinders = array_merge($pfinders, $pfinders_);
         }
 
@@ -90,7 +100,9 @@ class XBAPI extends \BAPI {
 
 
         if(empty($findIds))
-            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=specials&seo=1'))->result ? : [];
+        {
+            $findIds  = $this->search('specials', null, true)['result']?:[];
+        }
         else
             $findIds = array_values($findIds);
 
@@ -100,8 +112,8 @@ class XBAPI extends \BAPI {
         $spoffers = [];
 
         foreach ($spoffRequest as $spoffRequestids) {
-            $ids = implode(',', $spoffRequestids);
-            $spoffers_ = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids='.$ids.'&seo=1'))->result ? : [];
+
+            $spoffers_ = $this->get('specials',$spoffRequestids, $get_options)['result']?:[];
             $spoffers = array_merge($spoffers, $spoffers_);
         }
 
@@ -120,15 +132,15 @@ class XBAPI extends \BAPI {
 
         //Method 1:
         $context =  stream_context_create(array(
-			'http' => array(
-				'method' => "GET",
-				'header' => "User-Agent: InstaSites Agent\r\nReferer: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."\r\n"
-			)
-		));
-                    
+            'http' => array(
+                'method' => "GET",
+                'header' => "User-Agent: InstaSites Agent\r\nReferer: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."\r\n"
+            )
+        ));
+
         $output = file_get_contents($this->base_url . $requestString . '&apikey=' . $this->api_key,false, $context );
-              
-        
+
+
         //Method 2:
         if(empty($output))
         {

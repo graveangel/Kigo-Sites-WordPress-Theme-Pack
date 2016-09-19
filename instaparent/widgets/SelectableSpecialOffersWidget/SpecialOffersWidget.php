@@ -42,7 +42,7 @@ class SpecialOffersWidget extends WidgetBase{
          $spoffersArr = [];
 
          foreach($spoffers as $so){
-             $spoffersArr[$so->ID] = $so->Name;
+             $spoffersArr[$so['ID']] = $so['Name'];
          }
 
          return $spoffersArr;

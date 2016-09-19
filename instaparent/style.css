@@ -88,7 +88,7 @@ img[data-src] {
 	top:0;
 	width: 100%;
 	height: 100%;
-	background: url('../img/loading.gif') rgba(255, 255, 255, 0.7) center center no-repeat;
+	background: url('../../plugins/bookt-api/img/loading.gif') rgba(255, 255, 255, 0.7) center center no-repeat;
 }
 
 /* Date Picker */
