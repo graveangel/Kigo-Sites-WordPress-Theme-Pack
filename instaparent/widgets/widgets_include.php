@@ -64,12 +64,12 @@ require_once('WidgetBase.php');
 
 
 //....Bapi extension.......
-add_action('plugins_loaded','load_xbapi');
-function load_xbapi(){
+//add_action('plugins_loaded','load_xbapi');
+//function load_xbapi(){
 	if (class_exists('BAPI')) {
 		require_once('XBAPI.php');
 	}
-}
+//}
 //Widgets base.............
 require_once('WidgetBase.php');
 //Property finders widget.......
