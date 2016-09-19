@@ -63,21 +63,29 @@ class XBAPI extends \BAPI {
     function getPropertyFinders($findIds=[]){
 
         if(empty($findIds))
-            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=searches&seo=1'))->result ? : [];
+        {
+            $findIds = $this->search('searches',null, true)['result'] ? : [];
+        }
         else
             $findIds = array_values($findIds);
+
+
 
         $maxnum = 10;
         $pfToRequest = array_chunk($findIds, $maxnum);
 
 
 
+
+
         $pfinders = [];
 
         foreach ($pfToRequest as $pfToRequestids) {
-            $ids = implode(',', $pfToRequestids);
-
-            $pfinders_ = json_decode($this->xconnect('/ws/?method=get&entity=searches&ids='.$ids.'&seo=1'))->result ? : [];
+            $get_options =
+                [
+                    'seo'=> '1'
+                ];
+            $pfinders_ = $this->get('searches',$pfToRequestids,$get_options)['result'] ?:[];
             $pfinders = array_merge($pfinders, $pfinders_);
         }
 
@@ -90,7 +98,9 @@ class XBAPI extends \BAPI {
 
 
         if(empty($findIds))
-            $findIds = json_decode($this->xconnect('/ws/?method=search&entity=specials&seo=1'))->result ? : [];
+        {
+            $findIds  = $this->search('specials', null, true)['result'] ?: [];
+        }
         else
             $findIds = array_values($findIds);
 
@@ -100,8 +110,8 @@ class XBAPI extends \BAPI {
         $spoffers = [];
 
         foreach ($spoffRequest as $spoffRequestids) {
-            $ids = implode(',', $spoffRequestids);
-            $spoffers_ = json_decode($this->xconnect('/ws/?method=get&entity=specials&ids='.$ids.'&seo=1'))->result ? : [];
+
+            $spoffers_ = $this->get('specials',$spoffRequestids, $get_options)['result'] ?:[];
             $spoffers = array_merge($spoffers, $spoffers_);
         }
 
