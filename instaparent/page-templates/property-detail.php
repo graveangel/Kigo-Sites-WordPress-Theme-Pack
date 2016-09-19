@@ -254,7 +254,7 @@ if($data) {
 							<a class="poi-map-item mapmarker-prop" href="#"><?php echo $translations['Property']; ?></a>
 							<div class="info-html">
 								<div class="marker-infowindow">
-									<span class="prop-image pull-left"><img src="/wp-content/plugins/bookt-api/img/loading.gif" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></span>
+									<span class="prop-image pull-left"><img src="/wp-content/themes/instaparent/insta-common/images/loading.gif" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></span>
 									<span class="prop-location pull-left">
 										<span>
 										<?php if($data->SEO->Keyword) { ?><a target="_blank" href="<?php echo $data->DetailURL; ?>"><?php } ?>
@@ -282,7 +282,7 @@ if($data) {
 							<a class="poi-map-item mapmarker-<?php echo $attraction->ContextData->ItemIndex; ?>" href="#"><?php echo $attraction->ContextData->ItemIndex; ?></a>
 							<div class="info-html">
 								<div class="marker-infowindow"> 
-									<span class="prop-image pull-left"><img src="/wp-content/plugins/bookt-api/img/loading.gif" data-src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></span>
+									<span class="prop-image pull-left"><img src="/wp-content/themes/instaparent/insta-common/images/loading.gif" data-src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></span>
 									<span class="prop-location pull-left">
 										<span>
 										<?php if($attraction->ContextData->SEO->Keyword) { ?><a target="_blank" href="<?php echo $attraction->ContextData->SEO->DetailURL; ?>"><?php } ?>
