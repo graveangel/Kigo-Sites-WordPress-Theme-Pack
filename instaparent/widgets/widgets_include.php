@@ -64,15 +64,16 @@ require_once('WidgetBase.php');
 
 
 //....Bapi extension.......
-//add_action('plugins_loaded','load_xbapi');
-//function load_xbapi(){
+// MUST BE LOADED at 'plugins_loaded' hook or this will generate errors and fail to load BAPI/XBAPI EVERY TIME.  Please stop over-writing me.
+add_action('plugins_loaded','load_xbapi');
+function load_xbapi(){
 	if (class_exists('BAPI')) {
 		require_once('XBAPI.php');
 	}
-//}
 //Widgets base.............
 require_once('WidgetBase.php');
 //Property finders widget.......
 require_once ('SelectablePropertyFindersWidget/init.php');
 //Special Offers widget.......
 require_once ('SelectableSpecialOffersWidget/init.php');
+}
