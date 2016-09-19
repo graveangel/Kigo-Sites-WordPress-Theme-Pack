@@ -14,19 +14,19 @@ $pfinders = $xbapi->getPropertyFinders($ins['property_finders']);
 
 <div class="kigo-pfinders-items">
     <?php foreach ($pfinders as $pfind) {
-        if(!in_array((int)$pfind->ID, $existentppf)) 
+        if(!in_array((int)$pfind['ID'], $existentppf))
             continue;
         ?>
         <div class="kigo-pfinder width<?php echo $ins['items_per_row']; ?>">
 
                 <div class="kigo-pfinder-content">
-                    <a href="<?php echo $pfind->ContextData->SEO->DetailURL; ?>">
-                    <div class="kigo-pptf-image" style="background-image: url(<?php echo $pfind->Images[0]->{'MediumURL'} ?>)">
+                    <a href="<?php echo $pfind['ContextData']['SEO']['DetailURL']; ?>">
+                    <div class="kigo-pptf-image" style="background-image: url(<?php echo $pfind['Images'][0]['MediumURL'] ?>)">
 
                     </div>
                     </a>
 
-                    <span class="kigo-pfinder-name"><a href="<?php echo $pfind->ContextData->SEO->DetailURL; ?>"><?php echo $pfind->Name ?></a></span>
+                    <span class="kigo-pfinder-name"><a href="<?php echo $pfind['ContextData']['SEO']['DetailURL']; ?>"><?php echo $pfind['Name']?></a></span>
                     <hr>
                     <?php echo $pfind->Description; ?>
 
