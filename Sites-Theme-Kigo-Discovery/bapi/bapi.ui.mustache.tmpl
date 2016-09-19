@@ -2037,44 +2037,46 @@ Group: Properties
 
                 <div id="revisedates" data-backdrop="false" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
 
-                    <div class="booking-form">
-                        <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
-                        <div class="row-fluid">
+                    <form name="getQuote">
+                        <div class="booking-form">
+                            <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
+                            <div class="row-fluid">
 
-                            <div class="span6">
-                                <label fore="rateblockcheckin">{{textdata.Check-In}}</label>
-                                <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
+                                <div class="span6">
+                                    <label fore="rateblockcheckin">{{textdata.Check-In}}</label>
+                                    <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
+                                </div>
+
+                                <div class="span6">
+                                    <label for="rateblockcheckout">{{textdata.Check-Out}}</label>
+                                    <input id="rateblockcheckout" class="span12 quicksearch datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
+                                    <input style="display:none" class="quicksearch" type="text" value="" data-field="los">
+                                </div>
+
                             </div>
 
-                            <div class="span6">
-                                <label for="rateblockcheckout">{{textdata.Check-Out}}</label>
-                                <input id="rateblockcheckout" class="span12 quicksearch datepickercheckout" type="text" placeholder="{{textdata.Check-Out}}" value="{{session.searchparams.scheckout}}" data-field="scheckout" required>
-                                <input style="display:none" class="quicksearch" type="text" value="" data-field="los">
+                            <div class="row-fluid">
+
+                                <div class="span6">
+                                    <label for="rateblockadults">{{textdata.Adults}}</label>
+                                    <input id="rateblockadults" class="span12 quicksearch adultsfield" type="text" placeholder="{{textdata.Adults}}" value={{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}} data-field="adults[min]" required>
+                                </div>
+
+                                <div class="span6">
+                                    <label for="rateblockchildren">{{textdata.Children}}</label>
+                                    <input id="rateblockchildren" class="span12 quicksearch childrenfield" type="text" placeholder="{{textdata.Children}}" value={{#session.searchparams.children.min}}
+                                        {{session.searchparams.children.min}}
+                                    {{/session.searchparams.children.min}}
+                                        {{^session.searchparams.children.min}}0
+                                        {{/session.searchparams.children.min}} data-field="children[min]" required>
+                                </div>
+
                             </div>
+
+                            <button class="btn btn-mini bapi-getquote" data-dismiss="modal"  type="button">{{textdata.Submit}}</button>
 
                         </div>
-
-                        <div class="row-fluid">
-
-                            <div class="span6">
-                                <label for="rateblockadults">{{textdata.Adults}}</label>
-                                <input id="rateblockadults" class="span12 quicksearch adultsfield" type="text" placeholder="{{textdata.Adults}}" value={{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}} data-field="adults[min]" required>
-                            </div>
-
-                            <div class="span6">
-                                <label for="rateblockchildren">{{textdata.Children}}</label>
-                                <input id="rateblockchildren" class="span12 quicksearch childrenfield" type="text" placeholder="{{textdata.Children}}" value={{#session.searchparams.children.min}}
-                                    {{session.searchparams.children.min}}
-                                {{/session.searchparams.children.min}}
-                                    {{^session.searchparams.children.min}}0
-                                    {{/session.searchparams.children.min}} data-field="children[min]" required>
-                            </div>
-
-                        </div>
-
-                        <button class="btn btn-mini bapi-getquote" data-dismiss="modal"  type="button">{{textdata.Submit}}</button>
-
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
