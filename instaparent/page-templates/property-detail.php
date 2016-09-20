@@ -60,26 +60,28 @@ if($data) {
 			</div>		
 			<div class="item-slideshow">
 				<div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
-				<ul class="slides">
-				<?php $imgCount = 1; foreach($data->Images as $img) { ?>
-					<li>
-						<div>
-							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="'.get_template_directory_uri().'/insta-common/images/loading-816x600.gif" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" />
-							<?php if($img->Caption) { ?>
-							<p class="flex-caption">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $img->Caption; ?></p>
-							<?php } ?>
-						</div>
-					</li>
-				<?php $imgCount++; } ?>
-				</ul>
+					<ul class="slides">
+					<?php $imgCount = 1; foreach($data->Images as $img) { ?>
+						<li>
+							<div>
+								<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="'.get_template_directory_uri().'/insta-common/images/loading-816x600.gif" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" />
+								<?php if($img->Caption) { ?>
+								<p class="flex-caption">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $img->Caption; ?></p>
+								<?php } ?>
+							</div>
+						</li>
+					<?php $imgCount++; } ?>
+					</ul>
 				</div>
+				<img src="<?php echo $data->Images[0]->OriginalURL; ?>" class="slideholder" />
 				<div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
-				<ul class="slides">
-				<?php foreach($data->Images as $img) { ?>
-					<li><img alt="" src="<?php echo $img->ThumbnailURL; ?>" height="50" /></li>
-				<?php } ?>
-				</ul>
+					<ul class="slides">
+					<?php foreach($data->Images as $img) { ?>
+						<li><img alt="" src="<?php echo $img->ThumbnailURL; ?>" height="50" /></li>
+					<?php } ?>
+					</ul>
 				</div>
+
 		 
 		<!-- Modal -->
 		<div id="fullScreenSlideshow" class="modal hide fade fullScreenSlideshow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
