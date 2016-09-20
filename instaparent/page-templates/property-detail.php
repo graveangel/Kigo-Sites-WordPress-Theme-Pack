@@ -64,7 +64,7 @@ if($data) {
 				<?php $imgCount = 1; foreach($data->Images as $img) { ?>
 					<li>
 						<div>
-							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="'.apply_filters('get_image_from_kigo_plugin', 'img/loading-816x600.gif').'" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" />
+							<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="'.get_template_directory_uri().'/insta-common/images/loading-816x600.gif" data-'; } ?>src="<?php echo $img->OriginalURL; ?>" />
 							<?php if($img->Caption) { ?>
 							<p class="flex-caption">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $img->Caption; ?></p>
 							<?php } ?>
@@ -254,7 +254,7 @@ if($data) {
 							<div class="info-html">
 								<div class="marker-infowindow">
 
-									<span class="prop-image pull-left"><img src="<?php echo apply_filters('get_image_from_kigo_plugin', 'img/loading.gif'); ?>" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></span>
+									<span class="prop-image pull-left"><img src="<?php echo get_template_directory_uri(); ?>/insta-common/images/loading.gif" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></span>
 
 									<span class="prop-location pull-left">
 										<span>
@@ -284,7 +284,7 @@ if($data) {
 							<div class="info-html">
 								<div class="marker-infowindow"> 
 
-									<span class="prop-image pull-left"><img src="<?php echo apply_filters('get_image_from_kigo_plugin', 'img/loading.gif'); ?>" data-src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></span>
+									<span class="prop-image pull-left"><img src="<?php echo get_template_directory_uri(); ?>/insta-common/images/loading.gif" data-src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></span>
 
 									<span class="prop-location pull-left">
 										<span>
