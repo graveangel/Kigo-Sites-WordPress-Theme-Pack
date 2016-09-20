@@ -84,17 +84,20 @@ if ( $bDisplayImage && has_post_thumbnail()  ) {
 	the_post_thumbnail();
 	echo '</a></div>';
 }
-/* we display the date of the post */
-if($bDisplayDate){
-	 echo '<h5 class="post-date">'.get_the_date($sDateFormat).'</h5>';
-}
-/* we display the title of the post */
- if($bDisplayTitle){
-	 echo '<h4 class="post-title"><a href="'. get_permalink(@$post->ID) . '">'.get_the_title().'</a></h4>';
-} 
+
 /* we display the post excerpt */
 ?>
   <div class="post-excerpt">
+  <?php
+  /* we display the date of the post */
+	if($bDisplayDate){
+		 echo '<h5 class="post-date">'.get_the_date($sDateFormat).'</h5>';
+	}
+	/* we display the title of the post */
+	 if($bDisplayTitle){
+		 echo '<h4 class="post-title"><a href="'. get_permalink(@$post->ID) . '">'.get_the_title().'</a></h4>';
+	} 
+	?>
   <p>
     <?php
 	/* we get the excerpt */ 
