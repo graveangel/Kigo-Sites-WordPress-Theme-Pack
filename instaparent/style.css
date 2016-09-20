@@ -1485,3 +1485,9 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 .hide.in {
 	display: block !important;
 }
+/* Hiding property page slider overflow */
+.page-template-property-detail #slider,
+.item-slideshow .flexslider
+{
+	overflow: hidden;
+}
