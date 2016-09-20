@@ -4,6 +4,9 @@ if ( !defined('ABSPATH')) exit;
 /*
 Template Name: Contact Page
 */
+global $bapi_all_options;
+$bapi_solutiondata = $bapi_all_options['bapi_solutiondata'];
+$bapi_solutiondata = json_decode(wp_unslash($bapi_solutiondata),TRUE);
 ?>
 <?php get_header(); ?>
 <article class="full-width-page">	
