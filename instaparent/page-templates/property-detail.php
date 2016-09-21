@@ -91,7 +91,7 @@ if($data) {
 		  <!-- Carousel items -->
 		<div class="carousel-inner">
 			<?php foreach($data->Images as $img) { ?>
-			<div class="item" data-caption="<?php echo $img->Caption; ?>" data-imgurl="<?php $img->OriginalURL; ?>"><div class="carousel-caption"><h4 class="headline"><?php echo $img->Headline; ?></h4><p><?php echo $img->Caption; ?></p></div></div>
+			<div class="item" data-caption="<?php echo $img->Caption; ?>" data-imgurl="<?php echo $img->OriginalURL; ?>"><div class="carousel-caption"><h4 class="headline"><?php echo $img->Headline; ?></h4><p><?php echo $img->Caption; ?></p></div></div>
 			<?php } ?>
 		</div>
 		<!-- Carousel nav -->
