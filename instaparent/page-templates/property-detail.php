@@ -73,7 +73,6 @@ if($data) {
 					<?php $imgCount++; } ?>
 					</ul>
 				</div>
-				<img src="<?php echo $data->Images[0]->OriginalURL; ?>" class="slideholder" />
 				<div id="carousel" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "itemWidth": 50, "itemMargin": 10, "asNavFor": "#slider" }'>
 					<ul class="slides">
 					<?php foreach($data->Images as $img) { ?>
