@@ -1244,7 +1244,7 @@ input.no-disabled[disabled], select.no-disabled[disabled], textarea.no-disabled[
 .fullScreenSlideshow .carousel-inner > .item > img{display:inline-block;}
 .fullScreenSlideshow .modal-body button.close{background-color:#fff;position:absolute;right:15px;top:15px;z-index:1051;font-size:30px;line-height:30px;}
 .fullScreenCarousel{height:100%;margin-bottom:0;overflow:hidden;}
-.fullScreenCarousel .carousel-caption{bottom:15px;text-align:left;}
+.fullScreenCarousel .carousel-caption{bottom:15px;text-align:left;z-index:1;}
 
 /* fix of the property grid in specials detail pages */
 .other-detail-page .span9 .bapi-summary .table{table-layout:fixed;}
