@@ -864,7 +864,7 @@ filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=0,OffY=0,Color=#1a00000
 /* gallery view */
 .gallery-view-page .portal-images{overflow:hidden;max-height:264px;}
 .gallery-view-page .flexslider{border:none;}
-.gallery-view-page #slider .flex-viewport{min-height: 265px;}
+.gallery-view-page #slider .flex-viewport{}
 .gallery-view-page .portal-info{margin:0;padding:10px 13px;}
 .gallery-view-page .new-property-tag{margin-bottom:-47px;}
 .gallery-view-page .save-property-tag{right:-3px;top:-3px;}
