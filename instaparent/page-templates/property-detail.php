@@ -59,7 +59,7 @@ if($data) {
 				</div>  
 			</div>		
 			<div class="item-slideshow">
-				<div id="slider" class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
+				<div id="slider" class="flexslider bapi-flexslider loadimg" data-options='{ "animation": "slide", "controlNav": false, "animationLoop": false, "slideshow": false, "sync": "#carousel" }'>
 					<ul class="slides">
 					<?php $imgCount = 1; foreach($data->Images as $img) { ?>
 						<li>
