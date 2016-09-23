@@ -1491,3 +1491,8 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 {
 	overflow: hidden;
 }
+/* Calendar icon */
+.inner-addon .halflings i::before
+{
+	font-size: 8px;
+}
