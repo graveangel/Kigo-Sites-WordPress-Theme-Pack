@@ -365,7 +365,7 @@ Group: Attractions
                         {{#Sleeps}}&nbsp;/&nbsp;{{textdata.Sleeps}}&nbsp;{{Sleeps}}{{/Sleeps}}</span>
                     </p>
                     <div class="booking-prop-img col-xs-12">
-                        <a href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.OriginalURL}}')"></a>
+                        <a href="{{&ContextData.SEO.DetailURL}}" style="background-image: url('{{&PrimaryImage.MediumURL}}')"></a>
                     </div>
                 </header>
                 <div class="booking-page bordersolid">
@@ -409,8 +409,8 @@ Group: Attractions
         <div id="details" class="item row-fluid">
             <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-In}}</span> <span class="pull-right">{{session.searchparams.scheckin}}</span></p>
             <p><span class="glyphicons glyphicons-calendar m-r-15"></span><span>{{textdata.Check-Out}}</span> <span class="pull-right">{{session.searchparams.scheckout}}</span></p>
-            <p><span class="glyphicons group"><i></i>{{textdata.Adults}}</span><span class="pull-right">{{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}{{session.searchparams.adults}}{{/session.searchparams.adults.min}}</span></p>
-            <p><span class="glyphicons group"><i></i>{{textdata.Children}}</span><span class="pull-right">{{#session.searchparams.children.min}}{{session.searchparams.children.min}}{{/session.searchparams.children.min}}{{^session.searchparams.children.min}}{{session.searchparams.children}}{{/session.searchparams.children.min}}</span></p>
+            <p><span class="glyphicons glyphicons-group m-r-15"></span><span>{{textdata.Adults}}</span><span class="pull-right">{{session.searchparams.adults.min}}</span></p>
+            <p><span class="glyphicons glyphicons-group m-r-15"></span><span>{{textdata.Children}}</span><span class="pull-right">{{session.searchparams.children.min}}</span></p>
             <p><div data-target="#revisedates" data-toggle="modal" class="bapi-showrevise kd-button secondary-fill-color filled">{{textdata.Change Info}}</div></p>
         </div>
 
@@ -422,11 +422,11 @@ Group: Attractions
                 <div class="row-fluid">
                     <div class="span6">
                         <label>{{textdata.Adults}}</label>
-                        <input class="span12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}{{session.searchparams.adults}}{{/session.searchparams.adults.min}}" data-field="adults[min]" required>
+                        <input class="span12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}2{{/session.searchparams.adults.min}}" data-field="adults[min]" required>
                     </div>
                     <div class="span6">
                         <label>{{textdata.Children}}</label>
-                        <input class="span12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{#session.searchparams.children.min}}{{session.searchparams.children.min}}{{/session.searchparams.children.min}}{{^session.searchparams.children.min}}{{session.searchparams.children}}{{/session.searchparams.children.min}}" data-field="children[min]" required>
+                        <input class="span12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{#session.searchparams.children.min}}{{session.searchparams.children.min}}{{/session.searchparams.children.min}}{{^session.searchparams.children.min}}0{{/session.searchparams.children.min}}" data-field="children[min]" required>
                     </div>
                 </div>
             </div>
@@ -451,11 +451,11 @@ Group: Attractions
                     <div class="row">
                         <div class="col-xs-6">
                             <label>Adults</label>
-                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{#session.searchparams.adults.min}}{{session.searchparams.adults.min}}{{/session.searchparams.adults.min}}{{^session.searchparams.adults.min}}{{session.searchparams.adults}}{{/session.searchparams.adults.min}}" data-field="adults[min]" required="">
+                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Adults}}" value="{{#session.searchparams.adults}}{{session.searchparams.adults.min}}{{/session.searchparams.adults}}{{^session.searchparams.adults}}2{{/session.searchparams.adults}}" data-field="adults[min]" required="">
                         </div>
                         <div class="col-xs-6">
                             <label>Children</label>
-                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{#session.searchparams.children.min}}{{session.searchparams.children.min}}{{/session.searchparams.children.min}}{{^session.searchparams.children.min}}{{session.searchparams.children}}{{/session.searchparams.children.min}}" data-field="children[min]" required="">
+                            <input class="col-xs-12 revisedates" type="text" placeholder="{{textdata.Children}}" value="{{#session.searchparams.children}}{{session.searchparams.children.min}}{{/session.searchparams.children}}{{^session.searchparams.children}}0{{/session.searchparams.children}}" data-field="children[min]" required="">
                         </div>
                     </div>
 
