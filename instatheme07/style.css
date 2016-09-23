@@ -107,7 +107,7 @@ body{background:#fff;}
 
 .home-qsearch  #amenitiesDropdownCheckbox .dropdown-checkbox-toggle{border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;}
 
-.widget_bapi_featured_properties .fp-image, .widget_bapi_similar_properties .fp-image, .widget_bapi_developments_widget .development-image{min-height:300px;max-height:300px;}
+.widget_bapi_featured_properties .fp-image, .widget_bapi_similar_properties .fp-image, .widget_bapi_developments_widget .development-image{max-height:300px;}
 
 /* =Media queries
 -------------------------------------------------------------- */
