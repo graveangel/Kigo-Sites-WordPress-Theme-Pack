@@ -148,18 +148,5 @@ body{background:#fff;}
 {
 	display: inline-block;
 }
-@media (max-width: 1300px)
-{
-	.home-qsearch #bapi-search .category-block
-	{
-		margin: 0 0 10px;
-		width: 100%;
-	}
-	.home-qsearch
-	{
-		position: static;
-	}
-	.home-qsearch #bapi-search {
-		padding: 10px;
-	}
+@media (max-width: 1300px) {
 }
