@@ -1491,8 +1491,37 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 {
 	overflow: hidden;
 }
+/*==============================
+ IE9 CSS styles
+ ===============================*/
 /* Calendar icon */
 .inner-addon .halflings i::before
 {
-	font-size: 8px;
+    font-size: 8px\9;
+}
+
+/* IE menu caret position */
+.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret
+{
+    position: absolute\9;
+    top: 0.5em\9;
+    right: 0.2em\9;
+}
+/*=============================
+ IE10+ CSS styles
+ ==============================*/
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	/* Calendar icon */
+	.inner-addon .halflings i::before
+	{
+		font-size: 8px;
+	}
+
+	/* IE menu caret position */
+	.navbar-inverse .nav li.dropdown > .dropdown-toggle .caret
+	{
+		position: absolute;
+		top: 0.5em;
+		right: 0.2em;
+	}
 }
