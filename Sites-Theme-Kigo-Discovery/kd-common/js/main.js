@@ -1050,7 +1050,15 @@ app.bapiModules.templates.searchPage = {
 
             }.bind(this));
         }else {
-
+            /**
+             * At some point the restrictval is set to 0
+             *  and this makes the app to return all properties.
+             * Changing the value to 1 makes the search results to
+             * respond to the selected dates.
+             */
+            updated_options = BAPI.session.searchparams;
+            updated_options.restrictavail = "1";
+            /* End of patch */
             app.bapi.search('property', function (sr) {
                 var ids = sr.result, total = sr.result.length;
 
