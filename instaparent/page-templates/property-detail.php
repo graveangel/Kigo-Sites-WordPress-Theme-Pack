@@ -54,7 +54,7 @@ if($data) {
 				</p>                
 				</div>	
 				<div class="span5 nav-links">
-					<a class="link" href="/rentalsearch"><span>&larr;</span>&nbsp;<?php echo $translations['Back to Results']; ?></a>
+					<a class="link" href="/rentals/rentalsearch"><span>&larr;</span>&nbsp;<?php echo $translations['Back to Results']; ?></a>
 				</div>
 				</div>  
 			</div>		
