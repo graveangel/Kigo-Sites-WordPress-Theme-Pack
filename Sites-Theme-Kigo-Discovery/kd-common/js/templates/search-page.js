@@ -71,10 +71,11 @@ app.bapiModules.templates.searchPage = {
 
                 chunks.forEach(function (chunk, chunk_i) {
 
+                    BAPI.session.searchparams.pagesize = chunkSize;
+                    BAPI.session.searchparams.seo = true;
+
                     app.bapi.get('property', chunk, function (gr) {
-
                         gr.result.forEach(function (prop, prop_i) {
-
                             //Store recovered properties
                             this.properties = _.concat(this.properties, [prop]);
 
@@ -83,7 +84,7 @@ app.bapiModules.templates.searchPage = {
 
                         }.bind(this));
 
-                    }.bind(this), {pagesize: chunkSize, seo: true});
+                    }.bind(this), BAPI.session.searchparams );
 
                 }.bind(this));
 
