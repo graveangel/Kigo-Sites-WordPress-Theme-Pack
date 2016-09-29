@@ -3394,6 +3394,8 @@ footer.footer {
     .template-property .amenities #bapi-rateblock .amenity-value {
       margin-top: 10px;
       display: block; }
+      .template-property .amenities #bapi-rateblock .amenity-value.ppt-price-quote {
+        margin-right: 20px; }
       .template-property .amenities #bapi-rateblock .amenity-value button {
         display: block;
         max-width: none;

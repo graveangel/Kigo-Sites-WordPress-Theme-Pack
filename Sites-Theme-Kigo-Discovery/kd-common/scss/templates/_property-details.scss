@@ -59,6 +59,11 @@
         margin-top: 10px;
         display: block;
 
+        &.ppt-price-quote
+        {
+          margin-right: 20px;
+        }
+
         button{
           display: block;
           max-width: none;

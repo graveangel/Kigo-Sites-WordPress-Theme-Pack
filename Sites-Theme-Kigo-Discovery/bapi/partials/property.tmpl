@@ -42,32 +42,7 @@
                                 <span class="amenity-value">{{Sleeps}}</span>
                             {{/Sleeps}}
                         </li>
-                        <li>
-                            <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
-                            {{#ContextData.Quote.QuoteDisplay.value}}
-                                <span class="amenity-name">{{textdata.Rates}}:</span>
-                        <span class="amenity-value">
-                            {{#ContextData.Quote.QuoteDisplay.prefix}}
-                                <span class="prefix">{{ContextData.Quote.QuoteDisplay.prefix}}</span>
-                            {{/ContextData.Quote.QuoteDisplay.prefix}}
-                            <span>{{ContextData.Quote.QuoteDisplay.value}}</span>
-                            {{#ContextData.Quote.QuoteDisplay.suffix}}
-                                <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
-                            {{/ContextData.Quote.QuoteDisplay.suffix}}
-                        </span>
-                            {{/ContextData.Quote.QuoteDisplay.value}}
 
-                            {{^ContextData.Quote.QuoteDisplay.value}}
-                                <span class="amenity-name">
-                            <span class="prefix">{{textdata.Rates}}:</span>
-                        </span>
-                        <span class="amenity-value">
-                            {{^ContextData.Quote.QuoteDisplay.suffix}}
-                                <span class="suffix">{{MinRate.Value}} {{MinRate.Currency}} / Night</span>
-                            {{/ContextData.Quote.QuoteDisplay.suffix}}
-                        </span>
-                            {{/ContextData.Quote.QuoteDisplay.value}}
-                        </li>
                         <li id="bapi-rateblock" class="bapi-rateblock" data-templatename="tmpl-search-rateblock" data-log="1"></li>
                     </ul>
                 </div>
@@ -288,7 +263,39 @@
 
 <script id="tmpl-search-rateblock" type="text/html">
         {{#result}}
-        <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
+
+
+
+                                <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
+                                    {{#ContextData.Quote.QuoteDisplay.value}}
+                                        <span class="amenity-name">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>
+                                <span class="amenity-value ppt-price-quote">
+                                    {{#ContextData.Quote.QuoteDisplay.prefix}}
+                                        <span class="prefix"></span>
+                                    {{/ContextData.Quote.QuoteDisplay.prefix}}
+                                    <span>{{ContextData.Quote.QuoteDisplay.value}}</span>
+                                    {{#ContextData.Quote.QuoteDisplay.suffix}}
+                                        <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
+                                    {{/ContextData.Quote.QuoteDisplay.suffix}}
+                                </span>
+                                    {{/ContextData.Quote.QuoteDisplay.value}}
+
+                                    {{^ContextData.Quote.QuoteDisplay.value}}
+                                        <span class="amenity-name">
+                                    <span class="prefix">{{textdata.Rates}}:</span>
+                                </span>
+                                <span class="amenity-value ppt-price-quote">
+                                    {{^ContextData.Quote.QuoteDisplay.suffix}}
+                                        <span class="suffix">{{MinRate.Value}} {{MinRate.Currency}} / Night</span>
+                                    {{/ContextData.Quote.QuoteDisplay.suffix}}
+                                </span>
+                                    {{/ContextData.Quote.QuoteDisplay.value}}
+
+
+
+
+
+         <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
         <span class="amenity-name your-dates">YOUR DATES:</span>
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
