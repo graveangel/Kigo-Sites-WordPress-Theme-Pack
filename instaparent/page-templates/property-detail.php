@@ -332,15 +332,22 @@ if($data) {
 											<div class="comment">
 											<?php echo $review->Comment; ?>
 											</div>
-											<?php foreach($review->Response as $response) { ?>
+											<?php 
+											if($review->Response) {
+												foreach($review->Response as $response) { ?>
 											<div class="response-block">
 												<h5 class="response-title"><?php echo $translations['Response']; ?></h5>
 												<div class="response"><?php echo $response; ?></div>
 											</div>
-											<?php } ?>
-											<?php foreach($review->ExternalLink as $link) { ?>				
-											<a class="full-rev-link" href="<?php echo $link; ?>" target="_blank"><?php echo $translations['See full review on']; ?> Flipkey</a>
-											<?php } ?>
+											<?php } 
+											} ?>
+											
+											<?php 
+											if($review->ExternalLink) {
+												foreach($review->ExternalLink as $link) { ?>				
+											<a class="full-rev-link" href="<?php echo $link; ?>" target="_blank"><?php echo $translations['See full review on']; ?> Flipkey</a><br />
+											<?php }
+											} ?>
 											<?php if($review->Source == 'FlipKey') {
 												echo '<a class="flipkeyPowered" rel="nofollow" target="_blank" href="//www.flipkey.com"><span></span></a>';
 											} ?>
