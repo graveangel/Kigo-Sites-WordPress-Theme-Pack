@@ -71,6 +71,7 @@
     border-radius: 3px;
     text-transform: uppercase;
     cursor: pointer;
+    margin-bottom: 10px;
     -webkit-appearance: none; //Mac SELECT input padding fix
   }
 
@@ -264,7 +265,12 @@
     input, select{
       margin: 0;
       padding: 15px 45px 15px 15px;
+      &[type="text"]
+      {
+        margin-bottom: 0px;
+      }
     }
+
 
     .search{
       font-size: 18px;
