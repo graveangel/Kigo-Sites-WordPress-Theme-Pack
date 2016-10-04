@@ -1,4 +1,61 @@
 .developments-wrapper
 {
   padding: 15px;
+
+  .portal-result {
+    max-width: calc(100%/4);
+    padding: 10px;
+    margin: 10px auto;
+    display: inline-block;
+    vertical-align: top;
+    float: none;
+    font-size: 14px;
+    overflow: hidden;
+    box-sizing:border-box;
+    text-align: left;
+    .portal-info
+    {
+      .title
+      {
+        font-size: 20px;
+      }
+    }
+  }
+  .portal-result .portal-inner
+  {
+    overflow: hidden;
+  }
+  .development-results
+  {
+    font-size: 0;
+    box-sizing:border-box;
+    text-align: center;
+  }
+  @media(max-width: 980px)
+  {
+    .portal-result {
+      max-width: calc(100%/2);
+      padding: 10px;
+      margin: 10px auto;
+      display: inline-block;
+      vertical-align: top;
+      float: none;
+      box-sizing:border-box;
+      font-size: 14px;
+    }
+  }
+  @media(max-width: 678px)
+  {
+    .portal-result {
+      max-width: 100%;
+      padding: 10px;
+      margin: 10px auto;
+      display: inline-block;
+      vertical-align: top;
+      float: none;
+      box-sizing:border-box;
+      font-size: 14px;
+    }
+  }
+
 }
