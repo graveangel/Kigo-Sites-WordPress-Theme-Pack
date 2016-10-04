@@ -4810,6 +4810,19 @@ body.page-template-contact-page {
   display: block !important;
   background: #fff; }
 
+.booking-page #stayinfo > span.module[class*="notes"],
+.booking-page #stayinfo .headset,
+.booking-page #question-support > span.module[class*="notes"],
+.booking-page #question-support .headset {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px; }
+
+.booking-page .amount-bk {
+  background: #ffe6ba;
+  padding: 15px;
+  margin: 15px auto; }
+
 .booking-page #statement-details,
 .booking-page #revisedates {
   top: 10%;

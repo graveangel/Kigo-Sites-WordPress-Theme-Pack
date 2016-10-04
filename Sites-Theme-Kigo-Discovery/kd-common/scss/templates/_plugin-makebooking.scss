@@ -17,6 +17,25 @@
     background: #fff;
   }
 
+  #stayinfo,
+  #question-support
+  {
+    > span.module[class*="notes"],
+    .headset
+    {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  }
+
+  .amount-bk
+  {
+    background: #ffe6ba;
+    padding: 15px;
+    margin: 15px auto;
+  }
+
   #statement-details,
   #revisedates{
     top: 10%;
@@ -37,6 +56,8 @@
       width: 100%;
 
     }
+
+
   }
 
   .span8.booking-form
