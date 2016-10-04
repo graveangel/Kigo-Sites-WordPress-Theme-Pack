@@ -36,6 +36,12 @@
     margin: 15px auto;
   }
 
+  p::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+
   #statement-details,
   #revisedates{
     top: 10%;

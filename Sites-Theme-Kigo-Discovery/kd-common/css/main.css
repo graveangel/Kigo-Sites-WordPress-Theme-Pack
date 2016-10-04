@@ -4823,6 +4823,11 @@ body.page-template-contact-page {
   padding: 15px;
   margin: 15px auto; }
 
+.booking-page p::after {
+  clear: both;
+  content: '';
+  display: table; }
+
 .booking-page #statement-details,
 .booking-page #revisedates {
   top: 10%;
