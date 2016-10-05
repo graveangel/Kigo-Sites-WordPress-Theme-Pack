@@ -330,11 +330,11 @@ if($data) {
 											<h5 class="title"><?php echo $review->Title; ?></h5>
 											<div class="rating"><span class="reviewrating-<?php echo $review->Rating; ?>"></span> <span><?php echo $translations['Posted on']; ?>: <?php echo $review->SubmittedOn->ShortDate; ?></span></div>
 											<div class="comment">
-											<?php echo $review->Comment; ?>
+												<?php echo $review->Comment; ?>
 											</div>
-											<?php 
-											if($review->Response) {
-												foreach($review->Response as $response) { ?>
+											<?php
+											if($responses = $review->Response) {
+												foreach((array) $responses as $response) { ?>
 											<div class="response-block">
 												<h5 class="response-title"><?php echo $translations['Response']; ?></h5>
 												<div class="response"><?php echo $response; ?></div>
