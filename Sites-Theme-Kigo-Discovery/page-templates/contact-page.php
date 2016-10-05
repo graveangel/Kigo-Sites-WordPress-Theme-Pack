@@ -31,7 +31,7 @@ $textDataArray = $themeBAPI->getTextDataArray();
         <div id="bapi-inquiryform" class="bapi-inquiryform" data-templatename="tmpl-contactus-form" data-log="0" data-shownamefield="1" data-showemailfield="1" data-showphonefield="1" data-showdatefields="0" data-shownumberguestsfields="0" data-showleadsourcedropdown="1" data-showcommentsfield="1"></div>
         <!-- Main content -->
         <div class="officemap">
-            <img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo $bapi_solutiondata->Office->Latitude; ?>,<?php echo $bapi_solutiondata->Office->Longitude; ?>&zoom=8&size=900x300&maptype=roadmap&markers=color:blue%7Clabel:%20%7C<?php echo $bapi_solutiondata->Office->Latitude; ?>,<?php echo $bapi_solutiondata->Office->Longitude; ?>&sensor=false" />
+            <img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo $bapi_solutiondata->Office->Latitude; ?>,<?php echo $bapi_solutiondata->Office->Longitude; ?>&zoom=8&size=900x300&maptype=roadmap&markers=color:blue%7Clabel:%20%7C<?php echo $bapi_solutiondata->Office->Latitude; ?>,<?php echo $bapi_solutiondata->Office->Longitude; ?>&sensor=false&key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE" />
             <div class="pagination-centered"><small><a href="//maps.google.com/?q=<?php echo $bapi_solutiondata->Office->Latitude; ?>,<?php echo $bapi_solutiondata->Office->Longitude; ?>" target="_blank"><?php echo $textDataArray['View Larger Map']; ?></a></small></div>
         </div>
         <div class="contact-under"><?php echo get_theme_mod('contact-under', "Here your contact under content"); ?></div>
