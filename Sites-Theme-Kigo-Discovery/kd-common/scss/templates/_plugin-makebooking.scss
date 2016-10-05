@@ -1,0 +1,141 @@
+.bapi-bookingform
+{
+  .pagination-centered
+  {
+    p
+    {
+      text-align: center;
+    }
+  }
+}
+
+.booking-page
+{
+  .modal.hide.in
+  {
+    display: block!important;
+    background: #fff;
+  }
+
+  #stayinfo,
+  #question-support
+  {
+    > span.module[class*="notes"],
+    .headset
+    {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  }
+
+  .amount-bk
+  {
+    background: #ffe6ba;
+    padding: 15px;
+    margin: 15px auto;
+  }
+
+  p::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
+
+  #statement-details,
+  #revisedates{
+    top: 10%;
+    bottom: auto;
+    left: 10%;
+    right: 10%;
+    max-width: 600px;
+    border-radius: 10px;
+    //padding: 10px;
+    margin: auto;
+    overflow: visible;
+    z-index: 10000;
+    input,
+    select,
+    textarea
+    {
+      padding: 5px;
+      width: 100%;
+
+    }
+
+
+  }
+
+  .span8.booking-form
+  {
+    float: left;
+    width: calc((100%/12) * 8);
+    padding-right:15px;
+
+    /* Input fields */
+    input,
+    select,
+    textarea
+    {
+      padding: 5px;
+      width: 100%;
+
+    }
+
+    .checkbox {
+      float: none;
+      position: static;
+      clear: both;
+      width: auto;
+      vertical-align: middle;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    #ccmonth,
+    #ccyear
+    {
+      margin-bottom: 20px;
+      width: calc(50% - 10px);
+      float: left;
+      margin: 0 10px 0 0;
+    }
+
+    #ccyear
+    {
+      margin: 0 0 0 10px;
+    }
+  }
+
+  .property-info.span4
+  {
+    float: left;
+    width: calc((100%/12) * 4);
+    padding-left:15px;
+
+
+    .glyphicons
+    {
+      font-family: $secondary-font;
+    }
+
+
+  }
+}
+@media (max-width: 768px)
+{
+  .booking-page {
+    .span8.booking-form {
+      float: none;
+      width: 100%;
+      padding-right: 0px;
+    }
+
+    .property-info.span4 {
+      float: nonw;
+      width: 100%;
+      padding-left: 0px;
+    }
+
+  }
+}

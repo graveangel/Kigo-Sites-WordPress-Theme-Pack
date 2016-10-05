@@ -766,6 +766,27 @@ function getClassnameForCode(code){
     return codeToClassname[code];
 }
 
+/**
+ * Created by JVengoechea on 29/09/2016.
+ */
+app.bapiModules.templates.makeBooking =
+{
+    init: function()
+    {
+        // Dismiss modal with updating dates.
+        $(document).on('click', '.bapi-revisedates', function(e)
+        {
+            $('.modal').modal('hide');
+        });
+    },
+    cond: function cond() {
+
+        if(app.exists('.bapi-bookingform'))
+        {
+            this.init();
+        }
+    }
+}
 app.bapiModules.templates.propertyDetails = {
     forceusemap: false,
     mobileBreak: 768,
@@ -1068,10 +1089,11 @@ app.bapiModules.templates.searchPage = {
 
                 chunks.forEach(function (chunk, chunk_i) {
 
+                    BAPI.session.searchparams.pagesize = chunkSize;
+                    BAPI.session.searchparams.seo = true;
+
                     app.bapi.get('property', chunk, function (gr) {
-
                         gr.result.forEach(function (prop, prop_i) {
-
                             //Store recovered properties
                             this.properties = _.concat(this.properties, [prop]);
 
@@ -1080,7 +1102,7 @@ app.bapiModules.templates.searchPage = {
 
                         }.bind(this));
 
-                    }.bind(this), {pagesize: chunkSize, seo: true});
+                    }.bind(this), BAPI.session.searchparams );
 
                 }.bind(this));
 

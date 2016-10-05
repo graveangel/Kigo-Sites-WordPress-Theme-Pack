@@ -3394,6 +3394,8 @@ footer.footer {
     .template-property .amenities #bapi-rateblock .amenity-value {
       margin-top: 10px;
       display: block; }
+      .template-property .amenities #bapi-rateblock .amenity-value.ppt-price-quote {
+        margin-right: 20px; }
       .template-property .amenities #bapi-rateblock .amenity-value button {
         display: block;
         max-width: none;
@@ -4801,6 +4803,95 @@ body.page-template-contact-page {
       padding: 20px 0;
       border-bottom: 1px solid #eee; } }
 
+.bapi-bookingform .pagination-centered p {
+  text-align: center; }
+
+.booking-page .modal.hide.in {
+  display: block !important;
+  background: #fff; }
+
+.booking-page #stayinfo > span.module[class*="notes"],
+.booking-page #stayinfo .headset,
+.booking-page #question-support > span.module[class*="notes"],
+.booking-page #question-support .headset {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px; }
+
+.booking-page .amount-bk {
+  background: #ffe6ba;
+  padding: 15px;
+  margin: 15px auto; }
+
+.booking-page p::after {
+  clear: both;
+  content: '';
+  display: table; }
+
+.booking-page #statement-details,
+.booking-page #revisedates {
+  top: 10%;
+  bottom: auto;
+  left: 10%;
+  right: 10%;
+  max-width: 600px;
+  border-radius: 10px;
+  margin: auto;
+  overflow: visible;
+  z-index: 10000; }
+  .booking-page #statement-details input,
+  .booking-page #statement-details select,
+  .booking-page #statement-details textarea,
+  .booking-page #revisedates input,
+  .booking-page #revisedates select,
+  .booking-page #revisedates textarea {
+    padding: 5px;
+    width: 100%; }
+
+.booking-page .span8.booking-form {
+  float: left;
+  width: calc((100%/12) * 8);
+  padding-right: 15px;
+  /* Input fields */ }
+  .booking-page .span8.booking-form input,
+  .booking-page .span8.booking-form select,
+  .booking-page .span8.booking-form textarea {
+    padding: 5px;
+    width: 100%; }
+  .booking-page .span8.booking-form .checkbox {
+    float: none;
+    position: static;
+    clear: both;
+    width: auto;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 10px; }
+  .booking-page .span8.booking-form #ccmonth,
+  .booking-page .span8.booking-form #ccyear {
+    margin-bottom: 20px;
+    width: calc(50% - 10px);
+    float: left;
+    margin: 0 10px 0 0; }
+  .booking-page .span8.booking-form #ccyear {
+    margin: 0 0 0 10px; }
+
+.booking-page .property-info.span4 {
+  float: left;
+  width: calc((100%/12) * 4);
+  padding-left: 15px; }
+  .booking-page .property-info.span4 .glyphicons {
+    font-family: "Open Sans"; }
+
+@media (max-width: 768px) {
+  .booking-page .span8.booking-form {
+    float: none;
+    width: 100%;
+    padding-right: 0px; }
+  .booking-page .property-info.span4 {
+    float: nonw;
+    width: 100%;
+    padding-left: 0px; } }
+
 .specials-results .special-item {
   min-height: 430px;
   text-align: center;
@@ -5010,6 +5101,48 @@ body.page-template-other-detail-page .other-detail-page .gmap-property, body.pag
   .page-attractions-summary .control-label, .page-attractions-summary .controls {
     display: inline-block;
     vertical-align: middle; } }
+
+.developments-wrapper {
+  padding: 15px; }
+  .developments-wrapper .portal-result {
+    max-width: calc(100%/4);
+    padding: 10px;
+    margin: 10px auto;
+    display: inline-block;
+    vertical-align: top;
+    float: none;
+    font-size: 14px;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: left; }
+    .developments-wrapper .portal-result .portal-info .title {
+      font-size: 20px; }
+  .developments-wrapper .portal-result .portal-inner {
+    overflow: hidden; }
+  .developments-wrapper .development-results {
+    font-size: 0;
+    box-sizing: border-box;
+    text-align: center; }
+  @media (max-width: 980px) {
+    .developments-wrapper .portal-result {
+      max-width: calc(100%/2);
+      padding: 10px;
+      margin: 10px auto;
+      display: inline-block;
+      vertical-align: top;
+      float: none;
+      box-sizing: border-box;
+      font-size: 14px; } }
+  @media (max-width: 678px) {
+    .developments-wrapper .portal-result {
+      max-width: 100%;
+      padding: 10px;
+      margin: 10px auto;
+      display: inline-block;
+      vertical-align: top;
+      float: none;
+      box-sizing: border-box;
+      font-size: 14px; } }
 
 .blog-listing {
   /* Blog box */
@@ -5255,6 +5388,7 @@ body.error404 .message {
     border-radius: 3px;
     text-transform: uppercase;
     cursor: pointer;
+    margin-bottom: 10px;
     -webkit-appearance: none; }
   .kd-search .dropdown-checkbox-toggle {
     width: 100%;
@@ -5383,6 +5517,8 @@ body.error404 .message {
     .kd-search input, .kd-search select {
       margin: 0;
       padding: 15px 45px 15px 15px; }
+      .kd-search input[type="text"], .kd-search select[type="text"] {
+        margin-bottom: 0px; }
     .kd-search .search {
       font-size: 18px;
       padding: 12px; } }
