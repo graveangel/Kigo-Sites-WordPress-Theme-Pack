@@ -280,7 +280,7 @@ if($data) {
 					<?php foreach($data->ContextData->Attractions as $attraction) { ?> 
 					<tr>
 						<td>
-						<div class="poi-map-location" data-jmapping='{ "id": <?php echo $attraction->ID; ?>, "point": { "lng": <?php echo $attraction->Longitude; ?>, "lat": <?php echo $data->Latitude; ?> }, "category":"poi-<?php echo $attraction->ContextData->ItemIndex; ?>" }'>
+						<div class="poi-map-location" data-jmapping='{ "id": <?php echo $attraction->ID; ?>, "point": { "lng": <?php echo $attraction->Longitude; ?>, "lat": <?php echo $attraction->Latitude; ?> }, "category":"poi-<?php echo $attraction->ContextData->ItemIndex; ?>" }'>
 							<a class="poi-map-item mapmarker-<?php echo $attraction->ContextData->ItemIndex; ?>" href="#"><?php echo $attraction->ContextData->ItemIndex; ?></a>
 							<div class="info-html">
 								<div class="marker-infowindow"> 
