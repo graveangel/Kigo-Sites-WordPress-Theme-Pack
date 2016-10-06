@@ -7,7 +7,7 @@ class BAPIHelper {
 
     public function __construct(){
         //Initialize BAPI Solution data
-        $this->bapiData = json_decode(get_option('bapi_solutiondata'));
+        $this->bapiData = json_decode(wp_unslash(get_option('bapi_solutiondata')));
     }
 
     public function getData(){

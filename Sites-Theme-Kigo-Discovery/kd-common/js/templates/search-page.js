@@ -456,9 +456,34 @@ app.bapiModules.templates.searchPage = {
     },
     /* View toggle */
     viewToggle: function(){
-        /* View toggle buttons */
-        document.querySelector('.viewToggle .v-map').addEventListener('click', this.doMapView.bind(this));
-        document.querySelector('.viewToggle .v-list').addEventListener('click', this.doListView.bind(this));
+        /* Hide toggle if view options are disabled */
+        var list_v = document.querySelector('.viewToggle .v-list');
+        var map_v  = document.querySelector('.viewToggle .v-map');
+
+        if(!BAPI.config().defaultsearchresultview)
+        {
+
+            list_v.parentNode.removeChild(list_v);
+            map_v.parentNode.removeChild(map_v);
+        }
+        /* If only one list view is selected then only show list */
+        else if(BAPI.config().searchmodes.listview && !BAPI.config().searchmodes.mapview)
+        {
+            map_v.parentNode.removeChild(map_v);
+        }
+        /* If only one list mapview is selected then only show map */
+        else if(!BAPI.config().searchmodes.listview && BAPI.config().searchmodes.mapview)
+        {
+            list_v.parentNode.removeChild(list_v);
+        }
+        else
+        {
+            /* View toggle buttons */
+            document.querySelector('.viewToggle .v-map').addEventListener('click', this.doMapView.bind(this));
+            document.querySelector('.viewToggle .v-list').addEventListener('click', this.doListView.bind(this));
+        }
+
+
     }
 
 };
