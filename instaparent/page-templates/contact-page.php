@@ -27,7 +27,7 @@ $bapi_solutiondata = json_decode(wp_unslash($bapi_solutiondata),TRUE);
     <div class="pd2"> <?php if(!empty($bapi_solutiondata['Site'])){ ?>
       <h3><span class="glyphicons home"><i></i><?php echo $textDataArray['Our Address']; ?></span></h3>
       <div class="officemap">
-		<img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo $bapi_solutiondata['Office']['Latitude']; ?>,<?php echo $bapi_solutiondata['Office']['Longitude']?>&zoom=8&size=500x250&maptype=roadmap&markers=color:blue%7Clabel:%20%7C<?php echo $bapi_solutiondata['Office']['Latitude']; ?>,<?php echo $bapi_solutiondata['Office']['Longitude']; ?>&sensor=false" />
+		<img src="//maps.googleapis.com/maps/api/staticmap?center=<?php echo $bapi_solutiondata['Office']['Latitude']; ?>,<?php echo $bapi_solutiondata['Office']['Longitude']?>&zoom=8&size=500x250&maptype=roadmap&markers=color:blue%7Clabel:%20%7C<?php echo $bapi_solutiondata['Office']['Latitude']; ?>,<?php echo $bapi_solutiondata['Office']['Longitude']; ?>&sensor=false&sensor=false&key=AIzaSyAY7wxlnkMG6czYy9K-wM4OWXs0YFpFzEE" />
         <div class="pagination-centered"><small><a href="//maps.google.com/?q=<?php echo $bapi_solutiondata['Office']['Latitude']; ?>,<?php echo $bapi_solutiondata['Office']['Longitude']; ?>" target="_blank"><?php echo $textDataArray['View Larger Map']; ?></a></small></div>
 	  </div>
       <div class="contact-info vcard">
