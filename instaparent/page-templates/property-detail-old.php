@@ -2,7 +2,7 @@
 // Exit if accessed directly
 if ( !defined('ABSPATH')) exit;
 /*
-Template Name: Property Detail Page
+Template Name: Property Detail Page (old)
 */
 
 $data = get_post_meta(get_the_ID(), 'bapi_property_data', true);
