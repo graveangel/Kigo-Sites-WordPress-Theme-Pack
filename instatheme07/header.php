@@ -90,28 +90,29 @@ if(!empty($bapi_meta_title) && !empty($custom_page_title_option)){
 <?php if (is_front_page()){ ?>
 <!-- Start slideshow section -->
 <div class="row-fluid top-header-home <?php if (is_user_logged_in()) { echo "wpadminbarvisible"; } ?>">    
+    <?php $slideshow = bapi_get_slideshow(); ?>
     <div class="home-slideshow">
-    <div class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "slideshow": true }'>
-      <ul class="slides">
-        <?php
-            $slideshow = bapi_get_slideshow();
-            $i = 0;
-            foreach($slideshow as $ss){
-                ?>
-                <li>
-          <img src="<?php echo $ss['url'] ?>" alt="<?php echo $ss['caption'] ?>" />
+      <div class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "slideshow": true }'>
+        <ul class="slides">
           <?php
-	  if(!empty($ss['caption'])){
-	  echo '<p class="flex-caption">' . $ss['caption'] . '</p>';
-	  }
-      ?>
-          </li>
-          <?php
-                $i++;
-            }
-          ?>
-      </ul>
-    </div>
+              $i = 0;
+              foreach($slideshow as $ss){
+                  ?>
+                  <li>
+            <img src="<?php echo $ss['url'] ?>" alt="<?php echo $ss['caption'] ?>" />
+            <?php
+  	  if(!empty($ss['caption'])){
+  	  echo '<p class="flex-caption">' . $ss['caption'] . '</p>';
+  	  }
+        ?>
+            </li>
+            <?php
+                  $i++;
+              }
+            ?>
+        </ul>
+      </div>
+      <img src="<?php echo $slideshow[0]['url'] ?>" class="slideholder" />
     </div>
     <?php if ( is_active_sidebar('insta-home-qsearch' ) ) : ?>		
         <div class="home-qsearch">

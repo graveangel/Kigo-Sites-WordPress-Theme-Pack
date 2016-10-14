@@ -51,7 +51,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', end
 /* Home Quicksearch */
 .home-qsearch{border-bottom:1px solid #e5e5e5;}
 .widget_bapi_hp_search{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;padding:0;}
-.widget_bapi_hp_search .category-block{float:left;margin-right:0.75%;width:20%;}
+.widget_bapi_hp_search .category-block{float:left;margin-right:0.75%;}
 .widget_bapi_hp_search .category-block input,.widget_bapi_hp_search .category-block select{border-radius:0;-moz-border-radius:0;-webkit-border-radius:0;background:#fafafa;border-color:#ccc;color:#333;font-family:Arial, Helvetica, sans-serif;font-size:11px;font-weight:normal;}
 .widget_bapi_hp_search .search-button-block .quicksearch-dosearch,.widget_bapi__search .search-button-block .quicksearch-dosearch{
 background: rgb(51,138,214); /* Old browsers */

@@ -76,7 +76,7 @@ body{background-color:#fff;}
 .home-qsearch #bapi-search{background:rgba(255,255,255,0.5);-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;float:left;margin:0 auto;padding:15px;position:relative;width:100%;}
 .home-qsearch #bapi-search .category-block{display:inline-block;padding:0;}
 .home-qsearch .property-search-button-block{height:30px;}
-.home-qsearch #bapi-search .category-block{float:left;margin-right:1%;width:25%;} 
+.home-qsearch #bapi-search .category-block{float:left;} 
 .home-qsearch #bapi-search .category-block input[type=text],.home-qsearch #bapi-search .category-block select{border:1px solid #bbb;margin-bottom:0;}
 .home-qsearch span.cal-icon-trigger{color:#666;}
 .home-qsearch .halflings.calendar i:before{font-size:12px;}
@@ -132,10 +132,11 @@ color:#fff;font-weight:bold;float:left;font-size:13px;border:1px solid #005299;}
 .widget_insta_latest_blog_posts{box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;bordpadding-left:0;padding:0;position:relative;}
 .widget_insta_latest_blog_posts .post-block{border-bottom:1px solid #e5e5e5;padding-bottom:10px;}
 .widget_insta_latest_blog_posts .widget-title{color:#000;font-family:'Helvetica-lt';font-size:20px;font-weight:normal;padding:0;margin-left:47%;}
+.widget_insta_latest_blog_posts .post-title { padding-left: 0; }
 .widget_insta_latest_blog_posts .post-title a{color:#000;font-size:14px;font-family:'Helvetica-lt';font-weight:normal;}
 .widget_insta_latest_blog_posts .post-date{display:none;}
 .widget_insta_latest_blog_posts .post-excerpt{color:#000;font-size:12px;font-family:'Helvetica-lt';float:right;padding:0;width:52%;}
-.widget_insta_latest_blog_posts .post-image{float:left;margin-right:2%;position:relative;top:-35px;width:45%;}
+.widget_insta_latest_blog_posts .post-image{float:left;margin-right:2%;position:relative;top:10px;width:45%;}
 .widget_insta_latest_blog_posts .post-block{border:none;padding:0;}
 /* Home Content */
 .bgwhite{background:#fff;padding-left:20px;padding-right:20px;}

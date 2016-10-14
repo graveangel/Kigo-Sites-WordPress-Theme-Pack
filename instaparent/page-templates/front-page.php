@@ -6,14 +6,17 @@
  * by meeting the need for a carefully crafted introductory page. The front page template
  */
 
-get_header(); ?>
+get_header(); 
+
+$slideshow = bapi_get_slideshow();
+
+?>
 
 <div class="span12">
     <div class="home-slideshow">
-        <div class="flexslider bapi-flexslider" data-options='{ "animation": "slide", "controlNav": false, "slideshow": true }'>
+        <div class="flexslider bapi-flexslider" data-options='{ "smoothHeight":false, "animation": "slide", "controlNav": false, "slideshow": true }'>
             <ul class="slides">
                 <?php
-                    $slideshow = bapi_get_slideshow();
                     foreach($slideshow as $ss){
                         ?>
                 <li>

@@ -84,17 +84,20 @@ if ( $bDisplayImage && has_post_thumbnail()  ) {
 	the_post_thumbnail();
 	echo '</a></div>';
 }
-/* we display the date of the post */
-if($bDisplayDate){
-	 echo '<h5 class="post-date">'.get_the_date($sDateFormat).'</h5>';
-}
-/* we display the title of the post */
- if($bDisplayTitle){
-	 echo '<h4 class="post-title"><a href="'. get_permalink(@$post->ID) . '">'.get_the_title().'</a></h4>';
-} 
+
 /* we display the post excerpt */
 ?>
   <div class="post-excerpt">
+  <?php
+  /* we display the date of the post */
+	if($bDisplayDate){
+		 echo '<h5 class="post-date">'.get_the_date($sDateFormat).'</h5>';
+	}
+	/* we display the title of the post */
+	 if($bDisplayTitle){
+		 echo '<h4 class="post-title"><a href="'. get_permalink(@$post->ID) . '">'.get_the_title().'</a></h4>';
+	} 
+	?>
   <p>
     <?php
 	/* we get the excerpt */ 
@@ -338,7 +341,7 @@ class Kigo_Social_Icons_Widget extends WP_Widget {
                     <?php endif; ?>
 
                     <?php if(get_theme_mod('url-instagram')):?>
-                        <li><a href="<?php echo get_theme_mod('url-pinterest'); ?>" target="_blank" title="Pinterest"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="<?php echo get_theme_mod('url-instagram'); ?>" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
                     <?php endif; ?>
 
                     <?php if(get_theme_mod('url-blog')):?>

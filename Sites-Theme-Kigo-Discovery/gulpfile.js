@@ -7,6 +7,7 @@ var     gulp = require('gulp')
     ,   cssmin = require('gulp-cssmin')
     ,   header = require('gulp-header')
     ,   rename = require('gulp-rename')
+    ,   sourcemaps = require('gulp-sourcemaps')
     ,   livereload = require('gulp-livereload');
 
 var kdCommonPath = 'kd-common/';
@@ -19,7 +20,9 @@ var stylesOrigin = kdCommonPath+'scss/**/*.scss',
 
 gulp.task('styles', function () {
     gulp.src(mainStyle)
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(stylesDestination))
         .pipe(cssmin())
         .pipe(rename({suffix: '.min'}))
@@ -81,3 +84,5 @@ gulp.task('bapi:watch', function () {
 /* Default */
 
 gulp.task('default', ['styles', 'frontScripts', 'backScripts', 'bapiTemplates', 'styles:watch', 'scripts:watch', 'bapi:watch']);
+gulp.task('watch', ['default']);
+gulp.task('build', ['styles', 'frontScripts', 'backScripts', 'bapiTemplates']);

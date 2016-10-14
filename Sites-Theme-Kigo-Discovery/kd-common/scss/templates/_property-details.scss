@@ -37,6 +37,7 @@
     color: #999;
     display: inline-block;
     background: #fff;
+    z-index:9;
   }
   /* Amenities and buttons box -------------------------------------------------*/
   .amenities-n-buttons {
@@ -57,6 +58,11 @@
       .amenity-value{
         margin-top: 10px;
         display: block;
+
+        &.ppt-price-quote
+        {
+          margin-right: 20px;
+        }
 
         button{
           display: block;
@@ -120,7 +126,8 @@
     }
   }
   .book-now-button,
-  .inquire-button{
+  .inquire-button,
+  .kd-button {
     width: 100%;
     display: block;
     margin                        : auto;

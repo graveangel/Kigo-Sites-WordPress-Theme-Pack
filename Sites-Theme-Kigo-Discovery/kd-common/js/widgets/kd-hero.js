@@ -33,4 +33,4 @@ app.modules.widgets.hero = {
         var config = this.getSliderConfig(ele);
         app.initSwiper(ele.querySelector(this.sliderSelector), config);
     }
-};
+}; 

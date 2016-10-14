@@ -81,7 +81,7 @@ if(!empty($bapi_meta_title)){
 <?php if ( is_active_sidebar( 'insta-header-right' ) || is_active_sidebar( 'insta-header-left' )) : ?>
 <header id="insta-header" class="container-fluid site-header">
 <!-- removed all this block here to the booking theme --> 
-<!--
+<?php /*
   <div class="row-fluid maintainer">
     <div class="span6 left-side-header">
 		<?php if ( is_active_sidebar( 'insta-header-left' ) ) : ?>
@@ -94,7 +94,7 @@ if(!empty($bapi_meta_title)){
         <?php endif; ?>
     </div>
   </div>
--->  
+*/ ?>
 <!-- End removed all this block here to the booking theme --> 
 </header>
 <?php endif; ?>
@@ -108,7 +108,7 @@ $(document).ready(function(){
 
 
 <!-- removed all this block here to the booking theme --> 
-<!--
+<?php /*
 <?php if (is_front_page()){ ?>
 <div class="row-fluid top-header-home <?php if (is_user_logged_in()) { echo "wpadminbarvisible"; } ?>">    
     <div class="home-slideshow">
@@ -143,7 +143,7 @@ $(document).ready(function(){
     </div>
 <?php } ?>
 
--->
+*/ ?>
 <!-- End removed all this block here to the booking theme --> 
 
 

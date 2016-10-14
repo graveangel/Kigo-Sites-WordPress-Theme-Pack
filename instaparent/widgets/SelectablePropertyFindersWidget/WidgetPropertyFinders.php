@@ -26,9 +26,10 @@ class WidgetPropertyFinders extends WidgetBase{
          $pfindersArr = [];
 
          foreach($pfinders as $pf){
-             $pfindersArr[$pf->ID] = $pf->Name;
+             $pfindersArr[$pf['ID']] = $pf['Name'];
          }
 
+         //var_dump($pfinders);die;
          return $pfindersArr;
      }
 
