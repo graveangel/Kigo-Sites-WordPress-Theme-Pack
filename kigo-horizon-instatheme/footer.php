@@ -16,6 +16,9 @@ This is the footer code.
 <!-- End Main Content Wrapper -->
 <!-- Start Insta Footer Widget Area -->
 <footer id="insta-footer">
+<?php
+if ( has_nav_menu( 'footer' ) ) {
+?> 
   <div class="footermenu">
       <div class="container-fluid maintainer">
         <?php 
@@ -29,7 +32,10 @@ This is the footer code.
           wp_nav_menu( $defaults );            
           ?>
       </div>
-  </div>    
+  </div>   
+<?php
+}
+?>
   <div class="container-fluid">
     <div class="row-fluid maintainer site-info">
       <div class="span12">
