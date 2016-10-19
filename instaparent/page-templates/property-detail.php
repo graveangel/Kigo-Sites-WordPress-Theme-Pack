@@ -183,7 +183,11 @@ if($data) {
 
 						$availability = isset($context->Availability) ? $context->Availability : false;
 
+						$availability = array_values(array_unique($availability, SORT_REGULAR));
+
 						$availability = array('result' => [$availability]);
+
+
 
 					?>
 
