@@ -16,5 +16,5 @@ add_action('admin_enqueue_scripts', 'Kigo\Themes\instaparent\Widgets\WidgetSelec
 
 function addAdminStyles(){
 
-    wp_enqueue_style('kigo-WidgetSelectablePropertyFindersAdmin-style', \Kigo\Themes\instaparent\getDirUrl(dirname(__FILE__)) . '/css/admin.css', array(), '1.0.0');
+    wp_enqueue_style('kigo-WidgetSelectablePropertyFindersAdmin-style', get_template_directory_uri().'/widgets/SelectablePropertyFindersWidget/css/admin.css', array(), '1.0.0');
 }
