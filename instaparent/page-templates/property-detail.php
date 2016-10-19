@@ -182,10 +182,25 @@ if($data) {
 					if($settings['propdetailrateavailtab'] != 'on') { ?>
 
 						<h3><?php echo $translations['Availability']; ?></h3>
-						<div id="avail" class="bapi-availcalendar" data-options='{ "availcalendarmonths": <?php echo isset($settings['propdetail-availcal']) ? $settings['propdetail-availcal'] : 3; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
-							
-						<?php 
-						if($settings['propdetailratestable'] != 'on') { echo '<hr />'; }					
+
+					<?php
+
+						$availability = isset($context->Availability) ? $context->Availability : false;
+
+						if($availability) {
+							$availability = array_values(array_unique($availability, SORT_REGULAR));
+							$availability = array('result' => [$availability]);
+
+							?>
+							<div id="avail" class="bapi-availcalendar" data-availability='<?php echo json_encode($availability); ?>' data-options='{ "availcalendarmonths": <?php echo isset($settings['propdetail-availcal']) ? $settings['propdetail-availcal'] : 3; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
+							<?php
+						} else {
+							echo $translations['There are no more results'];
+						}
+					?>
+
+					<?php 
+					if($settings['propdetailratestable'] != 'on') { echo '<hr />'; }					
 					} 
 
 					if($settings['propdetailratestable'] != 'on') { ?>
@@ -221,15 +236,19 @@ if($data) {
 				<div class="row-fluid">
 				<div class="span12 box-sides">
 				<h3><?php echo $translations['Amenities']; ?></h3>
-				<?php foreach($data->Amenities as $amenity) { ?>		
-					<ul class="amenities-list unstyled clearfix">
-						<li class="category-title"><?php echo $amenity->Key; ?></li>
-						<?php foreach($amenity->Values as $value) { ?>
-							<li><span class="halflings ok-sign"><i></i><?php echo $value->Label; ?></span></li>
-						<?php } ?>		
-					</ul>
-					<div class="clearfix"></div>
-				<?php } ?>
+
+				<?php if(!empty($data->Amenities)) { ?>
+					<?php foreach($data->Amenities as $amenity) { ?>		
+						<ul class="amenities-list unstyled clearfix">
+							<li class="category-title"><?php echo $amenity->Key; ?></li>
+							<?php foreach($amenity->Values as $value) { ?>
+								<li><span class="halflings ok-sign"><i></i><?php echo $value->Label; ?></span></li>
+							<?php } ?>		
+						</ul>
+						<div class="clearfix"></div>
+					<?php }
+				} ?>
+
 				</div>
 				</div>
 				</div>
@@ -250,7 +269,7 @@ if($data) {
 					<tbody id="map-locations">
 					<tr>
 						<td>
-						<div class="poi-map-location" data-jmapping='{ "id": <?php echo $data->ID; ?>, "point": { "lng": <?php echo $data->Longitude; ?>, "lat": <?php echo $data->Latitude; ?> }, "category" : "property"}'>
+						<div class="poi-map-location" data-jmapping='{ "id": <?php echo !empty($data->ID) ? $data->ID : 'null'; ?>, "point": { "lng": <?php echo !empty($data->Longitude) ? $data->Longitude : 'null'; ?>, "lat": <?php echo !empty($data->Latitude) ? $data->Latitude : 'null'; ?> }, "category" : "property"}'>
 							<a class="poi-map-item mapmarker-prop" href="#"><?php echo $translations['Property']; ?></a>
 							<div class="info-html">
 								<div class="marker-infowindow">
@@ -277,10 +296,12 @@ if($data) {
 						<td><?php echo $data->Type; ?></td>
 						<td>-</td>
 					</tr>
-					<?php foreach($data->ContextData->Attractions as $attraction) { ?> 
+					<?php 
+					if(!empty($data->ContextData->Attractions)) {
+						foreach($data->ContextData->Attractions as $attraction) { ?> 
 					<tr>
 						<td>
-						<div class="poi-map-location" data-jmapping='{ "id": <?php echo $attraction->ID; ?>, "point": { "lng": <?php echo $attraction->Longitude; ?>, "lat": <?php echo $attraction->Latitude; ?> }, "category":"poi-<?php echo $attraction->ContextData->ItemIndex; ?>" }'>
+						<div class="poi-map-location" data-jmapping='{ "id": <?php echo $attraction->ID; ?>, "point": { "lng": <?php echo !empty($attraction->Longitude) ? $attraction->Longitude : null; ?>, "lat": <?php echo !empty($attraction->Latitude) ? $attraction->Latitude : null; ?> }, "category":"poi-<?php echo $attraction->ContextData->ItemIndex; ?>" }'>
 							<a class="poi-map-item mapmarker-<?php echo $attraction->ContextData->ItemIndex; ?>" href="#"><?php echo $attraction->ContextData->ItemIndex; ?></a>
 							<div class="info-html">
 								<div class="marker-infowindow"> 
@@ -304,7 +325,8 @@ if($data) {
 						<td><?php echo $attraction->Type; ?></td>
 						<td><?php echo $attraction->ContextData->Distance; ?></td>  
 					</tr>
-					<?php } ?>
+					<?php } 
+					} ?>
 					</tbody>
 					</table>
 					</div>
