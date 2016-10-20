@@ -22,5 +22,5 @@ add_action('admin_enqueue_scripts', 'Kigo\Themes\instaparent\Widgets\SpecialOffe
 
 function addAdminStyles(){
 
-    wp_enqueue_style('kigo-SpecialOffersWidgetAdmin-style', \Kigo\Themes\instaparent\getDirUrl(dirname(__FILE__)) . '/css/admin.css', array(), '1.0.0');
+    wp_enqueue_style('kigo-SpecialOffersWidgetAdmin-style', get_template_directory_uri().'/widgets/SelectableSpecialOffersWidget/css/admin.css', array(), '1.0.0');
 }
