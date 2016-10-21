@@ -189,7 +189,14 @@ if($data) {
 
 						if($availability) {
 							$availability = array_values(array_unique($availability, SORT_REGULAR));
-							$availability = array('result' => [$availability]);
+
+							$availability = array(
+								'result' => [array(
+									'ContextData' => array(
+										'Availability' => $availability
+									)
+								)]
+							);
 
 							?>
 							<div id="avail" class="bapi-availcalendar" data-availability='<?php echo json_encode($availability); ?>' data-options='{ "availcalendarmonths": <?php echo isset($settings['propdetail-availcal']) ? $settings['propdetail-availcal'] : 3; ?>, "numinrow": 3 }' data-pkid="<?php echo $data->ID; ?>" data-rateselector="bapi-ratetable"></div>
