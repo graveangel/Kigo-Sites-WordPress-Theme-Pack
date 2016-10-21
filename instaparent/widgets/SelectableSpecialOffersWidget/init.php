@@ -13,7 +13,7 @@ add_action('wp_enqueue_scripts', 'Kigo\Themes\instaparent\Widgets\SpecialOffersW
 
 function addStyles(){
 
-    wp_enqueue_style('kigo-SpecialOffersWidget-style',\Kigo\Themes\instaparent\getDirUrl(dirname(__FILE__)) . '/css/main.min.css', array(), '1.0.0');
+    wp_enqueue_style('kigo-SpecialOffersWidget-style', get_template_directory_uri().'/widgets/SelectableSpecialOffersWidget/css/main.min.css', array(), '1.0.0');
 }
 
 
@@ -22,5 +22,5 @@ add_action('admin_enqueue_scripts', 'Kigo\Themes\instaparent\Widgets\SpecialOffe
 
 function addAdminStyles(){
 
-    wp_enqueue_style('kigo-SpecialOffersWidgetAdmin-style', get_template_directory_uri().'/widgets/SelectableSpecialOffersWidget/css/admin.css', array(), '1.0.0');
+    wp_enqueue_style('kigo-SpecialOffersWidgetAdmin-style', get_template_directory_uri() . '/widgets/SelectableSpecialOffersWidget/css/admin.css', array(), '1.0.0');
 }
