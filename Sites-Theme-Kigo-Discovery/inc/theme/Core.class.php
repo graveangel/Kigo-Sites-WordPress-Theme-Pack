@@ -69,6 +69,11 @@ class Core {
         add_action('init',[$this,'kd_get_post_types'],99999);
         add_action('pre_get_posts',[$this,'set_search_query']);
 
+        /* Check if theme-specific translations are present, if not add them */
+
+//        $site_translations = get_option('kigo_overwritten_translations', false);
+//        debug($site_translations, true);
+
     }
 
     /**
