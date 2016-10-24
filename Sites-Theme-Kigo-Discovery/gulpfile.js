@@ -83,6 +83,6 @@ gulp.task('bapi:watch', function () {
 
 /* Default */
 
-gulp.task('default', ['styles', 'frontScripts', 'backScripts', 'bapiTemplates', 'styles:watch', 'scripts:watch', 'bapi:watch']);
+gulp.task('default', ['styles:watch', 'scripts:watch', 'bapi:watch']);
 gulp.task('watch', ['default']);
 gulp.task('build', ['styles', 'frontScripts', 'backScripts', 'bapiTemplates']);

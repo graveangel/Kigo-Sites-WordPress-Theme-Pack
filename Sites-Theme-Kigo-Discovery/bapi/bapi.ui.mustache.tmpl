@@ -1,3 +1,31 @@
+/*
+	Partials section 
+*/
+<script id="partial-more-results" type="text/html">
+	{{^islastpage}}<div class="showmore"><a href='javascript:void(0)'><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</a></span></div>{{/islastpage}}
+	{{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
+</script>
+
+<script id="partial-propertysearch-more-results" type="text/html">
+	{{! If we're rendering a whishlist }}
+	{{#usemylist}}
+		{{^mylist}}
+			<div class="nomore">
+				<span class="span12 alert alert-warn">
+					{{textdata.There are no properties in your wish list}}.
+					<a href="/rentals/rentalsearch" class="alignright">
+						{{textdata.All Rentals}}
+					</a>
+				</span>
+			</div>
+		{{/mylist}}
+	{{/usemylist}}
+	
+	{{! If we're rendering a non-whishlist search }}
+	{{^usemylist}}
+		{{> partial-more-results}}
+	{{/usemylist}}
+</script>
 <script id="tmpl-allpropertiespage" type="text/html">
     <div class="row">
         <div class="col-xs-12">
@@ -211,7 +239,8 @@ Group: Attractions
         </div>
     </div>
     <div class="clearfix"></div>
-        {{> partial-more-results}}
+    {{^islastpage}}<div class="showmore"><a href='javascript:void(0)'><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</a></span></div>{{/islastpage}}
+    {{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
 </script>
 
 <script id="tmpl-attractions-detail" type="text/html">
@@ -725,34 +754,6 @@ Featured Properties - QuickView
 </span>
 </script>
 
-/*
-	Partials section 
-*/
-<script id="partial-more-results" type="text/html">
-	{{^islastpage}}<div class="showmore"><a href='javascript:void(0)'><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</a></span></div>{{/islastpage}}
-	{{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
-</script>
-
-<script id="partial-propertysearch-more-results" type="text/html">
-	{{! If we're rendering a whishlist }}
-	{{#usemylist}}
-		{{^mylist}}
-			<div class="nomore">
-				<span class="span12 alert alert-warn">
-					{{textdata.There are no properties in your wish list}}.
-					<a href="/rentals/rentalsearch" class="alignright">
-						{{textdata.All Rentals}}
-					</a>
-				</span>
-			</div>
-		{{/mylist}}
-	{{/usemylist}}
-	
-	{{! If we're rendering a non-whishlist search }}
-	{{^usemylist}}
-		{{> partial-more-results}}
-	{{/usemylist}}
-</script>
 /*
 Group: Predefined Searches
 */

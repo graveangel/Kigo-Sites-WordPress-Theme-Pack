@@ -1,5 +1,6 @@
 <?php //Template Name: Search
 $bapi_page_id = get_post_meta($post->ID, 'bapi_page_id', true);
+$textdata = getTextDataArray();
 ?>
 <?php get_header() ?>
     <div class="page-width">
@@ -27,15 +28,14 @@ $bapi_page_id = get_post_meta($post->ID, 'bapi_page_id', true);
                         <div class="col-xs-12 top">
                             <div class="available">
                                 <div>
-                                    <span><?php _e('Showing') ?>&nbsp;</span>
                                     <span class="ppty-count-current">0</span>
-                                    <span>&nbsp;<?php _e('properties on map') ?></span>
+                                    <span>&nbsp;<?php echo $textdata['Properties'] ?></span>
                                     <span class="resetMap"><a href="#">[<?php _e('reset') ?>]</a></span>
                                 </div>
 
                                 <div class="btn-group viewToggle">
-                                    <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;<?php  _e('List') ?></button>
-                                    <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;<?php  _e('Map') ?></button>
+                                    <button disabled class="btn v-list"><i class="fa fa-list"></i>&nbsp;<?php  echo $textdata['List'] ?></button>
+                                    <button disabled class="btn active"><i class="fa fa-map-marker"></i>&nbsp;<?php echo $textdata['Map'] ?></button>
                                 </div>
                             </div>
                         </div>
@@ -59,8 +59,8 @@ $bapi_page_id = get_post_meta($post->ID, 'bapi_page_id', true);
                                 </div>
 
                                 <div class="btn-group viewToggle">
-                                    <button disabled class="btn active"><i class="fa fa-list"></i>&nbsp;<?php  _e('List') ?></button>
-                                    <button disabled class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;<?php  _e('Map') ?></button>
+                                    <button disabled class="btn active"><i class="fa fa-list"></i>&nbsp;<?php  echo $textdata['List'] ?></button>
+                                    <button disabled class="btn v-map" data-showallresults="1"><i class="fa fa-map-marker"></i>&nbsp;<?php  echo $textdata['`Map`'] ?></button>
                                 </div>
                             </div>
                         </div>
