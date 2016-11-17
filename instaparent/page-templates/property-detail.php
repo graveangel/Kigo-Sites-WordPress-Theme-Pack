@@ -187,7 +187,7 @@ if($data) {
 
 						$availability = isset($context->Availability) ? $context->Availability : false;
 
-						if($availability) {
+						if(false !== $availability) {
 							$availability = array_values(array_unique($availability, SORT_REGULAR));
 
 							$availability = array(
