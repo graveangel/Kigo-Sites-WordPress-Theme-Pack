@@ -239,6 +239,7 @@ if(class_exists('BAPI_Inquiry_Form'))
             <div id="bapi-inquiryform" class="bapi-inquiryform" data-templatename="tmpl-leadrequestform-propertyinquiry" data-log="0" data-showphonefield="<?= $bShowPhoneField ? 1 : 0; ?>" data-phonefieldrequired="<?= $bPhoneFieldRequired ? 1 : 0; ?>" data-showdatefields="<?= $bShowDateFields ? 1 : 0; ?>" data-shownumberguestsfields="<?= $bShowNumberGuestsFields ? 1 : 0; ?>" data-showleadsourcedropdown="<?= $bShowLeadSourceDropdown ? 1 : 0; ?>" data-leadsourcedropdownrequired="<?= $bLeadSourceDropdownRequired ? 1 : 0; ?>" data-showcommentsfield="<?= $bShowCommentsField ? 1 : 0; ?>" ></div>
             <?php
 
+
             $googleConversionkey = get_option( 'bapi_google_conversion_key');
             $googleConversionlabel = get_option( 'bapi_google_conversion_label');
             $googleConversionCode = '';
@@ -253,7 +254,7 @@ function googleConversionTrack(){
             }
 
             echo $googleConversionCode;
-            echo '</div></div>';
+            echo '</div>';
         }
 
     }
