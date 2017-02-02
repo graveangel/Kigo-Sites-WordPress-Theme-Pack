@@ -30,18 +30,20 @@ body{background:#fff;}
 .top-header-home{position:relative;margin-top:60px;}
 .widget_bapi_hp_search{padding:0;}
 .home-qsearch{position:absolute;left:1.75%;top:15%;z-index:1;}
-.home-qsearch h3.title{color:#fff;font-size:5em;font-weight:normal;text-align:center;text-shadow:0 1px 3px #000;margin-bottom:20%;}
+.home-qsearch h3.title{color:#fff;font-size:5em;font-weight:normal;text-align:center;text-shadow:0 1px 3px #000;margin-bottom:10%;}
 .home-qsearch h3.title .glyphicons{padding:0;}
 .home-qsearch h3 .glyphicons.search i:before{content:none;}
 .home-qsearch .widget_bapi_hp_search{background:none;box-shadow:none;}
-.home-qsearch #bapi-search{background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:10px 0 0 5px;margin:0 auto;position:relative;}
+.home-qsearch #bapi-search{background:#fff;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding:5px 5px 0 0;margin:0 auto;position:relative;}
 .home-qsearch #bapi-search .category-block{display:inline-block;padding:0;}
-.home-qsearch .property-search-button-block{ }
+.home-qsearch .property-search-button-block{width:80px;height:52px;overflow:hidden;}
 .home-qsearch #bapi-search .category-block input[type=text],
 .home-qsearch #bapi-search .category-block select,
 .home-qsearch #bapi-search .category-block button {
 	border-radius:2px;height:52px;margin-bottom:0;padding:10px 5px;
 }
+.home-qsearch .property-search-block .category-block{margin:0 0 0 5px;}
+
 .home-qsearch span.cal-icon-trigger{color:#0099CC;}
 .home-qsearch .halflings.calendar i:before{font-size:20px;}
 .home-qsearch .widget_bapi_hp_search .search-button-block .quicksearch-dosearch{float:none;background:#0099CC url(images/icon-magnifyingglass.png) no-repeat center center;border:none;box-shadow:none;height:52px;padding:0;text-indent:-9999px;width:80px;}

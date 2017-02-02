@@ -1,3 +1,31 @@
+/*
+	Partials section 
+*/
+<script id="partial-more-results" type="text/html">
+	{{^islastpage}}<div class="showmore"><a href='javascript:void(0)'><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</a></span></div>{{/islastpage}}
+	{{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
+</script>
+
+<script id="partial-propertysearch-more-results" type="text/html">
+	{{! If we're rendering a whishlist }}
+	{{#usemylist}}
+		{{^mylist}}
+			<div class="nomore">
+				<span class="span12 alert alert-warn">
+					{{textdata.There are no properties in your wish list}}.
+					<a href="/rentals/rentalsearch" class="alignright">
+						{{textdata.All Rentals}}
+					</a>
+				</span>
+			</div>
+		{{/mylist}}
+	{{/usemylist}}
+	
+	{{! If we're rendering a non-whishlist search }}
+	{{^usemylist}}
+		{{> partial-more-results}}
+	{{/usemylist}}
+</script>
 <script id="tmpl-allpropertiespage" type="text/html">
     <div class="row">
         <div class="col-xs-12">
@@ -211,7 +239,8 @@ Group: Attractions
         </div>
     </div>
     <div class="clearfix"></div>
-        {{> partial-more-results}}
+    {{^islastpage}}<div class="showmore"><a href='javascript:void(0)'><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</a></span></div>{{/islastpage}}
+    {{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
 </script>
 
 <script id="tmpl-attractions-detail" type="text/html">
@@ -496,8 +525,8 @@ Featured Properties - QuickView
             <div class="text">
                 <div class="left">
                     <h4 class="prop-title">{{Headline}}</h4>
-                    <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
-                    <div class="prop-price">From {{MinRate.Value}}{{MinRate.Currency}}/Night</div>
+                    <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} <b>{{Bedrooms}}</b>{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} <b>{{Bathrooms}}</b>{{/Bathrooms}}</div>
+                    <div class="prop-price">{{ContextData.Quote.PublicNotes}}</div>
                 </div>
                 <div class="prop-details secondary-fill-color">{{textdata.See Details}}</div>
             </div>
@@ -725,34 +754,6 @@ Featured Properties - QuickView
 </span>
 </script>
 
-/*
-	Partials section 
-*/
-<script id="partial-more-results" type="text/html">
-	{{^islastpage}}<div class="showmore"><a href='javascript:void(0)'><span class="span12 alert alert-info">{{textdata.Show More Results}} ({{totalitemsleft}})</a></span></div>{{/islastpage}}
-	{{#islastpage}}<div class="nomore"><a href='javascript:void(0)'><span class="span12 alert alert-warn">{{textdata.There are no more results}}</a></span></div>{{/islastpage}}
-</script>
-
-<script id="partial-propertysearch-more-results" type="text/html">
-	{{! If we're rendering a whishlist }}
-	{{#usemylist}}
-		{{^mylist}}
-			<div class="nomore">
-				<span class="span12 alert alert-warn">
-					{{textdata.There are no properties in your wish list}}.
-					<a href="/rentals/rentalsearch" class="alignright">
-						{{textdata.All Rentals}}
-					</a>
-				</span>
-			</div>
-		{{/mylist}}
-	{{/usemylist}}
-	
-	{{! If we're rendering a non-whishlist search }}
-	{{^usemylist}}
-		{{> partial-more-results}}
-	{{/usemylist}}
-</script>
 /*
 Group: Predefined Searches
 */
@@ -1231,39 +1232,31 @@ Group: Properties
 <script id="tmpl-search-rateblock" type="text/html">
         {{#result}}
 
+        {{#ContextData.Quote.QuoteDisplay.value}}
+        <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
+        <span class="amenity-name">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>
+        <span class="amenity-value ppt-price-quote">
+            {{#ContextData.Quote.QuoteDisplay.prefix}}
+            <span class="prefix"></span>
+            {{/ContextData.Quote.QuoteDisplay.prefix}}
+            <span>{{ContextData.Quote.QuoteDisplay.value}}</span>
+            {{#ContextData.Quote.QuoteDisplay.suffix}}
+            <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
+            {{/ContextData.Quote.QuoteDisplay.suffix}}
+        </span>
+        {{/ContextData.Quote.QuoteDisplay.value}}
 
+        {{#session.searchparams.scheckin}}
+            <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
+            <span class="amenity-label">
+            {{session.searchparams.scheckin}}
+            {{#session.searchparams.scheckout}}
+                - {{session.searchparams.scheckout}}
+            {{/session.searchparams.scheckout}}
+            </span>
+        &nbsp;
+        {{/session.searchparams.scheckin}}
 
-                                <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
-                                    {{#ContextData.Quote.QuoteDisplay.value}}
-                                        <span class="amenity-name">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>
-                                <span class="amenity-value ppt-price-quote">
-                                    {{#ContextData.Quote.QuoteDisplay.prefix}}
-                                        <span class="prefix"></span>
-                                    {{/ContextData.Quote.QuoteDisplay.prefix}}
-                                    <span>{{ContextData.Quote.QuoteDisplay.value}}</span>
-                                    {{#ContextData.Quote.QuoteDisplay.suffix}}
-                                        <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
-                                    {{/ContextData.Quote.QuoteDisplay.suffix}}
-                                </span>
-                                    {{/ContextData.Quote.QuoteDisplay.value}}
-
-                                    {{^ContextData.Quote.QuoteDisplay.value}}
-                                        <span class="amenity-name">
-                                    <span class="prefix">{{textdata.Rates}}:</span>
-                                </span>
-                                <span class="amenity-value ppt-price-quote">
-                                    {{^ContextData.Quote.QuoteDisplay.suffix}}
-                                        <span class="suffix">{{MinRate.Value}} {{MinRate.Currency}} / Night</span>
-                                    {{/ContextData.Quote.QuoteDisplay.suffix}}
-                                </span>
-                                    {{/ContextData.Quote.QuoteDisplay.value}}
-
-
-
-
-
-         <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
-        <span class="amenity-name your-dates">YOUR DATES:</span>
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
                 <div class="alert alert-error"><button data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</button></div>
@@ -1276,18 +1269,18 @@ Group: Properties
 
                 {{#ContextData.Quote.IsValid}}
                     <span class="amenity-value">
-                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link update">{{textdata.Update}}</a>
+                        <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link update">{{textdata.Update}}</a>
                     </span>
                 {{/ContextData.Quote.IsValid}}
 
-                <div id="revisedates" data-backdrop="false" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
+                <div id="revisedates" data-backdrop="true" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
 
                     <div class="booking-form">
                         <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
                         <div class="row-fluid">
 
                             <div class="span6">
-                                <label fore="rateblockcheckin">{{textdata.Check-In}}</label>
+                                <label for="rateblockcheckin">{{textdata.Check-In}}</label>
                                 <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
                             </div>
 

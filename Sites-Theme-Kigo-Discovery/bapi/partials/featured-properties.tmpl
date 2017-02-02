@@ -8,8 +8,8 @@ Featured Properties - QuickView
             <div class="text">
                 <div class="left">
                     <h4 class="prop-title">{{Headline}}</h4>
-                    <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} {{Bedrooms}}{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} {{Bathrooms}}{{/Bathrooms}}</div>
-                    <div class="prop-price">From {{MinRate.Value}}{{MinRate.Currency}}/Night</div>
+                    <div class="prop-attrs">{{#Bedrooms}}{{textdata.Beds}} <b>{{Bedrooms}}</b>{{/Bedrooms}} {{#Bathrooms}}{{textdata.Baths}} <b>{{Bathrooms}}</b>{{/Bathrooms}}</div>
+                    <div class="prop-price">{{ContextData.Quote.PublicNotes}}</div>
                 </div>
                 <div class="prop-details secondary-fill-color">{{textdata.See Details}}</div>
             </div>
