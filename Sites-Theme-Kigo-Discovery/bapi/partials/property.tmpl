@@ -264,39 +264,31 @@
 <script id="tmpl-search-rateblock" type="text/html">
         {{#result}}
 
+        {{#ContextData.Quote.QuoteDisplay.value}}
+        <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
+        <span class="amenity-name">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>
+        <span class="amenity-value ppt-price-quote">
+            {{#ContextData.Quote.QuoteDisplay.prefix}}
+            <span class="prefix"></span>
+            {{/ContextData.Quote.QuoteDisplay.prefix}}
+            <span>{{ContextData.Quote.QuoteDisplay.value}}</span>
+            {{#ContextData.Quote.QuoteDisplay.suffix}}
+            <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
+            {{/ContextData.Quote.QuoteDisplay.suffix}}
+        </span>
+        {{/ContextData.Quote.QuoteDisplay.value}}
 
+        {{#session.searchparams.scheckin}}
+            <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
+            <span class="amenity-label">
+            {{session.searchparams.scheckin}}
+            {{#session.searchparams.scheckout}}
+                - {{session.searchparams.scheckout}}
+            {{/session.searchparams.scheckout}}
+            </span>
+        &nbsp;
+        {{/session.searchparams.scheckin}}
 
-                                <span class="kd-icon amenity-icon glyphicons glyphicons-money"></span>
-                                    {{#ContextData.Quote.QuoteDisplay.value}}
-                                        <span class="amenity-name">{{ContextData.Quote.QuoteDisplay.prefix}}:</span>
-                                <span class="amenity-value ppt-price-quote">
-                                    {{#ContextData.Quote.QuoteDisplay.prefix}}
-                                        <span class="prefix"></span>
-                                    {{/ContextData.Quote.QuoteDisplay.prefix}}
-                                    <span>{{ContextData.Quote.QuoteDisplay.value}}</span>
-                                    {{#ContextData.Quote.QuoteDisplay.suffix}}
-                                        <span class="suffix">/{{ContextData.Quote.QuoteDisplay.suffix}}</span>
-                                    {{/ContextData.Quote.QuoteDisplay.suffix}}
-                                </span>
-                                    {{/ContextData.Quote.QuoteDisplay.value}}
-
-                                    {{^ContextData.Quote.QuoteDisplay.value}}
-                                        <span class="amenity-name">
-                                    <span class="prefix">{{textdata.Rates}}:</span>
-                                </span>
-                                <span class="amenity-value ppt-price-quote">
-                                    {{^ContextData.Quote.QuoteDisplay.suffix}}
-                                        <span class="suffix">{{MinRate.Value}} {{MinRate.Currency}} / Night</span>
-                                    {{/ContextData.Quote.QuoteDisplay.suffix}}
-                                </span>
-                                    {{/ContextData.Quote.QuoteDisplay.value}}
-
-
-
-
-
-         <span class="kd-icon amenity-icon glyphicons glyphicons-calendar"></span>
-        <span class="amenity-name your-dates">YOUR DATES:</span>
         <span class="amenity-value">
             {{^ContextData.Quote.IsValid}}
                 <div class="alert alert-error"><button data-toggle="modal" data-target="#revisedates" class="pop-up-form-link kd-button primary-fill-color">{{ContextData.Quote.ValidationMessage}}</button></div>
@@ -309,18 +301,18 @@
 
                 {{#ContextData.Quote.IsValid}}
                     <span class="amenity-value">
-                            {{session.searchparams.scheckin}} - {{session.searchparams.scheckout}} <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link update">{{textdata.Update}}</a>
+                        <a href="#" data-toggle="modal" data-target="#revisedates" class="pop-up-form-link update">{{textdata.Update}}</a>
                     </span>
                 {{/ContextData.Quote.IsValid}}
 
-                <div id="revisedates" data-backdrop="false" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
+                <div id="revisedates" data-backdrop="true" class="pop-up-booking-form modal fade" role="dialog" aria-hidden="true">
 
                     <div class="booking-form">
                         <span class="glyphicons glyphicons-list-alt"></span><span class="update-info-label">{{textdata.Change Info}}</span>
                         <div class="row-fluid">
 
                             <div class="span6">
-                                <label fore="rateblockcheckin">{{textdata.Check-In}}</label>
+                                <label for="rateblockcheckin">{{textdata.Check-In}}</label>
                                 <input id="rateblockcheckin" class="span12 quicksearch datepickercheckin" type="text" placeholder="{{textdata.Check-In}}" value="{{session.searchparams.scheckin}}" data-field="scheckin" required>
                             </div>
 
