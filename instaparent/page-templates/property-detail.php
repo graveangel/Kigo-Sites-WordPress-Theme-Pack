@@ -150,7 +150,7 @@ if($data) {
 							<ul class="unstyled">
 								<?php if($data->Development) { ?><li><?php echo $translations['Development']; ?>: <span><?php echo $data->Development; ?></span></li><?php } ?>
 								<?php if($data->Type) { ?><li><?php echo $translations['Category']; ?>: <span><?php echo $data->Type; ?></span></li><?php } ?>
-								<?php if($data->Beds) { ?><li><?php echo $translations['Beds']; ?>: <span><?php echo $data->Beds; ?></span></li><?php } ?>
+								<?php if($data->Bedrooms) { ?><li><?php echo $translations['Beds']; ?>: <span><?php echo $data->Bedrooms; ?></span></li><?php } ?>
 								<?php if($data->Bathrooms) { ?><li><?php echo $translations['Baths']; ?>: <span><?php echo $data->Bathrooms; ?></span></li><?php } ?>
 								<?php if($data->Sleeps) { ?><li><?php echo $translations['Sleeps']; ?>: <span><?php echo $data->Sleeps; ?></span></li><?php } ?>
 								<?php if($data->Stories) { ?><li><?php echo $translations['Stories']; ?>: <span><?php echo $data->Stories; ?></span></li><?php } ?>
