@@ -15,7 +15,16 @@ $uhcols_right = 12 - $uhcols_left;
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/png"  href="<?php echo get_theme_mod('site-favicon', ''); ?>" />
-    <title><?php echo get_theme_mod('site-company', wp_title()); ?></title>
+    <title>
+		<?php
+		$bapi_meta_title = get_post_meta($post->ID, 'bapi_meta_title', true);
+		if (!empty($bapi_meta_title)) {
+			echo $bapi_meta_title;
+		} else {
+			echo get_theme_mod('site-company', wp_title());
+		}
+		?>
+	</title>
     <?php wp_head() ?>
 </head>
 

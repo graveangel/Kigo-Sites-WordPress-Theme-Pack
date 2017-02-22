@@ -12,14 +12,14 @@ This is the header code.
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes"/>
 <title>
-<?php $bapi_meta_title = get_post_meta($post->ID,'bapi_meta_title', true);
-      $custom_page_title_option = get_post_meta($post->ID, "meta-box-checkbox", true);
-if(!empty($bapi_meta_title) && !empty($custom_page_title_option)){ 
-  echo $bapi_meta_title;
-}else{
-  wp_title('');
-}
-?>
+	<?php
+	$bapi_meta_title = get_post_meta($post->ID, 'bapi_meta_title', true);
+	if (!empty($bapi_meta_title)) {
+		echo $bapi_meta_title;
+	} else {
+		wp_title('');
+	}
+	?>
 </title>
 <?php $themeUrl = wp_make_link_relative(get_template_directory_uri()); ?>
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
