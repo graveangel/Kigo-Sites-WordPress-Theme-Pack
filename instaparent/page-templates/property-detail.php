@@ -281,20 +281,20 @@ if($data) {
 							<div class="info-html">
 								<div class="marker-infowindow">
 
-									<span class="prop-image pull-left"><img src="<?php echo get_template_directory_uri(); ?>/insta-common/images/loading.gif" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></span>
+									<div class="prop-image span6"><img src="<?php echo get_template_directory_uri(); ?>/insta-common/images/loading.gif" data-src="<?php echo $data->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $data->PrimaryImage->Caption; ?>" alt="<?php echo $data->PrimaryImage->Caption; ?>"></div>
 
-									<span class="prop-location pull-left">
+									<div class="prop-location span6">
 										<span>
 										<?php if($data->SEO->Keyword) { ?><a target="_blank" href="<?php echo $data->DetailURL; ?>"><?php } ?>
-										<b><?php echo $data->Headline; ?></b>
+										<b style="text-transform: uppercase;"><?php echo $data->Headline; ?></b>
 										<?php if($data->SEO->Keyword) { ?></a><?php } ?><br/>			
-										<?php if($data->Type) { ?><b><?php echo $translations['Category']; ?>:</b><?php echo $data->Type; ?><br/><?php } ?>
+										<?php if($data->Type) { ?><b><?php echo $translations['Category']; ?>: </b><?php echo $data->Type; ?><br/><?php } ?>
 										<?php if($data->City) { ?><b><?php echo $translations['City']; ?>: </b><?php echo $data->City; ?><br/><?php } ?>
 										<?php if($data->Beds) { ?><b><?php echo $translations['Beds']; ?>: </b><?php echo $data->Beds; ?><br/><?php } ?>
 										<?php if($data->Bathrooms) { ?><b><?php echo $translations['Baths']; ?>: </b><?php echo $data->Baths; ?><br/><?php } ?>
 										<?php if($data->Sleeps) { ?><b><?php echo $translations['Sleeps']; ?>: </b><?php echo $data->Sleeps; ?><?php } ?>
 										</span>
-									</span>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -313,17 +313,17 @@ if($data) {
 							<div class="info-html">
 								<div class="marker-infowindow"> 
 
-									<span class="prop-image pull-left"><img src="<?php echo get_template_directory_uri(); ?>/insta-common/images/loading.gif" data-src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></span>
+									<div class="prop-image span6"><img src="<?php echo $attraction->PrimaryImage->ThumbnailURL; ?>" caption="<?php echo $attraction->PrimaryImage->Caption; ?>" alt="<?php echo $attraction->PrimaryImage->Caption; ?>"></div>
 
-									<span class="prop-location pull-left">
+									<div class="prop-location span6">
 										<span>
 										<?php if($attraction->ContextData->SEO->Keyword) { ?><a target="_blank" href="<?php echo $attraction->ContextData->SEO->DetailURL; ?>"><?php } ?>
-										<b><?php echo $data->Name; ?></b>
+										<b style="text-transform: uppercase;"><?php echo $attraction->Name; ?></b>
 										<?php if($attraction->ContextData->SEO->Keyword) { ?></a><?php } ?><br/>
-										<?php if($attraction->Type) { ?><b><?php echo $translations['Category']; ?>:</b><?php echo $attraction->Type; ?><br/><?php } ?>
+										<?php if($attraction->Type) { ?><b><?php echo $translations['Category']; ?>: </b><?php echo $attraction->Type; ?><br/><?php } ?>
 										<?php if($attraction->Location) { ?><b><?php echo $translations['Address']; ?>: </b><?php echo $attraction->Location; ?><?php } ?>
 										</span>
-									</span>
+									</div>
 							  </div>
 							</div>
 						</td>
