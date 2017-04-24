@@ -64,7 +64,7 @@ if($data) {
 					<?php $imgCount = 1; foreach($data->Images as $img) { ?>
 						<li>
 							<div>
-								<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="'.get_template_directory_uri().'/insta-common/images/loading-816x600.gif" data-'; } ?>src="https://d2dj058379d96m.cloudfront.net/702/470/http:<?php echo $img->OriginalURL; ?>" />
+								<img alt="<?php echo $img->Caption; ?>" title="Open Slideshow" <?php if($imgCount > 3) { echo 'src="'.get_template_directory_uri().'/insta-common/images/loading-816x600.gif" data-'; } ?>src="https://d2dj058379d96m.cloudfront.net/702/470/http:<?php echo $img->OriginalURL; ?>?zc=2" />
 								<?php if($img->Caption) { ?>
 								<p class="flex-caption">&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $img->Caption; ?></p>
 								<?php } ?>
