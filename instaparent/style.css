@@ -1525,3 +1525,7 @@ div.starsreviews i{display:inline-block;line-height:15px;overflow:hidden;padding
 		right: 0.2em;
 	}
 }
+
+/* SST Fixes */
+.mr_social_sharing_wrapper{margin-bottom: 10px;}
+.mr_social_sharing_wrapper span{display: inline-block; vertical-align: middle; margin-left: 5px;}
