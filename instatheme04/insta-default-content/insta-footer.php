@@ -16,7 +16,7 @@
 
     
     <div class="footer-links">
-    <span class="poweredby"><a rel="nofollow" href="http://{{site.PoweredBy.Data}}" target="_blank">{{site.PoweredBy.Label}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="applogin"><a rel="nofollow" href="{{site.App.Data}}">{{site.App.Label}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="terms"><a href="/termsofuse" target="_blank">{{#textdata.Terms}}{{textdata.Terms}}{{/textdata.Terms}}{{^textdata.Terms}}Terms{{/textdata.Terms}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="privacy"><a href="/privacypolicy" target="_blank">{{#textdata.Privacy}}{{textdata.Privacy}}{{/textdata.Privacy}}{{^textdata.Privacy}}Privacy{{/textdata.Privacy}}</a></span>
+    <span class="poweredby"><a rel="nofollow" href="http://{{site.PoweredBy.Data}}" target="_blank">Kigo Sites 2012</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="applogin"><a rel="nofollow" href="{{site.App.Data}}">{{site.App.Label}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="terms"><a href="/termsofuse" target="_blank">{{#textdata.Terms}}{{textdata.Terms}}{{/textdata.Terms}}{{^textdata.Terms}}Terms{{/textdata.Terms}}</a></span>&nbsp;&nbsp;|&nbsp;&nbsp;<span class="privacy"><a href="/privacypolicy" target="_blank">{{#textdata.Privacy}}{{textdata.Privacy}}{{/textdata.Privacy}}{{^textdata.Privacy}}Privacy{{/textdata.Privacy}}</a></span>
 	</div>
 	
 <div class="clearfix"></div>		
